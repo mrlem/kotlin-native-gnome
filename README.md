@@ -20,3 +20,6 @@ sudo apt install libtinfo5
 ./gradlew runDebugExecutableGtk
 ```
 
+## See also
+
+For something closer to a real GTK binding, see [kotlinx-gtk](https://github.com/Doomsdayrs/kotlinx-gtk)
