@@ -1,4 +1,4 @@
-package sample.gtk
+package org.mrlem.gtk
 
 import gtk3.GObject
 import gtk3.g_signal_connect_data

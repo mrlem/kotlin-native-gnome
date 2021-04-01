@@ -1,9 +1,9 @@
 package sample
 
+import org.mrlem.gtk.*
 import platform.posix.exit
-import sample.gtk.*
 
-private const val GLADE_FILENAME = "/home/seb/Projects/kotlin-glade/src/gtkMain/resources/sample.glade"
+private const val GLADE_FILENAME = "./src/gtkMain/resources/sample.glade"
 
 /**
  * Run a sample app demonstrating how to load a glade UI file and access its widgets.

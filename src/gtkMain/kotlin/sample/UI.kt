@@ -1,6 +1,6 @@
 package sample
 
-import sample.gtk.*
+import org.mrlem.gtk.*
 
 /**
  * Wrapper providing easy access to all used [Widget] instances.

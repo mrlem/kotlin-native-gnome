@@ -1,4 +1,4 @@
-package sample.gtk
+package org.mrlem.gtk
 
 import gtk3.*
 import kotlinx.cinterop.CPointer
@@ -8,23 +8,33 @@ import kotlinx.cinterop.reinterpret
 // Type
 ///////////////////////////////////////////////////////////////////////////
 
-typealias ButtonBox = CPointer<GtkButtonBox>
+typealias Button = CPointer<GtkButton>
 
 ///////////////////////////////////////////////////////////////////////////
 // Conversion
 ///////////////////////////////////////////////////////////////////////////
 
-val ButtonBox.asWidget
+val Button.asWidget
     get() = reinterpret<GtkWidget>()
 
-val ButtonBox.asContainer
-    get() = reinterpret<GtkContainer>()
+val Button.asObject
+    get() = reinterpret<GObject>()
+
+val Object.asButton
+    get() = reinterpret<GtkButton>()
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API
 ///////////////////////////////////////////////////////////////////////////
 
 @Suppress("FunctionName")
-fun ButtonBox(orientation: GtkOrientation) = gtk_button_box_new(orientation)!!.reinterpret<GtkButtonBox>()
+fun Button(label: String) = gtk_button_new_with_label(label)!!.reinterpret<GtkButton>()
 
-fun ButtonBox.add(widget: Widget) = asContainer.add(widget)
+///////////////////////////////////////////////////////////////////////////
+// Event handlers
+///////////////////////////////////////////////////////////////////////////
+
+fun Button.onClick(onClick: (Button) -> Unit): Button {
+    asObject.connect("clicked") { onClick(this) }
+    return this
+}

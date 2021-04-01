@@ -1,4 +1,4 @@
-package sample.gtk
+package org.mrlem.gtk
 
 import gtk3.GtkBuilder
 import gtk3.gtk_builder_get_object

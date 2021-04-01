@@ -1,4 +1,4 @@
-package sample.gtk
+package org.mrlem.gtk
 
 import gtk3.*
 import kotlinx.cinterop.*

@@ -1,40 +1,43 @@
-package sample.gtk
+package org.mrlem.gtk
 
 import gtk3.*
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import kotlinx.cinterop.toKString
 
 ///////////////////////////////////////////////////////////////////////////
 // Type
 ///////////////////////////////////////////////////////////////////////////
 
-typealias Button = CPointer<GtkButton>
+typealias Entry = CPointer<GtkEntry>
 
 ///////////////////////////////////////////////////////////////////////////
 // Conversion
 ///////////////////////////////////////////////////////////////////////////
 
-val Button.asWidget
+val Entry.asWidget
     get() = reinterpret<GtkWidget>()
 
-val Button.asObject
+val Entry.asObject
     get() = reinterpret<GObject>()
 
-val Object.asButton
-    get() = reinterpret<GtkButton>()
+val Object.asEntry
+    get() = reinterpret<GtkEntry>()
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API
 ///////////////////////////////////////////////////////////////////////////
 
-@Suppress("FunctionName")
-fun Button(label: String) = gtk_button_new_with_label(label)!!.reinterpret<GtkButton>()
+val Entry.text
+    get() = gtk_entry_get_text(this)!!.toKString()
+
+fun Entry.setText(text: String) = gtk_entry_set_text(this, text)
 
 ///////////////////////////////////////////////////////////////////////////
-// Event handlers
+// Events handlers
 ///////////////////////////////////////////////////////////////////////////
 
-fun Button.onClick(onClick: (Button) -> Unit): Button {
-    asObject.connect("clicked") { onClick(this) }
+fun Entry.onActivate(onActivate: (Entry) -> Unit): Entry {
+    asObject.connect("activate") { onActivate(this) }
     return this
 }
