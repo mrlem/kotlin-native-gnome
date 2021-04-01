@@ -6,6 +6,8 @@ It includes a minimalistic GTK binding that is:
 * light: no wrapper objects, just extensions
 * incomplete: I just exposed what I needed, but I do hope you'll get the idea :)
 
+![Screenshot](doc/readme-screenshot.png)
+
 ## Pre-requisites
 
 ```
