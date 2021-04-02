@@ -1,5 +1,6 @@
 package org.mrlem.gtk.sample
 
+import binding.SampleUI
 import org.mrlem.gtk.*
 import platform.posix.exit
 
@@ -9,7 +10,7 @@ import platform.posix.exit
 fun main(args: Array<String>) {
     Application("org.mrlem.sample", args) {
         onActivate {
-            AppUI("./src/gtkMain/resources/sample.glade")
+            SampleUI()
                 .also { AppDelegate(it) }
                 .also { addWindow(it.window) }
         }

@@ -1,0 +1,27 @@
+package org.mrlem.gtk
+
+import gtk3.*
+import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.reinterpret
+
+///////////////////////////////////////////////////////////////////////////
+// Type
+///////////////////////////////////////////////////////////////////////////
+
+typealias ToolButton = CPointer<GtkToolButton>
+
+///////////////////////////////////////////////////////////////////////////
+// Conversion
+///////////////////////////////////////////////////////////////////////////
+
+val ToolButton.asButton
+    get() = reinterpret<GtkButton>()
+
+val ToolButton.asWidget
+    get() = reinterpret<GtkWidget>()
+
+val ToolButton.asObject
+    get() = reinterpret<GObject>()
+
+val Object.asToolButton
+    get() = reinterpret<GtkToolButton>()

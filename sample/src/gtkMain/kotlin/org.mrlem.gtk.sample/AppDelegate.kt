@@ -1,11 +1,12 @@
 package org.mrlem.gtk.sample
 
+import binding.SampleUI
 import org.mrlem.gtk.*
 
-class AppDelegate(ui: AppUI) {
+class AppDelegate(ui: SampleUI) {
     init {
         ui.apply {
-            button.onClick { entry.print() }
+            button.asButton.onClick { entry.print() }
             entry.onActivate { entry.print() }
             window.showAll()
         }
