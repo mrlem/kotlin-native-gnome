@@ -5,7 +5,7 @@ import org.mrlem.gtk.*
 /**
  * Wrapper providing easy access to all used [Widget] instances.
  */
-class UI(filename: String) {
+class AppUI(filename: String) {
     private val builder = Builder(filename)
 
     val window by lazy { builder["main"].asWindow }
