@@ -11,7 +11,7 @@ It includes a minimalistic GTK binding that is:
 ## Pre-requisites
 
 ```
-sudo apt install libtinfo5
+sudo apt install libgtk-3-dev libtinfo5
 ```
 
 ## Build
@@ -23,4 +23,6 @@ cd sample
 
 ## See also
 
-For something closer to a real GTK binding, see [kotlinx-gtk](https://github.com/Doomsdayrs/kotlinx-gtk)
+For something closer to a real GTK binding, see either:
+* [kotlin-native-gtk](https://github.com/kropp/kotlin-native-gtk): which features an API generator based on GIR
+* [kotlinx-gtk](https://github.com/Doomsdayrs/kotlinx-gtk)
