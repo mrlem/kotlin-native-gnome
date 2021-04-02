@@ -1,4 +1,4 @@
-package sample
+package org.mrlem.gtk.sample
 
 import org.mrlem.gtk.*
 

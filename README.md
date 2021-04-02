@@ -17,7 +17,8 @@ sudo apt install libtinfo5
 ## Build
 
 ```
-./gradlew runDebugExecutableGtk
+cd sample
+../gradlew runDebugExecutableGtk
 ```
 
 ## See also
