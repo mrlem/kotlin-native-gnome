@@ -12,7 +12,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 /**
- * Gradle plugin that generates a UI class for each glade XML file present in gtkMain/resources.
+ * Gradle plugin that generates a UI class for each glade XML file present in resources.
  * This UI class will:
  * - embed the XML in the app
  * - load it
@@ -31,6 +31,7 @@ class GladePlugin : Plugin<Project> {
             doLast {
                 // for each glade file, create a UI class
                 sourceSetsWithGeneratedDir.forEach { (sourceSet, generatedDir) ->
+                    generatedDir.deleteRecursively()
                     sourceSet.listGladeFiles()
                         .takeIf { it.isNotEmpty() }
                         ?.forEach { file -> generateGladeUIClass(file, generatedDir) }
@@ -41,7 +42,9 @@ class GladePlugin : Plugin<Project> {
         // project setup
         project.afterEvaluate {
             // task will run immediately before compiling the kotlin sources
-            project.tasks["compileKotlinGtk"].dependsOn(generateTask)
+            project.tasks
+                .filter { it.name.startsWith("compileKotlin") }
+                .forEach { it.dependsOn(generateTask) }
 
             // lookup kotlin source sets & create generated dirs
             val kotlinExtension = project.extensions.getByName("kotlin") as KotlinMultiplatformExtension

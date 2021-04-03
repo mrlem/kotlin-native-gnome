@@ -12,9 +12,9 @@ kotlin {
 
     // Create a target for the host platform.
     val hostTarget = when {
-        hostOs == "Mac OS X" -> macosX64("gtk")
-        hostOs == "Linux" -> linuxX64("gtk")
-        isMingwX64 -> mingwX64("gtk")
+        hostOs == "Mac OS X" -> macosX64("common")
+        hostOs == "Linux" -> linuxX64("common")
+        isMingwX64 -> mingwX64("common")
         else -> throw GradleException("Host OS '$hostOs' is not supported in Kotlin/Native $project.")
     }
 
@@ -31,8 +31,10 @@ kotlin {
     }
 
     sourceSets {
-        get("gtkMain")?.dependencies {
-            implementation(project(":gtk"))
+        commonMain {
+            dependencies {
+                implementation(project(":gtk"))
+            }
         }
     }
 }
