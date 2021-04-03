@@ -21,8 +21,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
  * Note that the glade file needs to end in .glade.
  */
 class GladePlugin : Plugin<Project> {
-    private lateinit var generatedSourceSetDirectory: File
-    private lateinit var sourceSet: KotlinSourceSet
+    private lateinit var sourceSetsWithGeneratedDir: Map<KotlinSourceSet, File>
 
     override fun apply(project: Project) {
         // task to run
@@ -31,8 +30,11 @@ class GladePlugin : Plugin<Project> {
 
             doLast {
                 // for each glade file, create a UI class
-                sourceSet.listGladeFiles()
-                    .forEach(::generateGladeUIClass)
+                sourceSetsWithGeneratedDir.forEach { (sourceSet, generatedDir) ->
+                    sourceSet.listGladeFiles()
+                        .takeIf { it.isNotEmpty() }
+                        ?.forEach { file -> generateGladeUIClass(file, generatedDir) }
+                }
             }
         }
 
@@ -41,13 +43,26 @@ class GladePlugin : Plugin<Project> {
             // task will run immediately before compiling the kotlin sources
             project.tasks["compileKotlinGtk"].dependsOn(generateTask)
 
-            // setup generated sources directory, and add it to the source set
+            // lookup kotlin source sets & create generated dirs
             val kotlinExtension = project.extensions.getByName("kotlin") as KotlinMultiplatformExtension
-            sourceSet = kotlinExtension.sourceSets["gtkMain"]
-            generatedSourceSetDirectory = sourceSet.kotlin.srcDir("generated-sources")
-                .sourceDirectories
-                .last()
+            sourceSetsWithGeneratedDir = kotlinExtension.sourceSets
+                .map { it to createdGeneratedSrcDir(it, project.buildDir) }
+                .toMap()
         }
+    }
+
+    /**
+     * Create a generated sources dir for glade UI classes.
+     *
+     * @param sourceSet the source set to create a generated sources directory for.
+     * @param buildDir the build dir to create the generated sources directory in.
+     *
+     * @return the resulting directory, added to the source set.
+     */
+    private fun createdGeneratedSrcDir(sourceSet: KotlinSourceSet, buildDir: File): File {
+        val generatedDir = File(buildDir, "generated/glade/${sourceSet.name}")
+        sourceSet.kotlin.srcDir(generatedDir)
+        return generatedDir
     }
 
     /**
@@ -68,8 +83,9 @@ class GladePlugin : Plugin<Project> {
      * Generate a UI class file for given glade file.
      *
      * @param sourceFile the glade file to create a UI class for.
+     * @param destination destination directory fo generated class.
      */
-    private fun generateGladeUIClass(sourceFile: File) {
+    private fun generateGladeUIClass(sourceFile: File, destination: File) {
         println("generating UI for: $sourceFile")
 
         // parse widget types & ids
@@ -79,7 +95,7 @@ class GladePlugin : Plugin<Project> {
 
         // generate UI class
         createUIFileSpec(sourceFile.uiClassName, text, widgets)
-            .run { writeTo(generatedSourceSetDirectory) }
+            .run { writeTo(destination) }
     }
 
     /**
