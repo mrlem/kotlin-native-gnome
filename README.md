@@ -6,6 +6,8 @@ It includes a minimalistic GTK binding that is:
 * light: no wrapper objects, just extensions
 * incomplete: I just exposed what I needed, but I do hope you'll get the idea :)
 
+It also includes a gradle compiler plugin that turns your glade XML files to a UI class. This UI class embeds the XML into the executable, and provide convenient widget accessors.
+
 ![Screenshot](doc/readme-screenshot.png)
 
 ## Pre-requisites
