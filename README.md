@@ -23,13 +23,13 @@ They say a picture is worth a thousand words:
 
 Prerequisites:
 
-```
+```bash
 sudo apt install libgtk-3-dev libtinfo5
 ```
 
 Then:
 
-```
+```bash
 cd sample
 ../gradlew runDebugExecutableGtk
 ```
