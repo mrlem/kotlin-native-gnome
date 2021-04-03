@@ -34,6 +34,10 @@ cd sample
 ../gradlew runDebugExecutableCommon
 ```
 
+## Usage
+
+See [sample](sample/src/commonMain/kotlin/org/mrlem/gtk/sample) module.
+
 ## See also
 
 Other Kotlin native GTK bindings, both using a wrapper objects approach (more memory, but true inheritance), see either:
