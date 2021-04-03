@@ -31,7 +31,7 @@ Then:
 
 ```bash
 cd sample
-../gradlew runDebugExecutableGtk
+../gradlew runDebugExecutableCommon
 ```
 
 ## See also
