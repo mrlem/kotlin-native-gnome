@@ -10,6 +10,10 @@ This sample demonstrates how to create a GTK application based on a Glade UI, us
 * a gradle glade binding generator (coming from android development, it feels like home)
 * a sample app
 
+They say a picture is worth a thousand words:
+
+![Generator](doc/readme-generator.png)
+
 ## Status
 
 * API coverage is still very far from complete, this was mostly a proof-of-concept at first
