@@ -7,7 +7,6 @@ import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
-import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
@@ -129,11 +128,6 @@ class GladePlugin : Plugin<Project> {
                     )
                     .addProperty(PropertySpec.builder("builder", builderClassName)
                         .addModifiers(KModifier.PRIVATE)
-                        .addAnnotation(
-                            AnnotationSpec.builder(ClassName("kotlin", "OptIn"))
-                                .addMember("%T::class", ClassName("kotlin", "ExperimentalUnsignedTypes"))
-                                .build()
-                        )
                         .initializer("Builder().apply { %M(source) }", MemberName("org.mrlem.gtk", "addFrom"))
                         .build()
                     )
