@@ -16,7 +16,7 @@ They say a picture is worth a thousand words:
 
 ## Status
 
-* API coverage is still very far from complete, this was mostly a proof-of-concept at first
+* API coverage is still very far from complete, this was mostly a proof-of-concept at first (and I have no doubt I'll hit new pain points during implementation progress ^^)
 * working on GIR-based binding generation (though I'm quite sure this won't be a piece of cake :)
 
 ## Build
