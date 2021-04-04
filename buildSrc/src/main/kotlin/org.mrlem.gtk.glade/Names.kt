@@ -7,11 +7,13 @@ import java.io.File
 // Types
 ///////////////////////////////////////////////////////////////////////////
 
-val button = ClassName("org.mrlem.gtk", "Button")
-val entry = ClassName("org.mrlem.gtk", "Entry")
-val toolButton = ClassName("org.mrlem.gtk", "ToolButton")
-val window = ClassName("org.mrlem.gtk", "Window")
-val toolbar = ClassName("org.mrlem.gtk", "Toolbar")
+private val types = mapOf<String, ClassName>(
+    "GtkWidget" to ClassName("org.mrlem.gtk", "Button"),
+    "GtkEntry" to ClassName("org.mrlem.gtk", "Entry"),
+    "GtkToolButton" to ClassName("org.mrlem.gtk", "ToolButton"),
+    "GtkWindow" to ClassName("org.mrlem.gtk", "Window"),
+    "GtkToolbar" to ClassName("org.mrlem.gtk", "Toolbar")
+)
 
 ///////////////////////////////////////////////////////////////////////////
 // Functions
@@ -24,12 +26,4 @@ val String.snakeCaseToCamelCase
     get() = split('_', '-', '.').joinToString("", transform = String::capitalize)
 
 val String.classToClassName
-    get() = when (this) {
-        // TODO - cover all cases
-        "GtkButton" -> button
-        "GtkEntry" -> entry
-        "GtkToolButton" -> toolButton
-        "GtkWindow" -> window
-        "GtkToolbar" -> toolbar
-        else -> null
-    }
+    get() = types[this]
