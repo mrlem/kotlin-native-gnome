@@ -43,3 +43,5 @@ See [sample](sample/src/commonMain/kotlin/org/mrlem/gtk/sample) module.
 Other Kotlin native GTK bindings, both using a wrapper objects approach (more memory, but true inheritance), see either:
 * [kotlin-native-gtk](https://github.com/kropp/kotlin-native-gtk): which features an API generator based on GIR
 * [kotlinx-gtk](https://github.com/Doomsdayrs/kotlinx-gtk)
+
+For an explanation about why I didn't rely on one of them, see the [FAQ](FAQ.md).
