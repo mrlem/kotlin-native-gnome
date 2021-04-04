@@ -162,7 +162,7 @@ class GladePlugin : Plugin<Project> {
         val idValue = attribute("id")?.toString()?.takeUnless { it.isEmpty() }
         val classValue = attribute("class")?.toString()?.takeUnless { it.isEmpty() }
         if (idValue != null && classValue != null) {
-            classValue.classToClassName?.let { widgets[idValue] = it }
+            widgets[idValue] = classValue.classToClassName
         }
 
         // check children nodes
