@@ -3,17 +3,7 @@ package org.mrlem.gtk.glade
 import com.squareup.kotlinpoet.*
 import java.io.File
 
-///////////////////////////////////////////////////////////////////////////
-// Types
-///////////////////////////////////////////////////////////////////////////
-
-private val types = mapOf<String, ClassName>(
-    "GtkWidget" to ClassName("org.mrlem.gtk", "Button"),
-    "GtkEntry" to ClassName("org.mrlem.gtk", "Entry"),
-    "GtkToolButton" to ClassName("org.mrlem.gtk", "ToolButton"),
-    "GtkWindow" to ClassName("org.mrlem.gtk", "Window"),
-    "GtkToolbar" to ClassName("org.mrlem.gtk", "Toolbar")
-)
+private val types = mutableMapOf<String, ClassName>()
 
 ///////////////////////////////////////////////////////////////////////////
 // Functions
@@ -25,5 +15,7 @@ val File.uiClassName
 val String.snakeCaseToCamelCase
     get() = split('_', '-', '.').joinToString("", transform = String::capitalize)
 
-val String.classToClassName
+val String.classToClassName: ClassName
     get() = types[this]
+        ?: ClassName("org.mrlem.gtk", this.removePrefix("Gtk"))
+            .also { types[this] = it }
