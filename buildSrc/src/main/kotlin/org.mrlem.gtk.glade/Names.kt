@@ -11,6 +11,7 @@ val button = ClassName("org.mrlem.gtk", "Button")
 val entry = ClassName("org.mrlem.gtk", "Entry")
 val toolButton = ClassName("org.mrlem.gtk", "ToolButton")
 val window = ClassName("org.mrlem.gtk", "Window")
+val toolbar = ClassName("org.mrlem.gtk", "Toolbar")
 
 ///////////////////////////////////////////////////////////////////////////
 // Functions
@@ -29,5 +30,6 @@ val String.classToClassName
         "GtkEntry" -> entry
         "GtkToolButton" -> toolButton
         "GtkWindow" -> window
+        "GtkToolbar" -> toolbar
         else -> null
     }
