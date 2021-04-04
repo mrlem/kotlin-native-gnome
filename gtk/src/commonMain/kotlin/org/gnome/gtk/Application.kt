@@ -1,8 +1,8 @@
-package org.mrlem.gtk
+package org.gnome.gtk
 
 import gtk3.*
 import kotlinx.cinterop.*
-import org.mrlem.glib.toKList
+import org.mrlem.gnome.glib.toKList
 
 ///////////////////////////////////////////////////////////////////////////
 // Type

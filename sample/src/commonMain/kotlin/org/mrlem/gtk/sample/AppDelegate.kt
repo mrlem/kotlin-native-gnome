@@ -1,7 +1,7 @@
 package org.mrlem.gtk.sample
 
 import binding.SampleUI
-import org.mrlem.gtk.*
+import org.gnome.gtk.*
 
 class AppDelegate(ui: SampleUI) {
     init {

@@ -109,10 +109,10 @@ class GladePlugin : Plugin<Project> {
      * @return the resulting UI class file spec.
      */
     private fun createUIFileSpec(uiClassName: String, source: String, widgets: Map<String, ClassName>): FileSpec {
-        val builderClassName = ClassName("org.mrlem.gtk", "Builder")
+        val builderClassName = ClassName(GTK_PACKAGE, "Builder")
         val reinterpretMemberName = MemberName("kotlinx.cinterop", "reinterpret")
         return FileSpec.builder("binding", uiClassName)
-            .addImport("org.mrlem.gtk", "get")
+            .addImport(GTK_PACKAGE, "get")
             .addAnnotation(
                 AnnotationSpec.builder(ClassName("", "Suppress"))
                     .addMember("%S", "RedundantVisibilityModifier")
@@ -120,7 +120,7 @@ class GladePlugin : Plugin<Project> {
             )
             .addType(
                 TypeSpec.classBuilder(uiClassName)
-                    .addKdoc("Generated wrapper providing easy access to all used [%T] instances.", ClassName("org.mrlem.gtk", "Widget"))
+                    .addKdoc("Generated wrapper providing easy access to [%T] instances.", ClassName(GTK_PACKAGE, "Widget"))
                     .addProperty(PropertySpec.builder("source", String::class)
                         .addModifiers(KModifier.PRIVATE)
                         .initializer("%S", source)
@@ -128,7 +128,7 @@ class GladePlugin : Plugin<Project> {
                     )
                     .addProperty(PropertySpec.builder("builder", builderClassName)
                         .addModifiers(KModifier.PRIVATE)
-                        .initializer("Builder().apply { %M(source) }", MemberName("org.mrlem.gtk", "addFrom"))
+                        .initializer("Builder().apply { %M(source) }", MemberName(GTK_PACKAGE, "addFrom"))
                         .build()
                     )
                     .apply {

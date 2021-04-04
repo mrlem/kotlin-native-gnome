@@ -5,6 +5,8 @@ import java.io.File
 
 private val types = mutableMapOf<String, ClassName>()
 
+const val GTK_PACKAGE = "org.gnome.gtk"
+
 ///////////////////////////////////////////////////////////////////////////
 // Functions
 ///////////////////////////////////////////////////////////////////////////
@@ -17,5 +19,5 @@ val String.snakeCaseToCamelCase
 
 val String.classToClassName: ClassName
     get() = types[this]
-        ?: ClassName("org.mrlem.gtk", this.removePrefix("Gtk"))
+        ?: ClassName(GTK_PACKAGE, this.removePrefix("Gtk"))
             .also { types[this] = it }

@@ -1,4 +1,4 @@
-package org.mrlem.gtk
+package org.gnome.gtk
 
 import gtk3.GtkContainer
 import gtk3.GtkWidget
@@ -6,7 +6,7 @@ import gtk3.gtk_container_add
 import gtk3.gtk_container_get_children
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.mrlem.glib.toKList
+import org.mrlem.gnome.glib.toKList
 
 ///////////////////////////////////////////////////////////////////////////
 // Type

@@ -1,4 +1,4 @@
-package org.mrlem.gtk
+package org.gnome.gtk
 
 import gtk3.*
 import kotlinx.cinterop.*
@@ -7,23 +7,27 @@ import kotlinx.cinterop.*
 // Type
 ///////////////////////////////////////////////////////////////////////////
 
-typealias Widget = CPointer<GtkWidget>
+typealias Window = CPointer<GtkWindow>
 
 ///////////////////////////////////////////////////////////////////////////
 // Conversion
 ///////////////////////////////////////////////////////////////////////////
 
-val Widget.asObject: Object
+val Window.asWidget: Widget
+    get() = reinterpret()
+
+val Window.asContainer: Container
+    get() = reinterpret()
+
+val Window.asObject: Object
     get() = reinterpret()
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API
 ///////////////////////////////////////////////////////////////////////////
 
-var Widget.name
-    get() = gtk_widget_get_name(this)?.toKString().orEmpty()
-    set(value) = gtk_widget_set_name(this, value)
+var Window.title
+    get() = gtk_window_get_title(this)?.toKString().orEmpty()
+    set(value) = gtk_window_set_title(this, value)
 
-fun Widget.showAll() = gtk_widget_show_all(this)
-
-fun Widget.destroy() = gtk_widget_destroy(this)
+fun Window.setDefaultSize(width: Int, height: Int) = gtk_window_set_default_size(this, width, height)

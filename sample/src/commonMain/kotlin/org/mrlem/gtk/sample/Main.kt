@@ -1,7 +1,9 @@
 package org.mrlem.gtk.sample
 
 import binding.SampleUI
-import org.mrlem.gtk.*
+import org.gnome.gtk.Application
+import org.gnome.gtk.addWindow
+import org.gnome.gtk.onActivate
 import platform.posix.exit
 
 /**

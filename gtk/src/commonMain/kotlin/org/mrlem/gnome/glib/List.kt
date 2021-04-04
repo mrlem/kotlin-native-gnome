@@ -1,4 +1,4 @@
-package org.mrlem.glib
+package org.mrlem.gnome.glib
 
 import gtk3.*
 import kotlinx.cinterop.*
