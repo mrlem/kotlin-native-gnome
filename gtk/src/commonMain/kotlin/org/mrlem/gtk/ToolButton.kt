@@ -14,14 +14,14 @@ typealias ToolButton = CPointer<GtkToolButton>
 // Conversion
 ///////////////////////////////////////////////////////////////////////////
 
-val ToolButton.asButton
-    get() = reinterpret<GtkButton>()
+val ToolButton.asButton: Button
+    get() = reinterpret()
 
-val ToolButton.asWidget
-    get() = reinterpret<GtkWidget>()
+val ToolButton.asWidget: Widget
+    get() = reinterpret()
 
-val ToolButton.asObject
-    get() = reinterpret<GObject>()
+val ToolButton.asObject: Object
+    get() = reinterpret()
 
-val Object.asToolButton
-    get() = reinterpret<GtkToolButton>()
+val Object.asToolButton: ToolButton
+    get() = reinterpret()

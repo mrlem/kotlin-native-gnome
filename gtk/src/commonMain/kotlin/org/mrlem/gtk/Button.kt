@@ -14,14 +14,14 @@ typealias Button = CPointer<GtkButton>
 // Conversion
 ///////////////////////////////////////////////////////////////////////////
 
-val Button.asWidget
-    get() = reinterpret<GtkWidget>()
+val Button.asWidget: Widget
+    get() = reinterpret()
 
-val Button.asObject
-    get() = reinterpret<GObject>()
+val Button.asObject: Object
+    get() = reinterpret()
 
-val Object.asButton
-    get() = reinterpret<GtkButton>()
+val Object.asButton: Button
+    get() = reinterpret()
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API

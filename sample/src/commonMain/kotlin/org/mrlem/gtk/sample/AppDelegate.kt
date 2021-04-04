@@ -8,7 +8,7 @@ class AppDelegate(ui: SampleUI) {
         ui.apply {
             button.asButton.onClick { entry.print() }
             entry.onActivate { entry.print() }
-            window.showAll()
+            window.asWidget.showAll()
         }
     }
 

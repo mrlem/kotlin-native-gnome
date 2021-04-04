@@ -15,14 +15,14 @@ typealias Entry = CPointer<GtkEntry>
 // Conversion
 ///////////////////////////////////////////////////////////////////////////
 
-val Entry.asWidget
-    get() = reinterpret<GtkWidget>()
+val Entry.asWidget: Widget
+    get() = reinterpret()
 
-val Entry.asObject
-    get() = reinterpret<GObject>()
+val Entry.asObject: Object
+    get() = reinterpret()
 
-val Object.asEntry
-    get() = reinterpret<GtkEntry>()
+val Object.asEntry: Entry
+    get() = reinterpret()
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API

@@ -13,14 +13,17 @@ typealias Window = CPointer<GtkWindow>
 // Conversion
 ///////////////////////////////////////////////////////////////////////////
 
-val Window.asWidget
-    get() = reinterpret<GtkWidget>()
+val Window.asWidget: Widget
+    get() = reinterpret()
 
-val Window.asContainer
-    get() = reinterpret<GtkContainer>()
+val Window.asContainer: Container
+    get() = reinterpret()
 
-val Object.asWindow
-    get() = reinterpret<GtkWindow>()
+val Window.asObject: Object
+    get() = reinterpret()
+
+val Object.asWindow: Window
+    get() = reinterpret()
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API
@@ -31,5 +34,3 @@ var Window.title
     set(value) = gtk_window_set_title(this, value)
 
 fun Window.setDefaultSize(width: Int, height: Int) = gtk_window_set_default_size(this, width, height)
-
-fun Window.showAll() = asWidget.showAll()
