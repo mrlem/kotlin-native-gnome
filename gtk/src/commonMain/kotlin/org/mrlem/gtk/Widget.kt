@@ -24,7 +24,7 @@ val Object.asWidget: Widget
 ///////////////////////////////////////////////////////////////////////////
 
 var Widget.name
-    get() = gtk_widget_get_name(this)!!.toKString()
+    get() = gtk_widget_get_name(this)?.toKString().orEmpty()
     set(value) = gtk_widget_set_name(this, value)
 
 fun Widget.showAll() = gtk_widget_show_all(this)
