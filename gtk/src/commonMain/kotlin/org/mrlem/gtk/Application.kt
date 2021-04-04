@@ -2,6 +2,7 @@ package org.mrlem.gtk
 
 import gtk3.*
 import kotlinx.cinterop.*
+import org.mrlem.glib.toKList
 
 ///////////////////////////////////////////////////////////////////////////
 // Type
@@ -37,6 +38,11 @@ fun Application(id: String, args: Array<String>, init: Application.() -> Unit) =
 fun Application.newWindow() = gtk_application_window_new(this)!!.reinterpret<GtkWindow>()
 
 fun Application.addWindow(window: Window) = gtk_application_add_window(this, window)
+
+val Application.windows: List<Window>
+    get() = gtk_application_get_windows(this)
+        ?.toKList { it.reinterpret<GtkWindow>() }
+        .orEmpty()
 
 ///////////////////////////////////////////////////////////////////////////
 // Event handlers
