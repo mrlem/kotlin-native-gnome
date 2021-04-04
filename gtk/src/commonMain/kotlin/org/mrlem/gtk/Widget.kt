@@ -13,6 +13,10 @@ typealias Widget = CPointer<GtkWidget>
 // Public API
 ///////////////////////////////////////////////////////////////////////////
 
+var Widget.name
+    get() = gtk_widget_get_name(this)!!.toKString()
+    set(value) = gtk_widget_set_name(this, value)
+
 fun Widget.showAll() = gtk_widget_show_all(this)
 
 fun Widget.destroy() = gtk_widget_destroy(this)
