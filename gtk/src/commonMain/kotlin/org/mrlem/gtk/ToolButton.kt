@@ -22,6 +22,3 @@ val ToolButton.asWidget: Widget
 
 val ToolButton.asObject: Object
     get() = reinterpret()
-
-val Object.asToolButton: ToolButton
-    get() = reinterpret()

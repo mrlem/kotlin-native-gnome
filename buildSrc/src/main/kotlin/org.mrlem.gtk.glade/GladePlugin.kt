@@ -32,8 +32,7 @@ class GladePlugin : Plugin<Project> {
                 sourceSetsWithGeneratedDir.forEach { (sourceSet, generatedDir) ->
                     generatedDir.deleteRecursively()
                     sourceSet.listGladeFiles()
-                        .takeIf { it.isNotEmpty() }
-                        ?.forEach { file -> generateGladeUIClass(file, generatedDir) }
+                        .forEach { file -> generateGladeUIClass(file, generatedDir) }
                 }
             }
         }
@@ -111,6 +110,7 @@ class GladePlugin : Plugin<Project> {
      */
     private fun createUIFileSpec(uiClassName: String, source: String, widgets: Map<String, ClassName>): FileSpec {
         val builderClassName = ClassName("org.mrlem.gtk", "Builder")
+        val reinterpretMemberName = MemberName("kotlinx.cinterop", "reinterpret")
         return FileSpec.builder("binding", uiClassName)
             .addImport("org.mrlem.gtk", "get")
             .addAnnotation(
@@ -133,12 +133,11 @@ class GladePlugin : Plugin<Project> {
                     )
                     .apply {
                         widgets.forEach { (id, className) ->
-                            val castMemberName = className.cast ?: return@forEach
                             addProperty(PropertySpec.builder(id.snakeCaseToCamelCase.decapitalize(), className)
                                 .delegate(
                                     CodeBlock.builder()
                                         .beginControlFlow("lazy")
-                                        .addStatement("builder[%S].%M", id, castMemberName)
+                                        .addStatement("builder[%S].%M()", id, reinterpretMemberName)
                                         .endControlFlow()
                                         .build()
                                 )
