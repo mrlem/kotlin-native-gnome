@@ -1,9 +1,12 @@
 package org.mrlem.gtk
 
 import gtk3.GtkContainer
+import gtk3.GtkWidget
 import gtk3.gtk_container_add
+import gtk3.gtk_container_get_children
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.mrlem.glib.toKList
 
 ///////////////////////////////////////////////////////////////////////////
 // Type
@@ -21,12 +24,14 @@ val Container.asWidget: Widget
 val Container.asObject: Object
     get() = reinterpret()
 
-val Object.asContainer: Container
-    get() = reinterpret()
-
 ///////////////////////////////////////////////////////////////////////////
 // Public API
 ///////////////////////////////////////////////////////////////////////////
+
+val Container.children: List<Widget>
+    get() = gtk_container_get_children(this)
+        ?.toKList { it.reinterpret<GtkWidget>() }
+        .orEmpty()
 
 fun Container.add(widget: Widget) {
     gtk_container_add(this, widget)
