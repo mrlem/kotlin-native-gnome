@@ -14,10 +14,13 @@ typealias ButtonBox = CPointer<GtkButtonBox>
 // Conversion
 ///////////////////////////////////////////////////////////////////////////
 
-val ButtonBox.asWidget: Widget
+val ButtonBox.asBox: Box
     get() = reinterpret()
 
 val ButtonBox.asContainer: Container
+    get() = reinterpret()
+
+val ButtonBox.asWidget: Widget
     get() = reinterpret()
 
 val ButtonBox.asObject: Object
