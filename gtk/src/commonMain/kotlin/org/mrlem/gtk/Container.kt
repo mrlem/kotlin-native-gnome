@@ -30,7 +30,7 @@ val Container.asObject: Object
 
 val Container.children: List<Widget>
     get() = gtk_container_get_children(this)
-        ?.toKList { it.reinterpret<GtkWidget>() }
+        ?.toKList<GtkWidget>()
         .orEmpty()
 
 fun Container.add(widget: Widget) {

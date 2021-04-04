@@ -1,12 +1,15 @@
 package org.mrlem.glib
 
 import gtk3.*
-import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.convert
+import kotlinx.cinterop.*
 
-class List<T : CPointer<*>>(
-    private val list: CPointer<GList>,
-    private val converter: (gconstpointer) -> T
+/**
+ * List wrapper for a GList: there's no way around wrapping this one, as we want the user to use familiar collections.
+ *
+ * @param list the GList to wrap.
+ */
+class List<P : CPointed, T : CPointer<P>>(
+    private val list: CPointer<GList>
 ) : kotlin.collections.List<T> {
 
     override val size: Int
@@ -21,7 +24,8 @@ class List<T : CPointer<*>>(
     }
 
     override fun get(index: Int): T {
-        return converter(g_list_nth_data(list, index.convert())!!)
+        @Suppress("UNCHECKED_CAST")
+        return g_list_nth_data(list, index.convert())!!.reinterpret<P>() as T
     }
 
     override fun indexOf(element: T): Int {
@@ -42,7 +46,7 @@ class List<T : CPointer<*>>(
 
     override fun listIterator(index: Int): ListIterator<T> = Itr(index)
 
-    override fun subList(fromIndex: Int, toIndex: Int): List<T> {
+    override fun subList(fromIndex: Int, toIndex: Int): List<P, T> {
         TODO("Not yet implemented")
     }
 
@@ -76,4 +80,4 @@ class List<T : CPointer<*>>(
     }
 }
 
-fun <T : CPointer<*>> CPointer<GList>.toKList(converter: (gconstpointer) -> T) = List(this, converter)
+fun <P : CPointed> CPointer<GList>.toKList(): List<P, CPointer<P>> = List(this)

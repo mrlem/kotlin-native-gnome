@@ -41,7 +41,7 @@ fun Application.addWindow(window: Window) = gtk_application_add_window(this, win
 
 val Application.windows: List<Window>
     get() = gtk_application_get_windows(this)
-        ?.toKList { it.reinterpret<GtkWindow>() }
+        ?.toKList<GtkWindow>()
         .orEmpty()
 
 ///////////////////////////////////////////////////////////////////////////
