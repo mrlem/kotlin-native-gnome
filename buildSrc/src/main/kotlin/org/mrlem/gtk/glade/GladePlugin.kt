@@ -1,19 +1,18 @@
 package org.mrlem.gtk.glade
 
-import com.squareup.kotlinpoet.*
-import groovy.util.Node
-import groovy.util.XmlParser
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.mrlem.gtk.glade.kotlin.ViewBindingGenerator
+import org.mrlem.gtk.glade.xml.Parser
 
 /**
  * Gradle plugin that generates a UI class for each glade XML file present in resources.
  * This UI class will:
- * - embed the XML in the app
+ * - embed the XML in the app executable
  * - load it
  * - provide convenient widget accessors
  *
@@ -24,7 +23,7 @@ class GladePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         // task to run
-        val generateTask = project.task("generateGladeUIClasses") {
+        val generateTask = project.task("generateGladeViewBinding") {
             group = BasePlugin.BUILD_GROUP
 
             doLast {
@@ -32,7 +31,7 @@ class GladePlugin : Plugin<Project> {
                 sourceSetsWithGeneratedDir.forEach { (sourceSet, generatedDir) ->
                     generatedDir.deleteRecursively()
                     sourceSet.listGladeFiles()
-                        .forEach { file -> generateGladeUIClass(file, generatedDir) }
+                        .forEach { file -> generateViewBinding(file, generatedDir) }
                 }
             }
         }
@@ -86,89 +85,14 @@ class GladePlugin : Plugin<Project> {
      * @param sourceFile the glade file to create a UI class for.
      * @param destination destination directory fo generated class.
      */
-    private fun generateGladeUIClass(sourceFile: File, destination: File) {
-        println("generating UI for: $sourceFile")
+    private fun generateViewBinding(sourceFile: File, destination: File) {
+        println("generating view binding for: ${sourceFile.name}")
 
-        // parse widget types & ids
-        val text = sourceFile.readText()
-        val root = XmlParser().parseText(text)
-        val widgets = root.findAllIdentifiedWidgets()
+        val sourceText = sourceFile.readText()
+        val widgets = Parser().parse(sourceText)
 
-        // generate UI class
-        createUIFileSpec(sourceFile.uiClassName, text, widgets)
+        ViewBindingGenerator()
+            .generate(sourceFile, sourceText, widgets)
             .run { writeTo(destination) }
-    }
-
-    /**
-     * Create the UI class file spec.
-     *
-     * @param uiClassName the class name.
-     * @param source the UI XML source text.
-     * @param widgets the widgets to include accessors for.
-     *
-     * @return the resulting UI class file spec.
-     */
-    private fun createUIFileSpec(uiClassName: String, source: String, widgets: Map<String, ClassName>): FileSpec {
-        val builderClassName = ClassName(GTK_PACKAGE, "Builder")
-        val reinterpretMemberName = MemberName("kotlinx.cinterop", "reinterpret")
-        return FileSpec.builder("binding", uiClassName)
-            .addImport(GTK_PACKAGE, "get")
-            .addAnnotation(
-                AnnotationSpec.builder(ClassName("", "Suppress"))
-                    .addMember("%S", "RedundantVisibilityModifier")
-                    .build()
-            )
-            .addType(
-                TypeSpec.classBuilder(uiClassName)
-                    .addKdoc("Generated wrapper providing easy access to [%T] instances.", ClassName(GTK_PACKAGE, "Widget"))
-                    .addProperty(PropertySpec.builder("source", String::class)
-                        .addModifiers(KModifier.PRIVATE)
-                        .initializer("%S", source)
-                        .build()
-                    )
-                    .addProperty(PropertySpec.builder("builder", builderClassName)
-                        .addModifiers(KModifier.PRIVATE)
-                        .initializer("Builder().apply { %M(source) }", MemberName(GTK_PACKAGE, "addFrom"))
-                        .build()
-                    )
-                    .apply {
-                        widgets.forEach { (id, className) ->
-                            addProperty(PropertySpec.builder(id.snakeCaseToCamelCase.decapitalize(), className)
-                                .delegate(
-                                    CodeBlock.builder()
-                                        .beginControlFlow("lazy")
-                                        .addStatement("builder[%S].%M()", id, reinterpretMemberName)
-                                        .endControlFlow()
-                                        .build()
-                                )
-                                .build()
-                            )
-                        }
-                    }
-                    .build()
-            )
-            .build()
-    }
-
-    /**
-     * Find all widgets in a node hierarchy.
-     *
-     * @param widgets the initial map of widget ids to class names.
-     *
-     * @return the resulting map of widget ids to class names.
-     */
-    private fun Node.findAllIdentifiedWidgets(widgets: MutableMap<String, ClassName> = mutableMapOf()): Map<String, ClassName> {
-        // check this node
-        val idValue = attribute("id")?.toString()?.takeUnless { it.isEmpty() }
-        val classValue = attribute("class")?.toString()?.takeUnless { it.isEmpty() }
-        if (idValue != null && classValue != null) {
-            widgets[idValue] = classValue.classToClassName
-        }
-
-        // check children nodes
-        children().forEach { node ->
-            (node as? Node)?.findAllIdentifiedWidgets(widgets)
-        }
-        return widgets
     }
 }
