@@ -6,33 +6,26 @@ import gtk3.gtk_container_add
 import gtk3.gtk_container_get_children
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.gobject.InitiallyUnowned
 import org.mrlem.gnome.glib.toKList
 
-///////////////////////////////////////////////////////////////////////////
-// Type
-///////////////////////////////////////////////////////////////////////////
+public typealias Container = CPointer<GtkContainer>
 
-typealias Container = CPointer<GtkContainer>
+public val Container.asInitiallyUnowned: InitiallyUnowned
+  get() = reinterpret()
 
-///////////////////////////////////////////////////////////////////////////
-// Conversion
-///////////////////////////////////////////////////////////////////////////
-
-val Container.asWidget: Widget
-    get() = reinterpret()
-
-val Container.asObject: Object
-    get() = reinterpret()
+public val Container.asWidget: Widget
+  get() = reinterpret()
 
 ///////////////////////////////////////////////////////////////////////////
-// Public API
+// Public API (not generated)
 ///////////////////////////////////////////////////////////////////////////
 
 val Container.children: List<Widget>
-    get() = gtk_container_get_children(this)
-        ?.toKList<GtkWidget>()
-        .orEmpty()
+  get() = gtk_container_get_children(this)
+    ?.toKList<GtkWidget>()
+    .orEmpty()
 
 fun Container.add(widget: Widget) {
-    gtk_container_add(this, widget)
+  gtk_container_add(this, widget)
 }

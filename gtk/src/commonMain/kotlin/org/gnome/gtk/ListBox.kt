@@ -1,24 +1,17 @@
 package org.gnome.gtk
 
-import gtk3.*
+import gtk3.GtkListBox
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.gobject.InitiallyUnowned
 
-///////////////////////////////////////////////////////////////////////////
-// Type
-///////////////////////////////////////////////////////////////////////////
+public typealias ListBox = CPointer<GtkListBox>
 
-typealias ListBox = CPointer<GtkListBox>
+public val ListBox.asInitiallyUnowned: InitiallyUnowned
+  get() = reinterpret()
 
-///////////////////////////////////////////////////////////////////////////
-// Conversion
-///////////////////////////////////////////////////////////////////////////
+public val ListBox.asWidget: Widget
+  get() = reinterpret()
 
-val ListBox.asContainer: Container
-    get() = reinterpret()
-
-val ListBox.asWidget: Widget
-    get() = reinterpret()
-
-val ListBox.asObject: Object
-    get() = reinterpret()
+public val ListBox.asContainer: Container
+  get() = reinterpret()

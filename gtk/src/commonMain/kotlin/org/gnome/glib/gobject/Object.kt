@@ -1,4 +1,4 @@
-package org.gnome.gtk
+package org.gnome.glib.gobject
 
 import gtk3.GObject
 import gtk3.g_signal_connect_data
@@ -20,5 +20,6 @@ fun Object.connect(name: String, function: () -> Unit) {
         data?.asStableRef<() -> Unit>()?.get()?.let { it() }
         @Suppress("USELESS_CAST")
         null as COpaquePointer? // needed to prevent compiler crash
-    }.reinterpret(), StableRef.create(function).asCPointer(), null, 0U)
+    }
+        .reinterpret(), StableRef.create(function).asCPointer(), null, 0.convert())
 }

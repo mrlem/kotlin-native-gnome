@@ -1,24 +1,17 @@
 package org.gnome.gtk
 
-import gtk3.*
+import gtk3.GtkToolbar
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.gobject.InitiallyUnowned
 
-///////////////////////////////////////////////////////////////////////////
-// Type
-///////////////////////////////////////////////////////////////////////////
+public typealias Toolbar = CPointer<GtkToolbar>
 
-typealias Toolbar = CPointer<GtkToolbar>
+public val Toolbar.asInitiallyUnowned: InitiallyUnowned
+  get() = reinterpret()
 
-///////////////////////////////////////////////////////////////////////////
-// Conversion
-///////////////////////////////////////////////////////////////////////////
+public val Toolbar.asWidget: Widget
+  get() = reinterpret()
 
-val Toolbar.asContainer: Container
-    get() = reinterpret()
-
-val Toolbar.asWidget: Widget
-    get() = reinterpret()
-
-val Toolbar.asObject: Object
-    get() = reinterpret()
+public val Toolbar.asContainer: Container
+  get() = reinterpret()

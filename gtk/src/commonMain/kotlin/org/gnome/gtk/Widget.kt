@@ -1,28 +1,23 @@
 package org.gnome.gtk
 
 import gtk3.*
-import kotlinx.cinterop.*
+import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.reinterpret
+import kotlinx.cinterop.toKString
+import org.gnome.glib.gobject.InitiallyUnowned
+
+public typealias Widget = CPointer<GtkWidget>
+
+public val Widget.asInitiallyUnowned: InitiallyUnowned
+  get() = reinterpret()
 
 ///////////////////////////////////////////////////////////////////////////
-// Type
-///////////////////////////////////////////////////////////////////////////
-
-typealias Widget = CPointer<GtkWidget>
-
-///////////////////////////////////////////////////////////////////////////
-// Conversion
-///////////////////////////////////////////////////////////////////////////
-
-val Widget.asObject: Object
-    get() = reinterpret()
-
-///////////////////////////////////////////////////////////////////////////
-// Public API
+// Public API (not generated)
 ///////////////////////////////////////////////////////////////////////////
 
 var Widget.name
-    get() = gtk_widget_get_name(this)?.toKString().orEmpty()
-    set(value) = gtk_widget_set_name(this, value)
+  get() = gtk_widget_get_name(this)?.toKString().orEmpty()
+  set(value) = gtk_widget_set_name(this, value)
 
 fun Widget.showAll() = gtk_widget_show_all(this)
 

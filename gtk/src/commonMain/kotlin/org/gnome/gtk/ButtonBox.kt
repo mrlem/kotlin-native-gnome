@@ -1,33 +1,28 @@
 package org.gnome.gtk
 
-import gtk3.*
+import gtk3.GtkButtonBox
+import gtk3.GtkOrientation
+import gtk3.gtk_button_box_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.gobject.InitiallyUnowned
+
+public typealias ButtonBox = CPointer<GtkButtonBox>
+
+public val ButtonBox.asInitiallyUnowned: InitiallyUnowned
+  get() = reinterpret()
+
+public val ButtonBox.asWidget: Widget
+  get() = reinterpret()
+
+public val ButtonBox.asContainer: Container
+  get() = reinterpret()
+
+public val ButtonBox.asBox: Box
+  get() = reinterpret()
 
 ///////////////////////////////////////////////////////////////////////////
-// Type
-///////////////////////////////////////////////////////////////////////////
-
-typealias ButtonBox = CPointer<GtkButtonBox>
-
-///////////////////////////////////////////////////////////////////////////
-// Conversion
-///////////////////////////////////////////////////////////////////////////
-
-val ButtonBox.asBox: Box
-    get() = reinterpret()
-
-val ButtonBox.asContainer: Container
-    get() = reinterpret()
-
-val ButtonBox.asWidget: Widget
-    get() = reinterpret()
-
-val ButtonBox.asObject: Object
-    get() = reinterpret()
-
-///////////////////////////////////////////////////////////////////////////
-// Public API
+// Public API (not generated)
 ///////////////////////////////////////////////////////////////////////////
 
 @Suppress("FunctionName")
