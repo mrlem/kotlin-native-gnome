@@ -1,3 +1,7 @@
+// TODO - implement:
+//   get_axes
+//   get_axis
+//   get_device_tool
 package org.gnome.gtk
 
 import gtk3.GtkGestureStylus

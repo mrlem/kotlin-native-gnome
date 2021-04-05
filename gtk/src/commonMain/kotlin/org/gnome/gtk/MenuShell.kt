@@ -1,3 +1,18 @@
+// TODO - implement:
+//   activate_item
+//   append
+//   bind_model
+//   cancel
+//   deactivate
+//   deselect
+//   get_parent_shell
+//   get_selected_item
+//   get_take_focus
+//   insert
+//   prepend
+//   select_first
+//   select_item
+//   set_take_focus
 package org.gnome.gtk
 
 import gtk3.GtkMenuShell

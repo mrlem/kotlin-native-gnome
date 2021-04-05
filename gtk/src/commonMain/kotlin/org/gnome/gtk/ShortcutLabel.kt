@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_accelerator
+//   get_disabled_text
+//   set_accelerator
+//   set_disabled_text
 package org.gnome.gtk
 
 import gtk3.GtkShortcutLabel

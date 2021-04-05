@@ -1,3 +1,5 @@
+// TODO - implement:
+//   get_child
 package org.gnome.gtk
 
 import gtk3.GtkBin

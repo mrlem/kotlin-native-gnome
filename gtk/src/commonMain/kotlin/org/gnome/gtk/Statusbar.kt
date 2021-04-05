@@ -1,3 +1,10 @@
+// TODO - implement:
+//   get_context_id
+//   get_message_area
+//   pop
+//   push
+//   remove
+//   remove_all
 package org.gnome.gtk
 
 import gtk3.GtkStatusbar

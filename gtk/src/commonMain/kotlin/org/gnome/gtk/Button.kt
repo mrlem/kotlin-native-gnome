@@ -1,3 +1,28 @@
+// TODO - implement:
+//   clicked
+//   enter
+//   get_alignment
+//   get_always_show_image
+//   get_event_window
+//   get_focus_on_click
+//   get_image
+//   get_image_position
+//   get_label
+//   get_relief
+//   get_use_stock
+//   get_use_underline
+//   leave
+//   pressed
+//   released
+//   set_alignment
+//   set_always_show_image
+//   set_focus_on_click
+//   set_image
+//   set_image_position
+//   set_label
+//   set_relief
+//   set_use_stock
+//   set_use_underline
 package org.gnome.gtk
 
 import gtk3.GtkButton

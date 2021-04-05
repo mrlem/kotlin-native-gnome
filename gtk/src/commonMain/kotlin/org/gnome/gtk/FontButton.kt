@@ -1,3 +1,16 @@
+// TODO - implement:
+//   get_font_name
+//   get_show_size
+//   get_show_style
+//   get_title
+//   get_use_font
+//   get_use_size
+//   set_font_name
+//   set_show_size
+//   set_show_style
+//   set_title
+//   set_use_font
+//   set_use_size
 package org.gnome.gtk
 
 import gtk3.GtkFontButton

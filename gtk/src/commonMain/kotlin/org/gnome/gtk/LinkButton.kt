@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_uri
+//   get_visited
+//   set_uri
+//   set_visited
 package org.gnome.gtk
 
 import gtk3.GtkLinkButton

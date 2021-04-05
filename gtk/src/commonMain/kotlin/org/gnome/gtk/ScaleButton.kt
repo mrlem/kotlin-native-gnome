@@ -1,3 +1,12 @@
+// TODO - implement:
+//   get_adjustment
+//   get_minus_button
+//   get_plus_button
+//   get_popup
+//   get_value
+//   set_adjustment
+//   set_icons
+//   set_value
 package org.gnome.gtk
 
 import gtk3.GtkScaleButton

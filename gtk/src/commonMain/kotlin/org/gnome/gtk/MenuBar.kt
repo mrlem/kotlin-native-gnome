@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_child_pack_direction
+//   get_pack_direction
+//   set_child_pack_direction
+//   set_pack_direction
 package org.gnome.gtk
 
 import gtk3.GtkMenuBar

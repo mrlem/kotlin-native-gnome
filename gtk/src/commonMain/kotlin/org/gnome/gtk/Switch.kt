@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_active
+//   get_state
+//   set_active
+//   set_state
 package org.gnome.gtk
 
 import gtk3.GtkSwitch

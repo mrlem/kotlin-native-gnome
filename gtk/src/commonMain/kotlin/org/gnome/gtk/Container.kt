@@ -1,3 +1,37 @@
+// TODO - implement:
+//   add
+//   add_with_properties
+//   check_resize
+//   child_get
+//   child_get_property
+//   child_get_valist
+//   child_notify
+//   child_notify_by_pspec
+//   child_set
+//   child_set_property
+//   child_set_valist
+//   child_type
+//   forall
+//   foreach
+//   get_border_width
+//   get_children
+//   get_focus_chain
+//   get_focus_child
+//   get_focus_hadjustment
+//   get_focus_vadjustment
+//   get_path_for_child
+//   get_resize_mode
+//   propagate_draw
+//   remove
+//   resize_children
+//   set_border_width
+//   set_focus_chain
+//   set_focus_child
+//   set_focus_hadjustment
+//   set_focus_vadjustment
+//   set_reallocate_redraws
+//   set_resize_mode
+//   unset_focus_chain
 package org.gnome.gtk
 
 import gtk3.GtkContainer

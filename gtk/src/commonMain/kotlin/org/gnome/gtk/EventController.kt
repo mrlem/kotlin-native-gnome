@@ -1,3 +1,9 @@
+// TODO - implement:
+//   get_propagation_phase
+//   get_widget
+//   handle_event
+//   reset
+//   set_propagation_phase
 package org.gnome.gtk
 
 import gtk3.GtkEventController

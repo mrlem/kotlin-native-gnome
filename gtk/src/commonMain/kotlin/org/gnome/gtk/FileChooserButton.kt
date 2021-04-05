@@ -1,3 +1,10 @@
+// TODO - implement:
+//   get_focus_on_click
+//   get_title
+//   get_width_chars
+//   set_focus_on_click
+//   set_title
+//   set_width_chars
 package org.gnome.gtk
 
 import gtk3.GtkFileChooserButton

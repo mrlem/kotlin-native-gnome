@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_orientation
+//   set_orientation
 package org.gnome.gtk
 
 import gtk3.GtkGesturePan

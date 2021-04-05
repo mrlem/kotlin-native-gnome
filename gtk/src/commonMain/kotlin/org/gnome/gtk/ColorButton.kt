@@ -1,3 +1,14 @@
+// TODO - implement:
+//   get_alpha
+//   get_color
+//   get_rgba
+//   get_title
+//   get_use_alpha
+//   set_alpha
+//   set_color
+//   set_rgba
+//   set_title
+//   set_use_alpha
 package org.gnome.gtk
 
 import gtk3.GtkColorButton

@@ -1,3 +1,7 @@
+// TODO - implement:
+//   get_group
+//   join_group
+//   set_group
 package org.gnome.gtk
 
 import gtk3.GtkRadioButton

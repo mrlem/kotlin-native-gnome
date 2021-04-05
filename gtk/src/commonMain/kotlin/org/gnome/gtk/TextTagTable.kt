@@ -1,3 +1,9 @@
+// TODO - implement:
+//   add
+//   foreach
+//   get_size
+//   lookup
+//   remove
 package org.gnome.gtk
 
 import gtk3.GtkTextTagTable

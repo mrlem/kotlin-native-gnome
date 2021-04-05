@@ -1,3 +1,15 @@
+// TODO - implement:
+//   destroy
+//   get_modal
+//   get_title
+//   get_transient_for
+//   get_visible
+//   hide
+//   run
+//   set_modal
+//   set_title
+//   set_transient_for
+//   show
 package org.gnome.gtk
 
 import gtk3.GtkNativeDialog

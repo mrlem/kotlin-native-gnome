@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_menu
+//   set_arrow_tooltip_markup
+//   set_arrow_tooltip_text
+//   set_menu
 package org.gnome.gtk
 
 import gtk3.GtkMenuToolButton

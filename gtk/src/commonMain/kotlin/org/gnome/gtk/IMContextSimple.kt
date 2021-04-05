@@ -1,3 +1,6 @@
+// TODO - implement:
+//   add_compose_file
+//   add_table
 package org.gnome.gtk
 
 import gtk3.GtkIMContextSimple

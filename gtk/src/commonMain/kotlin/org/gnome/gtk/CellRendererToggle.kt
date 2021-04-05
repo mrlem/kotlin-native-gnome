@@ -1,3 +1,10 @@
+// TODO - implement:
+//   get_activatable
+//   get_active
+//   get_radio
+//   set_activatable
+//   set_active
+//   set_radio
 package org.gnome.gtk
 
 import gtk3.GtkCellRendererToggle

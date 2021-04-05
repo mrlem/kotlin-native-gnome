@@ -1,3 +1,18 @@
+// TODO - implement:
+//   add_action_widget
+//   add_button
+//   add_buttons
+//   get_action_area
+//   get_content_area
+//   get_message_type
+//   get_revealed
+//   get_show_close_button
+//   response
+//   set_default_response
+//   set_message_type
+//   set_response_sensitive
+//   set_revealed
+//   set_show_close_button
 package org.gnome.gtk
 
 import gtk3.GtkInfoBar

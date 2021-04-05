@@ -1,3 +1,10 @@
+// TODO - implement:
+//   format_secondary_markup
+//   format_secondary_text
+//   get_image
+//   get_message_area
+//   set_image
+//   set_markup
 package org.gnome.gtk
 
 import gtk3.GtkMessageDialog

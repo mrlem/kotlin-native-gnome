@@ -1,3 +1,10 @@
+// TODO - implement:
+//   connect_entry
+//   get_search_mode
+//   get_show_close_button
+//   handle_event
+//   set_search_mode
+//   set_show_close_button
 package org.gnome.gtk
 
 import gtk3.GtkSearchBar

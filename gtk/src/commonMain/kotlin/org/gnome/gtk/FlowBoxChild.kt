@@ -1,3 +1,7 @@
+// TODO - implement:
+//   changed
+//   get_index
+//   is_selected
 package org.gnome.gtk
 
 import gtk3.GtkFlowBoxChild

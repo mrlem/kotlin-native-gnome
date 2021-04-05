@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_deleted
+//   get_widgets
 package org.gnome.gtk
 
 import gtk3.GtkTextChildAnchor

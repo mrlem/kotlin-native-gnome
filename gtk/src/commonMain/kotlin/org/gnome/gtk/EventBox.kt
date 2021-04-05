@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_above_child
+//   get_visible_window
+//   set_above_child
+//   set_visible_window
 package org.gnome.gtk
 
 import gtk3.GtkEventBox

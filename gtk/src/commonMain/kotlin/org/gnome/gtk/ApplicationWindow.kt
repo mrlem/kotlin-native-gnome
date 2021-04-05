@@ -1,3 +1,9 @@
+// TODO - implement:
+//   get_help_overlay
+//   get_id
+//   get_show_menubar
+//   set_help_overlay
+//   set_show_menubar
 package org.gnome.gtk
 
 import gtk3.GtkApplicationWindow

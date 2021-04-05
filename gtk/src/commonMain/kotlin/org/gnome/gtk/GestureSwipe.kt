@@ -1,3 +1,5 @@
+// TODO - implement:
+//   get_velocity
 package org.gnome.gtk
 
 import gtk3.GtkGestureSwipe

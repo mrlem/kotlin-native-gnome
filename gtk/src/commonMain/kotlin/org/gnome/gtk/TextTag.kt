@@ -1,3 +1,8 @@
+// TODO - implement:
+//   changed
+//   event
+//   get_priority
+//   set_priority
 package org.gnome.gtk
 
 import gtk3.GtkTextTag

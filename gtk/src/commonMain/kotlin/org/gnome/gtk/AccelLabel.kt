@@ -1,3 +1,11 @@
+// TODO - implement:
+//   get_accel
+//   get_accel_widget
+//   get_accel_width
+//   refetch
+//   set_accel
+//   set_accel_closure
+//   set_accel_widget
 package org.gnome.gtk
 
 import gtk3.GtkAccelLabel

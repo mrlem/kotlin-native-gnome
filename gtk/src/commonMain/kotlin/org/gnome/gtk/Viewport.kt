@@ -1,3 +1,12 @@
+// TODO - implement:
+//   get_bin_window
+//   get_hadjustment
+//   get_shadow_type
+//   get_vadjustment
+//   get_view_window
+//   set_hadjustment
+//   set_shadow_type
+//   set_vadjustment
 package org.gnome.gtk
 
 import gtk3.GtkViewport

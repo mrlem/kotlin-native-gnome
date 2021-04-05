@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_group
+//   set_group
 package org.gnome.gtk
 
 import gtk3.GtkRadioToolButton

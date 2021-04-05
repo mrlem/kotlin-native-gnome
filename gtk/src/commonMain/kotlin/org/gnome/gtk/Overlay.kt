@@ -1,3 +1,8 @@
+// TODO - implement:
+//   add_overlay
+//   get_overlay_pass_through
+//   reorder_overlay
+//   set_overlay_pass_through
 package org.gnome.gtk
 
 import gtk3.GtkOverlay

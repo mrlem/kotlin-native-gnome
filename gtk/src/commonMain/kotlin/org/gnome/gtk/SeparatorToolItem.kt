@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_draw
+//   set_draw
 package org.gnome.gtk
 
 import gtk3.GtkSeparatorToolItem

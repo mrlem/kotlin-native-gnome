@@ -1,3 +1,15 @@
+// TODO - implement:
+//   add_age
+//   add_application
+//   add_custom
+//   add_group
+//   add_mime_type
+//   add_pattern
+//   add_pixbuf_formats
+//   filter
+//   get_name
+//   get_needed
+//   set_name
 package org.gnome.gtk
 
 import gtk3.GtkRecentFilter

@@ -1,3 +1,7 @@
+// TODO - implement:
+//   get_heading
+//   get_widget
+//   set_heading
 package org.gnome.gtk
 
 import gtk3.GtkAppChooserDialog

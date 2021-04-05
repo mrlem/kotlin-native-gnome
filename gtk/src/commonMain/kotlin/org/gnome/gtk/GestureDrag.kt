@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_offset
+//   get_start_point
 package org.gnome.gtk
 
 import gtk3.GtkGestureDrag

@@ -1,3 +1,26 @@
+// TODO - implement:
+//   add_callback_symbol
+//   add_callback_symbols
+//   add_from_file
+//   add_from_resource
+//   add_from_string
+//   add_objects_from_file
+//   add_objects_from_resource
+//   add_objects_from_string
+//   connect_signals
+//   connect_signals_full
+//   expose_object
+//   extend_with_template
+//   get_application
+//   get_object
+//   get_objects
+//   get_translation_domain
+//   get_type_from_name
+//   lookup_callback_symbol
+//   set_application
+//   set_translation_domain
+//   value_from_string
+//   value_from_string_type
 package org.gnome.gtk
 
 import gtk3.*

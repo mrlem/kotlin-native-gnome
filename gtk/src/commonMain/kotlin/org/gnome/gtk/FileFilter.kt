@@ -1,3 +1,13 @@
+// TODO - implement:
+//   add_custom
+//   add_mime_type
+//   add_pattern
+//   add_pixbuf_formats
+//   filter
+//   get_name
+//   get_needed
+//   set_name
+//   to_gvariant
 package org.gnome.gtk
 
 import gtk3.GtkFileFilter

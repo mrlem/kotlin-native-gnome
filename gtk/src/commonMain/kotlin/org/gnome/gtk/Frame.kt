@@ -1,3 +1,12 @@
+// TODO - implement:
+//   get_label
+//   get_label_align
+//   get_label_widget
+//   get_shadow_type
+//   set_label
+//   set_label_align
+//   set_label_widget
+//   set_shadow_type
 package org.gnome.gtk
 
 import gtk3.GtkFrame

@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_accept_label
+//   get_cancel_label
+//   set_accept_label
+//   set_cancel_label
 package org.gnome.gtk
 
 import gtk3.GtkFileChooserNative

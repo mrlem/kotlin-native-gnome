@@ -1,3 +1,24 @@
+// TODO - implement:
+//   add_accelerator
+//   add_window
+//   get_accels_for_action
+//   get_actions_for_accel
+//   get_active_window
+//   get_app_menu
+//   get_menu_by_id
+//   get_menubar
+//   get_window_by_id
+//   get_windows
+//   inhibit
+//   is_inhibited
+//   list_action_descriptions
+//   prefers_app_menu
+//   remove_accelerator
+//   remove_window
+//   set_accels_for_action
+//   set_app_menu
+//   set_menubar
+//   uninhibit
 package org.gnome.gtk
 
 import gtk3.*

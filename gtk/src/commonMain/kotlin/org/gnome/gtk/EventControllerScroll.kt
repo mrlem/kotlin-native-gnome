@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_flags
+//   set_flags
 package org.gnome.gtk
 
 import gtk3.GtkEventControllerScroll

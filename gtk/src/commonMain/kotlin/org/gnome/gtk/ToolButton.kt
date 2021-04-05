@@ -1,3 +1,16 @@
+// TODO - implement:
+//   get_icon_name
+//   get_icon_widget
+//   get_label
+//   get_label_widget
+//   get_stock_id
+//   get_use_underline
+//   set_icon_name
+//   set_icon_widget
+//   set_label
+//   set_label_widget
+//   set_stock_id
+//   set_use_underline
 package org.gnome.gtk
 
 import gtk3.GtkToolButton

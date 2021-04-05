@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_alignment
+//   get_padding
+//   set_alignment
+//   set_padding
 package org.gnome.gtk
 
 import gtk3.GtkMisc

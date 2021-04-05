@@ -1,3 +1,10 @@
+// TODO - implement:
+//   get_child_non_homogeneous
+//   get_child_secondary
+//   get_layout
+//   set_child_non_homogeneous
+//   set_child_secondary
+//   set_layout
 package org.gnome.gtk
 
 import gtk3.GtkButtonBox

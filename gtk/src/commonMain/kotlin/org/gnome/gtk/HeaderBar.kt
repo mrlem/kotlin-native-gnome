@@ -1,3 +1,18 @@
+// TODO - implement:
+//   get_custom_title
+//   get_decoration_layout
+//   get_has_subtitle
+//   get_show_close_button
+//   get_subtitle
+//   get_title
+//   pack_end
+//   pack_start
+//   set_custom_title
+//   set_decoration_layout
+//   set_has_subtitle
+//   set_show_close_button
+//   set_subtitle
+//   set_title
 package org.gnome.gtk
 
 import gtk3.GtkHeaderBar

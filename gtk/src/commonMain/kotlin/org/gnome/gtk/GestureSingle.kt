@@ -1,3 +1,12 @@
+// TODO - implement:
+//   get_button
+//   get_current_button
+//   get_current_sequence
+//   get_exclusive
+//   get_touch_only
+//   set_button
+//   set_exclusive
+//   set_touch_only
 package org.gnome.gtk
 
 import gtk3.GtkGestureSingle

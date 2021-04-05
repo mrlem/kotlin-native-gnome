@@ -1,3 +1,6 @@
+// TODO - implement:
+//   set_action
+//   set_action_entries
 package org.gnome.gtk
 
 import gtk3.GtkPadController

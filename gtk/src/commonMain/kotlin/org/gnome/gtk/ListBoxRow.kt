@@ -1,3 +1,13 @@
+// TODO - implement:
+//   changed
+//   get_activatable
+//   get_header
+//   get_index
+//   get_selectable
+//   is_selected
+//   set_activatable
+//   set_header
+//   set_selectable
 package org.gnome.gtk
 
 import gtk3.GtkListBoxRow

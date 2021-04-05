@@ -1,3 +1,7 @@
+// TODO - implement:
+//   append_menuitems
+//   get_context_id
+//   set_context_id
 package org.gnome.gtk
 
 import gtk3.GtkIMMulticontext

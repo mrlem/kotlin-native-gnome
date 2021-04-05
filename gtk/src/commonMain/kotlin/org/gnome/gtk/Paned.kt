@@ -1,3 +1,15 @@
+// TODO - implement:
+//   add1
+//   add2
+//   get_child1
+//   get_child2
+//   get_handle_window
+//   get_position
+//   get_wide_handle
+//   pack1
+//   pack2
+//   set_position
+//   set_wide_handle
 package org.gnome.gtk
 
 import gtk3.GtkPaned

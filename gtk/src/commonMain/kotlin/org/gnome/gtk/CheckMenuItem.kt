@@ -1,3 +1,11 @@
+// TODO - implement:
+//   get_active
+//   get_draw_as_radio
+//   get_inconsistent
+//   set_active
+//   set_draw_as_radio
+//   set_inconsistent
+//   toggled
 package org.gnome.gtk
 
 import gtk3.GtkCheckMenuItem

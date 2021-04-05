@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_area
+//   set_area
 package org.gnome.gtk
 
 import gtk3.GtkGestureMultiPress

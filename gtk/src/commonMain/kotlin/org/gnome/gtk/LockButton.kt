@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_permission
+//   set_permission
 package org.gnome.gtk
 
 import gtk3.GtkLockButton

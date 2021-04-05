@@ -1,3 +1,13 @@
+// TODO - implement:
+//   append_custom_item
+//   append_separator
+//   get_heading
+//   get_show_default_item
+//   get_show_dialog_item
+//   set_active_custom_item
+//   set_heading
+//   set_show_default_item
+//   set_show_dialog_item
 package org.gnome.gtk
 
 import gtk3.GtkAppChooserButton

@@ -1,3 +1,9 @@
+// TODO - implement:
+//   reset_property
+//   set_double_property
+//   set_long_property
+//   set_property_value
+//   set_string_property
 package org.gnome.gtk
 
 import gtk3.GtkSettings

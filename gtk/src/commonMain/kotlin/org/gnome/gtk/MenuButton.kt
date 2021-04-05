@@ -1,3 +1,16 @@
+// TODO - implement:
+//   get_align_widget
+//   get_direction
+//   get_menu_model
+//   get_popover
+//   get_popup
+//   get_use_popover
+//   set_align_widget
+//   set_direction
+//   set_menu_model
+//   set_popover
+//   set_popup
+//   set_use_popover
 package org.gnome.gtk
 
 import gtk3.GtkMenuButton

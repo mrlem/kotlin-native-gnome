@@ -1,3 +1,5 @@
+// TODO - implement:
+//   get_angle_delta
 package org.gnome.gtk
 
 import gtk3.GtkGestureRotate

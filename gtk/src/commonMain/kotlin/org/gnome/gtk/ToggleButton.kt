@@ -1,3 +1,11 @@
+// TODO - implement:
+//   get_active
+//   get_inconsistent
+//   get_mode
+//   set_active
+//   set_inconsistent
+//   set_mode
+//   toggled
 package org.gnome.gtk
 
 import gtk3.GtkToggleButton

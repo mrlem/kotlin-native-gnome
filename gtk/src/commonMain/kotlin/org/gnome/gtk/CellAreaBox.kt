@@ -1,3 +1,8 @@
+// TODO - implement:
+//   get_spacing
+//   pack_end
+//   pack_start
+//   set_spacing
 package org.gnome.gtk
 
 import gtk3.GtkCellAreaBox

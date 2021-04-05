@@ -1,3 +1,5 @@
+// TODO - implement:
+//   get_scale_delta
 package org.gnome.gtk
 
 import gtk3.GtkGestureZoom

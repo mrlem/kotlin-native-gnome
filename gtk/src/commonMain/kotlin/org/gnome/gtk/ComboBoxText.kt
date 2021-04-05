@@ -1,3 +1,13 @@
+// TODO - implement:
+//   append
+//   append_text
+//   get_active_text
+//   insert
+//   insert_text
+//   prepend
+//   prepend_text
+//   remove
+//   remove_all
 package org.gnome.gtk
 
 import gtk3.GtkComboBoxText

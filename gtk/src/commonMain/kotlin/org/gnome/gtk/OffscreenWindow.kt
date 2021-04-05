@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_pixbuf
+//   get_surface
 package org.gnome.gtk
 
 import gtk3.GtkOffscreenWindow

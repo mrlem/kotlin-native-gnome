@@ -1,3 +1,6 @@
+// TODO - implement:
+//   get_show_numbers
+//   set_show_numbers
 package org.gnome.gtk
 
 import gtk3.GtkRecentChooserMenu
