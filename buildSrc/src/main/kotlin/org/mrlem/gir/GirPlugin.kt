@@ -1,14 +1,12 @@
 package org.mrlem.gir
 
 import java.io.File
-import javax.xml.parsers.SAXParserFactory
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.mrlem.gir.kotlin.createBindings
-import org.mrlem.gir.xml.GirInfo
-import org.mrlem.gir.xml.GirHandler
+import org.mrlem.gir.kotlin.BindingGenerator
+import org.mrlem.gir.xml.Parser
 
 /**
  * Gradle plugin that generates the GTK binding based on GObject introspection (GIR) files.
@@ -18,12 +16,11 @@ class GirPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         // task to run
-        project.task("generateGtkBindingClasses") {
+        project.task("generateGtkBinding") {
             group = BasePlugin.BUILD_GROUP
 
             doLast {
-                parseGir(File("/usr/share/gir-1.0/Gtk-3.0.gir"))
-                    .also { generateClasses(it, GTK_PACKAGE_NAME) }
+                generateBinding(File("/usr/share/gir-1.0/Gtk-3.0.gir"), GTK_PACKAGE_NAME)
             }
         }
 
@@ -35,16 +32,13 @@ class GirPlugin : Plugin<Project> {
         }
     }
 
-    private fun parseGir(file: File): GirInfo {
-        // TODO - a DOM based parser would be more convenient: but considering the file size, I opted for a SAX parser
-        val parser = SAXParserFactory.newInstance().newSAXParser()
-        val handler = GirHandler()
-        parser.parse(file, handler)
-        return handler.info
-    }
+    private fun generateBinding(file: File, packageName: String) {
+        println("generating binding for: ${file.name}")
 
-    private fun generateClasses(info: GirInfo, packageName: String) {
-        info.createBindings(sourcesDir, packageName)
+        val sourceText = file.readText()
+        val definitions = Parser().parse(sourceText)
+
+        BindingGenerator().generate(definitions, sourcesDir, packageName)
     }
 
     companion object {
