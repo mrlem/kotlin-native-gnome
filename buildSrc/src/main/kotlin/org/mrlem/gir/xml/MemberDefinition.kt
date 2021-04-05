@@ -7,6 +7,16 @@ sealed class MemberDefinition {
      */
     abstract val name: String
 
+    data class PropertyGetter(
+        override val name: String,
+        val type: Class<*>
+    ) : MemberDefinition()
+
+    data class PropertySetter(
+        override val name: String,
+        val type: Class<*>
+    ) : MemberDefinition()
+
     data class Property(
         override val name: String,
         var readOnly: Boolean,

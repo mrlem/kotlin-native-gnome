@@ -24,11 +24,11 @@ class Parser {
     private fun Node.findAllClassDefinitions(): List<ClassDefinition> {
         // list class definitions
         val definitions = children()
-            .firstOrNull { ((it as? Node)?.name() as? QName)?.localPart == "namespace" }
+            .firstOrNull { ((it as? Node)?.nameMatches("namespace") == true) }
             ?.let { it as? Node }
             ?.children()
-            ?.mapNotNull { node -> (node as? Node)?.takeIf { (it.name() as? QName)?.localPart == "class" } }
-            ?.mapNotNull(::nodeToClassDefinition)
+            ?.mapNotNull { node -> (node as? Node)?.takeIf { it.nameMatches("class") } }
+            ?.mapNotNull { it.toClassDefinition() }
             .orEmpty()
 
         // determine parent -> children relations
@@ -63,39 +63,82 @@ class Parser {
         ancestors.pop()
     }
 
-    private fun nodeToClassDefinition(node: Node): ClassDefinition? {
-        val className = node.attribute("name")?.toString() ?: return null
-        val cType = node.attributes().keys
-            .firstOrNull { (it as? QName)?.localPart == "type" }
-            ?.let { node.attribute(it) }
+    private fun Node.toClassDefinition(): ClassDefinition? {
+        val name = name
+
+        val cType = attributes().keys
+            .firstOrNull { it?.nameMatches("type") == true }
+            ?.let { attribute(it) }
             ?.toString() ?: return null
-        val parent = node.attribute("parent")?.toString() ?: return null
+        val parent = attribute("parent")?.toString() ?: return null
 
         val isExcluded = cType == "GtkSocket" || cType == "GtkPlug" || parent.contains("Atk")
         if (isExcluded) return null
 
-        val isDeprecated = node.children()
+        val isDeprecated = children()
             // FIXME - why the hell is misc flagged as deprecated while being used in label??
-            .takeUnless { className == "Misc" }
+            .takeUnless { name == "Misc" }
             ?.filterIsInstance<Node>()
-            ?.firstOrNull { (it.name() as? QName)?.localPart == "source-position" }
+            ?.firstOrNull { it.nameMatches("source-position") }
             ?.attribute("filename")
             ?.toString()
             ?.contains("deprecated") == true
         if (isDeprecated) return null
 
-        val members = node.children()
+        val members = children()
             .filterIsInstance<Node>()
-            .mapNotNull { childNode -> childNode.takeIf { (it.name() as? QName)?.localPart == "method" } }
-            .map { MemberDefinition.Todo(it.attribute("name").toString()) }
-            .toMutableList<MemberDefinition>()
+            .mapNotNull { childNode -> childNode.takeIf { it.nameMatches("method") } }
+            .map { childNode -> childNode.toMemberDefinition() }
+            .toMutableList()
 
         return ClassDefinition(
-            className,
+            name,
             cType,
             parent,
             members = members
         )
+    }
+
+    private fun Node.toMemberDefinition(): MemberDefinition {
+        val childrenNodes = children()
+            .filterIsInstance<Node>()
+        val parameterNodes = childrenNodes
+            .firstOrNull { it.nameMatches("parameters") }
+            ?.children()
+            ?.filterIsInstance<Node>()
+
+        val returnValueNode = childrenNodes
+            .firstOrNull { it.nameMatches("return-value") }
+        val instanceParameter = parameterNodes
+            ?.firstOrNull { it.nameMatches("instance-parameter") }
+        val parameters = parameterNodes
+            ?.filter { it.nameMatches("parameter") }
+            .orEmpty()
+
+        // TODO - type
+        val name = name
+        return when {
+            name.startsWith(GETTER_PREFIX) && instanceParameter != null && parameters.isEmpty() ->
+                MemberDefinition.PropertyGetter(name.removePrefix(GETTER_PREFIX), Unit::class.java)
+            name.startsWith(SETTER_PREFIX) && instanceParameter != null && parameters.size == 1 ->
+                MemberDefinition.PropertySetter(name.removePrefix(SETTER_PREFIX), Unit::class.java)
+            else -> MemberDefinition.Todo(name)
+        }
+    }
+
+    private val Node.name
+        get() = attribute("name").toString()
+
+    private fun Any.nameMatches(name: String): Boolean = when (this) {
+        is String -> this == name
+        is QName -> localPart == name
+        is Node -> name().nameMatches(name)
+        else -> false
+    }
+
+    companion object {
+        private const val GETTER_PREFIX = "get_"
+        private const val SETTER_PREFIX = "set_"
     }
 
 }
