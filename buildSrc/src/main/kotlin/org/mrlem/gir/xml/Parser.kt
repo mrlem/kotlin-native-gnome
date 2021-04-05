@@ -84,10 +84,17 @@ class Parser {
             ?.contains("deprecated") == true
         if (isDeprecated) return null
 
+        val members = node.children()
+            .filterIsInstance<Node>()
+            .mapNotNull { childNode -> childNode.takeIf { (it.name() as? QName)?.localPart == "method" } }
+            .map { MemberDefinition.Todo(it.attribute("name").toString()) }
+            .toMutableList<MemberDefinition>()
+
         return ClassDefinition(
             className,
             cType,
-            parent
+            parent,
+            members = members
         )
     }
 

@@ -5,6 +5,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import org.mrlem.gir.GirPlugin
 import org.mrlem.gir.GirPlugin.Companion.GTK_CINTEROP_PACKAGE_NAME
 import org.mrlem.gir.xml.ClassDefinition
+import org.mrlem.gir.xml.MemberDefinition
 import java.io.File
 
 class BindingGenerator {
@@ -29,6 +30,14 @@ class BindingGenerator {
                 }
                 // TODO - add public API
                 // TODO - add event handlers
+                .apply {
+                    definition.members
+                        .filterIsInstance<MemberDefinition.Todo>()
+                        .map { it.name }
+                        .takeUnless { it.isEmpty() }
+                        ?.joinToString(prefix = "TODO - implement:\n  ", separator = "\n  ")
+                        ?.let { addComment(it) }
+                }
                 .build()
                 .run { writeTo(destination) }
         }
