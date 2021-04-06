@@ -16,8 +16,8 @@ They say a picture is worth a thousand words:
 
 ## Status
 
-* API coverage is still very far from complete: all GTK types & type converters are here. But only a handful of members (val / var / fun) are there yet.
-* The aim is to be able to fully generate the API through GIR (most of what is already present is based on it already).
+* API coverage is still very far from complete: all GTK types & type converters are here. Some val / var are here, only a handful of constructors / functions there yet.
+* The aim is to be able to fully generate the API through GIR (most of what is already present is already generated).
 
 ## Build
 
