@@ -1,4 +1,4 @@
-package org.mrlem.gtk.glade.xml
+package org.mrlem.gnome.glade.xml
 
 /**
  * Reference to a widget in the glade file.

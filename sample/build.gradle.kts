@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    id("org.mrlem.gtk.glade")
+    id("org.mrlem.gnome.glade")
 }
 
 val mingwPath = File(System.getenv("MINGW64_DIR") ?: "C:/msys64/mingw64")

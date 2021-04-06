@@ -1,8 +1,8 @@
-package org.mrlem.gir.xml
+package org.mrlem.gnome.gir.xml
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
-import org.mrlem.gir.GirPlugin.Companion.GTK_CINTEROP_PACKAGE_NAME
+import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_CINTEROP_PACKAGE_NAME
 
 sealed class Type {
 

@@ -1,4 +1,4 @@
-package org.mrlem.gtk.glade
+package org.mrlem.gnome.glade
 
 import java.io.File
 import org.gradle.api.Plugin
@@ -6,8 +6,8 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import org.mrlem.gtk.glade.kotlin.ViewBindingGenerator
-import org.mrlem.gtk.glade.xml.Parser
+import org.mrlem.gnome.glade.kotlin.ViewBindingGenerator
+import org.mrlem.gnome.glade.xml.Parser
 
 /**
  * Gradle plugin that generates a UI class for each glade XML file present in resources.
@@ -18,7 +18,7 @@ import org.mrlem.gtk.glade.xml.Parser
  *
  * Note that the glade file needs to end in .glade.
  */
-class GladePlugin : Plugin<Project> {
+class ViewBindingGeneratorPlugin : Plugin<Project> {
     private lateinit var sourceSetsWithGeneratedDir: Map<KotlinSourceSet, File>
 
     override fun apply(project: Project) {

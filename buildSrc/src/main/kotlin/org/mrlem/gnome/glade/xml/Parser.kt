@@ -1,4 +1,4 @@
-package org.mrlem.gtk.glade.xml
+package org.mrlem.gnome.glade.xml
 
 import groovy.util.Node
 import groovy.util.XmlParser

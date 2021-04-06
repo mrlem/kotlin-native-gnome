@@ -1,4 +1,4 @@
-package org.mrlem.gir.xml
+package org.mrlem.gnome.gir.xml
 
 import groovy.util.Node
 import groovy.util.XmlParser

@@ -1,14 +1,14 @@
-package org.mrlem.gir.kotlin
+package org.mrlem.gnome.gir.kotlin
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
-import org.mrlem.gir.GirPlugin
-import org.mrlem.gir.GirPlugin.Companion.GLIB_PACKAGE_NAME
-import org.mrlem.gir.GirPlugin.Companion.GTK_CINTEROP_PACKAGE_NAME
-import org.mrlem.gir.xml.ClassDefinition
-import org.mrlem.gir.xml.MemberDefinition
-import org.mrlem.gir.xml.Parser.Companion.GETTER_PREFIX
-import org.mrlem.gir.xml.Parser.Companion.SETTER_PREFIX
+import org.mrlem.gnome.gir.BindingGeneratorPlugin
+import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GLIB_PACKAGE_NAME
+import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_CINTEROP_PACKAGE_NAME
+import org.mrlem.gnome.gir.xml.ClassDefinition
+import org.mrlem.gnome.gir.xml.MemberDefinition
+import org.mrlem.gnome.gir.xml.Parser.Companion.GETTER_PREFIX
+import org.mrlem.gnome.gir.xml.Parser.Companion.SETTER_PREFIX
 import java.io.File
 
 class BindingGenerator {
@@ -71,7 +71,7 @@ class BindingGenerator {
         val ancestorPackageName = ancestorParts.first()
             .takeIf { ancestorParts.size > 1 }
             ?.toLowerCase()
-            ?.let { "${GirPlugin.GLIB_PACKAGE_NAME}.$it" }
+            ?.let { "${BindingGeneratorPlugin.GLIB_PACKAGE_NAME}.$it" }
             ?: packageName
 
         addProperty(

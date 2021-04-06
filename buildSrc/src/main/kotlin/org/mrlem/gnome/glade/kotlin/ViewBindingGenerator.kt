@@ -1,9 +1,9 @@
-package org.mrlem.gtk.glade.kotlin
+package org.mrlem.gnome.glade.kotlin
 
 import com.squareup.kotlinpoet.*
-import org.mrlem.gir.GirPlugin.Companion.GTK_PACKAGE_NAME
+import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_PACKAGE_NAME
 import java.io.File
-import org.mrlem.gtk.glade.xml.WidgetReference
+import org.mrlem.gnome.glade.xml.WidgetReference
 
 /**
  * Glade widgets view binding generator: generates a class that:
