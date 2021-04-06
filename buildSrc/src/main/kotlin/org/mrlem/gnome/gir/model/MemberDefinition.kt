@@ -1,4 +1,4 @@
-package org.mrlem.gnome.gir.xml
+package org.mrlem.gnome.gir.model
 
 sealed class MemberDefinition {
 

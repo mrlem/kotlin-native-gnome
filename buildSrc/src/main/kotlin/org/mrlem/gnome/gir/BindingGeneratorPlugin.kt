@@ -5,8 +5,8 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.mrlem.gnome.gir.kotlin.BindingGenerator
-import org.mrlem.gnome.gir.xml.Parser
+import org.mrlem.gnome.gir.generator.kotlin.BindingGenerator
+import org.mrlem.gnome.gir.parser.xml.Parser
 
 /**
  * Gradle plugin that generates the GTK binding based on GObject introspection (GIR) files.

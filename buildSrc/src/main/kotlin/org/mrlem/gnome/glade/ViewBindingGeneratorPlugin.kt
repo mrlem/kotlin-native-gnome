@@ -6,8 +6,8 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import org.mrlem.gnome.glade.kotlin.ViewBindingGenerator
-import org.mrlem.gnome.glade.xml.Parser
+import org.mrlem.gnome.glade.generator.kotlin.ViewBindingGenerator
+import org.mrlem.gnome.glade.parser.xml.Parser
 
 /**
  * Gradle plugin that generates a UI class for each glade XML file present in resources.

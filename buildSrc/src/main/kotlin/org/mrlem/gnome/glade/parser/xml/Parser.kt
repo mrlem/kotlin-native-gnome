@@ -1,7 +1,8 @@
-package org.mrlem.gnome.glade.xml
+package org.mrlem.gnome.glade.parser.xml
 
 import groovy.util.Node
 import groovy.util.XmlParser
+import org.mrlem.gnome.glade.model.Widget
 
 /**
  * Glade XML file parser: parses all named widgets.
@@ -13,7 +14,7 @@ class Parser {
      *
      * @return a list of all named widgets in the file.
      */
-    fun parse(sourceText: String): List<WidgetReference> {
+    fun parse(sourceText: String): List<Widget> {
         return XmlParser()
             .parseText(sourceText)
             .findAllNamedWidgets()
@@ -27,13 +28,13 @@ class Parser {
      * @return the resulting map of widget ids to class names.
      */
     private fun Node.findAllNamedWidgets(
-        widgets: MutableList<WidgetReference> = mutableListOf()
-    ): List<WidgetReference> {
+        widgets: MutableList<Widget> = mutableListOf()
+    ): List<Widget> {
         // check this node
         val idValue = attribute("id")?.toString()?.takeUnless { it.isEmpty() }
         val classValue = attribute("class")?.toString()?.takeUnless { it.isEmpty() }
         if (idValue != null && classValue != null) {
-            widgets.add(WidgetReference(idValue, classValue))
+            widgets.add(Widget(idValue, classValue))
         }
 
         // check children nodes

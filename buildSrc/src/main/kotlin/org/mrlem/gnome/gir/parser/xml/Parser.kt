@@ -1,8 +1,11 @@
-package org.mrlem.gnome.gir.xml
+package org.mrlem.gnome.gir.parser.xml
 
 import groovy.util.Node
 import groovy.util.XmlParser
 import groovy.xml.QName
+import org.mrlem.gnome.gir.model.ClassDefinition
+import org.mrlem.gnome.gir.model.MemberDefinition
+import org.mrlem.gnome.gir.model.Type
 import java.util.*
 
 /**

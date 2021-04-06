@@ -1,14 +1,14 @@
-package org.mrlem.gnome.gir.kotlin
+package org.mrlem.gnome.gir.generator.kotlin
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import org.mrlem.gnome.gir.BindingGeneratorPlugin
 import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GLIB_PACKAGE_NAME
 import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_CINTEROP_PACKAGE_NAME
-import org.mrlem.gnome.gir.xml.ClassDefinition
-import org.mrlem.gnome.gir.xml.MemberDefinition
-import org.mrlem.gnome.gir.xml.Parser.Companion.GETTER_PREFIX
-import org.mrlem.gnome.gir.xml.Parser.Companion.SETTER_PREFIX
+import org.mrlem.gnome.gir.model.ClassDefinition
+import org.mrlem.gnome.gir.model.MemberDefinition
+import org.mrlem.gnome.gir.parser.xml.Parser.Companion.GETTER_PREFIX
+import org.mrlem.gnome.gir.parser.xml.Parser.Companion.SETTER_PREFIX
 import java.io.File
 
 class BindingGenerator {

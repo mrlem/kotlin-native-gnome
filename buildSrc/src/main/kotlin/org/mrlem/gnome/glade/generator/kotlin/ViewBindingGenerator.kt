@@ -1,9 +1,9 @@
-package org.mrlem.gnome.glade.kotlin
+package org.mrlem.gnome.glade.generator.kotlin
 
 import com.squareup.kotlinpoet.*
 import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_PACKAGE_NAME
 import java.io.File
-import org.mrlem.gnome.glade.xml.WidgetReference
+import org.mrlem.gnome.glade.model.Widget
 
 /**
  * Glade widgets view binding generator: generates a class that:
@@ -19,7 +19,7 @@ class ViewBindingGenerator {
      * @param source the UI XML source text.
      * @param widgets the widgets to include accessors for.
      */
-    fun generate(file: File, source: String, widgets: List<WidgetReference>): FileSpec {
+    fun generate(file: File, source: String, widgets: List<Widget>): FileSpec {
         val uiClassName = file.uiClassName
         val builderClassName = ClassName(GTK_PACKAGE_NAME, "Builder")
         val reinterpretMemberName = MemberName("kotlinx.cinterop", "reinterpret")
