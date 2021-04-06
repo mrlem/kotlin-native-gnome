@@ -2,40 +2,45 @@
 //   add_credit_section
 //   get_artists
 //   get_authors
-//   get_comments
-//   get_copyright
 //   get_documenters
-//   get_license
 //   get_license_type
 //   get_logo
-//   get_logo_icon_name
-//   get_program_name
-//   get_translator_credits
-//   get_version
-//   get_website
-//   get_website_label
-//   get_wrap_license
 //   set_artists
 //   set_authors
-//   set_comments
-//   set_copyright
 //   set_documenters
-//   set_license
 //   set_license_type
 //   set_logo
-//   set_logo_icon_name
-//   set_program_name
-//   set_translator_credits
-//   set_version
-//   set_website
-//   set_website_label
-//   set_wrap_license
 package org.gnome.gtk
 
 import gtk3.GtkAboutDialog
+import gtk3.gtk_about_dialog_get_comments
+import gtk3.gtk_about_dialog_get_copyright
+import gtk3.gtk_about_dialog_get_license
+import gtk3.gtk_about_dialog_get_logo_icon_name
+import gtk3.gtk_about_dialog_get_program_name
+import gtk3.gtk_about_dialog_get_translator_credits
+import gtk3.gtk_about_dialog_get_version
+import gtk3.gtk_about_dialog_get_website
+import gtk3.gtk_about_dialog_get_website_label
+import gtk3.gtk_about_dialog_get_wrap_license
+import gtk3.gtk_about_dialog_set_comments
+import gtk3.gtk_about_dialog_set_copyright
+import gtk3.gtk_about_dialog_set_license
+import gtk3.gtk_about_dialog_set_logo_icon_name
+import gtk3.gtk_about_dialog_set_program_name
+import gtk3.gtk_about_dialog_set_translator_credits
+import gtk3.gtk_about_dialog_set_version
+import gtk3.gtk_about_dialog_set_website
+import gtk3.gtk_about_dialog_set_website_label
+import gtk3.gtk_about_dialog_set_wrap_license
+import kotlin.Boolean
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.toBoolean
+import org.gnome.glib.toInt
+import org.gnome.glib.toKString
 
 public typealias AboutDialog = CPointer<GtkAboutDialog>
 
@@ -56,3 +61,63 @@ public val AboutDialog.asWindow: Window
 
 public val AboutDialog.asDialog: Dialog
   get() = reinterpret()
+
+public var AboutDialog.comments: String?
+  get() = gtk_about_dialog_get_comments(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_comments(this, value)
+  }
+
+public var AboutDialog.copyright: String?
+  get() = gtk_about_dialog_get_copyright(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_copyright(this, value)
+  }
+
+public var AboutDialog.license: String?
+  get() = gtk_about_dialog_get_license(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_license(this, value)
+  }
+
+public var AboutDialog.logoIconName: String?
+  get() = gtk_about_dialog_get_logo_icon_name(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_logo_icon_name(this, value)
+  }
+
+public var AboutDialog.programName: String?
+  get() = gtk_about_dialog_get_program_name(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_program_name(this, value)
+  }
+
+public var AboutDialog.translatorCredits: String?
+  get() = gtk_about_dialog_get_translator_credits(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_translator_credits(this, value)
+  }
+
+public var AboutDialog.version: String?
+  get() = gtk_about_dialog_get_version(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_version(this, value)
+  }
+
+public var AboutDialog.website: String?
+  get() = gtk_about_dialog_get_website(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_website(this, value)
+  }
+
+public var AboutDialog.websiteLabel: String?
+  get() = gtk_about_dialog_get_website_label(this).toKString
+  set(`value`) {
+    gtk_about_dialog_set_website_label(this, value)
+  }
+
+public var AboutDialog.wrapLicense: Boolean
+  get() = gtk_about_dialog_get_wrap_license(this).toBoolean
+  set(`value`) {
+    gtk_about_dialog_set_wrap_license(this, value.toInt)
+  }

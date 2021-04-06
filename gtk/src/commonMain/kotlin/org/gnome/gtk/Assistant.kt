@@ -2,8 +2,6 @@
 //   add_action_widget
 //   append_page
 //   commit
-//   get_current_page
-//   get_n_pages
 //   get_nth_page
 //   get_page_complete
 //   get_page_has_padding
@@ -17,7 +15,6 @@
 //   previous_page
 //   remove_action_widget
 //   remove_page
-//   set_current_page
 //   set_forward_page_func
 //   set_page_complete
 //   set_page_has_padding
@@ -29,6 +26,10 @@
 package org.gnome.gtk
 
 import gtk3.GtkAssistant
+import gtk3.gtk_assistant_get_current_page
+import gtk3.gtk_assistant_get_n_pages
+import gtk3.gtk_assistant_set_current_page
+import kotlin.Int
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -49,3 +50,12 @@ public val Assistant.asBin: Bin
 
 public val Assistant.asWindow: Window
   get() = reinterpret()
+
+public var Assistant.currentPage: Int
+  get() = gtk_assistant_get_current_page(this)
+  set(`value`) {
+    gtk_assistant_set_current_page(this, value)
+  }
+
+public val Assistant.nPages: Int
+  get() = gtk_assistant_get_n_pages(this)

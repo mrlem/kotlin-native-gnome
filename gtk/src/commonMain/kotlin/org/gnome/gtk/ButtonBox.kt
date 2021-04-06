@@ -35,4 +35,6 @@ public val ButtonBox.asBox: Box
 @Suppress("FunctionName")
 fun ButtonBox(orientation: GtkOrientation) = gtk_button_box_new(orientation)!!.reinterpret<GtkButtonBox>()
 
-fun ButtonBox.add(widget: Widget) = asContainer.add(widget)
+fun ButtonBox.add(widget: Widget) {
+  asContainer.add(widget)
+}

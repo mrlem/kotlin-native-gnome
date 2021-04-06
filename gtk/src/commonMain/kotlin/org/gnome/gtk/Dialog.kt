@@ -11,8 +11,8 @@
 //   run
 //   set_alternative_button_order
 //   set_alternative_button_order_from_array
-//   set_default_response
 //   set_response_sensitive
+//   set_default_response
 package org.gnome.gtk
 
 import gtk3.GtkDialog

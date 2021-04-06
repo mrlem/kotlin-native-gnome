@@ -50,47 +50,22 @@
 //   freeze_child_notify
 //   get_accessible
 //   get_action_group
-//   get_allocated_baseline
-//   get_allocated_height
 //   get_allocated_size
-//   get_allocated_width
 //   get_allocation
 //   get_ancestor
-//   get_app_paintable
-//   get_can_default
-//   get_can_focus
 //   get_child_requisition
-//   get_child_visible
 //   get_clip
 //   get_clipboard
-//   get_composite_name
 //   get_device_enabled
 //   get_device_events
 //   get_direction
 //   get_display
-//   get_double_buffered
-//   get_events
-//   get_focus_on_click
 //   get_font_map
 //   get_font_options
 //   get_frame_clock
 //   get_halign
-//   get_has_tooltip
-//   get_has_window
-//   get_hexpand
-//   get_hexpand_set
-//   get_mapped
-//   get_margin_bottom
-//   get_margin_end
-//   get_margin_left
-//   get_margin_right
-//   get_margin_start
-//   get_margin_top
 //   get_modifier_mask
 //   get_modifier_style
-//   get_name
-//   get_no_show_all
-//   get_opacity
 //   get_pango_context
 //   get_parent
 //   get_parent_window
@@ -102,31 +77,21 @@
 //   get_preferred_size
 //   get_preferred_width
 //   get_preferred_width_for_height
-//   get_realized
-//   get_receives_default
 //   get_request_mode
 //   get_requisition
 //   get_root_window
-//   get_scale_factor
 //   get_screen
-//   get_sensitive
 //   get_settings
 //   get_size_request
 //   get_state
 //   get_state_flags
 //   get_style
 //   get_style_context
-//   get_support_multidevice
 //   get_template_child
-//   get_tooltip_markup
-//   get_tooltip_text
 //   get_tooltip_window
 //   get_toplevel
 //   get_valign
 //   get_valign_with_baseline
-//   get_vexpand
-//   get_vexpand_set
-//   get_visible
 //   get_visual
 //   get_window
 //   grab_add
@@ -194,53 +159,21 @@
 //   send_focus_change
 //   set_accel_path
 //   set_allocation
-//   set_app_paintable
-//   set_can_default
-//   set_can_focus
-//   set_child_visible
 //   set_clip
-//   set_composite_name
 //   set_device_enabled
 //   set_device_events
 //   set_direction
-//   set_double_buffered
-//   set_events
-//   set_focus_on_click
 //   set_font_map
 //   set_font_options
 //   set_halign
-//   set_has_tooltip
-//   set_has_window
-//   set_hexpand
-//   set_hexpand_set
-//   set_mapped
-//   set_margin_bottom
-//   set_margin_end
-//   set_margin_left
-//   set_margin_right
-//   set_margin_start
-//   set_margin_top
-//   set_name
-//   set_no_show_all
-//   set_opacity
 //   set_parent
 //   set_parent_window
-//   set_realized
-//   set_receives_default
-//   set_redraw_on_allocate
-//   set_sensitive
 //   set_size_request
 //   set_state
 //   set_state_flags
 //   set_style
-//   set_support_multidevice
-//   set_tooltip_markup
-//   set_tooltip_text
 //   set_tooltip_window
 //   set_valign
-//   set_vexpand
-//   set_vexpand_set
-//   set_visible
 //   set_visual
 //   set_window
 //   shape_combine_region
@@ -262,26 +195,228 @@
 //   unrealize
 //   unregister_window
 //   unset_state_flags
+//   set_redraw_on_allocate
 package org.gnome.gtk
 
 import gtk3.*
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.Int
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import kotlinx.cinterop.toKString
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.toBoolean
+import org.gnome.glib.toInt
+import org.gnome.glib.toKString
 
 public typealias Widget = CPointer<GtkWidget>
 
 public val Widget.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
 
+public var Widget.appPaintable: Boolean
+  get() = gtk_widget_get_app_paintable(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_app_paintable(this, value.toInt)
+  }
+
+public var Widget.canDefault: Boolean
+  get() = gtk_widget_get_can_default(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_can_default(this, value.toInt)
+  }
+
+public var Widget.canFocus: Boolean
+  get() = gtk_widget_get_can_focus(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_can_focus(this, value.toInt)
+  }
+
+public var Widget.childVisible: Boolean
+  get() = gtk_widget_get_child_visible(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_child_visible(this, value.toInt)
+  }
+
+public var Widget.compositeName: String?
+  get() = gtk_widget_get_composite_name(this).toKString
+  set(`value`) {
+    gtk_widget_set_composite_name(this, value)
+  }
+
+public var Widget.doubleBuffered: Boolean
+  get() = gtk_widget_get_double_buffered(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_double_buffered(this, value.toInt)
+  }
+
+public var Widget.events: Int
+  get() = gtk_widget_get_events(this)
+  set(`value`) {
+    gtk_widget_set_events(this, value)
+  }
+
+public var Widget.focusOnClick: Boolean
+  get() = gtk_widget_get_focus_on_click(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_focus_on_click(this, value.toInt)
+  }
+
+public var Widget.hasTooltip: Boolean
+  get() = gtk_widget_get_has_tooltip(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_has_tooltip(this, value.toInt)
+  }
+
+public var Widget.hasWindow: Boolean
+  get() = gtk_widget_get_has_window(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_has_window(this, value.toInt)
+  }
+
+public var Widget.hexpand: Boolean
+  get() = gtk_widget_get_hexpand(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_hexpand(this, value.toInt)
+  }
+
+public var Widget.hexpandSet: Boolean
+  get() = gtk_widget_get_hexpand_set(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_hexpand_set(this, value.toInt)
+  }
+
+public var Widget.mapped: Boolean
+  get() = gtk_widget_get_mapped(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_mapped(this, value.toInt)
+  }
+
+public var Widget.marginBottom: Int
+  get() = gtk_widget_get_margin_bottom(this)
+  set(`value`) {
+    gtk_widget_set_margin_bottom(this, value)
+  }
+
+public var Widget.marginEnd: Int
+  get() = gtk_widget_get_margin_end(this)
+  set(`value`) {
+    gtk_widget_set_margin_end(this, value)
+  }
+
+public var Widget.marginLeft: Int
+  get() = gtk_widget_get_margin_left(this)
+  set(`value`) {
+    gtk_widget_set_margin_left(this, value)
+  }
+
+public var Widget.marginRight: Int
+  get() = gtk_widget_get_margin_right(this)
+  set(`value`) {
+    gtk_widget_set_margin_right(this, value)
+  }
+
+public var Widget.marginStart: Int
+  get() = gtk_widget_get_margin_start(this)
+  set(`value`) {
+    gtk_widget_set_margin_start(this, value)
+  }
+
+public var Widget.marginTop: Int
+  get() = gtk_widget_get_margin_top(this)
+  set(`value`) {
+    gtk_widget_set_margin_top(this, value)
+  }
+
+public var Widget.name: String?
+  get() = gtk_widget_get_name(this).toKString
+  set(`value`) {
+    gtk_widget_set_name(this, value)
+  }
+
+public var Widget.noShowAll: Boolean
+  get() = gtk_widget_get_no_show_all(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_no_show_all(this, value.toInt)
+  }
+
+public var Widget.opacity: Double
+  get() = gtk_widget_get_opacity(this)
+  set(`value`) {
+    gtk_widget_set_opacity(this, value)
+  }
+
+public var Widget.realized: Boolean
+  get() = gtk_widget_get_realized(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_realized(this, value.toInt)
+  }
+
+public var Widget.receivesDefault: Boolean
+  get() = gtk_widget_get_receives_default(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_receives_default(this, value.toInt)
+  }
+
+public var Widget.sensitive: Boolean
+  get() = gtk_widget_get_sensitive(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_sensitive(this, value.toInt)
+  }
+
+public var Widget.supportMultidevice: Boolean
+  get() = gtk_widget_get_support_multidevice(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_support_multidevice(this, value.toInt)
+  }
+
+public var Widget.tooltipMarkup: String?
+  get() = gtk_widget_get_tooltip_markup(this).toKString
+  set(`value`) {
+    gtk_widget_set_tooltip_markup(this, value)
+  }
+
+public var Widget.tooltipText: String?
+  get() = gtk_widget_get_tooltip_text(this).toKString
+  set(`value`) {
+    gtk_widget_set_tooltip_text(this, value)
+  }
+
+public var Widget.vexpand: Boolean
+  get() = gtk_widget_get_vexpand(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_vexpand(this, value.toInt)
+  }
+
+public var Widget.vexpandSet: Boolean
+  get() = gtk_widget_get_vexpand_set(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_vexpand_set(this, value.toInt)
+  }
+
+public var Widget.visible: Boolean
+  get() = gtk_widget_get_visible(this).toBoolean
+  set(`value`) {
+    gtk_widget_set_visible(this, value.toInt)
+  }
+
+public val Widget.allocatedBaseline: Int
+  get() = gtk_widget_get_allocated_baseline(this)
+
+public val Widget.allocatedHeight: Int
+  get() = gtk_widget_get_allocated_height(this)
+
+public val Widget.allocatedWidth: Int
+  get() = gtk_widget_get_allocated_width(this)
+
+public val Widget.scaleFactor: Int
+  get() = gtk_widget_get_scale_factor(this)
+
 ///////////////////////////////////////////////////////////////////////////
 // Public API (not generated)
 ///////////////////////////////////////////////////////////////////////////
-
-var Widget.name
-  get() = gtk_widget_get_name(this)?.toKString().orEmpty()
-  set(value) = gtk_widget_set_name(this, value)
 
 fun Widget.showAll() = gtk_widget_show_all(this)
 

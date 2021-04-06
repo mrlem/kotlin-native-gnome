@@ -10,41 +10,23 @@
 //   deiconify
 //   fullscreen
 //   fullscreen_on_monitor
-//   get_accept_focus
 //   get_application
 //   get_attached_to
-//   get_decorated
 //   get_default_size
 //   get_default_widget
-//   get_deletable
-//   get_destroy_with_parent
 //   get_focus
-//   get_focus_on_map
-//   get_focus_visible
 //   get_gravity
 //   get_group
-//   get_has_resize_grip
-//   get_hide_titlebar_when_maximized
 //   get_icon
 //   get_icon_list
-//   get_icon_name
 //   get_mnemonic_modifier
-//   get_mnemonics_visible
-//   get_modal
-//   get_opacity
 //   get_position
-//   get_resizable
 //   get_resize_grip_area
-//   get_role
 //   get_screen
 //   get_size
-//   get_skip_pager_hint
-//   get_skip_taskbar_hint
-//   get_title
 //   get_titlebar
 //   get_transient_for
 //   get_type_hint
-//   get_urgency_hint
 //   get_window_type
 //   has_group
 //   has_toplevel_focus
@@ -64,60 +46,80 @@
 //   resize
 //   resize_grip_is_visible
 //   resize_to_geometry
-//   set_accept_focus
 //   set_application
 //   set_attached_to
-//   set_decorated
 //   set_default
 //   set_default_geometry
 //   set_default_size
-//   set_deletable
-//   set_destroy_with_parent
 //   set_focus
-//   set_focus_on_map
-//   set_focus_visible
 //   set_geometry_hints
 //   set_gravity
-//   set_has_resize_grip
-//   set_has_user_ref_count
-//   set_hide_titlebar_when_maximized
 //   set_icon
 //   set_icon_from_file
 //   set_icon_list
-//   set_icon_name
-//   set_keep_above
-//   set_keep_below
 //   set_mnemonic_modifier
-//   set_mnemonics_visible
-//   set_modal
-//   set_opacity
 //   set_position
-//   set_resizable
-//   set_role
 //   set_screen
-//   set_skip_pager_hint
-//   set_skip_taskbar_hint
-//   set_startup_id
-//   set_title
 //   set_titlebar
 //   set_transient_for
 //   set_type_hint
-//   set_urgency_hint
 //   set_wmclass
 //   stick
 //   unfullscreen
 //   unmaximize
 //   unstick
+//   set_has_user_ref_count
+//   set_keep_above
+//   set_keep_below
+//   set_startup_id
 package org.gnome.gtk
 
 import gtk3.GtkWindow
+import gtk3.gtk_window_get_accept_focus
+import gtk3.gtk_window_get_decorated
+import gtk3.gtk_window_get_deletable
+import gtk3.gtk_window_get_destroy_with_parent
+import gtk3.gtk_window_get_focus_on_map
+import gtk3.gtk_window_get_focus_visible
+import gtk3.gtk_window_get_has_resize_grip
+import gtk3.gtk_window_get_hide_titlebar_when_maximized
+import gtk3.gtk_window_get_icon_name
+import gtk3.gtk_window_get_mnemonics_visible
+import gtk3.gtk_window_get_modal
+import gtk3.gtk_window_get_opacity
+import gtk3.gtk_window_get_resizable
+import gtk3.gtk_window_get_role
+import gtk3.gtk_window_get_skip_pager_hint
+import gtk3.gtk_window_get_skip_taskbar_hint
 import gtk3.gtk_window_get_title
-import gtk3.gtk_window_set_default_size
+import gtk3.gtk_window_get_urgency_hint
+import gtk3.gtk_window_set_accept_focus
+import gtk3.gtk_window_set_decorated
+import gtk3.gtk_window_set_deletable
+import gtk3.gtk_window_set_destroy_with_parent
+import gtk3.gtk_window_set_focus_on_map
+import gtk3.gtk_window_set_focus_visible
+import gtk3.gtk_window_set_has_resize_grip
+import gtk3.gtk_window_set_hide_titlebar_when_maximized
+import gtk3.gtk_window_set_icon_name
+import gtk3.gtk_window_set_mnemonics_visible
+import gtk3.gtk_window_set_modal
+import gtk3.gtk_window_set_opacity
+import gtk3.gtk_window_set_resizable
+import gtk3.gtk_window_set_role
+import gtk3.gtk_window_set_skip_pager_hint
+import gtk3.gtk_window_set_skip_taskbar_hint
 import gtk3.gtk_window_set_title
+import gtk3.gtk_window_set_urgency_hint
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import kotlinx.cinterop.toKString
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.toBoolean
+import org.gnome.glib.toInt
+import org.gnome.glib.toKString
 
 public typealias Window = CPointer<GtkWindow>
 
@@ -133,12 +135,110 @@ public val Window.asContainer: Container
 public val Window.asBin: Bin
   get() = reinterpret()
 
-///////////////////////////////////////////////////////////////////////////
-// Public API (not generated)
-///////////////////////////////////////////////////////////////////////////
+public var Window.acceptFocus: Boolean
+  get() = gtk_window_get_accept_focus(this).toBoolean
+  set(`value`) {
+    gtk_window_set_accept_focus(this, value.toInt)
+  }
 
-var Window.title
-  get() = gtk_window_get_title(this)?.toKString().orEmpty()
-  set(value) = gtk_window_set_title(this, value)
+public var Window.decorated: Boolean
+  get() = gtk_window_get_decorated(this).toBoolean
+  set(`value`) {
+    gtk_window_set_decorated(this, value.toInt)
+  }
 
-fun Window.setDefaultSize(width: Int, height: Int) = gtk_window_set_default_size(this, width, height)
+public var Window.deletable: Boolean
+  get() = gtk_window_get_deletable(this).toBoolean
+  set(`value`) {
+    gtk_window_set_deletable(this, value.toInt)
+  }
+
+public var Window.destroyWithParent: Boolean
+  get() = gtk_window_get_destroy_with_parent(this).toBoolean
+  set(`value`) {
+    gtk_window_set_destroy_with_parent(this, value.toInt)
+  }
+
+public var Window.focusOnMap: Boolean
+  get() = gtk_window_get_focus_on_map(this).toBoolean
+  set(`value`) {
+    gtk_window_set_focus_on_map(this, value.toInt)
+  }
+
+public var Window.focusVisible: Boolean
+  get() = gtk_window_get_focus_visible(this).toBoolean
+  set(`value`) {
+    gtk_window_set_focus_visible(this, value.toInt)
+  }
+
+public var Window.hasResizeGrip: Boolean
+  get() = gtk_window_get_has_resize_grip(this).toBoolean
+  set(`value`) {
+    gtk_window_set_has_resize_grip(this, value.toInt)
+  }
+
+public var Window.hideTitlebarWhenMaximized: Boolean
+  get() = gtk_window_get_hide_titlebar_when_maximized(this).toBoolean
+  set(`value`) {
+    gtk_window_set_hide_titlebar_when_maximized(this, value.toInt)
+  }
+
+public var Window.iconName: String?
+  get() = gtk_window_get_icon_name(this).toKString
+  set(`value`) {
+    gtk_window_set_icon_name(this, value)
+  }
+
+public var Window.mnemonicsVisible: Boolean
+  get() = gtk_window_get_mnemonics_visible(this).toBoolean
+  set(`value`) {
+    gtk_window_set_mnemonics_visible(this, value.toInt)
+  }
+
+public var Window.modal: Boolean
+  get() = gtk_window_get_modal(this).toBoolean
+  set(`value`) {
+    gtk_window_set_modal(this, value.toInt)
+  }
+
+public var Window.opacity: Double
+  get() = gtk_window_get_opacity(this)
+  set(`value`) {
+    gtk_window_set_opacity(this, value)
+  }
+
+public var Window.resizable: Boolean
+  get() = gtk_window_get_resizable(this).toBoolean
+  set(`value`) {
+    gtk_window_set_resizable(this, value.toInt)
+  }
+
+public var Window.role: String?
+  get() = gtk_window_get_role(this).toKString
+  set(`value`) {
+    gtk_window_set_role(this, value)
+  }
+
+public var Window.skipPagerHint: Boolean
+  get() = gtk_window_get_skip_pager_hint(this).toBoolean
+  set(`value`) {
+    gtk_window_set_skip_pager_hint(this, value.toInt)
+  }
+
+public var Window.skipTaskbarHint: Boolean
+  get() = gtk_window_get_skip_taskbar_hint(this).toBoolean
+  set(`value`) {
+    gtk_window_set_skip_taskbar_hint(this, value.toInt)
+  }
+
+public var Window.title: String?
+  get() = gtk_window_get_title(this).toKString
+  set(`value`) {
+    gtk_window_set_title(this, value)
+  }
+
+public var Window.urgencyHint: Boolean
+  get() = gtk_window_get_urgency_hint(this).toBoolean
+  set(`value`) {
+    gtk_window_set_urgency_hint(this, value.toInt)
+  }

@@ -22,7 +22,6 @@
 //   foreach_alloc
 //   get_cell_allocation
 //   get_cell_at_position
-//   get_current_path_string
 //   get_edit_widget
 //   get_edited_cell
 //   get_focus_cell
@@ -46,11 +45,17 @@
 package org.gnome.gtk
 
 import gtk3.GtkCellArea
+import gtk3.gtk_cell_area_get_current_path_string
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.toKString
 
 public typealias CellArea = CPointer<GtkCellArea>
 
 public val CellArea.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
+
+public val CellArea.currentPathString: String?
+  get() = gtk_cell_area_get_current_path_string(this).toKString

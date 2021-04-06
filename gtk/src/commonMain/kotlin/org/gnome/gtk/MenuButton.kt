@@ -4,19 +4,22 @@
 //   get_menu_model
 //   get_popover
 //   get_popup
-//   get_use_popover
 //   set_align_widget
 //   set_direction
 //   set_menu_model
 //   set_popover
 //   set_popup
-//   set_use_popover
 package org.gnome.gtk
 
 import gtk3.GtkMenuButton
+import gtk3.gtk_menu_button_get_use_popover
+import gtk3.gtk_menu_button_set_use_popover
+import kotlin.Boolean
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.toBoolean
+import org.gnome.glib.toInt
 
 public typealias MenuButton = CPointer<GtkMenuButton>
 
@@ -37,3 +40,9 @@ public val MenuButton.asButton: Button
 
 public val MenuButton.asToggleButton: ToggleButton
   get() = reinterpret()
+
+public var MenuButton.usePopover: Boolean
+  get() = gtk_menu_button_get_use_popover(this).toBoolean
+  set(`value`) {
+    gtk_menu_button_set_use_popover(this, value.toInt)
+  }

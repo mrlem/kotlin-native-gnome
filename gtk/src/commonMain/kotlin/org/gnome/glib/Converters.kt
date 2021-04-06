@@ -1,7 +1,9 @@
 package org.gnome.glib
 
 import gtk3.gcharVar
+import gtk3.guint16
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.convert
 import kotlinx.cinterop.toKString
 
 val Boolean.toInt
@@ -12,3 +14,9 @@ val Int.toBoolean
 
 val CPointer<gcharVar>?.toKString
     get() = this?.toKString()
+
+val guint16.toUInt: UInt
+    get() = convert()
+
+val UInt.toGuintt16: guint16
+    get() = convert()

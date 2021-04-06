@@ -1,12 +1,8 @@
 // TODO - implement:
-//   get_activates_default
-//   get_alignment
 //   get_attributes
 //   get_buffer
 //   get_completion
-//   get_current_icon_drag_source
 //   get_cursor_hadjustment
-//   get_has_frame
 //   get_icon_activatable
 //   get_icon_area
 //   get_icon_at_pos
@@ -24,30 +20,17 @@
 //   get_invisible_char
 //   get_layout
 //   get_layout_offsets
-//   get_max_length
-//   get_max_width_chars
-//   get_overwrite_mode
-//   get_placeholder_text
-//   get_progress_fraction
-//   get_progress_pulse_step
 //   get_tabs
-//   get_text
 //   get_text_area
-//   get_text_length
-//   get_visibility
-//   get_width_chars
 //   grab_focus_without_selecting
 //   im_context_filter_keypress
 //   layout_index_to_text_index
 //   progress_pulse
 //   reset_im_context
-//   set_activates_default
-//   set_alignment
 //   set_attributes
 //   set_buffer
 //   set_completion
 //   set_cursor_hadjustment
-//   set_has_frame
 //   set_icon_activatable
 //   set_icon_drag_source
 //   set_icon_from_gicon
@@ -61,29 +44,54 @@
 //   set_input_hints
 //   set_input_purpose
 //   set_invisible_char
-//   set_max_length
-//   set_max_width_chars
-//   set_overwrite_mode
-//   set_placeholder_text
-//   set_progress_fraction
-//   set_progress_pulse_step
 //   set_tabs
-//   set_text
-//   set_visibility
-//   set_width_chars
 //   text_index_to_layout_index
 //   unset_invisible_char
 package org.gnome.gtk
 
 import gtk3.GtkEntry
+import gtk3.gtk_entry_get_activates_default
+import gtk3.gtk_entry_get_alignment
+import gtk3.gtk_entry_get_current_icon_drag_source
+import gtk3.gtk_entry_get_has_frame
+import gtk3.gtk_entry_get_max_length
+import gtk3.gtk_entry_get_max_width_chars
+import gtk3.gtk_entry_get_overwrite_mode
+import gtk3.gtk_entry_get_placeholder_text
+import gtk3.gtk_entry_get_progress_fraction
+import gtk3.gtk_entry_get_progress_pulse_step
 import gtk3.gtk_entry_get_text
+import gtk3.gtk_entry_get_text_length
+import gtk3.gtk_entry_get_visibility
+import gtk3.gtk_entry_get_width_chars
+import gtk3.gtk_entry_set_activates_default
+import gtk3.gtk_entry_set_alignment
+import gtk3.gtk_entry_set_has_frame
+import gtk3.gtk_entry_set_max_length
+import gtk3.gtk_entry_set_max_width_chars
+import gtk3.gtk_entry_set_overwrite_mode
+import gtk3.gtk_entry_set_placeholder_text
+import gtk3.gtk_entry_set_progress_fraction
+import gtk3.gtk_entry_set_progress_pulse_step
 import gtk3.gtk_entry_set_text
+import gtk3.gtk_entry_set_visibility
+import gtk3.gtk_entry_set_width_chars
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.Float
+import kotlin.Int
+import kotlin.String
+import kotlin.UInt
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.convert
 import kotlinx.cinterop.reinterpret
 import kotlinx.cinterop.toKString
 import org.gnome.glib.gobject.InitiallyUnowned
 import org.gnome.glib.gobject.asObject
 import org.gnome.glib.gobject.connect
+import org.gnome.glib.toBoolean
+import org.gnome.glib.toInt
+import org.gnome.glib.toKString
 
 public typealias Entry = CPointer<GtkEntry>
 
@@ -93,12 +101,87 @@ public val Entry.asInitiallyUnowned: InitiallyUnowned
 public val Entry.asWidget: Widget
   get() = reinterpret()
 
+public var Entry.activatesDefault: Boolean
+  get() = gtk_entry_get_activates_default(this).toBoolean
+  set(`value`) {
+    gtk_entry_set_activates_default(this, value.toInt)
+  }
+
+public var Entry.alignment: Float
+  get() = gtk_entry_get_alignment(this)
+  set(`value`) {
+    gtk_entry_set_alignment(this, value)
+  }
+
+public var Entry.hasFrame: Boolean
+  get() = gtk_entry_get_has_frame(this).toBoolean
+  set(`value`) {
+    gtk_entry_set_has_frame(this, value.toInt)
+  }
+
+public var Entry.maxLength: Int
+  get() = gtk_entry_get_max_length(this)
+  set(`value`) {
+    gtk_entry_set_max_length(this, value)
+  }
+
+public var Entry.maxWidthChars: Int
+  get() = gtk_entry_get_max_width_chars(this)
+  set(`value`) {
+    gtk_entry_set_max_width_chars(this, value)
+  }
+
+public var Entry.overwriteMode: Boolean
+  get() = gtk_entry_get_overwrite_mode(this).toBoolean
+  set(`value`) {
+    gtk_entry_set_overwrite_mode(this, value.toInt)
+  }
+
+public var Entry.placeholderText: String?
+  get() = gtk_entry_get_placeholder_text(this).toKString
+  set(`value`) {
+    gtk_entry_set_placeholder_text(this, value)
+  }
+
+public var Entry.progressFraction: Double
+  get() = gtk_entry_get_progress_fraction(this)
+  set(`value`) {
+    gtk_entry_set_progress_fraction(this, value)
+  }
+
+public var Entry.progressPulseStep: Double
+  get() = gtk_entry_get_progress_pulse_step(this)
+  set(`value`) {
+    gtk_entry_set_progress_pulse_step(this, value)
+  }
+
+public var Entry.text: String?
+  get() = gtk_entry_get_text(this).toKString
+  set(`value`) {
+    gtk_entry_set_text(this, value)
+  }
+
+public var Entry.visibility: Boolean
+  get() = gtk_entry_get_visibility(this).toBoolean
+  set(`value`) {
+    gtk_entry_set_visibility(this, value.toInt)
+  }
+
+public var Entry.widthChars: Int
+  get() = gtk_entry_get_width_chars(this)
+  set(`value`) {
+    gtk_entry_set_width_chars(this, value)
+  }
+
+public val Entry.currentIconDragSource: Int
+  get() = gtk_entry_get_current_icon_drag_source(this)
+
+public val Entry.textLength: UInt
+  get() = gtk_entry_get_text_length(this).convert()
+
 ///////////////////////////////////////////////////////////////////////////
 // Public API (not generated)
 ///////////////////////////////////////////////////////////////////////////
-
-val Entry.text
-  get() = gtk_entry_get_text(this)!!.toKString()
 
 fun Entry.setText(text: String) = gtk_entry_set_text(this, text)
 

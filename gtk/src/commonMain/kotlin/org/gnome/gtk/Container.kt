@@ -13,7 +13,6 @@
 //   child_type
 //   forall
 //   foreach
-//   get_border_width
 //   get_children
 //   get_focus_chain
 //   get_focus_child
@@ -24,20 +23,17 @@
 //   propagate_draw
 //   remove
 //   resize_children
-//   set_border_width
 //   set_focus_chain
 //   set_focus_child
 //   set_focus_hadjustment
 //   set_focus_vadjustment
-//   set_reallocate_redraws
 //   set_resize_mode
 //   unset_focus_chain
+//   set_reallocate_redraws
 package org.gnome.gtk
 
-import gtk3.GtkContainer
-import gtk3.GtkWidget
-import gtk3.gtk_container_add
-import gtk3.gtk_container_get_children
+import gtk3.*
+import kotlin.UInt
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -50,6 +46,12 @@ public val Container.asInitiallyUnowned: InitiallyUnowned
 
 public val Container.asWidget: Widget
   get() = reinterpret()
+
+public var Container.borderWidth: UInt
+  get() = gtk_container_get_border_width(this)
+  set(`value`) {
+    gtk_container_set_border_width(this, value)
+  }
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API (not generated)

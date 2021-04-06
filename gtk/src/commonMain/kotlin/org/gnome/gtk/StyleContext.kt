@@ -17,7 +17,6 @@
 //   get_parent
 //   get_path
 //   get_property
-//   get_scale
 //   get_screen
 //   get_section
 //   get_state
@@ -47,7 +46,6 @@
 //   set_junction_sides
 //   set_parent
 //   set_path
-//   set_scale
 //   set_screen
 //   set_state
 //   state_is_running
@@ -55,6 +53,9 @@
 package org.gnome.gtk
 
 import gtk3.GtkStyleContext
+import gtk3.gtk_style_context_get_scale
+import gtk3.gtk_style_context_set_scale
+import kotlin.Int
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.Object
@@ -63,3 +64,9 @@ public typealias StyleContext = CPointer<GtkStyleContext>
 
 public val StyleContext.asObject: Object
   get() = reinterpret()
+
+public var StyleContext.scale: Int
+  get() = gtk_style_context_get_scale(this)
+  set(`value`) {
+    gtk_style_context_set_scale(this, value)
+  }

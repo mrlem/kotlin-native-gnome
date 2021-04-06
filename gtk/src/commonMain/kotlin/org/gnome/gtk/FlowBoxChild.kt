@@ -1,10 +1,11 @@
 // TODO - implement:
 //   changed
-//   get_index
 //   is_selected
 package org.gnome.gtk
 
 import gtk3.GtkFlowBoxChild
+import gtk3.gtk_flow_box_child_get_index
+import kotlin.Int
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -22,3 +23,6 @@ public val FlowBoxChild.asContainer: Container
 
 public val FlowBoxChild.asBin: Bin
   get() = reinterpret()
+
+public val FlowBoxChild.index: Int
+  get() = gtk_flow_box_child_get_index(this)

@@ -14,26 +14,32 @@
 //   get_application
 //   get_object
 //   get_objects
-//   get_translation_domain
 //   get_type_from_name
 //   lookup_callback_symbol
 //   set_application
-//   set_translation_domain
 //   value_from_string
 //   value_from_string_type
 package org.gnome.gtk
 
 import gtk3.*
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.cValuesOf
 import kotlinx.cinterop.convert
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.Object
+import org.gnome.glib.toKString
 
 public typealias Builder = CPointer<GtkBuilder>
 
 public val Builder.asObject: Object
   get() = reinterpret()
+
+public var Builder.translationDomain: String?
+  get() = gtk_builder_get_translation_domain(this).toKString
+  set(`value`) {
+    gtk_builder_set_translation_domain(this, value)
+  }
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API (not generated)

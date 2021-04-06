@@ -1,19 +1,24 @@
 // TODO - implement:
 //   append_custom_item
 //   append_separator
-//   get_heading
-//   get_show_default_item
-//   get_show_dialog_item
 //   set_active_custom_item
-//   set_heading
-//   set_show_default_item
-//   set_show_dialog_item
 package org.gnome.gtk
 
 import gtk3.GtkAppChooserButton
+import gtk3.gtk_app_chooser_button_get_heading
+import gtk3.gtk_app_chooser_button_get_show_default_item
+import gtk3.gtk_app_chooser_button_get_show_dialog_item
+import gtk3.gtk_app_chooser_button_set_heading
+import gtk3.gtk_app_chooser_button_set_show_default_item
+import gtk3.gtk_app_chooser_button_set_show_dialog_item
+import kotlin.Boolean
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.toBoolean
+import org.gnome.glib.toInt
+import org.gnome.glib.toKString
 
 public typealias AppChooserButton = CPointer<GtkAppChooserButton>
 
@@ -31,3 +36,21 @@ public val AppChooserButton.asBin: Bin
 
 public val AppChooserButton.asComboBox: ComboBox
   get() = reinterpret()
+
+public var AppChooserButton.heading: String?
+  get() = gtk_app_chooser_button_get_heading(this).toKString
+  set(`value`) {
+    gtk_app_chooser_button_set_heading(this, value)
+  }
+
+public var AppChooserButton.showDefaultItem: Boolean
+  get() = gtk_app_chooser_button_get_show_default_item(this).toBoolean
+  set(`value`) {
+    gtk_app_chooser_button_set_show_default_item(this, value.toInt)
+  }
+
+public var AppChooserButton.showDialogItem: Boolean
+  get() = gtk_app_chooser_button_get_show_dialog_item(this).toBoolean
+  set(`value`) {
+    gtk_app_chooser_button_set_show_dialog_item(this, value.toInt)
+  }

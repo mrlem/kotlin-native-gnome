@@ -1,14 +1,16 @@
-// TODO - implement:
-//   get_above_child
-//   get_visible_window
-//   set_above_child
-//   set_visible_window
 package org.gnome.gtk
 
 import gtk3.GtkEventBox
+import gtk3.gtk_event_box_get_above_child
+import gtk3.gtk_event_box_get_visible_window
+import gtk3.gtk_event_box_set_above_child
+import gtk3.gtk_event_box_set_visible_window
+import kotlin.Boolean
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.toBoolean
+import org.gnome.glib.toInt
 
 public typealias EventBox = CPointer<GtkEventBox>
 
@@ -23,3 +25,15 @@ public val EventBox.asContainer: Container
 
 public val EventBox.asBin: Bin
   get() = reinterpret()
+
+public var EventBox.aboveChild: Boolean
+  get() = gtk_event_box_get_above_child(this).toBoolean
+  set(`value`) {
+    gtk_event_box_set_above_child(this, value.toInt)
+  }
+
+public var EventBox.visibleWindow: Boolean
+  get() = gtk_event_box_get_visible_window(this).toBoolean
+  set(`value`) {
+    gtk_event_box_set_visible_window(this, value.toInt)
+  }

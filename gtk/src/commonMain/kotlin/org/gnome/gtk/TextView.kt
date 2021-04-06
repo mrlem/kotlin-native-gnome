@@ -6,33 +6,20 @@
 //   buffer_to_window_coords
 //   forward_display_line
 //   forward_display_line_end
-//   get_accepts_tab
 //   get_border_window_size
-//   get_bottom_margin
 //   get_buffer
 //   get_cursor_locations
-//   get_cursor_visible
 //   get_default_attributes
-//   get_editable
 //   get_hadjustment
-//   get_indent
 //   get_input_hints
 //   get_input_purpose
 //   get_iter_at_location
 //   get_iter_at_position
 //   get_iter_location
 //   get_justification
-//   get_left_margin
 //   get_line_at_y
 //   get_line_yrange
-//   get_monospace
-//   get_overwrite
-//   get_pixels_above_lines
-//   get_pixels_below_lines
-//   get_pixels_inside_wrap
-//   get_right_margin
 //   get_tabs
-//   get_top_margin
 //   get_vadjustment
 //   get_visible_rect
 //   get_window
@@ -48,34 +35,51 @@
 //   scroll_mark_onscreen
 //   scroll_to_iter
 //   scroll_to_mark
-//   set_accepts_tab
 //   set_border_window_size
-//   set_bottom_margin
 //   set_buffer
-//   set_cursor_visible
-//   set_editable
-//   set_indent
 //   set_input_hints
 //   set_input_purpose
 //   set_justification
-//   set_left_margin
-//   set_monospace
-//   set_overwrite
-//   set_pixels_above_lines
-//   set_pixels_below_lines
-//   set_pixels_inside_wrap
-//   set_right_margin
 //   set_tabs
-//   set_top_margin
 //   set_wrap_mode
 //   starts_display_line
 //   window_to_buffer_coords
 package org.gnome.gtk
 
 import gtk3.GtkTextView
+import gtk3.gtk_text_view_get_accepts_tab
+import gtk3.gtk_text_view_get_bottom_margin
+import gtk3.gtk_text_view_get_cursor_visible
+import gtk3.gtk_text_view_get_editable
+import gtk3.gtk_text_view_get_indent
+import gtk3.gtk_text_view_get_left_margin
+import gtk3.gtk_text_view_get_monospace
+import gtk3.gtk_text_view_get_overwrite
+import gtk3.gtk_text_view_get_pixels_above_lines
+import gtk3.gtk_text_view_get_pixels_below_lines
+import gtk3.gtk_text_view_get_pixels_inside_wrap
+import gtk3.gtk_text_view_get_right_margin
+import gtk3.gtk_text_view_get_top_margin
+import gtk3.gtk_text_view_set_accepts_tab
+import gtk3.gtk_text_view_set_bottom_margin
+import gtk3.gtk_text_view_set_cursor_visible
+import gtk3.gtk_text_view_set_editable
+import gtk3.gtk_text_view_set_indent
+import gtk3.gtk_text_view_set_left_margin
+import gtk3.gtk_text_view_set_monospace
+import gtk3.gtk_text_view_set_overwrite
+import gtk3.gtk_text_view_set_pixels_above_lines
+import gtk3.gtk_text_view_set_pixels_below_lines
+import gtk3.gtk_text_view_set_pixels_inside_wrap
+import gtk3.gtk_text_view_set_right_margin
+import gtk3.gtk_text_view_set_top_margin
+import kotlin.Boolean
+import kotlin.Int
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.toBoolean
+import org.gnome.glib.toInt
 
 public typealias TextView = CPointer<GtkTextView>
 
@@ -87,3 +91,81 @@ public val TextView.asWidget: Widget
 
 public val TextView.asContainer: Container
   get() = reinterpret()
+
+public var TextView.acceptsTab: Boolean
+  get() = gtk_text_view_get_accepts_tab(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_accepts_tab(this, value.toInt)
+  }
+
+public var TextView.bottomMargin: Int
+  get() = gtk_text_view_get_bottom_margin(this)
+  set(`value`) {
+    gtk_text_view_set_bottom_margin(this, value)
+  }
+
+public var TextView.cursorVisible: Boolean
+  get() = gtk_text_view_get_cursor_visible(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_cursor_visible(this, value.toInt)
+  }
+
+public var TextView.editable: Boolean
+  get() = gtk_text_view_get_editable(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_editable(this, value.toInt)
+  }
+
+public var TextView.indent: Int
+  get() = gtk_text_view_get_indent(this)
+  set(`value`) {
+    gtk_text_view_set_indent(this, value)
+  }
+
+public var TextView.leftMargin: Int
+  get() = gtk_text_view_get_left_margin(this)
+  set(`value`) {
+    gtk_text_view_set_left_margin(this, value)
+  }
+
+public var TextView.monospace: Boolean
+  get() = gtk_text_view_get_monospace(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_monospace(this, value.toInt)
+  }
+
+public var TextView.overwrite: Boolean
+  get() = gtk_text_view_get_overwrite(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_overwrite(this, value.toInt)
+  }
+
+public var TextView.pixelsAboveLines: Int
+  get() = gtk_text_view_get_pixels_above_lines(this)
+  set(`value`) {
+    gtk_text_view_set_pixels_above_lines(this, value)
+  }
+
+public var TextView.pixelsBelowLines: Int
+  get() = gtk_text_view_get_pixels_below_lines(this)
+  set(`value`) {
+    gtk_text_view_set_pixels_below_lines(this, value)
+  }
+
+public var TextView.pixelsInsideWrap: Int
+  get() = gtk_text_view_get_pixels_inside_wrap(this)
+  set(`value`) {
+    gtk_text_view_set_pixels_inside_wrap(this, value)
+  }
+
+public var TextView.rightMargin: Int
+  get() = gtk_text_view_get_right_margin(this)
+  set(`value`) {
+    gtk_text_view_set_right_margin(this, value)
+  }
+
+public var TextView.topMargin: Int
+  get() = gtk_text_view_get_top_margin(this)
+  set(`value`) {
+    gtk_text_view_set_top_margin(this, value)
+  }
