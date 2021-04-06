@@ -70,6 +70,10 @@ class Parser {
             .firstOrNull { it?.nameMatches("type") == true }
             ?.let { attribute(it) }
             ?.toString() ?: return null
+        val cPrefix = attributes().keys
+            .firstOrNull { it?.nameMatches("symbol-prefix") == true }
+            ?.let { attribute(it) }
+            ?.toString() ?: return null
         val parent = attribute("parent")?.toString() ?: return null
 
         val isExcluded = cType == "GtkSocket" || cType == "GtkPlug" || parent.contains("Atk")
@@ -85,15 +89,21 @@ class Parser {
             ?.contains("deprecated") == true
         if (isDeprecated) return null
 
+        // process method definitions
         val members = children()
             .filterIsInstance<Node>()
             .mapNotNull { childNode -> childNode.takeIf { it.nameMatches("method") } }
             .map { childNode -> childNode.toMemberDefinition() }
             .toMutableList()
+        members.mergePropertyAccessors()
+
+        // TODO - constructors
+        // TODO - event handlers
 
         return ClassDefinition(
             name,
             cType,
+            cPrefix,
             parent,
             members = members
         )
@@ -107,23 +117,51 @@ class Parser {
             ?.children()
             ?.filterIsInstance<Node>()
 
-        val returnValueNode = childrenNodes
+        val returnType = childrenNodes
             .firstOrNull { it.nameMatches("return-value") }
+            ?.type
+
         val instanceParameter = parameterNodes
             ?.firstOrNull { it.nameMatches("instance-parameter") }
         val parameters = parameterNodes
             ?.filter { it.nameMatches("parameter") }
             .orEmpty()
 
-        // TODO - type
         val name = name
+        val firstParameterType = parameters.firstOrNull()?.type
         return when {
-            name.startsWith(GETTER_PREFIX) && instanceParameter != null && parameters.isEmpty() ->
-                MemberDefinition.PropertyGetter(name.removePrefix(GETTER_PREFIX), Unit::class.java)
-            name.startsWith(SETTER_PREFIX) && instanceParameter != null && parameters.size == 1 ->
-                MemberDefinition.PropertySetter(name.removePrefix(SETTER_PREFIX), Unit::class.java)
+            name.startsWith(GETTER_PREFIX) && instanceParameter != null && parameters.isEmpty() && returnType != null ->
+                MemberDefinition.PropertyGetter(name.removePrefix(GETTER_PREFIX), returnType)
+            name.startsWith(SETTER_PREFIX) && instanceParameter != null && parameters.size == 1 && firstParameterType != null ->
+                MemberDefinition.PropertySetter(name.removePrefix(SETTER_PREFIX), firstParameterType)
+            // TODO - method
             else -> MemberDefinition.Todo(name)
         }
+    }
+
+    private fun MutableList<MemberDefinition>.mergePropertyAccessors() {
+        // convert all getter+setter combinations to read-write properties
+        filterIsInstance<MemberDefinition.PropertySetter>()
+            .forEach { propertySetter ->
+                remove(propertySetter)
+
+                val propertyName = propertySetter.name
+                val propertyGetter = firstOrNull { it is MemberDefinition.PropertyGetter && it.name == propertyName }
+                val property = if (propertyGetter != null) {
+                    remove(propertyGetter)
+                    MemberDefinition.Property(propertySetter.name, false, propertySetter.type)
+                } else {
+                    // TODO - method
+                    MemberDefinition.Todo("$SETTER_PREFIX${propertySetter.name}")
+                }
+
+                add(property)
+            }
+
+        // replace remaining getters to read-onle properties
+        val getters = filterIsInstance<MemberDefinition.PropertyGetter>()
+        removeAll(getters)
+        addAll(getters.map { MemberDefinition.Property(it.name, true, it.type) })
     }
 
     private val Node.name
@@ -136,9 +174,40 @@ class Parser {
         else -> false
     }
 
+    private val Node.type
+        get() = children()
+            .filterIsInstance<Node>()
+            .firstOrNull { it.nameMatches("type") }
+            ?.name
+            ?.type
+
+    private val String.type
+        get() = when (this) {
+            "utf8" ->
+                String::class
+            "gboolean" ->
+                Boolean::class
+            "gint", "gint8", "gint16" ->
+                Int::class
+            "gint32", "gint64", "glong" ->
+                Long::class
+            "guint", "guint8", "guint16" ->
+                UInt::class
+            "guint32", "guint64", "gulong" ->
+                ULong::class
+            "gdouble" ->
+                Double::class
+            "gfloat" ->
+                Float::class
+            "gchar" ->
+                Character::class
+            // TODO - more types (other objects is the most urgent)
+            else -> null
+        }
+
     companion object {
-        private const val GETTER_PREFIX = "get_"
-        private const val SETTER_PREFIX = "set_"
+        const val GETTER_PREFIX = "get_"
+        const val SETTER_PREFIX = "set_"
     }
 
 }
