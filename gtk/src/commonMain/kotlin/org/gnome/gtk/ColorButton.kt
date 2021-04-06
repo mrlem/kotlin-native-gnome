@@ -14,9 +14,8 @@ import gtk3.gtk_color_button_set_title
 import gtk3.gtk_color_button_set_use_alpha
 import kotlin.Boolean
 import kotlin.String
-import kotlin.UInt
+import kotlin.UShort
 import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.convert
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
 import org.gnome.glib.toBoolean
@@ -40,10 +39,10 @@ public val ColorButton.asBin: Bin
 public val ColorButton.asButton: Button
   get() = reinterpret()
 
-public var ColorButton.alpha: UInt
-  get() = gtk_color_button_get_alpha(this).convert()
+public var ColorButton.alpha: UShort
+  get() = gtk_color_button_get_alpha(this)
   set(`value`) {
-    gtk_color_button_set_alpha(this, value.convert())
+    gtk_color_button_set_alpha(this, value)
   }
 
 public var ColorButton.title: String?

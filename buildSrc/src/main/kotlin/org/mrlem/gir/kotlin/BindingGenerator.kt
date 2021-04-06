@@ -88,14 +88,14 @@ class BindingGenerator {
 
     private fun FileSpec.Builder.addProperty(className: ClassName, classPrefix: String, propertyDefinition: MemberDefinition.Property) {
         val name = propertyDefinition.name.snakeCaseToCamelCase.decapitalize()
-        val toK = propertyDefinition.type.toK
+        val toKType = propertyDefinition.type.toKTypeConverter
         addProperty(
-            PropertySpec.builder(name, propertyDefinition.type.asPropertyTypeName)
+            PropertySpec.builder(name, propertyDefinition.type.kType)
                 .receiver(className)
                 .getter(
                     FunSpec.getterBuilder()
                         .apply {
-                            if (toK.isEmpty()) {
+                            if (toKType == null) {
                                 addStatement(
                                     "return %M(this)",
                                     MemberName("gtk3", "gtk_${classPrefix}_${GETTER_PREFIX}${propertyDefinition.name}")
@@ -104,7 +104,7 @@ class BindingGenerator {
                                 addStatement(
                                     "return %M(this).%M",
                                     MemberName("gtk3", "gtk_${classPrefix}_${GETTER_PREFIX}${propertyDefinition.name}"),
-                                    MemberName(GLIB_PACKAGE_NAME, toK)
+                                    MemberName(GLIB_PACKAGE_NAME, toKType)
                                 )
                             }
                         }
@@ -112,14 +112,14 @@ class BindingGenerator {
                 )
                 .apply {
                     if (!propertyDefinition.readOnly) {
-                        val fromK = propertyDefinition.type.fromK
+                        val toGType = propertyDefinition.type.toGTypeConverter
 
                         mutable()
                         setter(
                             FunSpec.setterBuilder()
-                                .addParameter("value", propertyDefinition.type)
+                                .addParameter("value", propertyDefinition.type.kType)
                                 .apply {
-                                    if (fromK.isEmpty()) {
+                                    if (toGType == null) {
                                         addStatement(
                                             "%M(this, value)",
                                             MemberName("gtk3", "gtk_${classPrefix}_${SETTER_PREFIX}${propertyDefinition.name}")
@@ -128,7 +128,7 @@ class BindingGenerator {
                                         addStatement(
                                             "%M(this, value.%M)",
                                             MemberName("gtk3", "gtk_${classPrefix}_${SETTER_PREFIX}${propertyDefinition.name}"),
-                                            MemberName(GLIB_PACKAGE_NAME, fromK)
+                                            MemberName(GLIB_PACKAGE_NAME, toGType)
                                         )
                                     }
                                 }

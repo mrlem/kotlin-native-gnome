@@ -79,5 +79,3 @@ class List<P : CPointed, T : CPointer<P>>(
         }
     }
 }
-
-fun <P : CPointed> CPointer<GList>.toKList(): List<P, CPointer<P>> = List(this)

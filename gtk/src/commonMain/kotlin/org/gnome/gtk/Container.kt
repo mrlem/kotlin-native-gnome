@@ -37,7 +37,7 @@ import kotlin.UInt
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
-import org.mrlem.gnome.glib.toKList
+import org.gnome.glib.toKList
 
 public typealias Container = CPointer<GtkContainer>
 

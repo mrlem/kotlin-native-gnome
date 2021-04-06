@@ -176,17 +176,11 @@ public var Entry.widthChars: Int
 public val Entry.currentIconDragSource: Int
   get() = gtk_entry_get_current_icon_drag_source(this)
 
-public val Entry.textLength: UInt
-  get() = gtk_entry_get_text_length(this).convert()
+public val Entry.textLength: UShort
+  get() = gtk_entry_get_text_length(this)
 
 ///////////////////////////////////////////////////////////////////////////
-// Public API (not generated)
-///////////////////////////////////////////////////////////////////////////
-
-fun Entry.setText(text: String) = gtk_entry_set_text(this, text)
-
-///////////////////////////////////////////////////////////////////////////
-// Events handlers
+// Events handlers (not generated)
 ///////////////////////////////////////////////////////////////////////////
 
 fun Entry.onActivate(onActivate: (Entry) -> Unit): Entry {

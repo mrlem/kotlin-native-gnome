@@ -14,6 +14,6 @@ class AppDelegate(ui: SampleUI) {
 
     private fun Entry.print() {
         println("plop: $text")
-        setText("")
+        text = ""
     }
 }

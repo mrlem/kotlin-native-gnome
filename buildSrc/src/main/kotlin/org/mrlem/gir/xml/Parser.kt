@@ -179,31 +179,7 @@ class Parser {
             .filterIsInstance<Node>()
             .firstOrNull { it.nameMatches("type") }
             ?.name
-            ?.type
-
-    private val String.type
-        get() = when (this) {
-            "utf8" ->
-                String::class
-            "gboolean" ->
-                Boolean::class
-            "gint", "gint8", "gint16" ->
-                Int::class
-            "gint32", "gint64", "glong" ->
-                Long::class
-            "guint", "guint8", "guint16" ->
-                UInt::class
-            "guint32", "guint64", "gulong" ->
-                ULong::class
-            "gdouble" ->
-                Double::class
-            "gfloat" ->
-                Float::class
-            "gchar" ->
-                Character::class
-            // TODO - more types (other objects is the most urgent)
-            else -> null
-        }
+            ?.let { Type.fromName(it) }
 
     companion object {
         const val GETTER_PREFIX = "get_"

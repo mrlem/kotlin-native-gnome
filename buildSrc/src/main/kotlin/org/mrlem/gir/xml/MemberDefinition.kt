@@ -1,7 +1,5 @@
 package org.mrlem.gir.xml
 
-import kotlin.reflect.KClass
-
 sealed class MemberDefinition {
 
     /**
@@ -16,18 +14,18 @@ sealed class MemberDefinition {
 
     data class PropertyGetter(
         override val name: String,
-        val type: KClass<*>
+        val type: Type
     ) : MemberDefinition()
 
     data class PropertySetter(
         override val name: String,
-        val type: KClass<*>
+        val type: Type
     ) : MemberDefinition()
 
     data class Property(
         override val name: String,
         var readOnly: Boolean,
-        val type: KClass<*>
+        val type: Type
     ) : MemberDefinition()
 
     // TODO - args

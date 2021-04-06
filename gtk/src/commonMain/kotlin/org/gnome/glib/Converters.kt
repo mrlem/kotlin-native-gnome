@@ -1,10 +1,11 @@
 package org.gnome.glib
 
-import gtk3.gcharVar
-import gtk3.guint16
+import gtk3.*
+import kotlinx.cinterop.CPointed
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.convert
 import kotlinx.cinterop.toKString
+import org.mrlem.gnome.glib.List
 
 val Boolean.toInt
     get() = if (this) 1 else 0
@@ -15,8 +16,4 @@ val Int.toBoolean
 val CPointer<gcharVar>?.toKString
     get() = this?.toKString()
 
-val guint16.toUInt: UInt
-    get() = convert()
-
-val UInt.toGuintt16: guint16
-    get() = convert()
+fun <P : CPointed> CPointer<GList>.toKList(): List<P, CPointer<P>> = List(this)

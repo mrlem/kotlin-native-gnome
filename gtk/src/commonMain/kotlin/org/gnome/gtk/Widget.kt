@@ -205,7 +205,6 @@ import kotlin.Int
 import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import kotlinx.cinterop.toKString
 import org.gnome.glib.gobject.InitiallyUnowned
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt

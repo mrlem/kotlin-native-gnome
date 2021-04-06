@@ -49,9 +49,8 @@ import gtk3.gtk_notebook_set_show_tabs
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
-import kotlin.UInt
+import kotlin.UShort
 import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.convert
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
 import org.gnome.glib.toBoolean
@@ -102,8 +101,8 @@ public var Notebook.showTabs: Boolean
 public val Notebook.nPages: Int
   get() = gtk_notebook_get_n_pages(this)
 
-public val Notebook.tabHborder: UInt
-  get() = gtk_notebook_get_tab_hborder(this).convert()
+public val Notebook.tabHborder: UShort
+  get() = gtk_notebook_get_tab_hborder(this)
 
-public val Notebook.tabVborder: UInt
-  get() = gtk_notebook_get_tab_vborder(this).convert()
+public val Notebook.tabVborder: UShort
+  get() = gtk_notebook_get_tab_vborder(this)

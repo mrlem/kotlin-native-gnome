@@ -25,7 +25,7 @@ import gtk3.*
 import kotlinx.cinterop.*
 import org.gnome.glib.gio.asObject
 import org.gnome.glib.gobject.connect
-import org.mrlem.gnome.glib.toKList
+import org.gnome.glib.toKList
 
 public typealias Application = CPointer<GtkApplication>
 
