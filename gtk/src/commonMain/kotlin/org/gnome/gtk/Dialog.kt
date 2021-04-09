@@ -16,6 +16,7 @@
 package org.gnome.gtk
 
 import gtk3.GtkDialog
+import gtk3.gtk_dialog_run
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -36,3 +37,9 @@ public val Dialog.asBin: Bin
 
 public val Dialog.asWindow: Window
   get() = reinterpret()
+
+///////////////////////////////////////////////////////////////////////////
+// Public API (not generated)
+///////////////////////////////////////////////////////////////////////////
+
+fun Dialog.run() = gtk_dialog_run(this)

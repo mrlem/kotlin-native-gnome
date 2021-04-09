@@ -417,6 +417,10 @@ public val Widget.scaleFactor: Int
 // Public API (not generated)
 ///////////////////////////////////////////////////////////////////////////
 
+fun Widget.show() = gtk_widget_show(this)
+
+fun Widget.hide() = gtk_widget_hide(this)
+
 fun Widget.showAll() = gtk_widget_show_all(this)
 
 fun Widget.destroy() = gtk_widget_destroy(this)
