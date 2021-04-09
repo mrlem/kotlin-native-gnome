@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
         onActivate {
             SampleUI()
                 .also { AppDelegate(it) }
-                .also { addWindow(it.window) }
+                .also { addWindow(it.mainWindow) }
         }
     }
 
