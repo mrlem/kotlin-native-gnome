@@ -6,6 +6,7 @@ import groovy.xml.QName
 import org.mrlem.gnome.gir.model.ClassDefinition
 import org.mrlem.gnome.gir.model.EnumDefinition
 import org.mrlem.gnome.gir.model.MemberDefinition
+import org.mrlem.gnome.gir.model.RecordDefinition
 import org.mrlem.gnome.gir.model.TopLevelDefinition
 import org.mrlem.gnome.gir.model.Type
 import java.util.*
@@ -37,6 +38,7 @@ class Parser {
                     node !is Node -> null
                     node.nameMatches("enumeration") -> node.toEnumDefinition()
                     node.nameMatches("class") -> node.toClassDefinition()
+                    node.nameMatches("record") -> node.toRecordDefinition()
                     else -> null
                 }
             }
@@ -96,6 +98,29 @@ class Parser {
             ?.toString() ?: return null
 
         return EnumDefinition(
+            name,
+            glibTypeName
+        )
+    }
+
+    private fun Node.toRecordDefinition(): RecordDefinition? {
+        val name = name
+
+        val isExcluded = name == "Gradient" || name == "SymbolicColor"
+        if (isExcluded) return null
+
+        val deprecated = attributes().keys
+            .firstOrNull { it?.nameMatches("deprecated") == true }
+            ?.let { attribute(it) }
+            .let { it == "1" }
+        if (deprecated) return null
+
+        val glibTypeName = attributes().keys
+            .firstOrNull { it?.nameMatches("type-name") == true }
+            ?.let { attribute(it) }
+            ?.toString() ?: return null
+
+        return RecordDefinition(
             name,
             glibTypeName
         )

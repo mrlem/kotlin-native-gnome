@@ -8,6 +8,7 @@ import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_CINTEROP_PACKAGE
 import org.mrlem.gnome.gir.model.ClassDefinition
 import org.mrlem.gnome.gir.model.EnumDefinition
 import org.mrlem.gnome.gir.model.MemberDefinition
+import org.mrlem.gnome.gir.model.RecordDefinition
 import org.mrlem.gnome.gir.model.TopLevelDefinition
 import java.io.File
 
@@ -18,6 +19,7 @@ class BindingGenerator {
             when (definition) {
                 is ClassDefinition -> createClassFileSpec(definition, packageName)
                 is EnumDefinition -> createEnumFileSpec(definition, packageName)
+                is RecordDefinition -> createRecordFileSpec(definition, packageName)
                 else -> null
             }
                 ?.run { writeTo(destination) }
@@ -74,6 +76,19 @@ class BindingGenerator {
     }
 
     private fun createEnumFileSpec(definition: EnumDefinition, packageName: String): FileSpec {
+        return FileSpec.builder(packageName, definition.name)
+            // type
+            .addTypeAlias(
+                TypeAliasSpec.builder(
+                    definition.name,
+                    ClassName(GTK_CINTEROP_PACKAGE_NAME, definition.glibTypeName)
+                )
+                    .build()
+            )
+            .build()
+    }
+
+    private fun createRecordFileSpec(definition: RecordDefinition, packageName: String): FileSpec {
         return FileSpec.builder(packageName, definition.name)
             // type
             .addTypeAlias(

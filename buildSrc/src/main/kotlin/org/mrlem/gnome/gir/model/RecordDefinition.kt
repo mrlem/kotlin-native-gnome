@@ -1,12 +1,12 @@
 package org.mrlem.gnome.gir.model
 
 /**
- * GIR enum definition.
+ * GIR record definition.
  *
- * @param name the enum name.
+ * @param name the record name.
  * @param glibTypeName
  */
-data class EnumDefinition(
+data class RecordDefinition(
     val name: String,
     val glibTypeName: String
 ) : TopLevelDefinition
