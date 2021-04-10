@@ -11,9 +11,13 @@ import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 
 public typealias MountOperation = CPointer<GtkMountOperation>
+
+public val MountOperation.asObject: Object
+  get() = reinterpret()
 
 public val MountOperation.asMountOperation: org.gnome.glib.gio.MountOperation
   get() = reinterpret()

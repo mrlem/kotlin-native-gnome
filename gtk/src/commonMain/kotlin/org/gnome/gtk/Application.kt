@@ -19,12 +19,14 @@ import gtk3.*
 import kotlinx.cinterop.*
 import kotlin.Boolean
 import kotlin.Unit
-import org.gnome.glib.gio.asObject
-import org.gnome.glib.gobject.connect
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toKList
 
 public typealias Application = CPointer<GtkApplication>
+
+public val Application.asObject: Object
+  get() = reinterpret()
 
 public val Application.asApplication: org.gnome.glib.gio.Application
   get() = reinterpret()
@@ -77,12 +79,3 @@ val Application.windows: List<Window>
   get() = gtk_application_get_windows(this)
     ?.toKList<GtkWindow>()
     .orEmpty()
-
-///////////////////////////////////////////////////////////////////////////
-// Event handlers (not generated)
-///////////////////////////////////////////////////////////////////////////
-
-fun Application.onActivate(onActivate: (Application) -> Unit): Application {
-  asApplication.asObject.connect("activate") { onActivate(this) }
-  return this
-}

@@ -4,8 +4,12 @@ import gtk3.GtkCellRendererSpin
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 
 public typealias CellRendererSpin = CPointer<GtkCellRendererSpin>
+
+public val CellRendererSpin.asObject: Object
+  get() = reinterpret()
 
 public val CellRendererSpin.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

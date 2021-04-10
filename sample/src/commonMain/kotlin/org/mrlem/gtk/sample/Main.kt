@@ -1,9 +1,10 @@
 package org.mrlem.gtk.sample
 
 import binding.SampleUI
+import org.gnome.glib.gobject.onActivate
 import org.gnome.gtk.Application
 import org.gnome.gtk.addWindow
-import org.gnome.gtk.onActivate
+import org.gnome.gtk.asObject
 import platform.posix.exit
 
 /**
@@ -11,7 +12,7 @@ import platform.posix.exit
  */
 fun main(args: Array<String>) {
     Application("org.mrlem.sample", args) {
-        onActivate {
+        asObject.onActivate {
             SampleUI()
                 .also { AppDelegate(it) }
                 .also { addWindow(it.mainWindow) }

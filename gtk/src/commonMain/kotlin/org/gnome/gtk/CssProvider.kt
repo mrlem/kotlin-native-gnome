@@ -18,5 +18,4 @@ public typealias CssProvider = CPointer<GtkCssProvider>
 public val CssProvider.asObject: Object
   get() = reinterpret()
 
-// FIXME
 public fun CssProvider.toString(): String? = gtk_css_provider_to_string(this).toKString

@@ -12,8 +12,12 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 
 public typealias Viewport = CPointer<GtkViewport>
+
+public val Viewport.asObject: Object
+  get() = reinterpret()
 
 public val Viewport.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

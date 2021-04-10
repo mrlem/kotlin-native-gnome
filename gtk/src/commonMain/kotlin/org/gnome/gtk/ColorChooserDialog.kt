@@ -4,8 +4,12 @@ import gtk3.GtkColorChooserDialog
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 
 public typealias ColorChooserDialog = CPointer<GtkColorChooserDialog>
+
+public val ColorChooserDialog.asObject: Object
+  get() = reinterpret()
 
 public val ColorChooserDialog.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

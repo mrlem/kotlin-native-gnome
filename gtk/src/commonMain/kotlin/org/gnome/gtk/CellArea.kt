@@ -52,10 +52,14 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toKString
 
 public typealias CellArea = CPointer<GtkCellArea>
+
+public val CellArea.asObject: Object
+  get() = reinterpret()
 
 public val CellArea.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

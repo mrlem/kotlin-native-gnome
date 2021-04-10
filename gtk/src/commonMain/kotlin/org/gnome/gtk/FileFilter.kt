@@ -16,9 +16,13 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toKString
 
 public typealias FileFilter = CPointer<GtkFileFilter>
+
+public val FileFilter.asObject: Object
+  get() = reinterpret()
 
 public val FileFilter.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

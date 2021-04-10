@@ -54,11 +54,15 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 import org.gnome.glib.toKString
 
 public typealias Notebook = CPointer<GtkNotebook>
+
+public val Notebook.asObject: Object
+  get() = reinterpret()
 
 public val Notebook.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

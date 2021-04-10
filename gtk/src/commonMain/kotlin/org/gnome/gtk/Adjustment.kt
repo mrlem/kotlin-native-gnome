@@ -21,8 +21,12 @@ import kotlin.Double
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 
 public typealias Adjustment = CPointer<GtkAdjustment>
+
+public val Adjustment.asObject: Object
+  get() = reinterpret()
 
 public val Adjustment.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

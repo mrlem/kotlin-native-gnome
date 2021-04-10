@@ -10,9 +10,13 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 
 public typealias FlowBoxChild = CPointer<GtkFlowBoxChild>
+
+public val FlowBoxChild.asObject: Object
+  get() = reinterpret()
 
 public val FlowBoxChild.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

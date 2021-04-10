@@ -4,8 +4,12 @@ import gtk3.GtkRecentChooserDialog
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 
 public typealias RecentChooserDialog = CPointer<GtkRecentChooserDialog>
+
+public val RecentChooserDialog.asObject: Object
+  get() = reinterpret()
 
 public val RecentChooserDialog.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

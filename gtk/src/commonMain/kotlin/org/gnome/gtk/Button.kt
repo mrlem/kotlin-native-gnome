@@ -13,13 +13,16 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.asObject
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.gobject.connect
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 import org.gnome.glib.toKString
 
 public typealias Button = CPointer<GtkButton>
+
+public val Button.asObject: Object
+  get() = reinterpret()
 
 public val Button.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
@@ -95,6 +98,6 @@ fun Button(label: String) = gtk_button_new_with_label(label)!!.reinterpret<GtkBu
 ///////////////////////////////////////////////////////////////////////////
 
 fun Button.onClick(onClick: (Button) -> Unit): Button {
-  asInitiallyUnowned.asObject.connect("clicked") { onClick(this) }
+  asObject.connect("clicked") { onClick(this) }
   return this
 }

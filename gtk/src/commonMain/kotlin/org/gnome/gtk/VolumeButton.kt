@@ -4,8 +4,12 @@ import gtk3.GtkVolumeButton
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 
 public typealias VolumeButton = CPointer<GtkVolumeButton>
+
+public val VolumeButton.asObject: Object
+  get() = reinterpret()
 
 public val VolumeButton.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

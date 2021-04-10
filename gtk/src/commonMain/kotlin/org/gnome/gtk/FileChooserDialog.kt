@@ -4,8 +4,12 @@ import gtk3.GtkFileChooserDialog
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 
 public typealias FileChooserDialog = CPointer<GtkFileChooserDialog>
+
+public val FileChooserDialog.asObject: Object
+  get() = reinterpret()
 
 public val FileChooserDialog.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

@@ -106,10 +106,14 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 
 public typealias TreeView = CPointer<GtkTreeView>
+
+public val TreeView.asObject: Object
+  get() = reinterpret()
 
 public val TreeView.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

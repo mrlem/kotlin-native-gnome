@@ -18,10 +18,14 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 
 public typealias CellView = CPointer<GtkCellView>
+
+public val CellView.asObject: Object
+  get() = reinterpret()
 
 public val CellView.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

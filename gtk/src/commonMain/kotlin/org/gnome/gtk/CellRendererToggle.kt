@@ -11,10 +11,14 @@ import kotlin.Boolean
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 
 public typealias CellRendererToggle = CPointer<GtkCellRendererToggle>
+
+public val CellRendererToggle.asObject: Object
+  get() = reinterpret()
 
 public val CellRendererToggle.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

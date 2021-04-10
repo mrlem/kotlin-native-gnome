@@ -17,11 +17,15 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 import org.gnome.glib.toKString
 
 public typealias AppChooserButton = CPointer<GtkAppChooserButton>
+
+public val AppChooserButton.asObject: Object
+  get() = reinterpret()
 
 public val AppChooserButton.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

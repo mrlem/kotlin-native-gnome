@@ -25,10 +25,14 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 
 public typealias GLArea = CPointer<GtkGLArea>
+
+public val GLArea.asObject: Object
+  get() = reinterpret()
 
 public val GLArea.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()

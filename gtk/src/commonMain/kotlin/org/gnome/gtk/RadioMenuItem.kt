@@ -9,8 +9,12 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
+import org.gnome.glib.gobject.Object
 
 public typealias RadioMenuItem = CPointer<GtkRadioMenuItem>
+
+public val RadioMenuItem.asObject: Object
+  get() = reinterpret()
 
 public val RadioMenuItem.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
