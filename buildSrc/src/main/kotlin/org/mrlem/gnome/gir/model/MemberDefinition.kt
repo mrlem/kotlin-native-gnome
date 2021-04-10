@@ -14,23 +14,32 @@ sealed class MemberDefinition {
 
     data class PropertyGetter(
         override val name: String,
-        val type: Type
+        val deprecated: Boolean,
+        val type: Type,
+        val functionName: String
     ) : MemberDefinition()
 
     data class PropertySetter(
         override val name: String,
-        val type: Type
+        val deprecated: Boolean,
+        val type: Type,
+        val functionName: String
     ) : MemberDefinition()
 
     data class Property(
         override val name: String,
-        var readOnly: Boolean,
-        val type: Type
+        val type: Type,
+        val getterFunctionName: String,
+        val setterFunctionName: String?
     ) : MemberDefinition()
 
     // TODO - args
     data class Method(
-        override val name: String
+        override val name: String,
+        val deprecated: Boolean,
+        val throws: Boolean,
+        val returnType: Type?,
+        val functionName: String
     ) : MemberDefinition()
 
     // TODO - args

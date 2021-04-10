@@ -7,31 +7,19 @@
 //   forward_display_line
 //   forward_display_line_end
 //   get_border_window_size
-//   get_buffer
 //   get_cursor_locations
-//   get_default_attributes
-//   get_hadjustment
-//   get_input_hints
-//   get_input_purpose
 //   get_iter_at_location
 //   get_iter_at_position
 //   get_iter_location
-//   get_justification
 //   get_line_at_y
 //   get_line_yrange
-//   get_tabs
-//   get_vadjustment
 //   get_visible_rect
 //   get_window
 //   get_window_type
-//   get_wrap_mode
 //   im_context_filter_keypress
 //   move_child
 //   move_mark_onscreen
 //   move_visually
-//   place_cursor_onscreen
-//   reset_cursor_blink
-//   reset_im_context
 //   scroll_mark_onscreen
 //   scroll_to_iter
 //   scroll_to_mark
@@ -49,9 +37,14 @@ package org.gnome.gtk
 import gtk3.GtkTextView
 import gtk3.gtk_text_view_get_accepts_tab
 import gtk3.gtk_text_view_get_bottom_margin
+import gtk3.gtk_text_view_get_buffer
 import gtk3.gtk_text_view_get_cursor_visible
+import gtk3.gtk_text_view_get_default_attributes
 import gtk3.gtk_text_view_get_editable
 import gtk3.gtk_text_view_get_indent
+import gtk3.gtk_text_view_get_input_hints
+import gtk3.gtk_text_view_get_input_purpose
+import gtk3.gtk_text_view_get_justification
 import gtk3.gtk_text_view_get_left_margin
 import gtk3.gtk_text_view_get_monospace
 import gtk3.gtk_text_view_get_overwrite
@@ -59,7 +52,12 @@ import gtk3.gtk_text_view_get_pixels_above_lines
 import gtk3.gtk_text_view_get_pixels_below_lines
 import gtk3.gtk_text_view_get_pixels_inside_wrap
 import gtk3.gtk_text_view_get_right_margin
+import gtk3.gtk_text_view_get_tabs
 import gtk3.gtk_text_view_get_top_margin
+import gtk3.gtk_text_view_get_wrap_mode
+import gtk3.gtk_text_view_place_cursor_onscreen
+import gtk3.gtk_text_view_reset_cursor_blink
+import gtk3.gtk_text_view_reset_im_context
 import gtk3.gtk_text_view_set_accepts_tab
 import gtk3.gtk_text_view_set_bottom_margin
 import gtk3.gtk_text_view_set_cursor_visible
@@ -75,6 +73,7 @@ import gtk3.gtk_text_view_set_right_margin
 import gtk3.gtk_text_view_set_top_margin
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -91,6 +90,45 @@ public val TextView.asWidget: Widget
 
 public val TextView.asContainer: Container
   get() = reinterpret()
+
+public fun TextView.getBuffer(): Unit {
+  gtk_text_view_get_buffer(this)
+}
+
+public fun TextView.getDefaultAttributes(): Unit {
+  gtk_text_view_get_default_attributes(this)
+}
+
+public fun TextView.getInputHints(): Unit {
+  gtk_text_view_get_input_hints(this)
+}
+
+public fun TextView.getInputPurpose(): Unit {
+  gtk_text_view_get_input_purpose(this)
+}
+
+public fun TextView.getJustification(): Unit {
+  gtk_text_view_get_justification(this)
+}
+
+public fun TextView.getTabs(): Unit {
+  gtk_text_view_get_tabs(this)
+}
+
+public fun TextView.getWrapMode(): Unit {
+  gtk_text_view_get_wrap_mode(this)
+}
+
+public fun TextView.placeCursorOnscreen(): Boolean =
+    gtk_text_view_place_cursor_onscreen(this).toBoolean
+
+public fun TextView.resetCursorBlink(): Unit {
+  gtk_text_view_reset_cursor_blink(this)
+}
+
+public fun TextView.resetImContext(): Unit {
+  gtk_text_view_reset_im_context(this)
+}
 
 public var TextView.acceptsTab: Boolean
   get() = gtk_text_view_get_accepts_tab(this).toBoolean

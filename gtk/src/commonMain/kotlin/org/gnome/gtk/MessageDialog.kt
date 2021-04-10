@@ -1,13 +1,13 @@
 // TODO - implement:
 //   format_secondary_markup
 //   format_secondary_text
-//   get_image
-//   get_message_area
 //   set_image
 //   set_markup
 package org.gnome.gtk
 
 import gtk3.GtkMessageDialog
+import gtk3.gtk_message_dialog_get_message_area
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -31,3 +31,7 @@ public val MessageDialog.asWindow: Window
 
 public val MessageDialog.asDialog: Dialog
   get() = reinterpret()
+
+public fun MessageDialog.getMessageArea(): Unit {
+  gtk_message_dialog_get_message_area(this)
+}

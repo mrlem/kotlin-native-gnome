@@ -1,5 +1,3 @@
-// TODO - implement:
-//   toggled
 package org.gnome.gtk
 
 import gtk3.GtkToggleButton
@@ -9,7 +7,9 @@ import gtk3.gtk_toggle_button_get_mode
 import gtk3.gtk_toggle_button_set_active
 import gtk3.gtk_toggle_button_set_inconsistent
 import gtk3.gtk_toggle_button_set_mode
+import gtk3.gtk_toggle_button_toggled
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -32,6 +32,10 @@ public val ToggleButton.asBin: Bin
 
 public val ToggleButton.asButton: Button
   get() = reinterpret()
+
+public fun ToggleButton.toggled(): Unit {
+  gtk_toggle_button_toggled(this)
+}
 
 public var ToggleButton.active: Boolean
   get() = gtk_toggle_button_get_active(this).toBoolean

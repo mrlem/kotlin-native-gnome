@@ -1,23 +1,37 @@
 // TODO - implement:
-//   get_ellipsize_mode
-//   get_orientation
+//   get_icon_size
 //   get_proxy_menu_item
-//   get_relief_style
-//   get_text_orientation
-//   get_text_size_group
-//   get_toolbar_style
-//   rebuild_menu
-//   retrieve_proxy_menu_item
 //   set_proxy_menu_item
-//   toolbar_reconfigured
 //   set_tooltip_markup
 //   set_tooltip_text
 package org.gnome.gtk
 
-import gtk3.*
+import gtk3.GtkToolItem
+import gtk3.gtk_tool_item_get_ellipsize_mode
+import gtk3.gtk_tool_item_get_expand
+import gtk3.gtk_tool_item_get_homogeneous
+import gtk3.gtk_tool_item_get_is_important
+import gtk3.gtk_tool_item_get_orientation
+import gtk3.gtk_tool_item_get_relief_style
+import gtk3.gtk_tool_item_get_text_alignment
+import gtk3.gtk_tool_item_get_text_orientation
+import gtk3.gtk_tool_item_get_text_size_group
+import gtk3.gtk_tool_item_get_toolbar_style
+import gtk3.gtk_tool_item_get_use_drag_window
+import gtk3.gtk_tool_item_get_visible_horizontal
+import gtk3.gtk_tool_item_get_visible_vertical
+import gtk3.gtk_tool_item_rebuild_menu
+import gtk3.gtk_tool_item_retrieve_proxy_menu_item
+import gtk3.gtk_tool_item_set_expand
+import gtk3.gtk_tool_item_set_homogeneous
+import gtk3.gtk_tool_item_set_is_important
+import gtk3.gtk_tool_item_set_use_drag_window
+import gtk3.gtk_tool_item_set_visible_horizontal
+import gtk3.gtk_tool_item_set_visible_vertical
+import gtk3.gtk_tool_item_toolbar_reconfigured
 import kotlin.Boolean
 import kotlin.Float
-import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -37,6 +51,42 @@ public val ToolItem.asContainer: Container
 
 public val ToolItem.asBin: Bin
   get() = reinterpret()
+
+public fun ToolItem.getEllipsizeMode(): Unit {
+  gtk_tool_item_get_ellipsize_mode(this)
+}
+
+public fun ToolItem.getOrientation(): Unit {
+  gtk_tool_item_get_orientation(this)
+}
+
+public fun ToolItem.getReliefStyle(): Unit {
+  gtk_tool_item_get_relief_style(this)
+}
+
+public fun ToolItem.getTextOrientation(): Unit {
+  gtk_tool_item_get_text_orientation(this)
+}
+
+public fun ToolItem.getTextSizeGroup(): Unit {
+  gtk_tool_item_get_text_size_group(this)
+}
+
+public fun ToolItem.getToolbarStyle(): Unit {
+  gtk_tool_item_get_toolbar_style(this)
+}
+
+public fun ToolItem.rebuildMenu(): Unit {
+  gtk_tool_item_rebuild_menu(this)
+}
+
+public fun ToolItem.retrieveProxyMenuItem(): Unit {
+  gtk_tool_item_retrieve_proxy_menu_item(this)
+}
+
+public fun ToolItem.toolbarReconfigured(): Unit {
+  gtk_tool_item_toolbar_reconfigured(this)
+}
 
 public var ToolItem.expand: Boolean
   get() = gtk_tool_item_get_expand(this).toBoolean
@@ -73,9 +123,6 @@ public var ToolItem.visibleVertical: Boolean
   set(`value`) {
     gtk_tool_item_set_visible_vertical(this, value.toInt)
   }
-
-public val ToolItem.iconSize: GtkIconSize
-  get() = gtk_tool_item_get_icon_size(this)
 
 public val ToolItem.textAlignment: Float
   get() = gtk_tool_item_get_text_alignment(this)

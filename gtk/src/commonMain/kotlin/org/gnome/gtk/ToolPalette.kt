@@ -6,23 +6,20 @@
 //   get_exclusive
 //   get_expand
 //   get_group_position
-//   get_hadjustment
-//   get_style
-//   get_vadjustment
+//   get_icon_size
 //   set_drag_source
 //   set_exclusive
 //   set_expand
 //   set_group_position
+//   set_icon_size
 //   set_style
-//   unset_icon_size
-//   unset_style
 package org.gnome.gtk
 
-import gtk3.GtkIconSize
 import gtk3.GtkToolPalette
-import gtk3.gtk_tool_palette_get_icon_size
-import gtk3.gtk_tool_palette_set_icon_size
-import kotlin.Int
+import gtk3.gtk_tool_palette_get_style
+import gtk3.gtk_tool_palette_unset_icon_size
+import gtk3.gtk_tool_palette_unset_style
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -38,8 +35,14 @@ public val ToolPalette.asWidget: Widget
 public val ToolPalette.asContainer: Container
   get() = reinterpret()
 
-public var ToolPalette.iconSize: GtkIconSize
-  get() = gtk_tool_palette_get_icon_size(this)
-  set(`value`) {
-    gtk_tool_palette_set_icon_size(this, value)
-  }
+public fun ToolPalette.getStyle(): Unit {
+  gtk_tool_palette_get_style(this)
+}
+
+public fun ToolPalette.unsetIconSize(): Unit {
+  gtk_tool_palette_unset_icon_size(this)
+}
+
+public fun ToolPalette.unsetStyle(): Unit {
+  gtk_tool_palette_unset_style(this)
+}

@@ -1,6 +1,5 @@
 // TODO - implement:
 //   append
-//   clear
 //   insert
 //   insert_after
 //   insert_before
@@ -21,6 +20,8 @@
 package org.gnome.gtk
 
 import gtk3.GtkListStore
+import gtk3.gtk_list_store_clear
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.Object
@@ -29,3 +30,7 @@ public typealias ListStore = CPointer<GtkListStore>
 
 public val ListStore.asObject: Object
   get() = reinterpret()
+
+public fun ListStore.clear(): Unit {
+  gtk_list_store_clear(this)
+}

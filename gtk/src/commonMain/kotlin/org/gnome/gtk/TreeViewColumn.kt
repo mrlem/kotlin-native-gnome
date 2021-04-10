@@ -2,20 +2,11 @@
 //   add_attribute
 //   cell_get_position
 //   cell_get_size
-//   cell_is_visible
 //   cell_set_cell_data
-//   clear
 //   clear_attributes
-//   clicked
 //   focus_cell
-//   get_button
-//   get_sizing
-//   get_sort_order
-//   get_tree_view
-//   get_widget
 //   pack_end
 //   pack_start
-//   queue_resize
 //   set_attributes
 //   set_cell_data_func
 //   set_sizing
@@ -24,7 +15,11 @@
 package org.gnome.gtk
 
 import gtk3.GtkTreeViewColumn
+import gtk3.gtk_tree_view_column_cell_is_visible
+import gtk3.gtk_tree_view_column_clear
+import gtk3.gtk_tree_view_column_clicked
 import gtk3.gtk_tree_view_column_get_alignment
+import gtk3.gtk_tree_view_column_get_button
 import gtk3.gtk_tree_view_column_get_clickable
 import gtk3.gtk_tree_view_column_get_expand
 import gtk3.gtk_tree_view_column_get_fixed_width
@@ -32,13 +27,18 @@ import gtk3.gtk_tree_view_column_get_max_width
 import gtk3.gtk_tree_view_column_get_min_width
 import gtk3.gtk_tree_view_column_get_reorderable
 import gtk3.gtk_tree_view_column_get_resizable
+import gtk3.gtk_tree_view_column_get_sizing
 import gtk3.gtk_tree_view_column_get_sort_column_id
 import gtk3.gtk_tree_view_column_get_sort_indicator
+import gtk3.gtk_tree_view_column_get_sort_order
 import gtk3.gtk_tree_view_column_get_spacing
 import gtk3.gtk_tree_view_column_get_title
+import gtk3.gtk_tree_view_column_get_tree_view
 import gtk3.gtk_tree_view_column_get_visible
+import gtk3.gtk_tree_view_column_get_widget
 import gtk3.gtk_tree_view_column_get_width
 import gtk3.gtk_tree_view_column_get_x_offset
+import gtk3.gtk_tree_view_column_queue_resize
 import gtk3.gtk_tree_view_column_set_alignment
 import gtk3.gtk_tree_view_column_set_clickable
 import gtk3.gtk_tree_view_column_set_expand
@@ -56,6 +56,7 @@ import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -67,6 +68,41 @@ public typealias TreeViewColumn = CPointer<GtkTreeViewColumn>
 
 public val TreeViewColumn.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
+
+public fun TreeViewColumn.cellIsVisible(): Boolean =
+    gtk_tree_view_column_cell_is_visible(this).toBoolean
+
+public fun TreeViewColumn.clear(): Unit {
+  gtk_tree_view_column_clear(this)
+}
+
+public fun TreeViewColumn.clicked(): Unit {
+  gtk_tree_view_column_clicked(this)
+}
+
+public fun TreeViewColumn.getButton(): Unit {
+  gtk_tree_view_column_get_button(this)
+}
+
+public fun TreeViewColumn.getSizing(): Unit {
+  gtk_tree_view_column_get_sizing(this)
+}
+
+public fun TreeViewColumn.getSortOrder(): Unit {
+  gtk_tree_view_column_get_sort_order(this)
+}
+
+public fun TreeViewColumn.getTreeView(): Unit {
+  gtk_tree_view_column_get_tree_view(this)
+}
+
+public fun TreeViewColumn.getWidget(): Unit {
+  gtk_tree_view_column_get_widget(this)
+}
+
+public fun TreeViewColumn.queueResize(): Unit {
+  gtk_tree_view_column_queue_resize(this)
+}
 
 public var TreeViewColumn.alignment: Float
   get() = gtk_tree_view_column_get_alignment(this)

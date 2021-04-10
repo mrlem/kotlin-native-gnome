@@ -1,11 +1,11 @@
 // TODO - implement:
-//   get_custom_title
 //   pack_end
 //   pack_start
 //   set_custom_title
 package org.gnome.gtk
 
 import gtk3.GtkHeaderBar
+import gtk3.gtk_header_bar_get_custom_title
 import gtk3.gtk_header_bar_get_decoration_layout
 import gtk3.gtk_header_bar_get_has_subtitle
 import gtk3.gtk_header_bar_get_show_close_button
@@ -18,6 +18,7 @@ import gtk3.gtk_header_bar_set_subtitle
 import gtk3.gtk_header_bar_set_title
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -35,6 +36,10 @@ public val HeaderBar.asWidget: Widget
 
 public val HeaderBar.asContainer: Container
   get() = reinterpret()
+
+public fun HeaderBar.getCustomTitle(): Unit {
+  gtk_header_bar_get_custom_title(this)
+}
 
 public var HeaderBar.decorationLayout: String?
   get() = gtk_header_bar_get_decoration_layout(this).toKString

@@ -1,6 +1,5 @@
 // TODO - implement:
 //   add_offset_value
-//   get_mode
 //   get_offset_value
 //   remove_offset_value
 //   set_mode
@@ -10,6 +9,7 @@ import gtk3.GtkLevelBar
 import gtk3.gtk_level_bar_get_inverted
 import gtk3.gtk_level_bar_get_max_value
 import gtk3.gtk_level_bar_get_min_value
+import gtk3.gtk_level_bar_get_mode
 import gtk3.gtk_level_bar_get_value
 import gtk3.gtk_level_bar_set_inverted
 import gtk3.gtk_level_bar_set_max_value
@@ -17,6 +17,7 @@ import gtk3.gtk_level_bar_set_min_value
 import gtk3.gtk_level_bar_set_value
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -30,6 +31,10 @@ public val LevelBar.asInitiallyUnowned: InitiallyUnowned
 
 public val LevelBar.asWidget: Widget
   get() = reinterpret()
+
+public fun LevelBar.getMode(): Unit {
+  gtk_level_bar_get_mode(this)
+}
 
 public var LevelBar.inverted: Boolean
   get() = gtk_level_bar_get_inverted(this).toBoolean

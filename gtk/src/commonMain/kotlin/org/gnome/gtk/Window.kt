@@ -1,50 +1,22 @@
 // TODO - implement:
-//   activate_default
-//   activate_focus
 //   activate_key
 //   add_accel_group
 //   add_mnemonic
 //   begin_move_drag
 //   begin_resize_drag
-//   close
-//   deiconify
-//   fullscreen
 //   fullscreen_on_monitor
-//   get_application
-//   get_attached_to
 //   get_default_size
-//   get_default_widget
-//   get_focus
-//   get_gravity
-//   get_group
-//   get_icon
-//   get_icon_list
-//   get_mnemonic_modifier
 //   get_position
 //   get_resize_grip_area
-//   get_screen
 //   get_size
-//   get_titlebar
-//   get_transient_for
-//   get_type_hint
-//   get_window_type
-//   has_group
-//   has_toplevel_focus
-//   iconify
-//   is_active
-//   is_maximized
-//   maximize
 //   mnemonic_activate
 //   move
 //   parse_geometry
-//   present
 //   present_with_time
 //   propagate_key_event
 //   remove_accel_group
 //   remove_mnemonic
-//   reshow_with_initial_size
 //   resize
-//   resize_grip_is_visible
 //   resize_to_geometry
 //   set_application
 //   set_attached_to
@@ -64,10 +36,6 @@
 //   set_transient_for
 //   set_type_hint
 //   set_wmclass
-//   stick
-//   unfullscreen
-//   unmaximize
-//   unstick
 //   set_has_user_ref_count
 //   set_keep_above
 //   set_keep_below
@@ -75,24 +43,50 @@
 package org.gnome.gtk
 
 import gtk3.GtkWindow
+import gtk3.gtk_window_activate_default
+import gtk3.gtk_window_activate_focus
+import gtk3.gtk_window_close
+import gtk3.gtk_window_deiconify
+import gtk3.gtk_window_fullscreen
 import gtk3.gtk_window_get_accept_focus
+import gtk3.gtk_window_get_application
+import gtk3.gtk_window_get_attached_to
 import gtk3.gtk_window_get_decorated
+import gtk3.gtk_window_get_default_widget
 import gtk3.gtk_window_get_deletable
 import gtk3.gtk_window_get_destroy_with_parent
+import gtk3.gtk_window_get_focus
 import gtk3.gtk_window_get_focus_on_map
 import gtk3.gtk_window_get_focus_visible
+import gtk3.gtk_window_get_gravity
+import gtk3.gtk_window_get_group
 import gtk3.gtk_window_get_has_resize_grip
 import gtk3.gtk_window_get_hide_titlebar_when_maximized
+import gtk3.gtk_window_get_icon
+import gtk3.gtk_window_get_icon_list
 import gtk3.gtk_window_get_icon_name
+import gtk3.gtk_window_get_mnemonic_modifier
 import gtk3.gtk_window_get_mnemonics_visible
 import gtk3.gtk_window_get_modal
 import gtk3.gtk_window_get_opacity
 import gtk3.gtk_window_get_resizable
 import gtk3.gtk_window_get_role
+import gtk3.gtk_window_get_screen
 import gtk3.gtk_window_get_skip_pager_hint
 import gtk3.gtk_window_get_skip_taskbar_hint
 import gtk3.gtk_window_get_title
+import gtk3.gtk_window_get_titlebar
+import gtk3.gtk_window_get_transient_for
+import gtk3.gtk_window_get_type_hint
 import gtk3.gtk_window_get_urgency_hint
+import gtk3.gtk_window_get_window_type
+import gtk3.gtk_window_has_group
+import gtk3.gtk_window_has_toplevel_focus
+import gtk3.gtk_window_iconify
+import gtk3.gtk_window_is_active
+import gtk3.gtk_window_is_maximized
+import gtk3.gtk_window_maximize
+import gtk3.gtk_window_present
 import gtk3.gtk_window_set_accept_focus
 import gtk3.gtk_window_set_decorated
 import gtk3.gtk_window_set_deletable
@@ -111,9 +105,14 @@ import gtk3.gtk_window_set_skip_pager_hint
 import gtk3.gtk_window_set_skip_taskbar_hint
 import gtk3.gtk_window_set_title
 import gtk3.gtk_window_set_urgency_hint
+import gtk3.gtk_window_stick
+import gtk3.gtk_window_unfullscreen
+import gtk3.gtk_window_unmaximize
+import gtk3.gtk_window_unstick
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -134,6 +133,114 @@ public val Window.asContainer: Container
 
 public val Window.asBin: Bin
   get() = reinterpret()
+
+public fun Window.activateDefault(): Boolean = gtk_window_activate_default(this).toBoolean
+
+public fun Window.activateFocus(): Boolean = gtk_window_activate_focus(this).toBoolean
+
+public fun Window.close(): Unit {
+  gtk_window_close(this)
+}
+
+public fun Window.deiconify(): Unit {
+  gtk_window_deiconify(this)
+}
+
+public fun Window.fullscreen(): Unit {
+  gtk_window_fullscreen(this)
+}
+
+public fun Window.getApplication(): Unit {
+  gtk_window_get_application(this)
+}
+
+public fun Window.getAttachedTo(): Unit {
+  gtk_window_get_attached_to(this)
+}
+
+public fun Window.getDefaultWidget(): Unit {
+  gtk_window_get_default_widget(this)
+}
+
+public fun Window.getFocus(): Unit {
+  gtk_window_get_focus(this)
+}
+
+public fun Window.getGravity(): Unit {
+  gtk_window_get_gravity(this)
+}
+
+public fun Window.getGroup(): Unit {
+  gtk_window_get_group(this)
+}
+
+public fun Window.getIcon(): Unit {
+  gtk_window_get_icon(this)
+}
+
+public fun Window.getIconList(): Unit {
+  gtk_window_get_icon_list(this)
+}
+
+public fun Window.getMnemonicModifier(): Unit {
+  gtk_window_get_mnemonic_modifier(this)
+}
+
+public fun Window.getScreen(): Unit {
+  gtk_window_get_screen(this)
+}
+
+public fun Window.getTitlebar(): Unit {
+  gtk_window_get_titlebar(this)
+}
+
+public fun Window.getTransientFor(): Unit {
+  gtk_window_get_transient_for(this)
+}
+
+public fun Window.getTypeHint(): Unit {
+  gtk_window_get_type_hint(this)
+}
+
+public fun Window.getWindowType(): Unit {
+  gtk_window_get_window_type(this)
+}
+
+public fun Window.hasGroup(): Boolean = gtk_window_has_group(this).toBoolean
+
+public fun Window.hasToplevelFocus(): Boolean = gtk_window_has_toplevel_focus(this).toBoolean
+
+public fun Window.iconify(): Unit {
+  gtk_window_iconify(this)
+}
+
+public fun Window.isActive(): Boolean = gtk_window_is_active(this).toBoolean
+
+public fun Window.isMaximized(): Boolean = gtk_window_is_maximized(this).toBoolean
+
+public fun Window.maximize(): Unit {
+  gtk_window_maximize(this)
+}
+
+public fun Window.present(): Unit {
+  gtk_window_present(this)
+}
+
+public fun Window.stick(): Unit {
+  gtk_window_stick(this)
+}
+
+public fun Window.unfullscreen(): Unit {
+  gtk_window_unfullscreen(this)
+}
+
+public fun Window.unmaximize(): Unit {
+  gtk_window_unmaximize(this)
+}
+
+public fun Window.unstick(): Unit {
+  gtk_window_unstick(this)
+}
 
 public var Window.acceptFocus: Boolean
   get() = gtk_window_get_accept_focus(this).toBoolean

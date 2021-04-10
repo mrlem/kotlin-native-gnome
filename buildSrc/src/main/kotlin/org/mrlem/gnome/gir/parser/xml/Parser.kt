@@ -130,14 +130,30 @@ class Parser {
             ?.filter { it.nameMatches("parameter") }
             .orEmpty()
 
+        val functionName = attributes().keys
+            .firstOrNull { it?.nameMatches("identifier") == true }
+            ?.let { attribute(it) }
+            ?.toString()
+
+        val deprecated = attributes().keys
+            .firstOrNull { it?.nameMatches("deprecated") == true }
+            ?.let { attribute(it) }
+            .let { it == "1" }
+
+        val throws = attributes().keys
+            .firstOrNull { it?.nameMatches("throws") == true }
+            ?.let { attribute(it) }
+            .let { it == "1" }
+
         val name = name
         val firstParameterType = parameters.firstOrNull()?.type
         return when {
-            name.startsWith(GETTER_PREFIX) && instanceParameter != null && parameters.isEmpty() && returnType != null ->
-                MemberDefinition.PropertyGetter(name.removePrefix(GETTER_PREFIX), returnType)
-            name.startsWith(SETTER_PREFIX) && instanceParameter != null && parameters.size == 1 && firstParameterType != null ->
-                MemberDefinition.PropertySetter(name.removePrefix(SETTER_PREFIX), firstParameterType)
-            // TODO - method
+            name.startsWith(GETTER_PREFIX) && instanceParameter != null && parameters.isEmpty() && returnType != null && functionName != null ->
+                MemberDefinition.PropertyGetter(name.removePrefix(GETTER_PREFIX), deprecated, returnType, functionName)
+            name.startsWith(SETTER_PREFIX) && instanceParameter != null && parameters.size == 1 && firstParameterType != null && functionName != null ->
+                MemberDefinition.PropertySetter(name.removePrefix(SETTER_PREFIX), deprecated, firstParameterType, functionName)
+            // TODO - all methods (not just those with no param)
+            parameters.isEmpty() && functionName != null && !throws -> MemberDefinition.Method(name, deprecated, throws, returnType, functionName)
             else -> MemberDefinition.Todo(name)
         }
     }
@@ -149,10 +165,10 @@ class Parser {
                 remove(propertySetter)
 
                 val propertyName = propertySetter.name
-                val propertyGetter = firstOrNull { it is MemberDefinition.PropertyGetter && it.name == propertyName }
+                val propertyGetter = firstOrNull { it is MemberDefinition.PropertyGetter && it.name == propertyName } as? MemberDefinition.PropertyGetter
                 val property = if (propertyGetter != null) {
                     remove(propertyGetter)
-                    MemberDefinition.Property(propertySetter.name, false, propertySetter.type)
+                    MemberDefinition.Property(propertySetter.name, propertySetter.type, propertyGetter.functionName, propertySetter.functionName)
                 } else {
                     // TODO - method
                     MemberDefinition.Todo("$SETTER_PREFIX${propertySetter.name}")
@@ -161,10 +177,10 @@ class Parser {
                 add(property)
             }
 
-        // replace remaining getters to read-onle properties
+        // replace remaining getters to read-only properties
         val getters = filterIsInstance<MemberDefinition.PropertyGetter>()
         removeAll(getters)
-        addAll(getters.map { MemberDefinition.Property(it.name, true, it.type) })
+        addAll(getters.map { MemberDefinition.Property(it.name, it.type, it.functionName, null) })
     }
 
     private val Node.name

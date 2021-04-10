@@ -1,8 +1,6 @@
 // TODO - implement:
 //   append_column
-//   collapse_all
 //   collapse_row
-//   columns_autosize
 //   convert_bin_window_to_tree_coords
 //   convert_bin_window_to_widget_coords
 //   convert_tree_to_bin_window_coords
@@ -12,36 +10,22 @@
 //   create_row_drag_icon
 //   enable_model_drag_dest
 //   enable_model_drag_source
-//   expand_all
 //   expand_row
 //   expand_to_path
 //   get_background_area
-//   get_bin_window
 //   get_cell_area
 //   get_column
-//   get_columns
 //   get_cursor
 //   get_dest_row_at_pos
 //   get_drag_dest_row
-//   get_expander_column
-//   get_grid_lines
-//   get_hadjustment
-//   get_model
 //   get_path_at_pos
-//   get_row_separator_func
-//   get_search_entry
-//   get_search_equal_func
-//   get_search_position_func
-//   get_selection
 //   get_tooltip_context
-//   get_vadjustment
 //   get_visible_range
 //   get_visible_rect
 //   insert_column
 //   insert_column_with_attributes
 //   insert_column_with_data_func
 //   is_blank_at_pos
-//   is_rubber_banding_active
 //   map_expanded_rows
 //   move_column_after
 //   remove_column
@@ -65,27 +49,39 @@
 //   set_tooltip_cell
 //   set_tooltip_row
 //   set_vadjustment
-//   unset_rows_drag_dest
-//   unset_rows_drag_source
 package org.gnome.gtk
 
 import gtk3.GtkTreeView
+import gtk3.gtk_tree_view_collapse_all
+import gtk3.gtk_tree_view_columns_autosize
+import gtk3.gtk_tree_view_expand_all
 import gtk3.gtk_tree_view_get_activate_on_single_click
+import gtk3.gtk_tree_view_get_bin_window
+import gtk3.gtk_tree_view_get_columns
 import gtk3.gtk_tree_view_get_enable_search
 import gtk3.gtk_tree_view_get_enable_tree_lines
+import gtk3.gtk_tree_view_get_expander_column
 import gtk3.gtk_tree_view_get_fixed_height_mode
+import gtk3.gtk_tree_view_get_grid_lines
 import gtk3.gtk_tree_view_get_headers_clickable
 import gtk3.gtk_tree_view_get_headers_visible
 import gtk3.gtk_tree_view_get_hover_expand
 import gtk3.gtk_tree_view_get_hover_selection
 import gtk3.gtk_tree_view_get_level_indentation
+import gtk3.gtk_tree_view_get_model
 import gtk3.gtk_tree_view_get_n_columns
 import gtk3.gtk_tree_view_get_reorderable
+import gtk3.gtk_tree_view_get_row_separator_func
 import gtk3.gtk_tree_view_get_rubber_banding
 import gtk3.gtk_tree_view_get_rules_hint
 import gtk3.gtk_tree_view_get_search_column
+import gtk3.gtk_tree_view_get_search_entry
+import gtk3.gtk_tree_view_get_search_equal_func
+import gtk3.gtk_tree_view_get_search_position_func
+import gtk3.gtk_tree_view_get_selection
 import gtk3.gtk_tree_view_get_show_expanders
 import gtk3.gtk_tree_view_get_tooltip_column
+import gtk3.gtk_tree_view_is_rubber_banding_active
 import gtk3.gtk_tree_view_set_activate_on_single_click
 import gtk3.gtk_tree_view_set_enable_search
 import gtk3.gtk_tree_view_set_enable_tree_lines
@@ -101,9 +97,12 @@ import gtk3.gtk_tree_view_set_rules_hint
 import gtk3.gtk_tree_view_set_search_column
 import gtk3.gtk_tree_view_set_show_expanders
 import gtk3.gtk_tree_view_set_tooltip_column
+import gtk3.gtk_tree_view_unset_rows_drag_dest
+import gtk3.gtk_tree_view_unset_rows_drag_source
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.UInt
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -120,6 +119,69 @@ public val TreeView.asWidget: Widget
 
 public val TreeView.asContainer: Container
   get() = reinterpret()
+
+public fun TreeView.collapseAll(): Unit {
+  gtk_tree_view_collapse_all(this)
+}
+
+public fun TreeView.columnsAutosize(): Unit {
+  gtk_tree_view_columns_autosize(this)
+}
+
+public fun TreeView.expandAll(): Unit {
+  gtk_tree_view_expand_all(this)
+}
+
+public fun TreeView.getBinWindow(): Unit {
+  gtk_tree_view_get_bin_window(this)
+}
+
+public fun TreeView.getColumns(): Unit {
+  gtk_tree_view_get_columns(this)
+}
+
+public fun TreeView.getExpanderColumn(): Unit {
+  gtk_tree_view_get_expander_column(this)
+}
+
+public fun TreeView.getGridLines(): Unit {
+  gtk_tree_view_get_grid_lines(this)
+}
+
+public fun TreeView.getModel(): Unit {
+  gtk_tree_view_get_model(this)
+}
+
+public fun TreeView.getRowSeparatorFunc(): Unit {
+  gtk_tree_view_get_row_separator_func(this)
+}
+
+public fun TreeView.getSearchEntry(): Unit {
+  gtk_tree_view_get_search_entry(this)
+}
+
+public fun TreeView.getSearchEqualFunc(): Unit {
+  gtk_tree_view_get_search_equal_func(this)
+}
+
+public fun TreeView.getSearchPositionFunc(): Unit {
+  gtk_tree_view_get_search_position_func(this)
+}
+
+public fun TreeView.getSelection(): Unit {
+  gtk_tree_view_get_selection(this)
+}
+
+public fun TreeView.isRubberBandingActive(): Boolean =
+    gtk_tree_view_is_rubber_banding_active(this).toBoolean
+
+public fun TreeView.unsetRowsDragDest(): Unit {
+  gtk_tree_view_unset_rows_drag_dest(this)
+}
+
+public fun TreeView.unsetRowsDragSource(): Unit {
+  gtk_tree_view_unset_rows_drag_source(this)
+}
 
 public var TreeView.activateOnSingleClick: Boolean
   get() = gtk_tree_view_get_activate_on_single_click(this).toBoolean

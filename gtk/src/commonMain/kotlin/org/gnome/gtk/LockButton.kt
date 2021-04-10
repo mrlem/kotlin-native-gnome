@@ -1,9 +1,10 @@
 // TODO - implement:
-//   get_permission
 //   set_permission
 package org.gnome.gtk
 
 import gtk3.GtkLockButton
+import gtk3.gtk_lock_button_get_permission
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -24,3 +25,7 @@ public val LockButton.asBin: Bin
 
 public val LockButton.asButton: Button
   get() = reinterpret()
+
+public fun LockButton.getPermission(): Unit {
+  gtk_lock_button_get_permission(this)
+}

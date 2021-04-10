@@ -1,30 +1,30 @@
 // TODO - implement:
 //   attach
 //   attach_to_widget
-//   detach
-//   get_accel_group
-//   get_active
-//   get_attach_widget
 //   place_on_monitor
-//   popdown
 //   popup
 //   popup_at_pointer
 //   popup_at_rect
 //   popup_at_widget
 //   popup_for_device
 //   reorder_child
-//   reposition
 //   set_accel_group
 //   set_screen
 //   set_active
 package org.gnome.gtk
 
 import gtk3.GtkMenu
+import gtk3.gtk_menu_detach
+import gtk3.gtk_menu_get_accel_group
 import gtk3.gtk_menu_get_accel_path
+import gtk3.gtk_menu_get_active
+import gtk3.gtk_menu_get_attach_widget
 import gtk3.gtk_menu_get_monitor
 import gtk3.gtk_menu_get_reserve_toggle_size
 import gtk3.gtk_menu_get_tearoff_state
 import gtk3.gtk_menu_get_title
+import gtk3.gtk_menu_popdown
+import gtk3.gtk_menu_reposition
 import gtk3.gtk_menu_set_accel_path
 import gtk3.gtk_menu_set_monitor
 import gtk3.gtk_menu_set_reserve_toggle_size
@@ -33,6 +33,7 @@ import gtk3.gtk_menu_set_title
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -53,6 +54,30 @@ public val Menu.asContainer: Container
 
 public val Menu.asMenuShell: MenuShell
   get() = reinterpret()
+
+public fun Menu.detach(): Unit {
+  gtk_menu_detach(this)
+}
+
+public fun Menu.getAccelGroup(): Unit {
+  gtk_menu_get_accel_group(this)
+}
+
+public fun Menu.getActive(): Unit {
+  gtk_menu_get_active(this)
+}
+
+public fun Menu.getAttachWidget(): Unit {
+  gtk_menu_get_attach_widget(this)
+}
+
+public fun Menu.popdown(): Unit {
+  gtk_menu_popdown(this)
+}
+
+public fun Menu.reposition(): Unit {
+  gtk_menu_reposition(this)
+}
 
 public var Menu.accelPath: String?
   get() = gtk_menu_get_accel_path(this).toKString

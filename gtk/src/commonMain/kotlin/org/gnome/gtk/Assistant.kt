@@ -1,7 +1,6 @@
 // TODO - implement:
 //   add_action_widget
 //   append_page
-//   commit
 //   get_nth_page
 //   get_page_complete
 //   get_page_has_padding
@@ -10,9 +9,7 @@
 //   get_page_title
 //   get_page_type
 //   insert_page
-//   next_page
 //   prepend_page
-//   previous_page
 //   remove_action_widget
 //   remove_page
 //   set_forward_page_func
@@ -22,14 +19,18 @@
 //   set_page_side_image
 //   set_page_title
 //   set_page_type
-//   update_buttons_state
 package org.gnome.gtk
 
 import gtk3.GtkAssistant
+import gtk3.gtk_assistant_commit
 import gtk3.gtk_assistant_get_current_page
 import gtk3.gtk_assistant_get_n_pages
+import gtk3.gtk_assistant_next_page
+import gtk3.gtk_assistant_previous_page
 import gtk3.gtk_assistant_set_current_page
+import gtk3.gtk_assistant_update_buttons_state
 import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -50,6 +51,22 @@ public val Assistant.asBin: Bin
 
 public val Assistant.asWindow: Window
   get() = reinterpret()
+
+public fun Assistant.commit(): Unit {
+  gtk_assistant_commit(this)
+}
+
+public fun Assistant.nextPage(): Unit {
+  gtk_assistant_next_page(this)
+}
+
+public fun Assistant.previousPage(): Unit {
+  gtk_assistant_previous_page(this)
+}
+
+public fun Assistant.updateButtonsState(): Unit {
+  gtk_assistant_update_buttons_state(this)
+}
 
 public var Assistant.currentPage: Int
   get() = gtk_assistant_get_current_page(this)

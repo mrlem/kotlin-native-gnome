@@ -1,10 +1,9 @@
-// TODO - implement:
-//   get_current_sequence
 package org.gnome.gtk
 
 import gtk3.GtkGestureSingle
 import gtk3.gtk_gesture_single_get_button
 import gtk3.gtk_gesture_single_get_current_button
+import gtk3.gtk_gesture_single_get_current_sequence
 import gtk3.gtk_gesture_single_get_exclusive
 import gtk3.gtk_gesture_single_get_touch_only
 import gtk3.gtk_gesture_single_set_button
@@ -12,6 +11,7 @@ import gtk3.gtk_gesture_single_set_exclusive
 import gtk3.gtk_gesture_single_set_touch_only
 import kotlin.Boolean
 import kotlin.UInt
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.Object
@@ -28,6 +28,10 @@ public val GestureSingle.asEventController: EventController
 
 public val GestureSingle.asGesture: Gesture
   get() = reinterpret()
+
+public fun GestureSingle.getCurrentSequence(): Unit {
+  gtk_gesture_single_get_current_sequence(this)
+}
 
 public var GestureSingle.button: UInt
   get() = gtk_gesture_single_get_button(this)

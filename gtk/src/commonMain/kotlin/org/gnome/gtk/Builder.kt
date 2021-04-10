@@ -11,9 +11,7 @@
 //   connect_signals_full
 //   expose_object
 //   extend_with_template
-//   get_application
 //   get_object
-//   get_objects
 //   get_type_from_name
 //   lookup_callback_symbol
 //   set_application
@@ -23,6 +21,7 @@ package org.gnome.gtk
 
 import gtk3.*
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.cValuesOf
 import kotlinx.cinterop.convert
@@ -34,6 +33,14 @@ public typealias Builder = CPointer<GtkBuilder>
 
 public val Builder.asObject: Object
   get() = reinterpret()
+
+public fun Builder.getApplication(): Unit {
+  gtk_builder_get_application(this)
+}
+
+public fun Builder.getObjects(): Unit {
+  gtk_builder_get_objects(this)
+}
 
 public var Builder.translationDomain: String?
   get() = gtk_builder_get_translation_domain(this).toKString

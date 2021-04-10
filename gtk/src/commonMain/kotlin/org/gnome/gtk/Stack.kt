@@ -2,8 +2,6 @@
 //   add_named
 //   add_titled
 //   get_child_by_name
-//   get_transition_type
-//   get_visible_child
 //   set_transition_type
 //   set_visible_child
 //   set_visible_child_full
@@ -15,7 +13,9 @@ import gtk3.gtk_stack_get_homogeneous
 import gtk3.gtk_stack_get_interpolate_size
 import gtk3.gtk_stack_get_transition_duration
 import gtk3.gtk_stack_get_transition_running
+import gtk3.gtk_stack_get_transition_type
 import gtk3.gtk_stack_get_vhomogeneous
+import gtk3.gtk_stack_get_visible_child
 import gtk3.gtk_stack_get_visible_child_name
 import gtk3.gtk_stack_set_hhomogeneous
 import gtk3.gtk_stack_set_homogeneous
@@ -26,6 +26,7 @@ import gtk3.gtk_stack_set_visible_child_name
 import kotlin.Boolean
 import kotlin.String
 import kotlin.UInt
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -43,6 +44,14 @@ public val Stack.asWidget: Widget
 
 public val Stack.asContainer: Container
   get() = reinterpret()
+
+public fun Stack.getTransitionType(): Unit {
+  gtk_stack_get_transition_type(this)
+}
+
+public fun Stack.getVisibleChild(): Unit {
+  gtk_stack_get_visible_child(this)
+}
 
 public var Stack.hhomogeneous: Boolean
   get() = gtk_stack_get_hhomogeneous(this).toBoolean

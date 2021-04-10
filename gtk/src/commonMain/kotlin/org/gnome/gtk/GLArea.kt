@@ -1,26 +1,27 @@
 // TODO - implement:
-//   attach_buffers
-//   get_context
-//   get_error
 //   get_required_version
-//   make_current
-//   queue_render
 //   set_error
 //   set_required_version
 package org.gnome.gtk
 
 import gtk3.GtkGLArea
+import gtk3.gtk_gl_area_attach_buffers
 import gtk3.gtk_gl_area_get_auto_render
+import gtk3.gtk_gl_area_get_context
+import gtk3.gtk_gl_area_get_error
 import gtk3.gtk_gl_area_get_has_alpha
 import gtk3.gtk_gl_area_get_has_depth_buffer
 import gtk3.gtk_gl_area_get_has_stencil_buffer
 import gtk3.gtk_gl_area_get_use_es
+import gtk3.gtk_gl_area_make_current
+import gtk3.gtk_gl_area_queue_render
 import gtk3.gtk_gl_area_set_auto_render
 import gtk3.gtk_gl_area_set_has_alpha
 import gtk3.gtk_gl_area_set_has_depth_buffer
 import gtk3.gtk_gl_area_set_has_stencil_buffer
 import gtk3.gtk_gl_area_set_use_es
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -34,6 +35,26 @@ public val GLArea.asInitiallyUnowned: InitiallyUnowned
 
 public val GLArea.asWidget: Widget
   get() = reinterpret()
+
+public fun GLArea.attachBuffers(): Unit {
+  gtk_gl_area_attach_buffers(this)
+}
+
+public fun GLArea.getContext(): Unit {
+  gtk_gl_area_get_context(this)
+}
+
+public fun GLArea.getError(): Unit {
+  gtk_gl_area_get_error(this)
+}
+
+public fun GLArea.makeCurrent(): Unit {
+  gtk_gl_area_make_current(this)
+}
+
+public fun GLArea.queueRender(): Unit {
+  gtk_gl_area_queue_render(this)
+}
 
 public var GLArea.autoRender: Boolean
   get() = gtk_gl_area_get_auto_render(this).toBoolean

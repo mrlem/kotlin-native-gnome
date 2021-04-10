@@ -2,13 +2,9 @@
 //   add_action_widget
 //   add_button
 //   add_buttons
-//   get_action_area
-//   get_content_area
-//   get_header_bar
 //   get_response_for_widget
 //   get_widget_for_response
 //   response
-//   run
 //   set_alternative_button_order
 //   set_alternative_button_order_from_array
 //   set_response_sensitive
@@ -16,7 +12,11 @@
 package org.gnome.gtk
 
 import gtk3.GtkDialog
+import gtk3.gtk_dialog_get_content_area
+import gtk3.gtk_dialog_get_header_bar
 import gtk3.gtk_dialog_run
+import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -38,8 +38,12 @@ public val Dialog.asBin: Bin
 public val Dialog.asWindow: Window
   get() = reinterpret()
 
-///////////////////////////////////////////////////////////////////////////
-// Public API (not generated)
-///////////////////////////////////////////////////////////////////////////
+public fun Dialog.getContentArea(): Unit {
+  gtk_dialog_get_content_area(this)
+}
 
-fun Dialog.run() = gtk_dialog_run(this)
+public fun Dialog.getHeaderBar(): Unit {
+  gtk_dialog_get_header_bar(this)
+}
+
+public fun Dialog.run(): Int = gtk_dialog_run(this)

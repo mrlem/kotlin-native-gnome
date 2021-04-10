@@ -1,5 +1,4 @@
 // TODO - implement:
-//   get_label_widget
 //   set_label_widget
 package org.gnome.gtk
 
@@ -7,6 +6,7 @@ import gtk3.GtkExpander
 import gtk3.gtk_expander_get_expanded
 import gtk3.gtk_expander_get_label
 import gtk3.gtk_expander_get_label_fill
+import gtk3.gtk_expander_get_label_widget
 import gtk3.gtk_expander_get_resize_toplevel
 import gtk3.gtk_expander_get_spacing
 import gtk3.gtk_expander_get_use_markup
@@ -21,6 +21,7 @@ import gtk3.gtk_expander_set_use_underline
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -41,6 +42,10 @@ public val Expander.asContainer: Container
 
 public val Expander.asBin: Bin
   get() = reinterpret()
+
+public fun Expander.getLabelWidget(): Unit {
+  gtk_expander_get_label_widget(this)
+}
 
 public var Expander.expanded: Boolean
   get() = gtk_expander_get_expanded(this).toBoolean

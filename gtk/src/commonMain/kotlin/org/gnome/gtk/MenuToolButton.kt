@@ -1,11 +1,12 @@
 // TODO - implement:
-//   get_menu
 //   set_menu
 //   set_arrow_tooltip_markup
 //   set_arrow_tooltip_text
 package org.gnome.gtk
 
 import gtk3.GtkMenuToolButton
+import gtk3.gtk_menu_tool_button_get_menu
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -29,3 +30,7 @@ public val MenuToolButton.asToolItem: ToolItem
 
 public val MenuToolButton.asToolButton: ToolButton
   get() = reinterpret()
+
+public fun MenuToolButton.getMenu(): Unit {
+  gtk_menu_tool_button_get_menu(this)
+}

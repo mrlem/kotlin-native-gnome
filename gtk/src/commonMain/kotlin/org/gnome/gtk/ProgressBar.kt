@@ -1,15 +1,15 @@
 // TODO - implement:
-//   get_ellipsize
-//   pulse
 //   set_ellipsize
 package org.gnome.gtk
 
 import gtk3.GtkProgressBar
+import gtk3.gtk_progress_bar_get_ellipsize
 import gtk3.gtk_progress_bar_get_fraction
 import gtk3.gtk_progress_bar_get_inverted
 import gtk3.gtk_progress_bar_get_pulse_step
 import gtk3.gtk_progress_bar_get_show_text
 import gtk3.gtk_progress_bar_get_text
+import gtk3.gtk_progress_bar_pulse
 import gtk3.gtk_progress_bar_set_fraction
 import gtk3.gtk_progress_bar_set_inverted
 import gtk3.gtk_progress_bar_set_pulse_step
@@ -18,6 +18,7 @@ import gtk3.gtk_progress_bar_set_text
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -32,6 +33,14 @@ public val ProgressBar.asInitiallyUnowned: InitiallyUnowned
 
 public val ProgressBar.asWidget: Widget
   get() = reinterpret()
+
+public fun ProgressBar.getEllipsize(): Unit {
+  gtk_progress_bar_get_ellipsize(this)
+}
+
+public fun ProgressBar.pulse(): Unit {
+  gtk_progress_bar_pulse(this)
+}
 
 public var ProgressBar.fraction: Double
   get() = gtk_progress_bar_get_fraction(this)

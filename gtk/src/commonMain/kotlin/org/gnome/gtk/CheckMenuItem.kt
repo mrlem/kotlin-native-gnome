@@ -1,5 +1,3 @@
-// TODO - implement:
-//   toggled
 package org.gnome.gtk
 
 import gtk3.GtkCheckMenuItem
@@ -9,7 +7,9 @@ import gtk3.gtk_check_menu_item_get_inconsistent
 import gtk3.gtk_check_menu_item_set_active
 import gtk3.gtk_check_menu_item_set_draw_as_radio
 import gtk3.gtk_check_menu_item_set_inconsistent
+import gtk3.gtk_check_menu_item_toggled
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -32,6 +32,10 @@ public val CheckMenuItem.asBin: Bin
 
 public val CheckMenuItem.asMenuItem: MenuItem
   get() = reinterpret()
+
+public fun CheckMenuItem.toggled(): Unit {
+  gtk_check_menu_item_toggled(this)
+}
 
 public var CheckMenuItem.active: Boolean
   get() = gtk_check_menu_item_get_active(this).toBoolean

@@ -1,11 +1,5 @@
 // TODO - implement:
 //   get_active_iter
-//   get_button_sensitivity
-//   get_model
-//   get_popup_accessible
-//   get_row_separator_func
-//   popdown
-//   popup
 //   popup_for_device
 //   set_active_iter
 //   set_button_sensitivity
@@ -17,15 +11,21 @@ import gtk3.GtkComboBox
 import gtk3.gtk_combo_box_get_active
 import gtk3.gtk_combo_box_get_active_id
 import gtk3.gtk_combo_box_get_add_tearoffs
+import gtk3.gtk_combo_box_get_button_sensitivity
 import gtk3.gtk_combo_box_get_column_span_column
 import gtk3.gtk_combo_box_get_entry_text_column
 import gtk3.gtk_combo_box_get_focus_on_click
 import gtk3.gtk_combo_box_get_has_entry
 import gtk3.gtk_combo_box_get_id_column
+import gtk3.gtk_combo_box_get_model
+import gtk3.gtk_combo_box_get_popup_accessible
 import gtk3.gtk_combo_box_get_popup_fixed_width
+import gtk3.gtk_combo_box_get_row_separator_func
 import gtk3.gtk_combo_box_get_row_span_column
 import gtk3.gtk_combo_box_get_title
 import gtk3.gtk_combo_box_get_wrap_width
+import gtk3.gtk_combo_box_popdown
+import gtk3.gtk_combo_box_popup
 import gtk3.gtk_combo_box_set_active
 import gtk3.gtk_combo_box_set_active_id
 import gtk3.gtk_combo_box_set_add_tearoffs
@@ -40,6 +40,7 @@ import gtk3.gtk_combo_box_set_wrap_width
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -60,6 +61,30 @@ public val ComboBox.asContainer: Container
 
 public val ComboBox.asBin: Bin
   get() = reinterpret()
+
+public fun ComboBox.getButtonSensitivity(): Unit {
+  gtk_combo_box_get_button_sensitivity(this)
+}
+
+public fun ComboBox.getModel(): Unit {
+  gtk_combo_box_get_model(this)
+}
+
+public fun ComboBox.getPopupAccessible(): Unit {
+  gtk_combo_box_get_popup_accessible(this)
+}
+
+public fun ComboBox.getRowSeparatorFunc(): Unit {
+  gtk_combo_box_get_row_separator_func(this)
+}
+
+public fun ComboBox.popdown(): Unit {
+  gtk_combo_box_popdown(this)
+}
+
+public fun ComboBox.popup(): Unit {
+  gtk_combo_box_popup(this)
+}
 
 public var ComboBox.active: Int
   get() = gtk_combo_box_get_active(this)

@@ -1,6 +1,8 @@
 package org.mrlem.gtk.sample
 
 import binding.SampleUI
+import org.gnome.glib.gobject.asObject
+import org.gnome.glib.gobject.onActivate
 import org.gnome.gtk.*
 import kotlin.math.roundToInt
 
@@ -14,7 +16,7 @@ class AppDelegate(private val ui: SampleUI) {
             }
 
             // setup conversion
-            euroAmountEntry.onActivate { convert() }
+            euroAmountEntry.asInitiallyUnowned.asObject.onActivate { convert() }
             convertButton.onClick { convert() }
 
             // show UI

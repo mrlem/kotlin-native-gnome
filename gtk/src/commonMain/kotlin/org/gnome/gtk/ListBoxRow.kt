@@ -1,18 +1,19 @@
 // TODO - implement:
-//   changed
-//   get_header
-//   is_selected
 //   set_header
 package org.gnome.gtk
 
 import gtk3.GtkListBoxRow
+import gtk3.gtk_list_box_row_changed
 import gtk3.gtk_list_box_row_get_activatable
+import gtk3.gtk_list_box_row_get_header
 import gtk3.gtk_list_box_row_get_index
 import gtk3.gtk_list_box_row_get_selectable
+import gtk3.gtk_list_box_row_is_selected
 import gtk3.gtk_list_box_row_set_activatable
 import gtk3.gtk_list_box_row_set_selectable
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -32,6 +33,16 @@ public val ListBoxRow.asContainer: Container
 
 public val ListBoxRow.asBin: Bin
   get() = reinterpret()
+
+public fun ListBoxRow.changed(): Unit {
+  gtk_list_box_row_changed(this)
+}
+
+public fun ListBoxRow.getHeader(): Unit {
+  gtk_list_box_row_get_header(this)
+}
+
+public fun ListBoxRow.isSelected(): Boolean = gtk_list_box_row_is_selected(this).toBoolean
 
 public var ListBoxRow.activatable: Boolean
   get() = gtk_list_box_row_get_activatable(this).toBoolean

@@ -2,9 +2,6 @@
 //   add_action_widget
 //   add_button
 //   add_buttons
-//   get_action_area
-//   get_content_area
-//   get_message_type
 //   response
 //   set_message_type
 //   set_response_sensitive
@@ -12,11 +9,15 @@
 package org.gnome.gtk
 
 import gtk3.GtkInfoBar
+import gtk3.gtk_info_bar_get_action_area
+import gtk3.gtk_info_bar_get_content_area
+import gtk3.gtk_info_bar_get_message_type
 import gtk3.gtk_info_bar_get_revealed
 import gtk3.gtk_info_bar_get_show_close_button
 import gtk3.gtk_info_bar_set_revealed
 import gtk3.gtk_info_bar_set_show_close_button
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -36,6 +37,18 @@ public val InfoBar.asContainer: Container
 
 public val InfoBar.asBox: Box
   get() = reinterpret()
+
+public fun InfoBar.getActionArea(): Unit {
+  gtk_info_bar_get_action_area(this)
+}
+
+public fun InfoBar.getContentArea(): Unit {
+  gtk_info_bar_get_content_area(this)
+}
+
+public fun InfoBar.getMessageType(): Unit {
+  gtk_info_bar_get_message_type(this)
+}
 
 public var InfoBar.revealed: Boolean
   get() = gtk_info_bar_get_revealed(this).toBoolean

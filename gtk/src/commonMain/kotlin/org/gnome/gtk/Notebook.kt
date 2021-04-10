@@ -9,17 +9,12 @@
 //   get_tab_detachable
 //   get_tab_label
 //   get_tab_label_text
-//   get_tab_pos
 //   get_tab_reorderable
 //   insert_page
 //   insert_page_menu
-//   next_page
 //   page_num
-//   popup_disable
-//   popup_enable
 //   prepend_page
 //   prepend_page_menu
-//   prev_page
 //   remove_page
 //   reorder_child
 //   set_action_widget
@@ -40,7 +35,12 @@ import gtk3.gtk_notebook_get_scrollable
 import gtk3.gtk_notebook_get_show_border
 import gtk3.gtk_notebook_get_show_tabs
 import gtk3.gtk_notebook_get_tab_hborder
+import gtk3.gtk_notebook_get_tab_pos
 import gtk3.gtk_notebook_get_tab_vborder
+import gtk3.gtk_notebook_next_page
+import gtk3.gtk_notebook_popup_disable
+import gtk3.gtk_notebook_popup_enable
+import gtk3.gtk_notebook_prev_page
 import gtk3.gtk_notebook_set_current_page
 import gtk3.gtk_notebook_set_group_name
 import gtk3.gtk_notebook_set_scrollable
@@ -50,6 +50,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.UShort
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -67,6 +68,26 @@ public val Notebook.asWidget: Widget
 
 public val Notebook.asContainer: Container
   get() = reinterpret()
+
+public fun Notebook.getTabPos(): Unit {
+  gtk_notebook_get_tab_pos(this)
+}
+
+public fun Notebook.nextPage(): Unit {
+  gtk_notebook_next_page(this)
+}
+
+public fun Notebook.popupDisable(): Unit {
+  gtk_notebook_popup_disable(this)
+}
+
+public fun Notebook.popupEnable(): Unit {
+  gtk_notebook_popup_enable(this)
+}
+
+public fun Notebook.prevPage(): Unit {
+  gtk_notebook_prev_page(this)
+}
 
 public var Notebook.currentPage: Int
   get() = gtk_notebook_get_current_page(this)

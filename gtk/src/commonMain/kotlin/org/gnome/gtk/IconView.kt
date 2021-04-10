@@ -9,18 +9,13 @@
 //   get_drag_dest_item
 //   get_item_at_pos
 //   get_item_column
-//   get_item_orientation
 //   get_item_row
-//   get_model
 //   get_path_at_pos
-//   get_selected_items
-//   get_selection_mode
 //   get_tooltip_context
 //   get_visible_range
 //   item_activated
 //   path_is_selected
 //   scroll_to_path
-//   select_all
 //   select_path
 //   selected_foreach
 //   set_cursor
@@ -30,26 +25,28 @@
 //   set_selection_mode
 //   set_tooltip_cell
 //   set_tooltip_item
-//   unselect_all
 //   unselect_path
-//   unset_model_drag_dest
-//   unset_model_drag_source
 package org.gnome.gtk
 
 import gtk3.GtkIconView
 import gtk3.gtk_icon_view_get_activate_on_single_click
 import gtk3.gtk_icon_view_get_column_spacing
 import gtk3.gtk_icon_view_get_columns
+import gtk3.gtk_icon_view_get_item_orientation
 import gtk3.gtk_icon_view_get_item_padding
 import gtk3.gtk_icon_view_get_item_width
 import gtk3.gtk_icon_view_get_margin
 import gtk3.gtk_icon_view_get_markup_column
+import gtk3.gtk_icon_view_get_model
 import gtk3.gtk_icon_view_get_pixbuf_column
 import gtk3.gtk_icon_view_get_reorderable
 import gtk3.gtk_icon_view_get_row_spacing
+import gtk3.gtk_icon_view_get_selected_items
+import gtk3.gtk_icon_view_get_selection_mode
 import gtk3.gtk_icon_view_get_spacing
 import gtk3.gtk_icon_view_get_text_column
 import gtk3.gtk_icon_view_get_tooltip_column
+import gtk3.gtk_icon_view_select_all
 import gtk3.gtk_icon_view_set_activate_on_single_click
 import gtk3.gtk_icon_view_set_column_spacing
 import gtk3.gtk_icon_view_set_columns
@@ -63,8 +60,12 @@ import gtk3.gtk_icon_view_set_row_spacing
 import gtk3.gtk_icon_view_set_spacing
 import gtk3.gtk_icon_view_set_text_column
 import gtk3.gtk_icon_view_set_tooltip_column
+import gtk3.gtk_icon_view_unselect_all
+import gtk3.gtk_icon_view_unset_model_drag_dest
+import gtk3.gtk_icon_view_unset_model_drag_source
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -81,6 +82,38 @@ public val IconView.asWidget: Widget
 
 public val IconView.asContainer: Container
   get() = reinterpret()
+
+public fun IconView.getItemOrientation(): Unit {
+  gtk_icon_view_get_item_orientation(this)
+}
+
+public fun IconView.getModel(): Unit {
+  gtk_icon_view_get_model(this)
+}
+
+public fun IconView.getSelectedItems(): Unit {
+  gtk_icon_view_get_selected_items(this)
+}
+
+public fun IconView.getSelectionMode(): Unit {
+  gtk_icon_view_get_selection_mode(this)
+}
+
+public fun IconView.selectAll(): Unit {
+  gtk_icon_view_select_all(this)
+}
+
+public fun IconView.unselectAll(): Unit {
+  gtk_icon_view_unselect_all(this)
+}
+
+public fun IconView.unsetModelDragDest(): Unit {
+  gtk_icon_view_unset_model_drag_dest(this)
+}
+
+public fun IconView.unsetModelDragSource(): Unit {
+  gtk_icon_view_unset_model_drag_source(this)
+}
 
 public var IconView.activateOnSingleClick: Boolean
   get() = gtk_icon_view_get_activate_on_single_click(this).toBoolean

@@ -1,9 +1,10 @@
 // TODO - implement:
-//   get_group
 //   set_group
 package org.gnome.gtk
 
 import gtk3.GtkRadioToolButton
+import gtk3.gtk_radio_tool_button_get_group
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -30,3 +31,7 @@ public val RadioToolButton.asToolButton: ToolButton
 
 public val RadioToolButton.asToggleToolButton: ToggleToolButton
   get() = reinterpret()
+
+public fun RadioToolButton.getGroup(): Unit {
+  gtk_radio_tool_button_get_group(this)
+}

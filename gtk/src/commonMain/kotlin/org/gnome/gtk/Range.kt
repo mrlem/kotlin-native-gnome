@@ -1,9 +1,6 @@
 // TODO - implement:
-//   get_adjustment
-//   get_lower_stepper_sensitivity
 //   get_range_rect
 //   get_slider_range
-//   get_upper_stepper_sensitivity
 //   set_adjustment
 //   set_increments
 //   set_lower_stepper_sensitivity
@@ -12,14 +9,17 @@
 package org.gnome.gtk
 
 import gtk3.GtkRange
+import gtk3.gtk_range_get_adjustment
 import gtk3.gtk_range_get_fill_level
 import gtk3.gtk_range_get_flippable
 import gtk3.gtk_range_get_inverted
+import gtk3.gtk_range_get_lower_stepper_sensitivity
 import gtk3.gtk_range_get_min_slider_size
 import gtk3.gtk_range_get_restrict_to_fill_level
 import gtk3.gtk_range_get_round_digits
 import gtk3.gtk_range_get_show_fill_level
 import gtk3.gtk_range_get_slider_size_fixed
+import gtk3.gtk_range_get_upper_stepper_sensitivity
 import gtk3.gtk_range_get_value
 import gtk3.gtk_range_set_fill_level
 import gtk3.gtk_range_set_flippable
@@ -33,6 +33,7 @@ import gtk3.gtk_range_set_value
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -46,6 +47,18 @@ public val Range.asInitiallyUnowned: InitiallyUnowned
 
 public val Range.asWidget: Widget
   get() = reinterpret()
+
+public fun Range.getAdjustment(): Unit {
+  gtk_range_get_adjustment(this)
+}
+
+public fun Range.getLowerStepperSensitivity(): Unit {
+  gtk_range_get_lower_stepper_sensitivity(this)
+}
+
+public fun Range.getUpperStepperSensitivity(): Unit {
+  gtk_range_get_upper_stepper_sensitivity(this)
+}
 
 public var Range.fillLevel: Double
   get() = gtk_range_get_fill_level(this)

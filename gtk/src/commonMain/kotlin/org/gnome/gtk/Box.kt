@@ -1,6 +1,4 @@
 // TODO - implement:
-//   get_baseline_position
-//   get_center_widget
 //   pack_end
 //   pack_start
 //   query_child_packing
@@ -11,12 +9,15 @@
 package org.gnome.gtk
 
 import gtk3.GtkBox
+import gtk3.gtk_box_get_baseline_position
+import gtk3.gtk_box_get_center_widget
 import gtk3.gtk_box_get_homogeneous
 import gtk3.gtk_box_get_spacing
 import gtk3.gtk_box_set_homogeneous
 import gtk3.gtk_box_set_spacing
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -33,6 +34,14 @@ public val Box.asWidget: Widget
 
 public val Box.asContainer: Container
   get() = reinterpret()
+
+public fun Box.getBaselinePosition(): Unit {
+  gtk_box_get_baseline_position(this)
+}
+
+public fun Box.getCenterWidget(): Unit {
+  gtk_box_get_center_widget(this)
+}
 
 public var Box.homogeneous: Boolean
   get() = gtk_box_get_homogeneous(this).toBoolean

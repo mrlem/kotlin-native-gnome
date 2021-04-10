@@ -1,8 +1,4 @@
 // TODO - implement:
-//   get_attributes
-//   get_buffer
-//   get_completion
-//   get_cursor_hadjustment
 //   get_icon_activatable
 //   get_icon_area
 //   get_icon_at_pos
@@ -14,19 +10,10 @@
 //   get_icon_storage_type
 //   get_icon_tooltip_markup
 //   get_icon_tooltip_text
-//   get_inner_border
-//   get_input_hints
-//   get_input_purpose
-//   get_invisible_char
-//   get_layout
 //   get_layout_offsets
-//   get_tabs
 //   get_text_area
-//   grab_focus_without_selecting
 //   im_context_filter_keypress
 //   layout_index_to_text_index
-//   progress_pulse
-//   reset_im_context
 //   set_attributes
 //   set_buffer
 //   set_completion
@@ -46,24 +33,35 @@
 //   set_invisible_char
 //   set_tabs
 //   text_index_to_layout_index
-//   unset_invisible_char
 package org.gnome.gtk
 
 import gtk3.GtkEntry
 import gtk3.gtk_entry_get_activates_default
 import gtk3.gtk_entry_get_alignment
+import gtk3.gtk_entry_get_attributes
+import gtk3.gtk_entry_get_buffer
+import gtk3.gtk_entry_get_completion
 import gtk3.gtk_entry_get_current_icon_drag_source
+import gtk3.gtk_entry_get_cursor_hadjustment
 import gtk3.gtk_entry_get_has_frame
+import gtk3.gtk_entry_get_input_hints
+import gtk3.gtk_entry_get_input_purpose
+import gtk3.gtk_entry_get_invisible_char
+import gtk3.gtk_entry_get_layout
 import gtk3.gtk_entry_get_max_length
 import gtk3.gtk_entry_get_max_width_chars
 import gtk3.gtk_entry_get_overwrite_mode
 import gtk3.gtk_entry_get_placeholder_text
 import gtk3.gtk_entry_get_progress_fraction
 import gtk3.gtk_entry_get_progress_pulse_step
+import gtk3.gtk_entry_get_tabs
 import gtk3.gtk_entry_get_text
 import gtk3.gtk_entry_get_text_length
 import gtk3.gtk_entry_get_visibility
 import gtk3.gtk_entry_get_width_chars
+import gtk3.gtk_entry_grab_focus_without_selecting
+import gtk3.gtk_entry_progress_pulse
+import gtk3.gtk_entry_reset_im_context
 import gtk3.gtk_entry_set_activates_default
 import gtk3.gtk_entry_set_alignment
 import gtk3.gtk_entry_set_has_frame
@@ -76,19 +74,17 @@ import gtk3.gtk_entry_set_progress_pulse_step
 import gtk3.gtk_entry_set_text
 import gtk3.gtk_entry_set_visibility
 import gtk3.gtk_entry_set_width_chars
+import gtk3.gtk_entry_unset_invisible_char
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.String
-import kotlin.UInt
+import kotlin.UShort
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.convert
 import kotlinx.cinterop.reinterpret
-import kotlinx.cinterop.toKString
 import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.asObject
-import org.gnome.glib.gobject.connect
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 import org.gnome.glib.toKString
@@ -100,6 +96,58 @@ public val Entry.asInitiallyUnowned: InitiallyUnowned
 
 public val Entry.asWidget: Widget
   get() = reinterpret()
+
+public fun Entry.getAttributes(): Unit {
+  gtk_entry_get_attributes(this)
+}
+
+public fun Entry.getBuffer(): Unit {
+  gtk_entry_get_buffer(this)
+}
+
+public fun Entry.getCompletion(): Unit {
+  gtk_entry_get_completion(this)
+}
+
+public fun Entry.getCursorHadjustment(): Unit {
+  gtk_entry_get_cursor_hadjustment(this)
+}
+
+public fun Entry.getInputHints(): Unit {
+  gtk_entry_get_input_hints(this)
+}
+
+public fun Entry.getInputPurpose(): Unit {
+  gtk_entry_get_input_purpose(this)
+}
+
+public fun Entry.getInvisibleChar(): Unit {
+  gtk_entry_get_invisible_char(this)
+}
+
+public fun Entry.getLayout(): Unit {
+  gtk_entry_get_layout(this)
+}
+
+public fun Entry.getTabs(): Unit {
+  gtk_entry_get_tabs(this)
+}
+
+public fun Entry.grabFocusWithoutSelecting(): Unit {
+  gtk_entry_grab_focus_without_selecting(this)
+}
+
+public fun Entry.progressPulse(): Unit {
+  gtk_entry_progress_pulse(this)
+}
+
+public fun Entry.resetImContext(): Unit {
+  gtk_entry_reset_im_context(this)
+}
+
+public fun Entry.unsetInvisibleChar(): Unit {
+  gtk_entry_unset_invisible_char(this)
+}
 
 public var Entry.activatesDefault: Boolean
   get() = gtk_entry_get_activates_default(this).toBoolean
@@ -178,12 +226,3 @@ public val Entry.currentIconDragSource: Int
 
 public val Entry.textLength: UShort
   get() = gtk_entry_get_text_length(this)
-
-///////////////////////////////////////////////////////////////////////////
-// Events handlers (not generated)
-///////////////////////////////////////////////////////////////////////////
-
-fun Entry.onActivate(onActivate: (Entry) -> Unit): Entry {
-  asInitiallyUnowned.asObject.connect("activate") { onActivate(this) }
-  return this
-}

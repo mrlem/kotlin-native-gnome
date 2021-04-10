@@ -1,12 +1,6 @@
 // TODO - implement:
 //   bind_model
-//   get_constrain_to
-//   get_default_widget
 //   get_pointing_to
-//   get_position
-//   get_relative_to
-//   popdown
-//   popup
 //   set_constrain_to
 //   set_default_widget
 //   set_pointing_to
@@ -15,11 +9,18 @@
 package org.gnome.gtk
 
 import gtk3.GtkPopover
+import gtk3.gtk_popover_get_constrain_to
+import gtk3.gtk_popover_get_default_widget
 import gtk3.gtk_popover_get_modal
+import gtk3.gtk_popover_get_position
+import gtk3.gtk_popover_get_relative_to
 import gtk3.gtk_popover_get_transitions_enabled
+import gtk3.gtk_popover_popdown
+import gtk3.gtk_popover_popup
 import gtk3.gtk_popover_set_modal
 import gtk3.gtk_popover_set_transitions_enabled
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -39,6 +40,30 @@ public val Popover.asContainer: Container
 
 public val Popover.asBin: Bin
   get() = reinterpret()
+
+public fun Popover.getConstrainTo(): Unit {
+  gtk_popover_get_constrain_to(this)
+}
+
+public fun Popover.getDefaultWidget(): Unit {
+  gtk_popover_get_default_widget(this)
+}
+
+public fun Popover.getPosition(): Unit {
+  gtk_popover_get_position(this)
+}
+
+public fun Popover.getRelativeTo(): Unit {
+  gtk_popover_get_relative_to(this)
+}
+
+public fun Popover.popdown(): Unit {
+  gtk_popover_popdown(this)
+}
+
+public fun Popover.popup(): Unit {
+  gtk_popover_popup(this)
+}
 
 public var Popover.modal: Boolean
   get() = gtk_popover_get_modal(this).toBoolean

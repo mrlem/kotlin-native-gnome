@@ -7,8 +7,6 @@ import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GLIB_PACKAGE_NAME
 import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_CINTEROP_PACKAGE_NAME
 import org.mrlem.gnome.gir.model.ClassDefinition
 import org.mrlem.gnome.gir.model.MemberDefinition
-import org.mrlem.gnome.gir.parser.xml.Parser.Companion.GETTER_PREFIX
-import org.mrlem.gnome.gir.parser.xml.Parser.Companion.SETTER_PREFIX
 import java.io.File
 
 class BindingGenerator {
@@ -53,7 +51,7 @@ class BindingGenerator {
                             is MemberDefinition.Property -> addProperty(className, definition.cPrefix, memberDefinition)
                             is MemberDefinition.Constructor -> Unit // TODO
                             is MemberDefinition.EventHandler -> Unit // TODO
-                            is MemberDefinition.Method -> Unit // TODO
+                            is MemberDefinition.Method -> addMethod(className, definition.cPrefix, memberDefinition)
                             is MemberDefinition.PropertyGetter, // transient
                             is MemberDefinition.PropertySetter, // transient
                             is MemberDefinition.Todo -> Unit    // already processed
@@ -95,24 +93,19 @@ class BindingGenerator {
                 .getter(
                     FunSpec.getterBuilder()
                         .apply {
+                            val gtkFunction = MemberName("gtk3", propertyDefinition.getterFunctionName)
                             if (toKType == null) {
-                                addStatement(
-                                    "return %M(this)",
-                                    MemberName("gtk3", "gtk_${classPrefix}_${GETTER_PREFIX}${propertyDefinition.name}")
-                                )
+                                addStatement("return %M(this)", gtkFunction)
                             } else {
-                                addStatement(
-                                    "return %M(this).%M",
-                                    MemberName("gtk3", "gtk_${classPrefix}_${GETTER_PREFIX}${propertyDefinition.name}"),
-                                    MemberName(GLIB_PACKAGE_NAME, toKType)
-                                )
+                                addStatement("return %M(this).%M", gtkFunction, MemberName(GLIB_PACKAGE_NAME, toKType))
                             }
                         }
                         .build()
                 )
                 .apply {
-                    if (!propertyDefinition.readOnly) {
+                    propertyDefinition.setterFunctionName?.let { setterFunctionName ->
                         val toGType = propertyDefinition.type.toGTypeConverter
+                        val gtkFunction = MemberName("gtk3", setterFunctionName)
 
                         mutable()
                         setter(
@@ -120,20 +113,38 @@ class BindingGenerator {
                                 .addParameter("value", propertyDefinition.type.kType)
                                 .apply {
                                     if (toGType == null) {
-                                        addStatement(
-                                            "%M(this, value)",
-                                            MemberName("gtk3", "gtk_${classPrefix}_${SETTER_PREFIX}${propertyDefinition.name}")
-                                        )
+                                        addStatement("%M(this, value)", gtkFunction)
                                     } else {
-                                        addStatement(
-                                            "%M(this, value.%M)",
-                                            MemberName("gtk3", "gtk_${classPrefix}_${SETTER_PREFIX}${propertyDefinition.name}"),
-                                            MemberName(GLIB_PACKAGE_NAME, toGType)
-                                        )
+                                        addStatement("%M(this, value.%M)", gtkFunction, MemberName(GLIB_PACKAGE_NAME, toGType))
                                     }
                                 }
                                 .build()
                         )
+                    }
+                }
+                .build()
+        )
+    }
+
+    private fun FileSpec.Builder.addMethod(className: ClassName, classPrefix: String, methodDefinition: MemberDefinition.Method) {
+        if (methodDefinition.deprecated) return
+
+        val name = methodDefinition.name.snakeCaseToCamelCase.decapitalize()
+        val returnToKType = methodDefinition.returnType?.toKTypeConverter
+        // TODO - handle params
+        addFunction(
+            FunSpec.builder(name)
+                .receiver(className)
+                .apply {
+                    val returnType = methodDefinition.returnType ?: return@apply
+                    returns(returnType.kType)
+                }
+                .apply {
+                    val gtkFunction = MemberName("gtk3", methodDefinition.functionName)
+                    when {
+                        methodDefinition.returnType == null -> addStatement("%M(this)", gtkFunction)
+                        returnToKType == null -> addStatement("return %M(this)", gtkFunction)
+                        else -> addStatement("return %M(this).%M", gtkFunction, MemberName(GLIB_PACKAGE_NAME, returnToKType))
                     }
                 }
                 .build()

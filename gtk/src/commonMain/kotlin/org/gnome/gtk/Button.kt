@@ -1,14 +1,5 @@
 // TODO - implement:
-//   clicked
-//   enter
 //   get_alignment
-//   get_event_window
-//   get_image
-//   get_image_position
-//   get_relief
-//   leave
-//   pressed
-//   released
 //   set_alignment
 //   set_image
 //   set_image_position
@@ -18,6 +9,7 @@ package org.gnome.gtk
 import gtk3.*
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -40,6 +32,26 @@ public val Button.asContainer: Container
 
 public val Button.asBin: Bin
   get() = reinterpret()
+
+public fun Button.clicked(): Unit {
+  gtk_button_clicked(this)
+}
+
+public fun Button.getEventWindow(): Unit {
+  gtk_button_get_event_window(this)
+}
+
+public fun Button.getImage(): Unit {
+  gtk_button_get_image(this)
+}
+
+public fun Button.getImagePosition(): Unit {
+  gtk_button_get_image_position(this)
+}
+
+public fun Button.getRelief(): Unit {
+  gtk_button_get_relief(this)
+}
 
 public var Button.alwaysShowImage: Boolean
   get() = gtk_button_get_always_show_image(this).toBoolean

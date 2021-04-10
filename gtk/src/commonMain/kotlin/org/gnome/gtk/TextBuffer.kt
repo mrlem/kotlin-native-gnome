@@ -4,7 +4,6 @@
 //   apply_tag
 //   apply_tag_by_name
 //   backspace
-//   begin_user_action
 //   copy_clipboard
 //   create_child_anchor
 //   create_mark
@@ -18,12 +17,9 @@
 //   deserialize
 //   deserialize_get_can_create_tags
 //   deserialize_set_can_create_tags
-//   end_user_action
 //   get_bounds
-//   get_copy_target_list
 //   get_deserialize_formats
 //   get_end_iter
-//   get_insert
 //   get_iter_at_child_anchor
 //   get_iter_at_line
 //   get_iter_at_line_index
@@ -31,13 +27,10 @@
 //   get_iter_at_mark
 //   get_iter_at_offset
 //   get_mark
-//   get_paste_target_list
-//   get_selection_bound
 //   get_selection_bounds
 //   get_serialize_formats
 //   get_slice
 //   get_start_iter
-//   get_tag_table
 //   get_text
 //   insert
 //   insert_at_cursor
@@ -70,13 +63,21 @@
 package org.gnome.gtk
 
 import gtk3.GtkTextBuffer
+import gtk3.gtk_text_buffer_begin_user_action
+import gtk3.gtk_text_buffer_end_user_action
 import gtk3.gtk_text_buffer_get_char_count
+import gtk3.gtk_text_buffer_get_copy_target_list
 import gtk3.gtk_text_buffer_get_has_selection
+import gtk3.gtk_text_buffer_get_insert
 import gtk3.gtk_text_buffer_get_line_count
 import gtk3.gtk_text_buffer_get_modified
+import gtk3.gtk_text_buffer_get_paste_target_list
+import gtk3.gtk_text_buffer_get_selection_bound
+import gtk3.gtk_text_buffer_get_tag_table
 import gtk3.gtk_text_buffer_set_modified
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.Object
@@ -87,6 +88,34 @@ public typealias TextBuffer = CPointer<GtkTextBuffer>
 
 public val TextBuffer.asObject: Object
   get() = reinterpret()
+
+public fun TextBuffer.beginUserAction(): Unit {
+  gtk_text_buffer_begin_user_action(this)
+}
+
+public fun TextBuffer.endUserAction(): Unit {
+  gtk_text_buffer_end_user_action(this)
+}
+
+public fun TextBuffer.getCopyTargetList(): Unit {
+  gtk_text_buffer_get_copy_target_list(this)
+}
+
+public fun TextBuffer.getInsert(): Unit {
+  gtk_text_buffer_get_insert(this)
+}
+
+public fun TextBuffer.getPasteTargetList(): Unit {
+  gtk_text_buffer_get_paste_target_list(this)
+}
+
+public fun TextBuffer.getSelectionBound(): Unit {
+  gtk_text_buffer_get_selection_bound(this)
+}
+
+public fun TextBuffer.getTagTable(): Unit {
+  gtk_text_buffer_get_tag_table(this)
+}
 
 public var TextBuffer.modified: Boolean
   get() = gtk_text_buffer_get_modified(this).toBoolean

@@ -1,23 +1,15 @@
 // TODO - implement:
-//   copy
 //   foreach
 //   get
 //   get_bool
 //   get_double
 //   get_double_with_default
-//   get_duplex
 //   get_int
 //   get_int_with_default
 //   get_length
-//   get_number_up_layout
-//   get_orientation
 //   get_page_ranges
-//   get_page_set
 //   get_paper_height
-//   get_paper_size
 //   get_paper_width
-//   get_print_pages
-//   get_quality
 //   has_key
 //   load_file
 //   load_key_file
@@ -38,22 +30,29 @@
 //   set_quality
 //   set_resolution_xy
 //   to_file
-//   to_gvariant
 //   to_key_file
 //   unset
 package org.gnome.gtk
 
 import gtk3.GtkPrintSettings
+import gtk3.gtk_print_settings_copy
 import gtk3.gtk_print_settings_get_collate
 import gtk3.gtk_print_settings_get_default_source
 import gtk3.gtk_print_settings_get_dither
+import gtk3.gtk_print_settings_get_duplex
 import gtk3.gtk_print_settings_get_finishings
 import gtk3.gtk_print_settings_get_media_type
 import gtk3.gtk_print_settings_get_n_copies
 import gtk3.gtk_print_settings_get_number_up
+import gtk3.gtk_print_settings_get_number_up_layout
+import gtk3.gtk_print_settings_get_orientation
 import gtk3.gtk_print_settings_get_output_bin
+import gtk3.gtk_print_settings_get_page_set
+import gtk3.gtk_print_settings_get_paper_size
+import gtk3.gtk_print_settings_get_print_pages
 import gtk3.gtk_print_settings_get_printer
 import gtk3.gtk_print_settings_get_printer_lpi
+import gtk3.gtk_print_settings_get_quality
 import gtk3.gtk_print_settings_get_resolution
 import gtk3.gtk_print_settings_get_resolution_x
 import gtk3.gtk_print_settings_get_resolution_y
@@ -74,10 +73,12 @@ import gtk3.gtk_print_settings_set_resolution
 import gtk3.gtk_print_settings_set_reverse
 import gtk3.gtk_print_settings_set_scale
 import gtk3.gtk_print_settings_set_use_color
+import gtk3.gtk_print_settings_to_gvariant
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.Object
@@ -89,6 +90,42 @@ public typealias PrintSettings = CPointer<GtkPrintSettings>
 
 public val PrintSettings.asObject: Object
   get() = reinterpret()
+
+public fun PrintSettings.copy(): Unit {
+  gtk_print_settings_copy(this)
+}
+
+public fun PrintSettings.getDuplex(): Unit {
+  gtk_print_settings_get_duplex(this)
+}
+
+public fun PrintSettings.getNumberUpLayout(): Unit {
+  gtk_print_settings_get_number_up_layout(this)
+}
+
+public fun PrintSettings.getOrientation(): Unit {
+  gtk_print_settings_get_orientation(this)
+}
+
+public fun PrintSettings.getPageSet(): Unit {
+  gtk_print_settings_get_page_set(this)
+}
+
+public fun PrintSettings.getPaperSize(): Unit {
+  gtk_print_settings_get_paper_size(this)
+}
+
+public fun PrintSettings.getPrintPages(): Unit {
+  gtk_print_settings_get_print_pages(this)
+}
+
+public fun PrintSettings.getQuality(): Unit {
+  gtk_print_settings_get_quality(this)
+}
+
+public fun PrintSettings.toGvariant(): Unit {
+  gtk_print_settings_to_gvariant(this)
+}
 
 public var PrintSettings.collate: Boolean
   get() = gtk_print_settings_get_collate(this).toBoolean

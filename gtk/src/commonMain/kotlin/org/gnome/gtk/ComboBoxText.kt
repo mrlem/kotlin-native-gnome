@@ -6,12 +6,13 @@
 //   prepend
 //   prepend_text
 //   remove
-//   remove_all
 package org.gnome.gtk
 
 import gtk3.GtkComboBoxText
 import gtk3.gtk_combo_box_text_get_active_text
+import gtk3.gtk_combo_box_text_remove_all
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -33,6 +34,10 @@ public val ComboBoxText.asBin: Bin
 
 public val ComboBoxText.asComboBox: ComboBox
   get() = reinterpret()
+
+public fun ComboBoxText.removeAll(): Unit {
+  gtk_combo_box_text_remove_all(this)
+}
 
 public val ComboBoxText.activeText: String?
   get() = gtk_combo_box_text_get_active_text(this).toKString

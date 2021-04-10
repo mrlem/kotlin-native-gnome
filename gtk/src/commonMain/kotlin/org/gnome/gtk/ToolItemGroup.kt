@@ -1,9 +1,6 @@
 // TODO - implement:
 //   get_drop_item
-//   get_ellipsize
-//   get_header_relief
 //   get_item_position
-//   get_label_widget
 //   get_nth_item
 //   insert
 //   set_ellipsize
@@ -14,13 +11,17 @@ package org.gnome.gtk
 
 import gtk3.GtkToolItemGroup
 import gtk3.gtk_tool_item_group_get_collapsed
+import gtk3.gtk_tool_item_group_get_ellipsize
+import gtk3.gtk_tool_item_group_get_header_relief
 import gtk3.gtk_tool_item_group_get_label
+import gtk3.gtk_tool_item_group_get_label_widget
 import gtk3.gtk_tool_item_group_get_n_items
 import gtk3.gtk_tool_item_group_set_collapsed
 import gtk3.gtk_tool_item_group_set_label
 import kotlin.Boolean
 import kotlin.String
 import kotlin.UInt
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -38,6 +39,18 @@ public val ToolItemGroup.asWidget: Widget
 
 public val ToolItemGroup.asContainer: Container
   get() = reinterpret()
+
+public fun ToolItemGroup.getEllipsize(): Unit {
+  gtk_tool_item_group_get_ellipsize(this)
+}
+
+public fun ToolItemGroup.getHeaderRelief(): Unit {
+  gtk_tool_item_group_get_header_relief(this)
+}
+
+public fun ToolItemGroup.getLabelWidget(): Unit {
+  gtk_tool_item_group_get_label_widget(this)
+}
 
 public var ToolItemGroup.collapsed: Boolean
   get() = gtk_tool_item_group_get_collapsed(this).toBoolean

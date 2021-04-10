@@ -1,30 +1,29 @@
 // TODO - implement:
 //   add_with_viewport
-//   get_hadjustment
-//   get_hscrollbar
-//   get_placement
 //   get_policy
-//   get_shadow_type
-//   get_vadjustment
-//   get_vscrollbar
 //   set_hadjustment
 //   set_placement
 //   set_policy
 //   set_shadow_type
 //   set_vadjustment
-//   unset_placement
 package org.gnome.gtk
 
 import gtk3.GtkScrolledWindow
 import gtk3.gtk_scrolled_window_get_capture_button_press
+import gtk3.gtk_scrolled_window_get_hadjustment
+import gtk3.gtk_scrolled_window_get_hscrollbar
 import gtk3.gtk_scrolled_window_get_kinetic_scrolling
 import gtk3.gtk_scrolled_window_get_max_content_height
 import gtk3.gtk_scrolled_window_get_max_content_width
 import gtk3.gtk_scrolled_window_get_min_content_height
 import gtk3.gtk_scrolled_window_get_min_content_width
 import gtk3.gtk_scrolled_window_get_overlay_scrolling
+import gtk3.gtk_scrolled_window_get_placement
 import gtk3.gtk_scrolled_window_get_propagate_natural_height
 import gtk3.gtk_scrolled_window_get_propagate_natural_width
+import gtk3.gtk_scrolled_window_get_shadow_type
+import gtk3.gtk_scrolled_window_get_vadjustment
+import gtk3.gtk_scrolled_window_get_vscrollbar
 import gtk3.gtk_scrolled_window_set_capture_button_press
 import gtk3.gtk_scrolled_window_set_kinetic_scrolling
 import gtk3.gtk_scrolled_window_set_max_content_height
@@ -34,8 +33,10 @@ import gtk3.gtk_scrolled_window_set_min_content_width
 import gtk3.gtk_scrolled_window_set_overlay_scrolling
 import gtk3.gtk_scrolled_window_set_propagate_natural_height
 import gtk3.gtk_scrolled_window_set_propagate_natural_width
+import gtk3.gtk_scrolled_window_unset_placement
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -55,6 +56,34 @@ public val ScrolledWindow.asContainer: Container
 
 public val ScrolledWindow.asBin: Bin
   get() = reinterpret()
+
+public fun ScrolledWindow.getHadjustment(): Unit {
+  gtk_scrolled_window_get_hadjustment(this)
+}
+
+public fun ScrolledWindow.getHscrollbar(): Unit {
+  gtk_scrolled_window_get_hscrollbar(this)
+}
+
+public fun ScrolledWindow.getPlacement(): Unit {
+  gtk_scrolled_window_get_placement(this)
+}
+
+public fun ScrolledWindow.getShadowType(): Unit {
+  gtk_scrolled_window_get_shadow_type(this)
+}
+
+public fun ScrolledWindow.getVadjustment(): Unit {
+  gtk_scrolled_window_get_vadjustment(this)
+}
+
+public fun ScrolledWindow.getVscrollbar(): Unit {
+  gtk_scrolled_window_get_vscrollbar(this)
+}
+
+public fun ScrolledWindow.unsetPlacement(): Unit {
+  gtk_scrolled_window_unset_placement(this)
+}
 
 public var ScrolledWindow.captureButtonPress: Boolean
   get() = gtk_scrolled_window_get_capture_button_press(this).toBoolean

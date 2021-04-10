@@ -1,15 +1,14 @@
 // TODO - implement:
-//   get_bin_window
-//   get_hadjustment
-//   get_shadow_type
-//   get_vadjustment
-//   get_view_window
 //   set_hadjustment
 //   set_shadow_type
 //   set_vadjustment
 package org.gnome.gtk
 
 import gtk3.GtkViewport
+import gtk3.gtk_viewport_get_bin_window
+import gtk3.gtk_viewport_get_shadow_type
+import gtk3.gtk_viewport_get_view_window
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -27,3 +26,15 @@ public val Viewport.asContainer: Container
 
 public val Viewport.asBin: Bin
   get() = reinterpret()
+
+public fun Viewport.getBinWindow(): Unit {
+  gtk_viewport_get_bin_window(this)
+}
+
+public fun Viewport.getShadowType(): Unit {
+  gtk_viewport_get_shadow_type(this)
+}
+
+public fun Viewport.getViewWindow(): Unit {
+  gtk_viewport_get_view_window(this)
+}

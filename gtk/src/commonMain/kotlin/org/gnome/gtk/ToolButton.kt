@@ -1,13 +1,13 @@
 // TODO - implement:
-//   get_icon_widget
-//   get_label_widget
 //   set_icon_widget
 //   set_label_widget
 package org.gnome.gtk
 
 import gtk3.GtkToolButton
 import gtk3.gtk_tool_button_get_icon_name
+import gtk3.gtk_tool_button_get_icon_widget
 import gtk3.gtk_tool_button_get_label
+import gtk3.gtk_tool_button_get_label_widget
 import gtk3.gtk_tool_button_get_stock_id
 import gtk3.gtk_tool_button_get_use_underline
 import gtk3.gtk_tool_button_set_icon_name
@@ -16,11 +16,10 @@ import gtk3.gtk_tool_button_set_stock_id
 import gtk3.gtk_tool_button_set_use_underline
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.asObject
-import org.gnome.glib.gobject.connect
 import org.gnome.glib.toBoolean
 import org.gnome.glib.toInt
 import org.gnome.glib.toKString
@@ -41,6 +40,14 @@ public val ToolButton.asBin: Bin
 
 public val ToolButton.asToolItem: ToolItem
   get() = reinterpret()
+
+public fun ToolButton.getIconWidget(): Unit {
+  gtk_tool_button_get_icon_widget(this)
+}
+
+public fun ToolButton.getLabelWidget(): Unit {
+  gtk_tool_button_get_label_widget(this)
+}
 
 public var ToolButton.iconName: String?
   get() = gtk_tool_button_get_icon_name(this).toKString
@@ -65,12 +72,3 @@ public var ToolButton.useUnderline: Boolean
   set(`value`) {
     gtk_tool_button_set_use_underline(this, value.toInt)
   }
-
-///////////////////////////////////////////////////////////////////////////
-// Event handlers (not generated)
-///////////////////////////////////////////////////////////////////////////
-
-fun ToolButton.onClick(onClick: (ToolButton) -> Unit): ToolButton {
-  asInitiallyUnowned.asObject.connect("clicked") { onClick(this) }
-  return this
-}

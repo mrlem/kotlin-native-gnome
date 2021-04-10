@@ -1,8 +1,8 @@
-// TODO - implement:
-//   get_child
 package org.gnome.gtk
 
 import gtk3.GtkBin
+import gtk3.gtk_bin_get_child
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -17,3 +17,7 @@ public val Bin.asWidget: Widget
 
 public val Bin.asContainer: Container
   get() = reinterpret()
+
+public fun Bin.getChild(): Unit {
+  gtk_bin_get_child(this)
+}

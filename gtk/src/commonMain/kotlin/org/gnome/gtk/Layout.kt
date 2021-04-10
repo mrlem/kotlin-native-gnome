@@ -1,8 +1,5 @@
 // TODO - implement:
-//   get_bin_window
-//   get_hadjustment
 //   get_size
-//   get_vadjustment
 //   move
 //   put
 //   set_hadjustment
@@ -11,6 +8,8 @@
 package org.gnome.gtk
 
 import gtk3.GtkLayout
+import gtk3.gtk_layout_get_bin_window
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -25,3 +24,7 @@ public val Layout.asWidget: Widget
 
 public val Layout.asContainer: Container
   get() = reinterpret()
+
+public fun Layout.getBinWindow(): Unit {
+  gtk_layout_get_bin_window(this)
+}

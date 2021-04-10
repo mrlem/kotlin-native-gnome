@@ -1,11 +1,5 @@
 // TODO - implement:
-//   get_attributes
-//   get_ellipsize
-//   get_justify
-//   get_layout
 //   get_layout_offsets
-//   get_line_wrap_mode
-//   get_mnemonic_widget
 //   get_selection_bounds
 //   select_region
 //   set_attributes
@@ -21,12 +15,18 @@ package org.gnome.gtk
 
 import gtk3.GtkLabel
 import gtk3.gtk_label_get_angle
+import gtk3.gtk_label_get_attributes
 import gtk3.gtk_label_get_current_uri
+import gtk3.gtk_label_get_ellipsize
+import gtk3.gtk_label_get_justify
 import gtk3.gtk_label_get_label
+import gtk3.gtk_label_get_layout
 import gtk3.gtk_label_get_line_wrap
+import gtk3.gtk_label_get_line_wrap_mode
 import gtk3.gtk_label_get_lines
 import gtk3.gtk_label_get_max_width_chars
 import gtk3.gtk_label_get_mnemonic_keyval
+import gtk3.gtk_label_get_mnemonic_widget
 import gtk3.gtk_label_get_selectable
 import gtk3.gtk_label_get_single_line_mode
 import gtk3.gtk_label_get_text
@@ -56,6 +56,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.String
 import kotlin.UInt
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -73,6 +74,30 @@ public val Label.asWidget: Widget
 
 public val Label.asMisc: Misc
   get() = reinterpret()
+
+public fun Label.getAttributes(): Unit {
+  gtk_label_get_attributes(this)
+}
+
+public fun Label.getEllipsize(): Unit {
+  gtk_label_get_ellipsize(this)
+}
+
+public fun Label.getJustify(): Unit {
+  gtk_label_get_justify(this)
+}
+
+public fun Label.getLayout(): Unit {
+  gtk_label_get_layout(this)
+}
+
+public fun Label.getLineWrapMode(): Unit {
+  gtk_label_get_line_wrap_mode(this)
+}
+
+public fun Label.getMnemonicWidget(): Unit {
+  gtk_label_get_mnemonic_widget(this)
+}
 
 public var Label.angle: Double
   get() = gtk_label_get_angle(this)

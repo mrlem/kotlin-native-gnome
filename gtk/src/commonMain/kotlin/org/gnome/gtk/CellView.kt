@@ -1,6 +1,4 @@
 // TODO - implement:
-//   get_displayed_row
-//   get_model
 //   get_size_of_row
 //   set_background_color
 //   set_background_rgba
@@ -9,11 +7,14 @@
 package org.gnome.gtk
 
 import gtk3.GtkCellView
+import gtk3.gtk_cell_view_get_displayed_row
 import gtk3.gtk_cell_view_get_draw_sensitive
 import gtk3.gtk_cell_view_get_fit_model
+import gtk3.gtk_cell_view_get_model
 import gtk3.gtk_cell_view_set_draw_sensitive
 import gtk3.gtk_cell_view_set_fit_model
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -27,6 +28,14 @@ public val CellView.asInitiallyUnowned: InitiallyUnowned
 
 public val CellView.asWidget: Widget
   get() = reinterpret()
+
+public fun CellView.getDisplayedRow(): Unit {
+  gtk_cell_view_get_displayed_row(this)
+}
+
+public fun CellView.getModel(): Unit {
+  gtk_cell_view_get_model(this)
+}
 
 public var CellView.drawSensitive: Boolean
   get() = gtk_cell_view_get_draw_sensitive(this).toBoolean

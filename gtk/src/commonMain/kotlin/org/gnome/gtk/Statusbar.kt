@@ -1,6 +1,5 @@
 // TODO - implement:
 //   get_context_id
-//   get_message_area
 //   pop
 //   push
 //   remove
@@ -8,6 +7,8 @@
 package org.gnome.gtk
 
 import gtk3.GtkStatusbar
+import gtk3.gtk_statusbar_get_message_area
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -25,3 +26,7 @@ public val Statusbar.asContainer: Container
 
 public val Statusbar.asBox: Box
   get() = reinterpret()
+
+public fun Statusbar.getMessageArea(): Unit {
+  gtk_statusbar_get_message_area(this)
+}

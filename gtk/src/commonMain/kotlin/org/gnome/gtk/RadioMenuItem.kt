@@ -1,10 +1,11 @@
 // TODO - implement:
-//   get_group
 //   join_group
 //   set_group
 package org.gnome.gtk
 
 import gtk3.GtkRadioMenuItem
+import gtk3.gtk_radio_menu_item_get_group
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -28,3 +29,7 @@ public val RadioMenuItem.asMenuItem: MenuItem
 
 public val RadioMenuItem.asCheckMenuItem: CheckMenuItem
   get() = reinterpret()
+
+public fun RadioMenuItem.getGroup(): Unit {
+  gtk_radio_menu_item_get_group(this)
+}

@@ -1,10 +1,5 @@
 // TODO - implement:
 //   add_credit_section
-//   get_artists
-//   get_authors
-//   get_documenters
-//   get_license_type
-//   get_logo
 //   set_artists
 //   set_authors
 //   set_documenters
@@ -13,9 +8,14 @@
 package org.gnome.gtk
 
 import gtk3.GtkAboutDialog
+import gtk3.gtk_about_dialog_get_artists
+import gtk3.gtk_about_dialog_get_authors
 import gtk3.gtk_about_dialog_get_comments
 import gtk3.gtk_about_dialog_get_copyright
+import gtk3.gtk_about_dialog_get_documenters
 import gtk3.gtk_about_dialog_get_license
+import gtk3.gtk_about_dialog_get_license_type
+import gtk3.gtk_about_dialog_get_logo
 import gtk3.gtk_about_dialog_get_logo_icon_name
 import gtk3.gtk_about_dialog_get_program_name
 import gtk3.gtk_about_dialog_get_translator_credits
@@ -35,6 +35,7 @@ import gtk3.gtk_about_dialog_set_website_label
 import gtk3.gtk_about_dialog_set_wrap_license
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -61,6 +62,26 @@ public val AboutDialog.asWindow: Window
 
 public val AboutDialog.asDialog: Dialog
   get() = reinterpret()
+
+public fun AboutDialog.getArtists(): Unit {
+  gtk_about_dialog_get_artists(this)
+}
+
+public fun AboutDialog.getAuthors(): Unit {
+  gtk_about_dialog_get_authors(this)
+}
+
+public fun AboutDialog.getDocumenters(): Unit {
+  gtk_about_dialog_get_documenters(this)
+}
+
+public fun AboutDialog.getLicenseType(): Unit {
+  gtk_about_dialog_get_license_type(this)
+}
+
+public fun AboutDialog.getLogo(): Unit {
+  gtk_about_dialog_get_logo(this)
+}
 
 public var AboutDialog.comments: String?
   get() = gtk_about_dialog_get_comments(this).toKString

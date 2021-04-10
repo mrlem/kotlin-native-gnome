@@ -1,9 +1,6 @@
 // TODO - implement:
 //   add_shortcut
-//   get_location
 //   get_nth_bookmark
-//   get_open_flags
-//   list_shortcuts
 //   remove_shortcut
 //   set_drop_targets_visible
 //   set_location
@@ -12,6 +9,8 @@ package org.gnome.gtk
 
 import gtk3.GtkPlacesSidebar
 import gtk3.gtk_places_sidebar_get_local_only
+import gtk3.gtk_places_sidebar_get_location
+import gtk3.gtk_places_sidebar_get_open_flags
 import gtk3.gtk_places_sidebar_get_show_connect_to_server
 import gtk3.gtk_places_sidebar_get_show_desktop
 import gtk3.gtk_places_sidebar_get_show_enter_location
@@ -19,6 +18,7 @@ import gtk3.gtk_places_sidebar_get_show_other_locations
 import gtk3.gtk_places_sidebar_get_show_recent
 import gtk3.gtk_places_sidebar_get_show_starred_location
 import gtk3.gtk_places_sidebar_get_show_trash
+import gtk3.gtk_places_sidebar_list_shortcuts
 import gtk3.gtk_places_sidebar_set_local_only
 import gtk3.gtk_places_sidebar_set_show_connect_to_server
 import gtk3.gtk_places_sidebar_set_show_desktop
@@ -28,6 +28,7 @@ import gtk3.gtk_places_sidebar_set_show_recent
 import gtk3.gtk_places_sidebar_set_show_starred_location
 import gtk3.gtk_places_sidebar_set_show_trash
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -50,6 +51,18 @@ public val PlacesSidebar.asBin: Bin
 
 public val PlacesSidebar.asScrolledWindow: ScrolledWindow
   get() = reinterpret()
+
+public fun PlacesSidebar.getLocation(): Unit {
+  gtk_places_sidebar_get_location(this)
+}
+
+public fun PlacesSidebar.getOpenFlags(): Unit {
+  gtk_places_sidebar_get_open_flags(this)
+}
+
+public fun PlacesSidebar.listShortcuts(): Unit {
+  gtk_places_sidebar_list_shortcuts(this)
+}
 
 public var PlacesSidebar.localOnly: Boolean
   get() = gtk_places_sidebar_get_local_only(this).toBoolean

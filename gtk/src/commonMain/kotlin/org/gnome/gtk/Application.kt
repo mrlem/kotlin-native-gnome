@@ -3,16 +3,10 @@
 //   add_window
 //   get_accels_for_action
 //   get_actions_for_accel
-//   get_active_window
-//   get_app_menu
 //   get_menu_by_id
-//   get_menubar
 //   get_window_by_id
-//   get_windows
 //   inhibit
 //   is_inhibited
-//   list_action_descriptions
-//   prefers_app_menu
 //   remove_accelerator
 //   remove_window
 //   set_accels_for_action
@@ -23,14 +17,39 @@ package org.gnome.gtk
 
 import gtk3.*
 import kotlinx.cinterop.*
+import kotlin.Boolean
+import kotlin.Unit
 import org.gnome.glib.gio.asObject
 import org.gnome.glib.gobject.connect
+import org.gnome.glib.toBoolean
 import org.gnome.glib.toKList
 
 public typealias Application = CPointer<GtkApplication>
 
 public val Application.asApplication: org.gnome.glib.gio.Application
   get() = reinterpret()
+
+public fun Application.getActiveWindow(): Unit {
+  gtk_application_get_active_window(this)
+}
+
+public fun Application.getAppMenu(): Unit {
+  gtk_application_get_app_menu(this)
+}
+
+public fun Application.getMenubar(): Unit {
+  gtk_application_get_menubar(this)
+}
+
+public fun Application.getWindows(): Unit {
+  gtk_application_get_windows(this)
+}
+
+public fun Application.listActionDescriptions(): Unit {
+  gtk_application_list_action_descriptions(this)
+}
+
+public fun Application.prefersAppMenu(): Boolean = gtk_application_prefers_app_menu(this).toBoolean
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API (not generated)

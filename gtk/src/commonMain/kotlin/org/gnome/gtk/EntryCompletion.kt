@@ -1,25 +1,25 @@
 // TODO - implement:
-//   complete
 //   compute_prefix
 //   delete_action
-//   get_entry
-//   get_model
 //   insert_action_markup
 //   insert_action_text
-//   insert_prefix
 //   set_match_func
 //   set_model
 package org.gnome.gtk
 
 import gtk3.GtkEntryCompletion
+import gtk3.gtk_entry_completion_complete
 import gtk3.gtk_entry_completion_get_completion_prefix
+import gtk3.gtk_entry_completion_get_entry
 import gtk3.gtk_entry_completion_get_inline_completion
 import gtk3.gtk_entry_completion_get_inline_selection
 import gtk3.gtk_entry_completion_get_minimum_key_length
+import gtk3.gtk_entry_completion_get_model
 import gtk3.gtk_entry_completion_get_popup_completion
 import gtk3.gtk_entry_completion_get_popup_set_width
 import gtk3.gtk_entry_completion_get_popup_single_match
 import gtk3.gtk_entry_completion_get_text_column
+import gtk3.gtk_entry_completion_insert_prefix
 import gtk3.gtk_entry_completion_set_inline_completion
 import gtk3.gtk_entry_completion_set_inline_selection
 import gtk3.gtk_entry_completion_set_minimum_key_length
@@ -30,6 +30,7 @@ import gtk3.gtk_entry_completion_set_text_column
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.Object
@@ -41,6 +42,22 @@ public typealias EntryCompletion = CPointer<GtkEntryCompletion>
 
 public val EntryCompletion.asObject: Object
   get() = reinterpret()
+
+public fun EntryCompletion.complete(): Unit {
+  gtk_entry_completion_complete(this)
+}
+
+public fun EntryCompletion.getEntry(): Unit {
+  gtk_entry_completion_get_entry(this)
+}
+
+public fun EntryCompletion.getModel(): Unit {
+  gtk_entry_completion_get_model(this)
+}
+
+public fun EntryCompletion.insertPrefix(): Unit {
+  gtk_entry_completion_insert_prefix(this)
+}
 
 public var EntryCompletion.inlineCompletion: Boolean
   get() = gtk_entry_completion_get_inline_completion(this).toBoolean

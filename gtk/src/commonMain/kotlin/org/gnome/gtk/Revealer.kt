@@ -1,5 +1,4 @@
 // TODO - implement:
-//   get_transition_type
 //   set_transition_type
 package org.gnome.gtk
 
@@ -7,10 +6,12 @@ import gtk3.GtkRevealer
 import gtk3.gtk_revealer_get_child_revealed
 import gtk3.gtk_revealer_get_reveal_child
 import gtk3.gtk_revealer_get_transition_duration
+import gtk3.gtk_revealer_get_transition_type
 import gtk3.gtk_revealer_set_reveal_child
 import gtk3.gtk_revealer_set_transition_duration
 import kotlin.Boolean
 import kotlin.UInt
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.gobject.InitiallyUnowned
@@ -30,6 +31,10 @@ public val Revealer.asContainer: Container
 
 public val Revealer.asBin: Bin
   get() = reinterpret()
+
+public fun Revealer.getTransitionType(): Unit {
+  gtk_revealer_get_transition_type(this)
+}
 
 public var Revealer.revealChild: Boolean
   get() = gtk_revealer_get_reveal_child(this).toBoolean
