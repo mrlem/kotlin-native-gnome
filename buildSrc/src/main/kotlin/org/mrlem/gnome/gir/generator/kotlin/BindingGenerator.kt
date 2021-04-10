@@ -6,61 +6,84 @@ import org.mrlem.gnome.gir.BindingGeneratorPlugin
 import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GLIB_PACKAGE_NAME
 import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_CINTEROP_PACKAGE_NAME
 import org.mrlem.gnome.gir.model.ClassDefinition
+import org.mrlem.gnome.gir.model.EnumDefinition
 import org.mrlem.gnome.gir.model.MemberDefinition
+import org.mrlem.gnome.gir.model.TopLevelDefinition
 import java.io.File
 
 class BindingGenerator {
 
-    fun generate(definitions: List<ClassDefinition>, destination: File, packageName: String) {
+    fun generate(definitions: List<TopLevelDefinition>, destination: File, packageName: String) {
         definitions.forEach { definition ->
-            val className = ClassName(packageName, definition.name)
-            FileSpec.builder(packageName, definition.name)
-                // type
-                .addTypeAlias(
-                    TypeAliasSpec.builder(
-                        definition.name,
-                        ClassName("kotlinx.cinterop", "CPointer")
-                            .plusParameter(ClassName(GTK_CINTEROP_PACKAGE_NAME, definition.cType))
-                    )
-                        .build()
-                )
-                // converters
-                .apply {
-                    definition.ancestors.forEach {
-                        addConverter(packageName, definition.name, it)
-                    }
-                }
-                // TODO - add constructors
-                // TODO - add methods
-                // TODO - add event handlers
-                .apply {
-                    // generate todos
-                    val todoDefinitions = mutableListOf<MemberDefinition.Todo>()
-                    definition.members
-                        .filterIsInstance<MemberDefinition.Todo>()
-                        .also { todoDefinitions.addAll(it) }
-                        .map { it.name }
-                        .takeUnless { it.isEmpty() }
-                        ?.joinToString(prefix = "TODO - implement:\n  ", separator = "\n  ")
-                        ?.let { addComment(it) }
-                    definition.members.removeAll(todoDefinitions)
-                }
-                .apply {
-                    definition.members.forEach { memberDefinition ->
-                        when (memberDefinition) {
-                            is MemberDefinition.Property -> addProperty(className, definition.cPrefix, memberDefinition)
-                            is MemberDefinition.Constructor -> Unit // TODO
-                            is MemberDefinition.EventHandler -> Unit // TODO
-                            is MemberDefinition.Method -> addMethod(className, definition.cPrefix, memberDefinition)
-                            is MemberDefinition.PropertyGetter, // transient
-                            is MemberDefinition.PropertySetter, // transient
-                            is MemberDefinition.Todo -> Unit    // already processed
-                        }
-                    }
-                }
-                .build()
-                .run { writeTo(destination) }
+            when (definition) {
+                is ClassDefinition -> createClassFileSpec(definition, packageName)
+                is EnumDefinition -> createEnumFileSpec(definition, packageName)
+                else -> null
+            }
+                ?.run { writeTo(destination) }
         }
+    }
+
+    private fun createClassFileSpec(definition: ClassDefinition, packageName: String): FileSpec {
+        val className = ClassName(packageName, definition.name)
+        return FileSpec.builder(packageName, definition.name)
+            // type
+            .addTypeAlias(
+                TypeAliasSpec.builder(
+                    definition.name,
+                    ClassName("kotlinx.cinterop", "CPointer")
+                        .plusParameter(ClassName(GTK_CINTEROP_PACKAGE_NAME, definition.cType))
+                )
+                    .build()
+            )
+            // converters
+            .apply {
+                definition.ancestors.forEach {
+                    addConverter(packageName, definition.name, it)
+                }
+            }
+            // TODO - add constructors
+            // TODO - add methods
+            // TODO - add event handlers
+            .apply {
+                // generate todos
+                val todoDefinitions = mutableListOf<MemberDefinition.Todo>()
+                definition.members
+                    .filterIsInstance<MemberDefinition.Todo>()
+                    .also { todoDefinitions.addAll(it) }
+                    .map { it.name }
+                    .takeUnless { it.isEmpty() }
+                    ?.joinToString(prefix = "TODO - implement:\n  ", separator = "\n  ")
+                    ?.let { addComment(it) }
+                definition.members.removeAll(todoDefinitions)
+            }
+            .apply {
+                definition.members.forEach { memberDefinition ->
+                    when (memberDefinition) {
+                        is MemberDefinition.Property -> addProperty(className, definition.cPrefix, memberDefinition)
+                        is MemberDefinition.Constructor -> Unit // TODO
+                        is MemberDefinition.EventHandler -> Unit // TODO
+                        is MemberDefinition.Method -> addMethod(className, definition.cPrefix, memberDefinition)
+                        is MemberDefinition.PropertyGetter, // transient
+                        is MemberDefinition.PropertySetter, // transient
+                        is MemberDefinition.Todo -> Unit    // already processed
+                    }
+                }
+            }
+            .build()
+    }
+
+    private fun createEnumFileSpec(definition: EnumDefinition, packageName: String): FileSpec {
+        return FileSpec.builder(packageName, definition.name)
+            // type
+            .addTypeAlias(
+                TypeAliasSpec.builder(
+                    definition.name,
+                    ClassName(GTK_CINTEROP_PACKAGE_NAME, definition.glibTypeName)
+                )
+                    .build()
+            )
+            .build()
     }
 
     private fun FileSpec.Builder.addConverter(packageName: String, current: String, ancestor: String) {

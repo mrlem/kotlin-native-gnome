@@ -4,7 +4,9 @@ import groovy.util.Node
 import groovy.util.XmlParser
 import groovy.xml.QName
 import org.mrlem.gnome.gir.model.ClassDefinition
+import org.mrlem.gnome.gir.model.EnumDefinition
 import org.mrlem.gnome.gir.model.MemberDefinition
+import org.mrlem.gnome.gir.model.TopLevelDefinition
 import org.mrlem.gnome.gir.model.Type
 import java.util.*
 
@@ -18,30 +20,38 @@ class Parser {
      *
      * @return a list of all defined classes in the file.
      */
-    fun parse(sourceText: String): List<ClassDefinition> {
+    fun parse(sourceText: String): List<TopLevelDefinition> {
         return XmlParser()
             .parseText(sourceText)
-            .findAllClassDefinitions()
+            .findAllTopLevelDefinitions()
     }
 
-    private fun Node.findAllClassDefinitions(): List<ClassDefinition> {
+    private fun Node.findAllTopLevelDefinitions(): List<TopLevelDefinition> {
         // list class definitions
         val definitions = children()
             .firstOrNull { ((it as? Node)?.nameMatches("namespace") == true) }
             ?.let { it as? Node }
             ?.children()
-            ?.mapNotNull { node -> (node as? Node)?.takeIf { it.nameMatches("class") } }
-            ?.mapNotNull { it.toClassDefinition() }
+            ?.mapNotNull { node ->
+                when {
+                    node !is Node -> null
+                    node.nameMatches("enumeration") -> node.toEnumDefinition()
+                    node.nameMatches("class") -> node.toClassDefinition()
+                    else -> null
+                }
+            }
             .orEmpty()
 
         // determine parent -> children relations
         val classesByParent = mutableMapOf<String, MutableList<ClassDefinition>>()
-        definitions.forEach { definition ->
-            val siblings = classesByParent[definition.parent]
-                ?: mutableListOf<ClassDefinition>()
-                    .also { classesByParent[definition.parent] = it }
-            siblings.add(definition)
-        }
+        definitions
+            .filterIsInstance<ClassDefinition>()
+            .forEach { definition ->
+                val siblings = classesByParent[definition.parent]
+                    ?: mutableListOf<ClassDefinition>()
+                        .also { classesByParent[definition.parent] = it }
+                siblings.add(definition)
+            }
 
         // determine ancestors list: all parent class names with a '.' are considered root types
         val stack: Stack<String> = Stack()
@@ -53,7 +63,7 @@ class Parser {
         populateAncestors("GObject.Object", stack, classesByParent)
 
         return definitions
-            .filter { it.ancestors.isNotEmpty() }
+            .filter { it !is ClassDefinition || it.ancestors.isNotEmpty() }
     }
 
     private fun populateAncestors(root: String, ancestors: Stack<String>, classesByParent: Map<String, List<ClassDefinition>>) {
@@ -66,6 +76,20 @@ class Parser {
             populateAncestors(classDefinition.name, ancestors, classesByParent)
         }
         ancestors.pop()
+    }
+
+    private fun Node.toEnumDefinition(): EnumDefinition? {
+        val name = name
+
+        val glibTypeName = attributes().keys
+            .firstOrNull { it?.nameMatches("type-name") == true }
+            ?.let { attribute(it) }
+            ?.toString() ?: return null
+
+        return EnumDefinition(
+            name,
+            glibTypeName
+        )
     }
 
     private fun Node.toClassDefinition(): ClassDefinition? {

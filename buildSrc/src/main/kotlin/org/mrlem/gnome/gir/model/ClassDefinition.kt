@@ -17,4 +17,4 @@ data class ClassDefinition(
     val parent: String,
     val ancestors: MutableList<String> = mutableListOf(),
     val members: MutableList<MemberDefinition> = mutableListOf()
-)
+) : TopLevelDefinition
