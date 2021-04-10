@@ -45,10 +45,12 @@ class Parser {
 
         // determine ancestors list: all parent class names with a '.' are considered root types
         val stack: Stack<String> = Stack()
-        classesByParent
-            .keys
-            .filter { it.contains(".") }
-            .forEach { populateAncestors(it, stack, classesByParent) }
+        classesByParent["GObject.Object"]?.apply {
+            add(ClassDefinition("GObject.InitiallyUnowned", "", "", "GObject.Object"))
+            add(ClassDefinition("Gio.Application", "", "", "GObject.Object"))
+            add(ClassDefinition("Gio.MountOperation", "", "", "GObject.Object"))
+        }
+        populateAncestors("GObject.Object", stack, classesByParent)
 
         return definitions
             .filter { it.ancestors.isNotEmpty() }
