@@ -81,6 +81,15 @@ class Parser {
     private fun Node.toEnumDefinition(): EnumDefinition? {
         val name = name
 
+        val isExcluded = name == "ExpanderStyle"
+        if (isExcluded) return null
+
+        val deprecated = attributes().keys
+            .firstOrNull { it?.nameMatches("deprecated") == true }
+            ?.let { attribute(it) }
+            .let { it == "1" }
+        if (deprecated) return null
+
         val glibTypeName = attributes().keys
             .firstOrNull { it?.nameMatches("type-name") == true }
             ?.let { attribute(it) }
