@@ -45,3 +45,6 @@ Other Kotlin native GTK bindings, both using a wrapper objects approach (more me
 * [kotlinx-gtk](https://github.com/Doomsdayrs/kotlinx-gtk)
 
 For an explanation about why I didn't rely on one of them, see the [FAQ](FAQ.md).
+
+A tool to generate Java code from GIR repositories:
+* https://github.com/gstreamer-java/gir2java
