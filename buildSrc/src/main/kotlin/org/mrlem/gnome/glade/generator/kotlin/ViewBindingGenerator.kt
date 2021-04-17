@@ -1,7 +1,6 @@
 package org.mrlem.gnome.glade.generator.kotlin
 
 import com.squareup.kotlinpoet.*
-import org.mrlem.gnome.gir.BindingGeneratorPlugin.Companion.GTK_PACKAGE_NAME
 import java.io.File
 import org.mrlem.gnome.glade.model.Widget
 
@@ -73,4 +72,8 @@ class ViewBindingGenerator {
         get() = types[this]
             ?: ClassName(GTK_PACKAGE_NAME, this.removePrefix("Gtk"))
                 .also { types[this] = it }
+
+    companion object {
+        private const val GTK_PACKAGE_NAME = "org.gnome.gtk"
+    }
 }
