@@ -444,7 +444,7 @@ class RepositoryReader {
     )
         .also { if (nodeName != "source-position") error("invalid node name") }
 
-    private fun Node.readCallbackOrType() = firstOrNull()
+    private fun Node.readCallbackOrType() = firstOrNull("type", "array", "callback")
         ?.run { readTypeReference() ?: readCallback() }
 
     private val String?.boolean
