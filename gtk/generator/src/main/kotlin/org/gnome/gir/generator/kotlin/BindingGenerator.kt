@@ -4,7 +4,7 @@ import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import org.gnome.gir.GLIB_PACKAGE_NAME
 import org.gnome.gir.GTK_CINTEROP_PACKAGE_NAME
-import org.gnome.gir.model.*
+import org.gnome.gir.oldmodel.*
 import java.io.File
 
 class BindingGenerator {

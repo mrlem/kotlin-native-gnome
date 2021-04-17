@@ -1,14 +1,14 @@
-package org.gnome.gir.parser.xml
+package org.gnome.gir.oldparser.xml
 
 import groovy.util.Node
 import groovy.util.XmlParser
 import groovy.xml.QName
-import org.gnome.gir.model.ClassDefinition
-import org.gnome.gir.model.EnumDefinition
-import org.gnome.gir.model.MemberDefinition
-import org.gnome.gir.model.RecordDefinition
-import org.gnome.gir.model.TopLevelDefinition
-import org.gnome.gir.model.Type
+import org.gnome.gir.oldmodel.ClassDefinition
+import org.gnome.gir.oldmodel.EnumDefinition
+import org.gnome.gir.oldmodel.MemberDefinition
+import org.gnome.gir.oldmodel.RecordDefinition
+import org.gnome.gir.oldmodel.TopLevelDefinition
+import org.gnome.gir.oldmodel.Type
 import java.util.*
 
 /**

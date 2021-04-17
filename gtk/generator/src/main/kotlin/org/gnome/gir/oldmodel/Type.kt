@@ -1,4 +1,4 @@
-package org.gnome.gir.model
+package org.gnome.gir.oldmodel
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter

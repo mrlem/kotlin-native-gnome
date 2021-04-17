@@ -1,7 +1,7 @@
 package org.gnome.gir
 
 import org.gnome.gir.generator.kotlin.BindingGenerator
-import org.gnome.gir.parser.xml.Parser
+import org.gnome.gir.oldparser.xml.Parser
 import java.io.File
 import kotlin.system.exitProcess
 
