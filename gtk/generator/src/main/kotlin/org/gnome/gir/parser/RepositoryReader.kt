@@ -143,20 +143,27 @@ class RepositoryReader {
     )
         .also { if (nodeName != "c:include") error("invalid node name") }
 
-    private fun Node.readUnion() = UnionDefinition(
-        name = this["name"] ?: throw error("missing name"),
-        glibGetType = this["glib:get-type"],
-        glibTypeName = this["glib:type-name"],
-        cType = this["c:type"],
-        cSymbolPrefix = this["c:symbol-prefix"],
-        fields = readFields(),
-        constructors = readCallables("constructor"),
-        methods = readCallables("method"),
-        functions = readCallables("function"),
-        records = readRecords(),
-        info = readInfoElements()
-    )
-        .also { if (nodeName != "union") error("invalid node name") }
+    private fun Node.readUnion(): UnionDefinition? {
+        val name = this["name"]
+        if (name == null) {
+            println("info: dropping nameless union - only there for internal purpose")
+            return null
+        }
+        return UnionDefinition(
+            name = name,
+            glibGetType = this["glib:get-type"],
+            glibTypeName = this["glib:type-name"],
+            cType = this["c:type"],
+            cSymbolPrefix = this["c:symbol-prefix"],
+            fields = readFields(),
+            constructors = readCallables("constructor"),
+            methods = readCallables("method"),
+            functions = readCallables("function"),
+            records = readRecords(),
+            info = readInfoElements()
+        )
+            .also { if (nodeName != "union") error("invalid node name") }
+    }
 
     private fun Node.readEnum() = EnumDefinition(
         name = this["name"] ?: throw error("missing name"),
@@ -455,7 +462,7 @@ class RepositoryReader {
         .map { it.readProperty() }
 
     private fun Node.readUnions(): List<UnionDefinition> = all("union")
-        .map { it.readUnion() }
+        .mapNotNull { it.readUnion() }
 
     private fun Node.readEnums() = all("enum")
         .map { it.readEnum() }
