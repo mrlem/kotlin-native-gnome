@@ -33,7 +33,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":gtk"))
+                implementation(project(":gtk:binding"))
             }
         }
     }
