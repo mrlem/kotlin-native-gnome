@@ -14,13 +14,13 @@ class ParserTest {
 
     @Test
     fun `namespaces get created`() {
-        assertEquals(reader.repository!!.namespaces.size, 9)
+        assertEquals(9, reader.repository!!.namespaces.size)
     }
 
     @Test
     fun `classes in gtk3 get created`() {
         val namespace = reader.repository!!.namespaces.firstOrNull { it.name == "Gtk" }
-        assertEquals(namespace?.classes?.size, 269)
+        assertEquals(269, namespace?.classes?.size)
     }
 
     companion object {
