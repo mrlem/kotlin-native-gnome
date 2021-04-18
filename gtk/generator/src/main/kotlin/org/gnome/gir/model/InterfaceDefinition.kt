@@ -1,5 +1,6 @@
 package org.gnome.gir.model
 
+import org.gnome.gir.model.meta.DefinedType
 import org.gnome.gir.model.meta.*
 
 /**
@@ -45,4 +46,4 @@ data class InterfaceDefinition(
     val signals: List<SignalDefinition>,
     val callbacks: List<CallbackDefinition>,
     val constants: List<ConstantDefinition>
-) : CustomType
+) : DefinedType

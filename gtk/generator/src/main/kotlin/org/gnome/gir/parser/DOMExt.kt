@@ -14,16 +14,16 @@ internal inline fun Node.forEach(onItem: (Node) -> Unit) {
     }
 }
 
-internal fun Node.all(name: String): List<Node> {
+internal fun Node.all(vararg names: String): List<Node> {
     val nodes = mutableListOf<Node>()
-    forEach { node -> if (node.nodeName == name) { nodes += node } }
+    forEach { node -> if (names.isEmpty() || names.contains(node.nodeName)) { nodes += node } }
     return nodes
 }
 
-internal fun Node.firstOrNull(vararg name: String): Node? {
+internal fun Node.firstOrNull(vararg names: String): Node? {
     forEach { node ->
         node
-            .takeIf { name.isEmpty() || name.contains(it.nodeName) }
+            .takeIf { names.isEmpty() || names.contains(it.nodeName) }
             ?.let { return it }
     }
     return null

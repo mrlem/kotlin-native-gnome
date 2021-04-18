@@ -1,6 +1,6 @@
 package org.gnome.gir.model
 
-import org.gnome.gir.model.meta.CustomType
+import org.gnome.gir.model.meta.DefinedType
 import org.gnome.gir.model.meta.InfoElements
 
 /**
@@ -32,4 +32,4 @@ data class UnionDefinition(
     val methods: List<CallableDefinition>,
     val functions: List<CallableDefinition>,
     val records: List<RecordDefinition>
-) : CustomType // TODO: NamespaceDefinition.Element, ClassDefinition.Element, RecordDefinition.Element
+) : DefinedType // TODO: NamespaceDefinition.Element, ClassDefinition.Element, RecordDefinition.Element

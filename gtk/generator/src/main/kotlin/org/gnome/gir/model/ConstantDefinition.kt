@@ -1,7 +1,7 @@
 package org.gnome.gir.model
 
 import org.gnome.gir.model.meta.InfoElements
-import org.gnome.gir.model.meta.TypeReference
+import org.gnome.gir.model.meta.AnyType
 
 /**
  * GIR constant.
@@ -21,5 +21,5 @@ data class ConstantDefinition(
     val cType: String?,
     val cIdentifier: String?,
     val info: InfoElements,
-    var type: TypeReference?
+    var type: AnyType?
 )

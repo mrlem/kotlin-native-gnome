@@ -1,6 +1,6 @@
 package org.gnome.gir.model
 
-import org.gnome.gir.model.meta.CustomType
+import org.gnome.gir.model.meta.DefinedType
 import org.gnome.gir.model.meta.InfoElements
 
 /**
@@ -44,4 +44,4 @@ data class RecordDefinition(
     val fields: List<FieldDefinition>,
     val properties: List<PropertyDefinition>,
     val unions: List<UnionDefinition>
-) : CustomType
+) : DefinedType

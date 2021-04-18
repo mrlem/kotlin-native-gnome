@@ -3,7 +3,6 @@ package org.gnome.gir.model
 import org.gnome.gir.model.enums.Direction
 import org.gnome.gir.model.enums.Ownership
 import org.gnome.gir.model.meta.DocElements
-import org.gnome.gir.model.meta.TypeReference
 
 /**
  * GIR instance parameter.
@@ -27,6 +26,6 @@ data class InstanceParameterDefinition(
     val direction: Direction? = null,
     val callerAllocates: Boolean,
     val transferOwnership: Ownership,
-    var type: TypeReference?,
+    var type: TypeDefinition?,
     val doc: DocElements
 )

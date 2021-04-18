@@ -1,7 +1,7 @@
 package org.gnome.gir.model
 
 import org.gnome.gir.model.meta.CallableElements
-import org.gnome.gir.model.meta.CustomType
+import org.gnome.gir.model.meta.DefinedType
 
 /**
  * GIR callable.
@@ -12,7 +12,7 @@ import org.gnome.gir.model.meta.CustomType
  */
 data class CallableDefinition(
     val callable: CallableElements
-) : CustomType {
+) : DefinedType {
 
     override val name: String
         get() = callable.name

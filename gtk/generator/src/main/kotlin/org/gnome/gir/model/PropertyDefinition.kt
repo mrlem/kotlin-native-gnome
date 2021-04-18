@@ -2,7 +2,7 @@ package org.gnome.gir.model
 
 import org.gnome.gir.model.enums.Ownership
 import org.gnome.gir.model.meta.InfoElements
-import org.gnome.gir.model.meta.TypeReference
+import org.gnome.gir.model.meta.AnyType
 
 /**
  * GIR property.
@@ -29,5 +29,5 @@ data class PropertyDefinition(
     val constructOnly: Boolean,
     val transferOwnership: Ownership,
     val info: InfoElements,
-    val type: TypeReference
+    val type: AnyType
 )

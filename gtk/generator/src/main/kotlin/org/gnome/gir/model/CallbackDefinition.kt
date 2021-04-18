@@ -1,8 +1,8 @@
 package org.gnome.gir.model
 
 import org.gnome.gir.model.meta.InfoElements
-import org.gnome.gir.model.meta.CallbackOrType
-import org.gnome.gir.model.meta.CustomType
+import org.gnome.gir.model.meta.AnyTypeOrCallback
+import org.gnome.gir.model.meta.DefinedType
 
 /**
  * GIR callback.
@@ -23,4 +23,4 @@ data class CallbackDefinition(
     val info: InfoElements,
     val parameters: List<ParameterDefinition>,
     val returnValue: ReturnValueDefinition?
-) : CustomType, CallbackOrType
+) : DefinedType, AnyTypeOrCallback

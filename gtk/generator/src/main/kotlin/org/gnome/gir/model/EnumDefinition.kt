@@ -1,6 +1,6 @@
 package org.gnome.gir.model
 
-import org.gnome.gir.model.meta.CustomType
+import org.gnome.gir.model.meta.DefinedType
 import org.gnome.gir.model.meta.InfoElements
 
 /**
@@ -26,4 +26,4 @@ data class EnumDefinition(
     val info: InfoElements,
     val members: List<MemberDefinition>,
     val functions: List<CallableDefinition>
-) : CustomType
+) : DefinedType

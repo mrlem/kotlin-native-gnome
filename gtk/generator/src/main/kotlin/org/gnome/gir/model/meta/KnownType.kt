@@ -1,6 +1,6 @@
-package org.gnome.gir.model.enums
+package org.gnome.gir.model.meta
 
-enum class KnownType(private val value: String) {
+enum class KnownType(val value: String) {
 
     UTF8("utf8"),
     GBoolean("gboolean"),

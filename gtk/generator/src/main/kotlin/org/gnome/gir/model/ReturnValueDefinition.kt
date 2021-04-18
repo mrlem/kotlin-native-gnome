@@ -3,7 +3,7 @@ package org.gnome.gir.model
 import org.gnome.gir.model.enums.Ownership
 import org.gnome.gir.model.enums.Scope
 import org.gnome.gir.model.meta.DocElements
-import org.gnome.gir.model.meta.TypeReference
+import org.gnome.gir.model.meta.AnyType
 
 /**
  * GIR return value.
@@ -31,6 +31,6 @@ data class ReturnValueDefinition(
     @Deprecated("replaced by nullable and optional")
     val allowNone: Boolean,
     val transferOwnership: Ownership,
-    var type: TypeReference?,
+    var type: AnyType?,
     val doc: DocElements
 )

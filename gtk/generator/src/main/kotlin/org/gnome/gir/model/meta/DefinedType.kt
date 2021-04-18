@@ -1,5 +1,5 @@
 package org.gnome.gir.model.meta
 
-interface CustomType {
+interface DefinedType {
     val name: String
 }

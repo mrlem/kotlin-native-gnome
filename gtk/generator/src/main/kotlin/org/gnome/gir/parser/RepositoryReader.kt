@@ -30,8 +30,6 @@ class RepositoryReader {
             }
             mergeRepository(fileRepository)
         }
-
-        repository?.resolveTypeReferences()
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -114,7 +112,7 @@ class RepositoryReader {
         name = this["name"] ?: throw error("missing name"),
         cType = this["c:type"] ?: throw error("missing type"),
         info = readInfoElements(),
-        type = readTypeOrArray()
+        type = readTypes().firstOrNull() ?: throw error("missing type")
     )
         .also { if (nodeName != "alias") error("invalid node name") }
 
@@ -187,6 +185,9 @@ class RepositoryReader {
     )
         .also { if (nodeName != "callback") error("invalid node name") }
 
+    private fun Node.readVarargs() = VarargsDefinition()
+        .also { if (nodeName != "varargs") error("invalid node name") }
+
     private fun Node.readRecord() = RecordDefinition(
         name = this["name"] ?: throw error("missing name"),
         glibGetType = this["glib:get-type"],
@@ -223,7 +224,7 @@ class RepositoryReader {
 
     private fun Node.readClass() = ClassDefinition(
         name = this["name"] ?: throw error("missing name"),
-        parent = this["parent"]?.let { TypeReference.Unresolved(it) },
+        parent = this["parent"],
         glibGetType = this["glib:get-type"] ?: throw error("missing get-type"),
         glibTypeName = this["glib:type-name"] ?: throw error("missing type-name"),
         cType = this["c:type"],
@@ -231,10 +232,10 @@ class RepositoryReader {
         abstract = this["abstract"].boolean,
         glibFundamental = this["glib:fundamental"].boolean,
         glibTypeStruct = this["glib:type-struct"],
-        glibGetValueFunc = readFuncReference("glib:get-value-func"),
-        glibRefFunc = readFuncReference("glib:ref-func"),
-        glibSetValueFunc = readFuncReference("glib:set-value-func"),
-        glibUnrefFunc = readFuncReference("glib:unref-func"),
+        glibGetValueFunc = this["glib:get-value-func"],
+        glibRefFunc = this["glib:ref-func"],
+        glibSetValueFunc = this["glib:set-value-func"],
+        glibUnrefFunc = this["glib:unref-func"],
         info = readInfoElements(),
         methods = readCallables("method"),
         fields = readFields(),
@@ -303,7 +304,7 @@ class RepositoryReader {
         readable = this["readable"].boolean,
         private = this["private"].boolean,
         bits = this["bits"].integer,
-        callbackOrType = readCallbackOrType() ?: throw error("missing callback or type")
+        anyTypeOrCallback = readAnyTypeOrCallback() ?: throw error("missing callback or type")
     )
         .also { if (nodeName != "field") error("invalid node name") }
 
@@ -319,7 +320,7 @@ class RepositoryReader {
         closure = this["closure"].integer,
         destroy = this["destroy"].integer,
         scope = Scope.fromName(this["scope"]),
-        type = readTypeOrArray(),
+        type = readAnyTypeOrVarargs() ?: throw error("missing type or varargs"),
         doc = readDocElements()
     )
         .also { if (nodeName != "parameter") error("invalid node name") }
@@ -330,7 +331,7 @@ class RepositoryReader {
         allowNone = this["allow-none"].boolean,
         callerAllocates = this["caller-allocates"].boolean,
         transferOwnership = Ownership.fromName(this["transfer-ownership"]) ?: Ownership.None,
-        type = readTypeOrArray(),
+        type = readTypes().firstOrNull() ?: throw error("missing type"),
         doc = readDocElements()
     )
         .also { if (nodeName != "instance-parameter") error("invalid node name") }
@@ -343,7 +344,7 @@ class RepositoryReader {
         construct = this["construct"].boolean,
         constructOnly = this["construct-only"].boolean,
         transferOwnership = Ownership.fromName(this["transfer-ownership"]) ?: Ownership.None,
-        type = readTypeOrArray() ?: throw error("missing type")
+        type = readAnyTypes().firstOrNull() ?: throw error("missing type")
     )
         .also { if (nodeName != "property") error("invalid node name") }
 
@@ -352,25 +353,36 @@ class RepositoryReader {
         value = this["value"] ?: throw error("missing value"),
         cType = this["c:type"],
         cIdentifier= this["c:identifier"],
-        type = readTypeOrArray(),
+        type = readAnyTypes().firstOrNull() ?: throw error("missing type"),
         info = readInfoElements()
     )
         .also { if (nodeName != "constant") error("invalid node name") }
 
-    private fun Node.readTypeOrArray() = firstOrNull("type", "array")
-        ?.run { readTypeReference() }
-
-    private fun Node.readTypeReference() = when (nodeName) {
-            "type" -> this["name"]
-                ?.takeUnless { it == "none" }
-                ?.let { TypeReference.Unresolved(it) }
-            "array" -> firstOrNull("type")["name"]
-                ?.let { TypeReference.Unresolved("$it[]") }
+    private fun Node.readAnyType() = when (nodeName) {
+            "type" -> readType()
+            "array" -> readArrayType()
             else -> null
         }
 
-    private fun Node.readFuncReference(name: String) = this[name]
-        ?.let { FuncReference.Unresolved(it) }
+    private fun Node.readType() = TypeDefinition(
+        name = this["name"] ?: throw error("missing name"),
+        introspectable = this["introspectable"].boolean,
+        cType = this["c:type"],
+        doc = readDocElements(),
+        types = readAnyTypes()
+    )
+        .also { if (nodeName != "type") error("invalid node name") }
+
+    private fun Node.readArrayType() = ArrayTypeDefinition(
+        name = this["name"],
+        introspectable = this["introspectable"].boolean,
+        cType = this["c:type"],
+        type = readTypes().firstOrNull() ?: throw error("missing type"),
+        fixedSize = this["fixed-size"].integer,
+        length = this["length"].integer,
+        zeroTerminated = this["zero-terminated"].boolean
+    )
+        .also { if (nodeName != "array") error("invalid node name") }
 
     private fun Node.readInfoElements() = InfoElements(
         deprecated = this["deprecated"].boolean,
@@ -409,7 +421,7 @@ class RepositoryReader {
         ?.let {
             ReturnValueDefinition(
                 transferOwnership = Ownership.fromName(this["transfer-ownership"]) ?: Ownership.None,
-                type = readTypeOrArray(),
+                type = readAnyTypes().firstOrNull(),
                 allowNone = this["allow-none"].boolean,
                 doc = readDocElements(),
                 introspectable = this["introspectable"].boolean,
@@ -444,8 +456,11 @@ class RepositoryReader {
     )
         .also { if (nodeName != "source-position") error("invalid node name") }
 
-    private fun Node.readCallbackOrType() = firstOrNull("type", "array", "callback")
-        ?.run { readTypeReference() ?: readCallback() }
+    private fun Node.readAnyTypeOrCallback() = firstOrNull("type", "array", "callback")
+        ?.run { readAnyType() ?: readCallback() }
+
+    private fun Node.readAnyTypeOrVarargs() = firstOrNull("type", "array", "varargs")
+        ?.run { readAnyType() ?: readVarargs() }
 
     private val String?.boolean
         get() = this?.let { it == "1" } ?: false
@@ -511,5 +526,11 @@ class RepositoryReader {
 
     private fun Node.readMembers() = all("member")
         .map { it.readMember() }
+
+    private fun Node.readAnyTypes(): List<AnyType> = all("type", "array")
+        .mapNotNull { it.readAnyType() }
+
+    private fun Node.readTypes(): List<TypeDefinition> = all("type")
+        .map { it.readType() }
 
 }

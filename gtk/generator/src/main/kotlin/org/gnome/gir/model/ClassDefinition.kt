@@ -1,5 +1,6 @@
 package org.gnome.gir.model
 
+import org.gnome.gir.model.meta.DefinedType
 import org.gnome.gir.model.meta.*
 
 /**
@@ -37,13 +38,13 @@ import org.gnome.gir.model.meta.*
  */
 data class ClassDefinition(
     override val name: String,
-    var parent: TypeReference?,
+    var parent: String?,
     val abstract: Boolean,
     val glibFundamental: Boolean,
-    val glibRefFunc: FuncReference?,
-    val glibUnrefFunc: FuncReference?,
-    val glibGetValueFunc: FuncReference?,
-    val glibSetValueFunc: FuncReference?,
+    val glibRefFunc: String?,
+    val glibUnrefFunc: String?,
+    val glibGetValueFunc: String?,
+    val glibSetValueFunc: String?,
     val glibTypeStruct: String?, // TODO - anything to do?
     val glibTypeName: String, // TODO - anything to do?
     val glibGetType: String,
@@ -62,4 +63,4 @@ data class ClassDefinition(
     val constants: List<ConstantDefinition>,
     val records: List<RecordDefinition>,
     val callbacks: List<CallbackDefinition>
-) : CustomType
+) : DefinedType

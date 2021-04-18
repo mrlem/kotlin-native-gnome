@@ -4,7 +4,7 @@ import org.gnome.gir.model.enums.Direction
 import org.gnome.gir.model.enums.Ownership
 import org.gnome.gir.model.enums.Scope
 import org.gnome.gir.model.meta.DocElements
-import org.gnome.gir.model.meta.TypeReference
+import org.gnome.gir.model.meta.AnyTypeOrVarargs
 
 /**
  * GIR parameter.
@@ -40,6 +40,6 @@ data class ParameterDefinition(
     val optional: Boolean,
     val skip: Boolean,
     val transferOwnership: Ownership,
-    var type: TypeReference?,
+    var type: AnyTypeOrVarargs,
     val doc: DocElements
 )

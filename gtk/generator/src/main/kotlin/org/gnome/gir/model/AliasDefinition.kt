@@ -1,7 +1,6 @@
 package org.gnome.gir.model
 
 import org.gnome.gir.model.meta.InfoElements
-import org.gnome.gir.model.meta.TypeReference
 
 /**
  * GIR alias.
@@ -17,5 +16,5 @@ data class AliasDefinition(
     val name: String,
     val cType: String,
     val info: InfoElements,
-    val type: TypeReference?
+    val type: TypeDefinition?
 )
