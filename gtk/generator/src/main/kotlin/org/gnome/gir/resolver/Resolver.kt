@@ -28,6 +28,10 @@ class Resolver(repository: RepositoryDefinition) {
 
     fun ancestors(className: String) = classesInfo[className]?.ancestors
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Private
+    ///////////////////////////////////////////////////////////////////////////
+
     private fun ClassInfo.resolveAncestors(ancestors: Stack<String>) {
         val parent = definition.parent
             ?.let {
@@ -36,7 +40,12 @@ class Resolver(repository: RepositoryDefinition) {
         ancestors.push(parent)
 
         // walk recursively
-        classesInfo[parent]?.resolveAncestors(ancestors)
+        val parentClassInfo = classesInfo[parent]
+        if (parentClassInfo != null) {
+            parentClassInfo.resolveAncestors(ancestors)
+        } else if (parent != GOBJECT_CLASS_NAME) {
+            ancestors.push(GOBJECT_CLASS_NAME)
+        }
     }
 
     private data class ClassInfo(
@@ -44,4 +53,8 @@ class Resolver(repository: RepositoryDefinition) {
         val namespace: NamespaceDefinition,
         var ancestors: List<String>
     )
+
+    private companion object {
+        private const val GOBJECT_CLASS_NAME = "GObject.Object"
+    }
 }

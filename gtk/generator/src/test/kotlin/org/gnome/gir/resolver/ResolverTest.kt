@@ -21,6 +21,18 @@ class ResolverTest {
     }
 
     @Test
+    fun `button accessible ancestors from full repository resolved`() {
+        val resolver = Resolver(fullRepository)
+        assertEquals(buttonAccessibleAncestors, resolver.ancestors("Gtk.ButtonAccessible"))
+    }
+
+    @Test
+    fun `button accessible ancestors from gtk-only repository resolved`() {
+        val resolver = Resolver(gtkOnlyRepository)
+        assertEquals(buttonAccessibleAncestors, resolver.ancestors("Gtk.ButtonAccessible"))
+    }
+
+    @Test
     fun `accel group ancestors from full repository resolved`() {
         val resolver = Resolver(fullRepository)
         assertEquals(accelGroupAncestors, resolver.ancestors("Gtk.AccelGroup"))
@@ -32,14 +44,20 @@ class ResolverTest {
         assertEquals(accelGroupAncestors, resolver.ancestors("Gtk.AccelGroup"))
     }
 
-    // TODO - add tests for accessible
-
     companion object {
         private val buttonAncestors = listOf(
             "Gtk.Bin",
             "Gtk.Container",
             "Gtk.Widget",
             "GObject.InitiallyUnowned",
+            "GObject.Object"
+        )
+
+        private val buttonAccessibleAncestors = listOf(
+            "Gtk.ContainerAccessible",
+            "Gtk.WidgetAccessible",
+            "Gtk.Accessible",
+            "Atk.Object",
             "GObject.Object"
         )
 
