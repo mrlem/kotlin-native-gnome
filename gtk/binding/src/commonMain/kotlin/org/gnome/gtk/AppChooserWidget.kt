@@ -15,13 +15,14 @@ import gtk3.gtk_app_chooser_widget_set_show_other
 import gtk3.gtk_app_chooser_widget_set_show_recommended
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
-import org.gnome.glib.toKString
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
+import org.gnome.toKString
 
 public typealias AppChooserWidget = CPointer<GtkAppChooserWidget>
 
@@ -40,38 +41,44 @@ public val AppChooserWidget.asContainer: Container
 public val AppChooserWidget.asBox: Box
   get() = reinterpret()
 
-public var AppChooserWidget.defaultText: String?
-  get() = gtk_app_chooser_widget_get_default_text(this).toKString
-  set(`value`) {
-    gtk_app_chooser_widget_set_default_text(this, value)
-  }
+public fun AppChooserWidget.getDefaultText(): String =
+    gtk_app_chooser_widget_get_default_text(this).toKString
 
-public var AppChooserWidget.showAll: Boolean
-  get() = gtk_app_chooser_widget_get_show_all(this).toBoolean
-  set(`value`) {
-    gtk_app_chooser_widget_set_show_all(this, value.toInt)
-  }
+public fun AppChooserWidget.getShowAll(): Boolean =
+    gtk_app_chooser_widget_get_show_all(this).toBoolean
 
-public var AppChooserWidget.showDefault: Boolean
-  get() = gtk_app_chooser_widget_get_show_default(this).toBoolean
-  set(`value`) {
-    gtk_app_chooser_widget_set_show_default(this, value.toInt)
-  }
+public fun AppChooserWidget.getShowDefault(): Boolean =
+    gtk_app_chooser_widget_get_show_default(this).toBoolean
 
-public var AppChooserWidget.showFallback: Boolean
-  get() = gtk_app_chooser_widget_get_show_fallback(this).toBoolean
-  set(`value`) {
-    gtk_app_chooser_widget_set_show_fallback(this, value.toInt)
-  }
+public fun AppChooserWidget.getShowFallback(): Boolean =
+    gtk_app_chooser_widget_get_show_fallback(this).toBoolean
 
-public var AppChooserWidget.showOther: Boolean
-  get() = gtk_app_chooser_widget_get_show_other(this).toBoolean
-  set(`value`) {
-    gtk_app_chooser_widget_set_show_other(this, value.toInt)
-  }
+public fun AppChooserWidget.getShowOther(): Boolean =
+    gtk_app_chooser_widget_get_show_other(this).toBoolean
 
-public var AppChooserWidget.showRecommended: Boolean
-  get() = gtk_app_chooser_widget_get_show_recommended(this).toBoolean
-  set(`value`) {
-    gtk_app_chooser_widget_set_show_recommended(this, value.toInt)
-  }
+public fun AppChooserWidget.getShowRecommended(): Boolean =
+    gtk_app_chooser_widget_get_show_recommended(this).toBoolean
+
+public fun AppChooserWidget.setDefaultText(text: String?): Unit {
+  gtk_app_chooser_widget_set_default_text(this, text)
+}
+
+public fun AppChooserWidget.setShowAll(setting: Boolean): Unit {
+  gtk_app_chooser_widget_set_show_all(this, setting.toInt)
+}
+
+public fun AppChooserWidget.setShowDefault(setting: Boolean): Unit {
+  gtk_app_chooser_widget_set_show_default(this, setting.toInt)
+}
+
+public fun AppChooserWidget.setShowFallback(setting: Boolean): Unit {
+  gtk_app_chooser_widget_set_show_fallback(this, setting.toInt)
+}
+
+public fun AppChooserWidget.setShowOther(setting: Boolean): Unit {
+  gtk_app_chooser_widget_set_show_other(this, setting.toInt)
+}
+
+public fun AppChooserWidget.setShowRecommended(setting: Boolean): Unit {
+  gtk_app_chooser_widget_set_show_recommended(this, setting.toInt)
+}

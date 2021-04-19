@@ -1,18 +1,21 @@
-// TODO - implement:
-//   get_child_non_homogeneous
-//   get_child_secondary
-//   set_child_non_homogeneous
-//   set_child_secondary
-//   set_layout
+// TODO - get_layout
+// TODO - set_layout
+//
 package org.gnome.gtk
 
 import gtk3.GtkButtonBox
-import gtk3.gtk_button_box_get_layout
+import gtk3.gtk_button_box_get_child_non_homogeneous
+import gtk3.gtk_button_box_get_child_secondary
+import gtk3.gtk_button_box_set_child_non_homogeneous
+import gtk3.gtk_button_box_set_child_secondary
+import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
 
 public typealias ButtonBox = CPointer<GtkButtonBox>
 
@@ -31,6 +34,16 @@ public val ButtonBox.asContainer: Container
 public val ButtonBox.asBox: Box
   get() = reinterpret()
 
-public fun ButtonBox.getLayout(): Unit {
-  gtk_button_box_get_layout(this)
+public fun ButtonBox.getChildNonHomogeneous(child: Widget): Boolean =
+    gtk_button_box_get_child_non_homogeneous(this, child.reinterpret()).toBoolean
+
+public fun ButtonBox.getChildSecondary(child: Widget): Boolean =
+    gtk_button_box_get_child_secondary(this, child.reinterpret()).toBoolean
+
+public fun ButtonBox.setChildNonHomogeneous(child: Widget, nonHomogeneous: Boolean): Unit {
+  gtk_button_box_set_child_non_homogeneous(this, child.reinterpret(), nonHomogeneous.toInt)
+}
+
+public fun ButtonBox.setChildSecondary(child: Widget, isSecondary: Boolean): Unit {
+  gtk_button_box_set_child_secondary(this, child.reinterpret(), isSecondary.toInt)
 }

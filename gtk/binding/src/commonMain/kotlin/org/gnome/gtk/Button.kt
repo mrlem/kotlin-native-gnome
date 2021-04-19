@@ -1,9 +1,9 @@
-// TODO - implement:
-//   get_alignment
-//   set_alignment
-//   set_image
-//   set_image_position
-//   set_relief
+// TODO - get_event_window
+// TODO - get_image_position
+// TODO - get_relief
+// TODO - set_image_position
+// TODO - set_relief
+//
 package org.gnome.gtk
 
 import gtk3.*
@@ -12,12 +12,12 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.gobject.connect
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
-import org.gnome.glib.toKString
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.gobject.connect
+import org.gnome.toBoolean
+import org.gnome.toInt
+import org.gnome.toKString
 
 public typealias Button = CPointer<GtkButton>
 
@@ -40,51 +40,29 @@ public fun Button.clicked(): Unit {
   gtk_button_clicked(this)
 }
 
-public fun Button.getEventWindow(): Unit {
-  gtk_button_get_event_window(this)
+public fun Button.getAlwaysShowImage(): Boolean = gtk_button_get_always_show_image(this).toBoolean
+
+public fun Button.getImage(): Widget? = gtk_button_get_image(this)?.reinterpret()
+
+public fun Button.getLabel(): String = gtk_button_get_label(this).toKString
+
+public fun Button.getUseUnderline(): Boolean = gtk_button_get_use_underline(this).toBoolean
+
+public fun Button.setAlwaysShowImage(alwaysShow: Boolean): Unit {
+  gtk_button_set_always_show_image(this, alwaysShow.toInt)
 }
 
-public fun Button.getImage(): Unit {
-  gtk_button_get_image(this)
+public fun Button.setImage(image: Widget): Unit {
+  gtk_button_set_image(this, image.reinterpret())
 }
 
-public fun Button.getImagePosition(): Unit {
-  gtk_button_get_image_position(this)
+public fun Button.setLabel(label: String?): Unit {
+  gtk_button_set_label(this, label)
 }
 
-public fun Button.getRelief(): Unit {
-  gtk_button_get_relief(this)
+public fun Button.setUseUnderline(useUnderline: Boolean): Unit {
+  gtk_button_set_use_underline(this, useUnderline.toInt)
 }
-
-public var Button.alwaysShowImage: Boolean
-  get() = gtk_button_get_always_show_image(this).toBoolean
-  set(`value`) {
-    gtk_button_set_always_show_image(this, value.toInt)
-  }
-
-public var Button.focusOnClick: Boolean
-  get() = gtk_button_get_focus_on_click(this).toBoolean
-  set(`value`) {
-    gtk_button_set_focus_on_click(this, value.toInt)
-  }
-
-public var Button.label: String?
-  get() = gtk_button_get_label(this).toKString
-  set(`value`) {
-    gtk_button_set_label(this, value)
-  }
-
-public var Button.useStock: Boolean
-  get() = gtk_button_get_use_stock(this).toBoolean
-  set(`value`) {
-    gtk_button_set_use_stock(this, value.toInt)
-  }
-
-public var Button.useUnderline: Boolean
-  get() = gtk_button_get_use_underline(this).toBoolean
-  set(`value`) {
-    gtk_button_set_use_underline(this, value.toInt)
-  }
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API (not generated)

@@ -2,11 +2,10 @@ package org.gnome.gtk
 
 import gtk3.GtkBin
 import gtk3.gtk_bin_get_child
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
 
 public typealias Bin = CPointer<GtkBin>
 
@@ -22,6 +21,4 @@ public val Bin.asWidget: Widget
 public val Bin.asContainer: Container
   get() = reinterpret()
 
-public fun Bin.getChild(): Unit {
-  gtk_bin_get_child(this)
-}
+public fun Bin.getChild(): Widget? = gtk_bin_get_child(this)?.reinterpret()

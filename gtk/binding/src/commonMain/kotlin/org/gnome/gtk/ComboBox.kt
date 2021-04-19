@@ -1,41 +1,35 @@
-// TODO - implement:
-//   get_active_iter
-//   popup_for_device
-//   set_active_iter
-//   set_button_sensitivity
-//   set_model
-//   set_row_separator_func
+// TODO - get_active_iter
+// TODO - get_button_sensitivity
+// TODO - get_popup_accessible
+// TODO - popup_for_device
+// TODO - set_button_sensitivity
+// TODO - set_row_separator_func
+//
 package org.gnome.gtk
 
 import gtk3.GtkComboBox
 import gtk3.gtk_combo_box_get_active
 import gtk3.gtk_combo_box_get_active_id
-import gtk3.gtk_combo_box_get_add_tearoffs
-import gtk3.gtk_combo_box_get_button_sensitivity
 import gtk3.gtk_combo_box_get_column_span_column
 import gtk3.gtk_combo_box_get_entry_text_column
-import gtk3.gtk_combo_box_get_focus_on_click
 import gtk3.gtk_combo_box_get_has_entry
 import gtk3.gtk_combo_box_get_id_column
 import gtk3.gtk_combo_box_get_model
-import gtk3.gtk_combo_box_get_popup_accessible
 import gtk3.gtk_combo_box_get_popup_fixed_width
 import gtk3.gtk_combo_box_get_row_separator_func
 import gtk3.gtk_combo_box_get_row_span_column
-import gtk3.gtk_combo_box_get_title
 import gtk3.gtk_combo_box_get_wrap_width
 import gtk3.gtk_combo_box_popdown
 import gtk3.gtk_combo_box_popup
 import gtk3.gtk_combo_box_set_active
 import gtk3.gtk_combo_box_set_active_id
-import gtk3.gtk_combo_box_set_add_tearoffs
+import gtk3.gtk_combo_box_set_active_iter
 import gtk3.gtk_combo_box_set_column_span_column
 import gtk3.gtk_combo_box_set_entry_text_column
-import gtk3.gtk_combo_box_set_focus_on_click
 import gtk3.gtk_combo_box_set_id_column
+import gtk3.gtk_combo_box_set_model
 import gtk3.gtk_combo_box_set_popup_fixed_width
 import gtk3.gtk_combo_box_set_row_span_column
-import gtk3.gtk_combo_box_set_title
 import gtk3.gtk_combo_box_set_wrap_width
 import kotlin.Boolean
 import kotlin.Int
@@ -43,11 +37,11 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
-import org.gnome.glib.toKString
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
+import org.gnome.toKString
 
 public typealias ComboBox = CPointer<GtkComboBox>
 
@@ -66,21 +60,29 @@ public val ComboBox.asContainer: Container
 public val ComboBox.asBin: Bin
   get() = reinterpret()
 
-public fun ComboBox.getButtonSensitivity(): Unit {
-  gtk_combo_box_get_button_sensitivity(this)
-}
+public fun ComboBox.getActive(): Int = gtk_combo_box_get_active(this)
 
-public fun ComboBox.getModel(): Unit {
-  gtk_combo_box_get_model(this)
-}
+public fun ComboBox.getActiveId(): String = gtk_combo_box_get_active_id(this).toKString
 
-public fun ComboBox.getPopupAccessible(): Unit {
-  gtk_combo_box_get_popup_accessible(this)
-}
+public fun ComboBox.getColumnSpanColumn(): Int = gtk_combo_box_get_column_span_column(this)
 
-public fun ComboBox.getRowSeparatorFunc(): Unit {
-  gtk_combo_box_get_row_separator_func(this)
-}
+public fun ComboBox.getEntryTextColumn(): Int = gtk_combo_box_get_entry_text_column(this)
+
+public fun ComboBox.getHasEntry(): Boolean = gtk_combo_box_get_has_entry(this).toBoolean
+
+public fun ComboBox.getIdColumn(): Int = gtk_combo_box_get_id_column(this)
+
+public fun ComboBox.getModel(): TreeModel? = gtk_combo_box_get_model(this)?.reinterpret()
+
+public fun ComboBox.getPopupFixedWidth(): Boolean =
+    gtk_combo_box_get_popup_fixed_width(this).toBoolean
+
+public fun ComboBox.getRowSeparatorFunc(): TreeViewRowSeparatorFunc? =
+    gtk_combo_box_get_row_separator_func(this)?.reinterpret()
+
+public fun ComboBox.getRowSpanColumn(): Int = gtk_combo_box_get_row_span_column(this)
+
+public fun ComboBox.getWrapWidth(): Int = gtk_combo_box_get_wrap_width(this)
 
 public fun ComboBox.popdown(): Unit {
   gtk_combo_box_popdown(this)
@@ -90,71 +92,41 @@ public fun ComboBox.popup(): Unit {
   gtk_combo_box_popup(this)
 }
 
-public var ComboBox.active: Int
-  get() = gtk_combo_box_get_active(this)
-  set(`value`) {
-    gtk_combo_box_set_active(this, value)
-  }
+public fun ComboBox.setActive(index: Int): Unit {
+  gtk_combo_box_set_active(this, index)
+}
 
-public var ComboBox.activeId: String?
-  get() = gtk_combo_box_get_active_id(this).toKString
-  set(`value`) {
-    gtk_combo_box_set_active_id(this, value)
-  }
+public fun ComboBox.setActiveId(activeId: String?): Boolean = gtk_combo_box_set_active_id(this,
+    activeId).toBoolean
 
-public var ComboBox.addTearoffs: Boolean
-  get() = gtk_combo_box_get_add_tearoffs(this).toBoolean
-  set(`value`) {
-    gtk_combo_box_set_add_tearoffs(this, value.toInt)
-  }
+public fun ComboBox.setActiveIter(iter: TreeIter): Unit {
+  gtk_combo_box_set_active_iter(this, iter.reinterpret())
+}
 
-public var ComboBox.columnSpanColumn: Int
-  get() = gtk_combo_box_get_column_span_column(this)
-  set(`value`) {
-    gtk_combo_box_set_column_span_column(this, value)
-  }
+public fun ComboBox.setColumnSpanColumn(columnSpan: Int): Unit {
+  gtk_combo_box_set_column_span_column(this, columnSpan)
+}
 
-public var ComboBox.entryTextColumn: Int
-  get() = gtk_combo_box_get_entry_text_column(this)
-  set(`value`) {
-    gtk_combo_box_set_entry_text_column(this, value)
-  }
+public fun ComboBox.setEntryTextColumn(textColumn: Int): Unit {
+  gtk_combo_box_set_entry_text_column(this, textColumn)
+}
 
-public var ComboBox.focusOnClick: Boolean
-  get() = gtk_combo_box_get_focus_on_click(this).toBoolean
-  set(`value`) {
-    gtk_combo_box_set_focus_on_click(this, value.toInt)
-  }
+public fun ComboBox.setIdColumn(idColumn: Int): Unit {
+  gtk_combo_box_set_id_column(this, idColumn)
+}
 
-public var ComboBox.idColumn: Int
-  get() = gtk_combo_box_get_id_column(this)
-  set(`value`) {
-    gtk_combo_box_set_id_column(this, value)
-  }
+public fun ComboBox.setModel(model: TreeModel): Unit {
+  gtk_combo_box_set_model(this, model.reinterpret())
+}
 
-public var ComboBox.popupFixedWidth: Boolean
-  get() = gtk_combo_box_get_popup_fixed_width(this).toBoolean
-  set(`value`) {
-    gtk_combo_box_set_popup_fixed_width(this, value.toInt)
-  }
+public fun ComboBox.setPopupFixedWidth(fixed: Boolean): Unit {
+  gtk_combo_box_set_popup_fixed_width(this, fixed.toInt)
+}
 
-public var ComboBox.rowSpanColumn: Int
-  get() = gtk_combo_box_get_row_span_column(this)
-  set(`value`) {
-    gtk_combo_box_set_row_span_column(this, value)
-  }
+public fun ComboBox.setRowSpanColumn(rowSpan: Int): Unit {
+  gtk_combo_box_set_row_span_column(this, rowSpan)
+}
 
-public var ComboBox.title: String?
-  get() = gtk_combo_box_get_title(this).toKString
-  set(`value`) {
-    gtk_combo_box_set_title(this, value)
-  }
-
-public var ComboBox.wrapWidth: Int
-  get() = gtk_combo_box_get_wrap_width(this)
-  set(`value`) {
-    gtk_combo_box_set_wrap_width(this, value)
-  }
-
-public val ComboBox.hasEntry: Boolean
-  get() = gtk_combo_box_get_has_entry(this).toBoolean
+public fun ComboBox.setWrapWidth(width: Int): Unit {
+  gtk_combo_box_set_wrap_width(this, width)
+}

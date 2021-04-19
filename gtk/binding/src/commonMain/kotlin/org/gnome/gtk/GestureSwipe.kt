@@ -1,11 +1,11 @@
-// TODO - implement:
-//   get_velocity
+// TODO - get_velocity
+//
 package org.gnome.gtk
 
 import gtk3.GtkGestureSwipe
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.Object
 
 public typealias GestureSwipe = CPointer<GtkGestureSwipe>
 

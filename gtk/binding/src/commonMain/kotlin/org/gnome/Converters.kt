@@ -13,6 +13,6 @@ val Int.toBoolean
     get() = this == 1
 
 val CPointer<gcharVar>?.toKString
-    get() = this?.toKString()
+    get() = this?.toKString().orEmpty()
 
 fun <P : CPointed> CPointer<GList>.toKList(): List<P, CPointer<P>> = List(this)

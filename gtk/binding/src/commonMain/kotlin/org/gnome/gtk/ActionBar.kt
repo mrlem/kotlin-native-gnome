@@ -1,16 +1,15 @@
-// TODO - implement:
-//   pack_end
-//   pack_start
-//   set_center_widget
 package org.gnome.gtk
 
 import gtk3.GtkActionBar
 import gtk3.gtk_action_bar_get_center_widget
+import gtk3.gtk_action_bar_pack_end
+import gtk3.gtk_action_bar_pack_start
+import gtk3.gtk_action_bar_set_center_widget
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
 
 public typealias ActionBar = CPointer<GtkActionBar>
 
@@ -29,6 +28,17 @@ public val ActionBar.asContainer: Container
 public val ActionBar.asBin: Bin
   get() = reinterpret()
 
-public fun ActionBar.getCenterWidget(): Unit {
-  gtk_action_bar_get_center_widget(this)
+public fun ActionBar.getCenterWidget(): Widget? =
+    gtk_action_bar_get_center_widget(this)?.reinterpret()
+
+public fun ActionBar.packEnd(child: Widget): Unit {
+  gtk_action_bar_pack_end(this, child.reinterpret())
+}
+
+public fun ActionBar.packStart(child: Widget): Unit {
+  gtk_action_bar_pack_start(this, child.reinterpret())
+}
+
+public fun ActionBar.setCenterWidget(centerWidget: Widget): Unit {
+  gtk_action_bar_set_center_widget(this, centerWidget.reinterpret())
 }

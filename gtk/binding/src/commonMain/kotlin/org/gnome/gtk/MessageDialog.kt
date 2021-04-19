@@ -1,17 +1,17 @@
-// TODO - implement:
-//   format_secondary_markup
-//   format_secondary_text
-//   set_image
-//   set_markup
+// TODO - format_secondary_markup
+// TODO - format_secondary_text
+//
 package org.gnome.gtk
 
 import gtk3.GtkMessageDialog
 import gtk3.gtk_message_dialog_get_message_area
+import gtk3.gtk_message_dialog_set_markup
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
 
 public typealias MessageDialog = CPointer<GtkMessageDialog>
 
@@ -36,6 +36,9 @@ public val MessageDialog.asWindow: Window
 public val MessageDialog.asDialog: Dialog
   get() = reinterpret()
 
-public fun MessageDialog.getMessageArea(): Unit {
-  gtk_message_dialog_get_message_area(this)
+public fun MessageDialog.getMessageArea(): Widget? =
+    gtk_message_dialog_get_message_area(this)?.reinterpret()
+
+public fun MessageDialog.setMarkup(str: String?): Unit {
+  gtk_message_dialog_set_markup(this, str)
 }

@@ -1,7 +1,5 @@
-// TODO - implement:
-//   set_submenu
-//   toggle_size_allocate
-//   toggle_size_request
+// TODO - toggle_size_request
+//
 package org.gnome.gtk
 
 import gtk3.GtkMenuItem
@@ -10,25 +8,26 @@ import gtk3.gtk_menu_item_deselect
 import gtk3.gtk_menu_item_get_accel_path
 import gtk3.gtk_menu_item_get_label
 import gtk3.gtk_menu_item_get_reserve_indicator
-import gtk3.gtk_menu_item_get_right_justified
 import gtk3.gtk_menu_item_get_submenu
 import gtk3.gtk_menu_item_get_use_underline
 import gtk3.gtk_menu_item_select
 import gtk3.gtk_menu_item_set_accel_path
 import gtk3.gtk_menu_item_set_label
 import gtk3.gtk_menu_item_set_reserve_indicator
-import gtk3.gtk_menu_item_set_right_justified
+import gtk3.gtk_menu_item_set_submenu
 import gtk3.gtk_menu_item_set_use_underline
+import gtk3.gtk_menu_item_toggle_size_allocate
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
-import org.gnome.glib.toKString
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
+import org.gnome.toKString
 
 public typealias MenuItem = CPointer<GtkMenuItem>
 
@@ -55,40 +54,41 @@ public fun MenuItem.deselect(): Unit {
   gtk_menu_item_deselect(this)
 }
 
-public fun MenuItem.getSubmenu(): Unit {
-  gtk_menu_item_get_submenu(this)
-}
+public fun MenuItem.getAccelPath(): String = gtk_menu_item_get_accel_path(this).toKString
+
+public fun MenuItem.getLabel(): String = gtk_menu_item_get_label(this).toKString
+
+public fun MenuItem.getReserveIndicator(): Boolean =
+    gtk_menu_item_get_reserve_indicator(this).toBoolean
+
+public fun MenuItem.getSubmenu(): Widget? = gtk_menu_item_get_submenu(this)?.reinterpret()
+
+public fun MenuItem.getUseUnderline(): Boolean = gtk_menu_item_get_use_underline(this).toBoolean
 
 public fun MenuItem.select(): Unit {
   gtk_menu_item_select(this)
 }
 
-public var MenuItem.accelPath: String?
-  get() = gtk_menu_item_get_accel_path(this).toKString
-  set(`value`) {
-    gtk_menu_item_set_accel_path(this, value)
-  }
+public fun MenuItem.setAccelPath(accelPath: String?): Unit {
+  gtk_menu_item_set_accel_path(this, accelPath)
+}
 
-public var MenuItem.label: String?
-  get() = gtk_menu_item_get_label(this).toKString
-  set(`value`) {
-    gtk_menu_item_set_label(this, value)
-  }
+public fun MenuItem.setLabel(label: String?): Unit {
+  gtk_menu_item_set_label(this, label)
+}
 
-public var MenuItem.reserveIndicator: Boolean
-  get() = gtk_menu_item_get_reserve_indicator(this).toBoolean
-  set(`value`) {
-    gtk_menu_item_set_reserve_indicator(this, value.toInt)
-  }
+public fun MenuItem.setReserveIndicator(reserve: Boolean): Unit {
+  gtk_menu_item_set_reserve_indicator(this, reserve.toInt)
+}
 
-public var MenuItem.rightJustified: Boolean
-  get() = gtk_menu_item_get_right_justified(this).toBoolean
-  set(`value`) {
-    gtk_menu_item_set_right_justified(this, value.toInt)
-  }
+public fun MenuItem.setSubmenu(submenu: Menu): Unit {
+  gtk_menu_item_set_submenu(this, submenu.reinterpret())
+}
 
-public var MenuItem.useUnderline: Boolean
-  get() = gtk_menu_item_get_use_underline(this).toBoolean
-  set(`value`) {
-    gtk_menu_item_set_use_underline(this, value.toInt)
-  }
+public fun MenuItem.setUseUnderline(setting: Boolean): Unit {
+  gtk_menu_item_set_use_underline(this, setting.toInt)
+}
+
+public fun MenuItem.toggleSizeAllocate(allocation: Int): Unit {
+  gtk_menu_item_toggle_size_allocate(this, allocation)
+}

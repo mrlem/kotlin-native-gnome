@@ -1,15 +1,10 @@
-// TODO - implement:
-//   get_alignment
-//   get_padding
-//   set_alignment
-//   set_padding
 package org.gnome.gtk
 
 import gtk3.GtkMisc
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
 
 public typealias Misc = CPointer<GtkMisc>
 

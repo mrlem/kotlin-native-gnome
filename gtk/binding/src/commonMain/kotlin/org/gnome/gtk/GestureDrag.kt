@@ -1,12 +1,12 @@
-// TODO - implement:
-//   get_offset
-//   get_start_point
+// TODO - get_offset
+// TODO - get_start_point
+//
 package org.gnome.gtk
 
 import gtk3.GtkGestureDrag
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.Object
 
 public typealias GestureDrag = CPointer<GtkGestureDrag>
 

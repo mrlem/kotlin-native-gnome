@@ -1,13 +1,12 @@
-// TODO - implement:
-//   set_orientation
+// TODO - get_orientation
+// TODO - set_orientation
+//
 package org.gnome.gtk
 
 import gtk3.GtkGesturePan
-import gtk3.gtk_gesture_pan_get_orientation
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.Object
 
 public typealias GesturePan = CPointer<GtkGesturePan>
 
@@ -25,7 +24,3 @@ public val GesturePan.asGestureSingle: GestureSingle
 
 public val GesturePan.asGestureDrag: GestureDrag
   get() = reinterpret()
-
-public fun GesturePan.getOrientation(): Unit {
-  gtk_gesture_pan_get_orientation(this)
-}

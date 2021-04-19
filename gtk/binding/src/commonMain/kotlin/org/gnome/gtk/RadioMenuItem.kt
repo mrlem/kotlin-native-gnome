@@ -1,15 +1,15 @@
-// TODO - implement:
-//   join_group
-//   set_group
+// TODO - get_group
+// TODO - set_group
+//
 package org.gnome.gtk
 
 import gtk3.GtkRadioMenuItem
-import gtk3.gtk_radio_menu_item_get_group
+import gtk3.gtk_radio_menu_item_join_group
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
 
 public typealias RadioMenuItem = CPointer<GtkRadioMenuItem>
 
@@ -34,6 +34,6 @@ public val RadioMenuItem.asMenuItem: MenuItem
 public val RadioMenuItem.asCheckMenuItem: CheckMenuItem
   get() = reinterpret()
 
-public fun RadioMenuItem.getGroup(): Unit {
-  gtk_radio_menu_item_get_group(this)
+public fun RadioMenuItem.joinGroup(groupSource: RadioMenuItem): Unit {
+  gtk_radio_menu_item_join_group(this, groupSource.reinterpret())
 }

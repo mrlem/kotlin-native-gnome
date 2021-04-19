@@ -12,31 +12,26 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
-import org.gnome.glib.toKString
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
+import org.gnome.toKString
 
 public typealias TextMark = CPointer<GtkTextMark>
 
 public val TextMark.asObject: Object
   get() = reinterpret()
 
-public fun TextMark.getBuffer(): Unit {
-  gtk_text_mark_get_buffer(this)
+public fun TextMark.getBuffer(): TextBuffer? = gtk_text_mark_get_buffer(this)?.reinterpret()
+
+public fun TextMark.getDeleted(): Boolean = gtk_text_mark_get_deleted(this).toBoolean
+
+public fun TextMark.getLeftGravity(): Boolean = gtk_text_mark_get_left_gravity(this).toBoolean
+
+public fun TextMark.getName(): String = gtk_text_mark_get_name(this).toKString
+
+public fun TextMark.getVisible(): Boolean = gtk_text_mark_get_visible(this).toBoolean
+
+public fun TextMark.setVisible(setting: Boolean): Unit {
+  gtk_text_mark_set_visible(this, setting.toInt)
 }
-
-public var TextMark.visible: Boolean
-  get() = gtk_text_mark_get_visible(this).toBoolean
-  set(`value`) {
-    gtk_text_mark_set_visible(this, value.toInt)
-  }
-
-public val TextMark.deleted: Boolean
-  get() = gtk_text_mark_get_deleted(this).toBoolean
-
-public val TextMark.leftGravity: Boolean
-  get() = gtk_text_mark_get_left_gravity(this).toBoolean
-
-public val TextMark.name: String?
-  get() = gtk_text_mark_get_name(this).toKString

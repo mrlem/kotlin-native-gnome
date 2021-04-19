@@ -5,7 +5,7 @@ import gtk3.gtk_gesture_zoom_get_scale_delta
 import kotlin.Double
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.Object
 
 public typealias GestureZoom = CPointer<GtkGestureZoom>
 
@@ -18,5 +18,4 @@ public val GestureZoom.asEventController: EventController
 public val GestureZoom.asGesture: Gesture
   get() = reinterpret()
 
-public val GestureZoom.scaleDelta: Double
-  get() = gtk_gesture_zoom_get_scale_delta(this)
+public fun GestureZoom.getScaleDelta(): Double = gtk_gesture_zoom_get_scale_delta(this)

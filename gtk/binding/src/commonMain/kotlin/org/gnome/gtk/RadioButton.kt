@@ -1,15 +1,15 @@
-// TODO - implement:
-//   join_group
-//   set_group
+// TODO - get_group
+// TODO - set_group
+//
 package org.gnome.gtk
 
 import gtk3.GtkRadioButton
-import gtk3.gtk_radio_button_get_group
+import gtk3.gtk_radio_button_join_group
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
 
 public typealias RadioButton = CPointer<GtkRadioButton>
 
@@ -37,6 +37,6 @@ public val RadioButton.asToggleButton: ToggleButton
 public val RadioButton.asCheckButton: CheckButton
   get() = reinterpret()
 
-public fun RadioButton.getGroup(): Unit {
-  gtk_radio_button_get_group(this)
+public fun RadioButton.joinGroup(groupSource: RadioButton): Unit {
+  gtk_radio_button_join_group(this, groupSource.reinterpret())
 }

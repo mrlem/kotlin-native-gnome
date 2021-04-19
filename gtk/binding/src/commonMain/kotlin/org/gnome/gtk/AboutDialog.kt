@@ -1,21 +1,21 @@
-// TODO - implement:
-//   add_credit_section
-//   set_artists
-//   set_authors
-//   set_documenters
-//   set_license_type
-//   set_logo
+// TODO - add_credit_section
+// TODO - get_artists
+// TODO - get_authors
+// TODO - get_documenters
+// TODO - get_license_type
+// TODO - get_logo
+// TODO - set_artists
+// TODO - set_authors
+// TODO - set_documenters
+// TODO - set_license_type
+// TODO - set_logo
+//
 package org.gnome.gtk
 
 import gtk3.GtkAboutDialog
-import gtk3.gtk_about_dialog_get_artists
-import gtk3.gtk_about_dialog_get_authors
 import gtk3.gtk_about_dialog_get_comments
 import gtk3.gtk_about_dialog_get_copyright
-import gtk3.gtk_about_dialog_get_documenters
 import gtk3.gtk_about_dialog_get_license
-import gtk3.gtk_about_dialog_get_license_type
-import gtk3.gtk_about_dialog_get_logo
 import gtk3.gtk_about_dialog_get_logo_icon_name
 import gtk3.gtk_about_dialog_get_program_name
 import gtk3.gtk_about_dialog_get_translator_credits
@@ -38,11 +38,11 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
-import org.gnome.glib.toKString
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
+import org.gnome.toKString
 
 public typealias AboutDialog = CPointer<GtkAboutDialog>
 
@@ -67,82 +67,65 @@ public val AboutDialog.asWindow: Window
 public val AboutDialog.asDialog: Dialog
   get() = reinterpret()
 
-public fun AboutDialog.getArtists(): Unit {
-  gtk_about_dialog_get_artists(this)
+public fun AboutDialog.getComments(): String = gtk_about_dialog_get_comments(this).toKString
+
+public fun AboutDialog.getCopyright(): String = gtk_about_dialog_get_copyright(this).toKString
+
+public fun AboutDialog.getLicense(): String = gtk_about_dialog_get_license(this).toKString
+
+public fun AboutDialog.getLogoIconName(): String =
+    gtk_about_dialog_get_logo_icon_name(this).toKString
+
+public fun AboutDialog.getProgramName(): String = gtk_about_dialog_get_program_name(this).toKString
+
+public fun AboutDialog.getTranslatorCredits(): String =
+    gtk_about_dialog_get_translator_credits(this).toKString
+
+public fun AboutDialog.getVersion(): String = gtk_about_dialog_get_version(this).toKString
+
+public fun AboutDialog.getWebsite(): String = gtk_about_dialog_get_website(this).toKString
+
+public fun AboutDialog.getWebsiteLabel(): String =
+    gtk_about_dialog_get_website_label(this).toKString
+
+public fun AboutDialog.getWrapLicense(): Boolean = gtk_about_dialog_get_wrap_license(this).toBoolean
+
+public fun AboutDialog.setComments(comments: String?): Unit {
+  gtk_about_dialog_set_comments(this, comments)
 }
 
-public fun AboutDialog.getAuthors(): Unit {
-  gtk_about_dialog_get_authors(this)
+public fun AboutDialog.setCopyright(copyright: String?): Unit {
+  gtk_about_dialog_set_copyright(this, copyright)
 }
 
-public fun AboutDialog.getDocumenters(): Unit {
-  gtk_about_dialog_get_documenters(this)
+public fun AboutDialog.setLicense(license: String?): Unit {
+  gtk_about_dialog_set_license(this, license)
 }
 
-public fun AboutDialog.getLicenseType(): Unit {
-  gtk_about_dialog_get_license_type(this)
+public fun AboutDialog.setLogoIconName(iconName: String?): Unit {
+  gtk_about_dialog_set_logo_icon_name(this, iconName)
 }
 
-public fun AboutDialog.getLogo(): Unit {
-  gtk_about_dialog_get_logo(this)
+public fun AboutDialog.setProgramName(name: String?): Unit {
+  gtk_about_dialog_set_program_name(this, name)
 }
 
-public var AboutDialog.comments: String?
-  get() = gtk_about_dialog_get_comments(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_comments(this, value)
-  }
+public fun AboutDialog.setTranslatorCredits(translatorCredits: String?): Unit {
+  gtk_about_dialog_set_translator_credits(this, translatorCredits)
+}
 
-public var AboutDialog.copyright: String?
-  get() = gtk_about_dialog_get_copyright(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_copyright(this, value)
-  }
+public fun AboutDialog.setVersion(version: String?): Unit {
+  gtk_about_dialog_set_version(this, version)
+}
 
-public var AboutDialog.license: String?
-  get() = gtk_about_dialog_get_license(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_license(this, value)
-  }
+public fun AboutDialog.setWebsite(website: String?): Unit {
+  gtk_about_dialog_set_website(this, website)
+}
 
-public var AboutDialog.logoIconName: String?
-  get() = gtk_about_dialog_get_logo_icon_name(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_logo_icon_name(this, value)
-  }
+public fun AboutDialog.setWebsiteLabel(websiteLabel: String?): Unit {
+  gtk_about_dialog_set_website_label(this, websiteLabel)
+}
 
-public var AboutDialog.programName: String?
-  get() = gtk_about_dialog_get_program_name(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_program_name(this, value)
-  }
-
-public var AboutDialog.translatorCredits: String?
-  get() = gtk_about_dialog_get_translator_credits(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_translator_credits(this, value)
-  }
-
-public var AboutDialog.version: String?
-  get() = gtk_about_dialog_get_version(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_version(this, value)
-  }
-
-public var AboutDialog.website: String?
-  get() = gtk_about_dialog_get_website(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_website(this, value)
-  }
-
-public var AboutDialog.websiteLabel: String?
-  get() = gtk_about_dialog_get_website_label(this).toKString
-  set(`value`) {
-    gtk_about_dialog_set_website_label(this, value)
-  }
-
-public var AboutDialog.wrapLicense: Boolean
-  get() = gtk_about_dialog_get_wrap_license(this).toBoolean
-  set(`value`) {
-    gtk_about_dialog_set_wrap_license(this, value.toInt)
-  }
+public fun AboutDialog.setWrapLicense(wrapLicense: Boolean): Unit {
+  gtk_about_dialog_set_wrap_license(this, wrapLicense.toInt)
+}

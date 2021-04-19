@@ -7,13 +7,14 @@ import gtk3.gtk_link_button_set_uri
 import gtk3.gtk_link_button_set_visited
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
-import org.gnome.glib.toKString
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
+import org.gnome.toKString
 
 public typealias LinkButton = CPointer<GtkLinkButton>
 
@@ -35,14 +36,14 @@ public val LinkButton.asBin: Bin
 public val LinkButton.asButton: Button
   get() = reinterpret()
 
-public var LinkButton.uri: String?
-  get() = gtk_link_button_get_uri(this).toKString
-  set(`value`) {
-    gtk_link_button_set_uri(this, value)
-  }
+public fun LinkButton.getUri(): String = gtk_link_button_get_uri(this).toKString
 
-public var LinkButton.visited: Boolean
-  get() = gtk_link_button_get_visited(this).toBoolean
-  set(`value`) {
-    gtk_link_button_set_visited(this, value.toInt)
-  }
+public fun LinkButton.getVisited(): Boolean = gtk_link_button_get_visited(this).toBoolean
+
+public fun LinkButton.setUri(uri: String?): Unit {
+  gtk_link_button_set_uri(this, uri)
+}
+
+public fun LinkButton.setVisited(visited: Boolean): Unit {
+  gtk_link_button_set_visited(this, visited.toInt)
+}

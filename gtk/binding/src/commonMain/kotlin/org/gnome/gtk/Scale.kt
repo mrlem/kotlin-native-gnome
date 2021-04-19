@@ -1,7 +1,9 @@
-// TODO - implement:
-//   add_mark
-//   get_layout_offsets
-//   set_value_pos
+// TODO - add_mark
+// TODO - get_layout
+// TODO - get_layout_offsets
+// TODO - get_value_pos
+// TODO - set_value_pos
+//
 package org.gnome.gtk
 
 import gtk3.GtkScale
@@ -9,8 +11,6 @@ import gtk3.gtk_scale_clear_marks
 import gtk3.gtk_scale_get_digits
 import gtk3.gtk_scale_get_draw_value
 import gtk3.gtk_scale_get_has_origin
-import gtk3.gtk_scale_get_layout
-import gtk3.gtk_scale_get_value_pos
 import gtk3.gtk_scale_set_digits
 import gtk3.gtk_scale_set_draw_value
 import gtk3.gtk_scale_set_has_origin
@@ -19,10 +19,10 @@ import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
 
 public typealias Scale = CPointer<GtkScale>
 
@@ -42,28 +42,20 @@ public fun Scale.clearMarks(): Unit {
   gtk_scale_clear_marks(this)
 }
 
-public fun Scale.getLayout(): Unit {
-  gtk_scale_get_layout(this)
+public fun Scale.getDigits(): Int = gtk_scale_get_digits(this)
+
+public fun Scale.getDrawValue(): Boolean = gtk_scale_get_draw_value(this).toBoolean
+
+public fun Scale.getHasOrigin(): Boolean = gtk_scale_get_has_origin(this).toBoolean
+
+public fun Scale.setDigits(digits: Int): Unit {
+  gtk_scale_set_digits(this, digits)
 }
 
-public fun Scale.getValuePos(): Unit {
-  gtk_scale_get_value_pos(this)
+public fun Scale.setDrawValue(drawValue: Boolean): Unit {
+  gtk_scale_set_draw_value(this, drawValue.toInt)
 }
 
-public var Scale.digits: Int
-  get() = gtk_scale_get_digits(this)
-  set(`value`) {
-    gtk_scale_set_digits(this, value)
-  }
-
-public var Scale.drawValue: Boolean
-  get() = gtk_scale_get_draw_value(this).toBoolean
-  set(`value`) {
-    gtk_scale_set_draw_value(this, value.toInt)
-  }
-
-public var Scale.hasOrigin: Boolean
-  get() = gtk_scale_get_has_origin(this).toBoolean
-  set(`value`) {
-    gtk_scale_set_has_origin(this, value.toInt)
-  }
+public fun Scale.setHasOrigin(hasOrigin: Boolean): Unit {
+  gtk_scale_set_has_origin(this, hasOrigin.toInt)
+}

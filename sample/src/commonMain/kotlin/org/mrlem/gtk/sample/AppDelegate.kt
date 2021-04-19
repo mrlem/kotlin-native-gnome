@@ -24,7 +24,7 @@ class AppDelegate(private val ui: SampleUI) {
     }
 
     private fun convert() = ui
-        .apply { dollarAmountLabel.text = convert(euroAmountEntry.text) }
+        .apply { dollarAmountLabel.setText(convert(euroAmountEntry.getText())) }
 
     private fun convert(eurosString: String?) = eurosString
         ?.toFloatOrNull()

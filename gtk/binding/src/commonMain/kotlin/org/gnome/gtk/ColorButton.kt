@@ -1,27 +1,15 @@
-// TODO - implement:
-//   get_color
-//   get_rgba
-//   set_color
-//   set_rgba
 package org.gnome.gtk
 
 import gtk3.GtkColorButton
-import gtk3.gtk_color_button_get_alpha
 import gtk3.gtk_color_button_get_title
-import gtk3.gtk_color_button_get_use_alpha
-import gtk3.gtk_color_button_set_alpha
 import gtk3.gtk_color_button_set_title
-import gtk3.gtk_color_button_set_use_alpha
-import kotlin.Boolean
 import kotlin.String
-import kotlin.UShort
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
-import org.gnome.glib.toKString
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toKString
 
 public typealias ColorButton = CPointer<GtkColorButton>
 
@@ -43,20 +31,8 @@ public val ColorButton.asBin: Bin
 public val ColorButton.asButton: Button
   get() = reinterpret()
 
-public var ColorButton.alpha: UShort
-  get() = gtk_color_button_get_alpha(this)
-  set(`value`) {
-    gtk_color_button_set_alpha(this, value)
-  }
+public fun ColorButton.getTitle(): String = gtk_color_button_get_title(this).toKString
 
-public var ColorButton.title: String?
-  get() = gtk_color_button_get_title(this).toKString
-  set(`value`) {
-    gtk_color_button_set_title(this, value)
-  }
-
-public var ColorButton.useAlpha: Boolean
-  get() = gtk_color_button_get_use_alpha(this).toBoolean
-  set(`value`) {
-    gtk_color_button_set_use_alpha(this, value.toInt)
-  }
+public fun ColorButton.setTitle(title: String?): Unit {
+  gtk_color_button_set_title(this, title)
+}

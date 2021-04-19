@@ -9,9 +9,9 @@ import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
 
 public typealias FlowBoxChild = CPointer<GtkFlowBoxChild>
 
@@ -34,7 +34,6 @@ public fun FlowBoxChild.changed(): Unit {
   gtk_flow_box_child_changed(this)
 }
 
-public fun FlowBoxChild.isSelected(): Boolean = gtk_flow_box_child_is_selected(this).toBoolean
+public fun FlowBoxChild.getIndex(): Int = gtk_flow_box_child_get_index(this)
 
-public val FlowBoxChild.index: Int
-  get() = gtk_flow_box_child_get_index(this)
+public fun FlowBoxChild.isSelected(): Boolean = gtk_flow_box_child_is_selected(this).toBoolean

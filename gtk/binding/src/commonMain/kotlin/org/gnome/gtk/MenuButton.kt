@@ -1,27 +1,27 @@
-// TODO - implement:
-//   set_align_widget
-//   set_direction
-//   set_menu_model
-//   set_popover
-//   set_popup
+// TODO - get_direction
+// TODO - get_menu_model
+// TODO - set_direction
+// TODO - set_menu_model
+//
 package org.gnome.gtk
 
 import gtk3.GtkMenuButton
 import gtk3.gtk_menu_button_get_align_widget
-import gtk3.gtk_menu_button_get_direction
-import gtk3.gtk_menu_button_get_menu_model
 import gtk3.gtk_menu_button_get_popover
 import gtk3.gtk_menu_button_get_popup
 import gtk3.gtk_menu_button_get_use_popover
+import gtk3.gtk_menu_button_set_align_widget
+import gtk3.gtk_menu_button_set_popover
+import gtk3.gtk_menu_button_set_popup
 import gtk3.gtk_menu_button_set_use_popover
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.gobject.InitiallyUnowned
-import org.gnome.glib.gobject.Object
-import org.gnome.glib.toBoolean
-import org.gnome.glib.toInt
+import org.gnome.gobject.InitiallyUnowned
+import org.gnome.gobject.Object
+import org.gnome.toBoolean
+import org.gnome.toInt
 
 public typealias MenuButton = CPointer<GtkMenuButton>
 
@@ -46,28 +46,27 @@ public val MenuButton.asButton: Button
 public val MenuButton.asToggleButton: ToggleButton
   get() = reinterpret()
 
-public fun MenuButton.getAlignWidget(): Unit {
-  gtk_menu_button_get_align_widget(this)
+public fun MenuButton.getAlignWidget(): Widget? =
+    gtk_menu_button_get_align_widget(this)?.reinterpret()
+
+public fun MenuButton.getPopover(): Popover? = gtk_menu_button_get_popover(this)?.reinterpret()
+
+public fun MenuButton.getPopup(): Menu? = gtk_menu_button_get_popup(this)?.reinterpret()
+
+public fun MenuButton.getUsePopover(): Boolean = gtk_menu_button_get_use_popover(this).toBoolean
+
+public fun MenuButton.setAlignWidget(alignWidget: Widget): Unit {
+  gtk_menu_button_set_align_widget(this, alignWidget.reinterpret())
 }
 
-public fun MenuButton.getDirection(): Unit {
-  gtk_menu_button_get_direction(this)
+public fun MenuButton.setPopover(popover: Widget): Unit {
+  gtk_menu_button_set_popover(this, popover.reinterpret())
 }
 
-public fun MenuButton.getMenuModel(): Unit {
-  gtk_menu_button_get_menu_model(this)
+public fun MenuButton.setPopup(menu: Widget): Unit {
+  gtk_menu_button_set_popup(this, menu.reinterpret())
 }
 
-public fun MenuButton.getPopover(): Unit {
-  gtk_menu_button_get_popover(this)
+public fun MenuButton.setUsePopover(usePopover: Boolean): Unit {
+  gtk_menu_button_set_use_popover(this, usePopover.toInt)
 }
-
-public fun MenuButton.getPopup(): Unit {
-  gtk_menu_button_get_popup(this)
-}
-
-public var MenuButton.usePopover: Boolean
-  get() = gtk_menu_button_get_use_popover(this).toBoolean
-  set(`value`) {
-    gtk_menu_button_set_use_popover(this, value.toInt)
-  }
