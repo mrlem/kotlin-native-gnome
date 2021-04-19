@@ -89,11 +89,3 @@ private fun FileSpec.Builder.addConverter(className: ClassName, ancestor: String
             .build()
     )
 }
-
-/*private val TypeReference.rootAncestor: String?
-    get() = when (this) {
-        is TypeReference.Unresolved -> name
-        is TypeReference.Known -> null
-        is TypeReference.Custom -> (definition as? ClassDefinition)?.parent?.rootAncestor
-    }
-*/
