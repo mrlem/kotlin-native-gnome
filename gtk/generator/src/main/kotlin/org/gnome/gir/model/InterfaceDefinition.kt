@@ -46,4 +46,11 @@ data class InterfaceDefinition(
     val signals: List<SignalDefinition>,
     val callbacks: List<CallbackDefinition>,
     val constants: List<ConstantDefinition>
-) : DefinedType
+) : DefinedType {
+
+    val deprecated
+        get() = info.deprecated ||
+                info.doc.sourcePosition?.filename?.contains("deprecated") == true ||
+                info.doc.doc?.filename?.contains("deprecated") == true
+
+}

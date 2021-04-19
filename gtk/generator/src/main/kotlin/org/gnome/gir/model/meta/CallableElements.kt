@@ -13,10 +13,10 @@ data class CallableElements(
     val info: InfoElements,
     val name: String,
     val cIdentifier: String?,
-    val shadowedBy: String?, // TODO - resolve?
-    val shadows: String?, // TODO - resolve?
+    val shadowedBy: String?,
+    val shadows: String?,
     val throws: Boolean,
-    val movedTo: String?, // TODO - resolve?
+    val movedTo: String?,
     val parameters: List<ParameterDefinition>,
     val instanceParameter: InstanceParameterDefinition?,
     val returnValue: ReturnValueDefinition?

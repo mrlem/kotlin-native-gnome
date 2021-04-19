@@ -32,7 +32,7 @@ data class RecordDefinition(
     override val name: String,
     val disguised: Boolean,
     val foreign: Boolean,
-    val glibIsGTypeStruct: Boolean,
+    val glibIsGTypeStructFor: String?,
     val glibTypeName: String?,
     val glibGetType: String?,
     val cSymbolPrefix: String?,
@@ -44,4 +44,11 @@ data class RecordDefinition(
     val fields: List<FieldDefinition>,
     val properties: List<PropertyDefinition>,
     val unions: List<UnionDefinition>
-) : DefinedType
+) : DefinedType {
+
+    val deprecated
+        get() = info.deprecated ||
+                info.doc.sourcePosition?.filename?.contains("deprecated") == true ||
+                info.doc.doc?.filename?.contains("deprecated") == true
+
+}

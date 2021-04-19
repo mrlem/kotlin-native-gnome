@@ -45,8 +45,8 @@ data class ClassDefinition(
     val glibUnrefFunc: String?,
     val glibGetValueFunc: String?,
     val glibSetValueFunc: String?,
-    val glibTypeStruct: String?, // TODO - anything to do?
-    val glibTypeName: String, // TODO - anything to do?
+    val glibTypeStruct: String?,
+    val glibTypeName: String,
     val glibGetType: String,
     val cSymbolPrefix: String?,
     val cType: String?,
@@ -67,7 +67,7 @@ data class ClassDefinition(
 
     val deprecated
         get() = info.deprecated ||
-                (!abstract && constructors.all { it.callable.info.deprecated }) ||
+                (!abstract && constructors.isNotEmpty() && constructors.all { it.callable.info.deprecated }) ||
                 info.doc.sourcePosition?.filename?.contains("deprecated") == true
 
 }

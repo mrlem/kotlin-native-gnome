@@ -12,5 +12,5 @@ import org.gnome.gir.model.meta.CallableElements
  */
 data class VirtualMethodDefinition(
     val callable: CallableElements,
-    val invoker: String? // TODO - resolve?
+    val invoker: String?
 )

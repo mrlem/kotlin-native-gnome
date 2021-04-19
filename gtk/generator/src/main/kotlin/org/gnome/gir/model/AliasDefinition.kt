@@ -17,4 +17,11 @@ data class AliasDefinition(
     val cType: String,
     val info: InfoElements,
     val type: TypeDefinition?
-)
+) {
+
+    val deprecated
+        get() = info.deprecated ||
+                info.doc.sourcePosition?.filename?.contains("deprecated") == true ||
+                info.doc.doc?.filename?.contains("deprecated") == true
+
+}

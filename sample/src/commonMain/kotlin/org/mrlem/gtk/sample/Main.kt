@@ -1,7 +1,7 @@
 package org.mrlem.gtk.sample
 
 import binding.SampleUI
-import org.gnome.glib.gobject.onActivate
+import org.gnome.gobject.onActivate
 import org.gnome.gtk.Application
 import org.gnome.gtk.addWindow
 import org.gnome.gtk.asObject

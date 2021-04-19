@@ -23,4 +23,11 @@ data class CallbackDefinition(
     val info: InfoElements,
     val parameters: List<ParameterDefinition>,
     val returnValue: ReturnValueDefinition?
-) : DefinedType, AnyTypeOrCallback
+) : DefinedType, AnyTypeOrCallback {
+
+    val deprecated
+        get() = info.deprecated ||
+                info.doc.sourcePosition?.filename?.contains("deprecated") == true ||
+                info.doc.doc?.filename?.contains("deprecated") == true
+
+}

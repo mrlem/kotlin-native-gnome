@@ -24,4 +24,11 @@ data class BitFieldDefinition(
     val info: InfoElements,
     val members: List<MemberDefinition>,
     val functions: List<CallableDefinition>,
-) : DefinedType
+) : DefinedType {
+
+    val deprecated
+        get() = info.deprecated ||
+                info.doc.sourcePosition?.filename?.contains("deprecated") == true ||
+                info.doc.doc?.filename?.contains("deprecated") == true
+
+}

@@ -47,9 +47,4 @@ data class NamespaceDefinition(
     val constants: List<ConstantDefinition>,
     val annotations: List<AnnotationDefinition>,
     val boxedTypes: List<BoxedDefinition>
-) {
-
-    val packageName
-        get() = "$GNOME_PACKAGE_NAME.${name!!.toLowerCase()}"
-
-}
+)

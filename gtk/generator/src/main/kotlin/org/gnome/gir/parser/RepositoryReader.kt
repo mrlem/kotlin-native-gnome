@@ -1,5 +1,6 @@
 package org.gnome.gir.parser
 
+import org.gnome.gir.resolver.KnownType
 import org.gnome.gir.model.*
 import org.gnome.gir.model.enums.*
 import org.gnome.gir.model.meta.*
@@ -10,6 +11,7 @@ class RepositoryReader {
 
     var repository: RepositoryDefinition? = null
         private set
+    lateinit var currentNamespace: String
 
     fun read(path: String) {
         val globalRepository =  this.repository
@@ -72,7 +74,7 @@ class RepositoryReader {
     }
 
     private fun Node.readNamespace() = NamespaceDefinition(
-        name = this["name"],
+        name = this["name"]?.also { currentNamespace = it },
         version = this["version"],
         cIdentifierPrefixes = this["c:identifier-prefixes"],
         cSymbolPrefixes = this["c:symbol-prefixes"],
@@ -197,7 +199,7 @@ class RepositoryReader {
         cType = this["c:type"],
         disguised = this["disguised"].boolean,
         foreign = this["foreign"].boolean,
-        glibIsGTypeStruct = this["glib:is-gtype-struct"].boolean,
+        glibIsGTypeStructFor = this["glib:is-gtype-struct-for"],
         info = readInfoElements(),
         properties = readProperties(),
         unions = readUnions(),
@@ -320,6 +322,7 @@ class RepositoryReader {
         introspectable = this["introspectable"].boolean,
         closure = this["closure"].integer,
         destroy = this["destroy"].integer,
+        direction = Direction.fromName(this["direction"]),
         scope = Scope.fromName(this["scope"]),
         type = readAnyTypeOrVarargs() ?: throw error("missing type or varargs"),
         doc = readDocElements()
@@ -365,13 +368,24 @@ class RepositoryReader {
             else -> null
         }
 
-    private fun Node.readType() = TypeDefinition(
-        name = this["name"] ?: throw error("missing name"),
-        introspectable = this["introspectable"].boolean,
-        cType = this["c:type"],
-        doc = readDocElements(),
-        types = readAnyTypes()
-    )
+    private fun Node.readType() = takeUnless { this["name"] == "none" }
+        ?.run {
+            TypeDefinition(
+                name = this["name"]
+                    ?.let {
+                        if (KnownType.fromName(it) != null || it.contains('.')) {
+                            it
+                        } else {
+                            "$currentNamespace.$it"
+                        }
+                    }
+                    ?: throw error("missing name"),
+                introspectable = this["introspectable"].boolean,
+                cType = this["c:type"],
+                doc = readDocElements(),
+                types = readAnyTypes()
+            )
+        }
         .also { if (nodeName != "type") error("invalid node name") }
 
     private fun Node.readArrayType() = ArrayTypeDefinition(
@@ -419,7 +433,7 @@ class RepositoryReader {
     )
 
     private fun Node.readReturnValue() = firstOrNull("return-value")
-        ?.let {
+        ?.run {
             ReturnValueDefinition(
                 transferOwnership = Ownership.fromName(this["transfer-ownership"]) ?: Ownership.None,
                 type = readAnyTypes().firstOrNull(),
@@ -480,7 +494,7 @@ class RepositoryReader {
     private fun Node.readUnions(): List<UnionDefinition> = all("union")
         .mapNotNull { it.readUnion() }
 
-    private fun Node.readEnums() = all("enum")
+    private fun Node.readEnums() = all("enumeration")
         .map { it.readEnum() }
 
     private fun Node.readFields() = all("field")
@@ -532,6 +546,6 @@ class RepositoryReader {
         .mapNotNull { it.readAnyType() }
 
     private fun Node.readTypes(): List<TypeDefinition> = all("type")
-        .map { it.readType() }
+        .mapNotNull { it.readType() }
 
 }

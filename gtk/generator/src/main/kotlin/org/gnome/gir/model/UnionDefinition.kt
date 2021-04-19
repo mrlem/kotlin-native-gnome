@@ -22,7 +22,7 @@ import org.gnome.gir.model.meta.InfoElements
  */
 data class UnionDefinition(
     override val name: String,
-    val glibTypeName: String?, // TODO - anything to do?
+    val glibTypeName: String?,
     val glibGetType: String?,
     val cSymbolPrefix: String?,
     val cType: String?,
@@ -32,4 +32,4 @@ data class UnionDefinition(
     val methods: List<CallableDefinition>,
     val functions: List<CallableDefinition>,
     val records: List<RecordDefinition>
-) : DefinedType // TODO: NamespaceDefinition.Element, ClassDefinition.Element, RecordDefinition.Element
+) : DefinedType

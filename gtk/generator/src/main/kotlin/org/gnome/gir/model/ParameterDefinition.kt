@@ -35,7 +35,7 @@ data class ParameterDefinition(
     val closure: Int?,
     val destroy: Int?,
     val scope: Scope?,
-    val direction: Direction? = null,
+    val direction: Direction?,
     val callerAllocates: Boolean,
     val optional: Boolean,
     val skip: Boolean,
