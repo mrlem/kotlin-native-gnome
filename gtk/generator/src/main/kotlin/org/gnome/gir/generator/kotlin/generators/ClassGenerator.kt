@@ -57,7 +57,6 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             // converters
             .apply { addConverters(classNameString, className, resolver) }
             // sub-elements
-            // TODO - compress property methods
             .apply {
                 val methodsToAdd = methods.toMutableList()
                 addProperties(methodsToAdd, className, resolver)
