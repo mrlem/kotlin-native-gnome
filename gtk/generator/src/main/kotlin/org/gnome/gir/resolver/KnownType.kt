@@ -200,13 +200,9 @@ enum class KnownType(
     ),
     GSize(
         "gsize",
-        // TODO
+        ClassName("kotlin", "ULong"),
         null,
-        // TODO
-        null,
-        // TODO
-        null,
-        // TODO
+        ClassName(GTK_CINTEROP_PACKAGE_NAME, "gsize"),
         null
     )
     ;

@@ -1,11 +1,10 @@
-// TODO - get_bytes
-//
 package org.gnome.gtk
 
 import gtk3.GtkEntryBuffer
 import gtk3.gtk_entry_buffer_delete_text
 import gtk3.gtk_entry_buffer_emit_deleted_text
 import gtk3.gtk_entry_buffer_emit_inserted_text
+import gtk3.gtk_entry_buffer_get_bytes
 import gtk3.gtk_entry_buffer_get_length
 import gtk3.gtk_entry_buffer_get_max_length
 import gtk3.gtk_entry_buffer_get_text
@@ -15,6 +14,7 @@ import gtk3.gtk_entry_buffer_set_text
 import kotlin.Int
 import kotlin.String
 import kotlin.UInt
+import kotlin.ULong
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -40,6 +40,8 @@ public fun EntryBuffer.emitInsertedText(
 ): Unit {
   gtk_entry_buffer_emit_inserted_text(this, position, chars, nChars)
 }
+
+public fun EntryBuffer.getBytes(): ULong = gtk_entry_buffer_get_bytes(this)
 
 public fun EntryBuffer.getLength(): UInt = gtk_entry_buffer_get_length(this)
 
