@@ -17,7 +17,8 @@ They say a picture is worth a thousand words:
 ## Status
 
 * API coverage is progressing, though some things are sorely missed :).
-* The aim is to be able to fully generate the API through [GIR](https://gi.readthedocs.io) (most of what is already present is already generated).
+* the aim is to be able to fully generate the API through [GIR](https://gi.readthedocs.io) (most of what is already present is already generated).
+* tested on Ubuntu 20.04
 
 ## Build
 
