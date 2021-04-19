@@ -12,7 +12,7 @@ import org.gnome.gir.model.ReturnValueDefinition
 data class CallableElements(
     val info: InfoElements,
     val name: String,
-    val identifier: String?,
+    val cIdentifier: String?,
     val shadowedBy: String?, // TODO - resolve?
     val shadows: String?, // TODO - resolve?
     val throws: Boolean,

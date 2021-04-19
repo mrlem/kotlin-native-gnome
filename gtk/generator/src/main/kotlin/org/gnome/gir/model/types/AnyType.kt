@@ -1,3 +1,3 @@
-package org.gnome.gir.model.meta
+package org.gnome.gir.model.types
 
 interface AnyType : AnyTypeOrCallback, AnyTypeOrVarargs

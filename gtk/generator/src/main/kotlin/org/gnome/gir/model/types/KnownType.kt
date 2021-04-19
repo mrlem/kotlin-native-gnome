@@ -1,4 +1,4 @@
-package org.gnome.gir.model.meta
+package org.gnome.gir.model.types
 
 enum class KnownType(val value: String) {
 

@@ -3,7 +3,7 @@ package org.gnome.gir.model
 import org.gnome.gir.model.enums.Ownership
 import org.gnome.gir.model.enums.Scope
 import org.gnome.gir.model.meta.DocElements
-import org.gnome.gir.model.meta.AnyType
+import org.gnome.gir.model.types.AnyType
 
 /**
  * GIR return value.

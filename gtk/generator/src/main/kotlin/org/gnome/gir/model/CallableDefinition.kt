@@ -1,7 +1,7 @@
 package org.gnome.gir.model
 
 import org.gnome.gir.model.meta.CallableElements
-import org.gnome.gir.model.meta.DefinedType
+import org.gnome.gir.model.types.DefinedType
 
 /**
  * GIR callable.

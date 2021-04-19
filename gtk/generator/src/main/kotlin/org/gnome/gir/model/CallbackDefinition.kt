@@ -1,8 +1,8 @@
 package org.gnome.gir.model
 
 import org.gnome.gir.model.meta.InfoElements
-import org.gnome.gir.model.meta.AnyTypeOrCallback
-import org.gnome.gir.model.meta.DefinedType
+import org.gnome.gir.model.types.AnyTypeOrCallback
+import org.gnome.gir.model.types.DefinedType
 
 /**
  * GIR callback.

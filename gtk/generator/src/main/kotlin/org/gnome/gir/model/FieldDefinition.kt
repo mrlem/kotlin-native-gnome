@@ -1,7 +1,7 @@
 package org.gnome.gir.model
 
 import org.gnome.gir.model.meta.InfoElements
-import org.gnome.gir.model.meta.AnyTypeOrCallback
+import org.gnome.gir.model.types.AnyTypeOrCallback
 
 /**
  * GIR record field.

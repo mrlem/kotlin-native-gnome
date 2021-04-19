@@ -4,7 +4,7 @@ import org.gnome.gir.model.enums.Direction
 import org.gnome.gir.model.enums.Ownership
 import org.gnome.gir.model.enums.Scope
 import org.gnome.gir.model.meta.DocElements
-import org.gnome.gir.model.meta.AnyTypeOrVarargs
+import org.gnome.gir.model.types.AnyTypeOrVarargs
 
 /**
  * GIR parameter.

@@ -3,6 +3,7 @@ package org.gnome.gir.parser
 import org.gnome.gir.model.*
 import org.gnome.gir.model.enums.*
 import org.gnome.gir.model.meta.*
+import org.gnome.gir.model.types.AnyType
 import org.w3c.dom.Node
 
 class RepositoryReader {
@@ -405,7 +406,7 @@ class RepositoryReader {
     private fun Node.readCallableElements() = CallableElements(
         info = readInfoElements(),
         name = this["name"] ?: throw error("missing name"),
-        identifier = this["identifier"],
+        cIdentifier = this["c:identifier"],
         shadowedBy = this["shadowedBy"],
         shadows = this["shadows"],
         throws = this["throws"].boolean,

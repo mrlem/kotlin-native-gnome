@@ -1,6 +1,6 @@
 package org.gnome.gir.model
 
-import org.gnome.gir.model.meta.AnyType
+import org.gnome.gir.model.types.AnyType
 import org.gnome.gir.model.meta.DocElements
 
 /**
