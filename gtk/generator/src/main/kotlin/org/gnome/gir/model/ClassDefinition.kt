@@ -63,4 +63,11 @@ data class ClassDefinition(
     val constants: List<ConstantDefinition>,
     val records: List<RecordDefinition>,
     val callbacks: List<CallbackDefinition>
-) : DefinedType
+) : DefinedType {
+
+    val deprecated
+        get() = info.deprecated ||
+                (!abstract && constructors.all { it.callable.info.deprecated }) ||
+                info.doc.sourcePosition?.filename?.contains("deprecated") == true
+
+}

@@ -5,6 +5,7 @@ import org.gnome.gir.oldparser.xml.Parser
 import java.io.File
 import kotlin.system.exitProcess
 
+const val GNOME_PACKAGE_NAME = "org.gnome"
 const val GLIB_PACKAGE_NAME = "org.gnome.glib"
 const val GTK_PACKAGE_NAME = "org.gnome.gtk"
 const val GTK_CINTEROP_PACKAGE_NAME = "gtk3"
