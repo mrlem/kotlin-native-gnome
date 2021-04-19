@@ -162,11 +162,8 @@ enum class KnownType(
     Type(
         "GType",
         ClassName(GTK_CINTEROP_PACKAGE_NAME, "GType"),
-        // TODO
         null,
-        // TODO
-        null,
-        // TODO
+        ClassName(GTK_CINTEROP_PACKAGE_NAME, "GType"),
         null
     ),
     VAList(
