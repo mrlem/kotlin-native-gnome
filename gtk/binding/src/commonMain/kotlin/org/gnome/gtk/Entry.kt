@@ -9,7 +9,6 @@
 // TODO - get_icon_tooltip_markup
 // TODO - get_icon_tooltip_text
 // TODO - get_input_purpose
-// TODO - get_invisible_char
 // TODO - get_layout
 // TODO - get_layout_offsets
 // TODO - get_tabs
@@ -25,7 +24,6 @@
 // TODO - set_icon_tooltip_markup
 // TODO - set_icon_tooltip_text
 // TODO - set_input_purpose
-// TODO - set_invisible_char
 // TODO - set_tabs
 //
 package org.gnome.gtk
@@ -40,6 +38,7 @@ import gtk3.gtk_entry_get_cursor_hadjustment
 import gtk3.gtk_entry_get_has_frame
 import gtk3.gtk_entry_get_icon_at_pos
 import gtk3.gtk_entry_get_input_hints
+import gtk3.gtk_entry_get_invisible_char
 import gtk3.gtk_entry_get_max_length
 import gtk3.gtk_entry_get_max_width_chars
 import gtk3.gtk_entry_get_overwrite_mode
@@ -61,6 +60,7 @@ import gtk3.gtk_entry_set_completion
 import gtk3.gtk_entry_set_cursor_hadjustment
 import gtk3.gtk_entry_set_has_frame
 import gtk3.gtk_entry_set_input_hints
+import gtk3.gtk_entry_set_invisible_char
 import gtk3.gtk_entry_set_max_length
 import gtk3.gtk_entry_set_max_width_chars
 import gtk3.gtk_entry_set_overwrite_mode
@@ -73,6 +73,7 @@ import gtk3.gtk_entry_set_width_chars
 import gtk3.gtk_entry_text_index_to_layout_index
 import gtk3.gtk_entry_unset_invisible_char
 import kotlin.Boolean
+import kotlin.Char
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -84,8 +85,10 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toChar
 import org.gnome.toInt
 import org.gnome.toKString
+import org.gnome.toUInt
 
 public typealias Entry = CPointer<GtkEntry>
 
@@ -116,6 +119,8 @@ public fun Entry.getHasFrame(): Boolean = gtk_entry_get_has_frame(this).toBoolea
 public fun Entry.getIconAtPos(x: Int, y: Int): Int = gtk_entry_get_icon_at_pos(this, x, y)
 
 public fun Entry.getInputHints(): InputHints = gtk_entry_get_input_hints(this)
+
+public fun Entry.getInvisibleChar(): Char = gtk_entry_get_invisible_char(this).toChar
 
 public fun Entry.getMaxLength(): Int = gtk_entry_get_max_length(this)
 
@@ -178,6 +183,10 @@ public fun Entry.setHasFrame(setting: Boolean): Unit {
 
 public fun Entry.setInputHints(hints: InputHints): Unit {
   gtk_entry_set_input_hints(this, hints)
+}
+
+public fun Entry.setInvisibleChar(ch: Char): Unit {
+  gtk_entry_set_invisible_char(this, ch.toUInt)
 }
 
 public fun Entry.setMaxLength(max: Int): Unit {

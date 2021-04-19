@@ -27,30 +27,23 @@ enum class KnownType(
         ClassName("kotlin", "String")
             .copy(nullable = true),
         "toKString",
-        // TODO
-        null,
-        // TODO
+        ClassName("kotlinx.cinterop", "CPointer")
+            .plusParameter(ClassName(GTK_CINTEROP_PACKAGE_NAME, "gvarChar")),
         null
     ),
     GChar(
         "gchar",
-        ClassName("java.lang", "Character"),
-        null,
-        // TODO
-        null,
-        // TODO
-        null
+        ClassName("kotlin", "Char"),
+        "toChar",
+        ClassName(GTK_CINTEROP_PACKAGE_NAME, "gchar"),
+        "toUInt"
     ),
     GUniChar(
         "gunichar",
-        // TODO
-        null,
-        // TODO
-        null,
-        // TODO
-        null,
-        // TODO
-        null
+        ClassName("kotlin", "Char"),
+        "toChar",
+        ClassName(GTK_CINTEROP_PACKAGE_NAME, "gunichar"),
+        "toUInt"
     ),
     GBoolean(
         "gboolean",

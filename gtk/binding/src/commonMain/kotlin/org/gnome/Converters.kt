@@ -12,6 +12,12 @@ val Boolean.toInt
 val Int.toBoolean
     get() = this == 1
 
+val Char.toUInt: UInt
+    get() = code.toUInt()
+
+val UInt.toChar
+    get() = Char(this.toInt())
+
 val CPointer<gcharVar>?.toKString
     get() = this?.toKString().orEmpty()
 
