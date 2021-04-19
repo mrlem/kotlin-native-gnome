@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("multiplatform")
 }
@@ -61,5 +63,10 @@ kotlin {
                 }
             }
         }
+    }
+
+    sourceSets.all {
+        languageSettings.useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
+        languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
     }
 }
