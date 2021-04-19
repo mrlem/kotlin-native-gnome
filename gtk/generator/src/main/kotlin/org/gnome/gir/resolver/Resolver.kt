@@ -26,7 +26,9 @@ class Resolver(repository: RepositoryDefinition) {
         }
     }
 
-    fun ancestors(className: String) = classesInfo[className]?.ancestors
+    fun ancestors(className: String) = classesInfo[className]?.ancestors.orEmpty()
+
+    fun classDefinition(className: String) = classesInfo[className]?.definition
 
     ///////////////////////////////////////////////////////////////////////////
     // Private
