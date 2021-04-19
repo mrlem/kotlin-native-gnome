@@ -7,7 +7,6 @@ import gtk3.gtk_event_controller_key_get_im_context
 import gtk3.gtk_event_controller_key_set_im_context
 import kotlin.Boolean
 import kotlin.UInt
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
@@ -21,14 +20,14 @@ public val EventControllerKey.asObject: Object
 public val EventControllerKey.asEventController: EventController
   get() = reinterpret()
 
+public val EventControllerKey.group: UInt
+  get() = gtk_event_controller_key_get_group(this)
+
+public var EventControllerKey.imContext: IMContext?
+  get() = gtk_event_controller_key_get_im_context(this)?.reinterpret()
+  set(`value`) {
+    gtk_event_controller_key_set_im_context(this, value)
+  }
+
 public fun EventControllerKey.forward(widget: Widget): Boolean =
     gtk_event_controller_key_forward(this, widget.reinterpret()).toBoolean
-
-public fun EventControllerKey.getGroup(): UInt = gtk_event_controller_key_get_group(this)
-
-public fun EventControllerKey.getImContext(): IMContext? =
-    gtk_event_controller_key_get_im_context(this)?.reinterpret()
-
-public fun EventControllerKey.setImContext(imContext: IMContext): Unit {
-  gtk_event_controller_key_set_im_context(this, imContext.reinterpret())
-}

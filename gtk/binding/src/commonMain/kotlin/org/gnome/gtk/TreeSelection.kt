@@ -1,4 +1,6 @@
 // TODO - get_mode
+// TODO - get_user_data
+// TODO - get_mode
 // TODO - get_selected
 // TODO - get_selected_rows
 // TODO - get_user_data
@@ -35,13 +37,13 @@ public typealias TreeSelection = CPointer<GtkTreeSelection>
 public val TreeSelection.asObject: Object
   get() = reinterpret()
 
+public val TreeSelection.selectFunction: TreeSelectionFunc?
+  get() = gtk_tree_selection_get_select_function(this)?.reinterpret()
+
+public val TreeSelection.treeView: TreeView?
+  get() = gtk_tree_selection_get_tree_view(this)?.reinterpret()
+
 public fun TreeSelection.countSelectedRows(): Int = gtk_tree_selection_count_selected_rows(this)
-
-public fun TreeSelection.getSelectFunction(): TreeSelectionFunc? =
-    gtk_tree_selection_get_select_function(this)?.reinterpret()
-
-public fun TreeSelection.getTreeView(): TreeView? =
-    gtk_tree_selection_get_tree_view(this)?.reinterpret()
 
 public fun TreeSelection.iterIsSelected(iter: TreeIter): Boolean =
     gtk_tree_selection_iter_is_selected(this, iter.reinterpret()).toBoolean

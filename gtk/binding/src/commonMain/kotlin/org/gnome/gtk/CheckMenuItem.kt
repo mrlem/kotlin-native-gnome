@@ -37,25 +37,23 @@ public val CheckMenuItem.asBin: Bin
 public val CheckMenuItem.asMenuItem: MenuItem
   get() = reinterpret()
 
-public fun CheckMenuItem.getActive(): Boolean = gtk_check_menu_item_get_active(this).toBoolean
+public var CheckMenuItem.active: Boolean
+  get() = gtk_check_menu_item_get_active(this).toBoolean
+  set(`value`) {
+    gtk_check_menu_item_set_active(this, value.toInt)
+  }
 
-public fun CheckMenuItem.getDrawAsRadio(): Boolean =
-    gtk_check_menu_item_get_draw_as_radio(this).toBoolean
+public var CheckMenuItem.drawAsRadio: Boolean
+  get() = gtk_check_menu_item_get_draw_as_radio(this).toBoolean
+  set(`value`) {
+    gtk_check_menu_item_set_draw_as_radio(this, value.toInt)
+  }
 
-public fun CheckMenuItem.getInconsistent(): Boolean =
-    gtk_check_menu_item_get_inconsistent(this).toBoolean
-
-public fun CheckMenuItem.setActive(isActive: Boolean): Unit {
-  gtk_check_menu_item_set_active(this, isActive.toInt)
-}
-
-public fun CheckMenuItem.setDrawAsRadio(drawAsRadio: Boolean): Unit {
-  gtk_check_menu_item_set_draw_as_radio(this, drawAsRadio.toInt)
-}
-
-public fun CheckMenuItem.setInconsistent(setting: Boolean): Unit {
-  gtk_check_menu_item_set_inconsistent(this, setting.toInt)
-}
+public var CheckMenuItem.inconsistent: Boolean
+  get() = gtk_check_menu_item_get_inconsistent(this).toBoolean
+  set(`value`) {
+    gtk_check_menu_item_set_inconsistent(this, value.toInt)
+  }
 
 public fun CheckMenuItem.toggled(): Unit {
   gtk_check_menu_item_toggled(this)

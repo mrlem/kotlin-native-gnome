@@ -30,10 +30,13 @@ public typealias IconInfo = CPointer<GtkIconInfo>
 public val IconInfo.asObject: Object
   get() = reinterpret()
 
-public fun IconInfo.getBaseScale(): Int = gtk_icon_info_get_base_scale(this)
+public val IconInfo.baseScale: Int
+  get() = gtk_icon_info_get_base_scale(this)
 
-public fun IconInfo.getBaseSize(): Int = gtk_icon_info_get_base_size(this)
+public val IconInfo.baseSize: Int
+  get() = gtk_icon_info_get_base_size(this)
 
-public fun IconInfo.getFilename(): String = gtk_icon_info_get_filename(this).toKString
+public val IconInfo.filename: String
+  get() = gtk_icon_info_get_filename(this).toKString
 
 public fun IconInfo.isSymbolic(): Boolean = gtk_icon_info_is_symbolic(this).toBoolean

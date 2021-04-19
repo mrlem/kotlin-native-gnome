@@ -1,4 +1,6 @@
 // TODO - get_placement
+// TODO - get_shadow_type
+// TODO - get_placement
 // TODO - get_policy
 // TODO - get_shadow_type
 // TODO - set_placement
@@ -60,88 +62,77 @@ public val ScrolledWindow.asContainer: Container
 public val ScrolledWindow.asBin: Bin
   get() = reinterpret()
 
-public fun ScrolledWindow.getCaptureButtonPress(): Boolean =
-    gtk_scrolled_window_get_capture_button_press(this).toBoolean
+public var ScrolledWindow.captureButtonPress: Boolean
+  get() = gtk_scrolled_window_get_capture_button_press(this).toBoolean
+  set(`value`) {
+    gtk_scrolled_window_set_capture_button_press(this, value.toInt)
+  }
 
-public fun ScrolledWindow.getHadjustment(): Adjustment? =
-    gtk_scrolled_window_get_hadjustment(this)?.reinterpret()
+public var ScrolledWindow.hadjustment: Adjustment?
+  get() = gtk_scrolled_window_get_hadjustment(this)?.reinterpret()
+  set(`value`) {
+    gtk_scrolled_window_set_hadjustment(this, value)
+  }
 
-public fun ScrolledWindow.getHscrollbar(): Widget? =
-    gtk_scrolled_window_get_hscrollbar(this)?.reinterpret()
+public val ScrolledWindow.hscrollbar: Widget?
+  get() = gtk_scrolled_window_get_hscrollbar(this)?.reinterpret()
 
-public fun ScrolledWindow.getKineticScrolling(): Boolean =
-    gtk_scrolled_window_get_kinetic_scrolling(this).toBoolean
+public var ScrolledWindow.kineticScrolling: Boolean
+  get() = gtk_scrolled_window_get_kinetic_scrolling(this).toBoolean
+  set(`value`) {
+    gtk_scrolled_window_set_kinetic_scrolling(this, value.toInt)
+  }
 
-public fun ScrolledWindow.getMaxContentHeight(): Int =
-    gtk_scrolled_window_get_max_content_height(this)
+public var ScrolledWindow.maxContentHeight: Int
+  get() = gtk_scrolled_window_get_max_content_height(this)
+  set(`value`) {
+    gtk_scrolled_window_set_max_content_height(this, value)
+  }
 
-public fun ScrolledWindow.getMaxContentWidth(): Int =
-    gtk_scrolled_window_get_max_content_width(this)
+public var ScrolledWindow.maxContentWidth: Int
+  get() = gtk_scrolled_window_get_max_content_width(this)
+  set(`value`) {
+    gtk_scrolled_window_set_max_content_width(this, value)
+  }
 
-public fun ScrolledWindow.getMinContentHeight(): Int =
-    gtk_scrolled_window_get_min_content_height(this)
+public var ScrolledWindow.minContentHeight: Int
+  get() = gtk_scrolled_window_get_min_content_height(this)
+  set(`value`) {
+    gtk_scrolled_window_set_min_content_height(this, value)
+  }
 
-public fun ScrolledWindow.getMinContentWidth(): Int =
-    gtk_scrolled_window_get_min_content_width(this)
+public var ScrolledWindow.minContentWidth: Int
+  get() = gtk_scrolled_window_get_min_content_width(this)
+  set(`value`) {
+    gtk_scrolled_window_set_min_content_width(this, value)
+  }
 
-public fun ScrolledWindow.getOverlayScrolling(): Boolean =
-    gtk_scrolled_window_get_overlay_scrolling(this).toBoolean
+public var ScrolledWindow.overlayScrolling: Boolean
+  get() = gtk_scrolled_window_get_overlay_scrolling(this).toBoolean
+  set(`value`) {
+    gtk_scrolled_window_set_overlay_scrolling(this, value.toInt)
+  }
 
-public fun ScrolledWindow.getPropagateNaturalHeight(): Boolean =
-    gtk_scrolled_window_get_propagate_natural_height(this).toBoolean
+public var ScrolledWindow.propagateNaturalHeight: Boolean
+  get() = gtk_scrolled_window_get_propagate_natural_height(this).toBoolean
+  set(`value`) {
+    gtk_scrolled_window_set_propagate_natural_height(this, value.toInt)
+  }
 
-public fun ScrolledWindow.getPropagateNaturalWidth(): Boolean =
-    gtk_scrolled_window_get_propagate_natural_width(this).toBoolean
+public var ScrolledWindow.propagateNaturalWidth: Boolean
+  get() = gtk_scrolled_window_get_propagate_natural_width(this).toBoolean
+  set(`value`) {
+    gtk_scrolled_window_set_propagate_natural_width(this, value.toInt)
+  }
 
-public fun ScrolledWindow.getVadjustment(): Adjustment? =
-    gtk_scrolled_window_get_vadjustment(this)?.reinterpret()
+public var ScrolledWindow.vadjustment: Adjustment?
+  get() = gtk_scrolled_window_get_vadjustment(this)?.reinterpret()
+  set(`value`) {
+    gtk_scrolled_window_set_vadjustment(this, value)
+  }
 
-public fun ScrolledWindow.getVscrollbar(): Widget? =
-    gtk_scrolled_window_get_vscrollbar(this)?.reinterpret()
-
-public fun ScrolledWindow.setCaptureButtonPress(captureButtonPress: Boolean): Unit {
-  gtk_scrolled_window_set_capture_button_press(this, captureButtonPress.toInt)
-}
-
-public fun ScrolledWindow.setHadjustment(hadjustment: Adjustment): Unit {
-  gtk_scrolled_window_set_hadjustment(this, hadjustment.reinterpret())
-}
-
-public fun ScrolledWindow.setKineticScrolling(kineticScrolling: Boolean): Unit {
-  gtk_scrolled_window_set_kinetic_scrolling(this, kineticScrolling.toInt)
-}
-
-public fun ScrolledWindow.setMaxContentHeight(height: Int): Unit {
-  gtk_scrolled_window_set_max_content_height(this, height)
-}
-
-public fun ScrolledWindow.setMaxContentWidth(width: Int): Unit {
-  gtk_scrolled_window_set_max_content_width(this, width)
-}
-
-public fun ScrolledWindow.setMinContentHeight(height: Int): Unit {
-  gtk_scrolled_window_set_min_content_height(this, height)
-}
-
-public fun ScrolledWindow.setMinContentWidth(width: Int): Unit {
-  gtk_scrolled_window_set_min_content_width(this, width)
-}
-
-public fun ScrolledWindow.setOverlayScrolling(overlayScrolling: Boolean): Unit {
-  gtk_scrolled_window_set_overlay_scrolling(this, overlayScrolling.toInt)
-}
-
-public fun ScrolledWindow.setPropagateNaturalHeight(propagate: Boolean): Unit {
-  gtk_scrolled_window_set_propagate_natural_height(this, propagate.toInt)
-}
-
-public fun ScrolledWindow.setPropagateNaturalWidth(propagate: Boolean): Unit {
-  gtk_scrolled_window_set_propagate_natural_width(this, propagate.toInt)
-}
-
-public fun ScrolledWindow.setVadjustment(vadjustment: Adjustment): Unit {
-  gtk_scrolled_window_set_vadjustment(this, vadjustment.reinterpret())
-}
+public val ScrolledWindow.vscrollbar: Widget?
+  get() = gtk_scrolled_window_get_vscrollbar(this)?.reinterpret()
 
 public fun ScrolledWindow.unsetPlacement(): Unit {
   gtk_scrolled_window_unset_placement(this)

@@ -1,3 +1,4 @@
+// TODO - get_message_type
 // TODO - add_buttons
 // TODO - get_message_type
 // TODO - set_message_type
@@ -44,21 +45,30 @@ public val InfoBar.asContainer: Container
 public val InfoBar.asBox: Box
   get() = reinterpret()
 
+public val InfoBar.actionArea: Box?
+  get() = gtk_info_bar_get_action_area(this)?.reinterpret()
+
+public val InfoBar.contentArea: Box?
+  get() = gtk_info_bar_get_content_area(this)?.reinterpret()
+
+public var InfoBar.revealed: Boolean
+  get() = gtk_info_bar_get_revealed(this).toBoolean
+  set(`value`) {
+    gtk_info_bar_set_revealed(this, value.toInt)
+  }
+
+public var InfoBar.showCloseButton: Boolean
+  get() = gtk_info_bar_get_show_close_button(this).toBoolean
+  set(`value`) {
+    gtk_info_bar_set_show_close_button(this, value.toInt)
+  }
+
 public fun InfoBar.addActionWidget(child: Widget, responseId: Int): Unit {
   gtk_info_bar_add_action_widget(this, child.reinterpret(), responseId)
 }
 
 public fun InfoBar.addButton(buttonText: String?, responseId: Int): Button? =
     gtk_info_bar_add_button(this, buttonText, responseId)?.reinterpret()
-
-public fun InfoBar.getActionArea(): Box? = gtk_info_bar_get_action_area(this)?.reinterpret()
-
-public fun InfoBar.getContentArea(): Box? = gtk_info_bar_get_content_area(this)?.reinterpret()
-
-public fun InfoBar.getRevealed(): Boolean = gtk_info_bar_get_revealed(this).toBoolean
-
-public fun InfoBar.getShowCloseButton(): Boolean =
-    gtk_info_bar_get_show_close_button(this).toBoolean
 
 public fun InfoBar.response(responseId: Int): Unit {
   gtk_info_bar_response(this, responseId)
@@ -70,12 +80,4 @@ public fun InfoBar.setDefaultResponse(responseId: Int): Unit {
 
 public fun InfoBar.setResponseSensitive(responseId: Int, setting: Boolean): Unit {
   gtk_info_bar_set_response_sensitive(this, responseId, setting.toInt)
-}
-
-public fun InfoBar.setRevealed(revealed: Boolean): Unit {
-  gtk_info_bar_set_revealed(this, revealed.toInt)
-}
-
-public fun InfoBar.setShowCloseButton(setting: Boolean): Unit {
-  gtk_info_bar_set_show_close_button(this, setting.toInt)
 }

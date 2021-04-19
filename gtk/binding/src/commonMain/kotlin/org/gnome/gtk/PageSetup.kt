@@ -1,3 +1,4 @@
+// TODO - get_orientation
 // TODO - get_bottom_margin
 // TODO - get_left_margin
 // TODO - get_orientation
@@ -35,13 +36,13 @@ public typealias PageSetup = CPointer<GtkPageSetup>
 public val PageSetup.asObject: Object
   get() = reinterpret()
 
+public var PageSetup.paperSize: PaperSize?
+  get() = gtk_page_setup_get_paper_size(this)?.reinterpret()
+  set(`value`) {
+    gtk_page_setup_set_paper_size(this, value)
+  }
+
 public fun PageSetup.copy(): PageSetup? = gtk_page_setup_copy(this)?.reinterpret()
-
-public fun PageSetup.getPaperSize(): PaperSize? = gtk_page_setup_get_paper_size(this)?.reinterpret()
-
-public fun PageSetup.setPaperSize(size: PaperSize): Unit {
-  gtk_page_setup_set_paper_size(this, size.reinterpret())
-}
 
 public fun PageSetup.setPaperSizeAndDefaultMargins(size: PaperSize): Unit {
   gtk_page_setup_set_paper_size_and_default_margins(this, size.reinterpret())

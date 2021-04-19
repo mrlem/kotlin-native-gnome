@@ -91,6 +91,36 @@ public typealias TextBuffer = CPointer<GtkTextBuffer>
 public val TextBuffer.asObject: Object
   get() = reinterpret()
 
+public val TextBuffer.charCount: Int
+  get() = gtk_text_buffer_get_char_count(this)
+
+public val TextBuffer.copyTargetList: TargetList?
+  get() = gtk_text_buffer_get_copy_target_list(this)?.reinterpret()
+
+public val TextBuffer.hasSelection: Boolean
+  get() = gtk_text_buffer_get_has_selection(this).toBoolean
+
+public val TextBuffer.insert: TextMark?
+  get() = gtk_text_buffer_get_insert(this)?.reinterpret()
+
+public val TextBuffer.lineCount: Int
+  get() = gtk_text_buffer_get_line_count(this)
+
+public var TextBuffer.modified: Boolean
+  get() = gtk_text_buffer_get_modified(this).toBoolean
+  set(`value`) {
+    gtk_text_buffer_set_modified(this, value.toInt)
+  }
+
+public val TextBuffer.pasteTargetList: TargetList?
+  get() = gtk_text_buffer_get_paste_target_list(this)?.reinterpret()
+
+public val TextBuffer.selectionBound: TextMark?
+  get() = gtk_text_buffer_get_selection_bound(this)?.reinterpret()
+
+public val TextBuffer.tagTable: TextTagTable?
+  get() = gtk_text_buffer_get_tag_table(this)?.reinterpret()
+
 public fun TextBuffer.addMark(mark: TextMark, `where`: TextIter): Unit {
   gtk_text_buffer_add_mark(this, mark.reinterpret(), where.reinterpret())
 }
@@ -170,27 +200,8 @@ public fun TextBuffer.endUserAction(): Unit {
   gtk_text_buffer_end_user_action(this)
 }
 
-public fun TextBuffer.getCharCount(): Int = gtk_text_buffer_get_char_count(this)
-
-public fun TextBuffer.getCopyTargetList(): TargetList? =
-    gtk_text_buffer_get_copy_target_list(this)?.reinterpret()
-
-public fun TextBuffer.getHasSelection(): Boolean = gtk_text_buffer_get_has_selection(this).toBoolean
-
-public fun TextBuffer.getInsert(): TextMark? = gtk_text_buffer_get_insert(this)?.reinterpret()
-
-public fun TextBuffer.getLineCount(): Int = gtk_text_buffer_get_line_count(this)
-
 public fun TextBuffer.getMark(name: String?): TextMark? = gtk_text_buffer_get_mark(this,
     name)?.reinterpret()
-
-public fun TextBuffer.getModified(): Boolean = gtk_text_buffer_get_modified(this).toBoolean
-
-public fun TextBuffer.getPasteTargetList(): TargetList? =
-    gtk_text_buffer_get_paste_target_list(this)?.reinterpret()
-
-public fun TextBuffer.getSelectionBound(): TextMark? =
-    gtk_text_buffer_get_selection_bound(this)?.reinterpret()
 
 public fun TextBuffer.getSlice(
   start: TextIter,
@@ -198,9 +209,6 @@ public fun TextBuffer.getSlice(
   includeHiddenChars: Boolean
 ): String = gtk_text_buffer_get_slice(this, start.reinterpret(), end.reinterpret(),
     includeHiddenChars.toInt).toKString
-
-public fun TextBuffer.getTagTable(): TextTagTable? =
-    gtk_text_buffer_get_tag_table(this)?.reinterpret()
 
 public fun TextBuffer.getText(
   start: TextIter,
@@ -311,10 +319,6 @@ public fun TextBuffer.removeTagByName(
 
 public fun TextBuffer.selectRange(ins: TextIter, bound: TextIter): Unit {
   gtk_text_buffer_select_range(this, ins.reinterpret(), bound.reinterpret())
-}
-
-public fun TextBuffer.setModified(setting: Boolean): Unit {
-  gtk_text_buffer_set_modified(this, setting.toInt)
 }
 
 public fun TextBuffer.setText(text: String?, len: Int): Unit {

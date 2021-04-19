@@ -31,6 +31,45 @@ public val Adjustment.asObject: Object
 public val Adjustment.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
 
+public var Adjustment.lower: Double
+  get() = gtk_adjustment_get_lower(this)
+  set(`value`) {
+    gtk_adjustment_set_lower(this, value)
+  }
+
+public val Adjustment.minimumIncrement: Double
+  get() = gtk_adjustment_get_minimum_increment(this)
+
+public var Adjustment.pageIncrement: Double
+  get() = gtk_adjustment_get_page_increment(this)
+  set(`value`) {
+    gtk_adjustment_set_page_increment(this, value)
+  }
+
+public var Adjustment.pageSize: Double
+  get() = gtk_adjustment_get_page_size(this)
+  set(`value`) {
+    gtk_adjustment_set_page_size(this, value)
+  }
+
+public var Adjustment.stepIncrement: Double
+  get() = gtk_adjustment_get_step_increment(this)
+  set(`value`) {
+    gtk_adjustment_set_step_increment(this, value)
+  }
+
+public var Adjustment.upper: Double
+  get() = gtk_adjustment_get_upper(this)
+  set(`value`) {
+    gtk_adjustment_set_upper(this, value)
+  }
+
+public var Adjustment.`value`: Double
+  get() = gtk_adjustment_get_value(this)
+  set(`value`) {
+    gtk_adjustment_set_value(this, value)
+  }
+
 public fun Adjustment.clampPage(lower: Double, upper: Double): Unit {
   gtk_adjustment_clamp_page(this, lower, upper)
 }
@@ -44,42 +83,4 @@ public fun Adjustment.configure(
   pageSize: Double
 ): Unit {
   gtk_adjustment_configure(this, value, lower, upper, stepIncrement, pageIncrement, pageSize)
-}
-
-public fun Adjustment.getLower(): Double = gtk_adjustment_get_lower(this)
-
-public fun Adjustment.getMinimumIncrement(): Double = gtk_adjustment_get_minimum_increment(this)
-
-public fun Adjustment.getPageIncrement(): Double = gtk_adjustment_get_page_increment(this)
-
-public fun Adjustment.getPageSize(): Double = gtk_adjustment_get_page_size(this)
-
-public fun Adjustment.getStepIncrement(): Double = gtk_adjustment_get_step_increment(this)
-
-public fun Adjustment.getUpper(): Double = gtk_adjustment_get_upper(this)
-
-public fun Adjustment.getValue(): Double = gtk_adjustment_get_value(this)
-
-public fun Adjustment.setLower(lower: Double): Unit {
-  gtk_adjustment_set_lower(this, lower)
-}
-
-public fun Adjustment.setPageIncrement(pageIncrement: Double): Unit {
-  gtk_adjustment_set_page_increment(this, pageIncrement)
-}
-
-public fun Adjustment.setPageSize(pageSize: Double): Unit {
-  gtk_adjustment_set_page_size(this, pageSize)
-}
-
-public fun Adjustment.setStepIncrement(stepIncrement: Double): Unit {
-  gtk_adjustment_set_step_increment(this, stepIncrement)
-}
-
-public fun Adjustment.setUpper(upper: Double): Unit {
-  gtk_adjustment_set_upper(this, upper)
-}
-
-public fun Adjustment.setValue(`value`: Double): Unit {
-  gtk_adjustment_set_value(this, value)
 }

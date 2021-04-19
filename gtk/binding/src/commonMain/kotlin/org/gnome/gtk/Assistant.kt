@@ -57,6 +57,15 @@ public val Assistant.asBin: Bin
 public val Assistant.asWindow: Window
   get() = reinterpret()
 
+public var Assistant.currentPage: Int
+  get() = gtk_assistant_get_current_page(this)
+  set(`value`) {
+    gtk_assistant_set_current_page(this, value)
+  }
+
+public val Assistant.nPages: Int
+  get() = gtk_assistant_get_n_pages(this)
+
 public fun Assistant.addActionWidget(child: Widget): Unit {
   gtk_assistant_add_action_widget(this, child.reinterpret())
 }
@@ -67,10 +76,6 @@ public fun Assistant.appendPage(page: Widget): Int = gtk_assistant_append_page(t
 public fun Assistant.commit(): Unit {
   gtk_assistant_commit(this)
 }
-
-public fun Assistant.getCurrentPage(): Int = gtk_assistant_get_current_page(this)
-
-public fun Assistant.getNPages(): Int = gtk_assistant_get_n_pages(this)
 
 public fun Assistant.getNthPage(pageNum: Int): Widget? = gtk_assistant_get_nth_page(this,
     pageNum)?.reinterpret()
@@ -104,10 +109,6 @@ public fun Assistant.removeActionWidget(child: Widget): Unit {
 
 public fun Assistant.removePage(pageNum: Int): Unit {
   gtk_assistant_remove_page(this, pageNum)
-}
-
-public fun Assistant.setCurrentPage(pageNum: Int): Unit {
-  gtk_assistant_set_current_page(this, pageNum)
 }
 
 public fun Assistant.setPageComplete(page: Widget, complete: Boolean): Unit {

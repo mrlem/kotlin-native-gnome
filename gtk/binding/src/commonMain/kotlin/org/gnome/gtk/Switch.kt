@@ -6,7 +6,6 @@ import gtk3.gtk_switch_get_state
 import gtk3.gtk_switch_set_active
 import gtk3.gtk_switch_set_state
 import kotlin.Boolean
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -25,14 +24,14 @@ public val Switch.asInitiallyUnowned: InitiallyUnowned
 public val Switch.asWidget: Widget
   get() = reinterpret()
 
-public fun Switch.getActive(): Boolean = gtk_switch_get_active(this).toBoolean
+public var Switch.active: Boolean
+  get() = gtk_switch_get_active(this).toBoolean
+  set(`value`) {
+    gtk_switch_set_active(this, value.toInt)
+  }
 
-public fun Switch.getState(): Boolean = gtk_switch_get_state(this).toBoolean
-
-public fun Switch.setActive(isActive: Boolean): Unit {
-  gtk_switch_set_active(this, isActive.toInt)
-}
-
-public fun Switch.setState(state: Boolean): Unit {
-  gtk_switch_set_state(this, state.toInt)
-}
+public var Switch.state: Boolean
+  get() = gtk_switch_get_state(this).toBoolean
+  set(`value`) {
+    gtk_switch_set_state(this, value.toInt)
+  }

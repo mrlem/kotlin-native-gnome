@@ -1,4 +1,7 @@
 // TODO - get_animation
+// TODO - get_pixbuf
+// TODO - get_storage_type
+// TODO - get_animation
 // TODO - get_gicon
 // TODO - get_icon_name
 // TODO - get_pixbuf
@@ -39,11 +42,15 @@ public val Image.asWidget: Widget
 public val Image.asMisc: Misc
   get() = reinterpret()
 
+public var Image.pixelSize: Int
+  get() = gtk_image_get_pixel_size(this)
+  set(`value`) {
+    gtk_image_set_pixel_size(this, value)
+  }
+
 public fun Image.clear(): Unit {
   gtk_image_clear(this)
 }
-
-public fun Image.getPixelSize(): Int = gtk_image_get_pixel_size(this)
 
 public fun Image.setFromFile(filename: String?): Unit {
   gtk_image_set_from_file(this, filename)
@@ -51,8 +58,4 @@ public fun Image.setFromFile(filename: String?): Unit {
 
 public fun Image.setFromResource(resourcePath: String?): Unit {
   gtk_image_set_from_resource(this, resourcePath)
-}
-
-public fun Image.setPixelSize(pixelSize: Int): Unit {
-  gtk_image_set_pixel_size(this, pixelSize)
 }

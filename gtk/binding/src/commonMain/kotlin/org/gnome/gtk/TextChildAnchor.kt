@@ -1,4 +1,5 @@
 // TODO - get_widgets
+// TODO - get_widgets
 //
 package org.gnome.gtk
 
@@ -15,4 +16,5 @@ public typealias TextChildAnchor = CPointer<GtkTextChildAnchor>
 public val TextChildAnchor.asObject: Object
   get() = reinterpret()
 
-public fun TextChildAnchor.getDeleted(): Boolean = gtk_text_child_anchor_get_deleted(this).toBoolean
+public val TextChildAnchor.deleted: Boolean
+  get() = gtk_text_child_anchor_get_deleted(this).toBoolean

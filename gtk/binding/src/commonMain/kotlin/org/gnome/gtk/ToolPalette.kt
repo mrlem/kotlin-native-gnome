@@ -1,3 +1,5 @@
+// TODO - get_icon_size
+// TODO - get_style
 // TODO - add_drag_dest
 // TODO - get_icon_size
 // TODO - get_style

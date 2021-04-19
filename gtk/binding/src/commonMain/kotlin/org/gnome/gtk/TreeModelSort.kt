@@ -22,6 +22,9 @@ public typealias TreeModelSort = CPointer<GtkTreeModelSort>
 public val TreeModelSort.asObject: Object
   get() = reinterpret()
 
+public val TreeModelSort.model: TreeModel?
+  get() = gtk_tree_model_sort_get_model(this)?.reinterpret()
+
 public fun TreeModelSort.clearCache(): Unit {
   gtk_tree_model_sort_clear_cache(this)
 }
@@ -31,8 +34,6 @@ public fun TreeModelSort.convertChildPathToPath(childPath: TreePath): TreePath? 
 
 public fun TreeModelSort.convertPathToChildPath(sortedPath: TreePath): TreePath? =
     gtk_tree_model_sort_convert_path_to_child_path(this, sortedPath.reinterpret())?.reinterpret()
-
-public fun TreeModelSort.getModel(): TreeModel? = gtk_tree_model_sort_get_model(this)?.reinterpret()
 
 public fun TreeModelSort.iterIsValid(iter: TreeIter): Boolean =
     gtk_tree_model_sort_iter_is_valid(this, iter.reinterpret()).toBoolean

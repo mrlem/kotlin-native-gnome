@@ -1,3 +1,4 @@
+// TODO - get_modifier_mask
 // TODO - activate
 // TODO - connect
 // TODO - connect_by_path
@@ -25,7 +26,8 @@ public typealias AccelGroup = CPointer<GtkAccelGroup>
 public val AccelGroup.asObject: Object
   get() = reinterpret()
 
-public fun AccelGroup.getIsLocked(): Boolean = gtk_accel_group_get_is_locked(this).toBoolean
+public val AccelGroup.isLocked: Boolean
+  get() = gtk_accel_group_get_is_locked(this).toBoolean
 
 public fun AccelGroup.lock(): Unit {
   gtk_accel_group_lock(this)

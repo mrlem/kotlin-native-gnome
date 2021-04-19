@@ -1,6 +1,9 @@
 // TODO - get_icon_size
 // TODO - get_relief_style
 // TODO - get_style
+// TODO - get_icon_size
+// TODO - get_relief_style
+// TODO - get_style
 // TODO - set_icon_size
 // TODO - set_style
 //
@@ -41,16 +44,21 @@ public val Toolbar.asWidget: Widget
 public val Toolbar.asContainer: Container
   get() = reinterpret()
 
+public val Toolbar.nItems: Int
+  get() = gtk_toolbar_get_n_items(this)
+
+public var Toolbar.showArrow: Boolean
+  get() = gtk_toolbar_get_show_arrow(this).toBoolean
+  set(`value`) {
+    gtk_toolbar_set_show_arrow(this, value.toInt)
+  }
+
 public fun Toolbar.getDropIndex(x: Int, y: Int): Int = gtk_toolbar_get_drop_index(this, x, y)
 
 public fun Toolbar.getItemIndex(item: ToolItem): Int = gtk_toolbar_get_item_index(this,
     item.reinterpret())
 
-public fun Toolbar.getNItems(): Int = gtk_toolbar_get_n_items(this)
-
 public fun Toolbar.getNthItem(n: Int): ToolItem? = gtk_toolbar_get_nth_item(this, n)?.reinterpret()
-
-public fun Toolbar.getShowArrow(): Boolean = gtk_toolbar_get_show_arrow(this).toBoolean
 
 public fun Toolbar.insert(item: ToolItem, pos: Int): Unit {
   gtk_toolbar_insert(this, item.reinterpret(), pos)
@@ -58,10 +66,6 @@ public fun Toolbar.insert(item: ToolItem, pos: Int): Unit {
 
 public fun Toolbar.setDropHighlightItem(toolItem: ToolItem, index: Int): Unit {
   gtk_toolbar_set_drop_highlight_item(this, toolItem.reinterpret(), index)
-}
-
-public fun Toolbar.setShowArrow(showArrow: Boolean): Unit {
-  gtk_toolbar_set_show_arrow(this, showArrow.toInt)
 }
 
 public fun Toolbar.unsetIconSize(): Unit {

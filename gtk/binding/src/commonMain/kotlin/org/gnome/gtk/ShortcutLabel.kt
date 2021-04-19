@@ -6,7 +6,6 @@ import gtk3.gtk_shortcut_label_get_disabled_text
 import gtk3.gtk_shortcut_label_set_accelerator
 import gtk3.gtk_shortcut_label_set_disabled_text
 import kotlin.String
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -30,16 +29,14 @@ public val ShortcutLabel.asContainer: Container
 public val ShortcutLabel.asBox: Box
   get() = reinterpret()
 
-public fun ShortcutLabel.getAccelerator(): String =
-    gtk_shortcut_label_get_accelerator(this).toKString
+public var ShortcutLabel.accelerator: String
+  get() = gtk_shortcut_label_get_accelerator(this).toKString
+  set(`value`) {
+    gtk_shortcut_label_set_accelerator(this, value)
+  }
 
-public fun ShortcutLabel.getDisabledText(): String =
-    gtk_shortcut_label_get_disabled_text(this).toKString
-
-public fun ShortcutLabel.setAccelerator(accelerator: String?): Unit {
-  gtk_shortcut_label_set_accelerator(this, accelerator)
-}
-
-public fun ShortcutLabel.setDisabledText(disabledText: String?): Unit {
-  gtk_shortcut_label_set_disabled_text(this, disabledText)
-}
+public var ShortcutLabel.disabledText: String
+  get() = gtk_shortcut_label_get_disabled_text(this).toKString
+  set(`value`) {
+    gtk_shortcut_label_set_disabled_text(this, value)
+  }

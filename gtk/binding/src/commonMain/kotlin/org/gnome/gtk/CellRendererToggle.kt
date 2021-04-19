@@ -8,7 +8,6 @@ import gtk3.gtk_cell_renderer_toggle_set_activatable
 import gtk3.gtk_cell_renderer_toggle_set_active
 import gtk3.gtk_cell_renderer_toggle_set_radio
 import kotlin.Boolean
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -27,23 +26,20 @@ public val CellRendererToggle.asInitiallyUnowned: InitiallyUnowned
 public val CellRendererToggle.asCellRenderer: CellRenderer
   get() = reinterpret()
 
-public fun CellRendererToggle.getActivatable(): Boolean =
-    gtk_cell_renderer_toggle_get_activatable(this).toBoolean
+public var CellRendererToggle.activatable: Boolean
+  get() = gtk_cell_renderer_toggle_get_activatable(this).toBoolean
+  set(`value`) {
+    gtk_cell_renderer_toggle_set_activatable(this, value.toInt)
+  }
 
-public fun CellRendererToggle.getActive(): Boolean =
-    gtk_cell_renderer_toggle_get_active(this).toBoolean
+public var CellRendererToggle.active: Boolean
+  get() = gtk_cell_renderer_toggle_get_active(this).toBoolean
+  set(`value`) {
+    gtk_cell_renderer_toggle_set_active(this, value.toInt)
+  }
 
-public fun CellRendererToggle.getRadio(): Boolean =
-    gtk_cell_renderer_toggle_get_radio(this).toBoolean
-
-public fun CellRendererToggle.setActivatable(setting: Boolean): Unit {
-  gtk_cell_renderer_toggle_set_activatable(this, setting.toInt)
-}
-
-public fun CellRendererToggle.setActive(setting: Boolean): Unit {
-  gtk_cell_renderer_toggle_set_active(this, setting.toInt)
-}
-
-public fun CellRendererToggle.setRadio(radio: Boolean): Unit {
-  gtk_cell_renderer_toggle_set_radio(this, radio.toInt)
-}
+public var CellRendererToggle.radio: Boolean
+  get() = gtk_cell_renderer_toggle_get_radio(this).toBoolean
+  set(`value`) {
+    gtk_cell_renderer_toggle_set_radio(this, value.toInt)
+  }

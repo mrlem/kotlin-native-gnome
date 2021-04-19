@@ -1,3 +1,7 @@
+// TODO - get_input_purpose
+// TODO - get_justification
+// TODO - get_tabs
+// TODO - get_wrap_mode
 // TODO - add_child_in_window
 // TODO - buffer_to_window_coords
 // TODO - get_border_window_size
@@ -96,6 +100,99 @@ public val TextView.asWidget: Widget
 public val TextView.asContainer: Container
   get() = reinterpret()
 
+public var TextView.acceptsTab: Boolean
+  get() = gtk_text_view_get_accepts_tab(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_accepts_tab(this, value.toInt)
+  }
+
+public var TextView.bottomMargin: Int
+  get() = gtk_text_view_get_bottom_margin(this)
+  set(`value`) {
+    gtk_text_view_set_bottom_margin(this, value)
+  }
+
+public var TextView.buffer: TextBuffer?
+  get() = gtk_text_view_get_buffer(this)?.reinterpret()
+  set(`value`) {
+    gtk_text_view_set_buffer(this, value)
+  }
+
+public var TextView.cursorVisible: Boolean
+  get() = gtk_text_view_get_cursor_visible(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_cursor_visible(this, value.toInt)
+  }
+
+public val TextView.defaultAttributes: TextAttributes?
+  get() = gtk_text_view_get_default_attributes(this)?.reinterpret()
+
+public var TextView.editable: Boolean
+  get() = gtk_text_view_get_editable(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_editable(this, value.toInt)
+  }
+
+public var TextView.indent: Int
+  get() = gtk_text_view_get_indent(this)
+  set(`value`) {
+    gtk_text_view_set_indent(this, value)
+  }
+
+public var TextView.inputHints: InputHints
+  get() = gtk_text_view_get_input_hints(this)
+  set(`value`) {
+    gtk_text_view_set_input_hints(this, value)
+  }
+
+public var TextView.leftMargin: Int
+  get() = gtk_text_view_get_left_margin(this)
+  set(`value`) {
+    gtk_text_view_set_left_margin(this, value)
+  }
+
+public var TextView.monospace: Boolean
+  get() = gtk_text_view_get_monospace(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_monospace(this, value.toInt)
+  }
+
+public var TextView.overwrite: Boolean
+  get() = gtk_text_view_get_overwrite(this).toBoolean
+  set(`value`) {
+    gtk_text_view_set_overwrite(this, value.toInt)
+  }
+
+public var TextView.pixelsAboveLines: Int
+  get() = gtk_text_view_get_pixels_above_lines(this)
+  set(`value`) {
+    gtk_text_view_set_pixels_above_lines(this, value)
+  }
+
+public var TextView.pixelsBelowLines: Int
+  get() = gtk_text_view_get_pixels_below_lines(this)
+  set(`value`) {
+    gtk_text_view_set_pixels_below_lines(this, value)
+  }
+
+public var TextView.pixelsInsideWrap: Int
+  get() = gtk_text_view_get_pixels_inside_wrap(this)
+  set(`value`) {
+    gtk_text_view_set_pixels_inside_wrap(this, value)
+  }
+
+public var TextView.rightMargin: Int
+  get() = gtk_text_view_get_right_margin(this)
+  set(`value`) {
+    gtk_text_view_set_right_margin(this, value)
+  }
+
+public var TextView.topMargin: Int
+  get() = gtk_text_view_get_top_margin(this)
+  set(`value`) {
+    gtk_text_view_set_top_margin(this, value)
+  }
+
 public fun TextView.addChildAtAnchor(child: Widget, anchor: TextChildAnchor): Unit {
   gtk_text_view_add_child_at_anchor(this, child.reinterpret(), anchor.reinterpret())
 }
@@ -111,39 +208,6 @@ public fun TextView.forwardDisplayLine(iter: TextIter): Boolean =
 
 public fun TextView.forwardDisplayLineEnd(iter: TextIter): Boolean =
     gtk_text_view_forward_display_line_end(this, iter.reinterpret()).toBoolean
-
-public fun TextView.getAcceptsTab(): Boolean = gtk_text_view_get_accepts_tab(this).toBoolean
-
-public fun TextView.getBottomMargin(): Int = gtk_text_view_get_bottom_margin(this)
-
-public fun TextView.getBuffer(): TextBuffer? = gtk_text_view_get_buffer(this)?.reinterpret()
-
-public fun TextView.getCursorVisible(): Boolean = gtk_text_view_get_cursor_visible(this).toBoolean
-
-public fun TextView.getDefaultAttributes(): TextAttributes? =
-    gtk_text_view_get_default_attributes(this)?.reinterpret()
-
-public fun TextView.getEditable(): Boolean = gtk_text_view_get_editable(this).toBoolean
-
-public fun TextView.getIndent(): Int = gtk_text_view_get_indent(this)
-
-public fun TextView.getInputHints(): InputHints = gtk_text_view_get_input_hints(this)
-
-public fun TextView.getLeftMargin(): Int = gtk_text_view_get_left_margin(this)
-
-public fun TextView.getMonospace(): Boolean = gtk_text_view_get_monospace(this).toBoolean
-
-public fun TextView.getOverwrite(): Boolean = gtk_text_view_get_overwrite(this).toBoolean
-
-public fun TextView.getPixelsAboveLines(): Int = gtk_text_view_get_pixels_above_lines(this)
-
-public fun TextView.getPixelsBelowLines(): Int = gtk_text_view_get_pixels_below_lines(this)
-
-public fun TextView.getPixelsInsideWrap(): Int = gtk_text_view_get_pixels_inside_wrap(this)
-
-public fun TextView.getRightMargin(): Int = gtk_text_view_get_right_margin(this)
-
-public fun TextView.getTopMargin(): Int = gtk_text_view_get_top_margin(this)
 
 public fun TextView.moveChild(
   child: Widget,
@@ -192,66 +256,6 @@ public fun TextView.scrollToMark(
 ): Unit {
   gtk_text_view_scroll_to_mark(this, mark.reinterpret(), withinMargin, useAlign.toInt, xalign,
       yalign)
-}
-
-public fun TextView.setAcceptsTab(acceptsTab: Boolean): Unit {
-  gtk_text_view_set_accepts_tab(this, acceptsTab.toInt)
-}
-
-public fun TextView.setBottomMargin(bottomMargin: Int): Unit {
-  gtk_text_view_set_bottom_margin(this, bottomMargin)
-}
-
-public fun TextView.setBuffer(buffer: TextBuffer): Unit {
-  gtk_text_view_set_buffer(this, buffer.reinterpret())
-}
-
-public fun TextView.setCursorVisible(setting: Boolean): Unit {
-  gtk_text_view_set_cursor_visible(this, setting.toInt)
-}
-
-public fun TextView.setEditable(setting: Boolean): Unit {
-  gtk_text_view_set_editable(this, setting.toInt)
-}
-
-public fun TextView.setIndent(indent: Int): Unit {
-  gtk_text_view_set_indent(this, indent)
-}
-
-public fun TextView.setInputHints(hints: InputHints): Unit {
-  gtk_text_view_set_input_hints(this, hints)
-}
-
-public fun TextView.setLeftMargin(leftMargin: Int): Unit {
-  gtk_text_view_set_left_margin(this, leftMargin)
-}
-
-public fun TextView.setMonospace(monospace: Boolean): Unit {
-  gtk_text_view_set_monospace(this, monospace.toInt)
-}
-
-public fun TextView.setOverwrite(overwrite: Boolean): Unit {
-  gtk_text_view_set_overwrite(this, overwrite.toInt)
-}
-
-public fun TextView.setPixelsAboveLines(pixelsAboveLines: Int): Unit {
-  gtk_text_view_set_pixels_above_lines(this, pixelsAboveLines)
-}
-
-public fun TextView.setPixelsBelowLines(pixelsBelowLines: Int): Unit {
-  gtk_text_view_set_pixels_below_lines(this, pixelsBelowLines)
-}
-
-public fun TextView.setPixelsInsideWrap(pixelsInsideWrap: Int): Unit {
-  gtk_text_view_set_pixels_inside_wrap(this, pixelsInsideWrap)
-}
-
-public fun TextView.setRightMargin(rightMargin: Int): Unit {
-  gtk_text_view_set_right_margin(this, rightMargin)
-}
-
-public fun TextView.setTopMargin(topMargin: Int): Unit {
-  gtk_text_view_set_top_margin(this, topMargin)
 }
 
 public fun TextView.startsDisplayLine(iter: TextIter): Boolean =

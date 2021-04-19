@@ -37,24 +37,23 @@ public val ToggleButton.asBin: Bin
 public val ToggleButton.asButton: Button
   get() = reinterpret()
 
-public fun ToggleButton.getActive(): Boolean = gtk_toggle_button_get_active(this).toBoolean
+public var ToggleButton.active: Boolean
+  get() = gtk_toggle_button_get_active(this).toBoolean
+  set(`value`) {
+    gtk_toggle_button_set_active(this, value.toInt)
+  }
 
-public fun ToggleButton.getInconsistent(): Boolean =
-    gtk_toggle_button_get_inconsistent(this).toBoolean
+public var ToggleButton.inconsistent: Boolean
+  get() = gtk_toggle_button_get_inconsistent(this).toBoolean
+  set(`value`) {
+    gtk_toggle_button_set_inconsistent(this, value.toInt)
+  }
 
-public fun ToggleButton.getMode(): Boolean = gtk_toggle_button_get_mode(this).toBoolean
-
-public fun ToggleButton.setActive(isActive: Boolean): Unit {
-  gtk_toggle_button_set_active(this, isActive.toInt)
-}
-
-public fun ToggleButton.setInconsistent(setting: Boolean): Unit {
-  gtk_toggle_button_set_inconsistent(this, setting.toInt)
-}
-
-public fun ToggleButton.setMode(drawIndicator: Boolean): Unit {
-  gtk_toggle_button_set_mode(this, drawIndicator.toInt)
-}
+public var ToggleButton.mode: Boolean
+  get() = gtk_toggle_button_get_mode(this).toBoolean
+  set(`value`) {
+    gtk_toggle_button_set_mode(this, value.toInt)
+  }
 
 public fun ToggleButton.toggled(): Unit {
   gtk_toggle_button_toggled(this)

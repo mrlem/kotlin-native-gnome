@@ -25,7 +25,11 @@ public val CellAreaBox.asInitiallyUnowned: InitiallyUnowned
 public val CellAreaBox.asCellArea: CellArea
   get() = reinterpret()
 
-public fun CellAreaBox.getSpacing(): Int = gtk_cell_area_box_get_spacing(this)
+public var CellAreaBox.spacing: Int
+  get() = gtk_cell_area_box_get_spacing(this)
+  set(`value`) {
+    gtk_cell_area_box_set_spacing(this, value)
+  }
 
 public fun CellAreaBox.packEnd(
   renderer: CellRenderer,
@@ -43,8 +47,4 @@ public fun CellAreaBox.packStart(
   fixed: Boolean
 ): Unit {
   gtk_cell_area_box_pack_start(this, renderer.reinterpret(), expand.toInt, align.toInt, fixed.toInt)
-}
-
-public fun CellAreaBox.setSpacing(spacing: Int): Unit {
-  gtk_cell_area_box_set_spacing(this, spacing)
 }

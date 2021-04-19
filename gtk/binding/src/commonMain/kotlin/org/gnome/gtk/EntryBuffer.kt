@@ -26,6 +26,21 @@ public typealias EntryBuffer = CPointer<GtkEntryBuffer>
 public val EntryBuffer.asObject: Object
   get() = reinterpret()
 
+public val EntryBuffer.bytes: ULong
+  get() = gtk_entry_buffer_get_bytes(this)
+
+public val EntryBuffer.length: UInt
+  get() = gtk_entry_buffer_get_length(this)
+
+public var EntryBuffer.maxLength: Int
+  get() = gtk_entry_buffer_get_max_length(this)
+  set(`value`) {
+    gtk_entry_buffer_set_max_length(this, value)
+  }
+
+public val EntryBuffer.text: String
+  get() = gtk_entry_buffer_get_text(this).toKString
+
 public fun EntryBuffer.deleteText(position: UInt, nChars: Int): UInt =
     gtk_entry_buffer_delete_text(this, position, nChars)
 
@@ -41,23 +56,11 @@ public fun EntryBuffer.emitInsertedText(
   gtk_entry_buffer_emit_inserted_text(this, position, chars, nChars)
 }
 
-public fun EntryBuffer.getBytes(): ULong = gtk_entry_buffer_get_bytes(this)
-
-public fun EntryBuffer.getLength(): UInt = gtk_entry_buffer_get_length(this)
-
-public fun EntryBuffer.getMaxLength(): Int = gtk_entry_buffer_get_max_length(this)
-
-public fun EntryBuffer.getText(): String = gtk_entry_buffer_get_text(this).toKString
-
 public fun EntryBuffer.insertText(
   position: UInt,
   chars: String?,
   nChars: Int
 ): UInt = gtk_entry_buffer_insert_text(this, position, chars, nChars)
-
-public fun EntryBuffer.setMaxLength(maxLength: Int): Unit {
-  gtk_entry_buffer_set_max_length(this, maxLength)
-}
 
 public fun EntryBuffer.setText(chars: String?, nChars: Int): Unit {
   gtk_entry_buffer_set_text(this, chars, nChars)

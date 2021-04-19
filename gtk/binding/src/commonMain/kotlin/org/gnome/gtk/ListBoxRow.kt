@@ -37,28 +37,29 @@ public val ListBoxRow.asContainer: Container
 public val ListBoxRow.asBin: Bin
   get() = reinterpret()
 
+public var ListBoxRow.activatable: Boolean
+  get() = gtk_list_box_row_get_activatable(this).toBoolean
+  set(`value`) {
+    gtk_list_box_row_set_activatable(this, value.toInt)
+  }
+
+public var ListBoxRow.header: Widget?
+  get() = gtk_list_box_row_get_header(this)?.reinterpret()
+  set(`value`) {
+    gtk_list_box_row_set_header(this, value)
+  }
+
+public val ListBoxRow.index: Int
+  get() = gtk_list_box_row_get_index(this)
+
+public var ListBoxRow.selectable: Boolean
+  get() = gtk_list_box_row_get_selectable(this).toBoolean
+  set(`value`) {
+    gtk_list_box_row_set_selectable(this, value.toInt)
+  }
+
 public fun ListBoxRow.changed(): Unit {
   gtk_list_box_row_changed(this)
 }
 
-public fun ListBoxRow.getActivatable(): Boolean = gtk_list_box_row_get_activatable(this).toBoolean
-
-public fun ListBoxRow.getHeader(): Widget? = gtk_list_box_row_get_header(this)?.reinterpret()
-
-public fun ListBoxRow.getIndex(): Int = gtk_list_box_row_get_index(this)
-
-public fun ListBoxRow.getSelectable(): Boolean = gtk_list_box_row_get_selectable(this).toBoolean
-
 public fun ListBoxRow.isSelected(): Boolean = gtk_list_box_row_is_selected(this).toBoolean
-
-public fun ListBoxRow.setActivatable(activatable: Boolean): Unit {
-  gtk_list_box_row_set_activatable(this, activatable.toInt)
-}
-
-public fun ListBoxRow.setHeader(header: Widget): Unit {
-  gtk_list_box_row_set_header(this, header.reinterpret())
-}
-
-public fun ListBoxRow.setSelectable(selectable: Boolean): Unit {
-  gtk_list_box_row_set_selectable(this, selectable.toInt)
-}

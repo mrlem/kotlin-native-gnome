@@ -1,4 +1,8 @@
 // TODO - get_attributes
+// TODO - get_input_purpose
+// TODO - get_layout
+// TODO - get_tabs
+// TODO - get_attributes
 // TODO - get_icon_activatable
 // TODO - get_icon_area
 // TODO - get_icon_gicon
@@ -101,46 +105,115 @@ public val Entry.asInitiallyUnowned: InitiallyUnowned
 public val Entry.asWidget: Widget
   get() = reinterpret()
 
-public fun Entry.getActivatesDefault(): Boolean = gtk_entry_get_activates_default(this).toBoolean
+public var Entry.activatesDefault: Boolean
+  get() = gtk_entry_get_activates_default(this).toBoolean
+  set(`value`) {
+    gtk_entry_set_activates_default(this, value.toInt)
+  }
 
-public fun Entry.getAlignment(): Float = gtk_entry_get_alignment(this)
+public var Entry.alignment: Float
+  get() = gtk_entry_get_alignment(this)
+  set(`value`) {
+    gtk_entry_set_alignment(this, value)
+  }
 
-public fun Entry.getBuffer(): EntryBuffer? = gtk_entry_get_buffer(this)?.reinterpret()
+public var Entry.buffer: EntryBuffer?
+  get() = gtk_entry_get_buffer(this)?.reinterpret()
+  set(`value`) {
+    gtk_entry_set_buffer(this, value)
+  }
 
-public fun Entry.getCompletion(): EntryCompletion? = gtk_entry_get_completion(this)?.reinterpret()
+public var Entry.completion: EntryCompletion?
+  get() = gtk_entry_get_completion(this)?.reinterpret()
+  set(`value`) {
+    gtk_entry_set_completion(this, value)
+  }
 
-public fun Entry.getCurrentIconDragSource(): Int = gtk_entry_get_current_icon_drag_source(this)
+public val Entry.currentIconDragSource: Int
+  get() = gtk_entry_get_current_icon_drag_source(this)
 
-public fun Entry.getCursorHadjustment(): Adjustment? =
-    gtk_entry_get_cursor_hadjustment(this)?.reinterpret()
+public var Entry.cursorHadjustment: Adjustment?
+  get() = gtk_entry_get_cursor_hadjustment(this)?.reinterpret()
+  set(`value`) {
+    gtk_entry_set_cursor_hadjustment(this, value)
+  }
 
-public fun Entry.getHasFrame(): Boolean = gtk_entry_get_has_frame(this).toBoolean
+public var Entry.hasFrame: Boolean
+  get() = gtk_entry_get_has_frame(this).toBoolean
+  set(`value`) {
+    gtk_entry_set_has_frame(this, value.toInt)
+  }
+
+public var Entry.inputHints: InputHints
+  get() = gtk_entry_get_input_hints(this)
+  set(`value`) {
+    gtk_entry_set_input_hints(this, value)
+  }
+
+public var Entry.invisibleChar: Char
+  get() = gtk_entry_get_invisible_char(this).toChar
+  set(`value`) {
+    gtk_entry_set_invisible_char(this, value.toUInt)
+  }
+
+public var Entry.maxLength: Int
+  get() = gtk_entry_get_max_length(this)
+  set(`value`) {
+    gtk_entry_set_max_length(this, value)
+  }
+
+public var Entry.maxWidthChars: Int
+  get() = gtk_entry_get_max_width_chars(this)
+  set(`value`) {
+    gtk_entry_set_max_width_chars(this, value)
+  }
+
+public var Entry.overwriteMode: Boolean
+  get() = gtk_entry_get_overwrite_mode(this).toBoolean
+  set(`value`) {
+    gtk_entry_set_overwrite_mode(this, value.toInt)
+  }
+
+public var Entry.placeholderText: String
+  get() = gtk_entry_get_placeholder_text(this).toKString
+  set(`value`) {
+    gtk_entry_set_placeholder_text(this, value)
+  }
+
+public var Entry.progressFraction: Double
+  get() = gtk_entry_get_progress_fraction(this)
+  set(`value`) {
+    gtk_entry_set_progress_fraction(this, value)
+  }
+
+public var Entry.progressPulseStep: Double
+  get() = gtk_entry_get_progress_pulse_step(this)
+  set(`value`) {
+    gtk_entry_set_progress_pulse_step(this, value)
+  }
+
+public var Entry.text: String
+  get() = gtk_entry_get_text(this).toKString
+  set(`value`) {
+    gtk_entry_set_text(this, value)
+  }
+
+public val Entry.textLength: UShort
+  get() = gtk_entry_get_text_length(this)
+
+public var Entry.visibility: Boolean
+  get() = gtk_entry_get_visibility(this).toBoolean
+  set(`value`) {
+    gtk_entry_set_visibility(this, value.toInt)
+  }
+
+public var Entry.widthChars: Int
+  get() = gtk_entry_get_width_chars(this)
+  set(`value`) {
+    gtk_entry_set_width_chars(this, value)
+  }
 
 public fun Entry.getIconAtPos(x: Int, y: Int): Int = gtk_entry_get_icon_at_pos(this, x, y)
-
-public fun Entry.getInputHints(): InputHints = gtk_entry_get_input_hints(this)
-
-public fun Entry.getInvisibleChar(): Char = gtk_entry_get_invisible_char(this).toChar
-
-public fun Entry.getMaxLength(): Int = gtk_entry_get_max_length(this)
-
-public fun Entry.getMaxWidthChars(): Int = gtk_entry_get_max_width_chars(this)
-
-public fun Entry.getOverwriteMode(): Boolean = gtk_entry_get_overwrite_mode(this).toBoolean
-
-public fun Entry.getPlaceholderText(): String = gtk_entry_get_placeholder_text(this).toKString
-
-public fun Entry.getProgressFraction(): Double = gtk_entry_get_progress_fraction(this)
-
-public fun Entry.getProgressPulseStep(): Double = gtk_entry_get_progress_pulse_step(this)
-
-public fun Entry.getText(): String = gtk_entry_get_text(this).toKString
-
-public fun Entry.getTextLength(): UShort = gtk_entry_get_text_length(this)
-
-public fun Entry.getVisibility(): Boolean = gtk_entry_get_visibility(this).toBoolean
-
-public fun Entry.getWidthChars(): Int = gtk_entry_get_width_chars(this)
 
 public fun Entry.grabFocusWithoutSelecting(): Unit {
   gtk_entry_grab_focus_without_selecting(this)
@@ -155,74 +228,6 @@ public fun Entry.progressPulse(): Unit {
 
 public fun Entry.resetImContext(): Unit {
   gtk_entry_reset_im_context(this)
-}
-
-public fun Entry.setActivatesDefault(setting: Boolean): Unit {
-  gtk_entry_set_activates_default(this, setting.toInt)
-}
-
-public fun Entry.setAlignment(xalign: Float): Unit {
-  gtk_entry_set_alignment(this, xalign)
-}
-
-public fun Entry.setBuffer(buffer: EntryBuffer): Unit {
-  gtk_entry_set_buffer(this, buffer.reinterpret())
-}
-
-public fun Entry.setCompletion(completion: EntryCompletion): Unit {
-  gtk_entry_set_completion(this, completion.reinterpret())
-}
-
-public fun Entry.setCursorHadjustment(adjustment: Adjustment): Unit {
-  gtk_entry_set_cursor_hadjustment(this, adjustment.reinterpret())
-}
-
-public fun Entry.setHasFrame(setting: Boolean): Unit {
-  gtk_entry_set_has_frame(this, setting.toInt)
-}
-
-public fun Entry.setInputHints(hints: InputHints): Unit {
-  gtk_entry_set_input_hints(this, hints)
-}
-
-public fun Entry.setInvisibleChar(ch: Char): Unit {
-  gtk_entry_set_invisible_char(this, ch.toUInt)
-}
-
-public fun Entry.setMaxLength(max: Int): Unit {
-  gtk_entry_set_max_length(this, max)
-}
-
-public fun Entry.setMaxWidthChars(nChars: Int): Unit {
-  gtk_entry_set_max_width_chars(this, nChars)
-}
-
-public fun Entry.setOverwriteMode(overwrite: Boolean): Unit {
-  gtk_entry_set_overwrite_mode(this, overwrite.toInt)
-}
-
-public fun Entry.setPlaceholderText(text: String?): Unit {
-  gtk_entry_set_placeholder_text(this, text)
-}
-
-public fun Entry.setProgressFraction(fraction: Double): Unit {
-  gtk_entry_set_progress_fraction(this, fraction)
-}
-
-public fun Entry.setProgressPulseStep(fraction: Double): Unit {
-  gtk_entry_set_progress_pulse_step(this, fraction)
-}
-
-public fun Entry.setText(text: String?): Unit {
-  gtk_entry_set_text(this, text)
-}
-
-public fun Entry.setVisibility(visible: Boolean): Unit {
-  gtk_entry_set_visibility(this, visible.toInt)
-}
-
-public fun Entry.setWidthChars(nChars: Int): Unit {
-  gtk_entry_set_width_chars(this, nChars)
 }
 
 public fun Entry.textIndexToLayoutIndex(textIndex: Int): Int =

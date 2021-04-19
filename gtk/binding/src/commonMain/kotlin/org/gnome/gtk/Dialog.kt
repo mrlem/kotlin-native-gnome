@@ -43,16 +43,18 @@ public val Dialog.asBin: Bin
 public val Dialog.asWindow: Window
   get() = reinterpret()
 
+public val Dialog.contentArea: Box?
+  get() = gtk_dialog_get_content_area(this)?.reinterpret()
+
+public val Dialog.headerBar: HeaderBar?
+  get() = gtk_dialog_get_header_bar(this)?.reinterpret()
+
 public fun Dialog.addActionWidget(child: Widget, responseId: Int): Unit {
   gtk_dialog_add_action_widget(this, child.reinterpret(), responseId)
 }
 
 public fun Dialog.addButton(buttonText: String?, responseId: Int): Widget? =
     gtk_dialog_add_button(this, buttonText, responseId)?.reinterpret()
-
-public fun Dialog.getContentArea(): Box? = gtk_dialog_get_content_area(this)?.reinterpret()
-
-public fun Dialog.getHeaderBar(): HeaderBar? = gtk_dialog_get_header_bar(this)?.reinterpret()
 
 public fun Dialog.getResponseForWidget(widget: Widget): Int =
     gtk_dialog_get_response_for_widget(this, widget.reinterpret())

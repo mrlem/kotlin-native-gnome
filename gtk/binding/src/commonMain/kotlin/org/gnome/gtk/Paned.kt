@@ -1,4 +1,5 @@
 // TODO - get_handle_window
+// TODO - get_handle_window
 //
 package org.gnome.gtk
 
@@ -37,6 +38,24 @@ public val Paned.asWidget: Widget
 public val Paned.asContainer: Container
   get() = reinterpret()
 
+public val Paned.child1: Widget?
+  get() = gtk_paned_get_child1(this)?.reinterpret()
+
+public val Paned.child2: Widget?
+  get() = gtk_paned_get_child2(this)?.reinterpret()
+
+public var Paned.position: Int
+  get() = gtk_paned_get_position(this)
+  set(`value`) {
+    gtk_paned_set_position(this, value)
+  }
+
+public var Paned.wideHandle: Boolean
+  get() = gtk_paned_get_wide_handle(this).toBoolean
+  set(`value`) {
+    gtk_paned_set_wide_handle(this, value.toInt)
+  }
+
 public fun Paned.add1(child: Widget): Unit {
   gtk_paned_add1(this, child.reinterpret())
 }
@@ -44,14 +63,6 @@ public fun Paned.add1(child: Widget): Unit {
 public fun Paned.add2(child: Widget): Unit {
   gtk_paned_add2(this, child.reinterpret())
 }
-
-public fun Paned.getChild1(): Widget? = gtk_paned_get_child1(this)?.reinterpret()
-
-public fun Paned.getChild2(): Widget? = gtk_paned_get_child2(this)?.reinterpret()
-
-public fun Paned.getPosition(): Int = gtk_paned_get_position(this)
-
-public fun Paned.getWideHandle(): Boolean = gtk_paned_get_wide_handle(this).toBoolean
 
 public fun Paned.pack1(
   child: Widget,
@@ -67,12 +78,4 @@ public fun Paned.pack2(
   shrink: Boolean
 ): Unit {
   gtk_paned_pack2(this, child.reinterpret(), resize.toInt, shrink.toInt)
-}
-
-public fun Paned.setPosition(position: Int): Unit {
-  gtk_paned_set_position(this, position)
-}
-
-public fun Paned.setWideHandle(wide: Boolean): Unit {
-  gtk_paned_set_wide_handle(this, wide.toInt)
 }

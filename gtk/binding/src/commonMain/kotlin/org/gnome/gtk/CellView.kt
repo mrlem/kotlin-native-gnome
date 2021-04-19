@@ -12,7 +12,6 @@ import gtk3.gtk_cell_view_set_draw_sensitive
 import gtk3.gtk_cell_view_set_fit_model
 import gtk3.gtk_cell_view_set_model
 import kotlin.Boolean
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -31,27 +30,26 @@ public val CellView.asInitiallyUnowned: InitiallyUnowned
 public val CellView.asWidget: Widget
   get() = reinterpret()
 
-public fun CellView.getDisplayedRow(): TreePath? =
-    gtk_cell_view_get_displayed_row(this)?.reinterpret()
+public var CellView.displayedRow: TreePath?
+  get() = gtk_cell_view_get_displayed_row(this)?.reinterpret()
+  set(`value`) {
+    gtk_cell_view_set_displayed_row(this, value)
+  }
 
-public fun CellView.getDrawSensitive(): Boolean = gtk_cell_view_get_draw_sensitive(this).toBoolean
+public var CellView.drawSensitive: Boolean
+  get() = gtk_cell_view_get_draw_sensitive(this).toBoolean
+  set(`value`) {
+    gtk_cell_view_set_draw_sensitive(this, value.toInt)
+  }
 
-public fun CellView.getFitModel(): Boolean = gtk_cell_view_get_fit_model(this).toBoolean
+public var CellView.fitModel: Boolean
+  get() = gtk_cell_view_get_fit_model(this).toBoolean
+  set(`value`) {
+    gtk_cell_view_set_fit_model(this, value.toInt)
+  }
 
-public fun CellView.getModel(): TreeModel? = gtk_cell_view_get_model(this)?.reinterpret()
-
-public fun CellView.setDisplayedRow(path: TreePath): Unit {
-  gtk_cell_view_set_displayed_row(this, path.reinterpret())
-}
-
-public fun CellView.setDrawSensitive(drawSensitive: Boolean): Unit {
-  gtk_cell_view_set_draw_sensitive(this, drawSensitive.toInt)
-}
-
-public fun CellView.setFitModel(fitModel: Boolean): Unit {
-  gtk_cell_view_set_fit_model(this, fitModel.toInt)
-}
-
-public fun CellView.setModel(model: TreeModel): Unit {
-  gtk_cell_view_set_model(this, model.reinterpret())
-}
+public var CellView.model: TreeModel?
+  get() = gtk_cell_view_get_model(this)?.reinterpret()
+  set(`value`) {
+    gtk_cell_view_set_model(this, value)
+  }

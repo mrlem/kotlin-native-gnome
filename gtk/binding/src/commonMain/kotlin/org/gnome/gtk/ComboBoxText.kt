@@ -39,6 +39,9 @@ public val ComboBoxText.asBin: Bin
 public val ComboBoxText.asComboBox: ComboBox
   get() = reinterpret()
 
+public val ComboBoxText.activeText: String
+  get() = gtk_combo_box_text_get_active_text(this).toKString
+
 public fun ComboBoxText.append(id: String?, text: String?): Unit {
   gtk_combo_box_text_append(this, id, text)
 }
@@ -46,8 +49,6 @@ public fun ComboBoxText.append(id: String?, text: String?): Unit {
 public fun ComboBoxText.appendText(text: String?): Unit {
   gtk_combo_box_text_append_text(this, text)
 }
-
-public fun ComboBoxText.getActiveText(): String = gtk_combo_box_text_get_active_text(this).toKString
 
 public fun ComboBoxText.insert(
   position: Int,

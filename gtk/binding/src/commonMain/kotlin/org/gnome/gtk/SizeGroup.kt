@@ -1,5 +1,7 @@
 // TODO - get_mode
 // TODO - get_widgets
+// TODO - get_mode
+// TODO - get_widgets
 // TODO - set_mode
 //
 package org.gnome.gtk

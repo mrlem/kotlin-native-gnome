@@ -29,6 +29,15 @@ public val FileFilter.asObject: Object
 public val FileFilter.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
 
+public var FileFilter.name: String
+  get() = gtk_file_filter_get_name(this).toKString
+  set(`value`) {
+    gtk_file_filter_set_name(this, value)
+  }
+
+public val FileFilter.needed: FileFilterFlags
+  get() = gtk_file_filter_get_needed(this)
+
 public fun FileFilter.addMimeType(mimeType: String?): Unit {
   gtk_file_filter_add_mime_type(this, mimeType)
 }
@@ -43,11 +52,3 @@ public fun FileFilter.addPixbufFormats(): Unit {
 
 public fun FileFilter.filter(filterInfo: FileFilterInfo): Boolean = gtk_file_filter_filter(this,
     filterInfo.reinterpret()).toBoolean
-
-public fun FileFilter.getName(): String = gtk_file_filter_get_name(this).toKString
-
-public fun FileFilter.getNeeded(): FileFilterFlags = gtk_file_filter_get_needed(this)
-
-public fun FileFilter.setName(name: String?): Unit {
-  gtk_file_filter_set_name(this, name)
-}

@@ -4,7 +4,6 @@ import gtk3.GtkSeparatorToolItem
 import gtk3.gtk_separator_tool_item_get_draw
 import gtk3.gtk_separator_tool_item_set_draw
 import kotlin.Boolean
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -32,8 +31,8 @@ public val SeparatorToolItem.asBin: Bin
 public val SeparatorToolItem.asToolItem: ToolItem
   get() = reinterpret()
 
-public fun SeparatorToolItem.getDraw(): Boolean = gtk_separator_tool_item_get_draw(this).toBoolean
-
-public fun SeparatorToolItem.setDraw(draw: Boolean): Unit {
-  gtk_separator_tool_item_set_draw(this, draw.toInt)
-}
+public var SeparatorToolItem.draw: Boolean
+  get() = gtk_separator_tool_item_get_draw(this).toBoolean
+  set(`value`) {
+    gtk_separator_tool_item_set_draw(this, value.toInt)
+  }

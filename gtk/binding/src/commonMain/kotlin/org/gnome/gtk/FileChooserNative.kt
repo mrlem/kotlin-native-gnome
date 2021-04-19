@@ -6,7 +6,6 @@ import gtk3.gtk_file_chooser_native_get_cancel_label
 import gtk3.gtk_file_chooser_native_set_accept_label
 import gtk3.gtk_file_chooser_native_set_cancel_label
 import kotlin.String
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
@@ -20,16 +19,14 @@ public val FileChooserNative.asObject: Object
 public val FileChooserNative.asNativeDialog: NativeDialog
   get() = reinterpret()
 
-public fun FileChooserNative.getAcceptLabel(): String =
-    gtk_file_chooser_native_get_accept_label(this).toKString
+public var FileChooserNative.acceptLabel: String
+  get() = gtk_file_chooser_native_get_accept_label(this).toKString
+  set(`value`) {
+    gtk_file_chooser_native_set_accept_label(this, value)
+  }
 
-public fun FileChooserNative.getCancelLabel(): String =
-    gtk_file_chooser_native_get_cancel_label(this).toKString
-
-public fun FileChooserNative.setAcceptLabel(acceptLabel: String?): Unit {
-  gtk_file_chooser_native_set_accept_label(this, acceptLabel)
-}
-
-public fun FileChooserNative.setCancelLabel(cancelLabel: String?): Unit {
-  gtk_file_chooser_native_set_cancel_label(this, cancelLabel)
-}
+public var FileChooserNative.cancelLabel: String
+  get() = gtk_file_chooser_native_get_cancel_label(this).toKString
+  set(`value`) {
+    gtk_file_chooser_native_set_cancel_label(this, value)
+  }

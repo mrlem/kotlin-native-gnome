@@ -32,6 +32,15 @@ public val RecentFilter.asObject: Object
 public val RecentFilter.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
 
+public var RecentFilter.name: String
+  get() = gtk_recent_filter_get_name(this).toKString
+  set(`value`) {
+    gtk_recent_filter_set_name(this, value)
+  }
+
+public val RecentFilter.needed: RecentFilterFlags
+  get() = gtk_recent_filter_get_needed(this)
+
 public fun RecentFilter.addAge(days: Int): Unit {
   gtk_recent_filter_add_age(this, days)
 }
@@ -58,11 +67,3 @@ public fun RecentFilter.addPixbufFormats(): Unit {
 
 public fun RecentFilter.filter(filterInfo: RecentFilterInfo): Boolean =
     gtk_recent_filter_filter(this, filterInfo.reinterpret()).toBoolean
-
-public fun RecentFilter.getName(): String = gtk_recent_filter_get_name(this).toKString
-
-public fun RecentFilter.getNeeded(): RecentFilterFlags = gtk_recent_filter_get_needed(this)
-
-public fun RecentFilter.setName(name: String?): Unit {
-  gtk_recent_filter_set_name(this, name)
-}

@@ -1,3 +1,4 @@
+// TODO - get_tab_pos
 // TODO - get_action_widget
 // TODO - get_tab_pos
 // TODO - set_action_widget
@@ -70,6 +71,39 @@ public val Notebook.asWidget: Widget
 public val Notebook.asContainer: Container
   get() = reinterpret()
 
+public var Notebook.currentPage: Int
+  get() = gtk_notebook_get_current_page(this)
+  set(`value`) {
+    gtk_notebook_set_current_page(this, value)
+  }
+
+public var Notebook.groupName: String
+  get() = gtk_notebook_get_group_name(this).toKString
+  set(`value`) {
+    gtk_notebook_set_group_name(this, value)
+  }
+
+public val Notebook.nPages: Int
+  get() = gtk_notebook_get_n_pages(this)
+
+public var Notebook.scrollable: Boolean
+  get() = gtk_notebook_get_scrollable(this).toBoolean
+  set(`value`) {
+    gtk_notebook_set_scrollable(this, value.toInt)
+  }
+
+public var Notebook.showBorder: Boolean
+  get() = gtk_notebook_get_show_border(this).toBoolean
+  set(`value`) {
+    gtk_notebook_set_show_border(this, value.toInt)
+  }
+
+public var Notebook.showTabs: Boolean
+  get() = gtk_notebook_get_show_tabs(this).toBoolean
+  set(`value`) {
+    gtk_notebook_set_show_tabs(this, value.toInt)
+  }
+
 public fun Notebook.appendPage(child: Widget, tabLabel: Widget): Int =
     gtk_notebook_append_page(this, child.reinterpret(), tabLabel.reinterpret())
 
@@ -84,26 +118,14 @@ public fun Notebook.detachTab(child: Widget): Unit {
   gtk_notebook_detach_tab(this, child.reinterpret())
 }
 
-public fun Notebook.getCurrentPage(): Int = gtk_notebook_get_current_page(this)
-
-public fun Notebook.getGroupName(): String = gtk_notebook_get_group_name(this).toKString
-
 public fun Notebook.getMenuLabel(child: Widget): Widget? = gtk_notebook_get_menu_label(this,
     child.reinterpret())?.reinterpret()
 
 public fun Notebook.getMenuLabelText(child: Widget): String = gtk_notebook_get_menu_label_text(this,
     child.reinterpret()).toKString
 
-public fun Notebook.getNPages(): Int = gtk_notebook_get_n_pages(this)
-
 public fun Notebook.getNthPage(pageNum: Int): Widget? = gtk_notebook_get_nth_page(this,
     pageNum)?.reinterpret()
-
-public fun Notebook.getScrollable(): Boolean = gtk_notebook_get_scrollable(this).toBoolean
-
-public fun Notebook.getShowBorder(): Boolean = gtk_notebook_get_show_border(this).toBoolean
-
-public fun Notebook.getShowTabs(): Boolean = gtk_notebook_get_show_tabs(this).toBoolean
 
 public fun Notebook.getTabDetachable(child: Widget): Boolean = gtk_notebook_get_tab_detachable(this,
     child.reinterpret()).toBoolean
@@ -167,32 +189,12 @@ public fun Notebook.reorderChild(child: Widget, position: Int): Unit {
   gtk_notebook_reorder_child(this, child.reinterpret(), position)
 }
 
-public fun Notebook.setCurrentPage(pageNum: Int): Unit {
-  gtk_notebook_set_current_page(this, pageNum)
-}
-
-public fun Notebook.setGroupName(groupName: String?): Unit {
-  gtk_notebook_set_group_name(this, groupName)
-}
-
 public fun Notebook.setMenuLabel(child: Widget, menuLabel: Widget): Unit {
   gtk_notebook_set_menu_label(this, child.reinterpret(), menuLabel.reinterpret())
 }
 
 public fun Notebook.setMenuLabelText(child: Widget, menuText: String?): Unit {
   gtk_notebook_set_menu_label_text(this, child.reinterpret(), menuText)
-}
-
-public fun Notebook.setScrollable(scrollable: Boolean): Unit {
-  gtk_notebook_set_scrollable(this, scrollable.toInt)
-}
-
-public fun Notebook.setShowBorder(showBorder: Boolean): Unit {
-  gtk_notebook_set_show_border(this, showBorder.toInt)
-}
-
-public fun Notebook.setShowTabs(showTabs: Boolean): Unit {
-  gtk_notebook_set_show_tabs(this, showTabs.toInt)
 }
 
 public fun Notebook.setTabDetachable(child: Widget, detachable: Boolean): Unit {

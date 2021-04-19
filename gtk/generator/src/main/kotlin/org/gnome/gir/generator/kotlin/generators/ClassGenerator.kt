@@ -26,7 +26,7 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             println("info: class '$name' ignored: deprecated")
             return null
         }
-        // FIXME - Misc is annoying: deprecated, but not its children...
+        // FIXME - Misc is annoying: deprecated, but not its children, try figure that out
         ancestors.any { it != "Gtk.Misc" && resolver.classDefinition(it)?.deprecated == true } -> {
             println("info: class '$name' ignored: deprecated ancestor")
             return null
@@ -58,10 +58,17 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             .apply { addConverters(classNameString, className, resolver) }
             // sub-elements
             // TODO - compress property methods
-            .apply { methods.forEach { addMethod(className, it, resolver) } }
-                // TODO - the rest :)
+            .apply {
+                val methodsToAdd = methods.toMutableList()
+                addProperties(methodsToAdd, className, resolver)
+                methodsToAdd.forEach { addMethod(className, it, resolver) }
+            }
             .build()
 }
+
+///////////////////////////////////////////////////////////////////////////
+// Private
+///////////////////////////////////////////////////////////////////////////
 
 private fun FileSpec.Builder.addConverters(classNameString: String, className: ClassName, resolver: Resolver) {
     resolver.ancestors(classNameString)

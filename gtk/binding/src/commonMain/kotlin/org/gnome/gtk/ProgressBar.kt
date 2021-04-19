@@ -1,4 +1,5 @@
 // TODO - get_ellipsize
+// TODO - get_ellipsize
 // TODO - set_ellipsize
 //
 package org.gnome.gtk
@@ -38,36 +39,36 @@ public val ProgressBar.asInitiallyUnowned: InitiallyUnowned
 public val ProgressBar.asWidget: Widget
   get() = reinterpret()
 
-public fun ProgressBar.getFraction(): Double = gtk_progress_bar_get_fraction(this)
+public var ProgressBar.fraction: Double
+  get() = gtk_progress_bar_get_fraction(this)
+  set(`value`) {
+    gtk_progress_bar_set_fraction(this, value)
+  }
 
-public fun ProgressBar.getInverted(): Boolean = gtk_progress_bar_get_inverted(this).toBoolean
+public var ProgressBar.inverted: Boolean
+  get() = gtk_progress_bar_get_inverted(this).toBoolean
+  set(`value`) {
+    gtk_progress_bar_set_inverted(this, value.toInt)
+  }
 
-public fun ProgressBar.getPulseStep(): Double = gtk_progress_bar_get_pulse_step(this)
+public var ProgressBar.pulseStep: Double
+  get() = gtk_progress_bar_get_pulse_step(this)
+  set(`value`) {
+    gtk_progress_bar_set_pulse_step(this, value)
+  }
 
-public fun ProgressBar.getShowText(): Boolean = gtk_progress_bar_get_show_text(this).toBoolean
+public var ProgressBar.showText: Boolean
+  get() = gtk_progress_bar_get_show_text(this).toBoolean
+  set(`value`) {
+    gtk_progress_bar_set_show_text(this, value.toInt)
+  }
 
-public fun ProgressBar.getText(): String = gtk_progress_bar_get_text(this).toKString
+public var ProgressBar.text: String
+  get() = gtk_progress_bar_get_text(this).toKString
+  set(`value`) {
+    gtk_progress_bar_set_text(this, value)
+  }
 
 public fun ProgressBar.pulse(): Unit {
   gtk_progress_bar_pulse(this)
-}
-
-public fun ProgressBar.setFraction(fraction: Double): Unit {
-  gtk_progress_bar_set_fraction(this, fraction)
-}
-
-public fun ProgressBar.setInverted(inverted: Boolean): Unit {
-  gtk_progress_bar_set_inverted(this, inverted.toInt)
-}
-
-public fun ProgressBar.setPulseStep(fraction: Double): Unit {
-  gtk_progress_bar_set_pulse_step(this, fraction)
-}
-
-public fun ProgressBar.setShowText(showText: Boolean): Unit {
-  gtk_progress_bar_set_show_text(this, showText.toInt)
-}
-
-public fun ProgressBar.setText(text: String?): Unit {
-  gtk_progress_bar_set_text(this, text)
 }

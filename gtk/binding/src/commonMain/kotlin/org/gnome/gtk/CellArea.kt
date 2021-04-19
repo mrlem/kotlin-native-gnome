@@ -1,3 +1,4 @@
+// TODO - get_request_mode
 // TODO - activate
 // TODO - activate_cell
 // TODO - add_with_properties
@@ -66,6 +67,21 @@ public val CellArea.asObject: Object
 public val CellArea.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
 
+public val CellArea.currentPathString: String
+  get() = gtk_cell_area_get_current_path_string(this).toKString
+
+public val CellArea.editWidget: CellEditable?
+  get() = gtk_cell_area_get_edit_widget(this)?.reinterpret()
+
+public val CellArea.editedCell: CellRenderer?
+  get() = gtk_cell_area_get_edited_cell(this)?.reinterpret()
+
+public var CellArea.focusCell: CellRenderer?
+  get() = gtk_cell_area_get_focus_cell(this)?.reinterpret()
+  set(`value`) {
+    gtk_cell_area_set_focus_cell(this, value)
+  }
+
 public fun CellArea.add(renderer: CellRenderer): Unit {
   gtk_cell_area_add(this, renderer.reinterpret())
 }
@@ -105,18 +121,6 @@ public fun CellArea.copyContext(context: CellAreaContext): CellAreaContext? =
 public fun CellArea.createContext(): CellAreaContext? =
     gtk_cell_area_create_context(this)?.reinterpret()
 
-public fun CellArea.getCurrentPathString(): String =
-    gtk_cell_area_get_current_path_string(this).toKString
-
-public fun CellArea.getEditWidget(): CellEditable? =
-    gtk_cell_area_get_edit_widget(this)?.reinterpret()
-
-public fun CellArea.getEditedCell(): CellRenderer? =
-    gtk_cell_area_get_edited_cell(this)?.reinterpret()
-
-public fun CellArea.getFocusCell(): CellRenderer? =
-    gtk_cell_area_get_focus_cell(this)?.reinterpret()
-
 public fun CellArea.getFocusFromSibling(renderer: CellRenderer): CellRenderer? =
     gtk_cell_area_get_focus_from_sibling(this, renderer.reinterpret())?.reinterpret()
 
@@ -134,10 +138,6 @@ public fun CellArea.remove(renderer: CellRenderer): Unit {
 
 public fun CellArea.removeFocusSibling(renderer: CellRenderer, sibling: CellRenderer): Unit {
   gtk_cell_area_remove_focus_sibling(this, renderer.reinterpret(), sibling.reinterpret())
-}
-
-public fun CellArea.setFocusCell(renderer: CellRenderer): Unit {
-  gtk_cell_area_set_focus_cell(this, renderer.reinterpret())
 }
 
 public fun CellArea.stopEditing(canceled: Boolean): Unit {

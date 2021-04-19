@@ -1,4 +1,5 @@
 // TODO - get_current_sequence
+// TODO - get_current_sequence
 //
 package org.gnome.gtk
 
@@ -12,7 +13,6 @@ import gtk3.gtk_gesture_single_set_exclusive
 import gtk3.gtk_gesture_single_set_touch_only
 import kotlin.Boolean
 import kotlin.UInt
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
@@ -30,22 +30,23 @@ public val GestureSingle.asEventController: EventController
 public val GestureSingle.asGesture: Gesture
   get() = reinterpret()
 
-public fun GestureSingle.getButton(): UInt = gtk_gesture_single_get_button(this)
+public var GestureSingle.button: UInt
+  get() = gtk_gesture_single_get_button(this)
+  set(`value`) {
+    gtk_gesture_single_set_button(this, value)
+  }
 
-public fun GestureSingle.getCurrentButton(): UInt = gtk_gesture_single_get_current_button(this)
+public val GestureSingle.currentButton: UInt
+  get() = gtk_gesture_single_get_current_button(this)
 
-public fun GestureSingle.getExclusive(): Boolean = gtk_gesture_single_get_exclusive(this).toBoolean
+public var GestureSingle.exclusive: Boolean
+  get() = gtk_gesture_single_get_exclusive(this).toBoolean
+  set(`value`) {
+    gtk_gesture_single_set_exclusive(this, value.toInt)
+  }
 
-public fun GestureSingle.getTouchOnly(): Boolean = gtk_gesture_single_get_touch_only(this).toBoolean
-
-public fun GestureSingle.setButton(button: UInt): Unit {
-  gtk_gesture_single_set_button(this, button)
-}
-
-public fun GestureSingle.setExclusive(exclusive: Boolean): Unit {
-  gtk_gesture_single_set_exclusive(this, exclusive.toInt)
-}
-
-public fun GestureSingle.setTouchOnly(touchOnly: Boolean): Unit {
-  gtk_gesture_single_set_touch_only(this, touchOnly.toInt)
-}
+public var GestureSingle.touchOnly: Boolean
+  get() = gtk_gesture_single_get_touch_only(this).toBoolean
+  set(`value`) {
+    gtk_gesture_single_set_touch_only(this, value.toInt)
+  }

@@ -36,8 +36,8 @@ public val MessageDialog.asWindow: Window
 public val MessageDialog.asDialog: Dialog
   get() = reinterpret()
 
-public fun MessageDialog.getMessageArea(): Widget? =
-    gtk_message_dialog_get_message_area(this)?.reinterpret()
+public val MessageDialog.messageArea: Widget?
+  get() = gtk_message_dialog_get_message_area(this)?.reinterpret()
 
 public fun MessageDialog.setMarkup(str: String?): Unit {
   gtk_message_dialog_set_markup(this, str)

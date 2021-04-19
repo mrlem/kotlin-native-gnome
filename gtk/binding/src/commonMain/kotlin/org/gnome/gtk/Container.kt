@@ -1,3 +1,4 @@
+// TODO - get_children
 // TODO - add_with_properties
 // TODO - child_get
 // TODO - child_get_property
@@ -48,6 +49,30 @@ public val Container.asInitiallyUnowned: InitiallyUnowned
 public val Container.asWidget: Widget
   get() = reinterpret()
 
+public var Container.borderWidth: UInt
+  get() = gtk_container_get_border_width(this)
+  set(`value`) {
+    gtk_container_set_border_width(this, value)
+  }
+
+public var Container.focusChild: Widget?
+  get() = gtk_container_get_focus_child(this)?.reinterpret()
+  set(`value`) {
+    gtk_container_set_focus_child(this, value)
+  }
+
+public var Container.focusHadjustment: Adjustment?
+  get() = gtk_container_get_focus_hadjustment(this)?.reinterpret()
+  set(`value`) {
+    gtk_container_set_focus_hadjustment(this, value)
+  }
+
+public var Container.focusVadjustment: Adjustment?
+  get() = gtk_container_get_focus_vadjustment(this)?.reinterpret()
+  set(`value`) {
+    gtk_container_set_focus_vadjustment(this, value)
+  }
+
 public fun Container.add(widget: Widget): Unit {
   gtk_container_add(this, widget.reinterpret())
 }
@@ -62,35 +87,9 @@ public fun Container.childNotify(child: Widget, childProperty: String?): Unit {
 
 public fun Container.childType(): GType = gtk_container_child_type(this)
 
-public fun Container.getBorderWidth(): UInt = gtk_container_get_border_width(this)
-
-public fun Container.getFocusChild(): Widget? = gtk_container_get_focus_child(this)?.reinterpret()
-
-public fun Container.getFocusHadjustment(): Adjustment? =
-    gtk_container_get_focus_hadjustment(this)?.reinterpret()
-
-public fun Container.getFocusVadjustment(): Adjustment? =
-    gtk_container_get_focus_vadjustment(this)?.reinterpret()
-
 public fun Container.getPathForChild(child: Widget): WidgetPath? =
     gtk_container_get_path_for_child(this, child.reinterpret())?.reinterpret()
 
 public fun Container.remove(widget: Widget): Unit {
   gtk_container_remove(this, widget.reinterpret())
-}
-
-public fun Container.setBorderWidth(borderWidth: UInt): Unit {
-  gtk_container_set_border_width(this, borderWidth)
-}
-
-public fun Container.setFocusChild(child: Widget): Unit {
-  gtk_container_set_focus_child(this, child.reinterpret())
-}
-
-public fun Container.setFocusHadjustment(adjustment: Adjustment): Unit {
-  gtk_container_set_focus_hadjustment(this, adjustment.reinterpret())
-}
-
-public fun Container.setFocusVadjustment(adjustment: Adjustment): Unit {
-  gtk_container_set_focus_vadjustment(this, adjustment.reinterpret())
 }

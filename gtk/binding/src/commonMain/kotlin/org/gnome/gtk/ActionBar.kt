@@ -28,8 +28,11 @@ public val ActionBar.asContainer: Container
 public val ActionBar.asBin: Bin
   get() = reinterpret()
 
-public fun ActionBar.getCenterWidget(): Widget? =
-    gtk_action_bar_get_center_widget(this)?.reinterpret()
+public var ActionBar.centerWidget: Widget?
+  get() = gtk_action_bar_get_center_widget(this)?.reinterpret()
+  set(`value`) {
+    gtk_action_bar_set_center_widget(this, value)
+  }
 
 public fun ActionBar.packEnd(child: Widget): Unit {
   gtk_action_bar_pack_end(this, child.reinterpret())
@@ -37,8 +40,4 @@ public fun ActionBar.packEnd(child: Widget): Unit {
 
 public fun ActionBar.packStart(child: Widget): Unit {
   gtk_action_bar_pack_start(this, child.reinterpret())
-}
-
-public fun ActionBar.setCenterWidget(centerWidget: Widget): Unit {
-  gtk_action_bar_set_center_widget(this, centerWidget.reinterpret())
 }

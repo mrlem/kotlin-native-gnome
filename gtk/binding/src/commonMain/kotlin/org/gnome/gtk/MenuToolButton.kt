@@ -35,7 +35,11 @@ public val MenuToolButton.asToolItem: ToolItem
 public val MenuToolButton.asToolButton: ToolButton
   get() = reinterpret()
 
-public fun MenuToolButton.getMenu(): Widget? = gtk_menu_tool_button_get_menu(this)?.reinterpret()
+public var MenuToolButton.menu: Widget?
+  get() = gtk_menu_tool_button_get_menu(this)?.reinterpret()
+  set(`value`) {
+    gtk_menu_tool_button_set_menu(this, value)
+  }
 
 public fun MenuToolButton.setArrowTooltipMarkup(markup: String?): Unit {
   gtk_menu_tool_button_set_arrow_tooltip_markup(this, markup)
@@ -43,8 +47,4 @@ public fun MenuToolButton.setArrowTooltipMarkup(markup: String?): Unit {
 
 public fun MenuToolButton.setArrowTooltipText(text: String?): Unit {
   gtk_menu_tool_button_set_arrow_tooltip_text(this, text)
-}
-
-public fun MenuToolButton.setMenu(menu: Widget): Unit {
-  gtk_menu_tool_button_set_menu(this, menu.reinterpret())
 }

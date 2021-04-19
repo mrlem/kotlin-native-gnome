@@ -4,7 +4,6 @@ import gtk3.GtkRecentChooserMenu
 import gtk3.gtk_recent_chooser_menu_get_show_numbers
 import gtk3.gtk_recent_chooser_menu_set_show_numbers
 import kotlin.Boolean
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -32,9 +31,8 @@ public val RecentChooserMenu.asMenuShell: MenuShell
 public val RecentChooserMenu.asMenu: Menu
   get() = reinterpret()
 
-public fun RecentChooserMenu.getShowNumbers(): Boolean =
-    gtk_recent_chooser_menu_get_show_numbers(this).toBoolean
-
-public fun RecentChooserMenu.setShowNumbers(showNumbers: Boolean): Unit {
-  gtk_recent_chooser_menu_set_show_numbers(this, showNumbers.toInt)
-}
+public var RecentChooserMenu.showNumbers: Boolean
+  get() = gtk_recent_chooser_menu_get_show_numbers(this).toBoolean
+  set(`value`) {
+    gtk_recent_chooser_menu_set_show_numbers(this, value.toInt)
+  }

@@ -54,6 +54,36 @@ public val Menu.asContainer: Container
 public val Menu.asMenuShell: MenuShell
   get() = reinterpret()
 
+public var Menu.accelGroup: AccelGroup?
+  get() = gtk_menu_get_accel_group(this)?.reinterpret()
+  set(`value`) {
+    gtk_menu_set_accel_group(this, value)
+  }
+
+public var Menu.accelPath: String
+  get() = gtk_menu_get_accel_path(this).toKString
+  set(`value`) {
+    gtk_menu_set_accel_path(this, value)
+  }
+
+public val Menu.active: Widget?
+  get() = gtk_menu_get_active(this)?.reinterpret()
+
+public val Menu.attachWidget: Widget?
+  get() = gtk_menu_get_attach_widget(this)?.reinterpret()
+
+public var Menu.monitor: Int
+  get() = gtk_menu_get_monitor(this)
+  set(`value`) {
+    gtk_menu_set_monitor(this, value)
+  }
+
+public var Menu.reserveToggleSize: Boolean
+  get() = gtk_menu_get_reserve_toggle_size(this).toBoolean
+  set(`value`) {
+    gtk_menu_set_reserve_toggle_size(this, value.toInt)
+  }
+
 public fun Menu.attach(
   child: Widget,
   leftAttach: UInt,
@@ -72,18 +102,6 @@ public fun Menu.detach(): Unit {
   gtk_menu_detach(this)
 }
 
-public fun Menu.getAccelGroup(): AccelGroup? = gtk_menu_get_accel_group(this)?.reinterpret()
-
-public fun Menu.getAccelPath(): String = gtk_menu_get_accel_path(this).toKString
-
-public fun Menu.getActive(): Widget? = gtk_menu_get_active(this)?.reinterpret()
-
-public fun Menu.getAttachWidget(): Widget? = gtk_menu_get_attach_widget(this)?.reinterpret()
-
-public fun Menu.getMonitor(): Int = gtk_menu_get_monitor(this)
-
-public fun Menu.getReserveToggleSize(): Boolean = gtk_menu_get_reserve_toggle_size(this).toBoolean
-
 public fun Menu.popdown(): Unit {
   gtk_menu_popdown(this)
 }
@@ -96,22 +114,6 @@ public fun Menu.reposition(): Unit {
   gtk_menu_reposition(this)
 }
 
-public fun Menu.setAccelGroup(accelGroup: AccelGroup): Unit {
-  gtk_menu_set_accel_group(this, accelGroup.reinterpret())
-}
-
-public fun Menu.setAccelPath(accelPath: String?): Unit {
-  gtk_menu_set_accel_path(this, accelPath)
-}
-
 public fun Menu.setActive(index: UInt): Unit {
   gtk_menu_set_active(this, index)
-}
-
-public fun Menu.setMonitor(monitorNum: Int): Unit {
-  gtk_menu_set_monitor(this, monitorNum)
-}
-
-public fun Menu.setReserveToggleSize(reserveToggleSize: Boolean): Unit {
-  gtk_menu_set_reserve_toggle_size(this, reserveToggleSize.toInt)
 }

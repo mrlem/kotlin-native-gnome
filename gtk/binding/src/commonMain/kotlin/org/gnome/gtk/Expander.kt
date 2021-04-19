@@ -17,7 +17,6 @@ import gtk3.gtk_expander_set_use_markup
 import gtk3.gtk_expander_set_use_underline
 import kotlin.Boolean
 import kotlin.String
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -43,44 +42,44 @@ public val Expander.asContainer: Container
 public val Expander.asBin: Bin
   get() = reinterpret()
 
-public fun Expander.getExpanded(): Boolean = gtk_expander_get_expanded(this).toBoolean
+public var Expander.expanded: Boolean
+  get() = gtk_expander_get_expanded(this).toBoolean
+  set(`value`) {
+    gtk_expander_set_expanded(this, value.toInt)
+  }
 
-public fun Expander.getLabel(): String = gtk_expander_get_label(this).toKString
+public var Expander.label: String
+  get() = gtk_expander_get_label(this).toKString
+  set(`value`) {
+    gtk_expander_set_label(this, value)
+  }
 
-public fun Expander.getLabelFill(): Boolean = gtk_expander_get_label_fill(this).toBoolean
+public var Expander.labelFill: Boolean
+  get() = gtk_expander_get_label_fill(this).toBoolean
+  set(`value`) {
+    gtk_expander_set_label_fill(this, value.toInt)
+  }
 
-public fun Expander.getLabelWidget(): Widget? = gtk_expander_get_label_widget(this)?.reinterpret()
+public var Expander.labelWidget: Widget?
+  get() = gtk_expander_get_label_widget(this)?.reinterpret()
+  set(`value`) {
+    gtk_expander_set_label_widget(this, value)
+  }
 
-public fun Expander.getResizeToplevel(): Boolean = gtk_expander_get_resize_toplevel(this).toBoolean
+public var Expander.resizeToplevel: Boolean
+  get() = gtk_expander_get_resize_toplevel(this).toBoolean
+  set(`value`) {
+    gtk_expander_set_resize_toplevel(this, value.toInt)
+  }
 
-public fun Expander.getUseMarkup(): Boolean = gtk_expander_get_use_markup(this).toBoolean
+public var Expander.useMarkup: Boolean
+  get() = gtk_expander_get_use_markup(this).toBoolean
+  set(`value`) {
+    gtk_expander_set_use_markup(this, value.toInt)
+  }
 
-public fun Expander.getUseUnderline(): Boolean = gtk_expander_get_use_underline(this).toBoolean
-
-public fun Expander.setExpanded(expanded: Boolean): Unit {
-  gtk_expander_set_expanded(this, expanded.toInt)
-}
-
-public fun Expander.setLabel(label: String?): Unit {
-  gtk_expander_set_label(this, label)
-}
-
-public fun Expander.setLabelFill(labelFill: Boolean): Unit {
-  gtk_expander_set_label_fill(this, labelFill.toInt)
-}
-
-public fun Expander.setLabelWidget(labelWidget: Widget): Unit {
-  gtk_expander_set_label_widget(this, labelWidget.reinterpret())
-}
-
-public fun Expander.setResizeToplevel(resizeToplevel: Boolean): Unit {
-  gtk_expander_set_resize_toplevel(this, resizeToplevel.toInt)
-}
-
-public fun Expander.setUseMarkup(useMarkup: Boolean): Unit {
-  gtk_expander_set_use_markup(this, useMarkup.toInt)
-}
-
-public fun Expander.setUseUnderline(useUnderline: Boolean): Unit {
-  gtk_expander_set_use_underline(this, useUnderline.toInt)
-}
+public var Expander.useUnderline: Boolean
+  get() = gtk_expander_get_use_underline(this).toBoolean
+  set(`value`) {
+    gtk_expander_set_use_underline(this, value.toInt)
+  }

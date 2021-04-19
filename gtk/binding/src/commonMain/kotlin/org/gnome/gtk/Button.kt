@@ -1,6 +1,9 @@
 // TODO - get_event_window
 // TODO - get_image_position
 // TODO - get_relief
+// TODO - get_event_window
+// TODO - get_image_position
+// TODO - get_relief
 // TODO - set_image_position
 // TODO - set_relief
 //
@@ -36,32 +39,32 @@ public val Button.asContainer: Container
 public val Button.asBin: Bin
   get() = reinterpret()
 
+public var Button.alwaysShowImage: Boolean
+  get() = gtk_button_get_always_show_image(this).toBoolean
+  set(`value`) {
+    gtk_button_set_always_show_image(this, value.toInt)
+  }
+
+public var Button.image: Widget?
+  get() = gtk_button_get_image(this)?.reinterpret()
+  set(`value`) {
+    gtk_button_set_image(this, value)
+  }
+
+public var Button.label: String
+  get() = gtk_button_get_label(this).toKString
+  set(`value`) {
+    gtk_button_set_label(this, value)
+  }
+
+public var Button.useUnderline: Boolean
+  get() = gtk_button_get_use_underline(this).toBoolean
+  set(`value`) {
+    gtk_button_set_use_underline(this, value.toInt)
+  }
+
 public fun Button.clicked(): Unit {
   gtk_button_clicked(this)
-}
-
-public fun Button.getAlwaysShowImage(): Boolean = gtk_button_get_always_show_image(this).toBoolean
-
-public fun Button.getImage(): Widget? = gtk_button_get_image(this)?.reinterpret()
-
-public fun Button.getLabel(): String = gtk_button_get_label(this).toKString
-
-public fun Button.getUseUnderline(): Boolean = gtk_button_get_use_underline(this).toBoolean
-
-public fun Button.setAlwaysShowImage(alwaysShow: Boolean): Unit {
-  gtk_button_set_always_show_image(this, alwaysShow.toInt)
-}
-
-public fun Button.setImage(image: Widget): Unit {
-  gtk_button_set_image(this, image.reinterpret())
-}
-
-public fun Button.setLabel(label: String?): Unit {
-  gtk_button_set_label(this, label)
-}
-
-public fun Button.setUseUnderline(useUnderline: Boolean): Unit {
-  gtk_button_set_use_underline(this, useUnderline.toInt)
 }
 
 ///////////////////////////////////////////////////////////////////////////

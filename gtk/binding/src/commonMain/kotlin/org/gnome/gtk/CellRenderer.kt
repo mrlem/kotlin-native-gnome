@@ -1,3 +1,4 @@
+// TODO - get_request_mode
 // TODO - activate
 // TODO - get_aligned_area
 // TODO - get_alignment
@@ -44,12 +45,20 @@ public val CellRenderer.asObject: Object
 public val CellRenderer.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
 
-public fun CellRenderer.getSensitive(): Boolean = gtk_cell_renderer_get_sensitive(this).toBoolean
+public var CellRenderer.sensitive: Boolean
+  get() = gtk_cell_renderer_get_sensitive(this).toBoolean
+  set(`value`) {
+    gtk_cell_renderer_set_sensitive(this, value.toInt)
+  }
+
+public var CellRenderer.visible: Boolean
+  get() = gtk_cell_renderer_get_visible(this).toBoolean
+  set(`value`) {
+    gtk_cell_renderer_set_visible(this, value.toInt)
+  }
 
 public fun CellRenderer.getState(widget: Widget, cellState: CellRendererState): StateFlags =
     gtk_cell_renderer_get_state(this, widget.reinterpret(), cellState)
-
-public fun CellRenderer.getVisible(): Boolean = gtk_cell_renderer_get_visible(this).toBoolean
 
 public fun CellRenderer.isActivatable(): Boolean = gtk_cell_renderer_is_activatable(this).toBoolean
 
@@ -63,14 +72,6 @@ public fun CellRenderer.setFixedSize(width: Int, height: Int): Unit {
 
 public fun CellRenderer.setPadding(xpad: Int, ypad: Int): Unit {
   gtk_cell_renderer_set_padding(this, xpad, ypad)
-}
-
-public fun CellRenderer.setSensitive(sensitive: Boolean): Unit {
-  gtk_cell_renderer_set_sensitive(this, sensitive.toInt)
-}
-
-public fun CellRenderer.setVisible(visible: Boolean): Unit {
-  gtk_cell_renderer_set_visible(this, visible.toInt)
 }
 
 public fun CellRenderer.stopEditing(canceled: Boolean): Unit {

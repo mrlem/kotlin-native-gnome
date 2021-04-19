@@ -18,4 +18,5 @@ public val GestureZoom.asEventController: EventController
 public val GestureZoom.asGesture: Gesture
   get() = reinterpret()
 
-public fun GestureZoom.getScaleDelta(): Double = gtk_gesture_zoom_get_scale_delta(this)
+public val GestureZoom.scaleDelta: Double
+  get() = gtk_gesture_zoom_get_scale_delta(this)

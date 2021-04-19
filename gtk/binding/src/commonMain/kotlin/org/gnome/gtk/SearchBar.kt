@@ -34,19 +34,18 @@ public val SearchBar.asContainer: Container
 public val SearchBar.asBin: Bin
   get() = reinterpret()
 
+public var SearchBar.searchMode: Boolean
+  get() = gtk_search_bar_get_search_mode(this).toBoolean
+  set(`value`) {
+    gtk_search_bar_set_search_mode(this, value.toInt)
+  }
+
+public var SearchBar.showCloseButton: Boolean
+  get() = gtk_search_bar_get_show_close_button(this).toBoolean
+  set(`value`) {
+    gtk_search_bar_set_show_close_button(this, value.toInt)
+  }
+
 public fun SearchBar.connectEntry(entry: Entry): Unit {
   gtk_search_bar_connect_entry(this, entry.reinterpret())
-}
-
-public fun SearchBar.getSearchMode(): Boolean = gtk_search_bar_get_search_mode(this).toBoolean
-
-public fun SearchBar.getShowCloseButton(): Boolean =
-    gtk_search_bar_get_show_close_button(this).toBoolean
-
-public fun SearchBar.setSearchMode(searchMode: Boolean): Unit {
-  gtk_search_bar_set_search_mode(this, searchMode.toInt)
-}
-
-public fun SearchBar.setShowCloseButton(visible: Boolean): Unit {
-  gtk_search_bar_set_show_close_button(this, visible.toInt)
 }

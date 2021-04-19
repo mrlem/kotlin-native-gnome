@@ -30,10 +30,11 @@ public val FlowBoxChild.asContainer: Container
 public val FlowBoxChild.asBin: Bin
   get() = reinterpret()
 
+public val FlowBoxChild.index: Int
+  get() = gtk_flow_box_child_get_index(this)
+
 public fun FlowBoxChild.changed(): Unit {
   gtk_flow_box_child_changed(this)
 }
-
-public fun FlowBoxChild.getIndex(): Int = gtk_flow_box_child_get_index(this)
 
 public fun FlowBoxChild.isSelected(): Boolean = gtk_flow_box_child_is_selected(this).toBoolean

@@ -1,3 +1,6 @@
+// TODO - get_app_menu
+// TODO - get_menubar
+// TODO - get_windows
 // TODO - get_accels_for_action
 // TODO - get_actions_for_accel
 // TODO - get_app_menu
@@ -29,12 +32,12 @@ public val Application.asObject: Object
 public val Application.asApplication: org.gnome.gio.Application
   get() = reinterpret()
 
+public val Application.activeWindow: Window?
+  get() = gtk_application_get_active_window(this)?.reinterpret()
+
 public fun Application.addWindow(window: Window): Unit {
   gtk_application_add_window(this, window.reinterpret())
 }
-
-public fun Application.getActiveWindow(): Window? =
-    gtk_application_get_active_window(this)?.reinterpret()
 
 public fun Application.getWindowById(id: UInt): Window? = gtk_application_get_window_by_id(this,
     id)?.reinterpret()
@@ -66,11 +69,11 @@ public fun Application.uninhibit(cookie: UInt): Unit {
 fun Application(id: String): Application = gtk_application_new(id, G_APPLICATION_FLAGS_NONE)!!
 
 fun Application.initAndRun(args: Array<String>, init: Application.() -> Unit) = run {
-    init()
-    memScoped {
-        g_application_run(this@run.reinterpret(), args.size, args.map { it.cstr.ptr }.toCValues())
-    }
-    g_object_unref(this)
+  init()
+  memScoped {
+    g_application_run(this@run.reinterpret(), args.size, args.map { it.cstr.ptr }.toCValues())
+  }
+  g_object_unref(this)
 }
 
 @Suppress("FunctionName")
@@ -79,6 +82,6 @@ fun Application(id: String, args: Array<String>, init: Application.() -> Unit) =
 fun Application.newWindow() = gtk_application_window_new(this)!!.reinterpret<GtkWindow>()
 
 val Application.windows: List<Window>
-    get() = gtk_application_get_windows(this)
-        ?.toKList<GtkWindow>()
-        .orEmpty()
+  get() = gtk_application_get_windows(this)
+    ?.toKList<GtkWindow>()
+    .orEmpty()

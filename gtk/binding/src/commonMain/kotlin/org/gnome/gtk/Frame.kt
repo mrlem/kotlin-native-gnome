@@ -1,3 +1,4 @@
+// TODO - get_shadow_type
 // TODO - get_label_align
 // TODO - get_shadow_type
 // TODO - set_shadow_type
@@ -36,18 +37,18 @@ public val Frame.asContainer: Container
 public val Frame.asBin: Bin
   get() = reinterpret()
 
-public fun Frame.getLabel(): String = gtk_frame_get_label(this).toKString
+public var Frame.label: String
+  get() = gtk_frame_get_label(this).toKString
+  set(`value`) {
+    gtk_frame_set_label(this, value)
+  }
 
-public fun Frame.getLabelWidget(): Widget? = gtk_frame_get_label_widget(this)?.reinterpret()
-
-public fun Frame.setLabel(label: String?): Unit {
-  gtk_frame_set_label(this, label)
-}
+public var Frame.labelWidget: Widget?
+  get() = gtk_frame_get_label_widget(this)?.reinterpret()
+  set(`value`) {
+    gtk_frame_set_label_widget(this, value)
+  }
 
 public fun Frame.setLabelAlign(xalign: Float, yalign: Float): Unit {
   gtk_frame_set_label_align(this, xalign, yalign)
-}
-
-public fun Frame.setLabelWidget(labelWidget: Widget): Unit {
-  gtk_frame_set_label_widget(this, labelWidget.reinterpret())
 }

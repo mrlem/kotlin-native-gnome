@@ -18,4 +18,5 @@ public val GestureRotate.asEventController: EventController
 public val GestureRotate.asGesture: Gesture
   get() = reinterpret()
 
-public fun GestureRotate.getAngleDelta(): Double = gtk_gesture_rotate_get_angle_delta(this)
+public val GestureRotate.angleDelta: Double
+  get() = gtk_gesture_rotate_get_angle_delta(this)

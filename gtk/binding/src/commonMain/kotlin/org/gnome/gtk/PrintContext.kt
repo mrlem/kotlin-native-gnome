@@ -1,3 +1,5 @@
+// TODO - get_cairo_context
+// TODO - get_pango_fontmap
 // TODO - create_pango_context
 // TODO - create_pango_layout
 // TODO - get_cairo_context
@@ -23,13 +25,17 @@ public typealias PrintContext = CPointer<GtkPrintContext>
 public val PrintContext.asObject: Object
   get() = reinterpret()
 
-public fun PrintContext.getDpiX(): Double = gtk_print_context_get_dpi_x(this)
+public val PrintContext.dpiX: Double
+  get() = gtk_print_context_get_dpi_x(this)
 
-public fun PrintContext.getDpiY(): Double = gtk_print_context_get_dpi_y(this)
+public val PrintContext.dpiY: Double
+  get() = gtk_print_context_get_dpi_y(this)
 
-public fun PrintContext.getHeight(): Double = gtk_print_context_get_height(this)
+public val PrintContext.height: Double
+  get() = gtk_print_context_get_height(this)
 
-public fun PrintContext.getPageSetup(): PageSetup? =
-    gtk_print_context_get_page_setup(this)?.reinterpret()
+public val PrintContext.pageSetup: PageSetup?
+  get() = gtk_print_context_get_page_setup(this)?.reinterpret()
 
-public fun PrintContext.getWidth(): Double = gtk_print_context_get_width(this)
+public val PrintContext.width: Double
+  get() = gtk_print_context_get_width(this)

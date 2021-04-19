@@ -1,3 +1,4 @@
+// TODO - get_objects
 // TODO - add_callback_symbol
 // TODO - add_callback_symbols
 // TODO - add_from_file
@@ -20,7 +21,6 @@ package org.gnome.gtk
 
 import gtk3.*
 import kotlin.String
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.cValuesOf
 import kotlinx.cinterop.convert
@@ -33,21 +33,20 @@ public typealias Builder = CPointer<GtkBuilder>
 public val Builder.asObject: Object
   get() = reinterpret()
 
-public fun Builder.getApplication(): Application? = gtk_builder_get_application(this)?.reinterpret()
+public var Builder.application: Application?
+  get() = gtk_builder_get_application(this)?.reinterpret()
+  set(`value`) {
+    gtk_builder_set_application(this, value)
+  }
 
-public fun Builder.getTranslationDomain(): String =
-    gtk_builder_get_translation_domain(this).toKString
+public var Builder.translationDomain: String
+  get() = gtk_builder_get_translation_domain(this).toKString
+  set(`value`) {
+    gtk_builder_set_translation_domain(this, value)
+  }
 
 public fun Builder.getTypeFromName(typeName: String?): GType = gtk_builder_get_type_from_name(this,
     typeName)
-
-public fun Builder.setApplication(application: Application): Unit {
-  gtk_builder_set_application(this, application.reinterpret())
-}
-
-public fun Builder.setTranslationDomain(domain: String?): Unit {
-  gtk_builder_set_translation_domain(this, domain)
-}
 
 ///////////////////////////////////////////////////////////////////////////
 // Public API (not generated)
@@ -61,14 +60,14 @@ fun Builder() = gtk_builder_new()!!
 
 @Throws(ParsingException::class)
 fun Builder.addFrom(text: String) {
-    val errors = cValuesOf<GError>()
-    val result: Int = gtk_builder_add_from_string(
-        this,
-        text,
-        text.length.convert(),
-        errors
-    ).convert()
-    if (result == 0) throw ParsingException()
+  val errors = cValuesOf<GError>()
+  val result: Int = gtk_builder_add_from_string(
+    this,
+    text,
+    text.length.convert(),
+    errors
+  ).convert()
+  if (result == 0) throw ParsingException()
 }
 
 operator fun Builder.get(id: String) = gtk_builder_get_object(this, id)!!

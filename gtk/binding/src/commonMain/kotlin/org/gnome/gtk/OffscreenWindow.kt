@@ -1,5 +1,7 @@
 // TODO - get_pixbuf
 // TODO - get_surface
+// TODO - get_pixbuf
+// TODO - get_surface
 //
 package org.gnome.gtk
 

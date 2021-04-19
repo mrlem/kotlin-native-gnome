@@ -3,7 +3,6 @@ package org.gnome.gtk
 import gtk3.GtkStackSwitcher
 import gtk3.gtk_stack_switcher_get_stack
 import gtk3.gtk_stack_switcher_set_stack
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -26,8 +25,8 @@ public val StackSwitcher.asContainer: Container
 public val StackSwitcher.asBox: Box
   get() = reinterpret()
 
-public fun StackSwitcher.getStack(): Stack? = gtk_stack_switcher_get_stack(this)?.reinterpret()
-
-public fun StackSwitcher.setStack(stack: Stack): Unit {
-  gtk_stack_switcher_set_stack(this, stack.reinterpret())
-}
+public var StackSwitcher.stack: Stack?
+  get() = gtk_stack_switcher_get_stack(this)?.reinterpret()
+  set(`value`) {
+    gtk_stack_switcher_set_stack(this, value)
+  }

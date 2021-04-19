@@ -39,6 +39,9 @@ public typealias IconTheme = CPointer<GtkIconTheme>
 public val IconTheme.asObject: Object
   get() = reinterpret()
 
+public val IconTheme.exampleIconName: String
+  get() = gtk_icon_theme_get_example_icon_name(this).toKString
+
 public fun IconTheme.addResourcePath(path: String?): Unit {
   gtk_icon_theme_add_resource_path(this, path)
 }
@@ -46,9 +49,6 @@ public fun IconTheme.addResourcePath(path: String?): Unit {
 public fun IconTheme.appendSearchPath(path: String?): Unit {
   gtk_icon_theme_append_search_path(this, path)
 }
-
-public fun IconTheme.getExampleIconName(): String =
-    gtk_icon_theme_get_example_icon_name(this).toKString
 
 public fun IconTheme.hasIcon(iconName: String?): Boolean = gtk_icon_theme_has_icon(this,
     iconName).toBoolean

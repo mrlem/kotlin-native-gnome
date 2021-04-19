@@ -47,6 +47,36 @@ public val Grid.asWidget: Widget
 public val Grid.asContainer: Container
   get() = reinterpret()
 
+public var Grid.baselineRow: Int
+  get() = gtk_grid_get_baseline_row(this)
+  set(`value`) {
+    gtk_grid_set_baseline_row(this, value)
+  }
+
+public var Grid.columnHomogeneous: Boolean
+  get() = gtk_grid_get_column_homogeneous(this).toBoolean
+  set(`value`) {
+    gtk_grid_set_column_homogeneous(this, value.toInt)
+  }
+
+public var Grid.columnSpacing: UInt
+  get() = gtk_grid_get_column_spacing(this)
+  set(`value`) {
+    gtk_grid_set_column_spacing(this, value)
+  }
+
+public var Grid.rowHomogeneous: Boolean
+  get() = gtk_grid_get_row_homogeneous(this).toBoolean
+  set(`value`) {
+    gtk_grid_set_row_homogeneous(this, value.toInt)
+  }
+
+public var Grid.rowSpacing: UInt
+  get() = gtk_grid_get_row_spacing(this)
+  set(`value`) {
+    gtk_grid_set_row_spacing(this, value)
+  }
+
 public fun Grid.attach(
   child: Widget,
   left: Int,
@@ -57,18 +87,8 @@ public fun Grid.attach(
   gtk_grid_attach(this, child.reinterpret(), left, top, width, height)
 }
 
-public fun Grid.getBaselineRow(): Int = gtk_grid_get_baseline_row(this)
-
 public fun Grid.getChildAt(left: Int, top: Int): Widget? = gtk_grid_get_child_at(this, left,
     top)?.reinterpret()
-
-public fun Grid.getColumnHomogeneous(): Boolean = gtk_grid_get_column_homogeneous(this).toBoolean
-
-public fun Grid.getColumnSpacing(): UInt = gtk_grid_get_column_spacing(this)
-
-public fun Grid.getRowHomogeneous(): Boolean = gtk_grid_get_row_homogeneous(this).toBoolean
-
-public fun Grid.getRowSpacing(): UInt = gtk_grid_get_row_spacing(this)
 
 public fun Grid.insertColumn(position: Int): Unit {
   gtk_grid_insert_column(this, position)
@@ -84,24 +104,4 @@ public fun Grid.removeColumn(position: Int): Unit {
 
 public fun Grid.removeRow(position: Int): Unit {
   gtk_grid_remove_row(this, position)
-}
-
-public fun Grid.setBaselineRow(row: Int): Unit {
-  gtk_grid_set_baseline_row(this, row)
-}
-
-public fun Grid.setColumnHomogeneous(homogeneous: Boolean): Unit {
-  gtk_grid_set_column_homogeneous(this, homogeneous.toInt)
-}
-
-public fun Grid.setColumnSpacing(spacing: UInt): Unit {
-  gtk_grid_set_column_spacing(this, spacing)
-}
-
-public fun Grid.setRowHomogeneous(homogeneous: Boolean): Unit {
-  gtk_grid_set_row_homogeneous(this, homogeneous.toInt)
-}
-
-public fun Grid.setRowSpacing(spacing: UInt): Unit {
-  gtk_grid_set_row_spacing(this, spacing)
 }

@@ -42,31 +42,28 @@ public val AppChooserButton.asBin: Bin
 public val AppChooserButton.asComboBox: ComboBox
   get() = reinterpret()
 
+public var AppChooserButton.heading: String
+  get() = gtk_app_chooser_button_get_heading(this).toKString
+  set(`value`) {
+    gtk_app_chooser_button_set_heading(this, value)
+  }
+
+public var AppChooserButton.showDefaultItem: Boolean
+  get() = gtk_app_chooser_button_get_show_default_item(this).toBoolean
+  set(`value`) {
+    gtk_app_chooser_button_set_show_default_item(this, value.toInt)
+  }
+
+public var AppChooserButton.showDialogItem: Boolean
+  get() = gtk_app_chooser_button_get_show_dialog_item(this).toBoolean
+  set(`value`) {
+    gtk_app_chooser_button_set_show_dialog_item(this, value.toInt)
+  }
+
 public fun AppChooserButton.appendSeparator(): Unit {
   gtk_app_chooser_button_append_separator(this)
 }
 
-public fun AppChooserButton.getHeading(): String =
-    gtk_app_chooser_button_get_heading(this).toKString
-
-public fun AppChooserButton.getShowDefaultItem(): Boolean =
-    gtk_app_chooser_button_get_show_default_item(this).toBoolean
-
-public fun AppChooserButton.getShowDialogItem(): Boolean =
-    gtk_app_chooser_button_get_show_dialog_item(this).toBoolean
-
 public fun AppChooserButton.setActiveCustomItem(name: String?): Unit {
   gtk_app_chooser_button_set_active_custom_item(this, name)
-}
-
-public fun AppChooserButton.setHeading(heading: String?): Unit {
-  gtk_app_chooser_button_set_heading(this, heading)
-}
-
-public fun AppChooserButton.setShowDefaultItem(setting: Boolean): Unit {
-  gtk_app_chooser_button_set_show_default_item(this, setting.toInt)
-}
-
-public fun AppChooserButton.setShowDialogItem(setting: Boolean): Unit {
-  gtk_app_chooser_button_set_show_dialog_item(this, setting.toInt)
 }

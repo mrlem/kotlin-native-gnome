@@ -4,6 +4,12 @@
 // TODO - get_relief_style
 // TODO - get_text_orientation
 // TODO - get_toolbar_style
+// TODO - get_ellipsize_mode
+// TODO - get_icon_size
+// TODO - get_orientation
+// TODO - get_relief_style
+// TODO - get_text_orientation
+// TODO - get_toolbar_style
 //
 package org.gnome.gtk
 
@@ -57,27 +63,50 @@ public val ToolItem.asContainer: Container
 public val ToolItem.asBin: Bin
   get() = reinterpret()
 
-public fun ToolItem.getExpand(): Boolean = gtk_tool_item_get_expand(this).toBoolean
+public var ToolItem.expand: Boolean
+  get() = gtk_tool_item_get_expand(this).toBoolean
+  set(`value`) {
+    gtk_tool_item_set_expand(this, value.toInt)
+  }
 
-public fun ToolItem.getHomogeneous(): Boolean = gtk_tool_item_get_homogeneous(this).toBoolean
+public var ToolItem.homogeneous: Boolean
+  get() = gtk_tool_item_get_homogeneous(this).toBoolean
+  set(`value`) {
+    gtk_tool_item_set_homogeneous(this, value.toInt)
+  }
 
-public fun ToolItem.getIsImportant(): Boolean = gtk_tool_item_get_is_important(this).toBoolean
+public var ToolItem.isImportant: Boolean
+  get() = gtk_tool_item_get_is_important(this).toBoolean
+  set(`value`) {
+    gtk_tool_item_set_is_important(this, value.toInt)
+  }
+
+public val ToolItem.textAlignment: Float
+  get() = gtk_tool_item_get_text_alignment(this)
+
+public val ToolItem.textSizeGroup: SizeGroup?
+  get() = gtk_tool_item_get_text_size_group(this)?.reinterpret()
+
+public var ToolItem.useDragWindow: Boolean
+  get() = gtk_tool_item_get_use_drag_window(this).toBoolean
+  set(`value`) {
+    gtk_tool_item_set_use_drag_window(this, value.toInt)
+  }
+
+public var ToolItem.visibleHorizontal: Boolean
+  get() = gtk_tool_item_get_visible_horizontal(this).toBoolean
+  set(`value`) {
+    gtk_tool_item_set_visible_horizontal(this, value.toInt)
+  }
+
+public var ToolItem.visibleVertical: Boolean
+  get() = gtk_tool_item_get_visible_vertical(this).toBoolean
+  set(`value`) {
+    gtk_tool_item_set_visible_vertical(this, value.toInt)
+  }
 
 public fun ToolItem.getProxyMenuItem(menuItemId: String?): Widget? =
     gtk_tool_item_get_proxy_menu_item(this, menuItemId)?.reinterpret()
-
-public fun ToolItem.getTextAlignment(): Float = gtk_tool_item_get_text_alignment(this)
-
-public fun ToolItem.getTextSizeGroup(): SizeGroup? =
-    gtk_tool_item_get_text_size_group(this)?.reinterpret()
-
-public fun ToolItem.getUseDragWindow(): Boolean = gtk_tool_item_get_use_drag_window(this).toBoolean
-
-public fun ToolItem.getVisibleHorizontal(): Boolean =
-    gtk_tool_item_get_visible_horizontal(this).toBoolean
-
-public fun ToolItem.getVisibleVertical(): Boolean =
-    gtk_tool_item_get_visible_vertical(this).toBoolean
 
 public fun ToolItem.rebuildMenu(): Unit {
   gtk_tool_item_rebuild_menu(this)
@@ -85,18 +114,6 @@ public fun ToolItem.rebuildMenu(): Unit {
 
 public fun ToolItem.retrieveProxyMenuItem(): Widget? =
     gtk_tool_item_retrieve_proxy_menu_item(this)?.reinterpret()
-
-public fun ToolItem.setExpand(expand: Boolean): Unit {
-  gtk_tool_item_set_expand(this, expand.toInt)
-}
-
-public fun ToolItem.setHomogeneous(homogeneous: Boolean): Unit {
-  gtk_tool_item_set_homogeneous(this, homogeneous.toInt)
-}
-
-public fun ToolItem.setIsImportant(isImportant: Boolean): Unit {
-  gtk_tool_item_set_is_important(this, isImportant.toInt)
-}
 
 public fun ToolItem.setProxyMenuItem(menuItemId: String?, menuItem: Widget): Unit {
   gtk_tool_item_set_proxy_menu_item(this, menuItemId, menuItem.reinterpret())
@@ -108,18 +125,6 @@ public fun ToolItem.setTooltipMarkup(markup: String?): Unit {
 
 public fun ToolItem.setTooltipText(text: String?): Unit {
   gtk_tool_item_set_tooltip_text(this, text)
-}
-
-public fun ToolItem.setUseDragWindow(useDragWindow: Boolean): Unit {
-  gtk_tool_item_set_use_drag_window(this, useDragWindow.toInt)
-}
-
-public fun ToolItem.setVisibleHorizontal(visibleHorizontal: Boolean): Unit {
-  gtk_tool_item_set_visible_horizontal(this, visibleHorizontal.toInt)
-}
-
-public fun ToolItem.setVisibleVertical(visibleVertical: Boolean): Unit {
-  gtk_tool_item_set_visible_vertical(this, visibleVertical.toInt)
 }
 
 public fun ToolItem.toolbarReconfigured(): Unit {

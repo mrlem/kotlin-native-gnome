@@ -1,3 +1,6 @@
+// TODO - get_bin_window
+// TODO - get_columns
+// TODO - get_grid_lines
 // TODO - convert_bin_window_to_tree_coords
 // TODO - convert_bin_window_to_widget_coords
 // TODO - convert_tree_to_bin_window_coords
@@ -120,6 +123,123 @@ public val TreeView.asWidget: Widget
 public val TreeView.asContainer: Container
   get() = reinterpret()
 
+public var TreeView.activateOnSingleClick: Boolean
+  get() = gtk_tree_view_get_activate_on_single_click(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_activate_on_single_click(this, value.toInt)
+  }
+
+public var TreeView.enableSearch: Boolean
+  get() = gtk_tree_view_get_enable_search(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_enable_search(this, value.toInt)
+  }
+
+public var TreeView.enableTreeLines: Boolean
+  get() = gtk_tree_view_get_enable_tree_lines(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_enable_tree_lines(this, value.toInt)
+  }
+
+public var TreeView.expanderColumn: TreeViewColumn?
+  get() = gtk_tree_view_get_expander_column(this)?.reinterpret()
+  set(`value`) {
+    gtk_tree_view_set_expander_column(this, value)
+  }
+
+public var TreeView.fixedHeightMode: Boolean
+  get() = gtk_tree_view_get_fixed_height_mode(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_fixed_height_mode(this, value.toInt)
+  }
+
+public var TreeView.headersClickable: Boolean
+  get() = gtk_tree_view_get_headers_clickable(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_headers_clickable(this, value.toInt)
+  }
+
+public var TreeView.headersVisible: Boolean
+  get() = gtk_tree_view_get_headers_visible(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_headers_visible(this, value.toInt)
+  }
+
+public var TreeView.hoverExpand: Boolean
+  get() = gtk_tree_view_get_hover_expand(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_hover_expand(this, value.toInt)
+  }
+
+public var TreeView.hoverSelection: Boolean
+  get() = gtk_tree_view_get_hover_selection(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_hover_selection(this, value.toInt)
+  }
+
+public var TreeView.levelIndentation: Int
+  get() = gtk_tree_view_get_level_indentation(this)
+  set(`value`) {
+    gtk_tree_view_set_level_indentation(this, value)
+  }
+
+public var TreeView.model: TreeModel?
+  get() = gtk_tree_view_get_model(this)?.reinterpret()
+  set(`value`) {
+    gtk_tree_view_set_model(this, value)
+  }
+
+public val TreeView.nColumns: UInt
+  get() = gtk_tree_view_get_n_columns(this)
+
+public var TreeView.reorderable: Boolean
+  get() = gtk_tree_view_get_reorderable(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_reorderable(this, value.toInt)
+  }
+
+public val TreeView.rowSeparatorFunc: TreeViewRowSeparatorFunc?
+  get() = gtk_tree_view_get_row_separator_func(this)?.reinterpret()
+
+public var TreeView.rubberBanding: Boolean
+  get() = gtk_tree_view_get_rubber_banding(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_rubber_banding(this, value.toInt)
+  }
+
+public var TreeView.searchColumn: Int
+  get() = gtk_tree_view_get_search_column(this)
+  set(`value`) {
+    gtk_tree_view_set_search_column(this, value)
+  }
+
+public var TreeView.searchEntry: Entry?
+  get() = gtk_tree_view_get_search_entry(this)?.reinterpret()
+  set(`value`) {
+    gtk_tree_view_set_search_entry(this, value)
+  }
+
+public val TreeView.searchEqualFunc: TreeViewSearchEqualFunc?
+  get() = gtk_tree_view_get_search_equal_func(this)?.reinterpret()
+
+public val TreeView.searchPositionFunc: TreeViewSearchPositionFunc?
+  get() = gtk_tree_view_get_search_position_func(this)?.reinterpret()
+
+public val TreeView.selection: TreeSelection?
+  get() = gtk_tree_view_get_selection(this)?.reinterpret()
+
+public var TreeView.showExpanders: Boolean
+  get() = gtk_tree_view_get_show_expanders(this).toBoolean
+  set(`value`) {
+    gtk_tree_view_set_show_expanders(this, value.toInt)
+  }
+
+public var TreeView.tooltipColumn: Int
+  get() = gtk_tree_view_get_tooltip_column(this)
+  set(`value`) {
+    gtk_tree_view_set_tooltip_column(this, value)
+  }
+
 public fun TreeView.appendColumn(column: TreeViewColumn): Int = gtk_tree_view_append_column(this,
     column.reinterpret())
 
@@ -145,61 +265,8 @@ public fun TreeView.expandToPath(path: TreePath): Unit {
   gtk_tree_view_expand_to_path(this, path.reinterpret())
 }
 
-public fun TreeView.getActivateOnSingleClick(): Boolean =
-    gtk_tree_view_get_activate_on_single_click(this).toBoolean
-
 public fun TreeView.getColumn(n: Int): TreeViewColumn? = gtk_tree_view_get_column(this,
     n)?.reinterpret()
-
-public fun TreeView.getEnableSearch(): Boolean = gtk_tree_view_get_enable_search(this).toBoolean
-
-public fun TreeView.getEnableTreeLines(): Boolean =
-    gtk_tree_view_get_enable_tree_lines(this).toBoolean
-
-public fun TreeView.getExpanderColumn(): TreeViewColumn? =
-    gtk_tree_view_get_expander_column(this)?.reinterpret()
-
-public fun TreeView.getFixedHeightMode(): Boolean =
-    gtk_tree_view_get_fixed_height_mode(this).toBoolean
-
-public fun TreeView.getHeadersClickable(): Boolean =
-    gtk_tree_view_get_headers_clickable(this).toBoolean
-
-public fun TreeView.getHeadersVisible(): Boolean = gtk_tree_view_get_headers_visible(this).toBoolean
-
-public fun TreeView.getHoverExpand(): Boolean = gtk_tree_view_get_hover_expand(this).toBoolean
-
-public fun TreeView.getHoverSelection(): Boolean = gtk_tree_view_get_hover_selection(this).toBoolean
-
-public fun TreeView.getLevelIndentation(): Int = gtk_tree_view_get_level_indentation(this)
-
-public fun TreeView.getModel(): TreeModel? = gtk_tree_view_get_model(this)?.reinterpret()
-
-public fun TreeView.getNColumns(): UInt = gtk_tree_view_get_n_columns(this)
-
-public fun TreeView.getReorderable(): Boolean = gtk_tree_view_get_reorderable(this).toBoolean
-
-public fun TreeView.getRowSeparatorFunc(): TreeViewRowSeparatorFunc? =
-    gtk_tree_view_get_row_separator_func(this)?.reinterpret()
-
-public fun TreeView.getRubberBanding(): Boolean = gtk_tree_view_get_rubber_banding(this).toBoolean
-
-public fun TreeView.getSearchColumn(): Int = gtk_tree_view_get_search_column(this)
-
-public fun TreeView.getSearchEntry(): Entry? = gtk_tree_view_get_search_entry(this)?.reinterpret()
-
-public fun TreeView.getSearchEqualFunc(): TreeViewSearchEqualFunc? =
-    gtk_tree_view_get_search_equal_func(this)?.reinterpret()
-
-public fun TreeView.getSearchPositionFunc(): TreeViewSearchPositionFunc? =
-    gtk_tree_view_get_search_position_func(this)?.reinterpret()
-
-public fun TreeView.getSelection(): TreeSelection? =
-    gtk_tree_view_get_selection(this)?.reinterpret()
-
-public fun TreeView.getShowExpanders(): Boolean = gtk_tree_view_get_show_expanders(this).toBoolean
-
-public fun TreeView.getTooltipColumn(): Int = gtk_tree_view_get_tooltip_column(this)
 
 public fun TreeView.insertColumn(column: TreeViewColumn, position: Int): Int =
     gtk_tree_view_insert_column(this, column.reinterpret(), position)
@@ -236,10 +303,6 @@ public fun TreeView.scrollToPoint(treeX: Int, treeY: Int): Unit {
   gtk_tree_view_scroll_to_point(this, treeX, treeY)
 }
 
-public fun TreeView.setActivateOnSingleClick(single: Boolean): Unit {
-  gtk_tree_view_set_activate_on_single_click(this, single.toInt)
-}
-
 public fun TreeView.setCursor(
   path: TreePath,
   focusColumn: TreeViewColumn,
@@ -258,66 +321,6 @@ public fun TreeView.setCursorOnCell(
       focusCell.reinterpret(), startEditing.toInt)
 }
 
-public fun TreeView.setEnableSearch(enableSearch: Boolean): Unit {
-  gtk_tree_view_set_enable_search(this, enableSearch.toInt)
-}
-
-public fun TreeView.setEnableTreeLines(enabled: Boolean): Unit {
-  gtk_tree_view_set_enable_tree_lines(this, enabled.toInt)
-}
-
-public fun TreeView.setExpanderColumn(column: TreeViewColumn): Unit {
-  gtk_tree_view_set_expander_column(this, column.reinterpret())
-}
-
-public fun TreeView.setFixedHeightMode(enable: Boolean): Unit {
-  gtk_tree_view_set_fixed_height_mode(this, enable.toInt)
-}
-
-public fun TreeView.setHeadersClickable(setting: Boolean): Unit {
-  gtk_tree_view_set_headers_clickable(this, setting.toInt)
-}
-
-public fun TreeView.setHeadersVisible(headersVisible: Boolean): Unit {
-  gtk_tree_view_set_headers_visible(this, headersVisible.toInt)
-}
-
-public fun TreeView.setHoverExpand(expand: Boolean): Unit {
-  gtk_tree_view_set_hover_expand(this, expand.toInt)
-}
-
-public fun TreeView.setHoverSelection(hover: Boolean): Unit {
-  gtk_tree_view_set_hover_selection(this, hover.toInt)
-}
-
-public fun TreeView.setLevelIndentation(indentation: Int): Unit {
-  gtk_tree_view_set_level_indentation(this, indentation)
-}
-
-public fun TreeView.setModel(model: TreeModel): Unit {
-  gtk_tree_view_set_model(this, model.reinterpret())
-}
-
-public fun TreeView.setReorderable(reorderable: Boolean): Unit {
-  gtk_tree_view_set_reorderable(this, reorderable.toInt)
-}
-
-public fun TreeView.setRubberBanding(enable: Boolean): Unit {
-  gtk_tree_view_set_rubber_banding(this, enable.toInt)
-}
-
-public fun TreeView.setSearchColumn(column: Int): Unit {
-  gtk_tree_view_set_search_column(this, column)
-}
-
-public fun TreeView.setSearchEntry(entry: Entry): Unit {
-  gtk_tree_view_set_search_entry(this, entry.reinterpret())
-}
-
-public fun TreeView.setShowExpanders(enabled: Boolean): Unit {
-  gtk_tree_view_set_show_expanders(this, enabled.toInt)
-}
-
 public fun TreeView.setTooltipCell(
   tooltip: Tooltip,
   path: TreePath,
@@ -326,10 +329,6 @@ public fun TreeView.setTooltipCell(
 ): Unit {
   gtk_tree_view_set_tooltip_cell(this, tooltip.reinterpret(), path.reinterpret(),
       column.reinterpret(), cell.reinterpret())
-}
-
-public fun TreeView.setTooltipColumn(column: Int): Unit {
-  gtk_tree_view_set_tooltip_column(this, column)
 }
 
 public fun TreeView.setTooltipRow(tooltip: Tooltip, path: TreePath): Unit {

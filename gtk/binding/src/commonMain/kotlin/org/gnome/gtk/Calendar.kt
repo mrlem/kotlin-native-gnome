@@ -37,19 +37,30 @@ public val Calendar.asInitiallyUnowned: InitiallyUnowned
 public val Calendar.asWidget: Widget
   get() = reinterpret()
 
+public var Calendar.detailHeightRows: Int
+  get() = gtk_calendar_get_detail_height_rows(this)
+  set(`value`) {
+    gtk_calendar_set_detail_height_rows(this, value)
+  }
+
+public var Calendar.detailWidthChars: Int
+  get() = gtk_calendar_get_detail_width_chars(this)
+  set(`value`) {
+    gtk_calendar_set_detail_width_chars(this, value)
+  }
+
+public var Calendar.displayOptions: CalendarDisplayOptions
+  get() = gtk_calendar_get_display_options(this)
+  set(`value`) {
+    gtk_calendar_set_display_options(this, value)
+  }
+
 public fun Calendar.clearMarks(): Unit {
   gtk_calendar_clear_marks(this)
 }
 
 public fun Calendar.getDayIsMarked(day: UInt): Boolean = gtk_calendar_get_day_is_marked(this,
     day).toBoolean
-
-public fun Calendar.getDetailHeightRows(): Int = gtk_calendar_get_detail_height_rows(this)
-
-public fun Calendar.getDetailWidthChars(): Int = gtk_calendar_get_detail_width_chars(this)
-
-public fun Calendar.getDisplayOptions(): CalendarDisplayOptions =
-    gtk_calendar_get_display_options(this)
 
 public fun Calendar.markDay(day: UInt): Unit {
   gtk_calendar_mark_day(this, day)
@@ -61,18 +72,6 @@ public fun Calendar.selectDay(day: UInt): Unit {
 
 public fun Calendar.selectMonth(month: UInt, year: UInt): Unit {
   gtk_calendar_select_month(this, month, year)
-}
-
-public fun Calendar.setDetailHeightRows(rows: Int): Unit {
-  gtk_calendar_set_detail_height_rows(this, rows)
-}
-
-public fun Calendar.setDetailWidthChars(chars: Int): Unit {
-  gtk_calendar_set_detail_width_chars(this, chars)
-}
-
-public fun Calendar.setDisplayOptions(flags: CalendarDisplayOptions): Unit {
-  gtk_calendar_set_display_options(this, flags)
 }
 
 public fun Calendar.unmarkDay(day: UInt): Unit {

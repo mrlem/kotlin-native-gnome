@@ -1,4 +1,5 @@
 // TODO - get_propagation_phase
+// TODO - get_propagation_phase
 // TODO - handle_event
 // TODO - set_propagation_phase
 //
@@ -17,8 +18,8 @@ public typealias EventController = CPointer<GtkEventController>
 public val EventController.asObject: Object
   get() = reinterpret()
 
-public fun EventController.getWidget(): Widget? =
-    gtk_event_controller_get_widget(this)?.reinterpret()
+public val EventController.widget: Widget?
+  get() = gtk_event_controller_get_widget(this)?.reinterpret()
 
 public fun EventController.reset(): Unit {
   gtk_event_controller_reset(this)

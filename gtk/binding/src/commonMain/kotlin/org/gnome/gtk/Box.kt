@@ -1,4 +1,5 @@
 // TODO - get_baseline_position
+// TODO - get_baseline_position
 // TODO - query_child_packing
 // TODO - set_baseline_position
 // TODO - set_child_packing
@@ -40,11 +41,23 @@ public val Box.asWidget: Widget
 public val Box.asContainer: Container
   get() = reinterpret()
 
-public fun Box.getCenterWidget(): Widget? = gtk_box_get_center_widget(this)?.reinterpret()
+public var Box.centerWidget: Widget?
+  get() = gtk_box_get_center_widget(this)?.reinterpret()
+  set(`value`) {
+    gtk_box_set_center_widget(this, value)
+  }
 
-public fun Box.getHomogeneous(): Boolean = gtk_box_get_homogeneous(this).toBoolean
+public var Box.homogeneous: Boolean
+  get() = gtk_box_get_homogeneous(this).toBoolean
+  set(`value`) {
+    gtk_box_set_homogeneous(this, value.toInt)
+  }
 
-public fun Box.getSpacing(): Int = gtk_box_get_spacing(this)
+public var Box.spacing: Int
+  get() = gtk_box_get_spacing(this)
+  set(`value`) {
+    gtk_box_set_spacing(this, value)
+  }
 
 public fun Box.packEnd(
   child: Widget,
@@ -66,16 +79,4 @@ public fun Box.packStart(
 
 public fun Box.reorderChild(child: Widget, position: Int): Unit {
   gtk_box_reorder_child(this, child.reinterpret(), position)
-}
-
-public fun Box.setCenterWidget(widget: Widget): Unit {
-  gtk_box_set_center_widget(this, widget.reinterpret())
-}
-
-public fun Box.setHomogeneous(homogeneous: Boolean): Unit {
-  gtk_box_set_homogeneous(this, homogeneous.toInt)
-}
-
-public fun Box.setSpacing(spacing: Int): Unit {
-  gtk_box_set_spacing(this, spacing)
 }

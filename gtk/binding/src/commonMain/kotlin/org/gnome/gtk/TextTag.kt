@@ -19,12 +19,12 @@ public typealias TextTag = CPointer<GtkTextTag>
 public val TextTag.asObject: Object
   get() = reinterpret()
 
+public var TextTag.priority: Int
+  get() = gtk_text_tag_get_priority(this)
+  set(`value`) {
+    gtk_text_tag_set_priority(this, value)
+  }
+
 public fun TextTag.changed(sizeChanged: Boolean): Unit {
   gtk_text_tag_changed(this, sizeChanged.toInt)
-}
-
-public fun TextTag.getPriority(): Int = gtk_text_tag_get_priority(this)
-
-public fun TextTag.setPriority(priority: Int): Unit {
-  gtk_text_tag_set_priority(this, priority)
 }

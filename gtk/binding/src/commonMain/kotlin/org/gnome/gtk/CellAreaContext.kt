@@ -23,12 +23,12 @@ public typealias CellAreaContext = CPointer<GtkCellAreaContext>
 public val CellAreaContext.asObject: Object
   get() = reinterpret()
 
+public val CellAreaContext.area: CellArea?
+  get() = gtk_cell_area_context_get_area(this)?.reinterpret()
+
 public fun CellAreaContext.allocate(width: Int, height: Int): Unit {
   gtk_cell_area_context_allocate(this, width, height)
 }
-
-public fun CellAreaContext.getArea(): CellArea? =
-    gtk_cell_area_context_get_area(this)?.reinterpret()
 
 public fun CellAreaContext.pushPreferredHeight(minimumHeight: Int, naturalHeight: Int): Unit {
   gtk_cell_area_context_push_preferred_height(this, minimumHeight, naturalHeight)

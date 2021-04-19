@@ -1,3 +1,4 @@
+// TODO - get_location
 // TODO - add_shortcut
 // TODO - get_location
 // TODO - get_nth_bookmark
@@ -26,7 +27,6 @@ import gtk3.gtk_places_sidebar_set_show_recent
 import gtk3.gtk_places_sidebar_set_show_starred_location
 import gtk3.gtk_places_sidebar_set_show_trash
 import kotlin.Boolean
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -54,55 +54,50 @@ public val PlacesSidebar.asBin: Bin
 public val PlacesSidebar.asScrolledWindow: ScrolledWindow
   get() = reinterpret()
 
-public fun PlacesSidebar.getLocalOnly(): Boolean = gtk_places_sidebar_get_local_only(this).toBoolean
+public var PlacesSidebar.localOnly: Boolean
+  get() = gtk_places_sidebar_get_local_only(this).toBoolean
+  set(`value`) {
+    gtk_places_sidebar_set_local_only(this, value.toInt)
+  }
 
-public fun PlacesSidebar.getOpenFlags(): PlacesOpenFlags = gtk_places_sidebar_get_open_flags(this)
+public var PlacesSidebar.openFlags: PlacesOpenFlags
+  get() = gtk_places_sidebar_get_open_flags(this)
+  set(`value`) {
+    gtk_places_sidebar_set_open_flags(this, value)
+  }
 
-public fun PlacesSidebar.getShowDesktop(): Boolean =
-    gtk_places_sidebar_get_show_desktop(this).toBoolean
+public var PlacesSidebar.showDesktop: Boolean
+  get() = gtk_places_sidebar_get_show_desktop(this).toBoolean
+  set(`value`) {
+    gtk_places_sidebar_set_show_desktop(this, value.toInt)
+  }
 
-public fun PlacesSidebar.getShowEnterLocation(): Boolean =
-    gtk_places_sidebar_get_show_enter_location(this).toBoolean
+public var PlacesSidebar.showEnterLocation: Boolean
+  get() = gtk_places_sidebar_get_show_enter_location(this).toBoolean
+  set(`value`) {
+    gtk_places_sidebar_set_show_enter_location(this, value.toInt)
+  }
 
-public fun PlacesSidebar.getShowOtherLocations(): Boolean =
-    gtk_places_sidebar_get_show_other_locations(this).toBoolean
+public var PlacesSidebar.showOtherLocations: Boolean
+  get() = gtk_places_sidebar_get_show_other_locations(this).toBoolean
+  set(`value`) {
+    gtk_places_sidebar_set_show_other_locations(this, value.toInt)
+  }
 
-public fun PlacesSidebar.getShowRecent(): Boolean =
-    gtk_places_sidebar_get_show_recent(this).toBoolean
+public var PlacesSidebar.showRecent: Boolean
+  get() = gtk_places_sidebar_get_show_recent(this).toBoolean
+  set(`value`) {
+    gtk_places_sidebar_set_show_recent(this, value.toInt)
+  }
 
-public fun PlacesSidebar.getShowStarredLocation(): Boolean =
-    gtk_places_sidebar_get_show_starred_location(this).toBoolean
+public var PlacesSidebar.showStarredLocation: Boolean
+  get() = gtk_places_sidebar_get_show_starred_location(this).toBoolean
+  set(`value`) {
+    gtk_places_sidebar_set_show_starred_location(this, value.toInt)
+  }
 
-public fun PlacesSidebar.getShowTrash(): Boolean = gtk_places_sidebar_get_show_trash(this).toBoolean
-
-public fun PlacesSidebar.setLocalOnly(localOnly: Boolean): Unit {
-  gtk_places_sidebar_set_local_only(this, localOnly.toInt)
-}
-
-public fun PlacesSidebar.setOpenFlags(flags: PlacesOpenFlags): Unit {
-  gtk_places_sidebar_set_open_flags(this, flags)
-}
-
-public fun PlacesSidebar.setShowDesktop(showDesktop: Boolean): Unit {
-  gtk_places_sidebar_set_show_desktop(this, showDesktop.toInt)
-}
-
-public fun PlacesSidebar.setShowEnterLocation(showEnterLocation: Boolean): Unit {
-  gtk_places_sidebar_set_show_enter_location(this, showEnterLocation.toInt)
-}
-
-public fun PlacesSidebar.setShowOtherLocations(showOtherLocations: Boolean): Unit {
-  gtk_places_sidebar_set_show_other_locations(this, showOtherLocations.toInt)
-}
-
-public fun PlacesSidebar.setShowRecent(showRecent: Boolean): Unit {
-  gtk_places_sidebar_set_show_recent(this, showRecent.toInt)
-}
-
-public fun PlacesSidebar.setShowStarredLocation(showStarredLocation: Boolean): Unit {
-  gtk_places_sidebar_set_show_starred_location(this, showStarredLocation.toInt)
-}
-
-public fun PlacesSidebar.setShowTrash(showTrash: Boolean): Unit {
-  gtk_places_sidebar_set_show_trash(this, showTrash.toInt)
-}
+public var PlacesSidebar.showTrash: Boolean
+  get() = gtk_places_sidebar_get_show_trash(this).toBoolean
+  set(`value`) {
+    gtk_places_sidebar_set_show_trash(this, value.toInt)
+  }

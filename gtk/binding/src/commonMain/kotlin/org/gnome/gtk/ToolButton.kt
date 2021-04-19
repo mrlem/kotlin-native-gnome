@@ -13,7 +13,6 @@ import gtk3.gtk_tool_button_set_label_widget
 import gtk3.gtk_tool_button_set_use_underline
 import kotlin.Boolean
 import kotlin.String
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -42,34 +41,32 @@ public val ToolButton.asBin: Bin
 public val ToolButton.asToolItem: ToolItem
   get() = reinterpret()
 
-public fun ToolButton.getIconName(): String = gtk_tool_button_get_icon_name(this).toKString
+public var ToolButton.iconName: String
+  get() = gtk_tool_button_get_icon_name(this).toKString
+  set(`value`) {
+    gtk_tool_button_set_icon_name(this, value)
+  }
 
-public fun ToolButton.getIconWidget(): Widget? =
-    gtk_tool_button_get_icon_widget(this)?.reinterpret()
+public var ToolButton.iconWidget: Widget?
+  get() = gtk_tool_button_get_icon_widget(this)?.reinterpret()
+  set(`value`) {
+    gtk_tool_button_set_icon_widget(this, value)
+  }
 
-public fun ToolButton.getLabel(): String = gtk_tool_button_get_label(this).toKString
+public var ToolButton.label: String
+  get() = gtk_tool_button_get_label(this).toKString
+  set(`value`) {
+    gtk_tool_button_set_label(this, value)
+  }
 
-public fun ToolButton.getLabelWidget(): Widget? =
-    gtk_tool_button_get_label_widget(this)?.reinterpret()
+public var ToolButton.labelWidget: Widget?
+  get() = gtk_tool_button_get_label_widget(this)?.reinterpret()
+  set(`value`) {
+    gtk_tool_button_set_label_widget(this, value)
+  }
 
-public fun ToolButton.getUseUnderline(): Boolean = gtk_tool_button_get_use_underline(this).toBoolean
-
-public fun ToolButton.setIconName(iconName: String?): Unit {
-  gtk_tool_button_set_icon_name(this, iconName)
-}
-
-public fun ToolButton.setIconWidget(iconWidget: Widget): Unit {
-  gtk_tool_button_set_icon_widget(this, iconWidget.reinterpret())
-}
-
-public fun ToolButton.setLabel(label: String?): Unit {
-  gtk_tool_button_set_label(this, label)
-}
-
-public fun ToolButton.setLabelWidget(labelWidget: Widget): Unit {
-  gtk_tool_button_set_label_widget(this, labelWidget.reinterpret())
-}
-
-public fun ToolButton.setUseUnderline(useUnderline: Boolean): Unit {
-  gtk_tool_button_set_use_underline(this, useUnderline.toInt)
-}
+public var ToolButton.useUnderline: Boolean
+  get() = gtk_tool_button_get_use_underline(this).toBoolean
+  set(`value`) {
+    gtk_tool_button_set_use_underline(this, value.toInt)
+  }

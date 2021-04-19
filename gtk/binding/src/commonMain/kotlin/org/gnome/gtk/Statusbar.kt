@@ -32,10 +32,11 @@ public val Statusbar.asContainer: Container
 public val Statusbar.asBox: Box
   get() = reinterpret()
 
+public val Statusbar.messageArea: Box?
+  get() = gtk_statusbar_get_message_area(this)?.reinterpret()
+
 public fun Statusbar.getContextId(contextDescription: String?): UInt =
     gtk_statusbar_get_context_id(this, contextDescription)
-
-public fun Statusbar.getMessageArea(): Box? = gtk_statusbar_get_message_area(this)?.reinterpret()
 
 public fun Statusbar.pop(contextId: UInt): Unit {
   gtk_statusbar_pop(this, contextId)

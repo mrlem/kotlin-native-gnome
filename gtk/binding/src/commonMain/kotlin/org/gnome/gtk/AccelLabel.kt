@@ -11,7 +11,6 @@ import gtk3.gtk_accel_label_refetch
 import gtk3.gtk_accel_label_set_accel_widget
 import kotlin.Boolean
 import kotlin.UInt
-import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -35,13 +34,13 @@ public val AccelLabel.asMisc: Misc
 public val AccelLabel.asLabel: Label
   get() = reinterpret()
 
-public fun AccelLabel.getAccelWidget(): Widget? =
-    gtk_accel_label_get_accel_widget(this)?.reinterpret()
+public var AccelLabel.accelWidget: Widget?
+  get() = gtk_accel_label_get_accel_widget(this)?.reinterpret()
+  set(`value`) {
+    gtk_accel_label_set_accel_widget(this, value)
+  }
 
-public fun AccelLabel.getAccelWidth(): UInt = gtk_accel_label_get_accel_width(this)
+public val AccelLabel.accelWidth: UInt
+  get() = gtk_accel_label_get_accel_width(this)
 
 public fun AccelLabel.refetch(): Boolean = gtk_accel_label_refetch(this).toBoolean
-
-public fun AccelLabel.setAccelWidget(accelWidget: Widget): Unit {
-  gtk_accel_label_set_accel_widget(this, accelWidget.reinterpret())
-}

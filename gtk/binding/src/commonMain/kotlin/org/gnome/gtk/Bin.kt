@@ -21,4 +21,5 @@ public val Bin.asWidget: Widget
 public val Bin.asContainer: Container
   get() = reinterpret()
 
-public fun Bin.getChild(): Widget? = gtk_bin_get_child(this)?.reinterpret()
+public val Bin.child: Widget?
+  get() = gtk_bin_get_child(this)?.reinterpret()

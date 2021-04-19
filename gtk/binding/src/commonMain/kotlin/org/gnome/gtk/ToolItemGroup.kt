@@ -1,5 +1,7 @@
 // TODO - get_ellipsize
 // TODO - get_header_relief
+// TODO - get_ellipsize
+// TODO - get_header_relief
 // TODO - set_ellipsize
 // TODO - set_header_relief
 //
@@ -45,20 +47,32 @@ public val ToolItemGroup.asWidget: Widget
 public val ToolItemGroup.asContainer: Container
   get() = reinterpret()
 
-public fun ToolItemGroup.getCollapsed(): Boolean = gtk_tool_item_group_get_collapsed(this).toBoolean
+public var ToolItemGroup.collapsed: Boolean
+  get() = gtk_tool_item_group_get_collapsed(this).toBoolean
+  set(`value`) {
+    gtk_tool_item_group_set_collapsed(this, value.toInt)
+  }
+
+public var ToolItemGroup.label: String
+  get() = gtk_tool_item_group_get_label(this).toKString
+  set(`value`) {
+    gtk_tool_item_group_set_label(this, value)
+  }
+
+public var ToolItemGroup.labelWidget: Widget?
+  get() = gtk_tool_item_group_get_label_widget(this)?.reinterpret()
+  set(`value`) {
+    gtk_tool_item_group_set_label_widget(this, value)
+  }
+
+public val ToolItemGroup.nItems: UInt
+  get() = gtk_tool_item_group_get_n_items(this)
 
 public fun ToolItemGroup.getDropItem(x: Int, y: Int): ToolItem? =
     gtk_tool_item_group_get_drop_item(this, x, y)?.reinterpret()
 
 public fun ToolItemGroup.getItemPosition(item: ToolItem): Int =
     gtk_tool_item_group_get_item_position(this, item.reinterpret())
-
-public fun ToolItemGroup.getLabel(): String = gtk_tool_item_group_get_label(this).toKString
-
-public fun ToolItemGroup.getLabelWidget(): Widget? =
-    gtk_tool_item_group_get_label_widget(this)?.reinterpret()
-
-public fun ToolItemGroup.getNItems(): UInt = gtk_tool_item_group_get_n_items(this)
 
 public fun ToolItemGroup.getNthItem(index: UInt): ToolItem? = gtk_tool_item_group_get_nth_item(this,
     index)?.reinterpret()
@@ -67,18 +81,6 @@ public fun ToolItemGroup.insert(item: ToolItem, position: Int): Unit {
   gtk_tool_item_group_insert(this, item.reinterpret(), position)
 }
 
-public fun ToolItemGroup.setCollapsed(collapsed: Boolean): Unit {
-  gtk_tool_item_group_set_collapsed(this, collapsed.toInt)
-}
-
 public fun ToolItemGroup.setItemPosition(item: ToolItem, position: Int): Unit {
   gtk_tool_item_group_set_item_position(this, item.reinterpret(), position)
-}
-
-public fun ToolItemGroup.setLabel(label: String?): Unit {
-  gtk_tool_item_group_set_label(this, label)
-}
-
-public fun ToolItemGroup.setLabelWidget(labelWidget: Widget): Unit {
-  gtk_tool_item_group_set_label_widget(this, labelWidget.reinterpret())
 }

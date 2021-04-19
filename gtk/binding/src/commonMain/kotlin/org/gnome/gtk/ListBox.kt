@@ -1,3 +1,5 @@
+// TODO - get_selected_rows
+// TODO - get_selection_mode
 // TODO - bind_model
 // TODO - get_selected_rows
 // TODO - get_selection_mode
@@ -53,6 +55,21 @@ public val ListBox.asWidget: Widget
 public val ListBox.asContainer: Container
   get() = reinterpret()
 
+public var ListBox.activateOnSingleClick: Boolean
+  get() = gtk_list_box_get_activate_on_single_click(this).toBoolean
+  set(`value`) {
+    gtk_list_box_set_activate_on_single_click(this, value.toInt)
+  }
+
+public var ListBox.adjustment: Adjustment?
+  get() = gtk_list_box_get_adjustment(this)?.reinterpret()
+  set(`value`) {
+    gtk_list_box_set_adjustment(this, value)
+  }
+
+public val ListBox.selectedRow: ListBoxRow?
+  get() = gtk_list_box_get_selected_row(this)?.reinterpret()
+
 public fun ListBox.dragHighlightRow(row: ListBoxRow): Unit {
   gtk_list_box_drag_highlight_row(this, row.reinterpret())
 }
@@ -61,19 +78,11 @@ public fun ListBox.dragUnhighlightRow(): Unit {
   gtk_list_box_drag_unhighlight_row(this)
 }
 
-public fun ListBox.getActivateOnSingleClick(): Boolean =
-    gtk_list_box_get_activate_on_single_click(this).toBoolean
-
-public fun ListBox.getAdjustment(): Adjustment? = gtk_list_box_get_adjustment(this)?.reinterpret()
-
 public fun ListBox.getRowAtIndex(index: Int): ListBoxRow? = gtk_list_box_get_row_at_index(this,
     index)?.reinterpret()
 
 public fun ListBox.getRowAtY(y: Int): ListBoxRow? = gtk_list_box_get_row_at_y(this,
     y)?.reinterpret()
-
-public fun ListBox.getSelectedRow(): ListBoxRow? =
-    gtk_list_box_get_selected_row(this)?.reinterpret()
 
 public fun ListBox.insert(child: Widget, position: Int): Unit {
   gtk_list_box_insert(this, child.reinterpret(), position)
@@ -101,14 +110,6 @@ public fun ListBox.selectAll(): Unit {
 
 public fun ListBox.selectRow(row: ListBoxRow): Unit {
   gtk_list_box_select_row(this, row.reinterpret())
-}
-
-public fun ListBox.setActivateOnSingleClick(single: Boolean): Unit {
-  gtk_list_box_set_activate_on_single_click(this, single.toInt)
-}
-
-public fun ListBox.setAdjustment(adjustment: Adjustment): Unit {
-  gtk_list_box_set_adjustment(this, adjustment.reinterpret())
 }
 
 public fun ListBox.setPlaceholder(placeholder: Widget): Unit {
