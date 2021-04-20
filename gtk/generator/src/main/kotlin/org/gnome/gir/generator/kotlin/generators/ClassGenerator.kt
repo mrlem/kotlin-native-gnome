@@ -5,6 +5,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import org.gnome.gir.GNOME_PACKAGE
 import org.gnome.gir.GTK_CINTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.packageName
+import org.gnome.gir.generator.kotlin.generators.ext.reinterpretMemberName
 import org.gnome.gir.generator.kotlin.generators.ext.toClassName
 import org.gnome.gir.model.ClassDefinition
 import org.gnome.gir.model.NamespaceDefinition
@@ -33,15 +34,9 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             println("info: class '$name' ignored: deprecated ancestor")
             return null
         }
-        arrayOf("Gtk.Plug", "Gtk.Socket").contains(classNameString) -> {
+        // TODO - problematic classes: investigate
+        arrayOf("Gtk.Plug", "Gtk.Socket", "Gtk.HeaderBarAccessible").contains(classNameString) -> {
             println("warning: class '$name' ignored: excluded class")
-            return null
-        }
-        // FIXME - unhandled for now:
-        //  - naming of Atk.Object clashes with GObject.Object
-        //  - didn't manage yet to get cinterop to generate ATK classes
-        ancestors.contains("Atk.Object") -> {
-            println("warning: class '$name' ignored: accessibility not handled yet")
             return null
         }
     }
@@ -82,16 +77,13 @@ private fun FileSpec.Builder.addConverters(classNameString: String, className: C
 private fun FileSpec.Builder.addConverter(className: ClassName, ancestor: String) {
     val (ancestorNamespaceName, ancestorClassName) = ancestor.split(".")
     val ancestorPackageName = "${GNOME_PACKAGE}.${ancestorNamespaceName.toLowerCase()}"
-
+    val ancestorUniqueClassName = if (ancestorClassName == "Object" && ancestorNamespaceName != "GObject") "$ancestorNamespaceName$ancestorClassName" else ancestorClassName
     addProperty(
-        PropertySpec.builder("as$ancestorClassName", ClassName(ancestorPackageName, ancestorClassName))
+        PropertySpec.builder("as$ancestorUniqueClassName", ClassName(ancestorPackageName, ancestorClassName))
             .receiver(className)
             .getter(
                 FunSpec.getterBuilder()
-                    .addStatement(
-                        "return %M()",
-                        MemberName("kotlinx.cinterop", "reinterpret")
-                    )
+                    .addStatement("return %M()", reinterpretMemberName)
                     .build()
             )
             .build()
