@@ -1,6 +1,8 @@
 // TODO - get_layout
 // TODO - get_layout_offsets
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkScale

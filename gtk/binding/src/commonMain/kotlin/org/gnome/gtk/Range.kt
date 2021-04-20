@@ -3,6 +3,8 @@
 // TODO - get_slider_range
 // TODO - set_min_slider_size
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkRange

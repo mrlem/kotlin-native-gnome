@@ -11,6 +11,8 @@
 // TODO - set_app_menu
 // TODO - set_menubar
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.*

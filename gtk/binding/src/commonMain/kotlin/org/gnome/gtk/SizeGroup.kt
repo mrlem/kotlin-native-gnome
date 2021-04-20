@@ -2,6 +2,8 @@
 // TODO - get_widgets
 // TODO - set_ignore_hidden
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkSizeGroup

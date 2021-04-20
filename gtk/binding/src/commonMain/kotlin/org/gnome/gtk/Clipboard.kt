@@ -18,6 +18,8 @@
 // TODO - wait_for_uris
 // TODO - wait_is_target_available
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkClipboard

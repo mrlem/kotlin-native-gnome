@@ -18,6 +18,8 @@
 // TODO - set_resize_mode
 // TODO - unset_focus_chain
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GType

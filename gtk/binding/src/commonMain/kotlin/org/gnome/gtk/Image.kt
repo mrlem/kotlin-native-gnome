@@ -11,6 +11,8 @@
 // TODO - set_from_stock
 // TODO - set_from_surface
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkImage

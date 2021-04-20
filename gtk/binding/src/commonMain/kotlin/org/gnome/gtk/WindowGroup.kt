@@ -1,6 +1,8 @@
 // TODO - get_current_device_grab
 // TODO - list_windows
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkWindowGroup

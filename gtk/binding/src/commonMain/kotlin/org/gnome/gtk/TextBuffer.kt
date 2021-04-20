@@ -25,6 +25,8 @@
 // TODO - unregister_deserialize_format
 // TODO - unregister_serialize_format
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkTextBuffer

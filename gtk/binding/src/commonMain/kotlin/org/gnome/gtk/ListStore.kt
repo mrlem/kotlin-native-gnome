@@ -12,6 +12,8 @@
 // TODO - set_value
 // TODO - set_valuesv
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkListStore

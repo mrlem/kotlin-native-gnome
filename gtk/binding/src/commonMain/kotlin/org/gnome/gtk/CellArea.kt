@@ -21,6 +21,8 @@
 // TODO - render
 // TODO - request_renderer
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkCellArea

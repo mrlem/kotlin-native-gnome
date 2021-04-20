@@ -33,6 +33,8 @@
 // TODO - set_screen
 // TODO - state_is_running
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkStyleContext

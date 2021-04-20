@@ -34,6 +34,8 @@
 // TODO - set_search_position_func
 // TODO - set_vadjustment
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkTreeView

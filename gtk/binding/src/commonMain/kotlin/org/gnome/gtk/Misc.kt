@@ -3,6 +3,8 @@
 // TODO - set_alignment
 // TODO - set_padding
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkMisc

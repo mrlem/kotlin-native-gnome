@@ -2,6 +2,8 @@
 // TODO - set_right_justified
 // TODO - toggle_size_request
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkMenuItem

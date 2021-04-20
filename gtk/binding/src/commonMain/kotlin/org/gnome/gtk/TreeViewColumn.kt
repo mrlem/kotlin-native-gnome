@@ -3,6 +3,8 @@
 // TODO - set_attributes
 // TODO - set_cell_data_func
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkTreeViewColumn

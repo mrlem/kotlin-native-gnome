@@ -9,6 +9,8 @@
 // TODO - set_row_separator_func
 // TODO - set_title
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkComboBox

@@ -12,6 +12,8 @@
 // TODO - set_screen
 // TODO - set_search_path
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkIconTheme

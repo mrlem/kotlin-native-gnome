@@ -4,6 +4,8 @@
 // TODO - set_pointing_to
 // TODO - set_transitions_enabled
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkPopover

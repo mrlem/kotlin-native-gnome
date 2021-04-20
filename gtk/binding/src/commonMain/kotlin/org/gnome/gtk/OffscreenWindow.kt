@@ -1,6 +1,8 @@
 // TODO - get_pixbuf
 // TODO - get_surface
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkOffscreenWindow

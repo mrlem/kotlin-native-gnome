@@ -1,6 +1,8 @@
 // TODO - get_stock_id
 // TODO - set_stock_id
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkToolButton

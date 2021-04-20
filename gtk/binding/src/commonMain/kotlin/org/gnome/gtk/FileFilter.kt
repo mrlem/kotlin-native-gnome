@@ -1,6 +1,8 @@
 // TODO - add_custom
 // TODO - to_gvariant
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkFileFilter

@@ -3,6 +3,8 @@
 // TODO - set_alternative_button_order
 // TODO - set_alternative_button_order_from_array
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkDialog

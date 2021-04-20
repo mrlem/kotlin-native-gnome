@@ -1,5 +1,7 @@
 // TODO - get_ellipsize_mode
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkToolItem

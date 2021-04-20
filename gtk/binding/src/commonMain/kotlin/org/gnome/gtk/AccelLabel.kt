@@ -2,6 +2,8 @@
 // TODO - set_accel
 // TODO - set_accel_closure
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkAccelLabel

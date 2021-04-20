@@ -4,6 +4,8 @@
 // TODO - set_client_window
 // TODO - set_cursor_location
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkIMContext

@@ -1,6 +1,8 @@
 // TODO - get_font_name
 // TODO - set_font_name
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkFontButton

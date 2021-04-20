@@ -17,6 +17,8 @@
 // TODO - load_symbolic_for_style
 // TODO - set_raw_coordinates
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkIconInfo

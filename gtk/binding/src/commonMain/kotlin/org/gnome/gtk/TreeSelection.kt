@@ -4,6 +4,8 @@
 // TODO - selected_foreach
 // TODO - set_select_function
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkTreeSelection

@@ -1,5 +1,7 @@
 // TODO - get_offset_value
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkLevelBar

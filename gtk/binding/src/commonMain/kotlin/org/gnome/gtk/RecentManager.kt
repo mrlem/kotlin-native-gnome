@@ -4,6 +4,8 @@
 // TODO - purge_items
 // TODO - remove_item
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkRecentManager

@@ -8,6 +8,8 @@
 // TODO - set_ellipsize
 // TODO - set_line_wrap_mode
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkLabel

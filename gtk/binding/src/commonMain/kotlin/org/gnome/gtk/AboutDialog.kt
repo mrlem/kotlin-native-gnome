@@ -8,6 +8,8 @@
 // TODO - set_documenters
 // TODO - set_logo
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkAboutDialog

@@ -1,6 +1,8 @@
 // TODO - get_date
 // TODO - set_detail_func
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkCalendar

@@ -1,6 +1,8 @@
 // TODO - get_focus_on_click
 // TODO - set_focus_on_click
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkFileChooserButton

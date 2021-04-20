@@ -17,6 +17,8 @@
 // TODO - set_inner_border
 // TODO - set_tabs
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkEntry

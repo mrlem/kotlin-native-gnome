@@ -1,6 +1,8 @@
 // TODO - get_screen
 // TODO - set_screen
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkInvisible

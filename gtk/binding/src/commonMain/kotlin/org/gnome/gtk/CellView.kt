@@ -2,6 +2,8 @@
 // TODO - set_background_color
 // TODO - set_background_rgba
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkCellView

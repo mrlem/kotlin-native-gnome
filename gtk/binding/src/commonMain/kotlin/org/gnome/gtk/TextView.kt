@@ -15,6 +15,8 @@
 // TODO - set_tabs
 // TODO - window_to_buffer_coords
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkTextView

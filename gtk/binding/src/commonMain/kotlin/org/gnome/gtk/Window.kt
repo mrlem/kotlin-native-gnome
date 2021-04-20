@@ -32,6 +32,8 @@
 // TODO - set_type_hint
 // TODO - set_wmclass
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkWindow

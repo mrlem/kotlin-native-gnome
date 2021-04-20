@@ -1,6 +1,8 @@
 // TODO - convert_child_iter_to_iter
 // TODO - convert_iter_to_child_iter
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkTreeModelSort

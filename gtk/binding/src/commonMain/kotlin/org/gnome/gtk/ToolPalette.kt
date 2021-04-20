@@ -2,6 +2,8 @@
 // TODO - get_hadjustment
 // TODO - get_vadjustment
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkToolPalette

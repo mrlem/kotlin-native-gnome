@@ -1,6 +1,8 @@
 // TODO - add_with_viewport
 // TODO - get_policy
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkScrolledWindow

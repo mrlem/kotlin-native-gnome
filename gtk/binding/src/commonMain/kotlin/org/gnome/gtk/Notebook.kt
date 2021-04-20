@@ -1,6 +1,8 @@
 // TODO - get_tab_hborder
 // TODO - get_tab_vborder
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkNotebook

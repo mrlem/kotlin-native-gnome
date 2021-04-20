@@ -3,6 +3,8 @@
 // TODO - set_modify_func
 // TODO - set_visible_func
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkTreeModelFilter

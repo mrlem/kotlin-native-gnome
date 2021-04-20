@@ -7,6 +7,8 @@
 // TODO - to_gvariant
 // TODO - to_key_file
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkPrintSettings

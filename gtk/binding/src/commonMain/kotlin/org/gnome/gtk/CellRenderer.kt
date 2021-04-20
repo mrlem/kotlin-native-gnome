@@ -12,6 +12,8 @@
 // TODO - render
 // TODO - start_editing
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkCellRenderer

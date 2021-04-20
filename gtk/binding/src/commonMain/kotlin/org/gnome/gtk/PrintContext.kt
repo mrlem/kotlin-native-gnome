@@ -5,6 +5,8 @@
 // TODO - get_pango_fontmap
 // TODO - set_cairo_context
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkPrintContext

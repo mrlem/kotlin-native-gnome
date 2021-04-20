@@ -1,6 +1,8 @@
 // TODO - get_menu_model
 // TODO - set_menu_model
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkMenuButton

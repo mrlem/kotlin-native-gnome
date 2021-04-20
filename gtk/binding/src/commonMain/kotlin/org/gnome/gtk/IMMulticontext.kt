@@ -1,5 +1,7 @@
 // TODO - append_menuitems
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkIMMulticontext

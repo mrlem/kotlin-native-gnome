@@ -16,6 +16,8 @@
 // TODO - value_from_string
 // TODO - value_from_string_type
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.*

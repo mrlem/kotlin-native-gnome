@@ -12,6 +12,8 @@
 // TODO - get_visible_range
 // TODO - selected_foreach
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkIconView

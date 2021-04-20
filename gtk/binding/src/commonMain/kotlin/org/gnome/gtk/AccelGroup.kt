@@ -7,6 +7,8 @@
 // TODO - get_modifier_mask
 // TODO - query
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkAccelGroup

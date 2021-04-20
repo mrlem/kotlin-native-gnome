@@ -10,6 +10,8 @@
 // TODO - set_focus_on_click
 // TODO - set_use_stock
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.*

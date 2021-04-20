@@ -4,6 +4,8 @@
 // TODO - get_preferred_width
 // TODO - get_preferred_width_for_height
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkCellAreaContext

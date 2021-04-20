@@ -8,6 +8,8 @@
 // TODO - set_location
 // TODO - set_show_connect_to_server
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkPlacesSidebar

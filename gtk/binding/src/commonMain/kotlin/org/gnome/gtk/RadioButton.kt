@@ -1,6 +1,8 @@
 // TODO - get_group
 // TODO - set_group
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkRadioButton

@@ -4,6 +4,8 @@
 // TODO - set_page_header_image
 // TODO - set_page_side_image
 //
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+
 package org.gnome.gtk
 
 import gtk3.GtkAssistant
