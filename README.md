@@ -16,7 +16,10 @@ They say a picture is worth a thousand words:
 
 ## Status
 
-* API coverage is progressing, though some things are sorely missed (lambda based signal handlers generation is next).
+* generated API coverage is progressing well, though some things are sorely missed:
+  - lambda based signal handlers generation is next
+  - accessibility classes generation
+  - handle remaining data types
 * [GIR](https://gi.readthedocs.io) parsing is complete: the API is nearly 100% generated based on it.
 * tested on Ubuntu 20.04
 
