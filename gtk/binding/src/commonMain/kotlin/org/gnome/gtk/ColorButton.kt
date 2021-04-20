@@ -1,3 +1,12 @@
+// TODO - get_alpha
+// TODO - get_color
+// TODO - get_rgba
+// TODO - get_use_alpha
+// TODO - set_alpha
+// TODO - set_color
+// TODO - set_rgba
+// TODO - set_use_alpha
+//
 package org.gnome.gtk
 
 import gtk3.GtkColorButton

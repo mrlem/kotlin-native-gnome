@@ -1,10 +1,11 @@
 // TODO - get_bin_window
+// TODO - get_hadjustment
 // TODO - get_shadow_type
+// TODO - get_vadjustment
 // TODO - get_view_window
-// TODO - get_bin_window
-// TODO - get_shadow_type
-// TODO - get_view_window
+// TODO - set_hadjustment
 // TODO - set_shadow_type
+// TODO - set_vadjustment
 //
 package org.gnome.gtk
 

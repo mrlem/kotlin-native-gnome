@@ -1,12 +1,12 @@
-// TODO - get_constrain_to
-// TODO - get_position
 // TODO - bind_model
 // TODO - get_constrain_to
 // TODO - get_pointing_to
 // TODO - get_position
+// TODO - get_transitions_enabled
 // TODO - set_constrain_to
 // TODO - set_pointing_to
 // TODO - set_position
+// TODO - set_transitions_enabled
 //
 package org.gnome.gtk
 

@@ -1,4 +1,3 @@
-// TODO - get_device_tool
 // TODO - get_axes
 // TODO - get_axis
 // TODO - get_device_tool

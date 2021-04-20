@@ -1,4 +1,3 @@
-// TODO - get_orientation
 // TODO - get_bottom_margin
 // TODO - get_left_margin
 // TODO - get_orientation

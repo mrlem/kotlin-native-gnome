@@ -2,7 +2,7 @@ package org.gnome.gir.resolver
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
-import org.gnome.gir.GTK_CINTEROP_PACKAGE_NAME
+import org.gnome.gir.GTK_CINTEROP_PACKAGE
 
 enum class KnownType(
     val value: String,
@@ -136,7 +136,7 @@ enum class KnownType(
     ),
     Type(
         "GType",
-        ClassName(GTK_CINTEROP_PACKAGE_NAME, "GType"),
+        ClassName(GTK_CINTEROP_PACKAGE, "GType"),
         null,
         null
     ),

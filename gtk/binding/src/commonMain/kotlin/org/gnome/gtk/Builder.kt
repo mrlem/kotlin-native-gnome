@@ -1,4 +1,3 @@
-// TODO - get_objects
 // TODO - add_callback_symbol
 // TODO - add_callback_symbols
 // TODO - add_from_file

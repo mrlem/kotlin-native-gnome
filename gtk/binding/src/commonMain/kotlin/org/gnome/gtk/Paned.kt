@@ -1,5 +1,4 @@
 // TODO - get_handle_window
-// TODO - get_handle_window
 //
 package org.gnome.gtk
 

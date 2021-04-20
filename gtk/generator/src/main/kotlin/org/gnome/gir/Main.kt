@@ -5,11 +5,11 @@ import org.gnome.gir.parser.RepositoryReader
 import java.io.File
 import kotlin.system.exitProcess
 
-const val GNOME_PACKAGE_NAME = "org.gnome"
-const val GLIB_PACKAGE_NAME = "$GNOME_PACKAGE_NAME.glib"
-const val GTK_PACKAGE_NAME = "$GNOME_PACKAGE_NAME.gtk"
-const val GTK_CINTEROP_PACKAGE_NAME = "gtk3"
-
+const val GNOME_PACKAGE = "org.gnome"
+const val GLIB_PACKAGE = "$GNOME_PACKAGE.glib"
+const val GTK_PACKAGE = "$GNOME_PACKAGE.gtk"
+const val GTK_CINTEROP_PACKAGE = "gtk3"
+const val KOTLIN_CINTEROP_PACKAGE = "kotlinx.cinterop"
 /**
  * Generates the GTK binding based on GObject introspection (GIR) files.
  */

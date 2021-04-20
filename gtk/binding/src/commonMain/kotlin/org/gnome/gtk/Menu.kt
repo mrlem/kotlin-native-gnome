@@ -1,8 +1,14 @@
+// TODO - get_tearoff_state
+// TODO - get_title
 // TODO - place_on_monitor
+// TODO - popup
 // TODO - popup_at_pointer
 // TODO - popup_at_rect
 // TODO - popup_at_widget
+// TODO - popup_for_device
 // TODO - set_screen
+// TODO - set_tearoff_state
+// TODO - set_title
 //
 package org.gnome.gtk
 

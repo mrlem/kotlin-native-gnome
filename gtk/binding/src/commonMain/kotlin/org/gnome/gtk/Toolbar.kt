@@ -1,9 +1,6 @@
 // TODO - get_icon_size
 // TODO - get_relief_style
 // TODO - get_style
-// TODO - get_icon_size
-// TODO - get_relief_style
-// TODO - get_style
 // TODO - set_icon_size
 // TODO - set_style
 //

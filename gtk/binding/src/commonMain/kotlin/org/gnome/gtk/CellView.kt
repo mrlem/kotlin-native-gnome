@@ -1,3 +1,5 @@
+// TODO - get_size_of_row
+// TODO - set_background_color
 // TODO - set_background_rgba
 //
 package org.gnome.gtk

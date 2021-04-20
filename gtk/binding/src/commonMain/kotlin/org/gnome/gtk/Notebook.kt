@@ -1,6 +1,7 @@
-// TODO - get_tab_pos
 // TODO - get_action_widget
+// TODO - get_tab_hborder
 // TODO - get_tab_pos
+// TODO - get_tab_vborder
 // TODO - set_action_widget
 // TODO - set_tab_pos
 //

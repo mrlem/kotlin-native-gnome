@@ -1,5 +1,3 @@
-// TODO - get_selected_rows
-// TODO - get_selection_mode
 // TODO - bind_model
 // TODO - get_selected_rows
 // TODO - get_selection_mode

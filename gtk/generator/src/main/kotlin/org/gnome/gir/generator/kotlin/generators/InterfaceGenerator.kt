@@ -4,7 +4,8 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import com.squareup.kotlinpoet.TypeAliasSpec
-import org.gnome.gir.GTK_CINTEROP_PACKAGE_NAME
+import org.gnome.gir.GTK_CINTEROP_PACKAGE
+import org.gnome.gir.generator.kotlin.generators.ext.packageName
 import org.gnome.gir.model.InterfaceDefinition
 import org.gnome.gir.model.NamespaceDefinition
 
@@ -32,7 +33,7 @@ fun InterfaceDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
             TypeAliasSpec.builder(
                 name,
                 ClassName("kotlinx.cinterop", "CPointer")
-                    .plusParameter(ClassName(GTK_CINTEROP_PACKAGE_NAME, cType))
+                    .plusParameter(ClassName(GTK_CINTEROP_PACKAGE, cType))
             )
                 .build()
         )

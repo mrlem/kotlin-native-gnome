@@ -1,5 +1,4 @@
 // TODO - get_layout
-// TODO - get_layout
 // TODO - set_layout
 //
 package org.gnome.gtk

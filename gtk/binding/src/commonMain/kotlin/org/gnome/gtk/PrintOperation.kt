@@ -1,7 +1,5 @@
 // TODO - get_error
 // TODO - get_status
-// TODO - get_error
-// TODO - get_status
 // TODO - run
 // TODO - set_unit
 //

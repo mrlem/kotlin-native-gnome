@@ -1,6 +1,9 @@
 // TODO - get_bin_window
-// TODO - get_bin_window
+// TODO - get_hadjustment
 // TODO - get_size
+// TODO - get_vadjustment
+// TODO - set_hadjustment
+// TODO - set_vadjustment
 //
 package org.gnome.gtk
 

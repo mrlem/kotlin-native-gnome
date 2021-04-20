@@ -1,5 +1,7 @@
 // TODO - format_secondary_markup
 // TODO - format_secondary_text
+// TODO - get_image
+// TODO - set_image
 //
 package org.gnome.gtk
 

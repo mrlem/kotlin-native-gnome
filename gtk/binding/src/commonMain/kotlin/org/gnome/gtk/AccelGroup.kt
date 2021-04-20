@@ -1,4 +1,3 @@
-// TODO - get_modifier_mask
 // TODO - activate
 // TODO - connect
 // TODO - connect_by_path

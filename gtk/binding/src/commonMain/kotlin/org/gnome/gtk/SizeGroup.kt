@@ -1,7 +1,7 @@
+// TODO - get_ignore_hidden
 // TODO - get_mode
 // TODO - get_widgets
-// TODO - get_mode
-// TODO - get_widgets
+// TODO - set_ignore_hidden
 // TODO - set_mode
 //
 package org.gnome.gtk

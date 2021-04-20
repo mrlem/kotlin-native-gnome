@@ -1,9 +1,7 @@
 package org.gnome.gir.resolver
 
-import org.gnome.gir.model.ClassDefinition
-import org.gnome.gir.model.EnumDefinition
-import org.gnome.gir.model.NamespaceDefinition
-import org.gnome.gir.model.RepositoryDefinition
+import org.gnome.gir.model.*
+import org.gnome.gir.model.types.AnyType
 import java.util.*
 
 class Resolver(repository: RepositoryDefinition) {
@@ -48,7 +46,11 @@ class Resolver(repository: RepositoryDefinition) {
 
     fun isEnum(name: String) = enums.contains(name)
 
+    fun isEnum(type: AnyType) = (type as? TypeDefinition)?.cType?.let { isEnum(it) } == true
+
     fun isCPointer(name: String) = isClass(name) || isRecord(name) || isCallback(name) || isInterface(name)
+
+    fun isCPointer(type: AnyType) = (type as? TypeDefinition)?.name?.let { isCPointer(it) } == true
 
     ///////////////////////////////////////////////////////////////////////////
     // Private

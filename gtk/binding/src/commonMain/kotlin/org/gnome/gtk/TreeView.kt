@@ -1,6 +1,3 @@
-// TODO - get_bin_window
-// TODO - get_columns
-// TODO - get_grid_lines
 // TODO - convert_bin_window_to_tree_coords
 // TODO - convert_bin_window_to_widget_coords
 // TODO - convert_tree_to_bin_window_coords
@@ -18,8 +15,11 @@
 // TODO - get_dest_row_at_pos
 // TODO - get_drag_dest_row
 // TODO - get_grid_lines
+// TODO - get_hadjustment
 // TODO - get_path_at_pos
+// TODO - get_rules_hint
 // TODO - get_tooltip_context
+// TODO - get_vadjustment
 // TODO - get_visible_range
 // TODO - get_visible_rect
 // TODO - insert_column_with_attributes
@@ -27,11 +27,15 @@
 // TODO - is_blank_at_pos
 // TODO - map_expanded_rows
 // TODO - set_column_drag_function
+// TODO - set_destroy_count_func
 // TODO - set_drag_dest_row
 // TODO - set_grid_lines
+// TODO - set_hadjustment
 // TODO - set_row_separator_func
+// TODO - set_rules_hint
 // TODO - set_search_equal_func
 // TODO - set_search_position_func
+// TODO - set_vadjustment
 //
 package org.gnome.gtk
 

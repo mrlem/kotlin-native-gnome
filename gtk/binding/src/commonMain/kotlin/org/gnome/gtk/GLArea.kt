@@ -1,7 +1,5 @@
 // TODO - get_context
 // TODO - get_error
-// TODO - get_context
-// TODO - get_error
 // TODO - get_required_version
 // TODO - set_error
 //

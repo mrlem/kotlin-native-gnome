@@ -1,11 +1,15 @@
-// TODO - get_button_sensitivity
-// TODO - get_popup_accessible
 // TODO - get_active_iter
+// TODO - get_add_tearoffs
 // TODO - get_button_sensitivity
+// TODO - get_focus_on_click
 // TODO - get_popup_accessible
+// TODO - get_title
 // TODO - popup_for_device
+// TODO - set_add_tearoffs
 // TODO - set_button_sensitivity
+// TODO - set_focus_on_click
 // TODO - set_row_separator_func
+// TODO - set_title
 //
 package org.gnome.gtk
 

@@ -1,5 +1,4 @@
 // TODO - get_ellipsize
-// TODO - get_ellipsize
 // TODO - set_ellipsize
 //
 package org.gnome.gtk

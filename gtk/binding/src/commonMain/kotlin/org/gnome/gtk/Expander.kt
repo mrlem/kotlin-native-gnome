@@ -1,3 +1,6 @@
+// TODO - get_spacing
+// TODO - set_spacing
+//
 package org.gnome.gtk
 
 import gtk3.GtkExpander

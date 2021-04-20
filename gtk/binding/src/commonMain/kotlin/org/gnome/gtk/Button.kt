@@ -1,11 +1,18 @@
+// TODO - enter
+// TODO - get_alignment
 // TODO - get_event_window
+// TODO - get_focus_on_click
 // TODO - get_image_position
 // TODO - get_relief
-// TODO - get_event_window
-// TODO - get_image_position
-// TODO - get_relief
+// TODO - get_use_stock
+// TODO - leave
+// TODO - pressed
+// TODO - released
+// TODO - set_alignment
+// TODO - set_focus_on_click
 // TODO - set_image_position
 // TODO - set_relief
+// TODO - set_use_stock
 //
 package org.gnome.gtk
 

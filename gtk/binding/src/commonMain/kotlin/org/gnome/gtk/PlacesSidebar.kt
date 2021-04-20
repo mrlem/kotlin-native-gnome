@@ -1,11 +1,12 @@
-// TODO - get_location
 // TODO - add_shortcut
 // TODO - get_location
 // TODO - get_nth_bookmark
+// TODO - get_show_connect_to_server
 // TODO - list_shortcuts
 // TODO - remove_shortcut
 // TODO - set_drop_targets_visible
 // TODO - set_location
+// TODO - set_show_connect_to_server
 //
 package org.gnome.gtk
 

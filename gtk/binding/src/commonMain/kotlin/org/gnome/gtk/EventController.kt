@@ -1,5 +1,4 @@
 // TODO - get_propagation_phase
-// TODO - get_propagation_phase
 // TODO - handle_event
 // TODO - set_propagation_phase
 //

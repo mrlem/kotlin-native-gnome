@@ -1,3 +1,5 @@
+// TODO - get_right_justified
+// TODO - set_right_justified
 // TODO - toggle_size_request
 //
 package org.gnome.gtk

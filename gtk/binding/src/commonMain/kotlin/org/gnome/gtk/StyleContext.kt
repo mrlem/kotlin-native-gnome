@@ -1,8 +1,12 @@
-// TODO - get_frame_clock
-// TODO - get_screen
+// TODO - add_region
+// TODO - cancel_animations
 // TODO - get
+// TODO - get_background_color
 // TODO - get_border
+// TODO - get_border_color
 // TODO - get_color
+// TODO - get_direction
+// TODO - get_font
 // TODO - get_frame_clock
 // TODO - get_margin
 // TODO - get_padding
@@ -12,10 +16,22 @@
 // TODO - get_style_property
 // TODO - get_style_valist
 // TODO - get_valist
+// TODO - has_region
+// TODO - invalidate
 // TODO - list_classes
+// TODO - list_regions
 // TODO - lookup_color
+// TODO - lookup_icon_set
+// TODO - notify_state_change
+// TODO - pop_animatable_region
+// TODO - push_animatable_region
+// TODO - remove_region
+// TODO - scroll_animations
+// TODO - set_background
+// TODO - set_direction
 // TODO - set_frame_clock
 // TODO - set_screen
+// TODO - state_is_running
 //
 package org.gnome.gtk
 

@@ -1,4 +1,3 @@
-// TODO - get_request_mode
 // TODO - activate
 // TODO - activate_cell
 // TODO - add_with_properties

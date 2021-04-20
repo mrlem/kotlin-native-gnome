@@ -1,93 +1,71 @@
 package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.*
-import org.gnome.gir.GNOME_PACKAGE_NAME
-import org.gnome.gir.GTK_CINTEROP_PACKAGE_NAME
+import org.gnome.gir.GTK_CINTEROP_PACKAGE
+import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.CallableDefinition
 import org.gnome.gir.model.TypeDefinition
 import org.gnome.gir.resolver.Resolver
 
-// TODO - share code with addMethod
 fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, className: ClassName, resolver: Resolver) {
     val getters = methods
         .filter { it.name.startsWith("get_") && it.callable.parameters.isEmpty() }
     val setters = methods.filter { it.name.startsWith("set_") && it.callable.parameters.size == 1 }
     for (getter in getters) {
-        val propertyName = getter.name.removePrefix("get_")
-        val setter = setters.firstOrNull { it.name == "set_$propertyName" }
-            ?.takeIf { (it.callable.parameters.first().type as? TypeDefinition)?.name == (getter.callable.returnValue?.type as? TypeDefinition)?.name }
+        val getterCIdentifier = getter.callable
+            .takeUnless { it.throws || it.info.deprecated } // TODO - handle
+            ?.cIdentifier
+            ?: continue
 
-        val name = propertyName.snakeCaseToCamelCase.decapitalize()
-        val type = getter.callable.returnValue!!.type
-        val toKType = type?.toKTypeConverter
+        // determine type
+        val type = getter.callable.returnValue?.type
+            ?.takeUnless { resolver.isEnum(it) } // TODO - handle
+            ?: continue
+        val isCPointer = resolver.isCPointer(type)
+        val kType = type.kType
+            ?.copy(nullable = isCPointer) // TODO - use nullable info from type too
+            ?: continue
 
-        when {
-            getter.callable.info.deprecated -> {
-                println("info: method '${className.simpleName}.${getter.name}' ignored: deprecated")
-                continue
-            }
-            getter.callable.cIdentifier == null -> {
-                println("warning: method '${className.simpleName}.${getter.name}' ignored: no cIdentifier")
-                continue
-            }
-            // FIXME - not handled for now
-            getter.callable.throws
-                    || (type as? TypeDefinition)?.cType?.let { resolver.isEnum(it) } == true
-                    || type?.kType == null -> {
-                addComment("TODO - ${getter.name}\n")
-                continue
-            }
-        }
-
+        // produce & consume getter
         methods.remove(getter)
-        setter?.let { methods.remove(it) }
-
-
-        val isCPointer = (type as? TypeDefinition)?.name?.let { resolver.isCPointer(it) } == true
-        val (converterTemplate, converterArray) = if (isCPointer) {
-            "?.%M()" to arrayOf(MemberName("kotlinx.cinterop", "reinterpret"))
-        } else {
-            type?.toCTypeConverter
-                ?.let { converter ->
-                    ".%M" to arrayOf(MemberName(GNOME_PACKAGE_NAME, converter))
-                }
-                ?: "" to emptyArray()
-        }
-
+        val (returnTemplate, returnArray) = type.getReturnData(resolver)
+        val propertyName = getter.name.removePrefix("get_")
         addProperty(
-            PropertySpec.builder(name, type!!.kType!!.copy(nullable = isCPointer))
+            PropertySpec.builder(propertyName.snakeCaseToCamelCase.decapitalize(), kType)
                 .receiver(className)
                 .getter(
                     FunSpec.getterBuilder()
-                        .apply {
-                            val gtkFunction = MemberName(GTK_CINTEROP_PACKAGE_NAME, getter.callable.cIdentifier!!)
-                            if (toKType == null) {
-                                addStatement("return %M(this)$converterTemplate", gtkFunction, *converterArray)
-                            } else {
-                                addStatement("return %M(this).%M", gtkFunction, MemberName(GNOME_PACKAGE_NAME, toKType))
-                            }
-                        }
+                        .addStatement(
+                            "return %M(this)$returnTemplate",
+                            MemberName(GTK_CINTEROP_PACKAGE, getterCIdentifier),
+                            *returnArray
+                        )
                         .build()
                 )
+                // produce & consume setter, if any
                 .apply {
-                    setter?.let {
-                        val toGType = type.toCTypeConverter
-                        val gtkFunction = MemberName(GTK_CINTEROP_PACKAGE_NAME, setter.callable.cIdentifier!!)
+                    setters.firstOrNull { it.name == "set_$propertyName" }
+                        ?.takeIf { it.callable.cIdentifier != null }
+                        ?.takeIf { (it.callable.parameters.first().type as? TypeDefinition)?.name == (type as? TypeDefinition)?.name }
+                        ?.let { setter ->
+                            methods.remove(setter)
+                            mutable()
 
-                        mutable()
-                        setter(
-                            FunSpec.setterBuilder()
-                                .addParameter("value", type.kType!!)
-                                .apply {
-                                    if (toGType == null) {
-                                        addStatement("%M(this, value)", gtkFunction)
-                                    } else {
-                                        addStatement("%M(this, value.%M)", gtkFunction, MemberName(GNOME_PACKAGE_NAME, toGType))
-                                    }
-                                }
-                                .build()
-                        )
-                    }
+                            // setter param conversion
+                            val (paramTemplate, paramArray) = mapOf("value" to type)
+                                .getParamsData(false, resolver)
+
+                            setter(
+                                FunSpec.setterBuilder()
+                                    .addParameter("value", kType)
+                                    .addStatement(
+                                        "%M(this$paramTemplate)",
+                                        MemberName(GTK_CINTEROP_PACKAGE, setter.callable.cIdentifier!!),
+                                        *paramArray
+                                    )
+                                    .build()
+                            )
+                        }
                 }
                 .build()
         )

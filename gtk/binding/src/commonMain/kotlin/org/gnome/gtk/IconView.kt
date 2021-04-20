@@ -1,6 +1,3 @@
-// TODO - get_item_orientation
-// TODO - get_selected_items
-// TODO - get_selection_mode
 // TODO - convert_widget_to_bin_window_coords
 // TODO - create_drag_icon
 // TODO - enable_model_drag_dest

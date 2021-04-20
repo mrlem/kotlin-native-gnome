@@ -4,12 +4,6 @@
 // TODO - get_relief_style
 // TODO - get_text_orientation
 // TODO - get_toolbar_style
-// TODO - get_ellipsize_mode
-// TODO - get_icon_size
-// TODO - get_orientation
-// TODO - get_relief_style
-// TODO - get_text_orientation
-// TODO - get_toolbar_style
 //
 package org.gnome.gtk
 

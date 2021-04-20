@@ -1,3 +1,6 @@
+// TODO - get_stock_id
+// TODO - set_stock_id
+//
 package org.gnome.gtk
 
 import gtk3.GtkToolButton

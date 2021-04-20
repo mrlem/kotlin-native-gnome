@@ -1,10 +1,10 @@
 // TODO - get_lower_stepper_sensitivity
-// TODO - get_upper_stepper_sensitivity
-// TODO - get_lower_stepper_sensitivity
+// TODO - get_min_slider_size
 // TODO - get_range_rect
 // TODO - get_slider_range
 // TODO - get_upper_stepper_sensitivity
 // TODO - set_lower_stepper_sensitivity
+// TODO - set_min_slider_size
 // TODO - set_upper_stepper_sensitivity
 //
 package org.gnome.gtk

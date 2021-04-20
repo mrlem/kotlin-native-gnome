@@ -1,5 +1,4 @@
 // TODO - get_transition_type
-// TODO - get_transition_type
 // TODO - set_transition_type
 // TODO - set_visible_child_full
 //

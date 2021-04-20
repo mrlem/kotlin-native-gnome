@@ -1,6 +1,4 @@
 // TODO - get_mode
-// TODO - get_user_data
-// TODO - get_mode
 // TODO - get_selected
 // TODO - get_selected_rows
 // TODO - get_user_data

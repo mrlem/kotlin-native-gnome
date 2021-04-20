@@ -1,5 +1,4 @@
 // TODO - get_mode
-// TODO - get_mode
 // TODO - get_offset_value
 // TODO - set_mode
 //

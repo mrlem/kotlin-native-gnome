@@ -1,5 +1,4 @@
 // TODO - get_current_sequence
-// TODO - get_current_sequence
 //
 package org.gnome.gtk
 

@@ -1,5 +1,3 @@
-// TODO - get_cairo_context
-// TODO - get_pango_fontmap
 // TODO - create_pango_context
 // TODO - create_pango_layout
 // TODO - get_cairo_context

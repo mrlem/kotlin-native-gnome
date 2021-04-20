@@ -1,6 +1,7 @@
 // TODO - set_icon
 // TODO - set_icon_from_gicon
 // TODO - set_icon_from_icon_name
+// TODO - set_icon_from_stock
 // TODO - set_tip_area
 //
 package org.gnome.gtk

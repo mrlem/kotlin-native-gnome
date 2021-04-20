@@ -1,7 +1,5 @@
 // TODO - get_direction
 // TODO - get_menu_model
-// TODO - get_direction
-// TODO - get_menu_model
 // TODO - set_direction
 // TODO - set_menu_model
 //

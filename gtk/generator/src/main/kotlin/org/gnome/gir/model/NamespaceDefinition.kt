@@ -1,7 +1,5 @@
 package org.gnome.gir.model
 
-import org.gnome.gir.GNOME_PACKAGE_NAME
-
 /**
  * GIR namespace.
  *

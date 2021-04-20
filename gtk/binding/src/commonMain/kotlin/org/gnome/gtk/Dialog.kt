@@ -1,4 +1,7 @@
 // TODO - add_buttons
+// TODO - get_action_area
+// TODO - set_alternative_button_order
+// TODO - set_alternative_button_order_from_array
 //
 package org.gnome.gtk
 

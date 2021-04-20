@@ -1,5 +1,4 @@
 // TODO - get_widgets
-// TODO - get_widgets
 //
 package org.gnome.gtk
 

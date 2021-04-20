@@ -1,7 +1,5 @@
 // TODO - get_child_pack_direction
 // TODO - get_pack_direction
-// TODO - get_child_pack_direction
-// TODO - get_pack_direction
 // TODO - set_child_pack_direction
 // TODO - set_pack_direction
 //

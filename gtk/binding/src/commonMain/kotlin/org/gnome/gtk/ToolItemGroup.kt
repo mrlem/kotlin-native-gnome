@@ -1,7 +1,5 @@
 // TODO - get_ellipsize
 // TODO - get_header_relief
-// TODO - get_ellipsize
-// TODO - get_header_relief
 // TODO - set_ellipsize
 // TODO - set_header_relief
 //

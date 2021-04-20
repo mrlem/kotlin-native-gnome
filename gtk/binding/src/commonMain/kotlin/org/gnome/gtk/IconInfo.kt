@@ -1,3 +1,9 @@
+// TODO - copy
+// TODO - free
+// TODO - get_attach_points
+// TODO - get_builtin_pixbuf
+// TODO - get_display_name
+// TODO - get_embedded_rect
 // TODO - load_icon
 // TODO - load_icon_async
 // TODO - load_icon_finish
@@ -8,6 +14,8 @@
 // TODO - load_symbolic_for_context
 // TODO - load_symbolic_for_context_async
 // TODO - load_symbolic_for_context_finish
+// TODO - load_symbolic_for_style
+// TODO - set_raw_coordinates
 //
 package org.gnome.gtk
 

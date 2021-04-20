@@ -1,4 +1,3 @@
-// TODO - get_update_policy
 // TODO - get_increments
 // TODO - get_range
 // TODO - get_update_policy

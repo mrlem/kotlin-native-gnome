@@ -1,6 +1,7 @@
 package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.FileSpec
+import org.gnome.gir.generator.kotlin.generators.ext.packageName
 import org.gnome.gir.model.NamespaceDefinition
 
 fun NamespaceDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec {

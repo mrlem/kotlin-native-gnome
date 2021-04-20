@@ -2,8 +2,10 @@ package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
-import org.gnome.gir.GNOME_PACKAGE_NAME
-import org.gnome.gir.GTK_CINTEROP_PACKAGE_NAME
+import org.gnome.gir.GNOME_PACKAGE
+import org.gnome.gir.GTK_CINTEROP_PACKAGE
+import org.gnome.gir.generator.kotlin.generators.ext.packageName
+import org.gnome.gir.generator.kotlin.generators.ext.toClassName
 import org.gnome.gir.model.ClassDefinition
 import org.gnome.gir.model.NamespaceDefinition
 import org.gnome.gir.resolver.Resolver
@@ -50,7 +52,7 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
                 TypeAliasSpec.builder(
                     name,
                     ClassName("kotlinx.cinterop", "CPointer")
-                        .plusParameter(ClassName(GTK_CINTEROP_PACKAGE_NAME, cType))
+                        .plusParameter(ClassName(GTK_CINTEROP_PACKAGE, cType))
                 )
                     .build()
             )
@@ -79,7 +81,7 @@ private fun FileSpec.Builder.addConverters(classNameString: String, className: C
 
 private fun FileSpec.Builder.addConverter(className: ClassName, ancestor: String) {
     val (ancestorNamespaceName, ancestorClassName) = ancestor.split(".")
-    val ancestorPackageName = "${GNOME_PACKAGE_NAME}.${ancestorNamespaceName.toLowerCase()}"
+    val ancestorPackageName = "${GNOME_PACKAGE}.${ancestorNamespaceName.toLowerCase()}"
 
     addProperty(
         PropertySpec.builder("as$ancestorClassName", ClassName(ancestorPackageName, ancestorClassName))

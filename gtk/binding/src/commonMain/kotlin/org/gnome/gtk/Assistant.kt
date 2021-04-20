@@ -1,5 +1,9 @@
+// TODO - get_page_header_image
+// TODO - get_page_side_image
 // TODO - get_page_type
 // TODO - set_forward_page_func
+// TODO - set_page_header_image
+// TODO - set_page_side_image
 // TODO - set_page_type
 //
 package org.gnome.gtk

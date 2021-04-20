@@ -1,4 +1,3 @@
-// TODO - get_children
 // TODO - add_with_properties
 // TODO - child_get
 // TODO - child_get_property
@@ -10,7 +9,14 @@
 // TODO - forall
 // TODO - foreach
 // TODO - get_children
+// TODO - get_focus_chain
+// TODO - get_resize_mode
 // TODO - propagate_draw
+// TODO - resize_children
+// TODO - set_focus_chain
+// TODO - set_reallocate_redraws
+// TODO - set_resize_mode
+// TODO - unset_focus_chain
 //
 package org.gnome.gtk
 

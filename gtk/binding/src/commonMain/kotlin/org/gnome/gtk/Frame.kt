@@ -1,4 +1,3 @@
-// TODO - get_shadow_type
 // TODO - get_label_align
 // TODO - get_shadow_type
 // TODO - set_shadow_type

@@ -1,4 +1,3 @@
-// TODO - get_request_mode
 // TODO - activate
 // TODO - get_aligned_area
 // TODO - get_alignment
@@ -10,6 +9,7 @@
 // TODO - get_preferred_width
 // TODO - get_preferred_width_for_height
 // TODO - get_request_mode
+// TODO - get_size
 // TODO - render
 // TODO - start_editing
 //

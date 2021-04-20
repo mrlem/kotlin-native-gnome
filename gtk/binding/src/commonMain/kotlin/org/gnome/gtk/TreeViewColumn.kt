@@ -1,5 +1,3 @@
-// TODO - get_sizing
-// TODO - get_sort_order
 // TODO - cell_get_position
 // TODO - cell_get_size
 // TODO - get_sizing

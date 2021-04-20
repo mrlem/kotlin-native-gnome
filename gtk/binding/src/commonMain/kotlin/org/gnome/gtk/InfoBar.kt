@@ -1,4 +1,3 @@
-// TODO - get_message_type
 // TODO - add_buttons
 // TODO - get_message_type
 // TODO - set_message_type

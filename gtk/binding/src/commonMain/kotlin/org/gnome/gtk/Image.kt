@@ -1,15 +1,16 @@
 // TODO - get_animation
-// TODO - get_pixbuf
-// TODO - get_storage_type
-// TODO - get_animation
 // TODO - get_gicon
 // TODO - get_icon_name
+// TODO - get_icon_set
 // TODO - get_pixbuf
+// TODO - get_stock
 // TODO - get_storage_type
 // TODO - set_from_animation
 // TODO - set_from_gicon
 // TODO - set_from_icon_name
+// TODO - set_from_icon_set
 // TODO - set_from_pixbuf
+// TODO - set_from_stock
 // TODO - set_from_surface
 //
 package org.gnome.gtk
