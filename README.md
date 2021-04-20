@@ -17,7 +17,7 @@ They say a picture is worth a thousand words:
 ## Status
 
 * API coverage is progressing, though some things are sorely missed (lambda based signal handlers generation is next).
-* the aim is to be able to fully generate the API through [GIR](https://gi.readthedocs.io) (most of what is already present is already generated).
+* [GIR](https://gi.readthedocs.io) parsing is complete: the API is nearly 100% generated based on it.
 * tested on Ubuntu 20.04
 
 ## Build
