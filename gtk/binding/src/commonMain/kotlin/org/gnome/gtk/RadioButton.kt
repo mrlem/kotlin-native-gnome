@@ -37,6 +37,6 @@ public val RadioButton.asToggleButton: ToggleButton
 public val RadioButton.asCheckButton: CheckButton
   get() = reinterpret()
 
-public fun RadioButton.joinGroup(groupSource: RadioButton): Unit {
-  gtk_radio_button_join_group(this, groupSource.reinterpret())
+public fun RadioButton.joinGroup(groupSource: RadioButton?): Unit {
+  gtk_radio_button_join_group(this, groupSource?.reinterpret())
 }

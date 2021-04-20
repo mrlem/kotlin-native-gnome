@@ -1,13 +1,11 @@
 // TODO - get_attributes
 // TODO - get_ellipsize
-// TODO - get_justify
 // TODO - get_layout
 // TODO - get_layout_offsets
 // TODO - get_line_wrap_mode
 // TODO - get_selection_bounds
 // TODO - set_attributes
 // TODO - set_ellipsize
-// TODO - set_justify
 // TODO - set_line_wrap_mode
 //
 package org.gnome.gtk
@@ -15,6 +13,7 @@ package org.gnome.gtk
 import gtk3.GtkLabel
 import gtk3.gtk_label_get_angle
 import gtk3.gtk_label_get_current_uri
+import gtk3.gtk_label_get_justify
 import gtk3.gtk_label_get_label
 import gtk3.gtk_label_get_line_wrap
 import gtk3.gtk_label_get_lines
@@ -32,6 +31,7 @@ import gtk3.gtk_label_get_xalign
 import gtk3.gtk_label_get_yalign
 import gtk3.gtk_label_select_region
 import gtk3.gtk_label_set_angle
+import gtk3.gtk_label_set_justify
 import gtk3.gtk_label_set_label
 import gtk3.gtk_label_set_line_wrap
 import gtk3.gtk_label_set_lines
@@ -87,6 +87,12 @@ public var Label.angle: Double
 
 public val Label.currentUri: String
   get() = gtk_label_get_current_uri(this).toKString
+
+public var Label.justify: Justification
+  get() = gtk_label_get_justify(this)
+  set(`value`) {
+    gtk_label_set_justify(this, value)
+  }
 
 public var Label.label: String
   get() = gtk_label_get_label(this).toKString
@@ -179,18 +185,18 @@ public fun Label.selectRegion(startOffset: Int, endOffset: Int): Unit {
   gtk_label_select_region(this, startOffset, endOffset)
 }
 
-public fun Label.setMarkup(str: String?): Unit {
+public fun Label.setMarkup(str: String): Unit {
   gtk_label_set_markup(this, str)
 }
 
-public fun Label.setMarkupWithMnemonic(str: String?): Unit {
+public fun Label.setMarkupWithMnemonic(str: String): Unit {
   gtk_label_set_markup_with_mnemonic(this, str)
 }
 
-public fun Label.setPattern(pattern: String?): Unit {
+public fun Label.setPattern(pattern: String): Unit {
   gtk_label_set_pattern(this, pattern)
 }
 
-public fun Label.setTextWithMnemonic(str: String?): Unit {
+public fun Label.setTextWithMnemonic(str: String): Unit {
   gtk_label_set_text_with_mnemonic(this, str)
 }

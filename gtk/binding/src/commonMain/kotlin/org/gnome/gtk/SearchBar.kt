@@ -46,6 +46,6 @@ public var SearchBar.showCloseButton: Boolean
     gtk_search_bar_set_show_close_button(this, value.toInt)
   }
 
-public fun SearchBar.connectEntry(entry: Entry): Unit {
-  gtk_search_bar_connect_entry(this, entry.reinterpret())
+public fun SearchBar.connectEntry(entry: Entry?): Unit {
+  gtk_search_bar_connect_entry(this, entry?.reinterpret())
 }

@@ -19,7 +19,7 @@ public typealias CssProvider = CPointer<GtkCssProvider>
 public val CssProvider.asObject: Object
   get() = reinterpret()
 
-public fun CssProvider.loadFromResource(resourcePath: String?): Unit {
+public fun CssProvider.loadFromResource(resourcePath: String): Unit {
   gtk_css_provider_load_from_resource(this, resourcePath)
 }
 

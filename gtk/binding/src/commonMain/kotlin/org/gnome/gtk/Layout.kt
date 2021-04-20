@@ -34,19 +34,19 @@ public val Layout.asContainer: Container
   get() = reinterpret()
 
 public fun Layout.move(
-  childWidget: Widget,
+  childWidget: Widget?,
   x: Int,
   y: Int
 ): Unit {
-  gtk_layout_move(this, childWidget.reinterpret(), x, y)
+  gtk_layout_move(this, childWidget?.reinterpret(), x, y)
 }
 
 public fun Layout.put(
-  childWidget: Widget,
+  childWidget: Widget?,
   x: Int,
   y: Int
 ): Unit {
-  gtk_layout_put(this, childWidget.reinterpret(), x, y)
+  gtk_layout_put(this, childWidget?.reinterpret(), x, y)
 }
 
 public fun Layout.setSize(width: UInt, height: UInt): Unit {

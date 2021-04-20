@@ -22,11 +22,11 @@ public typealias RecentManager = CPointer<GtkRecentManager>
 public val RecentManager.asObject: Object
   get() = reinterpret()
 
-public fun RecentManager.addFull(uri: String?, recentData: RecentData): Boolean =
-    gtk_recent_manager_add_full(this, uri, recentData.reinterpret()).toBoolean
+public fun RecentManager.addFull(uri: String, recentData: RecentData?): Boolean =
+    gtk_recent_manager_add_full(this, uri, recentData?.reinterpret()).toBoolean
 
-public fun RecentManager.addItem(uri: String?): Boolean = gtk_recent_manager_add_item(this,
+public fun RecentManager.addItem(uri: String): Boolean = gtk_recent_manager_add_item(this,
     uri).toBoolean
 
-public fun RecentManager.hasItem(uri: String?): Boolean = gtk_recent_manager_has_item(this,
+public fun RecentManager.hasItem(uri: String): Boolean = gtk_recent_manager_has_item(this,
     uri).toBoolean

@@ -41,10 +41,10 @@ public var MenuToolButton.menu: Widget?
     gtk_menu_tool_button_set_menu(this, value)
   }
 
-public fun MenuToolButton.setArrowTooltipMarkup(markup: String?): Unit {
+public fun MenuToolButton.setArrowTooltipMarkup(markup: String): Unit {
   gtk_menu_tool_button_set_arrow_tooltip_markup(this, markup)
 }
 
-public fun MenuToolButton.setArrowTooltipText(text: String?): Unit {
+public fun MenuToolButton.setArrowTooltipText(text: String): Unit {
   gtk_menu_tool_button_set_arrow_tooltip_text(this, text)
 }

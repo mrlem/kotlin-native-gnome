@@ -1,15 +1,15 @@
 // TODO - get_label_align
-// TODO - get_shadow_type
-// TODO - set_shadow_type
 //
 package org.gnome.gtk
 
 import gtk3.GtkFrame
 import gtk3.gtk_frame_get_label
 import gtk3.gtk_frame_get_label_widget
+import gtk3.gtk_frame_get_shadow_type
 import gtk3.gtk_frame_set_label
 import gtk3.gtk_frame_set_label_align
 import gtk3.gtk_frame_set_label_widget
+import gtk3.gtk_frame_set_shadow_type
 import kotlin.Float
 import kotlin.String
 import kotlin.Unit
@@ -46,6 +46,12 @@ public var Frame.labelWidget: Widget?
   get() = gtk_frame_get_label_widget(this)?.reinterpret()
   set(`value`) {
     gtk_frame_set_label_widget(this, value)
+  }
+
+public var Frame.shadowType: ShadowType
+  get() = gtk_frame_get_shadow_type(this)
+  set(`value`) {
+    gtk_frame_set_shadow_type(this, value)
   }
 
 public fun Frame.setLabelAlign(xalign: Float, yalign: Float): Unit {

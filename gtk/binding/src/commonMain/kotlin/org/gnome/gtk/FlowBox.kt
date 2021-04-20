@@ -1,9 +1,7 @@
 // TODO - bind_model
 // TODO - get_selected_children
-// TODO - get_selection_mode
 // TODO - selected_foreach
 // TODO - set_filter_func
-// TODO - set_selection_mode
 // TODO - set_sort_func
 //
 package org.gnome.gtk
@@ -17,6 +15,7 @@ import gtk3.gtk_flow_box_get_homogeneous
 import gtk3.gtk_flow_box_get_max_children_per_line
 import gtk3.gtk_flow_box_get_min_children_per_line
 import gtk3.gtk_flow_box_get_row_spacing
+import gtk3.gtk_flow_box_get_selection_mode
 import gtk3.gtk_flow_box_insert
 import gtk3.gtk_flow_box_invalidate_filter
 import gtk3.gtk_flow_box_invalidate_sort
@@ -29,6 +28,7 @@ import gtk3.gtk_flow_box_set_homogeneous
 import gtk3.gtk_flow_box_set_max_children_per_line
 import gtk3.gtk_flow_box_set_min_children_per_line
 import gtk3.gtk_flow_box_set_row_spacing
+import gtk3.gtk_flow_box_set_selection_mode
 import gtk3.gtk_flow_box_set_vadjustment
 import gtk3.gtk_flow_box_unselect_all
 import gtk3.gtk_flow_box_unselect_child
@@ -93,14 +93,20 @@ public var FlowBox.rowSpacing: UInt
     gtk_flow_box_set_row_spacing(this, value)
   }
 
+public var FlowBox.selectionMode: SelectionMode
+  get() = gtk_flow_box_get_selection_mode(this)
+  set(`value`) {
+    gtk_flow_box_set_selection_mode(this, value)
+  }
+
 public fun FlowBox.getChildAtIndex(idx: Int): FlowBoxChild? = gtk_flow_box_get_child_at_index(this,
     idx)?.reinterpret()
 
 public fun FlowBox.getChildAtPos(x: Int, y: Int): FlowBoxChild? =
     gtk_flow_box_get_child_at_pos(this, x, y)?.reinterpret()
 
-public fun FlowBox.insert(widget: Widget, position: Int): Unit {
-  gtk_flow_box_insert(this, widget.reinterpret(), position)
+public fun FlowBox.insert(widget: Widget?, position: Int): Unit {
+  gtk_flow_box_insert(this, widget?.reinterpret(), position)
 }
 
 public fun FlowBox.invalidateFilter(): Unit {
@@ -115,22 +121,22 @@ public fun FlowBox.selectAll(): Unit {
   gtk_flow_box_select_all(this)
 }
 
-public fun FlowBox.selectChild(child: FlowBoxChild): Unit {
-  gtk_flow_box_select_child(this, child.reinterpret())
+public fun FlowBox.selectChild(child: FlowBoxChild?): Unit {
+  gtk_flow_box_select_child(this, child?.reinterpret())
 }
 
-public fun FlowBox.setHadjustment(adjustment: Adjustment): Unit {
-  gtk_flow_box_set_hadjustment(this, adjustment.reinterpret())
+public fun FlowBox.setHadjustment(adjustment: Adjustment?): Unit {
+  gtk_flow_box_set_hadjustment(this, adjustment?.reinterpret())
 }
 
-public fun FlowBox.setVadjustment(adjustment: Adjustment): Unit {
-  gtk_flow_box_set_vadjustment(this, adjustment.reinterpret())
+public fun FlowBox.setVadjustment(adjustment: Adjustment?): Unit {
+  gtk_flow_box_set_vadjustment(this, adjustment?.reinterpret())
 }
 
 public fun FlowBox.unselectAll(): Unit {
   gtk_flow_box_unselect_all(this)
 }
 
-public fun FlowBox.unselectChild(child: FlowBoxChild): Unit {
-  gtk_flow_box_unselect_child(this, child.reinterpret())
+public fun FlowBox.unselectChild(child: FlowBoxChild?): Unit {
+  gtk_flow_box_unselect_child(this, child?.reinterpret())
 }

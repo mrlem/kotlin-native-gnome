@@ -29,5 +29,5 @@ public var EventControllerKey.imContext: IMContext?
     gtk_event_controller_key_set_im_context(this, value)
   }
 
-public fun EventControllerKey.forward(widget: Widget): Boolean =
-    gtk_event_controller_key_forward(this, widget.reinterpret()).toBoolean
+public fun EventControllerKey.forward(widget: Widget?): Boolean =
+    gtk_event_controller_key_forward(this, widget?.reinterpret()).toBoolean

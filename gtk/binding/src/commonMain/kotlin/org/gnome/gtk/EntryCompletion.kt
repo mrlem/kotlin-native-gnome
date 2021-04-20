@@ -101,18 +101,18 @@ public fun EntryCompletion.complete(): Unit {
   gtk_entry_completion_complete(this)
 }
 
-public fun EntryCompletion.computePrefix(key: String?): String =
+public fun EntryCompletion.computePrefix(key: String): String =
     gtk_entry_completion_compute_prefix(this, key).toKString
 
 public fun EntryCompletion.deleteAction(index: Int): Unit {
   gtk_entry_completion_delete_action(this, index)
 }
 
-public fun EntryCompletion.insertActionMarkup(index: Int, markup: String?): Unit {
+public fun EntryCompletion.insertActionMarkup(index: Int, markup: String): Unit {
   gtk_entry_completion_insert_action_markup(this, index, markup)
 }
 
-public fun EntryCompletion.insertActionText(index: Int, text: String?): Unit {
+public fun EntryCompletion.insertActionText(index: Int, text: String): Unit {
   gtk_entry_completion_insert_action_text(this, index, text)
 }
 

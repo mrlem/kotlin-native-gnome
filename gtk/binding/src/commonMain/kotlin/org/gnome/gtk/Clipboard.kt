@@ -48,7 +48,7 @@ public fun Clipboard.clear(): Unit {
   gtk_clipboard_clear(this)
 }
 
-public fun Clipboard.setText(text: String?, len: Int): Unit {
+public fun Clipboard.setText(text: String, len: Int): Unit {
   gtk_clipboard_set_text(this, text, len)
 }
 
@@ -61,8 +61,8 @@ public fun Clipboard.waitForText(): String = gtk_clipboard_wait_for_text(this).t
 public fun Clipboard.waitIsImageAvailable(): Boolean =
     gtk_clipboard_wait_is_image_available(this).toBoolean
 
-public fun Clipboard.waitIsRichTextAvailable(buffer: TextBuffer): Boolean =
-    gtk_clipboard_wait_is_rich_text_available(this, buffer.reinterpret()).toBoolean
+public fun Clipboard.waitIsRichTextAvailable(buffer: TextBuffer?): Boolean =
+    gtk_clipboard_wait_is_rich_text_available(this, buffer?.reinterpret()).toBoolean
 
 public fun Clipboard.waitIsTextAvailable(): Boolean =
     gtk_clipboard_wait_is_text_available(this).toBoolean

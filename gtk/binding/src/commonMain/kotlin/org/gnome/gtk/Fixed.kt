@@ -25,17 +25,17 @@ public val Fixed.asContainer: Container
   get() = reinterpret()
 
 public fun Fixed.move(
-  widget: Widget,
+  widget: Widget?,
   x: Int,
   y: Int
 ): Unit {
-  gtk_fixed_move(this, widget.reinterpret(), x, y)
+  gtk_fixed_move(this, widget?.reinterpret(), x, y)
 }
 
 public fun Fixed.put(
-  widget: Widget,
+  widget: Widget?,
   x: Int,
   y: Int
 ): Unit {
-  gtk_fixed_put(this, widget.reinterpret(), x, y)
+  gtk_fixed_put(this, widget?.reinterpret(), x, y)
 }

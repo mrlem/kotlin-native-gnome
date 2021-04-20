@@ -34,6 +34,6 @@ public val RadioMenuItem.asMenuItem: MenuItem
 public val RadioMenuItem.asCheckMenuItem: CheckMenuItem
   get() = reinterpret()
 
-public fun RadioMenuItem.joinGroup(groupSource: RadioMenuItem): Unit {
-  gtk_radio_menu_item_join_group(this, groupSource.reinterpret())
+public fun RadioMenuItem.joinGroup(groupSource: RadioMenuItem?): Unit {
+  gtk_radio_menu_item_join_group(this, groupSource?.reinterpret())
 }

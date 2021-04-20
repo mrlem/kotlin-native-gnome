@@ -1,11 +1,7 @@
 // TODO - cell_get_position
 // TODO - cell_get_size
-// TODO - get_sizing
-// TODO - get_sort_order
 // TODO - set_attributes
 // TODO - set_cell_data_func
-// TODO - set_sizing
-// TODO - set_sort_order
 //
 package org.gnome.gtk
 
@@ -26,8 +22,10 @@ import gtk3.gtk_tree_view_column_get_max_width
 import gtk3.gtk_tree_view_column_get_min_width
 import gtk3.gtk_tree_view_column_get_reorderable
 import gtk3.gtk_tree_view_column_get_resizable
+import gtk3.gtk_tree_view_column_get_sizing
 import gtk3.gtk_tree_view_column_get_sort_column_id
 import gtk3.gtk_tree_view_column_get_sort_indicator
+import gtk3.gtk_tree_view_column_get_sort_order
 import gtk3.gtk_tree_view_column_get_spacing
 import gtk3.gtk_tree_view_column_get_title
 import gtk3.gtk_tree_view_column_get_tree_view
@@ -46,8 +44,10 @@ import gtk3.gtk_tree_view_column_set_max_width
 import gtk3.gtk_tree_view_column_set_min_width
 import gtk3.gtk_tree_view_column_set_reorderable
 import gtk3.gtk_tree_view_column_set_resizable
+import gtk3.gtk_tree_view_column_set_sizing
 import gtk3.gtk_tree_view_column_set_sort_column_id
 import gtk3.gtk_tree_view_column_set_sort_indicator
+import gtk3.gtk_tree_view_column_set_sort_order
 import gtk3.gtk_tree_view_column_set_spacing
 import gtk3.gtk_tree_view_column_set_title
 import gtk3.gtk_tree_view_column_set_visible
@@ -124,6 +124,12 @@ public var TreeViewColumn.resizable: Boolean
     gtk_tree_view_column_set_resizable(this, value.toInt)
   }
 
+public var TreeViewColumn.sizing: TreeViewColumnSizing
+  get() = gtk_tree_view_column_get_sizing(this)
+  set(`value`) {
+    gtk_tree_view_column_set_sizing(this, value)
+  }
+
 public var TreeViewColumn.sortColumnId: Int
   get() = gtk_tree_view_column_get_sort_column_id(this)
   set(`value`) {
@@ -134,6 +140,12 @@ public var TreeViewColumn.sortIndicator: Boolean
   get() = gtk_tree_view_column_get_sort_indicator(this).toBoolean
   set(`value`) {
     gtk_tree_view_column_set_sort_indicator(this, value.toInt)
+  }
+
+public var TreeViewColumn.sortOrder: SortType
+  get() = gtk_tree_view_column_get_sort_order(this)
+  set(`value`) {
+    gtk_tree_view_column_set_sort_order(this, value)
   }
 
 public var TreeViewColumn.spacing: Int
@@ -170,23 +182,23 @@ public val TreeViewColumn.xOffset: Int
   get() = gtk_tree_view_column_get_x_offset(this)
 
 public fun TreeViewColumn.addAttribute(
-  cellRenderer: CellRenderer,
-  attribute: String?,
+  cellRenderer: CellRenderer?,
+  attribute: String,
   column: Int
 ): Unit {
-  gtk_tree_view_column_add_attribute(this, cellRenderer.reinterpret(), attribute, column)
+  gtk_tree_view_column_add_attribute(this, cellRenderer?.reinterpret(), attribute, column)
 }
 
 public fun TreeViewColumn.cellIsVisible(): Boolean =
     gtk_tree_view_column_cell_is_visible(this).toBoolean
 
 public fun TreeViewColumn.cellSetCellData(
-  treeModel: TreeModel,
-  iter: TreeIter,
+  treeModel: TreeModel?,
+  iter: TreeIter?,
   isExpander: Boolean,
   isExpanded: Boolean
 ): Unit {
-  gtk_tree_view_column_cell_set_cell_data(this, treeModel.reinterpret(), iter.reinterpret(),
+  gtk_tree_view_column_cell_set_cell_data(this, treeModel?.reinterpret(), iter?.reinterpret(),
       isExpander.toInt, isExpanded.toInt)
 }
 
@@ -194,24 +206,24 @@ public fun TreeViewColumn.clear(): Unit {
   gtk_tree_view_column_clear(this)
 }
 
-public fun TreeViewColumn.clearAttributes(cellRenderer: CellRenderer): Unit {
-  gtk_tree_view_column_clear_attributes(this, cellRenderer.reinterpret())
+public fun TreeViewColumn.clearAttributes(cellRenderer: CellRenderer?): Unit {
+  gtk_tree_view_column_clear_attributes(this, cellRenderer?.reinterpret())
 }
 
 public fun TreeViewColumn.clicked(): Unit {
   gtk_tree_view_column_clicked(this)
 }
 
-public fun TreeViewColumn.focusCell(cell: CellRenderer): Unit {
-  gtk_tree_view_column_focus_cell(this, cell.reinterpret())
+public fun TreeViewColumn.focusCell(cell: CellRenderer?): Unit {
+  gtk_tree_view_column_focus_cell(this, cell?.reinterpret())
 }
 
-public fun TreeViewColumn.packEnd(cell: CellRenderer, expand: Boolean): Unit {
-  gtk_tree_view_column_pack_end(this, cell.reinterpret(), expand.toInt)
+public fun TreeViewColumn.packEnd(cell: CellRenderer?, expand: Boolean): Unit {
+  gtk_tree_view_column_pack_end(this, cell?.reinterpret(), expand.toInt)
 }
 
-public fun TreeViewColumn.packStart(cell: CellRenderer, expand: Boolean): Unit {
-  gtk_tree_view_column_pack_start(this, cell.reinterpret(), expand.toInt)
+public fun TreeViewColumn.packStart(cell: CellRenderer?, expand: Boolean): Unit {
+  gtk_tree_view_column_pack_start(this, cell?.reinterpret(), expand.toInt)
 }
 
 public fun TreeViewColumn.queueResize(): Unit {

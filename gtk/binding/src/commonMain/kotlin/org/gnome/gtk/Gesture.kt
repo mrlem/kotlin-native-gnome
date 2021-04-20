@@ -10,7 +10,6 @@
 // TODO - get_window
 // TODO - handles_sequence
 // TODO - set_sequence_state
-// TODO - set_state
 // TODO - set_window
 //
 package org.gnome.gtk
@@ -20,6 +19,7 @@ import gtk3.gtk_gesture_group
 import gtk3.gtk_gesture_is_active
 import gtk3.gtk_gesture_is_grouped_with
 import gtk3.gtk_gesture_is_recognized
+import gtk3.gtk_gesture_set_state
 import gtk3.gtk_gesture_ungroup
 import kotlin.Boolean
 import kotlin.Unit
@@ -36,16 +36,19 @@ public val Gesture.asObject: Object
 public val Gesture.asEventController: EventController
   get() = reinterpret()
 
-public fun Gesture.group(gesture: Gesture): Unit {
-  gtk_gesture_group(this, gesture.reinterpret())
+public fun Gesture.group(gesture: Gesture?): Unit {
+  gtk_gesture_group(this, gesture?.reinterpret())
 }
 
 public fun Gesture.isActive(): Boolean = gtk_gesture_is_active(this).toBoolean
 
-public fun Gesture.isGroupedWith(other: Gesture): Boolean = gtk_gesture_is_grouped_with(this,
-    other.reinterpret()).toBoolean
+public fun Gesture.isGroupedWith(other: Gesture?): Boolean = gtk_gesture_is_grouped_with(this,
+    other?.reinterpret()).toBoolean
 
 public fun Gesture.isRecognized(): Boolean = gtk_gesture_is_recognized(this).toBoolean
+
+public fun Gesture.setState(state: EventSequenceState): Boolean = gtk_gesture_set_state(this,
+    state).toBoolean
 
 public fun Gesture.ungroup(): Unit {
   gtk_gesture_ungroup(this)

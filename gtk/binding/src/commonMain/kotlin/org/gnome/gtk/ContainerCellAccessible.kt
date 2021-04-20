@@ -24,10 +24,10 @@ public val ContainerCellAccessible.asAccessible: Accessible
 public val ContainerCellAccessible.asCellAccessible: CellAccessible
   get() = reinterpret()
 
-public fun ContainerCellAccessible.addChild(child: CellAccessible): Unit {
-  gtk_container_cell_accessible_add_child(this, child.reinterpret())
+public fun ContainerCellAccessible.addChild(child: CellAccessible?): Unit {
+  gtk_container_cell_accessible_add_child(this, child?.reinterpret())
 }
 
-public fun ContainerCellAccessible.removeChild(child: CellAccessible): Unit {
-  gtk_container_cell_accessible_remove_child(this, child.reinterpret())
+public fun ContainerCellAccessible.removeChild(child: CellAccessible?): Unit {
+  gtk_container_cell_accessible_remove_child(this, child?.reinterpret())
 }

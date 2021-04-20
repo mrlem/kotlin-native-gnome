@@ -34,10 +34,10 @@ public var ActionBar.centerWidget: Widget?
     gtk_action_bar_set_center_widget(this, value)
   }
 
-public fun ActionBar.packEnd(child: Widget): Unit {
-  gtk_action_bar_pack_end(this, child.reinterpret())
+public fun ActionBar.packEnd(child: Widget?): Unit {
+  gtk_action_bar_pack_end(this, child?.reinterpret())
 }
 
-public fun ActionBar.packStart(child: Widget): Unit {
-  gtk_action_bar_pack_start(this, child.reinterpret())
+public fun ActionBar.packStart(child: Widget?): Unit {
+  gtk_action_bar_pack_start(this, child?.reinterpret())
 }

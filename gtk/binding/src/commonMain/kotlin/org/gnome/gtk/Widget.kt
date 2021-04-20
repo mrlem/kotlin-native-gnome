@@ -1,9 +1,7 @@
 // TODO - add_accelerator
 // TODO - add_device_events
 // TODO - add_tick_callback
-// TODO - child_focus
 // TODO - class_path
-// TODO - compute_expand
 // TODO - create_pango_context
 // TODO - create_pango_layout
 // TODO - destroyed
@@ -31,12 +29,10 @@
 // TODO - get_composite_name
 // TODO - get_device_enabled
 // TODO - get_device_events
-// TODO - get_direction
 // TODO - get_display
 // TODO - get_font_map
 // TODO - get_font_options
 // TODO - get_frame_clock
-// TODO - get_halign
 // TODO - get_margin_left
 // TODO - get_margin_right
 // TODO - get_modifier_mask
@@ -50,7 +46,6 @@
 // TODO - get_preferred_size
 // TODO - get_preferred_width
 // TODO - get_preferred_width_for_height
-// TODO - get_request_mode
 // TODO - get_requisition
 // TODO - get_root_window
 // TODO - get_screen
@@ -58,8 +53,6 @@
 // TODO - get_state
 // TODO - get_style
 // TODO - get_template_child
-// TODO - get_valign
-// TODO - get_valign_with_baseline
 // TODO - get_visual
 // TODO - get_window
 // TODO - has_rc_style
@@ -67,7 +60,6 @@
 // TODO - insert_action_group
 // TODO - intersect
 // TODO - is_composited
-// TODO - keynav_failed
 // TODO - list_accel_closures
 // TODO - list_action_prefixes
 // TODO - list_mnemonic_labels
@@ -97,16 +89,13 @@
 // TODO - set_composite_name
 // TODO - set_device_enabled
 // TODO - set_device_events
-// TODO - set_direction
 // TODO - set_font_map
 // TODO - set_font_options
-// TODO - set_halign
 // TODO - set_margin_left
 // TODO - set_margin_right
 // TODO - set_parent_window
 // TODO - set_state
 // TODO - set_style
-// TODO - set_valign
 // TODO - set_visual
 // TODO - set_window
 // TODO - shape_combine_region
@@ -146,7 +135,9 @@ import gtk3.gtk_widget_activate
 import gtk3.gtk_widget_add_events
 import gtk3.gtk_widget_add_mnemonic_label
 import gtk3.gtk_widget_can_activate_accel
+import gtk3.gtk_widget_child_focus
 import gtk3.gtk_widget_child_notify
+import gtk3.gtk_widget_compute_expand
 import gtk3.gtk_widget_destroy
 import gtk3.gtk_widget_error_bell
 import gtk3.gtk_widget_freeze_child_notify
@@ -158,9 +149,11 @@ import gtk3.gtk_widget_get_app_paintable
 import gtk3.gtk_widget_get_can_default
 import gtk3.gtk_widget_get_can_focus
 import gtk3.gtk_widget_get_child_visible
+import gtk3.gtk_widget_get_direction
 import gtk3.gtk_widget_get_double_buffered
 import gtk3.gtk_widget_get_events
 import gtk3.gtk_widget_get_focus_on_click
+import gtk3.gtk_widget_get_halign
 import gtk3.gtk_widget_get_has_tooltip
 import gtk3.gtk_widget_get_has_window
 import gtk3.gtk_widget_get_hexpand
@@ -177,6 +170,7 @@ import gtk3.gtk_widget_get_parent
 import gtk3.gtk_widget_get_path
 import gtk3.gtk_widget_get_realized
 import gtk3.gtk_widget_get_receives_default
+import gtk3.gtk_widget_get_request_mode
 import gtk3.gtk_widget_get_scale_factor
 import gtk3.gtk_widget_get_sensitive
 import gtk3.gtk_widget_get_settings
@@ -187,6 +181,8 @@ import gtk3.gtk_widget_get_tooltip_markup
 import gtk3.gtk_widget_get_tooltip_text
 import gtk3.gtk_widget_get_tooltip_window
 import gtk3.gtk_widget_get_toplevel
+import gtk3.gtk_widget_get_valign
+import gtk3.gtk_widget_get_valign_with_baseline
 import gtk3.gtk_widget_get_vexpand
 import gtk3.gtk_widget_get_vexpand_set
 import gtk3.gtk_widget_get_visible
@@ -207,6 +203,7 @@ import gtk3.gtk_widget_is_focus
 import gtk3.gtk_widget_is_sensitive
 import gtk3.gtk_widget_is_toplevel
 import gtk3.gtk_widget_is_visible
+import gtk3.gtk_widget_keynav_failed
 import gtk3.gtk_widget_map
 import gtk3.gtk_widget_mnemonic_activate
 import gtk3.gtk_widget_queue_allocate
@@ -226,9 +223,11 @@ import gtk3.gtk_widget_set_can_default
 import gtk3.gtk_widget_set_can_focus
 import gtk3.gtk_widget_set_child_visible
 import gtk3.gtk_widget_set_clip
+import gtk3.gtk_widget_set_direction
 import gtk3.gtk_widget_set_double_buffered
 import gtk3.gtk_widget_set_events
 import gtk3.gtk_widget_set_focus_on_click
+import gtk3.gtk_widget_set_halign
 import gtk3.gtk_widget_set_has_tooltip
 import gtk3.gtk_widget_set_has_window
 import gtk3.gtk_widget_set_hexpand
@@ -252,6 +251,7 @@ import gtk3.gtk_widget_set_support_multidevice
 import gtk3.gtk_widget_set_tooltip_markup
 import gtk3.gtk_widget_set_tooltip_text
 import gtk3.gtk_widget_set_tooltip_window
+import gtk3.gtk_widget_set_valign
 import gtk3.gtk_widget_set_vexpand
 import gtk3.gtk_widget_set_vexpand_set
 import gtk3.gtk_widget_set_visible
@@ -321,6 +321,12 @@ public var Widget.childVisible: Boolean
     gtk_widget_set_child_visible(this, value.toInt)
   }
 
+public var Widget.direction: TextDirection
+  get() = gtk_widget_get_direction(this)
+  set(`value`) {
+    gtk_widget_set_direction(this, value)
+  }
+
 public var Widget.doubleBuffered: Boolean
   get() = gtk_widget_get_double_buffered(this).toBoolean
   set(`value`) {
@@ -337,6 +343,12 @@ public var Widget.focusOnClick: Boolean
   get() = gtk_widget_get_focus_on_click(this).toBoolean
   set(`value`) {
     gtk_widget_set_focus_on_click(this, value.toInt)
+  }
+
+public var Widget.halign: Align
+  get() = gtk_widget_get_halign(this)
+  set(`value`) {
+    gtk_widget_set_halign(this, value)
   }
 
 public var Widget.hasTooltip: Boolean
@@ -432,6 +444,9 @@ public var Widget.receivesDefault: Boolean
     gtk_widget_set_receives_default(this, value.toInt)
   }
 
+public val Widget.requestMode: SizeRequestMode
+  get() = gtk_widget_get_request_mode(this)
+
 public val Widget.scaleFactor: Int
   get() = gtk_widget_get_scale_factor(this)
 
@@ -477,6 +492,15 @@ public var Widget.tooltipWindow: Window?
 public val Widget.toplevel: Widget?
   get() = gtk_widget_get_toplevel(this)?.reinterpret()
 
+public var Widget.valign: Align
+  get() = gtk_widget_get_valign(this)
+  set(`value`) {
+    gtk_widget_set_valign(this, value)
+  }
+
+public val Widget.valignWithBaseline: Align
+  get() = gtk_widget_get_valign_with_baseline(this)
+
 public var Widget.vexpand: Boolean
   get() = gtk_widget_get_vexpand(this).toBoolean
   set(`value`) {
@@ -501,16 +525,22 @@ public fun Widget.addEvents(events: Int): Unit {
   gtk_widget_add_events(this, events)
 }
 
-public fun Widget.addMnemonicLabel(label: Widget): Unit {
-  gtk_widget_add_mnemonic_label(this, label.reinterpret())
+public fun Widget.addMnemonicLabel(label: Widget?): Unit {
+  gtk_widget_add_mnemonic_label(this, label?.reinterpret())
 }
 
 public fun Widget.canActivateAccel(signalId: UInt): Boolean = gtk_widget_can_activate_accel(this,
     signalId).toBoolean
 
-public fun Widget.childNotify(childProperty: String?): Unit {
+public fun Widget.childFocus(direction: DirectionType): Boolean = gtk_widget_child_focus(this,
+    direction).toBoolean
+
+public fun Widget.childNotify(childProperty: String): Unit {
   gtk_widget_child_notify(this, childProperty)
 }
+
+public fun Widget.computeExpand(orientation: Orientation): Boolean = gtk_widget_compute_expand(this,
+    orientation).toBoolean
 
 public fun Widget.destroy(): Unit {
   gtk_widget_destroy(this)
@@ -540,8 +570,8 @@ public fun Widget.dragDestGetTargetList(): TargetList? =
 
 public fun Widget.dragDestGetTrackMotion(): Boolean = gtk_drag_dest_get_track_motion(this).toBoolean
 
-public fun Widget.dragDestSetTargetList(targetList: TargetList): Unit {
-  gtk_drag_dest_set_target_list(this, targetList.reinterpret())
+public fun Widget.dragDestSetTargetList(targetList: TargetList?): Unit {
+  gtk_drag_dest_set_target_list(this, targetList?.reinterpret())
 }
 
 public fun Widget.dragDestSetTrackMotion(trackMotion: Boolean): Unit {
@@ -571,12 +601,12 @@ public fun Widget.dragSourceAddUriTargets(): Unit {
 public fun Widget.dragSourceGetTargetList(): TargetList? =
     gtk_drag_source_get_target_list(this)?.reinterpret()
 
-public fun Widget.dragSourceSetIconName(iconName: String?): Unit {
+public fun Widget.dragSourceSetIconName(iconName: String): Unit {
   gtk_drag_source_set_icon_name(this, iconName)
 }
 
-public fun Widget.dragSourceSetTargetList(targetList: TargetList): Unit {
-  gtk_drag_source_set_target_list(this, targetList.reinterpret())
+public fun Widget.dragSourceSetTargetList(targetList: TargetList?): Unit {
+  gtk_drag_source_set_target_list(this, targetList?.reinterpret())
 }
 
 public fun Widget.dragSourceUnset(): Unit {
@@ -636,8 +666,8 @@ public fun Widget.initTemplate(): Unit {
   gtk_widget_init_template(this)
 }
 
-public fun Widget.isAncestor(ancestor: Widget): Boolean = gtk_widget_is_ancestor(this,
-    ancestor.reinterpret()).toBoolean
+public fun Widget.isAncestor(ancestor: Widget?): Boolean = gtk_widget_is_ancestor(this,
+    ancestor?.reinterpret()).toBoolean
 
 public fun Widget.isDrawable(): Boolean = gtk_widget_is_drawable(this).toBoolean
 
@@ -648,6 +678,9 @@ public fun Widget.isSensitive(): Boolean = gtk_widget_is_sensitive(this).toBoole
 public fun Widget.isToplevel(): Boolean = gtk_widget_is_toplevel(this).toBoolean
 
 public fun Widget.isVisible(): Boolean = gtk_widget_is_visible(this).toBoolean
+
+public fun Widget.keynavFailed(direction: DirectionType): Boolean = gtk_widget_keynav_failed(this,
+    direction).toBoolean
 
 public fun Widget.map(): Unit {
   gtk_widget_map(this)
@@ -689,8 +722,8 @@ public fun Widget.realize(): Unit {
   gtk_widget_realize(this)
 }
 
-public fun Widget.removeMnemonicLabel(label: Widget): Unit {
-  gtk_widget_remove_mnemonic_label(this, label.reinterpret())
+public fun Widget.removeMnemonicLabel(label: Widget?): Unit {
+  gtk_widget_remove_mnemonic_label(this, label?.reinterpret())
 }
 
 public fun Widget.removeTickCallback(id: UInt): Unit {
@@ -701,8 +734,8 @@ public fun Widget.resetStyle(): Unit {
   gtk_widget_reset_style(this)
 }
 
-public fun Widget.setAccelPath(accelPath: String?, accelGroup: AccelGroup): Unit {
-  gtk_widget_set_accel_path(this, accelPath, accelGroup.reinterpret())
+public fun Widget.setAccelPath(accelPath: String, accelGroup: AccelGroup?): Unit {
+  gtk_widget_set_accel_path(this, accelPath, accelGroup?.reinterpret())
 }
 
 public fun Widget.setAllocation(allocation: Allocation): Unit {

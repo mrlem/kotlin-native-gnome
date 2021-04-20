@@ -1,9 +1,12 @@
-// TODO - set_action
 // TODO - set_action_entries
 //
 package org.gnome.gtk
 
 import gtk3.GtkPadController
+import gtk3.gtk_pad_controller_set_action
+import kotlin.Int
+import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
@@ -15,3 +18,13 @@ public val PadController.asObject: Object
 
 public val PadController.asEventController: EventController
   get() = reinterpret()
+
+public fun PadController.setAction(
+  type: PadActionType,
+  index: Int,
+  mode: Int,
+  label: String,
+  actionName: String
+): Unit {
+  gtk_pad_controller_set_action(this, type, index, mode, label, actionName)
+}

@@ -8,7 +8,6 @@
 // TODO - get_preferred_size
 // TODO - get_preferred_width
 // TODO - get_preferred_width_for_height
-// TODO - get_request_mode
 // TODO - get_size
 // TODO - render
 // TODO - start_editing
@@ -16,6 +15,7 @@
 package org.gnome.gtk
 
 import gtk3.GtkCellRenderer
+import gtk3.gtk_cell_renderer_get_request_mode
 import gtk3.gtk_cell_renderer_get_sensitive
 import gtk3.gtk_cell_renderer_get_state
 import gtk3.gtk_cell_renderer_get_visible
@@ -45,6 +45,9 @@ public val CellRenderer.asObject: Object
 public val CellRenderer.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
 
+public val CellRenderer.requestMode: SizeRequestMode
+  get() = gtk_cell_renderer_get_request_mode(this)
+
 public var CellRenderer.sensitive: Boolean
   get() = gtk_cell_renderer_get_sensitive(this).toBoolean
   set(`value`) {
@@ -57,8 +60,8 @@ public var CellRenderer.visible: Boolean
     gtk_cell_renderer_set_visible(this, value.toInt)
   }
 
-public fun CellRenderer.getState(widget: Widget, cellState: CellRendererState): StateFlags =
-    gtk_cell_renderer_get_state(this, widget.reinterpret(), cellState)
+public fun CellRenderer.getState(widget: Widget?, cellState: CellRendererState): StateFlags =
+    gtk_cell_renderer_get_state(this, widget?.reinterpret(), cellState)
 
 public fun CellRenderer.isActivatable(): Boolean = gtk_cell_renderer_is_activatable(this).toBoolean
 

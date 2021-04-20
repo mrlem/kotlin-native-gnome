@@ -29,6 +29,6 @@ public val PopoverMenu.asBin: Bin
 public val PopoverMenu.asPopover: Popover
   get() = reinterpret()
 
-public fun PopoverMenu.openSubmenu(name: String?): Unit {
+public fun PopoverMenu.openSubmenu(name: String): Unit {
   gtk_popover_menu_open_submenu(this, name)
 }

@@ -8,7 +8,6 @@
 // TODO - cell_set_property
 // TODO - cell_set_valist
 // TODO - event
-// TODO - focus
 // TODO - foreach
 // TODO - foreach_alloc
 // TODO - get_cell_allocation
@@ -18,7 +17,6 @@
 // TODO - get_preferred_height_for_width
 // TODO - get_preferred_width
 // TODO - get_preferred_width_for_height
-// TODO - get_request_mode
 // TODO - inner_cell_area
 // TODO - render
 // TODO - request_renderer
@@ -34,11 +32,13 @@ import gtk3.gtk_cell_area_attribute_disconnect
 import gtk3.gtk_cell_area_attribute_get_column
 import gtk3.gtk_cell_area_copy_context
 import gtk3.gtk_cell_area_create_context
+import gtk3.gtk_cell_area_focus
 import gtk3.gtk_cell_area_get_current_path_string
 import gtk3.gtk_cell_area_get_edit_widget
 import gtk3.gtk_cell_area_get_edited_cell
 import gtk3.gtk_cell_area_get_focus_cell
 import gtk3.gtk_cell_area_get_focus_from_sibling
+import gtk3.gtk_cell_area_get_request_mode
 import gtk3.gtk_cell_area_has_renderer
 import gtk3.gtk_cell_area_is_activatable
 import gtk3.gtk_cell_area_is_focus_sibling
@@ -81,62 +81,68 @@ public var CellArea.focusCell: CellRenderer?
     gtk_cell_area_set_focus_cell(this, value)
   }
 
-public fun CellArea.add(renderer: CellRenderer): Unit {
-  gtk_cell_area_add(this, renderer.reinterpret())
+public val CellArea.requestMode: SizeRequestMode
+  get() = gtk_cell_area_get_request_mode(this)
+
+public fun CellArea.add(renderer: CellRenderer?): Unit {
+  gtk_cell_area_add(this, renderer?.reinterpret())
 }
 
-public fun CellArea.addFocusSibling(renderer: CellRenderer, sibling: CellRenderer): Unit {
-  gtk_cell_area_add_focus_sibling(this, renderer.reinterpret(), sibling.reinterpret())
+public fun CellArea.addFocusSibling(renderer: CellRenderer?, sibling: CellRenderer?): Unit {
+  gtk_cell_area_add_focus_sibling(this, renderer?.reinterpret(), sibling?.reinterpret())
 }
 
 public fun CellArea.applyAttributes(
-  treeModel: TreeModel,
-  iter: TreeIter,
+  treeModel: TreeModel?,
+  iter: TreeIter?,
   isExpander: Boolean,
   isExpanded: Boolean
 ): Unit {
-  gtk_cell_area_apply_attributes(this, treeModel.reinterpret(), iter.reinterpret(),
+  gtk_cell_area_apply_attributes(this, treeModel?.reinterpret(), iter?.reinterpret(),
       isExpander.toInt, isExpanded.toInt)
 }
 
 public fun CellArea.attributeConnect(
-  renderer: CellRenderer,
-  attribute: String?,
+  renderer: CellRenderer?,
+  attribute: String,
   column: Int
 ): Unit {
-  gtk_cell_area_attribute_connect(this, renderer.reinterpret(), attribute, column)
+  gtk_cell_area_attribute_connect(this, renderer?.reinterpret(), attribute, column)
 }
 
-public fun CellArea.attributeDisconnect(renderer: CellRenderer, attribute: String?): Unit {
-  gtk_cell_area_attribute_disconnect(this, renderer.reinterpret(), attribute)
+public fun CellArea.attributeDisconnect(renderer: CellRenderer?, attribute: String): Unit {
+  gtk_cell_area_attribute_disconnect(this, renderer?.reinterpret(), attribute)
 }
 
-public fun CellArea.attributeGetColumn(renderer: CellRenderer, attribute: String?): Int =
-    gtk_cell_area_attribute_get_column(this, renderer.reinterpret(), attribute)
+public fun CellArea.attributeGetColumn(renderer: CellRenderer?, attribute: String): Int =
+    gtk_cell_area_attribute_get_column(this, renderer?.reinterpret(), attribute)
 
-public fun CellArea.copyContext(context: CellAreaContext): CellAreaContext? =
-    gtk_cell_area_copy_context(this, context.reinterpret())?.reinterpret()
+public fun CellArea.copyContext(context: CellAreaContext?): CellAreaContext? =
+    gtk_cell_area_copy_context(this, context?.reinterpret())?.reinterpret()
 
 public fun CellArea.createContext(): CellAreaContext? =
     gtk_cell_area_create_context(this)?.reinterpret()
 
-public fun CellArea.getFocusFromSibling(renderer: CellRenderer): CellRenderer? =
-    gtk_cell_area_get_focus_from_sibling(this, renderer.reinterpret())?.reinterpret()
+public fun CellArea.focus(direction: DirectionType): Boolean = gtk_cell_area_focus(this,
+    direction).toBoolean
 
-public fun CellArea.hasRenderer(renderer: CellRenderer): Boolean = gtk_cell_area_has_renderer(this,
-    renderer.reinterpret()).toBoolean
+public fun CellArea.getFocusFromSibling(renderer: CellRenderer?): CellRenderer? =
+    gtk_cell_area_get_focus_from_sibling(this, renderer?.reinterpret())?.reinterpret()
+
+public fun CellArea.hasRenderer(renderer: CellRenderer?): Boolean = gtk_cell_area_has_renderer(this,
+    renderer?.reinterpret()).toBoolean
 
 public fun CellArea.isActivatable(): Boolean = gtk_cell_area_is_activatable(this).toBoolean
 
-public fun CellArea.isFocusSibling(renderer: CellRenderer, sibling: CellRenderer): Boolean =
-    gtk_cell_area_is_focus_sibling(this, renderer.reinterpret(), sibling.reinterpret()).toBoolean
+public fun CellArea.isFocusSibling(renderer: CellRenderer?, sibling: CellRenderer?): Boolean =
+    gtk_cell_area_is_focus_sibling(this, renderer?.reinterpret(), sibling?.reinterpret()).toBoolean
 
-public fun CellArea.remove(renderer: CellRenderer): Unit {
-  gtk_cell_area_remove(this, renderer.reinterpret())
+public fun CellArea.remove(renderer: CellRenderer?): Unit {
+  gtk_cell_area_remove(this, renderer?.reinterpret())
 }
 
-public fun CellArea.removeFocusSibling(renderer: CellRenderer, sibling: CellRenderer): Unit {
-  gtk_cell_area_remove_focus_sibling(this, renderer.reinterpret(), sibling.reinterpret())
+public fun CellArea.removeFocusSibling(renderer: CellRenderer?, sibling: CellRenderer?): Unit {
+  gtk_cell_area_remove_focus_sibling(this, renderer?.reinterpret(), sibling?.reinterpret())
 }
 
 public fun CellArea.stopEditing(canceled: Boolean): Unit {

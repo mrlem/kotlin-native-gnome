@@ -64,6 +64,6 @@ public fun AppChooserButton.appendSeparator(): Unit {
   gtk_app_chooser_button_append_separator(this)
 }
 
-public fun AppChooserButton.setActiveCustomItem(name: String?): Unit {
+public fun AppChooserButton.setActiveCustomItem(name: String): Unit {
   gtk_app_chooser_button_set_active_custom_item(this, name)
 }

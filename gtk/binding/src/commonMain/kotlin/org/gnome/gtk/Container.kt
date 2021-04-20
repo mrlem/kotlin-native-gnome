@@ -79,23 +79,23 @@ public var Container.focusVadjustment: Adjustment?
     gtk_container_set_focus_vadjustment(this, value)
   }
 
-public fun Container.add(widget: Widget): Unit {
-  gtk_container_add(this, widget.reinterpret())
+public fun Container.add(widget: Widget?): Unit {
+  gtk_container_add(this, widget?.reinterpret())
 }
 
 public fun Container.checkResize(): Unit {
   gtk_container_check_resize(this)
 }
 
-public fun Container.childNotify(child: Widget, childProperty: String?): Unit {
-  gtk_container_child_notify(this, child.reinterpret(), childProperty)
+public fun Container.childNotify(child: Widget?, childProperty: String): Unit {
+  gtk_container_child_notify(this, child?.reinterpret(), childProperty)
 }
 
 public fun Container.childType(): GType = gtk_container_child_type(this)
 
-public fun Container.getPathForChild(child: Widget): WidgetPath? =
-    gtk_container_get_path_for_child(this, child.reinterpret())?.reinterpret()
+public fun Container.getPathForChild(child: Widget?): WidgetPath? =
+    gtk_container_get_path_for_child(this, child?.reinterpret())?.reinterpret()
 
-public fun Container.remove(widget: Widget): Unit {
-  gtk_container_remove(this, widget.reinterpret())
+public fun Container.remove(widget: Widget?): Unit {
+  gtk_container_remove(this, widget?.reinterpret())
 }

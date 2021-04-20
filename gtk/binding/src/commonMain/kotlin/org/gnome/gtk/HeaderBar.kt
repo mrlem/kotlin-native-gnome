@@ -76,10 +76,10 @@ public var HeaderBar.title: String
     gtk_header_bar_set_title(this, value)
   }
 
-public fun HeaderBar.packEnd(child: Widget): Unit {
-  gtk_header_bar_pack_end(this, child.reinterpret())
+public fun HeaderBar.packEnd(child: Widget?): Unit {
+  gtk_header_bar_pack_end(this, child?.reinterpret())
 }
 
-public fun HeaderBar.packStart(child: Widget): Unit {
-  gtk_header_bar_pack_start(this, child.reinterpret())
+public fun HeaderBar.packStart(child: Widget?): Unit {
+  gtk_header_bar_pack_start(this, child?.reinterpret())
 }

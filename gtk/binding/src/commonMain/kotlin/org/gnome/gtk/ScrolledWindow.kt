@@ -1,10 +1,5 @@
 // TODO - add_with_viewport
-// TODO - get_placement
 // TODO - get_policy
-// TODO - get_shadow_type
-// TODO - set_placement
-// TODO - set_policy
-// TODO - set_shadow_type
 //
 package org.gnome.gtk
 
@@ -18,8 +13,10 @@ import gtk3.gtk_scrolled_window_get_max_content_width
 import gtk3.gtk_scrolled_window_get_min_content_height
 import gtk3.gtk_scrolled_window_get_min_content_width
 import gtk3.gtk_scrolled_window_get_overlay_scrolling
+import gtk3.gtk_scrolled_window_get_placement
 import gtk3.gtk_scrolled_window_get_propagate_natural_height
 import gtk3.gtk_scrolled_window_get_propagate_natural_width
+import gtk3.gtk_scrolled_window_get_shadow_type
 import gtk3.gtk_scrolled_window_get_vadjustment
 import gtk3.gtk_scrolled_window_get_vscrollbar
 import gtk3.gtk_scrolled_window_set_capture_button_press
@@ -30,8 +27,11 @@ import gtk3.gtk_scrolled_window_set_max_content_width
 import gtk3.gtk_scrolled_window_set_min_content_height
 import gtk3.gtk_scrolled_window_set_min_content_width
 import gtk3.gtk_scrolled_window_set_overlay_scrolling
+import gtk3.gtk_scrolled_window_set_placement
+import gtk3.gtk_scrolled_window_set_policy
 import gtk3.gtk_scrolled_window_set_propagate_natural_height
 import gtk3.gtk_scrolled_window_set_propagate_natural_width
+import gtk3.gtk_scrolled_window_set_shadow_type
 import gtk3.gtk_scrolled_window_set_vadjustment
 import gtk3.gtk_scrolled_window_unset_placement
 import kotlin.Boolean
@@ -112,6 +112,12 @@ public var ScrolledWindow.overlayScrolling: Boolean
     gtk_scrolled_window_set_overlay_scrolling(this, value.toInt)
   }
 
+public var ScrolledWindow.placement: CornerType
+  get() = gtk_scrolled_window_get_placement(this)
+  set(`value`) {
+    gtk_scrolled_window_set_placement(this, value)
+  }
+
 public var ScrolledWindow.propagateNaturalHeight: Boolean
   get() = gtk_scrolled_window_get_propagate_natural_height(this).toBoolean
   set(`value`) {
@@ -124,6 +130,12 @@ public var ScrolledWindow.propagateNaturalWidth: Boolean
     gtk_scrolled_window_set_propagate_natural_width(this, value.toInt)
   }
 
+public var ScrolledWindow.shadowType: ShadowType
+  get() = gtk_scrolled_window_get_shadow_type(this)
+  set(`value`) {
+    gtk_scrolled_window_set_shadow_type(this, value)
+  }
+
 public var ScrolledWindow.vadjustment: Adjustment?
   get() = gtk_scrolled_window_get_vadjustment(this)?.reinterpret()
   set(`value`) {
@@ -132,6 +144,11 @@ public var ScrolledWindow.vadjustment: Adjustment?
 
 public val ScrolledWindow.vscrollbar: Widget?
   get() = gtk_scrolled_window_get_vscrollbar(this)?.reinterpret()
+
+public fun ScrolledWindow.setPolicy(hscrollbarPolicy: PolicyType, vscrollbarPolicy: PolicyType):
+    Unit {
+  gtk_scrolled_window_set_policy(this, hscrollbarPolicy, vscrollbarPolicy)
+}
 
 public fun ScrolledWindow.unsetPlacement(): Unit {
   gtk_scrolled_window_unset_placement(this)

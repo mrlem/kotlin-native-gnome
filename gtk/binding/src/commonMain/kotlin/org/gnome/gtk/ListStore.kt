@@ -37,20 +37,20 @@ public fun ListStore.clear(): Unit {
   gtk_list_store_clear(this)
 }
 
-public fun ListStore.iterIsValid(iter: TreeIter): Boolean = gtk_list_store_iter_is_valid(this,
-    iter.reinterpret()).toBoolean
+public fun ListStore.iterIsValid(iter: TreeIter?): Boolean = gtk_list_store_iter_is_valid(this,
+    iter?.reinterpret()).toBoolean
 
-public fun ListStore.moveAfter(iter: TreeIter, position: TreeIter): Unit {
-  gtk_list_store_move_after(this, iter.reinterpret(), position.reinterpret())
+public fun ListStore.moveAfter(iter: TreeIter?, position: TreeIter?): Unit {
+  gtk_list_store_move_after(this, iter?.reinterpret(), position?.reinterpret())
 }
 
-public fun ListStore.moveBefore(iter: TreeIter, position: TreeIter): Unit {
-  gtk_list_store_move_before(this, iter.reinterpret(), position.reinterpret())
+public fun ListStore.moveBefore(iter: TreeIter?, position: TreeIter?): Unit {
+  gtk_list_store_move_before(this, iter?.reinterpret(), position?.reinterpret())
 }
 
-public fun ListStore.remove(iter: TreeIter): Boolean = gtk_list_store_remove(this,
-    iter.reinterpret()).toBoolean
+public fun ListStore.remove(iter: TreeIter?): Boolean = gtk_list_store_remove(this,
+    iter?.reinterpret()).toBoolean
 
-public fun ListStore.swap(a: TreeIter, b: TreeIter): Unit {
-  gtk_list_store_swap(this, a.reinterpret(), b.reinterpret())
+public fun ListStore.swap(a: TreeIter?, b: TreeIter?): Unit {
+  gtk_list_store_swap(this, a?.reinterpret(), b?.reinterpret())
 }

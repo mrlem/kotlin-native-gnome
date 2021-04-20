@@ -87,8 +87,8 @@ public fun MenuItem.select(): Unit {
   gtk_menu_item_select(this)
 }
 
-public fun MenuItem.setSubmenu(submenu: Menu): Unit {
-  gtk_menu_item_set_submenu(this, submenu.reinterpret())
+public fun MenuItem.setSubmenu(submenu: Menu?): Unit {
+  gtk_menu_item_set_submenu(this, submenu?.reinterpret())
 }
 
 public fun MenuItem.toggleSizeAllocate(allocation: Int): Unit {

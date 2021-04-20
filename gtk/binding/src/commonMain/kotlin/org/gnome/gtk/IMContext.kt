@@ -44,7 +44,7 @@ public fun IMContext.reset(): Unit {
 }
 
 public fun IMContext.setSurrounding(
-  text: String?,
+  text: String,
   len: Int,
   cursorIndex: Int
 ): Unit {

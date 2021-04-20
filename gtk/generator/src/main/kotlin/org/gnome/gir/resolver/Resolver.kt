@@ -10,7 +10,7 @@ class Resolver(repository: RepositoryDefinition) {
     private val records = mutableSetOf<String>()
     private val callbacks = mutableSetOf<String>()
     private val interfaces = mutableSetOf<String>()
-    private val enums = mutableSetOf<String>()
+    private val enumsInfo = mutableMapOf<String, EnumInfo>()
 
     init {
         // add all classes
@@ -18,7 +18,10 @@ class Resolver(repository: RepositoryDefinition) {
             namespace.callbacks.forEach { callbacks.add("${namespace.name}.${it.name}") }
             namespace.records.forEach { records.add("${namespace.name}.${it.name}") }
             namespace.interfaces.forEach { interfaces.add("${namespace.name}.${it.name}") }
-            namespace.enums.forEach { enums.add("${namespace.name}${it.name}") } // stored C type here
+            namespace.enums.forEach {
+                // stored under C type here
+                enumsInfo["${namespace.name}${it.name}"] = EnumInfo(it, namespace)
+            }
             namespace.classes.forEach {
                 classesInfo["${namespace.name}.${it.name}"] = ClassInfo(it, namespace, emptyList())
             }
@@ -36,6 +39,8 @@ class Resolver(repository: RepositoryDefinition) {
 
     fun classDefinition(className: String) = classesInfo[className]?.definition
 
+    fun enumDefinition(type: AnyType) = (type as? TypeDefinition)?.cType?.let { enumsInfo[it]?.definition }
+
     fun isClass(name: String) = classesInfo[name] != null
 
     fun isRecord(name: String) = records.contains(name)
@@ -44,7 +49,7 @@ class Resolver(repository: RepositoryDefinition) {
 
     fun isInterface(name: String) = interfaces.contains(name)
 
-    fun isEnum(name: String) = enums.contains(name)
+    fun isEnum(name: String) = enumsInfo.contains(name)
 
     fun isEnum(type: AnyType) = (type as? TypeDefinition)?.cType?.let { isEnum(it) } == true
 
@@ -76,6 +81,11 @@ class Resolver(repository: RepositoryDefinition) {
         val definition: ClassDefinition,
         val namespace: NamespaceDefinition,
         var ancestors: List<String>
+    )
+
+    private data class EnumInfo(
+        val definition: EnumDefinition,
+        val namespace: NamespaceDefinition,
     )
 
     private companion object {

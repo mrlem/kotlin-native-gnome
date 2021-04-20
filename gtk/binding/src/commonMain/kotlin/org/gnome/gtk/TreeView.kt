@@ -14,7 +14,6 @@
 // TODO - get_cursor
 // TODO - get_dest_row_at_pos
 // TODO - get_drag_dest_row
-// TODO - get_grid_lines
 // TODO - get_hadjustment
 // TODO - get_path_at_pos
 // TODO - get_rules_hint
@@ -28,8 +27,6 @@
 // TODO - map_expanded_rows
 // TODO - set_column_drag_function
 // TODO - set_destroy_count_func
-// TODO - set_drag_dest_row
-// TODO - set_grid_lines
 // TODO - set_hadjustment
 // TODO - set_row_separator_func
 // TODO - set_rules_hint
@@ -53,6 +50,7 @@ import gtk3.gtk_tree_view_get_enable_search
 import gtk3.gtk_tree_view_get_enable_tree_lines
 import gtk3.gtk_tree_view_get_expander_column
 import gtk3.gtk_tree_view_get_fixed_height_mode
+import gtk3.gtk_tree_view_get_grid_lines
 import gtk3.gtk_tree_view_get_headers_clickable
 import gtk3.gtk_tree_view_get_headers_visible
 import gtk3.gtk_tree_view_get_hover_expand
@@ -81,10 +79,12 @@ import gtk3.gtk_tree_view_scroll_to_point
 import gtk3.gtk_tree_view_set_activate_on_single_click
 import gtk3.gtk_tree_view_set_cursor
 import gtk3.gtk_tree_view_set_cursor_on_cell
+import gtk3.gtk_tree_view_set_drag_dest_row
 import gtk3.gtk_tree_view_set_enable_search
 import gtk3.gtk_tree_view_set_enable_tree_lines
 import gtk3.gtk_tree_view_set_expander_column
 import gtk3.gtk_tree_view_set_fixed_height_mode
+import gtk3.gtk_tree_view_set_grid_lines
 import gtk3.gtk_tree_view_set_headers_clickable
 import gtk3.gtk_tree_view_set_headers_visible
 import gtk3.gtk_tree_view_set_hover_expand
@@ -155,6 +155,12 @@ public var TreeView.fixedHeightMode: Boolean
   get() = gtk_tree_view_get_fixed_height_mode(this).toBoolean
   set(`value`) {
     gtk_tree_view_set_fixed_height_mode(this, value.toInt)
+  }
+
+public var TreeView.gridLines: TreeViewGridLines
+  get() = gtk_tree_view_get_grid_lines(this)
+  set(`value`) {
+    gtk_tree_view_set_grid_lines(this, value)
   }
 
 public var TreeView.headersClickable: Boolean
@@ -244,15 +250,15 @@ public var TreeView.tooltipColumn: Int
     gtk_tree_view_set_tooltip_column(this, value)
   }
 
-public fun TreeView.appendColumn(column: TreeViewColumn): Int = gtk_tree_view_append_column(this,
-    column.reinterpret())
+public fun TreeView.appendColumn(column: TreeViewColumn?): Int = gtk_tree_view_append_column(this,
+    column?.reinterpret())
 
 public fun TreeView.collapseAll(): Unit {
   gtk_tree_view_collapse_all(this)
 }
 
-public fun TreeView.collapseRow(path: TreePath): Boolean = gtk_tree_view_collapse_row(this,
-    path.reinterpret()).toBoolean
+public fun TreeView.collapseRow(path: TreePath?): Boolean = gtk_tree_view_collapse_row(this,
+    path?.reinterpret()).toBoolean
 
 public fun TreeView.columnsAutosize(): Unit {
   gtk_tree_view_columns_autosize(this)
@@ -262,44 +268,44 @@ public fun TreeView.expandAll(): Unit {
   gtk_tree_view_expand_all(this)
 }
 
-public fun TreeView.expandRow(path: TreePath, openAll: Boolean): Boolean =
-    gtk_tree_view_expand_row(this, path.reinterpret(), openAll.toInt).toBoolean
+public fun TreeView.expandRow(path: TreePath?, openAll: Boolean): Boolean =
+    gtk_tree_view_expand_row(this, path?.reinterpret(), openAll.toInt).toBoolean
 
-public fun TreeView.expandToPath(path: TreePath): Unit {
-  gtk_tree_view_expand_to_path(this, path.reinterpret())
+public fun TreeView.expandToPath(path: TreePath?): Unit {
+  gtk_tree_view_expand_to_path(this, path?.reinterpret())
 }
 
 public fun TreeView.getColumn(n: Int): TreeViewColumn? = gtk_tree_view_get_column(this,
     n)?.reinterpret()
 
-public fun TreeView.insertColumn(column: TreeViewColumn, position: Int): Int =
-    gtk_tree_view_insert_column(this, column.reinterpret(), position)
+public fun TreeView.insertColumn(column: TreeViewColumn?, position: Int): Int =
+    gtk_tree_view_insert_column(this, column?.reinterpret(), position)
 
 public fun TreeView.isRubberBandingActive(): Boolean =
     gtk_tree_view_is_rubber_banding_active(this).toBoolean
 
-public fun TreeView.moveColumnAfter(column: TreeViewColumn, baseColumn: TreeViewColumn): Unit {
-  gtk_tree_view_move_column_after(this, column.reinterpret(), baseColumn.reinterpret())
+public fun TreeView.moveColumnAfter(column: TreeViewColumn?, baseColumn: TreeViewColumn?): Unit {
+  gtk_tree_view_move_column_after(this, column?.reinterpret(), baseColumn?.reinterpret())
 }
 
-public fun TreeView.removeColumn(column: TreeViewColumn): Int = gtk_tree_view_remove_column(this,
-    column.reinterpret())
+public fun TreeView.removeColumn(column: TreeViewColumn?): Int = gtk_tree_view_remove_column(this,
+    column?.reinterpret())
 
-public fun TreeView.rowActivated(path: TreePath, column: TreeViewColumn): Unit {
-  gtk_tree_view_row_activated(this, path.reinterpret(), column.reinterpret())
+public fun TreeView.rowActivated(path: TreePath?, column: TreeViewColumn?): Unit {
+  gtk_tree_view_row_activated(this, path?.reinterpret(), column?.reinterpret())
 }
 
-public fun TreeView.rowExpanded(path: TreePath): Boolean = gtk_tree_view_row_expanded(this,
-    path.reinterpret()).toBoolean
+public fun TreeView.rowExpanded(path: TreePath?): Boolean = gtk_tree_view_row_expanded(this,
+    path?.reinterpret()).toBoolean
 
 public fun TreeView.scrollToCell(
-  path: TreePath,
-  column: TreeViewColumn,
+  path: TreePath?,
+  column: TreeViewColumn?,
   useAlign: Boolean,
   rowAlign: Float,
   colAlign: Float
 ): Unit {
-  gtk_tree_view_scroll_to_cell(this, path.reinterpret(), column.reinterpret(), useAlign.toInt,
+  gtk_tree_view_scroll_to_cell(this, path?.reinterpret(), column?.reinterpret(), useAlign.toInt,
       rowAlign, colAlign)
 }
 
@@ -308,35 +314,40 @@ public fun TreeView.scrollToPoint(treeX: Int, treeY: Int): Unit {
 }
 
 public fun TreeView.setCursor(
-  path: TreePath,
-  focusColumn: TreeViewColumn,
+  path: TreePath?,
+  focusColumn: TreeViewColumn?,
   startEditing: Boolean
 ): Unit {
-  gtk_tree_view_set_cursor(this, path.reinterpret(), focusColumn.reinterpret(), startEditing.toInt)
+  gtk_tree_view_set_cursor(this, path?.reinterpret(), focusColumn?.reinterpret(),
+      startEditing.toInt)
 }
 
 public fun TreeView.setCursorOnCell(
-  path: TreePath,
-  focusColumn: TreeViewColumn,
-  focusCell: CellRenderer,
+  path: TreePath?,
+  focusColumn: TreeViewColumn?,
+  focusCell: CellRenderer?,
   startEditing: Boolean
 ): Unit {
-  gtk_tree_view_set_cursor_on_cell(this, path.reinterpret(), focusColumn.reinterpret(),
-      focusCell.reinterpret(), startEditing.toInt)
+  gtk_tree_view_set_cursor_on_cell(this, path?.reinterpret(), focusColumn?.reinterpret(),
+      focusCell?.reinterpret(), startEditing.toInt)
+}
+
+public fun TreeView.setDragDestRow(path: TreePath?, pos: TreeViewDropPosition): Unit {
+  gtk_tree_view_set_drag_dest_row(this, path?.reinterpret(), pos)
 }
 
 public fun TreeView.setTooltipCell(
-  tooltip: Tooltip,
-  path: TreePath,
-  column: TreeViewColumn,
-  cell: CellRenderer
+  tooltip: Tooltip?,
+  path: TreePath?,
+  column: TreeViewColumn?,
+  cell: CellRenderer?
 ): Unit {
-  gtk_tree_view_set_tooltip_cell(this, tooltip.reinterpret(), path.reinterpret(),
-      column.reinterpret(), cell.reinterpret())
+  gtk_tree_view_set_tooltip_cell(this, tooltip?.reinterpret(), path?.reinterpret(),
+      column?.reinterpret(), cell?.reinterpret())
 }
 
-public fun TreeView.setTooltipRow(tooltip: Tooltip, path: TreePath): Unit {
-  gtk_tree_view_set_tooltip_row(this, tooltip.reinterpret(), path.reinterpret())
+public fun TreeView.setTooltipRow(tooltip: Tooltip?, path: TreePath?): Unit {
+  gtk_tree_view_set_tooltip_row(this, tooltip?.reinterpret(), path?.reinterpret())
 }
 
 public fun TreeView.unsetRowsDragDest(): Unit {

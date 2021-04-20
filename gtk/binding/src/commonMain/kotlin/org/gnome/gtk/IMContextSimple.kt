@@ -18,6 +18,6 @@ public val IMContextSimple.asObject: Object
 public val IMContextSimple.asIMContext: IMContext
   get() = reinterpret()
 
-public fun IMContextSimple.addComposeFile(composeFile: String?): Unit {
+public fun IMContextSimple.addComposeFile(composeFile: String): Unit {
   gtk_im_context_simple_add_compose_file(this, composeFile)
 }

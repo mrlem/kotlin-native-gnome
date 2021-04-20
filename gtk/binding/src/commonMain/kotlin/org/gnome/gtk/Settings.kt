@@ -18,6 +18,6 @@ public typealias Settings = CPointer<GtkSettings>
 public val Settings.asObject: Object
   get() = reinterpret()
 
-public fun Settings.resetProperty(name: String?): Unit {
+public fun Settings.resetProperty(name: String): Unit {
   gtk_settings_reset_property(this, name)
 }

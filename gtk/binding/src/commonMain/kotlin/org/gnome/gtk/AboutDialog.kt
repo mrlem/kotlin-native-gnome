@@ -2,12 +2,10 @@
 // TODO - get_artists
 // TODO - get_authors
 // TODO - get_documenters
-// TODO - get_license_type
 // TODO - get_logo
 // TODO - set_artists
 // TODO - set_authors
 // TODO - set_documenters
-// TODO - set_license_type
 // TODO - set_logo
 //
 package org.gnome.gtk
@@ -16,6 +14,7 @@ import gtk3.GtkAboutDialog
 import gtk3.gtk_about_dialog_get_comments
 import gtk3.gtk_about_dialog_get_copyright
 import gtk3.gtk_about_dialog_get_license
+import gtk3.gtk_about_dialog_get_license_type
 import gtk3.gtk_about_dialog_get_logo_icon_name
 import gtk3.gtk_about_dialog_get_program_name
 import gtk3.gtk_about_dialog_get_translator_credits
@@ -26,6 +25,7 @@ import gtk3.gtk_about_dialog_get_wrap_license
 import gtk3.gtk_about_dialog_set_comments
 import gtk3.gtk_about_dialog_set_copyright
 import gtk3.gtk_about_dialog_set_license
+import gtk3.gtk_about_dialog_set_license_type
 import gtk3.gtk_about_dialog_set_logo_icon_name
 import gtk3.gtk_about_dialog_set_program_name
 import gtk3.gtk_about_dialog_set_translator_credits
@@ -82,6 +82,12 @@ public var AboutDialog.license: String
   get() = gtk_about_dialog_get_license(this).toKString
   set(`value`) {
     gtk_about_dialog_set_license(this, value)
+  }
+
+public var AboutDialog.licenseType: License
+  get() = gtk_about_dialog_get_license_type(this)
+  set(`value`) {
+    gtk_about_dialog_set_license_type(this, value)
   }
 
 public var AboutDialog.logoIconName: String

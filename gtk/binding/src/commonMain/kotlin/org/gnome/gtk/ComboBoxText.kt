@@ -42,31 +42,31 @@ public val ComboBoxText.asComboBox: ComboBox
 public val ComboBoxText.activeText: String
   get() = gtk_combo_box_text_get_active_text(this).toKString
 
-public fun ComboBoxText.append(id: String?, text: String?): Unit {
+public fun ComboBoxText.append(id: String, text: String): Unit {
   gtk_combo_box_text_append(this, id, text)
 }
 
-public fun ComboBoxText.appendText(text: String?): Unit {
+public fun ComboBoxText.appendText(text: String): Unit {
   gtk_combo_box_text_append_text(this, text)
 }
 
 public fun ComboBoxText.insert(
   position: Int,
-  id: String?,
-  text: String?
+  id: String,
+  text: String
 ): Unit {
   gtk_combo_box_text_insert(this, position, id, text)
 }
 
-public fun ComboBoxText.insertText(position: Int, text: String?): Unit {
+public fun ComboBoxText.insertText(position: Int, text: String): Unit {
   gtk_combo_box_text_insert_text(this, position, text)
 }
 
-public fun ComboBoxText.prepend(id: String?, text: String?): Unit {
+public fun ComboBoxText.prepend(id: String, text: String): Unit {
   gtk_combo_box_text_prepend(this, id, text)
 }
 
-public fun ComboBoxText.prependText(text: String?): Unit {
+public fun ComboBoxText.prependText(text: String): Unit {
   gtk_combo_box_text_prepend_text(this, text)
 }
 

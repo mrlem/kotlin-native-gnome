@@ -55,26 +55,26 @@ public var Paned.wideHandle: Boolean
     gtk_paned_set_wide_handle(this, value.toInt)
   }
 
-public fun Paned.add1(child: Widget): Unit {
-  gtk_paned_add1(this, child.reinterpret())
+public fun Paned.add1(child: Widget?): Unit {
+  gtk_paned_add1(this, child?.reinterpret())
 }
 
-public fun Paned.add2(child: Widget): Unit {
-  gtk_paned_add2(this, child.reinterpret())
+public fun Paned.add2(child: Widget?): Unit {
+  gtk_paned_add2(this, child?.reinterpret())
 }
 
 public fun Paned.pack1(
-  child: Widget,
+  child: Widget?,
   resize: Boolean,
   shrink: Boolean
 ): Unit {
-  gtk_paned_pack1(this, child.reinterpret(), resize.toInt, shrink.toInt)
+  gtk_paned_pack1(this, child?.reinterpret(), resize.toInt, shrink.toInt)
 }
 
 public fun Paned.pack2(
-  child: Widget,
+  child: Widget?,
   resize: Boolean,
   shrink: Boolean
 ): Unit {
-  gtk_paned_pack2(this, child.reinterpret(), resize.toInt, shrink.toInt)
+  gtk_paned_pack2(this, child?.reinterpret(), resize.toInt, shrink.toInt)
 }

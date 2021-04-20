@@ -4,10 +4,8 @@
 // TODO - get_icon_set
 // TODO - get_pixbuf
 // TODO - get_stock
-// TODO - get_storage_type
 // TODO - set_from_animation
 // TODO - set_from_gicon
-// TODO - set_from_icon_name
 // TODO - set_from_icon_set
 // TODO - set_from_pixbuf
 // TODO - set_from_stock
@@ -18,7 +16,9 @@ package org.gnome.gtk
 import gtk3.GtkImage
 import gtk3.gtk_image_clear
 import gtk3.gtk_image_get_pixel_size
+import gtk3.gtk_image_get_storage_type
 import gtk3.gtk_image_set_from_file
+import gtk3.gtk_image_set_from_icon_name
 import gtk3.gtk_image_set_from_resource
 import gtk3.gtk_image_set_pixel_size
 import kotlin.Int
@@ -49,14 +49,21 @@ public var Image.pixelSize: Int
     gtk_image_set_pixel_size(this, value)
   }
 
+public val Image.storageType: ImageType
+  get() = gtk_image_get_storage_type(this)
+
 public fun Image.clear(): Unit {
   gtk_image_clear(this)
 }
 
-public fun Image.setFromFile(filename: String?): Unit {
+public fun Image.setFromFile(filename: String): Unit {
   gtk_image_set_from_file(this, filename)
 }
 
-public fun Image.setFromResource(resourcePath: String?): Unit {
+public fun Image.setFromIconName(iconName: String, size: IconSize): Unit {
+  gtk_image_set_from_icon_name(this, iconName, size)
+}
+
+public fun Image.setFromResource(resourcePath: String): Unit {
   gtk_image_set_from_resource(this, resourcePath)
 }

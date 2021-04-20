@@ -34,26 +34,26 @@ public val Application.asApplication: org.gnome.gio.Application
 public val Application.activeWindow: Window?
   get() = gtk_application_get_active_window(this)?.reinterpret()
 
-public fun Application.addWindow(window: Window): Unit {
-  gtk_application_add_window(this, window.reinterpret())
+public fun Application.addWindow(window: Window?): Unit {
+  gtk_application_add_window(this, window?.reinterpret())
 }
 
 public fun Application.getWindowById(id: UInt): Window? = gtk_application_get_window_by_id(this,
     id)?.reinterpret()
 
 public fun Application.inhibit(
-  window: Window,
+  window: Window?,
   flags: ApplicationInhibitFlags,
-  reason: String?
-): UInt = gtk_application_inhibit(this, window.reinterpret(), flags, reason)
+  reason: String
+): UInt = gtk_application_inhibit(this, window?.reinterpret(), flags, reason)
 
 public fun Application.isInhibited(flags: ApplicationInhibitFlags): Boolean =
     gtk_application_is_inhibited(this, flags).toBoolean
 
 public fun Application.prefersAppMenu(): Boolean = gtk_application_prefers_app_menu(this).toBoolean
 
-public fun Application.removeWindow(window: Window): Unit {
-  gtk_application_remove_window(this, window.reinterpret())
+public fun Application.removeWindow(window: Window?): Unit {
+  gtk_application_remove_window(this, window?.reinterpret())
 }
 
 public fun Application.uninhibit(cookie: UInt): Unit {
@@ -78,6 +78,7 @@ fun Application.initAndRun(args: Array<String>, init: Application.() -> Unit) = 
 @Suppress("FunctionName")
 fun Application(id: String, args: Array<String>, init: Application.() -> Unit) = Application(id).initAndRun(args, init)
 
+// TODO - investigate why this is not generated
 fun Application.newWindow() = gtk_application_window_new(this)!!.reinterpret<GtkWindow>()
 
 val Application.windows: List<Window>

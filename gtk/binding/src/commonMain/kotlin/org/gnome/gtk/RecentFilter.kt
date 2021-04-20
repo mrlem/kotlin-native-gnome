@@ -45,19 +45,19 @@ public fun RecentFilter.addAge(days: Int): Unit {
   gtk_recent_filter_add_age(this, days)
 }
 
-public fun RecentFilter.addApplication(application: String?): Unit {
+public fun RecentFilter.addApplication(application: String): Unit {
   gtk_recent_filter_add_application(this, application)
 }
 
-public fun RecentFilter.addGroup(group: String?): Unit {
+public fun RecentFilter.addGroup(group: String): Unit {
   gtk_recent_filter_add_group(this, group)
 }
 
-public fun RecentFilter.addMimeType(mimeType: String?): Unit {
+public fun RecentFilter.addMimeType(mimeType: String): Unit {
   gtk_recent_filter_add_mime_type(this, mimeType)
 }
 
-public fun RecentFilter.addPattern(pattern: String?): Unit {
+public fun RecentFilter.addPattern(pattern: String): Unit {
   gtk_recent_filter_add_pattern(this, pattern)
 }
 
@@ -65,5 +65,5 @@ public fun RecentFilter.addPixbufFormats(): Unit {
   gtk_recent_filter_add_pixbuf_formats(this)
 }
 
-public fun RecentFilter.filter(filterInfo: RecentFilterInfo): Boolean =
-    gtk_recent_filter_filter(this, filterInfo.reinterpret()).toBoolean
+public fun RecentFilter.filter(filterInfo: RecentFilterInfo?): Boolean =
+    gtk_recent_filter_filter(this, filterInfo?.reinterpret()).toBoolean

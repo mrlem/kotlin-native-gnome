@@ -13,7 +13,6 @@
 // TODO - get_screen
 // TODO - get_size
 // TODO - get_type_hint
-// TODO - get_window_type
 // TODO - mnemonic_activate
 // TODO - parse_geometry
 // TODO - propagate_key_event
@@ -29,7 +28,6 @@
 // TODO - set_icon_list
 // TODO - set_mnemonic_modifier
 // TODO - set_opacity
-// TODO - set_position
 // TODO - set_screen
 // TODO - set_type_hint
 // TODO - set_wmclass
@@ -68,6 +66,7 @@ import gtk3.gtk_window_get_title
 import gtk3.gtk_window_get_titlebar
 import gtk3.gtk_window_get_transient_for
 import gtk3.gtk_window_get_urgency_hint
+import gtk3.gtk_window_get_window_type
 import gtk3.gtk_window_has_group
 import gtk3.gtk_window_has_toplevel_focus
 import gtk3.gtk_window_iconify
@@ -98,6 +97,7 @@ import gtk3.gtk_window_set_keep_above
 import gtk3.gtk_window_set_keep_below
 import gtk3.gtk_window_set_mnemonics_visible
 import gtk3.gtk_window_set_modal
+import gtk3.gtk_window_set_position
 import gtk3.gtk_window_set_resizable
 import gtk3.gtk_window_set_role
 import gtk3.gtk_window_set_skip_pager_hint
@@ -273,16 +273,19 @@ public var Window.urgencyHint: Boolean
     gtk_window_set_urgency_hint(this, value.toInt)
   }
 
+public val Window.windowType: WindowType
+  get() = gtk_window_get_window_type(this)
+
 public fun Window.activateDefault(): Boolean = gtk_window_activate_default(this).toBoolean
 
 public fun Window.activateFocus(): Boolean = gtk_window_activate_focus(this).toBoolean
 
-public fun Window.addAccelGroup(accelGroup: AccelGroup): Unit {
-  gtk_window_add_accel_group(this, accelGroup.reinterpret())
+public fun Window.addAccelGroup(accelGroup: AccelGroup?): Unit {
+  gtk_window_add_accel_group(this, accelGroup?.reinterpret())
 }
 
-public fun Window.addMnemonic(keyval: UInt, target: Widget): Unit {
-  gtk_window_add_mnemonic(this, keyval, target.reinterpret())
+public fun Window.addMnemonic(keyval: UInt, target: Widget?): Unit {
+  gtk_window_add_mnemonic(this, keyval, target?.reinterpret())
 }
 
 public fun Window.beginMoveDrag(
@@ -334,20 +337,20 @@ public fun Window.presentWithTime(timestamp: UInt): Unit {
   gtk_window_present_with_time(this, timestamp)
 }
 
-public fun Window.removeAccelGroup(accelGroup: AccelGroup): Unit {
-  gtk_window_remove_accel_group(this, accelGroup.reinterpret())
+public fun Window.removeAccelGroup(accelGroup: AccelGroup?): Unit {
+  gtk_window_remove_accel_group(this, accelGroup?.reinterpret())
 }
 
-public fun Window.removeMnemonic(keyval: UInt, target: Widget): Unit {
-  gtk_window_remove_mnemonic(this, keyval, target.reinterpret())
+public fun Window.removeMnemonic(keyval: UInt, target: Widget?): Unit {
+  gtk_window_remove_mnemonic(this, keyval, target?.reinterpret())
 }
 
 public fun Window.resize(width: Int, height: Int): Unit {
   gtk_window_resize(this, width, height)
 }
 
-public fun Window.setDefault(defaultWidget: Widget): Unit {
-  gtk_window_set_default(this, defaultWidget.reinterpret())
+public fun Window.setDefault(defaultWidget: Widget?): Unit {
+  gtk_window_set_default(this, defaultWidget?.reinterpret())
 }
 
 public fun Window.setDefaultSize(width: Int, height: Int): Unit {
@@ -366,7 +369,11 @@ public fun Window.setKeepBelow(setting: Boolean): Unit {
   gtk_window_set_keep_below(this, setting.toInt)
 }
 
-public fun Window.setStartupId(startupId: String?): Unit {
+public fun Window.setPosition(position: WindowPosition): Unit {
+  gtk_window_set_position(this, position)
+}
+
+public fun Window.setStartupId(startupId: String): Unit {
   gtk_window_set_startup_id(this, startupId)
 }
 

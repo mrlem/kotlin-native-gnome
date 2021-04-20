@@ -91,17 +91,17 @@ public var Menu.reserveToggleSize: Boolean
   }
 
 public fun Menu.attach(
-  child: Widget,
+  child: Widget?,
   leftAttach: UInt,
   rightAttach: UInt,
   topAttach: UInt,
   bottomAttach: UInt
 ): Unit {
-  gtk_menu_attach(this, child.reinterpret(), leftAttach, rightAttach, topAttach, bottomAttach)
+  gtk_menu_attach(this, child?.reinterpret(), leftAttach, rightAttach, topAttach, bottomAttach)
 }
 
-public fun Menu.attachToWidget(attachWidget: Widget, detacher: MenuDetachFunc): Unit {
-  gtk_menu_attach_to_widget(this, attachWidget.reinterpret(), detacher.reinterpret())
+public fun Menu.attachToWidget(attachWidget: Widget?, detacher: MenuDetachFunc?): Unit {
+  gtk_menu_attach_to_widget(this, attachWidget?.reinterpret(), detacher?.reinterpret())
 }
 
 public fun Menu.detach(): Unit {
@@ -112,8 +112,8 @@ public fun Menu.popdown(): Unit {
   gtk_menu_popdown(this)
 }
 
-public fun Menu.reorderChild(child: Widget, position: Int): Unit {
-  gtk_menu_reorder_child(this, child.reinterpret(), position)
+public fun Menu.reorderChild(child: Widget?, position: Int): Unit {
+  gtk_menu_reorder_child(this, child?.reinterpret(), position)
 }
 
 public fun Menu.reposition(): Unit {

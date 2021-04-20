@@ -1,8 +1,5 @@
 // TODO - get_increments
 // TODO - get_range
-// TODO - get_update_policy
-// TODO - set_update_policy
-// TODO - spin
 //
 package org.gnome.gtk
 
@@ -12,6 +9,7 @@ import gtk3.gtk_spin_button_get_adjustment
 import gtk3.gtk_spin_button_get_digits
 import gtk3.gtk_spin_button_get_numeric
 import gtk3.gtk_spin_button_get_snap_to_ticks
+import gtk3.gtk_spin_button_get_update_policy
 import gtk3.gtk_spin_button_get_value
 import gtk3.gtk_spin_button_get_value_as_int
 import gtk3.gtk_spin_button_get_wrap
@@ -21,8 +19,10 @@ import gtk3.gtk_spin_button_set_increments
 import gtk3.gtk_spin_button_set_numeric
 import gtk3.gtk_spin_button_set_range
 import gtk3.gtk_spin_button_set_snap_to_ticks
+import gtk3.gtk_spin_button_set_update_policy
 import gtk3.gtk_spin_button_set_value
 import gtk3.gtk_spin_button_set_wrap
+import gtk3.gtk_spin_button_spin
 import gtk3.gtk_spin_button_update
 import kotlin.Boolean
 import kotlin.Double
@@ -74,6 +74,12 @@ public var SpinButton.snapToTicks: Boolean
     gtk_spin_button_set_snap_to_ticks(this, value.toInt)
   }
 
+public var SpinButton.updatePolicy: SpinButtonUpdatePolicy
+  get() = gtk_spin_button_get_update_policy(this)
+  set(`value`) {
+    gtk_spin_button_set_update_policy(this, value)
+  }
+
 public var SpinButton.`value`: Double
   get() = gtk_spin_button_get_value(this)
   set(`value`) {
@@ -90,11 +96,11 @@ public var SpinButton.wrap: Boolean
   }
 
 public fun SpinButton.configure(
-  adjustment: Adjustment,
+  adjustment: Adjustment?,
   climbRate: Double,
   digits: UInt
 ): Unit {
-  gtk_spin_button_configure(this, adjustment.reinterpret(), climbRate, digits)
+  gtk_spin_button_configure(this, adjustment?.reinterpret(), climbRate, digits)
 }
 
 public fun SpinButton.setIncrements(step: Double, page: Double): Unit {
@@ -103,6 +109,10 @@ public fun SpinButton.setIncrements(step: Double, page: Double): Unit {
 
 public fun SpinButton.setRange(min: Double, max: Double): Unit {
   gtk_spin_button_set_range(this, min, max)
+}
+
+public fun SpinButton.spin(direction: SpinType, increment: Double): Unit {
+  gtk_spin_button_spin(this, direction, increment)
 }
 
 public fun SpinButton.update(): Unit {

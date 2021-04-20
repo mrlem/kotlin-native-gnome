@@ -29,14 +29,14 @@ public fun TreeModelSort.clearCache(): Unit {
   gtk_tree_model_sort_clear_cache(this)
 }
 
-public fun TreeModelSort.convertChildPathToPath(childPath: TreePath): TreePath? =
-    gtk_tree_model_sort_convert_child_path_to_path(this, childPath.reinterpret())?.reinterpret()
+public fun TreeModelSort.convertChildPathToPath(childPath: TreePath?): TreePath? =
+    gtk_tree_model_sort_convert_child_path_to_path(this, childPath?.reinterpret())?.reinterpret()
 
-public fun TreeModelSort.convertPathToChildPath(sortedPath: TreePath): TreePath? =
-    gtk_tree_model_sort_convert_path_to_child_path(this, sortedPath.reinterpret())?.reinterpret()
+public fun TreeModelSort.convertPathToChildPath(sortedPath: TreePath?): TreePath? =
+    gtk_tree_model_sort_convert_path_to_child_path(this, sortedPath?.reinterpret())?.reinterpret()
 
-public fun TreeModelSort.iterIsValid(iter: TreeIter): Boolean =
-    gtk_tree_model_sort_iter_is_valid(this, iter.reinterpret()).toBoolean
+public fun TreeModelSort.iterIsValid(iter: TreeIter?): Boolean =
+    gtk_tree_model_sort_iter_is_valid(this, iter?.reinterpret()).toBoolean
 
 public fun TreeModelSort.resetDefaultSortFunc(): Unit {
   gtk_tree_model_sort_reset_default_sort_func(this)

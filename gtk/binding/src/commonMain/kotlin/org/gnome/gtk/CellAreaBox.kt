@@ -32,19 +32,20 @@ public var CellAreaBox.spacing: Int
   }
 
 public fun CellAreaBox.packEnd(
-  renderer: CellRenderer,
+  renderer: CellRenderer?,
   expand: Boolean,
   align: Boolean,
   fixed: Boolean
 ): Unit {
-  gtk_cell_area_box_pack_end(this, renderer.reinterpret(), expand.toInt, align.toInt, fixed.toInt)
+  gtk_cell_area_box_pack_end(this, renderer?.reinterpret(), expand.toInt, align.toInt, fixed.toInt)
 }
 
 public fun CellAreaBox.packStart(
-  renderer: CellRenderer,
+  renderer: CellRenderer?,
   expand: Boolean,
   align: Boolean,
   fixed: Boolean
 ): Unit {
-  gtk_cell_area_box_pack_start(this, renderer.reinterpret(), expand.toInt, align.toInt, fixed.toInt)
+  gtk_cell_area_box_pack_start(this, renderer?.reinterpret(), expand.toInt, align.toInt,
+      fixed.toInt)
 }

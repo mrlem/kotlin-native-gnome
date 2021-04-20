@@ -44,7 +44,7 @@ public var Builder.translationDomain: String
     gtk_builder_set_translation_domain(this, value)
   }
 
-public fun Builder.getTypeFromName(typeName: String?): GType = gtk_builder_get_type_from_name(this,
+public fun Builder.getTypeFromName(typeName: String): GType = gtk_builder_get_type_from_name(this,
     typeName)
 
 ///////////////////////////////////////////////////////////////////////////

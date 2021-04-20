@@ -1,33 +1,20 @@
 // TODO - get_attributes
-// TODO - get_icon_activatable
 // TODO - get_icon_area
 // TODO - get_icon_gicon
-// TODO - get_icon_name
 // TODO - get_icon_pixbuf
-// TODO - get_icon_sensitive
 // TODO - get_icon_stock
-// TODO - get_icon_storage_type
-// TODO - get_icon_tooltip_markup
-// TODO - get_icon_tooltip_text
 // TODO - get_inner_border
-// TODO - get_input_purpose
 // TODO - get_layout
 // TODO - get_layout_offsets
 // TODO - get_tabs
 // TODO - get_text_area
 // TODO - im_context_filter_keypress
 // TODO - set_attributes
-// TODO - set_icon_activatable
 // TODO - set_icon_drag_source
 // TODO - set_icon_from_gicon
-// TODO - set_icon_from_icon_name
 // TODO - set_icon_from_pixbuf
 // TODO - set_icon_from_stock
-// TODO - set_icon_sensitive
-// TODO - set_icon_tooltip_markup
-// TODO - set_icon_tooltip_text
 // TODO - set_inner_border
-// TODO - set_input_purpose
 // TODO - set_tabs
 //
 package org.gnome.gtk
@@ -40,8 +27,15 @@ import gtk3.gtk_entry_get_completion
 import gtk3.gtk_entry_get_current_icon_drag_source
 import gtk3.gtk_entry_get_cursor_hadjustment
 import gtk3.gtk_entry_get_has_frame
+import gtk3.gtk_entry_get_icon_activatable
 import gtk3.gtk_entry_get_icon_at_pos
+import gtk3.gtk_entry_get_icon_name
+import gtk3.gtk_entry_get_icon_sensitive
+import gtk3.gtk_entry_get_icon_storage_type
+import gtk3.gtk_entry_get_icon_tooltip_markup
+import gtk3.gtk_entry_get_icon_tooltip_text
 import gtk3.gtk_entry_get_input_hints
+import gtk3.gtk_entry_get_input_purpose
 import gtk3.gtk_entry_get_invisible_char
 import gtk3.gtk_entry_get_max_length
 import gtk3.gtk_entry_get_max_width_chars
@@ -63,7 +57,13 @@ import gtk3.gtk_entry_set_buffer
 import gtk3.gtk_entry_set_completion
 import gtk3.gtk_entry_set_cursor_hadjustment
 import gtk3.gtk_entry_set_has_frame
+import gtk3.gtk_entry_set_icon_activatable
+import gtk3.gtk_entry_set_icon_from_icon_name
+import gtk3.gtk_entry_set_icon_sensitive
+import gtk3.gtk_entry_set_icon_tooltip_markup
+import gtk3.gtk_entry_set_icon_tooltip_text
 import gtk3.gtk_entry_set_input_hints
+import gtk3.gtk_entry_set_input_purpose
 import gtk3.gtk_entry_set_invisible_char
 import gtk3.gtk_entry_set_max_length
 import gtk3.gtk_entry_set_max_width_chars
@@ -150,6 +150,12 @@ public var Entry.inputHints: InputHints
     gtk_entry_set_input_hints(this, value)
   }
 
+public var Entry.inputPurpose: InputPurpose
+  get() = gtk_entry_get_input_purpose(this)
+  set(`value`) {
+    gtk_entry_set_input_purpose(this, value)
+  }
+
 public var Entry.invisibleChar: Char
   get() = gtk_entry_get_invisible_char(this).toChar
   set(`value`) {
@@ -213,7 +219,25 @@ public var Entry.widthChars: Int
     gtk_entry_set_width_chars(this, value)
   }
 
+public fun Entry.getIconActivatable(iconPos: EntryIconPosition): Boolean =
+    gtk_entry_get_icon_activatable(this, iconPos).toBoolean
+
 public fun Entry.getIconAtPos(x: Int, y: Int): Int = gtk_entry_get_icon_at_pos(this, x, y)
+
+public fun Entry.getIconName(iconPos: EntryIconPosition): String = gtk_entry_get_icon_name(this,
+    iconPos).toKString
+
+public fun Entry.getIconSensitive(iconPos: EntryIconPosition): Boolean =
+    gtk_entry_get_icon_sensitive(this, iconPos).toBoolean
+
+public fun Entry.getIconStorageType(iconPos: EntryIconPosition): ImageType =
+    gtk_entry_get_icon_storage_type(this, iconPos)
+
+public fun Entry.getIconTooltipMarkup(iconPos: EntryIconPosition): String =
+    gtk_entry_get_icon_tooltip_markup(this, iconPos).toKString
+
+public fun Entry.getIconTooltipText(iconPos: EntryIconPosition): String =
+    gtk_entry_get_icon_tooltip_text(this, iconPos).toKString
 
 public fun Entry.grabFocusWithoutSelecting(): Unit {
   gtk_entry_grab_focus_without_selecting(this)
@@ -228,6 +252,26 @@ public fun Entry.progressPulse(): Unit {
 
 public fun Entry.resetImContext(): Unit {
   gtk_entry_reset_im_context(this)
+}
+
+public fun Entry.setIconActivatable(iconPos: EntryIconPosition, activatable: Boolean): Unit {
+  gtk_entry_set_icon_activatable(this, iconPos, activatable.toInt)
+}
+
+public fun Entry.setIconFromIconName(iconPos: EntryIconPosition, iconName: String): Unit {
+  gtk_entry_set_icon_from_icon_name(this, iconPos, iconName)
+}
+
+public fun Entry.setIconSensitive(iconPos: EntryIconPosition, sensitive: Boolean): Unit {
+  gtk_entry_set_icon_sensitive(this, iconPos, sensitive.toInt)
+}
+
+public fun Entry.setIconTooltipMarkup(iconPos: EntryIconPosition, tooltip: String): Unit {
+  gtk_entry_set_icon_tooltip_markup(this, iconPos, tooltip)
+}
+
+public fun Entry.setIconTooltipText(iconPos: EntryIconPosition, tooltip: String): Unit {
+  gtk_entry_set_icon_tooltip_text(this, iconPos, tooltip)
 }
 
 public fun Entry.textIndexToLayoutIndex(textIndex: Int): Int =

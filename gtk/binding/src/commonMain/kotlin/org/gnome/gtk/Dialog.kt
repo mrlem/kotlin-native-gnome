@@ -52,15 +52,15 @@ public val Dialog.contentArea: Box?
 public val Dialog.headerBar: HeaderBar?
   get() = gtk_dialog_get_header_bar(this)?.reinterpret()
 
-public fun Dialog.addActionWidget(child: Widget, responseId: Int): Unit {
-  gtk_dialog_add_action_widget(this, child.reinterpret(), responseId)
+public fun Dialog.addActionWidget(child: Widget?, responseId: Int): Unit {
+  gtk_dialog_add_action_widget(this, child?.reinterpret(), responseId)
 }
 
-public fun Dialog.addButton(buttonText: String?, responseId: Int): Widget? =
+public fun Dialog.addButton(buttonText: String, responseId: Int): Widget? =
     gtk_dialog_add_button(this, buttonText, responseId)?.reinterpret()
 
-public fun Dialog.getResponseForWidget(widget: Widget): Int =
-    gtk_dialog_get_response_for_widget(this, widget.reinterpret())
+public fun Dialog.getResponseForWidget(widget: Widget?): Int =
+    gtk_dialog_get_response_for_widget(this, widget?.reinterpret())
 
 public fun Dialog.getWidgetForResponse(responseId: Int): Widget? =
     gtk_dialog_get_widget_for_response(this, responseId)?.reinterpret()

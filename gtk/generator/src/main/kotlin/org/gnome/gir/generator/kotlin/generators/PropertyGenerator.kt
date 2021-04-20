@@ -18,20 +18,15 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
             ?: continue
 
         // determine type
-        val type = getter.callable.returnValue?.type
-            ?.takeUnless { resolver.isEnum(it) } // TODO - handle
-            ?: continue
-        val isCPointer = resolver.isCPointer(type)
-        val kType = type.kType
-            ?.copy(nullable = isCPointer) // TODO - use nullable info from type too
-            ?: continue
+        val type = getter.callable.returnValue?.type ?: continue
+        val typeInfo = type.typeInfo(resolver) ?: continue
 
         // produce & consume getter
         methods.remove(getter)
         val (returnTemplate, returnArray) = type.getReturnData(resolver)
         val propertyName = getter.name.removePrefix("get_")
         addProperty(
-            PropertySpec.builder(propertyName.snakeCaseToCamelCase.decapitalize(), kType)
+            PropertySpec.builder(propertyName.snakeCaseToCamelCase.decapitalize(), typeInfo.kType)
                 .receiver(className)
                 .getter(
                     FunSpec.getterBuilder()
@@ -57,7 +52,7 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
 
                             setter(
                                 FunSpec.setterBuilder()
-                                    .addParameter("value", kType)
+                                    .addParameter("value", typeInfo.kType)
                                     .addStatement(
                                         "%M(this$paramTemplate)",
                                         MemberName(GTK_CINTEROP_PACKAGE, setter.callable.cIdentifier!!),

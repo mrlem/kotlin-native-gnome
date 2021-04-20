@@ -42,37 +42,37 @@ public val IconTheme.asObject: Object
 public val IconTheme.exampleIconName: String
   get() = gtk_icon_theme_get_example_icon_name(this).toKString
 
-public fun IconTheme.addResourcePath(path: String?): Unit {
+public fun IconTheme.addResourcePath(path: String): Unit {
   gtk_icon_theme_add_resource_path(this, path)
 }
 
-public fun IconTheme.appendSearchPath(path: String?): Unit {
+public fun IconTheme.appendSearchPath(path: String): Unit {
   gtk_icon_theme_append_search_path(this, path)
 }
 
-public fun IconTheme.hasIcon(iconName: String?): Boolean = gtk_icon_theme_has_icon(this,
+public fun IconTheme.hasIcon(iconName: String): Boolean = gtk_icon_theme_has_icon(this,
     iconName).toBoolean
 
 public fun IconTheme.lookupIcon(
-  iconName: String?,
+  iconName: String,
   size: Int,
   flags: IconLookupFlags
 ): IconInfo? = gtk_icon_theme_lookup_icon(this, iconName, size, flags)?.reinterpret()
 
 public fun IconTheme.lookupIconForScale(
-  iconName: String?,
+  iconName: String,
   size: Int,
   scale: Int,
   flags: IconLookupFlags
 ): IconInfo? = gtk_icon_theme_lookup_icon_for_scale(this, iconName, size, scale,
     flags)?.reinterpret()
 
-public fun IconTheme.prependSearchPath(path: String?): Unit {
+public fun IconTheme.prependSearchPath(path: String): Unit {
   gtk_icon_theme_prepend_search_path(this, path)
 }
 
 public fun IconTheme.rescanIfNeeded(): Boolean = gtk_icon_theme_rescan_if_needed(this).toBoolean
 
-public fun IconTheme.setCustomTheme(themeName: String?): Unit {
+public fun IconTheme.setCustomTheme(themeName: String): Unit {
   gtk_icon_theme_set_custom_theme(this, themeName)
 }

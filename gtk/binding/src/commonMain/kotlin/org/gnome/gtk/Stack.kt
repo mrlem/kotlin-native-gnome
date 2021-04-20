@@ -1,7 +1,3 @@
-// TODO - get_transition_type
-// TODO - set_transition_type
-// TODO - set_visible_child_full
-//
 package org.gnome.gtk
 
 import gtk3.GtkStack
@@ -13,6 +9,7 @@ import gtk3.gtk_stack_get_homogeneous
 import gtk3.gtk_stack_get_interpolate_size
 import gtk3.gtk_stack_get_transition_duration
 import gtk3.gtk_stack_get_transition_running
+import gtk3.gtk_stack_get_transition_type
 import gtk3.gtk_stack_get_vhomogeneous
 import gtk3.gtk_stack_get_visible_child
 import gtk3.gtk_stack_get_visible_child_name
@@ -20,8 +17,10 @@ import gtk3.gtk_stack_set_hhomogeneous
 import gtk3.gtk_stack_set_homogeneous
 import gtk3.gtk_stack_set_interpolate_size
 import gtk3.gtk_stack_set_transition_duration
+import gtk3.gtk_stack_set_transition_type
 import gtk3.gtk_stack_set_vhomogeneous
 import gtk3.gtk_stack_set_visible_child
+import gtk3.gtk_stack_set_visible_child_full
 import gtk3.gtk_stack_set_visible_child_name
 import kotlin.Boolean
 import kotlin.String
@@ -76,6 +75,12 @@ public var Stack.transitionDuration: UInt
 public val Stack.transitionRunning: Boolean
   get() = gtk_stack_get_transition_running(this).toBoolean
 
+public var Stack.transitionType: StackTransitionType
+  get() = gtk_stack_get_transition_type(this)
+  set(`value`) {
+    gtk_stack_set_transition_type(this, value)
+  }
+
 public var Stack.vhomogeneous: Boolean
   get() = gtk_stack_get_vhomogeneous(this).toBoolean
   set(`value`) {
@@ -94,17 +99,21 @@ public var Stack.visibleChildName: String
     gtk_stack_set_visible_child_name(this, value)
   }
 
-public fun Stack.addNamed(child: Widget, name: String?): Unit {
-  gtk_stack_add_named(this, child.reinterpret(), name)
+public fun Stack.addNamed(child: Widget?, name: String): Unit {
+  gtk_stack_add_named(this, child?.reinterpret(), name)
 }
 
 public fun Stack.addTitled(
-  child: Widget,
-  name: String?,
-  title: String?
+  child: Widget?,
+  name: String,
+  title: String
 ): Unit {
-  gtk_stack_add_titled(this, child.reinterpret(), name, title)
+  gtk_stack_add_titled(this, child?.reinterpret(), name, title)
 }
 
-public fun Stack.getChildByName(name: String?): Widget? = gtk_stack_get_child_by_name(this,
+public fun Stack.getChildByName(name: String): Widget? = gtk_stack_get_child_by_name(this,
     name)?.reinterpret()
+
+public fun Stack.setVisibleChildFull(name: String, transition: StackTransitionType): Unit {
+  gtk_stack_set_visible_child_full(this, name, transition)
+}

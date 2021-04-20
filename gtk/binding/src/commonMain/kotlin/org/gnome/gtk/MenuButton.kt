@@ -1,16 +1,16 @@
-// TODO - get_direction
 // TODO - get_menu_model
-// TODO - set_direction
 // TODO - set_menu_model
 //
 package org.gnome.gtk
 
 import gtk3.GtkMenuButton
 import gtk3.gtk_menu_button_get_align_widget
+import gtk3.gtk_menu_button_get_direction
 import gtk3.gtk_menu_button_get_popover
 import gtk3.gtk_menu_button_get_popup
 import gtk3.gtk_menu_button_get_use_popover
 import gtk3.gtk_menu_button_set_align_widget
+import gtk3.gtk_menu_button_set_direction
 import gtk3.gtk_menu_button_set_popover
 import gtk3.gtk_menu_button_set_popup
 import gtk3.gtk_menu_button_set_use_popover
@@ -52,6 +52,12 @@ public var MenuButton.alignWidget: Widget?
     gtk_menu_button_set_align_widget(this, value)
   }
 
+public var MenuButton.direction: ArrowType
+  get() = gtk_menu_button_get_direction(this)
+  set(`value`) {
+    gtk_menu_button_set_direction(this, value)
+  }
+
 public val MenuButton.popover: Popover?
   get() = gtk_menu_button_get_popover(this)?.reinterpret()
 
@@ -64,10 +70,10 @@ public var MenuButton.usePopover: Boolean
     gtk_menu_button_set_use_popover(this, value.toInt)
   }
 
-public fun MenuButton.setPopover(popover: Widget): Unit {
-  gtk_menu_button_set_popover(this, popover.reinterpret())
+public fun MenuButton.setPopover(popover: Widget?): Unit {
+  gtk_menu_button_set_popover(this, popover?.reinterpret())
 }
 
-public fun MenuButton.setPopup(menu: Widget): Unit {
-  gtk_menu_button_set_popup(this, menu.reinterpret())
+public fun MenuButton.setPopup(menu: Widget?): Unit {
+  gtk_menu_button_set_popup(this, menu?.reinterpret())
 }

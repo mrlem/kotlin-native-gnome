@@ -1,14 +1,13 @@
-// TODO - get_transition_type
-// TODO - set_transition_type
-//
 package org.gnome.gtk
 
 import gtk3.GtkRevealer
 import gtk3.gtk_revealer_get_child_revealed
 import gtk3.gtk_revealer_get_reveal_child
 import gtk3.gtk_revealer_get_transition_duration
+import gtk3.gtk_revealer_get_transition_type
 import gtk3.gtk_revealer_set_reveal_child
 import gtk3.gtk_revealer_set_transition_duration
+import gtk3.gtk_revealer_set_transition_type
 import kotlin.Boolean
 import kotlin.UInt
 import kotlinx.cinterop.CPointer
@@ -48,4 +47,10 @@ public var Revealer.transitionDuration: UInt
   get() = gtk_revealer_get_transition_duration(this)
   set(`value`) {
     gtk_revealer_set_transition_duration(this, value)
+  }
+
+public var Revealer.transitionType: RevealerTransitionType
+  get() = gtk_revealer_get_transition_type(this)
+  set(`value`) {
+    gtk_revealer_set_transition_type(this, value)
   }

@@ -1,25 +1,24 @@
-// TODO - attach_next_to
-// TODO - get_row_baseline_position
-// TODO - insert_next_to
-// TODO - set_row_baseline_position
-//
 package org.gnome.gtk
 
 import gtk3.GtkGrid
 import gtk3.gtk_grid_attach
+import gtk3.gtk_grid_attach_next_to
 import gtk3.gtk_grid_get_baseline_row
 import gtk3.gtk_grid_get_child_at
 import gtk3.gtk_grid_get_column_homogeneous
 import gtk3.gtk_grid_get_column_spacing
+import gtk3.gtk_grid_get_row_baseline_position
 import gtk3.gtk_grid_get_row_homogeneous
 import gtk3.gtk_grid_get_row_spacing
 import gtk3.gtk_grid_insert_column
+import gtk3.gtk_grid_insert_next_to
 import gtk3.gtk_grid_insert_row
 import gtk3.gtk_grid_remove_column
 import gtk3.gtk_grid_remove_row
 import gtk3.gtk_grid_set_baseline_row
 import gtk3.gtk_grid_set_column_homogeneous
 import gtk3.gtk_grid_set_column_spacing
+import gtk3.gtk_grid_set_row_baseline_position
 import gtk3.gtk_grid_set_row_homogeneous
 import gtk3.gtk_grid_set_row_spacing
 import kotlin.Boolean
@@ -78,20 +77,37 @@ public var Grid.rowSpacing: UInt
   }
 
 public fun Grid.attach(
-  child: Widget,
+  child: Widget?,
   left: Int,
   top: Int,
   width: Int,
   height: Int
 ): Unit {
-  gtk_grid_attach(this, child.reinterpret(), left, top, width, height)
+  gtk_grid_attach(this, child?.reinterpret(), left, top, width, height)
+}
+
+public fun Grid.attachNextTo(
+  child: Widget?,
+  sibling: Widget?,
+  side: PositionType,
+  width: Int,
+  height: Int
+): Unit {
+  gtk_grid_attach_next_to(this, child?.reinterpret(), sibling?.reinterpret(), side, width, height)
 }
 
 public fun Grid.getChildAt(left: Int, top: Int): Widget? = gtk_grid_get_child_at(this, left,
     top)?.reinterpret()
 
+public fun Grid.getRowBaselinePosition(row: Int): BaselinePosition =
+    gtk_grid_get_row_baseline_position(this, row)
+
 public fun Grid.insertColumn(position: Int): Unit {
   gtk_grid_insert_column(this, position)
+}
+
+public fun Grid.insertNextTo(sibling: Widget?, side: PositionType): Unit {
+  gtk_grid_insert_next_to(this, sibling?.reinterpret(), side)
 }
 
 public fun Grid.insertRow(position: Int): Unit {
@@ -104,4 +120,8 @@ public fun Grid.removeColumn(position: Int): Unit {
 
 public fun Grid.removeRow(position: Int): Unit {
   gtk_grid_remove_row(this, position)
+}
+
+public fun Grid.setRowBaselinePosition(row: Int, pos: BaselinePosition): Unit {
+  gtk_grid_set_row_baseline_position(this, row, pos)
 }

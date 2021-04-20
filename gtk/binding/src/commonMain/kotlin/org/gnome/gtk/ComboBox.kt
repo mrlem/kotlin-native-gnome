@@ -1,12 +1,10 @@
 // TODO - get_active_iter
 // TODO - get_add_tearoffs
-// TODO - get_button_sensitivity
 // TODO - get_focus_on_click
 // TODO - get_popup_accessible
 // TODO - get_title
 // TODO - popup_for_device
 // TODO - set_add_tearoffs
-// TODO - set_button_sensitivity
 // TODO - set_focus_on_click
 // TODO - set_row_separator_func
 // TODO - set_title
@@ -16,6 +14,7 @@ package org.gnome.gtk
 import gtk3.GtkComboBox
 import gtk3.gtk_combo_box_get_active
 import gtk3.gtk_combo_box_get_active_id
+import gtk3.gtk_combo_box_get_button_sensitivity
 import gtk3.gtk_combo_box_get_column_span_column
 import gtk3.gtk_combo_box_get_entry_text_column
 import gtk3.gtk_combo_box_get_has_entry
@@ -30,6 +29,7 @@ import gtk3.gtk_combo_box_popup
 import gtk3.gtk_combo_box_set_active
 import gtk3.gtk_combo_box_set_active_id
 import gtk3.gtk_combo_box_set_active_iter
+import gtk3.gtk_combo_box_set_button_sensitivity
 import gtk3.gtk_combo_box_set_column_span_column
 import gtk3.gtk_combo_box_set_entry_text_column
 import gtk3.gtk_combo_box_set_id_column
@@ -76,6 +76,12 @@ public var ComboBox.activeId: String
   get() = gtk_combo_box_get_active_id(this).toKString
   set(`value`) {
     gtk_combo_box_set_active_id(this, value)
+  }
+
+public var ComboBox.buttonSensitivity: SensitivityType
+  get() = gtk_combo_box_get_button_sensitivity(this)
+  set(`value`) {
+    gtk_combo_box_set_button_sensitivity(this, value)
   }
 
 public var ComboBox.columnSpanColumn: Int
@@ -134,6 +140,6 @@ public fun ComboBox.popup(): Unit {
   gtk_combo_box_popup(this)
 }
 
-public fun ComboBox.setActiveIter(iter: TreeIter): Unit {
-  gtk_combo_box_set_active_iter(this, iter.reinterpret())
+public fun ComboBox.setActiveIter(iter: TreeIter?): Unit {
+  gtk_combo_box_set_active_iter(this, iter?.reinterpret())
 }

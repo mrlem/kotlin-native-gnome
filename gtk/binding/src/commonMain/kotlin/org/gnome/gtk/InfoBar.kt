@@ -1,6 +1,4 @@
 // TODO - add_buttons
-// TODO - get_message_type
-// TODO - set_message_type
 //
 package org.gnome.gtk
 
@@ -9,10 +7,12 @@ import gtk3.gtk_info_bar_add_action_widget
 import gtk3.gtk_info_bar_add_button
 import gtk3.gtk_info_bar_get_action_area
 import gtk3.gtk_info_bar_get_content_area
+import gtk3.gtk_info_bar_get_message_type
 import gtk3.gtk_info_bar_get_revealed
 import gtk3.gtk_info_bar_get_show_close_button
 import gtk3.gtk_info_bar_response
 import gtk3.gtk_info_bar_set_default_response
+import gtk3.gtk_info_bar_set_message_type
 import gtk3.gtk_info_bar_set_response_sensitive
 import gtk3.gtk_info_bar_set_revealed
 import gtk3.gtk_info_bar_set_show_close_button
@@ -50,6 +50,12 @@ public val InfoBar.actionArea: Box?
 public val InfoBar.contentArea: Box?
   get() = gtk_info_bar_get_content_area(this)?.reinterpret()
 
+public var InfoBar.messageType: MessageType
+  get() = gtk_info_bar_get_message_type(this)
+  set(`value`) {
+    gtk_info_bar_set_message_type(this, value)
+  }
+
 public var InfoBar.revealed: Boolean
   get() = gtk_info_bar_get_revealed(this).toBoolean
   set(`value`) {
@@ -62,11 +68,11 @@ public var InfoBar.showCloseButton: Boolean
     gtk_info_bar_set_show_close_button(this, value.toInt)
   }
 
-public fun InfoBar.addActionWidget(child: Widget, responseId: Int): Unit {
-  gtk_info_bar_add_action_widget(this, child.reinterpret(), responseId)
+public fun InfoBar.addActionWidget(child: Widget?, responseId: Int): Unit {
+  gtk_info_bar_add_action_widget(this, child?.reinterpret(), responseId)
 }
 
-public fun InfoBar.addButton(buttonText: String?, responseId: Int): Button? =
+public fun InfoBar.addButton(buttonText: String, responseId: Int): Button? =
     gtk_info_bar_add_button(this, buttonText, responseId)?.reinterpret()
 
 public fun InfoBar.response(responseId: Int): Unit {

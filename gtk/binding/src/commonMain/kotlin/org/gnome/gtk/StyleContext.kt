@@ -101,26 +101,26 @@ public var StyleContext.state: StateFlags
     gtk_style_context_set_state(this, value)
   }
 
-public fun StyleContext.addClass(className: String?): Unit {
+public fun StyleContext.addClass(className: String): Unit {
   gtk_style_context_add_class(this, className)
 }
 
-public fun StyleContext.addProvider(provider: StyleProvider, priority: UInt): Unit {
-  gtk_style_context_add_provider(this, provider.reinterpret(), priority)
+public fun StyleContext.addProvider(provider: StyleProvider?, priority: UInt): Unit {
+  gtk_style_context_add_provider(this, provider?.reinterpret(), priority)
 }
 
-public fun StyleContext.getSection(`property`: String?): CssSection? =
+public fun StyleContext.getSection(`property`: String): CssSection? =
     gtk_style_context_get_section(this, property)?.reinterpret()
 
-public fun StyleContext.hasClass(className: String?): Boolean = gtk_style_context_has_class(this,
+public fun StyleContext.hasClass(className: String): Boolean = gtk_style_context_has_class(this,
     className).toBoolean
 
-public fun StyleContext.removeClass(className: String?): Unit {
+public fun StyleContext.removeClass(className: String): Unit {
   gtk_style_context_remove_class(this, className)
 }
 
-public fun StyleContext.removeProvider(provider: StyleProvider): Unit {
-  gtk_style_context_remove_provider(this, provider.reinterpret())
+public fun StyleContext.removeProvider(provider: StyleProvider?): Unit {
+  gtk_style_context_remove_provider(this, provider?.reinterpret())
 }
 
 public fun StyleContext.restore(): Unit {

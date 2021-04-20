@@ -1,15 +1,15 @@
 // TODO - get_bin_window
 // TODO - get_hadjustment
-// TODO - get_shadow_type
 // TODO - get_vadjustment
 // TODO - get_view_window
 // TODO - set_hadjustment
-// TODO - set_shadow_type
 // TODO - set_vadjustment
 //
 package org.gnome.gtk
 
 import gtk3.GtkViewport
+import gtk3.gtk_viewport_get_shadow_type
+import gtk3.gtk_viewport_set_shadow_type
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -31,3 +31,9 @@ public val Viewport.asContainer: Container
 
 public val Viewport.asBin: Bin
   get() = reinterpret()
+
+public var Viewport.shadowType: ShadowType
+  get() = gtk_viewport_get_shadow_type(this)
+  set(`value`) {
+    gtk_viewport_set_shadow_type(this, value)
+  }

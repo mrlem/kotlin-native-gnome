@@ -38,11 +38,11 @@ public var FileFilter.name: String
 public val FileFilter.needed: FileFilterFlags
   get() = gtk_file_filter_get_needed(this)
 
-public fun FileFilter.addMimeType(mimeType: String?): Unit {
+public fun FileFilter.addMimeType(mimeType: String): Unit {
   gtk_file_filter_add_mime_type(this, mimeType)
 }
 
-public fun FileFilter.addPattern(pattern: String?): Unit {
+public fun FileFilter.addPattern(pattern: String): Unit {
   gtk_file_filter_add_pattern(this, pattern)
 }
 
@@ -50,5 +50,5 @@ public fun FileFilter.addPixbufFormats(): Unit {
   gtk_file_filter_add_pixbuf_formats(this)
 }
 
-public fun FileFilter.filter(filterInfo: FileFilterInfo): Boolean = gtk_file_filter_filter(this,
-    filterInfo.reinterpret()).toBoolean
+public fun FileFilter.filter(filterInfo: FileFilterInfo?): Boolean = gtk_file_filter_filter(this,
+    filterInfo?.reinterpret()).toBoolean

@@ -1,6 +1,4 @@
-// TODO - get_mode
 // TODO - get_offset_value
-// TODO - set_mode
 //
 package org.gnome.gtk
 
@@ -9,11 +7,13 @@ import gtk3.gtk_level_bar_add_offset_value
 import gtk3.gtk_level_bar_get_inverted
 import gtk3.gtk_level_bar_get_max_value
 import gtk3.gtk_level_bar_get_min_value
+import gtk3.gtk_level_bar_get_mode
 import gtk3.gtk_level_bar_get_value
 import gtk3.gtk_level_bar_remove_offset_value
 import gtk3.gtk_level_bar_set_inverted
 import gtk3.gtk_level_bar_set_max_value
 import gtk3.gtk_level_bar_set_min_value
+import gtk3.gtk_level_bar_set_mode
 import gtk3.gtk_level_bar_set_value
 import kotlin.Boolean
 import kotlin.Double
@@ -55,16 +55,22 @@ public var LevelBar.minValue: Double
     gtk_level_bar_set_min_value(this, value)
   }
 
+public var LevelBar.mode: LevelBarMode
+  get() = gtk_level_bar_get_mode(this)
+  set(`value`) {
+    gtk_level_bar_set_mode(this, value)
+  }
+
 public var LevelBar.`value`: Double
   get() = gtk_level_bar_get_value(this)
   set(`value`) {
     gtk_level_bar_set_value(this, value)
   }
 
-public fun LevelBar.addOffsetValue(name: String?, `value`: Double): Unit {
+public fun LevelBar.addOffsetValue(name: String, `value`: Double): Unit {
   gtk_level_bar_add_offset_value(this, name, value)
 }
 
-public fun LevelBar.removeOffsetValue(name: String?): Unit {
+public fun LevelBar.removeOffsetValue(name: String): Unit {
   gtk_level_bar_remove_offset_value(this, name)
 }

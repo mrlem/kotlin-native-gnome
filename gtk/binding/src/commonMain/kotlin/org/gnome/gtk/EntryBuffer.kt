@@ -50,7 +50,7 @@ public fun EntryBuffer.emitDeletedText(position: UInt, nChars: UInt): Unit {
 
 public fun EntryBuffer.emitInsertedText(
   position: UInt,
-  chars: String?,
+  chars: String,
   nChars: UInt
 ): Unit {
   gtk_entry_buffer_emit_inserted_text(this, position, chars, nChars)
@@ -58,10 +58,10 @@ public fun EntryBuffer.emitInsertedText(
 
 public fun EntryBuffer.insertText(
   position: UInt,
-  chars: String?,
+  chars: String,
   nChars: Int
 ): UInt = gtk_entry_buffer_insert_text(this, position, chars, nChars)
 
-public fun EntryBuffer.setText(chars: String?, nChars: Int): Unit {
+public fun EntryBuffer.setText(chars: String, nChars: Int): Unit {
   gtk_entry_buffer_set_text(this, chars, nChars)
 }

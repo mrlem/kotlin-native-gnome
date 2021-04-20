@@ -1,13 +1,12 @@
-// TODO - get_layout
-// TODO - set_layout
-//
 package org.gnome.gtk
 
 import gtk3.GtkButtonBox
 import gtk3.gtk_button_box_get_child_non_homogeneous
 import gtk3.gtk_button_box_get_child_secondary
+import gtk3.gtk_button_box_get_layout
 import gtk3.gtk_button_box_set_child_non_homogeneous
 import gtk3.gtk_button_box_set_child_secondary
+import gtk3.gtk_button_box_set_layout
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -34,16 +33,22 @@ public val ButtonBox.asContainer: Container
 public val ButtonBox.asBox: Box
   get() = reinterpret()
 
-public fun ButtonBox.getChildNonHomogeneous(child: Widget): Boolean =
-    gtk_button_box_get_child_non_homogeneous(this, child.reinterpret()).toBoolean
+public var ButtonBox.layout: ButtonBoxStyle
+  get() = gtk_button_box_get_layout(this)
+  set(`value`) {
+    gtk_button_box_set_layout(this, value)
+  }
 
-public fun ButtonBox.getChildSecondary(child: Widget): Boolean =
-    gtk_button_box_get_child_secondary(this, child.reinterpret()).toBoolean
+public fun ButtonBox.getChildNonHomogeneous(child: Widget?): Boolean =
+    gtk_button_box_get_child_non_homogeneous(this, child?.reinterpret()).toBoolean
 
-public fun ButtonBox.setChildNonHomogeneous(child: Widget, nonHomogeneous: Boolean): Unit {
-  gtk_button_box_set_child_non_homogeneous(this, child.reinterpret(), nonHomogeneous.toInt)
+public fun ButtonBox.getChildSecondary(child: Widget?): Boolean =
+    gtk_button_box_get_child_secondary(this, child?.reinterpret()).toBoolean
+
+public fun ButtonBox.setChildNonHomogeneous(child: Widget?, nonHomogeneous: Boolean): Unit {
+  gtk_button_box_set_child_non_homogeneous(this, child?.reinterpret(), nonHomogeneous.toInt)
 }
 
-public fun ButtonBox.setChildSecondary(child: Widget, isSecondary: Boolean): Unit {
-  gtk_button_box_set_child_secondary(this, child.reinterpret(), isSecondary.toInt)
+public fun ButtonBox.setChildSecondary(child: Widget?, isSecondary: Boolean): Unit {
+  gtk_button_box_set_child_secondary(this, child?.reinterpret(), isSecondary.toInt)
 }

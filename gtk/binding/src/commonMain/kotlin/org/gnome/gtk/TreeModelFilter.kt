@@ -30,11 +30,11 @@ public fun TreeModelFilter.clearCache(): Unit {
   gtk_tree_model_filter_clear_cache(this)
 }
 
-public fun TreeModelFilter.convertChildPathToPath(childPath: TreePath): TreePath? =
-    gtk_tree_model_filter_convert_child_path_to_path(this, childPath.reinterpret())?.reinterpret()
+public fun TreeModelFilter.convertChildPathToPath(childPath: TreePath?): TreePath? =
+    gtk_tree_model_filter_convert_child_path_to_path(this, childPath?.reinterpret())?.reinterpret()
 
-public fun TreeModelFilter.convertPathToChildPath(filterPath: TreePath): TreePath? =
-    gtk_tree_model_filter_convert_path_to_child_path(this, filterPath.reinterpret())?.reinterpret()
+public fun TreeModelFilter.convertPathToChildPath(filterPath: TreePath?): TreePath? =
+    gtk_tree_model_filter_convert_path_to_child_path(this, filterPath?.reinterpret())?.reinterpret()
 
 public fun TreeModelFilter.refilter(): Unit {
   gtk_tree_model_filter_refilter(this)

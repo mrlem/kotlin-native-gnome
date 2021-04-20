@@ -40,26 +40,26 @@ public fun TreeStore.clear(): Unit {
   gtk_tree_store_clear(this)
 }
 
-public fun TreeStore.isAncestor(iter: TreeIter, descendant: TreeIter): Boolean =
-    gtk_tree_store_is_ancestor(this, iter.reinterpret(), descendant.reinterpret()).toBoolean
+public fun TreeStore.isAncestor(iter: TreeIter?, descendant: TreeIter?): Boolean =
+    gtk_tree_store_is_ancestor(this, iter?.reinterpret(), descendant?.reinterpret()).toBoolean
 
-public fun TreeStore.iterDepth(iter: TreeIter): Int = gtk_tree_store_iter_depth(this,
-    iter.reinterpret())
+public fun TreeStore.iterDepth(iter: TreeIter?): Int = gtk_tree_store_iter_depth(this,
+    iter?.reinterpret())
 
-public fun TreeStore.iterIsValid(iter: TreeIter): Boolean = gtk_tree_store_iter_is_valid(this,
-    iter.reinterpret()).toBoolean
+public fun TreeStore.iterIsValid(iter: TreeIter?): Boolean = gtk_tree_store_iter_is_valid(this,
+    iter?.reinterpret()).toBoolean
 
-public fun TreeStore.moveAfter(iter: TreeIter, position: TreeIter): Unit {
-  gtk_tree_store_move_after(this, iter.reinterpret(), position.reinterpret())
+public fun TreeStore.moveAfter(iter: TreeIter?, position: TreeIter?): Unit {
+  gtk_tree_store_move_after(this, iter?.reinterpret(), position?.reinterpret())
 }
 
-public fun TreeStore.moveBefore(iter: TreeIter, position: TreeIter): Unit {
-  gtk_tree_store_move_before(this, iter.reinterpret(), position.reinterpret())
+public fun TreeStore.moveBefore(iter: TreeIter?, position: TreeIter?): Unit {
+  gtk_tree_store_move_before(this, iter?.reinterpret(), position?.reinterpret())
 }
 
-public fun TreeStore.remove(iter: TreeIter): Boolean = gtk_tree_store_remove(this,
-    iter.reinterpret()).toBoolean
+public fun TreeStore.remove(iter: TreeIter?): Boolean = gtk_tree_store_remove(this,
+    iter?.reinterpret()).toBoolean
 
-public fun TreeStore.swap(a: TreeIter, b: TreeIter): Unit {
-  gtk_tree_store_swap(this, a.reinterpret(), b.reinterpret())
+public fun TreeStore.swap(a: TreeIter?, b: TreeIter?): Unit {
+  gtk_tree_store_swap(this, a?.reinterpret(), b?.reinterpret())
 }

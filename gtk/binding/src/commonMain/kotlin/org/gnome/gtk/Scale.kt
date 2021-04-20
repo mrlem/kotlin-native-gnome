@@ -1,21 +1,23 @@
-// TODO - add_mark
 // TODO - get_layout
 // TODO - get_layout_offsets
-// TODO - get_value_pos
-// TODO - set_value_pos
 //
 package org.gnome.gtk
 
 import gtk3.GtkScale
+import gtk3.gtk_scale_add_mark
 import gtk3.gtk_scale_clear_marks
 import gtk3.gtk_scale_get_digits
 import gtk3.gtk_scale_get_draw_value
 import gtk3.gtk_scale_get_has_origin
+import gtk3.gtk_scale_get_value_pos
 import gtk3.gtk_scale_set_digits
 import gtk3.gtk_scale_set_draw_value
 import gtk3.gtk_scale_set_has_origin
+import gtk3.gtk_scale_set_value_pos
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -55,6 +57,20 @@ public var Scale.hasOrigin: Boolean
   set(`value`) {
     gtk_scale_set_has_origin(this, value.toInt)
   }
+
+public var Scale.valuePos: PositionType
+  get() = gtk_scale_get_value_pos(this)
+  set(`value`) {
+    gtk_scale_set_value_pos(this, value)
+  }
+
+public fun Scale.addMark(
+  `value`: Double,
+  position: PositionType,
+  markup: String
+): Unit {
+  gtk_scale_add_mark(this, value, position, markup)
+}
 
 public fun Scale.clearMarks(): Unit {
   gtk_scale_clear_marks(this)
