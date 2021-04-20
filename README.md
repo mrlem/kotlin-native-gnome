@@ -41,11 +41,9 @@ See [sample](sample/src/commonMain/kotlin/org/mrlem/gtk/sample) module.
 
 ## See also
 
-Other Kotlin native GTK bindings, both using a wrapper objects approach (more memory, but true inheritance), see either:
-* [kotlin-native-gtk](https://github.com/kropp/kotlin-native-gtk): which features an API generator based on GIR
-* [kotlinx-gtk](https://github.com/Doomsdayrs/kotlinx-gtk)
+Other Kotlin native GTK projects around:
+* [kotlin-native-gtk](https://github.com/kropp/kotlin-native-gtk): low-level wrappers bindings, GIR based
+* [kotlinx-gtk](https://github.com/Doomsdayrs/kotlinx-gtk): high-level wrappers bindings, manually created
+* [gir2java](https://github.com/gstreamer-java/gir2java): GIR file java descriptors generator
 
 For an explanation about why I didn't rely on one of them, see the [FAQ](FAQ.md).
-
-A tool to generate Java code from GIR repositories:
-* https://github.com/gstreamer-java/gir2java
