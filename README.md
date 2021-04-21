@@ -19,9 +19,9 @@ They say a picture is worth a thousand words:
 * glade gradle plugin: 100% complete
 * [GIR](https://gi.readthedocs.io) parsing: 100% complete
 * generated API coverage is progressing well. Notable short-comings:
-  - no lambda-based signal handlers (it's the next step)
-  - no constructors
+  - no constructors (that's the next step)
   - some data-types are not handled yet (like GLists and arrays)
+  - lambda-based signal handlers don't forward any data
 * tested on Ubuntu 20.04
 
 ## Build
