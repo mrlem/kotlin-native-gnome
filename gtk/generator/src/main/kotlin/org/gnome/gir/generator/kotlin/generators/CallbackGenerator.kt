@@ -25,7 +25,8 @@ fun CallbackDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
     return FileSpec.builder(namespace.packageName, name)
         // type
         .addTypeAlias(
-            TypeAliasSpec.builder(name, ClassName(GTK_CINTEROP_PACKAGE, cType))
+            TypeAliasSpec
+                .builder(name, ClassName(GTK_CINTEROP_PACKAGE, cType))
                 .build()
         )
         .build()

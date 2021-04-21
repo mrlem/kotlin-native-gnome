@@ -25,10 +25,8 @@ fun EnumDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
     return FileSpec.builder(namespace.packageName, name)
         // type
         .addTypeAlias(
-            TypeAliasSpec.builder(
-                name,
-                ClassName(GTK_CINTEROP_PACKAGE, glibTypeName)
-            )
+            TypeAliasSpec
+                .builder(name, ClassName(GTK_CINTEROP_PACKAGE, glibTypeName))
                 .build()
         )
         .build()

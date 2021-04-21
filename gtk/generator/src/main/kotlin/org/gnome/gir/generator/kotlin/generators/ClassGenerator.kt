@@ -4,10 +4,7 @@ import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import org.gnome.gir.GNOME_PACKAGE
 import org.gnome.gir.GTK_CINTEROP_PACKAGE
-import org.gnome.gir.generator.kotlin.generators.ext.packageName
-import org.gnome.gir.generator.kotlin.generators.ext.reinterpretMemberName
-import org.gnome.gir.generator.kotlin.generators.ext.suppressWarningTypes
-import org.gnome.gir.generator.kotlin.generators.ext.toClassName
+import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.ClassDefinition
 import org.gnome.gir.model.NamespaceDefinition
 import org.gnome.gir.resolver.Resolver
@@ -51,11 +48,8 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             )
             // type
             .addTypeAlias(
-                TypeAliasSpec.builder(
-                    name,
-                    ClassName("kotlinx.cinterop", "CPointer")
-                        .plusParameter(ClassName(GTK_CINTEROP_PACKAGE, cType))
-                )
+                TypeAliasSpec
+                    .builder(name, cpointerClassName.plusParameter(ClassName(GTK_CINTEROP_PACKAGE, cType)))
                     .build()
             )
             // converters
