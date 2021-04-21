@@ -4,7 +4,7 @@
 // TODO - method: get_preferred_width
 // TODO - method: get_preferred_width_for_height
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 

@@ -1,11 +1,12 @@
 // TODO - method: get_offset
 // TODO - method: get_start_point
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkGestureDrag
+import gtk3.gtk_gesture_drag_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -25,6 +26,11 @@ public val GestureDrag.asGesture: Gesture
 
 public val GestureDrag.asGestureSingle: GestureSingle
   get() = reinterpret()
+
+public object GestureDragFactory {
+  public fun new(widget: Widget?): GestureDrag =
+      gtk_gesture_drag_new(widget?.reinterpret())!!.reinterpret()
+}
 
 public fun GestureDrag.onDragBegin(callback: (GestureDrag) -> Unit): GestureDrag {
   // TODO - handle callback data

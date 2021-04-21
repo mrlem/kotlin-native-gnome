@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -6,11 +6,15 @@ import gtk3.GtkCheckMenuItem
 import gtk3.gtk_check_menu_item_get_active
 import gtk3.gtk_check_menu_item_get_draw_as_radio
 import gtk3.gtk_check_menu_item_get_inconsistent
+import gtk3.gtk_check_menu_item_new
+import gtk3.gtk_check_menu_item_new_with_label
+import gtk3.gtk_check_menu_item_new_with_mnemonic
 import gtk3.gtk_check_menu_item_set_active
 import gtk3.gtk_check_menu_item_set_draw_as_radio
 import gtk3.gtk_check_menu_item_set_inconsistent
 import gtk3.gtk_check_menu_item_toggled
 import kotlin.Boolean
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -39,6 +43,16 @@ public val CheckMenuItem.asBin: Bin
 
 public val CheckMenuItem.asMenuItem: MenuItem
   get() = reinterpret()
+
+public object CheckMenuItemFactory {
+  public fun new(): CheckMenuItem = gtk_check_menu_item_new()!!.reinterpret()
+
+  public fun newWithLabel(label: String): CheckMenuItem =
+      gtk_check_menu_item_new_with_label(label)!!.reinterpret()
+
+  public fun newWithMnemonic(label: String): CheckMenuItem =
+      gtk_check_menu_item_new_with_mnemonic(label)!!.reinterpret()
+}
 
 public var CheckMenuItem.active: Boolean
   get() = gtk_check_menu_item_get_active(this).toBoolean

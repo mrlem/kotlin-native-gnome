@@ -2,7 +2,7 @@
 // TODO - method: get_hadjustment
 // TODO - method: get_vadjustment
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -15,6 +15,7 @@ import gtk3.gtk_tool_palette_get_expand
 import gtk3.gtk_tool_palette_get_group_position
 import gtk3.gtk_tool_palette_get_icon_size
 import gtk3.gtk_tool_palette_get_style
+import gtk3.gtk_tool_palette_new
 import gtk3.gtk_tool_palette_set_drag_source
 import gtk3.gtk_tool_palette_set_exclusive
 import gtk3.gtk_tool_palette_set_expand
@@ -46,6 +47,10 @@ public val ToolPalette.asWidget: Widget
 
 public val ToolPalette.asContainer: Container
   get() = reinterpret()
+
+public object ToolPaletteFactory {
+  public fun new(): ToolPalette = gtk_tool_palette_new()!!.reinterpret()
+}
 
 public var ToolPalette.iconSize: IconSize
   get() = gtk_tool_palette_get_icon_size(this)

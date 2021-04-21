@@ -1,3 +1,4 @@
+// TODO - constructor: new_from_model
 // TODO - method: get_tearoff_state
 // TODO - method: get_title
 // TODO - method: place_on_monitor
@@ -10,7 +11,7 @@
 // TODO - method: set_tearoff_state
 // TODO - method: set_title
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -24,6 +25,7 @@ import gtk3.gtk_menu_get_active
 import gtk3.gtk_menu_get_attach_widget
 import gtk3.gtk_menu_get_monitor
 import gtk3.gtk_menu_get_reserve_toggle_size
+import gtk3.gtk_menu_new
 import gtk3.gtk_menu_popdown
 import gtk3.gtk_menu_reorder_child
 import gtk3.gtk_menu_reposition
@@ -62,6 +64,10 @@ public val Menu.asContainer: Container
 
 public val Menu.asMenuShell: MenuShell
   get() = reinterpret()
+
+public object MenuFactory {
+  public fun new(): Menu = gtk_menu_new()!!.reinterpret()
+}
 
 public var Menu.accelGroup: AccelGroup?
   get() = gtk_menu_get_accel_group(this)?.reinterpret()

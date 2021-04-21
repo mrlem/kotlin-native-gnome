@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -9,6 +9,7 @@ import gtk3.gtk_list_box_row_get_header
 import gtk3.gtk_list_box_row_get_index
 import gtk3.gtk_list_box_row_get_selectable
 import gtk3.gtk_list_box_row_is_selected
+import gtk3.gtk_list_box_row_new
 import gtk3.gtk_list_box_row_set_activatable
 import gtk3.gtk_list_box_row_set_header
 import gtk3.gtk_list_box_row_set_selectable
@@ -39,6 +40,10 @@ public val ListBoxRow.asContainer: Container
 
 public val ListBoxRow.asBin: Bin
   get() = reinterpret()
+
+public object ListBoxRowFactory {
+  public fun new(): ListBoxRow = gtk_list_box_row_new()!!.reinterpret()
+}
 
 public var ListBoxRow.activatable: Boolean
   get() = gtk_list_box_row_get_activatable(this).toBoolean

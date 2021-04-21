@@ -1,6 +1,7 @@
+// TODO - constructor: new_with_buttons
 // TODO - method: add_buttons
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -12,6 +13,7 @@ import gtk3.gtk_info_bar_get_content_area
 import gtk3.gtk_info_bar_get_message_type
 import gtk3.gtk_info_bar_get_revealed
 import gtk3.gtk_info_bar_get_show_close_button
+import gtk3.gtk_info_bar_new
 import gtk3.gtk_info_bar_response
 import gtk3.gtk_info_bar_set_default_response
 import gtk3.gtk_info_bar_set_message_type
@@ -46,6 +48,10 @@ public val InfoBar.asContainer: Container
 
 public val InfoBar.asBox: Box
   get() = reinterpret()
+
+public object InfoBarFactory {
+  public fun new(): InfoBar = gtk_info_bar_new()!!.reinterpret()
+}
 
 public val InfoBar.actionArea: Box?
   get() = gtk_info_bar_get_action_area(this)?.reinterpret()

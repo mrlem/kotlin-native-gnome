@@ -12,7 +12,7 @@
 // TODO - method: set_screen
 // TODO - method: set_search_path
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -23,6 +23,7 @@ import gtk3.gtk_icon_theme_get_example_icon_name
 import gtk3.gtk_icon_theme_has_icon
 import gtk3.gtk_icon_theme_lookup_icon
 import gtk3.gtk_icon_theme_lookup_icon_for_scale
+import gtk3.gtk_icon_theme_new
 import gtk3.gtk_icon_theme_prepend_search_path
 import gtk3.gtk_icon_theme_rescan_if_needed
 import gtk3.gtk_icon_theme_set_custom_theme
@@ -41,6 +42,10 @@ public typealias IconTheme = CPointer<GtkIconTheme>
 
 public val IconTheme.asObject: Object
   get() = reinterpret()
+
+public object IconThemeFactory {
+  public fun new(): IconTheme = gtk_icon_theme_new()!!.reinterpret()
+}
 
 public val IconTheme.exampleIconName: String
   get() = gtk_icon_theme_get_example_icon_name(this).toKString

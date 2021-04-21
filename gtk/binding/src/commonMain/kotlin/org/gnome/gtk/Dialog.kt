@@ -1,9 +1,10 @@
+// TODO - constructor: new_with_buttons
 // TODO - method: add_buttons
 // TODO - method: get_action_area
 // TODO - method: set_alternative_button_order
 // TODO - method: set_alternative_button_order_from_array
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -14,6 +15,7 @@ import gtk3.gtk_dialog_get_content_area
 import gtk3.gtk_dialog_get_header_bar
 import gtk3.gtk_dialog_get_response_for_widget
 import gtk3.gtk_dialog_get_widget_for_response
+import gtk3.gtk_dialog_new
 import gtk3.gtk_dialog_response
 import gtk3.gtk_dialog_run
 import gtk3.gtk_dialog_set_default_response
@@ -48,6 +50,10 @@ public val Dialog.asBin: Bin
 
 public val Dialog.asWindow: Window
   get() = reinterpret()
+
+public object DialogFactory {
+  public fun new(): Dialog = gtk_dialog_new()!!.reinterpret()
+}
 
 public val Dialog.contentArea: Box?
   get() = gtk_dialog_get_content_area(this)?.reinterpret()

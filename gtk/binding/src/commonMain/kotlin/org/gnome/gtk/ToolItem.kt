@@ -1,6 +1,6 @@
 // TODO - method: get_ellipsize_mode
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -19,6 +19,7 @@ import gtk3.gtk_tool_item_get_toolbar_style
 import gtk3.gtk_tool_item_get_use_drag_window
 import gtk3.gtk_tool_item_get_visible_horizontal
 import gtk3.gtk_tool_item_get_visible_vertical
+import gtk3.gtk_tool_item_new
 import gtk3.gtk_tool_item_rebuild_menu
 import gtk3.gtk_tool_item_retrieve_proxy_menu_item
 import gtk3.gtk_tool_item_set_expand
@@ -59,6 +60,10 @@ public val ToolItem.asContainer: Container
 
 public val ToolItem.asBin: Bin
   get() = reinterpret()
+
+public object ToolItemFactory {
+  public fun new(): ToolItem = gtk_tool_item_new()!!.reinterpret()
+}
 
 public var ToolItem.expand: Boolean
   get() = gtk_tool_item_get_expand(this).toBoolean

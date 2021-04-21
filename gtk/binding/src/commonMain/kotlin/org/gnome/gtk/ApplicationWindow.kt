@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -6,6 +6,7 @@ import gtk3.GtkApplicationWindow
 import gtk3.gtk_application_window_get_help_overlay
 import gtk3.gtk_application_window_get_id
 import gtk3.gtk_application_window_get_show_menubar
+import gtk3.gtk_application_window_new
 import gtk3.gtk_application_window_set_help_overlay
 import gtk3.gtk_application_window_set_show_menubar
 import kotlin.Boolean
@@ -36,6 +37,11 @@ public val ApplicationWindow.asBin: Bin
 
 public val ApplicationWindow.asWindow: Window
   get() = reinterpret()
+
+public object ApplicationWindowFactory {
+  public fun new(application: Application?): ApplicationWindow =
+      gtk_application_window_new(application?.reinterpret())!!.reinterpret()
+}
 
 public var ApplicationWindow.helpOverlay: ShortcutsWindow?
   get() = gtk_application_window_get_help_overlay(this)?.reinterpret()

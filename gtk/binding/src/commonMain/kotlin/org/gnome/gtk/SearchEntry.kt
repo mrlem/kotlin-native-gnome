@@ -1,10 +1,11 @@
 // TODO - method: handle_event
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkSearchEntry
+import gtk3.gtk_search_entry_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -25,6 +26,10 @@ public val SearchEntry.asWidget: Widget
 
 public val SearchEntry.asEntry: Entry
   get() = reinterpret()
+
+public object SearchEntryFactory {
+  public fun new(): SearchEntry = gtk_search_entry_new()!!.reinterpret()
+}
 
 public fun SearchEntry.onNextMatch(callback: (SearchEntry) -> Unit): SearchEntry {
   // TODO - handle callback data

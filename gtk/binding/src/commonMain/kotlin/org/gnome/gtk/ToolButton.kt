@@ -1,7 +1,8 @@
+// TODO - constructor: new_from_stock
 // TODO - method: get_stock_id
 // TODO - method: set_stock_id
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,6 +12,7 @@ import gtk3.gtk_tool_button_get_icon_widget
 import gtk3.gtk_tool_button_get_label
 import gtk3.gtk_tool_button_get_label_widget
 import gtk3.gtk_tool_button_get_use_underline
+import gtk3.gtk_tool_button_new
 import gtk3.gtk_tool_button_set_icon_name
 import gtk3.gtk_tool_button_set_icon_widget
 import gtk3.gtk_tool_button_set_label
@@ -47,6 +49,11 @@ public val ToolButton.asBin: Bin
 
 public val ToolButton.asToolItem: ToolItem
   get() = reinterpret()
+
+public object ToolButtonFactory {
+  public fun new(iconWidget: Widget?, label: String): ToolButton =
+      gtk_tool_button_new(iconWidget?.reinterpret(), label)!!.reinterpret()
+}
 
 public var ToolButton.iconName: String
   get() = gtk_tool_button_get_icon_name(this).toKString

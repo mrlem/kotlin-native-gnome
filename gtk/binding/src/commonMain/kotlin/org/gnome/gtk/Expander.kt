@@ -1,7 +1,7 @@
 // TODO - method: get_spacing
 // TODO - method: set_spacing
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -13,6 +13,8 @@ import gtk3.gtk_expander_get_label_widget
 import gtk3.gtk_expander_get_resize_toplevel
 import gtk3.gtk_expander_get_use_markup
 import gtk3.gtk_expander_get_use_underline
+import gtk3.gtk_expander_new
+import gtk3.gtk_expander_new_with_mnemonic
 import gtk3.gtk_expander_set_expanded
 import gtk3.gtk_expander_set_label
 import gtk3.gtk_expander_set_label_fill
@@ -48,6 +50,13 @@ public val Expander.asContainer: Container
 
 public val Expander.asBin: Bin
   get() = reinterpret()
+
+public object ExpanderFactory {
+  public fun new(label: String): Expander = gtk_expander_new(label)!!.reinterpret()
+
+  public fun newWithMnemonic(label: String): Expander =
+      gtk_expander_new_with_mnemonic(label)!!.reinterpret()
+}
 
 public var Expander.expanded: Boolean
   get() = gtk_expander_get_expanded(this).toBoolean

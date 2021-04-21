@@ -1,13 +1,15 @@
 // TODO - method: get_focus_on_click
 // TODO - method: set_focus_on_click
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkFileChooserButton
 import gtk3.gtk_file_chooser_button_get_title
 import gtk3.gtk_file_chooser_button_get_width_chars
+import gtk3.gtk_file_chooser_button_new
+import gtk3.gtk_file_chooser_button_new_with_dialog
 import gtk3.gtk_file_chooser_button_set_title
 import gtk3.gtk_file_chooser_button_set_width_chars
 import kotlin.Int
@@ -36,6 +38,14 @@ public val FileChooserButton.asContainer: Container
 
 public val FileChooserButton.asBox: Box
   get() = reinterpret()
+
+public object FileChooserButtonFactory {
+  public fun new(title: String, action: FileChooserAction): FileChooserButton =
+      gtk_file_chooser_button_new(title, action)!!.reinterpret()
+
+  public fun newWithDialog(dialog: Dialog?): FileChooserButton =
+      gtk_file_chooser_button_new_with_dialog(dialog?.reinterpret())!!.reinterpret()
+}
 
 public var FileChooserButton.title: String
   get() = gtk_file_chooser_button_get_title(this).toKString

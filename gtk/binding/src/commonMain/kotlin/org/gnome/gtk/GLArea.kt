@@ -3,7 +3,7 @@
 // TODO - method: get_required_version
 // TODO - method: set_error
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -15,6 +15,7 @@ import gtk3.gtk_gl_area_get_has_depth_buffer
 import gtk3.gtk_gl_area_get_has_stencil_buffer
 import gtk3.gtk_gl_area_get_use_es
 import gtk3.gtk_gl_area_make_current
+import gtk3.gtk_gl_area_new
 import gtk3.gtk_gl_area_queue_render
 import gtk3.gtk_gl_area_set_auto_render
 import gtk3.gtk_gl_area_set_has_alpha
@@ -43,6 +44,10 @@ public val GLArea.asInitiallyUnowned: InitiallyUnowned
 
 public val GLArea.asWidget: Widget
   get() = reinterpret()
+
+public object GLAreaFactory {
+  public fun new(): GLArea = gtk_gl_area_new()!!.reinterpret()
+}
 
 public var GLArea.autoRender: Boolean
   get() = gtk_gl_area_get_auto_render(this).toBoolean

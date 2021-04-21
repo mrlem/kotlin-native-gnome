@@ -1,9 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkCellAreaBox
 import gtk3.gtk_cell_area_box_get_spacing
+import gtk3.gtk_cell_area_box_new
 import gtk3.gtk_cell_area_box_pack_end
 import gtk3.gtk_cell_area_box_pack_start
 import gtk3.gtk_cell_area_box_set_spacing
@@ -26,6 +27,10 @@ public val CellAreaBox.asInitiallyUnowned: InitiallyUnowned
 
 public val CellAreaBox.asCellArea: CellArea
   get() = reinterpret()
+
+public object CellAreaBoxFactory {
+  public fun new(): CellAreaBox = gtk_cell_area_box_new()!!.reinterpret()
+}
 
 public var CellAreaBox.spacing: Int
   get() = gtk_cell_area_box_get_spacing(this)

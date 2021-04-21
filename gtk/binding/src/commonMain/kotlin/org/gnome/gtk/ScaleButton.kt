@@ -1,6 +1,7 @@
+// TODO - constructor: new
 // TODO - method: set_icons
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -39,6 +40,8 @@ public val ScaleButton.asBin: Bin
 
 public val ScaleButton.asButton: Button
   get() = reinterpret()
+
+public object ScaleButtonFactory
 
 public var ScaleButton.adjustment: Adjustment?
   get() = gtk_scale_button_get_adjustment(this)?.reinterpret()

@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkFileChooserWidget
+import gtk3.gtk_file_chooser_widget_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -26,6 +27,11 @@ public val FileChooserWidget.asContainer: Container
 
 public val FileChooserWidget.asBox: Box
   get() = reinterpret()
+
+public object FileChooserWidgetFactory {
+  public fun new(action: FileChooserAction): FileChooserWidget =
+      gtk_file_chooser_widget_new(action)!!.reinterpret()
+}
 
 public fun FileChooserWidget.onDesktopFolder(callback: (FileChooserWidget) -> Unit):
     FileChooserWidget {

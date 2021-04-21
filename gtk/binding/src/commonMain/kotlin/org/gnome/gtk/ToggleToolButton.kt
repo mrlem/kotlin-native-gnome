@@ -1,9 +1,12 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+// TODO - constructor: new_from_stock
+//
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkToggleToolButton
 import gtk3.gtk_toggle_tool_button_get_active
+import gtk3.gtk_toggle_tool_button_new
 import gtk3.gtk_toggle_tool_button_set_active
 import kotlin.Boolean
 import kotlin.Unit
@@ -37,6 +40,10 @@ public val ToggleToolButton.asToolItem: ToolItem
 
 public val ToggleToolButton.asToolButton: ToolButton
   get() = reinterpret()
+
+public object ToggleToolButtonFactory {
+  public fun new(): ToggleToolButton = gtk_toggle_tool_button_new()!!.reinterpret()
+}
 
 public var ToggleToolButton.active: Boolean
   get() = gtk_toggle_tool_button_get_active(this).toBoolean

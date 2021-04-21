@@ -1,7 +1,7 @@
 // TODO - method: get_layout
 // TODO - method: get_layout_offsets
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -12,6 +12,8 @@ import gtk3.gtk_scale_get_digits
 import gtk3.gtk_scale_get_draw_value
 import gtk3.gtk_scale_get_has_origin
 import gtk3.gtk_scale_get_value_pos
+import gtk3.gtk_scale_new
+import gtk3.gtk_scale_new_with_range
 import gtk3.gtk_scale_set_digits
 import gtk3.gtk_scale_set_draw_value
 import gtk3.gtk_scale_set_has_origin
@@ -42,6 +44,18 @@ public val Scale.asWidget: Widget
 
 public val Scale.asRange: Range
   get() = reinterpret()
+
+public object ScaleFactory {
+  public fun new(orientation: Orientation, adjustment: Adjustment?): Scale =
+      gtk_scale_new(orientation, adjustment?.reinterpret())!!.reinterpret()
+
+  public fun newWithRange(
+    orientation: Orientation,
+    min: Double,
+    max: Double,
+    step: Double
+  ): Scale = gtk_scale_new_with_range(orientation, min, max, step)!!.reinterpret()
+}
 
 public var Scale.digits: Int
   get() = gtk_scale_get_digits(this)

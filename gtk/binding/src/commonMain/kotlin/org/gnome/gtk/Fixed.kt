@@ -1,9 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkFixed
 import gtk3.gtk_fixed_move
+import gtk3.gtk_fixed_new
 import gtk3.gtk_fixed_put
 import kotlin.Int
 import kotlin.Unit
@@ -25,6 +26,10 @@ public val Fixed.asWidget: Widget
 
 public val Fixed.asContainer: Container
   get() = reinterpret()
+
+public object FixedFactory {
+  public fun new(): Fixed = gtk_fixed_new()!!.reinterpret()
+}
 
 public fun Fixed.move(
   widget: Widget?,

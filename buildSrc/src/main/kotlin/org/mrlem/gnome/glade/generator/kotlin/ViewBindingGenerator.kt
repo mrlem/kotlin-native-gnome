@@ -75,7 +75,11 @@ class ViewBindingGenerator {
                     )
                     .addProperty(PropertySpec.builder("builder", builderClassName)
                         .addModifiers(KModifier.PRIVATE)
-                        .initializer("Builder().apply { %M(source) }", MemberName(GTK_PACKAGE, "addFrom"))
+                        .initializer(
+                            "%M.new().apply { %M(source) }",
+                            MemberName(GTK_PACKAGE, "BuilderFactory"),
+                            MemberName(GTK_PACKAGE, "addFrom")
+                        )
                         .build()
                     )
                     .apply {

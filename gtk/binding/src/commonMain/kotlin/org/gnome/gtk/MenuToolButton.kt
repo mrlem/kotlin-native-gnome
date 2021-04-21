@@ -1,9 +1,12 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+// TODO - constructor: new_from_stock
+//
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkMenuToolButton
 import gtk3.gtk_menu_tool_button_get_menu
+import gtk3.gtk_menu_tool_button_new
 import gtk3.gtk_menu_tool_button_set_arrow_tooltip_markup
 import gtk3.gtk_menu_tool_button_set_arrow_tooltip_text
 import gtk3.gtk_menu_tool_button_set_menu
@@ -37,6 +40,11 @@ public val MenuToolButton.asToolItem: ToolItem
 
 public val MenuToolButton.asToolButton: ToolButton
   get() = reinterpret()
+
+public object MenuToolButtonFactory {
+  public fun new(iconWidget: Widget?, label: String): MenuToolButton =
+      gtk_menu_tool_button_new(iconWidget?.reinterpret(), label)!!.reinterpret()
+}
 
 public var MenuToolButton.menu: Widget?
   get() = gtk_menu_tool_button_get_menu(this)?.reinterpret()

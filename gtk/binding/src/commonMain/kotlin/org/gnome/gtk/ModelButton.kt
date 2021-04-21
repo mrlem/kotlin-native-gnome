@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkModelButton
+import gtk3.gtk_model_button_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -27,3 +28,7 @@ public val ModelButton.asBin: Bin
 
 public val ModelButton.asButton: Button
   get() = reinterpret()
+
+public object ModelButtonFactory {
+  public fun new(): ModelButton = gtk_model_button_new()!!.reinterpret()
+}

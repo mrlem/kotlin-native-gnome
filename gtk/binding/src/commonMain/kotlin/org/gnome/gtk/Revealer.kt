@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -7,6 +7,7 @@ import gtk3.gtk_revealer_get_child_revealed
 import gtk3.gtk_revealer_get_reveal_child
 import gtk3.gtk_revealer_get_transition_duration
 import gtk3.gtk_revealer_get_transition_type
+import gtk3.gtk_revealer_new
 import gtk3.gtk_revealer_set_reveal_child
 import gtk3.gtk_revealer_set_transition_duration
 import gtk3.gtk_revealer_set_transition_type
@@ -35,6 +36,10 @@ public val Revealer.asContainer: Container
 
 public val Revealer.asBin: Bin
   get() = reinterpret()
+
+public object RevealerFactory {
+  public fun new(): Revealer = gtk_revealer_new()!!.reinterpret()
+}
 
 public val Revealer.childRevealed: Boolean
   get() = gtk_revealer_get_child_revealed(this).toBoolean

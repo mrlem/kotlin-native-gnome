@@ -32,7 +32,7 @@
 // TODO - method: set_type_hint
 // TODO - method: set_wmclass
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -76,6 +76,7 @@ import gtk3.gtk_window_is_active
 import gtk3.gtk_window_is_maximized
 import gtk3.gtk_window_maximize
 import gtk3.gtk_window_move
+import gtk3.gtk_window_new
 import gtk3.gtk_window_present
 import gtk3.gtk_window_present_with_time
 import gtk3.gtk_window_remove_accel_group
@@ -143,6 +144,10 @@ public val Window.asContainer: Container
 
 public val Window.asBin: Bin
   get() = reinterpret()
+
+public object WindowFactory {
+  public fun new(type: WindowType): Window = gtk_window_new(type)!!.reinterpret()
+}
 
 public var Window.acceptFocus: Boolean
   get() = gtk_window_get_accept_focus(this).toBoolean

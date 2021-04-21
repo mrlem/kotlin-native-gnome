@@ -1,7 +1,7 @@
 // TODO - method: convert_child_iter_to_iter
 // TODO - method: convert_iter_to_child_iter
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,6 +11,7 @@ import gtk3.gtk_tree_model_sort_convert_child_path_to_path
 import gtk3.gtk_tree_model_sort_convert_path_to_child_path
 import gtk3.gtk_tree_model_sort_get_model
 import gtk3.gtk_tree_model_sort_iter_is_valid
+import gtk3.gtk_tree_model_sort_new_with_model
 import gtk3.gtk_tree_model_sort_reset_default_sort_func
 import kotlin.Boolean
 import kotlin.Unit
@@ -23,6 +24,11 @@ public typealias TreeModelSort = CPointer<GtkTreeModelSort>
 
 public val TreeModelSort.asObject: Object
   get() = reinterpret()
+
+public object TreeModelSortFactory {
+  public fun newWithModel(childModel: TreeModel?): TreeModelSort =
+      gtk_tree_model_sort_new_with_model(childModel?.reinterpret())!!.reinterpret()
+}
 
 public val TreeModelSort.model: TreeModel?
   get() = gtk_tree_model_sort_get_model(this)?.reinterpret()

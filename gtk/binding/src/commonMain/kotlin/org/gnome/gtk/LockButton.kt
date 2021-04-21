@@ -1,7 +1,8 @@
+// TODO - constructor: new
 // TODO - method: get_permission
 // TODO - method: set_permission
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -30,3 +31,5 @@ public val LockButton.asBin: Bin
 
 public val LockButton.asButton: Button
   get() = reinterpret()
+
+public object LockButtonFactory

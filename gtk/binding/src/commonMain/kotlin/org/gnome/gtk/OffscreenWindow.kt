@@ -1,11 +1,12 @@
 // TODO - method: get_pixbuf
 // TODO - method: get_surface
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkOffscreenWindow
+import gtk3.gtk_offscreen_window_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -30,3 +31,7 @@ public val OffscreenWindow.asBin: Bin
 
 public val OffscreenWindow.asWindow: Window
   get() = reinterpret()
+
+public object OffscreenWindowFactory {
+  public fun new(): OffscreenWindow = gtk_offscreen_window_new()!!.reinterpret()
+}

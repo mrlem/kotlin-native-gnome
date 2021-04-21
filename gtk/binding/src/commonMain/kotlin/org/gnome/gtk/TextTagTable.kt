@@ -1,6 +1,6 @@
 // TODO - method: foreach
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -8,6 +8,7 @@ import gtk3.GtkTextTagTable
 import gtk3.gtk_text_tag_table_add
 import gtk3.gtk_text_tag_table_get_size
 import gtk3.gtk_text_tag_table_lookup
+import gtk3.gtk_text_tag_table_new
 import gtk3.gtk_text_tag_table_remove
 import kotlin.Boolean
 import kotlin.Int
@@ -23,6 +24,10 @@ public typealias TextTagTable = CPointer<GtkTextTagTable>
 
 public val TextTagTable.asObject: Object
   get() = reinterpret()
+
+public object TextTagTableFactory {
+  public fun new(): TextTagTable = gtk_text_tag_table_new()!!.reinterpret()
+}
 
 public val TextTagTable.size: Int
   get() = gtk_text_tag_table_get_size(this)

@@ -2,13 +2,14 @@
 // TODO - method: get_widgets
 // TODO - method: set_ignore_hidden
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkSizeGroup
 import gtk3.gtk_size_group_add_widget
 import gtk3.gtk_size_group_get_mode
+import gtk3.gtk_size_group_new
 import gtk3.gtk_size_group_remove_widget
 import gtk3.gtk_size_group_set_mode
 import kotlin.Unit
@@ -20,6 +21,10 @@ public typealias SizeGroup = CPointer<GtkSizeGroup>
 
 public val SizeGroup.asObject: Object
   get() = reinterpret()
+
+public object SizeGroupFactory {
+  public fun new(mode: SizeGroupMode): SizeGroup = gtk_size_group_new(mode)!!.reinterpret()
+}
 
 public var SizeGroup.mode: SizeGroupMode
   get() = gtk_size_group_get_mode(this)

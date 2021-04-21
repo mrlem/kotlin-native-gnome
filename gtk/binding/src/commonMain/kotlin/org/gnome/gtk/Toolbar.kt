@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -12,6 +12,7 @@ import gtk3.gtk_toolbar_get_relief_style
 import gtk3.gtk_toolbar_get_show_arrow
 import gtk3.gtk_toolbar_get_style
 import gtk3.gtk_toolbar_insert
+import gtk3.gtk_toolbar_new
 import gtk3.gtk_toolbar_set_drop_highlight_item
 import gtk3.gtk_toolbar_set_icon_size
 import gtk3.gtk_toolbar_set_show_arrow
@@ -42,6 +43,10 @@ public val Toolbar.asWidget: Widget
 
 public val Toolbar.asContainer: Container
   get() = reinterpret()
+
+public object ToolbarFactory {
+  public fun new(): Toolbar = gtk_toolbar_new()!!.reinterpret()
+}
 
 public var Toolbar.iconSize: IconSize
   get() = gtk_toolbar_get_icon_size(this)

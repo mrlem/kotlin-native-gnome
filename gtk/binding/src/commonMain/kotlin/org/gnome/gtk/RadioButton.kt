@@ -1,12 +1,19 @@
+// TODO - constructor: new
+// TODO - constructor: new_with_label
+// TODO - constructor: new_with_mnemonic
 // TODO - method: get_group
 // TODO - method: set_group
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkRadioButton
 import gtk3.gtk_radio_button_join_group
+import gtk3.gtk_radio_button_new_from_widget
+import gtk3.gtk_radio_button_new_with_label_from_widget
+import gtk3.gtk_radio_button_new_with_mnemonic_from_widget
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -39,6 +46,19 @@ public val RadioButton.asToggleButton: ToggleButton
 
 public val RadioButton.asCheckButton: CheckButton
   get() = reinterpret()
+
+public object RadioButtonFactory {
+  public fun newFromWidget(radioGroupMember: RadioButton?): RadioButton =
+      gtk_radio_button_new_from_widget(radioGroupMember?.reinterpret())!!.reinterpret()
+
+  public fun newWithLabelFromWidget(radioGroupMember: RadioButton?, label: String): RadioButton =
+      gtk_radio_button_new_with_label_from_widget(radioGroupMember?.reinterpret(),
+      label)!!.reinterpret()
+
+  public fun newWithMnemonicFromWidget(radioGroupMember: RadioButton?, label: String): RadioButton =
+      gtk_radio_button_new_with_mnemonic_from_widget(radioGroupMember?.reinterpret(),
+      label)!!.reinterpret()
+}
 
 public fun RadioButton.joinGroup(groupSource: RadioButton?): Unit {
   gtk_radio_button_join_group(this, groupSource?.reinterpret())

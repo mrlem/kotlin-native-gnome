@@ -4,7 +4,7 @@
 // TODO - method: purge_items
 // TODO - method: remove_item
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -12,6 +12,7 @@ import gtk3.GtkRecentManager
 import gtk3.gtk_recent_manager_add_full
 import gtk3.gtk_recent_manager_add_item
 import gtk3.gtk_recent_manager_has_item
+import gtk3.gtk_recent_manager_new
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
@@ -25,6 +26,10 @@ public typealias RecentManager = CPointer<GtkRecentManager>
 
 public val RecentManager.asObject: Object
   get() = reinterpret()
+
+public object RecentManagerFactory {
+  public fun new(): RecentManager = gtk_recent_manager_new()!!.reinterpret()
+}
 
 public fun RecentManager.addFull(uri: String, recentData: RecentData?): Boolean =
     gtk_recent_manager_add_full(this, uri, recentData?.reinterpret()).toBoolean

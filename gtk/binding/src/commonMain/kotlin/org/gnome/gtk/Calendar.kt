@@ -1,7 +1,7 @@
 // TODO - method: get_date
 // TODO - method: set_detail_func
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -12,6 +12,7 @@ import gtk3.gtk_calendar_get_detail_height_rows
 import gtk3.gtk_calendar_get_detail_width_chars
 import gtk3.gtk_calendar_get_display_options
 import gtk3.gtk_calendar_mark_day
+import gtk3.gtk_calendar_new
 import gtk3.gtk_calendar_select_day
 import gtk3.gtk_calendar_select_month
 import gtk3.gtk_calendar_set_detail_height_rows
@@ -39,6 +40,10 @@ public val Calendar.asInitiallyUnowned: InitiallyUnowned
 
 public val Calendar.asWidget: Widget
   get() = reinterpret()
+
+public object CalendarFactory {
+  public fun new(): Calendar = gtk_calendar_new()!!.reinterpret()
+}
 
 public var Calendar.detailHeightRows: Int
   get() = gtk_calendar_get_detail_height_rows(this)

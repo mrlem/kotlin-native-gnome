@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkSpinner
+import gtk3.gtk_spinner_new
 import gtk3.gtk_spinner_start
 import gtk3.gtk_spinner_stop
 import kotlin.Unit
@@ -21,6 +22,10 @@ public val Spinner.asInitiallyUnowned: InitiallyUnowned
 
 public val Spinner.asWidget: Widget
   get() = reinterpret()
+
+public object SpinnerFactory {
+  public fun new(): Spinner = gtk_spinner_new()!!.reinterpret()
+}
 
 public fun Spinner.start(): Unit {
   gtk_spinner_start(this)

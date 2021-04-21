@@ -1,7 +1,7 @@
 // TODO - method: add_with_viewport
 // TODO - method: get_policy
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -21,6 +21,7 @@ import gtk3.gtk_scrolled_window_get_propagate_natural_width
 import gtk3.gtk_scrolled_window_get_shadow_type
 import gtk3.gtk_scrolled_window_get_vadjustment
 import gtk3.gtk_scrolled_window_get_vscrollbar
+import gtk3.gtk_scrolled_window_new
 import gtk3.gtk_scrolled_window_set_capture_button_press
 import gtk3.gtk_scrolled_window_set_hadjustment
 import gtk3.gtk_scrolled_window_set_kinetic_scrolling
@@ -63,6 +64,12 @@ public val ScrolledWindow.asContainer: Container
 
 public val ScrolledWindow.asBin: Bin
   get() = reinterpret()
+
+public object ScrolledWindowFactory {
+  public fun new(hadjustment: Adjustment?, vadjustment: Adjustment?): ScrolledWindow =
+      gtk_scrolled_window_new(hadjustment?.reinterpret(),
+      vadjustment?.reinterpret())!!.reinterpret()
+}
 
 public var ScrolledWindow.captureButtonPress: Boolean
   get() = gtk_scrolled_window_get_capture_button_press(this).toBoolean

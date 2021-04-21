@@ -5,12 +5,13 @@
 // TODO - method: set_hadjustment
 // TODO - method: set_vadjustment
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkViewport
 import gtk3.gtk_viewport_get_shadow_type
+import gtk3.gtk_viewport_new
 import gtk3.gtk_viewport_set_shadow_type
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -33,6 +34,11 @@ public val Viewport.asContainer: Container
 
 public val Viewport.asBin: Bin
   get() = reinterpret()
+
+public object ViewportFactory {
+  public fun new(hadjustment: Adjustment?, vadjustment: Adjustment?): Viewport =
+      gtk_viewport_new(hadjustment?.reinterpret(), vadjustment?.reinterpret())!!.reinterpret()
+}
 
 public var Viewport.shadowType: ShadowType
   get() = gtk_viewport_get_shadow_type(this)

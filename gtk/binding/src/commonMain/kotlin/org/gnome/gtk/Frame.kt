@@ -1,6 +1,6 @@
 // TODO - method: get_label_align
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -8,6 +8,7 @@ import gtk3.GtkFrame
 import gtk3.gtk_frame_get_label
 import gtk3.gtk_frame_get_label_widget
 import gtk3.gtk_frame_get_shadow_type
+import gtk3.gtk_frame_new
 import gtk3.gtk_frame_set_label
 import gtk3.gtk_frame_set_label_align
 import gtk3.gtk_frame_set_label_widget
@@ -37,6 +38,10 @@ public val Frame.asContainer: Container
 
 public val Frame.asBin: Bin
   get() = reinterpret()
+
+public object FrameFactory {
+  public fun new(label: String): Frame = gtk_frame_new(label)!!.reinterpret()
+}
 
 public var Frame.label: String
   get() = gtk_frame_get_label(this).toKString

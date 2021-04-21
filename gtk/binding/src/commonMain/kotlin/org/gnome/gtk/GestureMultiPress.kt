@@ -1,11 +1,12 @@
 // TODO - method: get_area
 // TODO - method: set_area
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkGestureMultiPress
+import gtk3.gtk_gesture_multi_press_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -25,6 +26,11 @@ public val GestureMultiPress.asGesture: Gesture
 
 public val GestureMultiPress.asGestureSingle: GestureSingle
   get() = reinterpret()
+
+public object GestureMultiPressFactory {
+  public fun new(widget: Widget?): GestureMultiPress =
+      gtk_gesture_multi_press_new(widget?.reinterpret())!!.reinterpret()
+}
 
 public fun GestureMultiPress.onPressed(callback: (GestureMultiPress) -> Unit): GestureMultiPress {
   // TODO - handle callback data

@@ -1,10 +1,11 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkOverlay
 import gtk3.gtk_overlay_add_overlay
 import gtk3.gtk_overlay_get_overlay_pass_through
+import gtk3.gtk_overlay_new
 import gtk3.gtk_overlay_reorder_overlay
 import gtk3.gtk_overlay_set_overlay_pass_through
 import kotlin.Boolean
@@ -34,6 +35,10 @@ public val Overlay.asContainer: Container
 
 public val Overlay.asBin: Bin
   get() = reinterpret()
+
+public object OverlayFactory {
+  public fun new(): Overlay = gtk_overlay_new()!!.reinterpret()
+}
 
 public fun Overlay.addOverlay(widget: Widget?): Unit {
   gtk_overlay_add_overlay(this, widget?.reinterpret())

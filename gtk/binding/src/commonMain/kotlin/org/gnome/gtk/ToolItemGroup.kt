@@ -1,7 +1,7 @@
 // TODO - method: get_ellipsize
 // TODO - method: set_ellipsize
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -15,6 +15,7 @@ import gtk3.gtk_tool_item_group_get_label_widget
 import gtk3.gtk_tool_item_group_get_n_items
 import gtk3.gtk_tool_item_group_get_nth_item
 import gtk3.gtk_tool_item_group_insert
+import gtk3.gtk_tool_item_group_new
 import gtk3.gtk_tool_item_group_set_collapsed
 import gtk3.gtk_tool_item_group_set_header_relief
 import gtk3.gtk_tool_item_group_set_item_position
@@ -46,6 +47,10 @@ public val ToolItemGroup.asWidget: Widget
 
 public val ToolItemGroup.asContainer: Container
   get() = reinterpret()
+
+public object ToolItemGroupFactory {
+  public fun new(label: String): ToolItemGroup = gtk_tool_item_group_new(label)!!.reinterpret()
+}
 
 public var ToolItemGroup.collapsed: Boolean
   get() = gtk_tool_item_group_get_collapsed(this).toBoolean

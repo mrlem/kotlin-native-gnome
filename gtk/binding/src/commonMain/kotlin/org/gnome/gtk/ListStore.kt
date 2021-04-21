@@ -1,3 +1,5 @@
+// TODO - constructor: new
+// TODO - constructor: newv
 // TODO - method: append
 // TODO - method: insert
 // TODO - method: insert_after
@@ -12,7 +14,7 @@
 // TODO - method: set_value
 // TODO - method: set_valuesv
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -34,6 +36,8 @@ public typealias ListStore = CPointer<GtkListStore>
 
 public val ListStore.asObject: Object
   get() = reinterpret()
+
+public object ListStoreFactory
 
 public fun ListStore.clear(): Unit {
   gtk_list_store_clear(this)

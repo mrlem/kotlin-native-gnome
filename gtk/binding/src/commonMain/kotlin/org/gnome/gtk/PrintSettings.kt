@@ -1,3 +1,6 @@
+// TODO - constructor: new_from_file
+// TODO - constructor: new_from_gvariant
+// TODO - constructor: new_from_key_file
 // TODO - method: foreach
 // TODO - method: get_page_ranges
 // TODO - method: load_file
@@ -7,7 +10,7 @@
 // TODO - method: to_gvariant
 // TODO - method: to_key_file
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -46,6 +49,7 @@ import gtk3.gtk_print_settings_get_reverse
 import gtk3.gtk_print_settings_get_scale
 import gtk3.gtk_print_settings_get_use_color
 import gtk3.gtk_print_settings_has_key
+import gtk3.gtk_print_settings_new
 import gtk3.gtk_print_settings_set
 import gtk3.gtk_print_settings_set_bool
 import gtk3.gtk_print_settings_set_collate
@@ -91,6 +95,10 @@ public typealias PrintSettings = CPointer<GtkPrintSettings>
 
 public val PrintSettings.asObject: Object
   get() = reinterpret()
+
+public object PrintSettingsFactory {
+  public fun new(): PrintSettings = gtk_print_settings_new()!!.reinterpret()
+}
 
 public var PrintSettings.collate: Boolean
   get() = gtk_print_settings_get_collate(this).toBoolean

@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -9,6 +9,7 @@ import gtk3.gtk_header_bar_get_has_subtitle
 import gtk3.gtk_header_bar_get_show_close_button
 import gtk3.gtk_header_bar_get_subtitle
 import gtk3.gtk_header_bar_get_title
+import gtk3.gtk_header_bar_new
 import gtk3.gtk_header_bar_pack_end
 import gtk3.gtk_header_bar_pack_start
 import gtk3.gtk_header_bar_set_custom_title
@@ -41,6 +42,10 @@ public val HeaderBar.asWidget: Widget
 
 public val HeaderBar.asContainer: Container
   get() = reinterpret()
+
+public object HeaderBarFactory {
+  public fun new(): HeaderBar = gtk_header_bar_new()!!.reinterpret()
+}
 
 public var HeaderBar.customTitle: Widget?
   get() = gtk_header_bar_get_custom_title(this)?.reinterpret()

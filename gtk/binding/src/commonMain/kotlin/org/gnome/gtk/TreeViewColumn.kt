@@ -1,9 +1,10 @@
+// TODO - constructor: new_with_attributes
 // TODO - method: cell_get_position
 // TODO - method: cell_get_size
 // TODO - method: set_attributes
 // TODO - method: set_cell_data_func
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -35,6 +36,8 @@ import gtk3.gtk_tree_view_column_get_visible
 import gtk3.gtk_tree_view_column_get_widget
 import gtk3.gtk_tree_view_column_get_width
 import gtk3.gtk_tree_view_column_get_x_offset
+import gtk3.gtk_tree_view_column_new
+import gtk3.gtk_tree_view_column_new_with_area
 import gtk3.gtk_tree_view_column_pack_end
 import gtk3.gtk_tree_view_column_pack_start
 import gtk3.gtk_tree_view_column_queue_resize
@@ -75,6 +78,13 @@ public val TreeViewColumn.asObject: Object
 
 public val TreeViewColumn.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
+
+public object TreeViewColumnFactory {
+  public fun new(): TreeViewColumn = gtk_tree_view_column_new()!!.reinterpret()
+
+  public fun newWithArea(area: CellArea?): TreeViewColumn =
+      gtk_tree_view_column_new_with_area(area?.reinterpret())!!.reinterpret()
+}
 
 public var TreeViewColumn.alignment: Float
   get() = gtk_tree_view_column_get_alignment(this)

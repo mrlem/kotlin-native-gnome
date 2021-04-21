@@ -1,11 +1,12 @@
 // TODO - method: get_children
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkContainerCellAccessible
 import gtk3.gtk_container_cell_accessible_add_child
+import gtk3.gtk_container_cell_accessible_new
 import gtk3.gtk_container_cell_accessible_remove_child
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -25,6 +26,10 @@ public val ContainerCellAccessible.asAccessible: Accessible
 
 public val ContainerCellAccessible.asCellAccessible: CellAccessible
   get() = reinterpret()
+
+public object ContainerCellAccessibleFactory {
+  public fun new(): ContainerCellAccessible = gtk_container_cell_accessible_new()!!.reinterpret()
+}
 
 public fun ContainerCellAccessible.addChild(child: CellAccessible?): Unit {
   gtk_container_cell_accessible_add_child(this, child?.reinterpret())

@@ -1,8 +1,12 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkCheckButton
+import gtk3.gtk_check_button_new
+import gtk3.gtk_check_button_new_with_label
+import gtk3.gtk_check_button_new_with_mnemonic
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -30,3 +34,13 @@ public val CheckButton.asButton: Button
 
 public val CheckButton.asToggleButton: ToggleButton
   get() = reinterpret()
+
+public object CheckButtonFactory {
+  public fun new(): CheckButton = gtk_check_button_new()!!.reinterpret()
+
+  public fun newWithLabel(label: String): CheckButton =
+      gtk_check_button_new_with_label(label)!!.reinterpret()
+
+  public fun newWithMnemonic(label: String): CheckButton =
+      gtk_check_button_new_with_mnemonic(label)!!.reinterpret()
+}

@@ -1,9 +1,11 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkRecentChooserMenu
 import gtk3.gtk_recent_chooser_menu_get_show_numbers
+import gtk3.gtk_recent_chooser_menu_new
+import gtk3.gtk_recent_chooser_menu_new_for_manager
 import gtk3.gtk_recent_chooser_menu_set_show_numbers
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
@@ -32,6 +34,13 @@ public val RecentChooserMenu.asMenuShell: MenuShell
 
 public val RecentChooserMenu.asMenu: Menu
   get() = reinterpret()
+
+public object RecentChooserMenuFactory {
+  public fun new(): RecentChooserMenu = gtk_recent_chooser_menu_new()!!.reinterpret()
+
+  public fun newForManager(manager: RecentManager?): RecentChooserMenu =
+      gtk_recent_chooser_menu_new_for_manager(manager?.reinterpret())!!.reinterpret()
+}
 
 public var RecentChooserMenu.showNumbers: Boolean
   get() = gtk_recent_chooser_menu_get_show_numbers(this).toBoolean

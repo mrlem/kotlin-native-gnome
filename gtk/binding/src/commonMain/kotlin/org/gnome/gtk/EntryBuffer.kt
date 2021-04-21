@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,6 +11,7 @@ import gtk3.gtk_entry_buffer_get_length
 import gtk3.gtk_entry_buffer_get_max_length
 import gtk3.gtk_entry_buffer_get_text
 import gtk3.gtk_entry_buffer_insert_text
+import gtk3.gtk_entry_buffer_new
 import gtk3.gtk_entry_buffer_set_max_length
 import gtk3.gtk_entry_buffer_set_text
 import kotlin.Int
@@ -28,6 +29,11 @@ public typealias EntryBuffer = CPointer<GtkEntryBuffer>
 
 public val EntryBuffer.asObject: Object
   get() = reinterpret()
+
+public object EntryBufferFactory {
+  public fun new(initialChars: String, nInitialChars: Int): EntryBuffer =
+      gtk_entry_buffer_new(initialChars, nInitialChars)!!.reinterpret()
+}
 
 public val EntryBuffer.bytes: ULong
   get() = gtk_entry_buffer_get_bytes(this)

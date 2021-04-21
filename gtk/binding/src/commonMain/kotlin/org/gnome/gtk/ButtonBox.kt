@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -6,6 +6,7 @@ import gtk3.GtkButtonBox
 import gtk3.gtk_button_box_get_child_non_homogeneous
 import gtk3.gtk_button_box_get_child_secondary
 import gtk3.gtk_button_box_get_layout
+import gtk3.gtk_button_box_new
 import gtk3.gtk_button_box_set_child_non_homogeneous
 import gtk3.gtk_button_box_set_child_secondary
 import gtk3.gtk_button_box_set_layout
@@ -34,6 +35,11 @@ public val ButtonBox.asContainer: Container
 
 public val ButtonBox.asBox: Box
   get() = reinterpret()
+
+public object ButtonBoxFactory {
+  public fun new(orientation: Orientation): ButtonBox =
+      gtk_button_box_new(orientation)!!.reinterpret()
+}
 
 public var ButtonBox.layout: ButtonBoxStyle
   get() = gtk_button_box_get_layout(this)

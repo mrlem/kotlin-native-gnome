@@ -1,3 +1,4 @@
+// TODO - constructor: new
 // TODO - method: add_accelerator
 // TODO - method: get_accels_for_action
 // TODO - method: get_actions_for_accel
@@ -11,7 +12,7 @@
 // TODO - method: set_app_menu
 // TODO - method: set_menubar
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -33,6 +34,8 @@ public val Application.asObject: Object
 
 public val Application.asApplication: org.gnome.gio.Application
   get() = reinterpret()
+
+public object ApplicationFactory
 
 public val Application.activeWindow: Window?
   get() = gtk_application_get_active_window(this)?.reinterpret()
@@ -88,6 +91,7 @@ public fun Application.onWindowRemoved(callback: (Application) -> Unit): Applica
 // Public API (not generated)
 ///////////////////////////////////////////////////////////////////////////
 
+// TODO - investigate why this is not generated
 @Suppress("FunctionName")
 fun Application(id: String): Application = gtk_application_new(id, G_APPLICATION_FLAGS_NONE)!!
 

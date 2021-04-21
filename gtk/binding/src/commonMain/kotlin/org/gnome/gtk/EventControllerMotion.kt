@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkEventControllerMotion
+import gtk3.gtk_event_controller_motion_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -16,6 +17,11 @@ public val EventControllerMotion.asObject: Object
 
 public val EventControllerMotion.asEventController: EventController
   get() = reinterpret()
+
+public object EventControllerMotionFactory {
+  public fun new(widget: Widget?): EventControllerMotion =
+      gtk_event_controller_motion_new(widget?.reinterpret())!!.reinterpret()
+}
 
 public fun EventControllerMotion.onEnter(callback: (EventControllerMotion) -> Unit):
     EventControllerMotion {

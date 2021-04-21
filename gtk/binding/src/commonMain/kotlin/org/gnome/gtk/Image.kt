@@ -1,3 +1,9 @@
+// TODO - constructor: new_from_animation
+// TODO - constructor: new_from_gicon
+// TODO - constructor: new_from_icon_set
+// TODO - constructor: new_from_pixbuf
+// TODO - constructor: new_from_stock
+// TODO - constructor: new_from_surface
 // TODO - method: get_animation
 // TODO - method: get_gicon
 // TODO - method: get_icon_name
@@ -11,7 +17,7 @@
 // TODO - method: set_from_stock
 // TODO - method: set_from_surface
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -19,6 +25,10 @@ import gtk3.GtkImage
 import gtk3.gtk_image_clear
 import gtk3.gtk_image_get_pixel_size
 import gtk3.gtk_image_get_storage_type
+import gtk3.gtk_image_new
+import gtk3.gtk_image_new_from_file
+import gtk3.gtk_image_new_from_icon_name
+import gtk3.gtk_image_new_from_resource
 import gtk3.gtk_image_set_from_file
 import gtk3.gtk_image_set_from_icon_name
 import gtk3.gtk_image_set_from_resource
@@ -44,6 +54,19 @@ public val Image.asWidget: Widget
 
 public val Image.asMisc: Misc
   get() = reinterpret()
+
+public object ImageFactory {
+  public fun new(): Image = gtk_image_new()!!.reinterpret()
+
+  public fun newFromFile(filename: String): Image =
+      gtk_image_new_from_file(filename)!!.reinterpret()
+
+  public fun newFromIconName(iconName: String, size: IconSize): Image =
+      gtk_image_new_from_icon_name(iconName, size)!!.reinterpret()
+
+  public fun newFromResource(resourcePath: String): Image =
+      gtk_image_new_from_resource(resourcePath)!!.reinterpret()
+}
 
 public var Image.pixelSize: Int
   get() = gtk_image_get_pixel_size(this)

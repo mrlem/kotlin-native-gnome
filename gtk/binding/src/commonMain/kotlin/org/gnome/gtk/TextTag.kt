@@ -1,15 +1,17 @@
 // TODO - method: event
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkTextTag
 import gtk3.gtk_text_tag_changed
 import gtk3.gtk_text_tag_get_priority
+import gtk3.gtk_text_tag_new
 import gtk3.gtk_text_tag_set_priority
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -21,6 +23,10 @@ public typealias TextTag = CPointer<GtkTextTag>
 
 public val TextTag.asObject: Object
   get() = reinterpret()
+
+public object TextTagFactory {
+  public fun new(name: String): TextTag = gtk_text_tag_new(name)!!.reinterpret()
+}
 
 public var TextTag.priority: Int
   get() = gtk_text_tag_get_priority(this)

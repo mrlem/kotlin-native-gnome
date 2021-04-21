@@ -1,11 +1,15 @@
+// TODO - constructor: new
+// TODO - constructor: new_from_stock
+// TODO - constructor: new_with_stock_from_widget
 // TODO - method: get_group
 // TODO - method: set_group
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkRadioToolButton
+import gtk3.gtk_radio_tool_button_new_from_widget
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -36,3 +40,8 @@ public val RadioToolButton.asToolButton: ToolButton
 
 public val RadioToolButton.asToggleToolButton: ToggleToolButton
   get() = reinterpret()
+
+public object RadioToolButtonFactory {
+  public fun newFromWidget(group: RadioToolButton?): RadioToolButton =
+      gtk_radio_tool_button_new_from_widget(group?.reinterpret())!!.reinterpret()
+}

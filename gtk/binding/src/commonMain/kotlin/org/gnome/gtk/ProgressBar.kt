@@ -1,7 +1,7 @@
 // TODO - method: get_ellipsize
 // TODO - method: set_ellipsize
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,6 +11,7 @@ import gtk3.gtk_progress_bar_get_inverted
 import gtk3.gtk_progress_bar_get_pulse_step
 import gtk3.gtk_progress_bar_get_show_text
 import gtk3.gtk_progress_bar_get_text
+import gtk3.gtk_progress_bar_new
 import gtk3.gtk_progress_bar_pulse
 import gtk3.gtk_progress_bar_set_fraction
 import gtk3.gtk_progress_bar_set_inverted
@@ -39,6 +40,10 @@ public val ProgressBar.asInitiallyUnowned: InitiallyUnowned
 
 public val ProgressBar.asWidget: Widget
   get() = reinterpret()
+
+public object ProgressBarFactory {
+  public fun new(): ProgressBar = gtk_progress_bar_new()!!.reinterpret()
+}
 
 public var ProgressBar.fraction: Double
   get() = gtk_progress_bar_get_fraction(this)

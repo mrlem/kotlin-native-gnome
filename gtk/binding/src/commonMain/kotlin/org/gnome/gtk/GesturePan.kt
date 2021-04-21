@@ -1,9 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkGesturePan
 import gtk3.gtk_gesture_pan_get_orientation
+import gtk3.gtk_gesture_pan_new
 import gtk3.gtk_gesture_pan_set_orientation
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -27,6 +28,11 @@ public val GesturePan.asGestureSingle: GestureSingle
 
 public val GesturePan.asGestureDrag: GestureDrag
   get() = reinterpret()
+
+public object GesturePanFactory {
+  public fun new(widget: Widget?, orientation: Orientation): GesturePan =
+      gtk_gesture_pan_new(widget?.reinterpret(), orientation)!!.reinterpret()
+}
 
 public var GesturePan.orientation: Orientation
   get() = gtk_gesture_pan_get_orientation(this)

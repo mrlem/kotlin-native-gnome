@@ -1,9 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkSeparatorToolItem
 import gtk3.gtk_separator_tool_item_get_draw
+import gtk3.gtk_separator_tool_item_new
 import gtk3.gtk_separator_tool_item_set_draw
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
@@ -32,6 +33,10 @@ public val SeparatorToolItem.asBin: Bin
 
 public val SeparatorToolItem.asToolItem: ToolItem
   get() = reinterpret()
+
+public object SeparatorToolItemFactory {
+  public fun new(): SeparatorToolItem = gtk_separator_tool_item_new()!!.reinterpret()
+}
 
 public var SeparatorToolItem.draw: Boolean
   get() = gtk_separator_tool_item_get_draw(this).toBoolean

@@ -1,7 +1,7 @@
 // TODO - method: get_menu_model
 // TODO - method: set_menu_model
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,6 +11,7 @@ import gtk3.gtk_menu_button_get_direction
 import gtk3.gtk_menu_button_get_popover
 import gtk3.gtk_menu_button_get_popup
 import gtk3.gtk_menu_button_get_use_popover
+import gtk3.gtk_menu_button_new
 import gtk3.gtk_menu_button_set_align_widget
 import gtk3.gtk_menu_button_set_direction
 import gtk3.gtk_menu_button_set_popover
@@ -47,6 +48,10 @@ public val MenuButton.asButton: Button
 
 public val MenuButton.asToggleButton: ToggleButton
   get() = reinterpret()
+
+public object MenuButtonFactory {
+  public fun new(): MenuButton = gtk_menu_button_new()!!.reinterpret()
+}
 
 public var MenuButton.alignWidget: Widget?
   get() = gtk_menu_button_get_align_widget(this)?.reinterpret()

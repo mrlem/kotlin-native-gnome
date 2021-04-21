@@ -12,7 +12,7 @@
 // TODO - method: get_visible_range
 // TODO - method: selected_foreach
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -37,6 +37,9 @@ import gtk3.gtk_icon_view_get_spacing
 import gtk3.gtk_icon_view_get_text_column
 import gtk3.gtk_icon_view_get_tooltip_column
 import gtk3.gtk_icon_view_item_activated
+import gtk3.gtk_icon_view_new
+import gtk3.gtk_icon_view_new_with_area
+import gtk3.gtk_icon_view_new_with_model
 import gtk3.gtk_icon_view_path_is_selected
 import gtk3.gtk_icon_view_scroll_to_path
 import gtk3.gtk_icon_view_select_all
@@ -90,6 +93,16 @@ public val IconView.asWidget: Widget
 
 public val IconView.asContainer: Container
   get() = reinterpret()
+
+public object IconViewFactory {
+  public fun new(): IconView = gtk_icon_view_new()!!.reinterpret()
+
+  public fun newWithArea(area: CellArea?): IconView =
+      gtk_icon_view_new_with_area(area?.reinterpret())!!.reinterpret()
+
+  public fun newWithModel(model: TreeModel?): IconView =
+      gtk_icon_view_new_with_model(model?.reinterpret())!!.reinterpret()
+}
 
 public var IconView.activateOnSingleClick: Boolean
   get() = gtk_icon_view_get_activate_on_single_click(this).toBoolean

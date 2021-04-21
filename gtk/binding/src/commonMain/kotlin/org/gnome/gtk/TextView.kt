@@ -15,7 +15,7 @@
 // TODO - method: set_tabs
 // TODO - method: window_to_buffer_coords
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -49,6 +49,8 @@ import gtk3.gtk_text_view_get_wrap_mode
 import gtk3.gtk_text_view_move_child
 import gtk3.gtk_text_view_move_mark_onscreen
 import gtk3.gtk_text_view_move_visually
+import gtk3.gtk_text_view_new
+import gtk3.gtk_text_view_new_with_buffer
 import gtk3.gtk_text_view_place_cursor_onscreen
 import gtk3.gtk_text_view_reset_cursor_blink
 import gtk3.gtk_text_view_reset_im_context
@@ -100,6 +102,13 @@ public val TextView.asWidget: Widget
 
 public val TextView.asContainer: Container
   get() = reinterpret()
+
+public object TextViewFactory {
+  public fun new(): TextView = gtk_text_view_new()!!.reinterpret()
+
+  public fun newWithBuffer(buffer: TextBuffer?): TextView =
+      gtk_text_view_new_with_buffer(buffer?.reinterpret())!!.reinterpret()
+}
 
 public var TextView.acceptsTab: Boolean
   get() = gtk_text_view_get_accepts_tab(this).toBoolean

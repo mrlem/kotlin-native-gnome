@@ -1,6 +1,6 @@
 // TODO - method: get_handle_window
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,6 +11,7 @@ import gtk3.gtk_paned_get_child1
 import gtk3.gtk_paned_get_child2
 import gtk3.gtk_paned_get_position
 import gtk3.gtk_paned_get_wide_handle
+import gtk3.gtk_paned_new
 import gtk3.gtk_paned_pack1
 import gtk3.gtk_paned_pack2
 import gtk3.gtk_paned_set_position
@@ -39,6 +40,10 @@ public val Paned.asWidget: Widget
 
 public val Paned.asContainer: Container
   get() = reinterpret()
+
+public object PanedFactory {
+  public fun new(orientation: Orientation): Paned = gtk_paned_new(orientation)!!.reinterpret()
+}
 
 public val Paned.child1: Widget?
   get() = gtk_paned_get_child1(this)?.reinterpret()

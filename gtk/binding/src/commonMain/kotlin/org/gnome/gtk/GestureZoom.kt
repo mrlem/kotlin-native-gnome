@@ -1,9 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkGestureZoom
 import gtk3.gtk_gesture_zoom_get_scale_delta
+import gtk3.gtk_gesture_zoom_new
 import kotlin.Double
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -21,6 +22,11 @@ public val GestureZoom.asEventController: EventController
 
 public val GestureZoom.asGesture: Gesture
   get() = reinterpret()
+
+public object GestureZoomFactory {
+  public fun new(widget: Widget?): GestureZoom =
+      gtk_gesture_zoom_new(widget?.reinterpret())!!.reinterpret()
+}
 
 public val GestureZoom.scaleDelta: Double
   get() = gtk_gesture_zoom_get_scale_delta(this)

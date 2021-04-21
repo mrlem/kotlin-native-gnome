@@ -1,6 +1,6 @@
 // TODO - method: set_match_func
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -21,6 +21,8 @@ import gtk3.gtk_entry_completion_get_text_column
 import gtk3.gtk_entry_completion_insert_action_markup
 import gtk3.gtk_entry_completion_insert_action_text
 import gtk3.gtk_entry_completion_insert_prefix
+import gtk3.gtk_entry_completion_new
+import gtk3.gtk_entry_completion_new_with_area
 import gtk3.gtk_entry_completion_set_inline_completion
 import gtk3.gtk_entry_completion_set_inline_selection
 import gtk3.gtk_entry_completion_set_minimum_key_length
@@ -45,6 +47,13 @@ public typealias EntryCompletion = CPointer<GtkEntryCompletion>
 
 public val EntryCompletion.asObject: Object
   get() = reinterpret()
+
+public object EntryCompletionFactory {
+  public fun new(): EntryCompletion = gtk_entry_completion_new()!!.reinterpret()
+
+  public fun newWithArea(area: CellArea?): EntryCompletion =
+      gtk_entry_completion_new_with_area(area?.reinterpret())!!.reinterpret()
+}
 
 public val EntryCompletion.completionPrefix: String
   get() = gtk_entry_completion_get_completion_prefix(this).toKString

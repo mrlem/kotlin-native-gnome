@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkPopoverMenu
+import gtk3.gtk_popover_menu_new
 import gtk3.gtk_popover_menu_open_submenu
 import kotlin.String
 import kotlin.Unit
@@ -30,6 +31,10 @@ public val PopoverMenu.asBin: Bin
 
 public val PopoverMenu.asPopover: Popover
   get() = reinterpret()
+
+public object PopoverMenuFactory {
+  public fun new(): PopoverMenu = gtk_popover_menu_new()!!.reinterpret()
+}
 
 public fun PopoverMenu.openSubmenu(name: String): Unit {
   gtk_popover_menu_open_submenu(this, name)

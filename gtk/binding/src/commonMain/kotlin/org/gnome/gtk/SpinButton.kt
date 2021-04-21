@@ -1,7 +1,7 @@
 // TODO - method: get_increments
 // TODO - method: get_range
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -15,6 +15,8 @@ import gtk3.gtk_spin_button_get_update_policy
 import gtk3.gtk_spin_button_get_value
 import gtk3.gtk_spin_button_get_value_as_int
 import gtk3.gtk_spin_button_get_wrap
+import gtk3.gtk_spin_button_new
+import gtk3.gtk_spin_button_new_with_range
 import gtk3.gtk_spin_button_set_adjustment
 import gtk3.gtk_spin_button_set_digits
 import gtk3.gtk_spin_button_set_increments
@@ -52,6 +54,20 @@ public val SpinButton.asWidget: Widget
 
 public val SpinButton.asEntry: Entry
   get() = reinterpret()
+
+public object SpinButtonFactory {
+  public fun new(
+    adjustment: Adjustment?,
+    climbRate: Double,
+    digits: UInt
+  ): SpinButton = gtk_spin_button_new(adjustment?.reinterpret(), climbRate, digits)!!.reinterpret()
+
+  public fun newWithRange(
+    min: Double,
+    max: Double,
+    step: Double
+  ): SpinButton = gtk_spin_button_new_with_range(min, max, step)!!.reinterpret()
+}
 
 public var SpinButton.adjustment: Adjustment?
   get() = gtk_spin_button_get_adjustment(this)?.reinterpret()

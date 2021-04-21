@@ -1,7 +1,8 @@
+// TODO - constructor: new
 // TODO - method: get_screen
 // TODO - method: set_screen
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -22,6 +23,8 @@ public val MountOperation.asObject: Object
 
 public val MountOperation.asMountOperation: org.gnome.gio.MountOperation
   get() = reinterpret()
+
+public object MountOperationFactory
 
 public var MountOperation.parent: Window?
   get() = gtk_mount_operation_get_parent(this)?.reinterpret()

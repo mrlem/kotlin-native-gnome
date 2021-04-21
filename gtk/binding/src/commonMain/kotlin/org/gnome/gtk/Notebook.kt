@@ -1,7 +1,7 @@
 // TODO - method: get_tab_hborder
 // TODO - method: get_tab_vborder
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -26,6 +26,7 @@ import gtk3.gtk_notebook_get_tab_pos
 import gtk3.gtk_notebook_get_tab_reorderable
 import gtk3.gtk_notebook_insert_page
 import gtk3.gtk_notebook_insert_page_menu
+import gtk3.gtk_notebook_new
 import gtk3.gtk_notebook_next_page
 import gtk3.gtk_notebook_page_num
 import gtk3.gtk_notebook_popup_disable
@@ -74,6 +75,10 @@ public val Notebook.asWidget: Widget
 
 public val Notebook.asContainer: Container
   get() = reinterpret()
+
+public object NotebookFactory {
+  public fun new(): Notebook = gtk_notebook_new()!!.reinterpret()
+}
 
 public var Notebook.currentPage: Int
   get() = gtk_notebook_get_current_page(this)

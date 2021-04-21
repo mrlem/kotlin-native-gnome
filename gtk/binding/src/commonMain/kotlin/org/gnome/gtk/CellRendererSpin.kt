@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkCellRendererSpin
+import gtk3.gtk_cell_renderer_spin_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -21,3 +22,7 @@ public val CellRendererSpin.asCellRenderer: CellRenderer
 
 public val CellRendererSpin.asCellRendererText: CellRendererText
   get() = reinterpret()
+
+public object CellRendererSpinFactory {
+  public fun new(): CellRendererSpin = gtk_cell_renderer_spin_new()!!.reinterpret()
+}

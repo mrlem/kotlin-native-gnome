@@ -1,7 +1,8 @@
+// TODO - constructor: new_from_gvariant
 // TODO - method: add_custom
 // TODO - method: to_gvariant
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -12,6 +13,7 @@ import gtk3.gtk_file_filter_add_pixbuf_formats
 import gtk3.gtk_file_filter_filter
 import gtk3.gtk_file_filter_get_name
 import gtk3.gtk_file_filter_get_needed
+import gtk3.gtk_file_filter_new
 import gtk3.gtk_file_filter_set_name
 import kotlin.Boolean
 import kotlin.String
@@ -30,6 +32,10 @@ public val FileFilter.asObject: Object
 
 public val FileFilter.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
+
+public object FileFilterFactory {
+  public fun new(): FileFilter = gtk_file_filter_new()!!.reinterpret()
+}
 
 public var FileFilter.name: String
   get() = gtk_file_filter_get_name(this).toKString

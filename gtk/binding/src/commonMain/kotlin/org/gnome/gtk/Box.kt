@@ -1,6 +1,6 @@
 // TODO - method: query_child_packing
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -9,6 +9,7 @@ import gtk3.gtk_box_get_baseline_position
 import gtk3.gtk_box_get_center_widget
 import gtk3.gtk_box_get_homogeneous
 import gtk3.gtk_box_get_spacing
+import gtk3.gtk_box_new
 import gtk3.gtk_box_pack_end
 import gtk3.gtk_box_pack_start
 import gtk3.gtk_box_reorder_child
@@ -41,6 +42,11 @@ public val Box.asWidget: Widget
 
 public val Box.asContainer: Container
   get() = reinterpret()
+
+public object BoxFactory {
+  public fun new(orientation: Orientation, spacing: Int): Box = gtk_box_new(orientation,
+      spacing)!!.reinterpret()
+}
 
 public var Box.baselinePosition: BaselinePosition
   get() = gtk_box_get_baseline_position(this)

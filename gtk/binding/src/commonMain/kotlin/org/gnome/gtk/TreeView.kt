@@ -34,7 +34,7 @@
 // TODO - method: set_search_position_func
 // TODO - method: set_vadjustment
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -73,6 +73,8 @@ import gtk3.gtk_tree_view_get_tooltip_column
 import gtk3.gtk_tree_view_insert_column
 import gtk3.gtk_tree_view_is_rubber_banding_active
 import gtk3.gtk_tree_view_move_column_after
+import gtk3.gtk_tree_view_new
+import gtk3.gtk_tree_view_new_with_model
 import gtk3.gtk_tree_view_remove_column
 import gtk3.gtk_tree_view_row_activated
 import gtk3.gtk_tree_view_row_expanded
@@ -129,6 +131,13 @@ public val TreeView.asWidget: Widget
 
 public val TreeView.asContainer: Container
   get() = reinterpret()
+
+public object TreeViewFactory {
+  public fun new(): TreeView = gtk_tree_view_new()!!.reinterpret()
+
+  public fun newWithModel(model: TreeModel?): TreeView =
+      gtk_tree_view_new_with_model(model?.reinterpret())!!.reinterpret()
+}
 
 public var TreeView.activateOnSingleClick: Boolean
   get() = gtk_tree_view_get_activate_on_single_click(this).toBoolean

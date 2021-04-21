@@ -1,3 +1,4 @@
+// TODO - constructor: new_for_pixbuf
 // TODO - method: copy
 // TODO - method: free
 // TODO - method: get_attach_points
@@ -17,7 +18,7 @@
 // TODO - method: load_symbolic_for_style
 // TODO - method: set_raw_coordinates
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -39,6 +40,8 @@ public typealias IconInfo = CPointer<GtkIconInfo>
 
 public val IconInfo.asObject: Object
   get() = reinterpret()
+
+public object IconInfoFactory
 
 public val IconInfo.baseScale: Int
   get() = gtk_icon_info_get_base_scale(this)

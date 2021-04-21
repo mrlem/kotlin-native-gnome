@@ -1,9 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkGestureRotate
 import gtk3.gtk_gesture_rotate_get_angle_delta
+import gtk3.gtk_gesture_rotate_new
 import kotlin.Double
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -21,6 +22,11 @@ public val GestureRotate.asEventController: EventController
 
 public val GestureRotate.asGesture: Gesture
   get() = reinterpret()
+
+public object GestureRotateFactory {
+  public fun new(widget: Widget?): GestureRotate =
+      gtk_gesture_rotate_new(widget?.reinterpret())!!.reinterpret()
+}
 
 public val GestureRotate.angleDelta: Double
   get() = gtk_gesture_rotate_get_angle_delta(this)

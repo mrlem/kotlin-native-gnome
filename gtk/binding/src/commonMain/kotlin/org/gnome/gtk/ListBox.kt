@@ -5,7 +5,7 @@
 // TODO - method: set_header_func
 // TODO - method: set_sort_func
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -22,6 +22,7 @@ import gtk3.gtk_list_box_insert
 import gtk3.gtk_list_box_invalidate_filter
 import gtk3.gtk_list_box_invalidate_headers
 import gtk3.gtk_list_box_invalidate_sort
+import gtk3.gtk_list_box_new
 import gtk3.gtk_list_box_prepend
 import gtk3.gtk_list_box_select_all
 import gtk3.gtk_list_box_select_row
@@ -55,6 +56,10 @@ public val ListBox.asWidget: Widget
 
 public val ListBox.asContainer: Container
   get() = reinterpret()
+
+public object ListBoxFactory {
+  public fun new(): ListBox = gtk_list_box_new()!!.reinterpret()
+}
 
 public var ListBox.activateOnSingleClick: Boolean
   get() = gtk_list_box_get_activate_on_single_click(this).toBoolean

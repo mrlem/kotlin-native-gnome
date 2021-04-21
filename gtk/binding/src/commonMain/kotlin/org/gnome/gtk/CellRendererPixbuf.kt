@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkCellRendererPixbuf
+import gtk3.gtk_cell_renderer_pixbuf_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -18,3 +19,7 @@ public val CellRendererPixbuf.asInitiallyUnowned: InitiallyUnowned
 
 public val CellRendererPixbuf.asCellRenderer: CellRenderer
   get() = reinterpret()
+
+public object CellRendererPixbufFactory {
+  public fun new(): CellRendererPixbuf = gtk_cell_renderer_pixbuf_new()!!.reinterpret()
+}

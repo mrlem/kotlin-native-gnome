@@ -25,7 +25,7 @@
 // TODO - method: unregister_deserialize_format
 // TODO - method: unregister_serialize_format
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -68,6 +68,7 @@ import gtk3.gtk_text_buffer_insert_range
 import gtk3.gtk_text_buffer_insert_range_interactive
 import gtk3.gtk_text_buffer_move_mark
 import gtk3.gtk_text_buffer_move_mark_by_name
+import gtk3.gtk_text_buffer_new
 import gtk3.gtk_text_buffer_paste_clipboard
 import gtk3.gtk_text_buffer_place_cursor
 import gtk3.gtk_text_buffer_remove_all_tags
@@ -93,6 +94,11 @@ public typealias TextBuffer = CPointer<GtkTextBuffer>
 
 public val TextBuffer.asObject: Object
   get() = reinterpret()
+
+public object TextBufferFactory {
+  public fun new(table: TextTagTable?): TextBuffer =
+      gtk_text_buffer_new(table?.reinterpret())!!.reinterpret()
+}
 
 public val TextBuffer.charCount: Int
   get() = gtk_text_buffer_get_char_count(this)

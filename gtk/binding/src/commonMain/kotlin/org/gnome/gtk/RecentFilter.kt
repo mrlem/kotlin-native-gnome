@@ -1,6 +1,6 @@
 // TODO - method: add_custom
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -14,6 +14,7 @@ import gtk3.gtk_recent_filter_add_pixbuf_formats
 import gtk3.gtk_recent_filter_filter
 import gtk3.gtk_recent_filter_get_name
 import gtk3.gtk_recent_filter_get_needed
+import gtk3.gtk_recent_filter_new
 import gtk3.gtk_recent_filter_set_name
 import kotlin.Boolean
 import kotlin.Int
@@ -33,6 +34,10 @@ public val RecentFilter.asObject: Object
 
 public val RecentFilter.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
+
+public object RecentFilterFactory {
+  public fun new(): RecentFilter = gtk_recent_filter_new()!!.reinterpret()
+}
 
 public var RecentFilter.name: String
   get() = gtk_recent_filter_get_name(this).toKString

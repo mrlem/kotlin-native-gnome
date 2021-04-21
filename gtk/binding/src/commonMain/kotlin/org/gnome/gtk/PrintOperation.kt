@@ -1,7 +1,7 @@
 // TODO - method: get_error
 // TODO - method: run
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -17,6 +17,7 @@ import gtk3.gtk_print_operation_get_status
 import gtk3.gtk_print_operation_get_status_string
 import gtk3.gtk_print_operation_get_support_selection
 import gtk3.gtk_print_operation_is_finished
+import gtk3.gtk_print_operation_new
 import gtk3.gtk_print_operation_set_allow_async
 import gtk3.gtk_print_operation_set_current_page
 import gtk3.gtk_print_operation_set_custom_tab_label
@@ -48,6 +49,10 @@ public typealias PrintOperation = CPointer<GtkPrintOperation>
 
 public val PrintOperation.asObject: Object
   get() = reinterpret()
+
+public object PrintOperationFactory {
+  public fun new(): PrintOperation = gtk_print_operation_new()!!.reinterpret()
+}
 
 public var PrintOperation.defaultPageSetup: PageSetup?
   get() = gtk_print_operation_get_default_page_setup(this)?.reinterpret()

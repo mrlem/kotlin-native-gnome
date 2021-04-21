@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -15,6 +15,7 @@ import gtk3.gtk_stack_get_transition_type
 import gtk3.gtk_stack_get_vhomogeneous
 import gtk3.gtk_stack_get_visible_child
 import gtk3.gtk_stack_get_visible_child_name
+import gtk3.gtk_stack_new
 import gtk3.gtk_stack_set_hhomogeneous
 import gtk3.gtk_stack_set_homogeneous
 import gtk3.gtk_stack_set_interpolate_size
@@ -49,6 +50,10 @@ public val Stack.asWidget: Widget
 
 public val Stack.asContainer: Container
   get() = reinterpret()
+
+public object StackFactory {
+  public fun new(): Stack = gtk_stack_new()!!.reinterpret()
+}
 
 public var Stack.hhomogeneous: Boolean
   get() = gtk_stack_get_hhomogeneous(this).toBoolean

@@ -8,7 +8,7 @@
 // TODO - method: set_ellipsize
 // TODO - method: set_line_wrap_mode
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -31,6 +31,8 @@ import gtk3.gtk_label_get_use_underline
 import gtk3.gtk_label_get_width_chars
 import gtk3.gtk_label_get_xalign
 import gtk3.gtk_label_get_yalign
+import gtk3.gtk_label_new
+import gtk3.gtk_label_new_with_mnemonic
 import gtk3.gtk_label_select_region
 import gtk3.gtk_label_set_angle
 import gtk3.gtk_label_set_justify
@@ -81,6 +83,12 @@ public val Label.asWidget: Widget
 
 public val Label.asMisc: Misc
   get() = reinterpret()
+
+public object LabelFactory {
+  public fun new(str: String): Label = gtk_label_new(str)!!.reinterpret()
+
+  public fun newWithMnemonic(str: String): Label = gtk_label_new_with_mnemonic(str)!!.reinterpret()
+}
 
 public var Label.angle: Double
   get() = gtk_label_get_angle(this)

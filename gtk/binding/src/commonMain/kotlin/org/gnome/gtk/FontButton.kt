@@ -1,7 +1,7 @@
 // TODO - method: get_font_name
 // TODO - method: set_font_name
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,6 +11,8 @@ import gtk3.gtk_font_button_get_show_style
 import gtk3.gtk_font_button_get_title
 import gtk3.gtk_font_button_get_use_font
 import gtk3.gtk_font_button_get_use_size
+import gtk3.gtk_font_button_new
+import gtk3.gtk_font_button_new_with_font
 import gtk3.gtk_font_button_set_show_size
 import gtk3.gtk_font_button_set_show_style
 import gtk3.gtk_font_button_set_title
@@ -47,6 +49,13 @@ public val FontButton.asBin: Bin
 
 public val FontButton.asButton: Button
   get() = reinterpret()
+
+public object FontButtonFactory {
+  public fun new(): FontButton = gtk_font_button_new()!!.reinterpret()
+
+  public fun newWithFont(fontname: String): FontButton =
+      gtk_font_button_new_with_font(fontname)!!.reinterpret()
+}
 
 public var FontButton.showSize: Boolean
   get() = gtk_font_button_get_show_size(this).toBoolean

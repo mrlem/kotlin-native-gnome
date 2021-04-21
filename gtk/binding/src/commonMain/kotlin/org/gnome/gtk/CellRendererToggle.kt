@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -6,6 +6,7 @@ import gtk3.GtkCellRendererToggle
 import gtk3.gtk_cell_renderer_toggle_get_activatable
 import gtk3.gtk_cell_renderer_toggle_get_active
 import gtk3.gtk_cell_renderer_toggle_get_radio
+import gtk3.gtk_cell_renderer_toggle_new
 import gtk3.gtk_cell_renderer_toggle_set_activatable
 import gtk3.gtk_cell_renderer_toggle_set_active
 import gtk3.gtk_cell_renderer_toggle_set_radio
@@ -29,6 +30,10 @@ public val CellRendererToggle.asInitiallyUnowned: InitiallyUnowned
 
 public val CellRendererToggle.asCellRenderer: CellRenderer
   get() = reinterpret()
+
+public object CellRendererToggleFactory {
+  public fun new(): CellRendererToggle = gtk_cell_renderer_toggle_new()!!.reinterpret()
+}
 
 public var CellRendererToggle.activatable: Boolean
   get() = gtk_cell_renderer_toggle_get_activatable(this).toBoolean

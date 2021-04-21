@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkCellRendererProgress
+import gtk3.gtk_cell_renderer_progress_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -18,3 +19,7 @@ public val CellRendererProgress.asInitiallyUnowned: InitiallyUnowned
 
 public val CellRendererProgress.asCellRenderer: CellRenderer
   get() = reinterpret()
+
+public object CellRendererProgressFactory {
+  public fun new(): CellRendererProgress = gtk_cell_renderer_progress_new()!!.reinterpret()
+}

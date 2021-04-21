@@ -2,12 +2,13 @@
 // TODO - method: load_from_file
 // TODO - method: load_from_path
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkCssProvider
 import gtk3.gtk_css_provider_load_from_resource
+import gtk3.gtk_css_provider_new
 import gtk3.gtk_css_provider_to_string
 import kotlin.String
 import kotlin.Unit
@@ -21,6 +22,10 @@ public typealias CssProvider = CPointer<GtkCssProvider>
 
 public val CssProvider.asObject: Object
   get() = reinterpret()
+
+public object CssProviderFactory {
+  public fun new(): CssProvider = gtk_css_provider_new()!!.reinterpret()
+}
 
 public fun CssProvider.loadFromResource(resourcePath: String): Unit {
   gtk_css_provider_load_from_resource(this, resourcePath)

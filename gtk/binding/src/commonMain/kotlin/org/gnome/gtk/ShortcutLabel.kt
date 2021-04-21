@@ -1,10 +1,11 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkShortcutLabel
 import gtk3.gtk_shortcut_label_get_accelerator
 import gtk3.gtk_shortcut_label_get_disabled_text
+import gtk3.gtk_shortcut_label_new
 import gtk3.gtk_shortcut_label_set_accelerator
 import gtk3.gtk_shortcut_label_set_disabled_text
 import kotlin.String
@@ -30,6 +31,11 @@ public val ShortcutLabel.asContainer: Container
 
 public val ShortcutLabel.asBox: Box
   get() = reinterpret()
+
+public object ShortcutLabelFactory {
+  public fun new(accelerator: String): ShortcutLabel =
+      gtk_shortcut_label_new(accelerator)!!.reinterpret()
+}
 
 public var ShortcutLabel.accelerator: String
   get() = gtk_shortcut_label_get_accelerator(this).toKString

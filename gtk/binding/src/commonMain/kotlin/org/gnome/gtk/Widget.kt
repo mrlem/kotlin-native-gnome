@@ -1,3 +1,4 @@
+// TODO - constructor: new
 // TODO - method: add_accelerator
 // TODO - method: add_device_events
 // TODO - method: add_tick_callback
@@ -107,7 +108,7 @@
 // TODO - method: translate_coordinates
 // TODO - method: unregister_window
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -290,6 +291,8 @@ public val Widget.asObject: Object
 
 public val Widget.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
+
+public object WidgetFactory
 
 public val Widget.allocatedBaseline: Int
   get() = gtk_widget_get_allocated_baseline(this)

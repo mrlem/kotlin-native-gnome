@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -6,6 +6,7 @@ import gtk3.GtkEventControllerKey
 import gtk3.gtk_event_controller_key_forward
 import gtk3.gtk_event_controller_key_get_group
 import gtk3.gtk_event_controller_key_get_im_context
+import gtk3.gtk_event_controller_key_new
 import gtk3.gtk_event_controller_key_set_im_context
 import kotlin.Boolean
 import kotlin.UInt
@@ -23,6 +24,11 @@ public val EventControllerKey.asObject: Object
 
 public val EventControllerKey.asEventController: EventController
   get() = reinterpret()
+
+public object EventControllerKeyFactory {
+  public fun new(widget: Widget?): EventControllerKey =
+      gtk_event_controller_key_new(widget?.reinterpret())!!.reinterpret()
+}
 
 public val EventControllerKey.group: UInt
   get() = gtk_event_controller_key_get_group(this)

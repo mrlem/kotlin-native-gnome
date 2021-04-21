@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -6,6 +6,7 @@ import gtk3.GtkFlowBoxChild
 import gtk3.gtk_flow_box_child_changed
 import gtk3.gtk_flow_box_child_get_index
 import gtk3.gtk_flow_box_child_is_selected
+import gtk3.gtk_flow_box_child_new
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
@@ -32,6 +33,10 @@ public val FlowBoxChild.asContainer: Container
 
 public val FlowBoxChild.asBin: Bin
   get() = reinterpret()
+
+public object FlowBoxChildFactory {
+  public fun new(): FlowBoxChild = gtk_flow_box_child_new()!!.reinterpret()
+}
 
 public val FlowBoxChild.index: Int
   get() = gtk_flow_box_child_get_index(this)

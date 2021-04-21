@@ -1,8 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkColorChooserDialog
+import gtk3.gtk_color_chooser_dialog_new
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -30,3 +32,8 @@ public val ColorChooserDialog.asWindow: Window
 
 public val ColorChooserDialog.asDialog: Dialog
   get() = reinterpret()
+
+public object ColorChooserDialogFactory {
+  public fun new(title: String, parent: Window?): ColorChooserDialog =
+      gtk_color_chooser_dialog_new(title, parent?.reinterpret())!!.reinterpret()
+}

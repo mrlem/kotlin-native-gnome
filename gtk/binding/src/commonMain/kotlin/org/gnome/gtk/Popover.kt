@@ -1,10 +1,11 @@
+// TODO - constructor: new_from_model
 // TODO - method: bind_model
 // TODO - method: get_pointing_to
 // TODO - method: get_transitions_enabled
 // TODO - method: set_pointing_to
 // TODO - method: set_transitions_enabled
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -14,6 +15,7 @@ import gtk3.gtk_popover_get_default_widget
 import gtk3.gtk_popover_get_modal
 import gtk3.gtk_popover_get_position
 import gtk3.gtk_popover_get_relative_to
+import gtk3.gtk_popover_new
 import gtk3.gtk_popover_popdown
 import gtk3.gtk_popover_popup
 import gtk3.gtk_popover_set_constrain_to
@@ -47,6 +49,11 @@ public val Popover.asContainer: Container
 
 public val Popover.asBin: Bin
   get() = reinterpret()
+
+public object PopoverFactory {
+  public fun new(relativeTo: Widget?): Popover =
+      gtk_popover_new(relativeTo?.reinterpret())!!.reinterpret()
+}
 
 public var Popover.constrainTo: PopoverConstraint
   get() = gtk_popover_get_constrain_to(this)

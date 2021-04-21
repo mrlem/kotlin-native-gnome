@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkCellRendererAccel
+import gtk3.gtk_cell_renderer_accel_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -23,6 +24,10 @@ public val CellRendererAccel.asCellRenderer: CellRenderer
 
 public val CellRendererAccel.asCellRendererText: CellRendererText
   get() = reinterpret()
+
+public object CellRendererAccelFactory {
+  public fun new(): CellRendererAccel = gtk_cell_renderer_accel_new()!!.reinterpret()
+}
 
 public fun CellRendererAccel.onAccelCleared(callback: (CellRendererAccel) -> Unit):
     CellRendererAccel {

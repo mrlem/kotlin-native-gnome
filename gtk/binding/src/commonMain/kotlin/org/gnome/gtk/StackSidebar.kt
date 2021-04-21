@@ -1,9 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkStackSidebar
 import gtk3.gtk_stack_sidebar_get_stack
+import gtk3.gtk_stack_sidebar_new
 import gtk3.gtk_stack_sidebar_set_stack
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -26,6 +27,10 @@ public val StackSidebar.asContainer: Container
 
 public val StackSidebar.asBin: Bin
   get() = reinterpret()
+
+public object StackSidebarFactory {
+  public fun new(): StackSidebar = gtk_stack_sidebar_new()!!.reinterpret()
+}
 
 public var StackSidebar.stack: Stack?
   get() = gtk_stack_sidebar_get_stack(this)?.reinterpret()

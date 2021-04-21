@@ -8,7 +8,7 @@
 // TODO - method: set_location
 // TODO - method: set_show_connect_to_server
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -21,6 +21,7 @@ import gtk3.gtk_places_sidebar_get_show_other_locations
 import gtk3.gtk_places_sidebar_get_show_recent
 import gtk3.gtk_places_sidebar_get_show_starred_location
 import gtk3.gtk_places_sidebar_get_show_trash
+import gtk3.gtk_places_sidebar_new
 import gtk3.gtk_places_sidebar_set_local_only
 import gtk3.gtk_places_sidebar_set_open_flags
 import gtk3.gtk_places_sidebar_set_show_desktop
@@ -58,6 +59,10 @@ public val PlacesSidebar.asBin: Bin
 
 public val PlacesSidebar.asScrolledWindow: ScrolledWindow
   get() = reinterpret()
+
+public object PlacesSidebarFactory {
+  public fun new(): PlacesSidebar = gtk_places_sidebar_new()!!.reinterpret()
+}
 
 public var PlacesSidebar.localOnly: Boolean
   get() = gtk_places_sidebar_get_local_only(this).toBoolean

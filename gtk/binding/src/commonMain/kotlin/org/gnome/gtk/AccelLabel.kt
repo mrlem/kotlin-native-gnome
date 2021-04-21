@@ -2,16 +2,18 @@
 // TODO - method: set_accel
 // TODO - method: set_accel_closure
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkAccelLabel
 import gtk3.gtk_accel_label_get_accel_widget
 import gtk3.gtk_accel_label_get_accel_width
+import gtk3.gtk_accel_label_new
 import gtk3.gtk_accel_label_refetch
 import gtk3.gtk_accel_label_set_accel_widget
 import kotlin.Boolean
+import kotlin.String
 import kotlin.UInt
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -35,6 +37,10 @@ public val AccelLabel.asMisc: Misc
 
 public val AccelLabel.asLabel: Label
   get() = reinterpret()
+
+public object AccelLabelFactory {
+  public fun new(string: String): AccelLabel = gtk_accel_label_new(string)!!.reinterpret()
+}
 
 public var AccelLabel.accelWidget: Widget?
   get() = gtk_accel_label_get_accel_widget(this)?.reinterpret()

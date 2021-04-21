@@ -1,3 +1,5 @@
+// TODO - constructor: new
+// TODO - constructor: newv
 // TODO - method: append
 // TODO - method: insert
 // TODO - method: insert_after
@@ -12,7 +14,7 @@
 // TODO - method: set_value
 // TODO - method: set_valuesv
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -37,6 +39,8 @@ public typealias TreeStore = CPointer<GtkTreeStore>
 
 public val TreeStore.asObject: Object
   get() = reinterpret()
+
+public object TreeStoreFactory
 
 public fun TreeStore.clear(): Unit {
   gtk_tree_store_clear(this)

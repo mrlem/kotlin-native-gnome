@@ -1,10 +1,12 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkLinkButton
 import gtk3.gtk_link_button_get_uri
 import gtk3.gtk_link_button_get_visited
+import gtk3.gtk_link_button_new
+import gtk3.gtk_link_button_new_with_label
 import gtk3.gtk_link_button_set_uri
 import gtk3.gtk_link_button_set_visited
 import kotlin.Boolean
@@ -38,6 +40,13 @@ public val LinkButton.asBin: Bin
 
 public val LinkButton.asButton: Button
   get() = reinterpret()
+
+public object LinkButtonFactory {
+  public fun new(uri: String): LinkButton = gtk_link_button_new(uri)!!.reinterpret()
+
+  public fun newWithLabel(uri: String, label: String): LinkButton =
+      gtk_link_button_new_with_label(uri, label)!!.reinterpret()
+}
 
 public var LinkButton.uri: String
   get() = gtk_link_button_get_uri(this).toKString

@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -8,6 +8,7 @@ import gtk3.gtk_text_mark_get_deleted
 import gtk3.gtk_text_mark_get_left_gravity
 import gtk3.gtk_text_mark_get_name
 import gtk3.gtk_text_mark_get_visible
+import gtk3.gtk_text_mark_new
 import gtk3.gtk_text_mark_set_visible
 import kotlin.Boolean
 import kotlin.String
@@ -22,6 +23,11 @@ public typealias TextMark = CPointer<GtkTextMark>
 
 public val TextMark.asObject: Object
   get() = reinterpret()
+
+public object TextMarkFactory {
+  public fun new(name: String, leftGravity: Boolean): TextMark = gtk_text_mark_new(name,
+      leftGravity.toInt)!!.reinterpret()
+}
 
 public val TextMark.buffer: TextBuffer?
   get() = gtk_text_mark_get_buffer(this)?.reinterpret()

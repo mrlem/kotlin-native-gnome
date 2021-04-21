@@ -2,7 +2,7 @@
 // TODO - method: set_right_justified
 // TODO - method: toggle_size_request
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -14,6 +14,9 @@ import gtk3.gtk_menu_item_get_label
 import gtk3.gtk_menu_item_get_reserve_indicator
 import gtk3.gtk_menu_item_get_submenu
 import gtk3.gtk_menu_item_get_use_underline
+import gtk3.gtk_menu_item_new
+import gtk3.gtk_menu_item_new_with_label
+import gtk3.gtk_menu_item_new_with_mnemonic
 import gtk3.gtk_menu_item_select
 import gtk3.gtk_menu_item_set_accel_path
 import gtk3.gtk_menu_item_set_label
@@ -50,6 +53,16 @@ public val MenuItem.asContainer: Container
 
 public val MenuItem.asBin: Bin
   get() = reinterpret()
+
+public object MenuItemFactory {
+  public fun new(): MenuItem = gtk_menu_item_new()!!.reinterpret()
+
+  public fun newWithLabel(label: String): MenuItem =
+      gtk_menu_item_new_with_label(label)!!.reinterpret()
+
+  public fun newWithMnemonic(label: String): MenuItem =
+      gtk_menu_item_new_with_mnemonic(label)!!.reinterpret()
+}
 
 public var MenuItem.accelPath: String
   get() = gtk_menu_item_get_accel_path(this).toKString

@@ -8,7 +8,7 @@
 // TODO - method: set_documenters
 // TODO - method: set_logo
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -24,6 +24,7 @@ import gtk3.gtk_about_dialog_get_version
 import gtk3.gtk_about_dialog_get_website
 import gtk3.gtk_about_dialog_get_website_label
 import gtk3.gtk_about_dialog_get_wrap_license
+import gtk3.gtk_about_dialog_new
 import gtk3.gtk_about_dialog_set_comments
 import gtk3.gtk_about_dialog_set_copyright
 import gtk3.gtk_about_dialog_set_license
@@ -69,6 +70,10 @@ public val AboutDialog.asWindow: Window
 
 public val AboutDialog.asDialog: Dialog
   get() = reinterpret()
+
+public object AboutDialogFactory {
+  public fun new(): AboutDialog = gtk_about_dialog_new()!!.reinterpret()
+}
 
 public var AboutDialog.comments: String
   get() = gtk_about_dialog_get_comments(this).toKString

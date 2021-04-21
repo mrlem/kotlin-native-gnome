@@ -9,7 +9,7 @@
 // TODO - method: set_row_separator_func
 // TODO - method: set_title
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -26,6 +26,12 @@ import gtk3.gtk_combo_box_get_popup_fixed_width
 import gtk3.gtk_combo_box_get_row_separator_func
 import gtk3.gtk_combo_box_get_row_span_column
 import gtk3.gtk_combo_box_get_wrap_width
+import gtk3.gtk_combo_box_new
+import gtk3.gtk_combo_box_new_with_area
+import gtk3.gtk_combo_box_new_with_area_and_entry
+import gtk3.gtk_combo_box_new_with_entry
+import gtk3.gtk_combo_box_new_with_model
+import gtk3.gtk_combo_box_new_with_model_and_entry
 import gtk3.gtk_combo_box_popdown
 import gtk3.gtk_combo_box_popup
 import gtk3.gtk_combo_box_set_active
@@ -68,6 +74,24 @@ public val ComboBox.asContainer: Container
 
 public val ComboBox.asBin: Bin
   get() = reinterpret()
+
+public object ComboBoxFactory {
+  public fun new(): ComboBox = gtk_combo_box_new()!!.reinterpret()
+
+  public fun newWithArea(area: CellArea?): ComboBox =
+      gtk_combo_box_new_with_area(area?.reinterpret())!!.reinterpret()
+
+  public fun newWithAreaAndEntry(area: CellArea?): ComboBox =
+      gtk_combo_box_new_with_area_and_entry(area?.reinterpret())!!.reinterpret()
+
+  public fun newWithEntry(): ComboBox = gtk_combo_box_new_with_entry()!!.reinterpret()
+
+  public fun newWithModel(model: TreeModel?): ComboBox =
+      gtk_combo_box_new_with_model(model?.reinterpret())!!.reinterpret()
+
+  public fun newWithModelAndEntry(model: TreeModel?): ComboBox =
+      gtk_combo_box_new_with_model_and_entry(model?.reinterpret())!!.reinterpret()
+}
 
 public var ComboBox.active: Int
   get() = gtk_combo_box_get_active(this)

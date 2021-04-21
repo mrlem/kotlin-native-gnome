@@ -1,3 +1,5 @@
+// TODO - constructor: new_with_color
+// TODO - constructor: new_with_rgba
 // TODO - method: get_alpha
 // TODO - method: get_color
 // TODO - method: get_rgba
@@ -7,12 +9,13 @@
 // TODO - method: set_rgba
 // TODO - method: set_use_alpha
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkColorButton
 import gtk3.gtk_color_button_get_title
+import gtk3.gtk_color_button_new
 import gtk3.gtk_color_button_set_title
 import kotlin.String
 import kotlin.Unit
@@ -42,6 +45,10 @@ public val ColorButton.asBin: Bin
 
 public val ColorButton.asButton: Button
   get() = reinterpret()
+
+public object ColorButtonFactory {
+  public fun new(): ColorButton = gtk_color_button_new()!!.reinterpret()
+}
 
 public var ColorButton.title: String
   get() = gtk_color_button_get_title(this).toKString

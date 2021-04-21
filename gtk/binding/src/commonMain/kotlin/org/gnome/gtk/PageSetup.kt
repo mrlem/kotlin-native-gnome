@@ -1,10 +1,13 @@
+// TODO - constructor: new_from_file
+// TODO - constructor: new_from_gvariant
+// TODO - constructor: new_from_key_file
 // TODO - method: load_file
 // TODO - method: load_key_file
 // TODO - method: to_file
 // TODO - method: to_gvariant
 // TODO - method: to_key_file
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -20,6 +23,7 @@ import gtk3.gtk_page_setup_get_paper_size
 import gtk3.gtk_page_setup_get_paper_width
 import gtk3.gtk_page_setup_get_right_margin
 import gtk3.gtk_page_setup_get_top_margin
+import gtk3.gtk_page_setup_new
 import gtk3.gtk_page_setup_set_bottom_margin
 import gtk3.gtk_page_setup_set_left_margin
 import gtk3.gtk_page_setup_set_orientation
@@ -36,6 +40,10 @@ public typealias PageSetup = CPointer<GtkPageSetup>
 
 public val PageSetup.asObject: Object
   get() = reinterpret()
+
+public object PageSetupFactory {
+  public fun new(): PageSetup = gtk_page_setup_new()!!.reinterpret()
+}
 
 public var PageSetup.orientation: PageOrientation
   get() = gtk_page_setup_get_orientation(this)

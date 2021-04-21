@@ -1,4 +1,6 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+// TODO - constructor: new
+//
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -20,3 +22,5 @@ public val RendererCellAccessible.asAccessible: Accessible
 
 public val RendererCellAccessible.asCellAccessible: CellAccessible
   get() = reinterpret()
+
+public object RendererCellAccessibleFactory

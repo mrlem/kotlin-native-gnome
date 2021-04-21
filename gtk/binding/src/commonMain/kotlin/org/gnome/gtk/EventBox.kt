@@ -1,10 +1,11 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkEventBox
 import gtk3.gtk_event_box_get_above_child
 import gtk3.gtk_event_box_get_visible_window
+import gtk3.gtk_event_box_new
 import gtk3.gtk_event_box_set_above_child
 import gtk3.gtk_event_box_set_visible_window
 import kotlin.Boolean
@@ -31,6 +32,10 @@ public val EventBox.asContainer: Container
 
 public val EventBox.asBin: Bin
   get() = reinterpret()
+
+public object EventBoxFactory {
+  public fun new(): EventBox = gtk_event_box_new()!!.reinterpret()
+}
 
 public var EventBox.aboveChild: Boolean
   get() = gtk_event_box_get_above_child(this).toBoolean

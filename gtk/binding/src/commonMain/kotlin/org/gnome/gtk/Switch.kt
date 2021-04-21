@@ -1,10 +1,11 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkSwitch
 import gtk3.gtk_switch_get_active
 import gtk3.gtk_switch_get_state
+import gtk3.gtk_switch_new
 import gtk3.gtk_switch_set_active
 import gtk3.gtk_switch_set_state
 import kotlin.Boolean
@@ -27,6 +28,10 @@ public val Switch.asInitiallyUnowned: InitiallyUnowned
 
 public val Switch.asWidget: Widget
   get() = reinterpret()
+
+public object SwitchFactory {
+  public fun new(): Switch = gtk_switch_new()!!.reinterpret()
+}
 
 public var Switch.active: Boolean
   get() = gtk_switch_get_active(this).toBoolean

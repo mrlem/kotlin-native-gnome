@@ -1,4 +1,7 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+// TODO - constructor: new
+// TODO - constructor: new_for_manager
+//
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -30,3 +33,5 @@ public val RecentChooserDialog.asWindow: Window
 
 public val RecentChooserDialog.asDialog: Dialog
   get() = reinterpret()
+
+public object RecentChooserDialogFactory

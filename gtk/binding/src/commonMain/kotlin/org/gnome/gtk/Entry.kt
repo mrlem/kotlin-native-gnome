@@ -17,7 +17,7 @@
 // TODO - method: set_inner_border
 // TODO - method: set_tabs
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -51,6 +51,8 @@ import gtk3.gtk_entry_get_visibility
 import gtk3.gtk_entry_get_width_chars
 import gtk3.gtk_entry_grab_focus_without_selecting
 import gtk3.gtk_entry_layout_index_to_text_index
+import gtk3.gtk_entry_new
+import gtk3.gtk_entry_new_with_buffer
 import gtk3.gtk_entry_progress_pulse
 import gtk3.gtk_entry_reset_im_context
 import gtk3.gtk_entry_set_activates_default
@@ -107,6 +109,13 @@ public val Entry.asInitiallyUnowned: InitiallyUnowned
 
 public val Entry.asWidget: Widget
   get() = reinterpret()
+
+public object EntryFactory {
+  public fun new(): Entry = gtk_entry_new()!!.reinterpret()
+
+  public fun newWithBuffer(buffer: EntryBuffer?): Entry =
+      gtk_entry_new_with_buffer(buffer?.reinterpret())!!.reinterpret()
+}
 
 public var Entry.activatesDefault: Boolean
   get() = gtk_entry_get_activates_default(this).toBoolean

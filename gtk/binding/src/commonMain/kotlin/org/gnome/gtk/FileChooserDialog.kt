@@ -1,4 +1,6 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+// TODO - constructor: new
+//
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -30,3 +32,5 @@ public val FileChooserDialog.asWindow: Window
 
 public val FileChooserDialog.asDialog: Dialog
   get() = reinterpret()
+
+public object FileChooserDialogFactory

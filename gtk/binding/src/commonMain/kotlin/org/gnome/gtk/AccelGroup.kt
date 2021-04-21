@@ -7,13 +7,14 @@
 // TODO - method: get_modifier_mask
 // TODO - method: query
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkAccelGroup
 import gtk3.gtk_accel_group_get_is_locked
 import gtk3.gtk_accel_group_lock
+import gtk3.gtk_accel_group_new
 import gtk3.gtk_accel_group_unlock
 import kotlin.Boolean
 import kotlin.Unit
@@ -27,6 +28,10 @@ public typealias AccelGroup = CPointer<GtkAccelGroup>
 
 public val AccelGroup.asObject: Object
   get() = reinterpret()
+
+public object AccelGroupFactory {
+  public fun new(): AccelGroup = gtk_accel_group_new()!!.reinterpret()
+}
 
 public val AccelGroup.isLocked: Boolean
   get() = gtk_accel_group_get_is_locked(this).toBoolean

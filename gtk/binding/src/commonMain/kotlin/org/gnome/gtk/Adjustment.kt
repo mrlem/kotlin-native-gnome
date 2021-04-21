@@ -1,7 +1,7 @@
 // TODO - method: changed
 // TODO - method: value_changed
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -15,6 +15,7 @@ import gtk3.gtk_adjustment_get_page_size
 import gtk3.gtk_adjustment_get_step_increment
 import gtk3.gtk_adjustment_get_upper
 import gtk3.gtk_adjustment_get_value
+import gtk3.gtk_adjustment_new
 import gtk3.gtk_adjustment_set_lower
 import gtk3.gtk_adjustment_set_page_increment
 import gtk3.gtk_adjustment_set_page_size
@@ -36,6 +37,18 @@ public val Adjustment.asObject: Object
 
 public val Adjustment.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
+
+public object AdjustmentFactory {
+  public fun new(
+    `value`: Double,
+    lower: Double,
+    upper: Double,
+    stepIncrement: Double,
+    pageIncrement: Double,
+    pageSize: Double
+  ): Adjustment = gtk_adjustment_new(value, lower, upper, stepIncrement, pageIncrement,
+      pageSize)!!.reinterpret()
+}
 
 public var Adjustment.lower: Double
   get() = gtk_adjustment_get_lower(this)

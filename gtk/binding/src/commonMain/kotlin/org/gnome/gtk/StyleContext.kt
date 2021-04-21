@@ -33,7 +33,7 @@
 // TODO - method: set_screen
 // TODO - method: state_is_running
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -47,6 +47,7 @@ import gtk3.gtk_style_context_get_scale
 import gtk3.gtk_style_context_get_section
 import gtk3.gtk_style_context_get_state
 import gtk3.gtk_style_context_has_class
+import gtk3.gtk_style_context_new
 import gtk3.gtk_style_context_remove_class
 import gtk3.gtk_style_context_remove_provider
 import gtk3.gtk_style_context_restore
@@ -73,6 +74,10 @@ public typealias StyleContext = CPointer<GtkStyleContext>
 
 public val StyleContext.asObject: Object
   get() = reinterpret()
+
+public object StyleContextFactory {
+  public fun new(): StyleContext = gtk_style_context_new()!!.reinterpret()
+}
 
 public var StyleContext.junctionSides: JunctionSides
   get() = gtk_style_context_get_junction_sides(this)

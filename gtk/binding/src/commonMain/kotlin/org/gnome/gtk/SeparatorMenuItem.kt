@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkSeparatorMenuItem
+import gtk3.gtk_separator_menu_item_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -27,3 +28,7 @@ public val SeparatorMenuItem.asBin: Bin
 
 public val SeparatorMenuItem.asMenuItem: MenuItem
   get() = reinterpret()
+
+public object SeparatorMenuItemFactory {
+  public fun new(): SeparatorMenuItem = gtk_separator_menu_item_new()!!.reinterpret()
+}

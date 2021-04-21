@@ -1,9 +1,11 @@
+// TODO - constructor: new
+// TODO - constructor: new_with_markup
 // TODO - method: format_secondary_markup
 // TODO - method: format_secondary_text
 // TODO - method: get_image
 // TODO - method: set_image
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -39,6 +41,8 @@ public val MessageDialog.asWindow: Window
 
 public val MessageDialog.asDialog: Dialog
   get() = reinterpret()
+
+public object MessageDialogFactory
 
 public val MessageDialog.messageArea: Widget?
   get() = gtk_message_dialog_get_message_area(this)?.reinterpret()

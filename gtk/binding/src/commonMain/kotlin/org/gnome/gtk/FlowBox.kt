@@ -4,7 +4,7 @@
 // TODO - method: set_filter_func
 // TODO - method: set_sort_func
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -21,6 +21,7 @@ import gtk3.gtk_flow_box_get_selection_mode
 import gtk3.gtk_flow_box_insert
 import gtk3.gtk_flow_box_invalidate_filter
 import gtk3.gtk_flow_box_invalidate_sort
+import gtk3.gtk_flow_box_new
 import gtk3.gtk_flow_box_select_all
 import gtk3.gtk_flow_box_select_child
 import gtk3.gtk_flow_box_set_activate_on_single_click
@@ -59,6 +60,10 @@ public val FlowBox.asWidget: Widget
 
 public val FlowBox.asContainer: Container
   get() = reinterpret()
+
+public object FlowBoxFactory {
+  public fun new(): FlowBox = gtk_flow_box_new()!!.reinterpret()
+}
 
 public var FlowBox.activateOnSingleClick: Boolean
   get() = gtk_flow_box_get_activate_on_single_click(this).toBoolean

@@ -4,7 +4,7 @@
 // TODO - method: set_page_header_image
 // TODO - method: set_page_side_image
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -20,6 +20,7 @@ import gtk3.gtk_assistant_get_page_has_padding
 import gtk3.gtk_assistant_get_page_title
 import gtk3.gtk_assistant_get_page_type
 import gtk3.gtk_assistant_insert_page
+import gtk3.gtk_assistant_new
 import gtk3.gtk_assistant_next_page
 import gtk3.gtk_assistant_prepend_page
 import gtk3.gtk_assistant_previous_page
@@ -63,6 +64,10 @@ public val Assistant.asBin: Bin
 
 public val Assistant.asWindow: Window
   get() = reinterpret()
+
+public object AssistantFactory {
+  public fun new(): Assistant = gtk_assistant_new()!!.reinterpret()
+}
 
 public var Assistant.currentPage: Int
   get() = gtk_assistant_get_current_page(this)

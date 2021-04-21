@@ -1,6 +1,6 @@
 // TODO - method: get_offset_value
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,6 +11,8 @@ import gtk3.gtk_level_bar_get_max_value
 import gtk3.gtk_level_bar_get_min_value
 import gtk3.gtk_level_bar_get_mode
 import gtk3.gtk_level_bar_get_value
+import gtk3.gtk_level_bar_new
+import gtk3.gtk_level_bar_new_for_interval
 import gtk3.gtk_level_bar_remove_offset_value
 import gtk3.gtk_level_bar_set_inverted
 import gtk3.gtk_level_bar_set_max_value
@@ -39,6 +41,13 @@ public val LevelBar.asInitiallyUnowned: InitiallyUnowned
 
 public val LevelBar.asWidget: Widget
   get() = reinterpret()
+
+public object LevelBarFactory {
+  public fun new(): LevelBar = gtk_level_bar_new()!!.reinterpret()
+
+  public fun newForInterval(minValue: Double, maxValue: Double): LevelBar =
+      gtk_level_bar_new_for_interval(minValue, maxValue)!!.reinterpret()
+}
 
 public var LevelBar.inverted: Boolean
   get() = gtk_level_bar_get_inverted(this).toBoolean

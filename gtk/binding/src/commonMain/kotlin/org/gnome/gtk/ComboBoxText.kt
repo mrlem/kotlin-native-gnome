@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -8,6 +8,8 @@ import gtk3.gtk_combo_box_text_append_text
 import gtk3.gtk_combo_box_text_get_active_text
 import gtk3.gtk_combo_box_text_insert
 import gtk3.gtk_combo_box_text_insert_text
+import gtk3.gtk_combo_box_text_new
+import gtk3.gtk_combo_box_text_new_with_entry
 import gtk3.gtk_combo_box_text_prepend
 import gtk3.gtk_combo_box_text_prepend_text
 import gtk3.gtk_combo_box_text_remove
@@ -40,6 +42,12 @@ public val ComboBoxText.asBin: Bin
 
 public val ComboBoxText.asComboBox: ComboBox
   get() = reinterpret()
+
+public object ComboBoxTextFactory {
+  public fun new(): ComboBoxText = gtk_combo_box_text_new()!!.reinterpret()
+
+  public fun newWithEntry(): ComboBoxText = gtk_combo_box_text_new_with_entry()!!.reinterpret()
+}
 
 public val ComboBoxText.activeText: String
   get() = gtk_combo_box_text_get_active_text(this).toKString

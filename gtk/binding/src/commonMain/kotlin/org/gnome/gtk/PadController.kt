@@ -1,6 +1,7 @@
+// TODO - constructor: new
 // TODO - method: set_action_entries
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -20,6 +21,8 @@ public val PadController.asObject: Object
 
 public val PadController.asEventController: EventController
   get() = reinterpret()
+
+public object PadControllerFactory
 
 public fun PadController.setAction(
   type: PadActionType,

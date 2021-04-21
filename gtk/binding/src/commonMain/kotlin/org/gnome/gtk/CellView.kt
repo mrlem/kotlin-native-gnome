@@ -1,8 +1,9 @@
+// TODO - constructor: new_with_pixbuf
 // TODO - method: get_size_of_row
 // TODO - method: set_background_color
 // TODO - method: set_background_rgba
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -11,11 +12,16 @@ import gtk3.gtk_cell_view_get_displayed_row
 import gtk3.gtk_cell_view_get_draw_sensitive
 import gtk3.gtk_cell_view_get_fit_model
 import gtk3.gtk_cell_view_get_model
+import gtk3.gtk_cell_view_new
+import gtk3.gtk_cell_view_new_with_context
+import gtk3.gtk_cell_view_new_with_markup
+import gtk3.gtk_cell_view_new_with_text
 import gtk3.gtk_cell_view_set_displayed_row
 import gtk3.gtk_cell_view_set_draw_sensitive
 import gtk3.gtk_cell_view_set_fit_model
 import gtk3.gtk_cell_view_set_model
 import kotlin.Boolean
+import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
@@ -33,6 +39,18 @@ public val CellView.asInitiallyUnowned: InitiallyUnowned
 
 public val CellView.asWidget: Widget
   get() = reinterpret()
+
+public object CellViewFactory {
+  public fun new(): CellView = gtk_cell_view_new()!!.reinterpret()
+
+  public fun newWithContext(area: CellArea?, context: CellAreaContext?): CellView =
+      gtk_cell_view_new_with_context(area?.reinterpret(), context?.reinterpret())!!.reinterpret()
+
+  public fun newWithMarkup(markup: String): CellView =
+      gtk_cell_view_new_with_markup(markup)!!.reinterpret()
+
+  public fun newWithText(text: String): CellView = gtk_cell_view_new_with_text(text)!!.reinterpret()
+}
 
 public var CellView.displayedRow: TreePath?
   get() = gtk_cell_view_get_displayed_row(this)?.reinterpret()

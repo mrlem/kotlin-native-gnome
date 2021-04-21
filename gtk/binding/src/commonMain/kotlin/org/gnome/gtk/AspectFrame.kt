@@ -1,11 +1,13 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkAspectFrame
+import gtk3.gtk_aspect_frame_new
 import gtk3.gtk_aspect_frame_set
 import kotlin.Boolean
 import kotlin.Float
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -32,6 +34,17 @@ public val AspectFrame.asBin: Bin
 
 public val AspectFrame.asFrame: Frame
   get() = reinterpret()
+
+public object AspectFrameFactory {
+  public fun new(
+    label: String,
+    xalign: Float,
+    yalign: Float,
+    ratio: Float,
+    obeyChild: Boolean
+  ): AspectFrame = gtk_aspect_frame_new(label, xalign, yalign, ratio,
+      obeyChild.toInt)!!.reinterpret()
+}
 
 public fun AspectFrame.`set`(
   xalign: Float,

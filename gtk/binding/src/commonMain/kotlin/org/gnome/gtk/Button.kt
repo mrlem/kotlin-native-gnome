@@ -1,3 +1,4 @@
+// TODO - constructor: new_from_stock
 // TODO - method: enter
 // TODO - method: get_alignment
 // TODO - method: get_event_window
@@ -10,11 +11,28 @@
 // TODO - method: set_focus_on_click
 // TODO - method: set_use_stock
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
-import gtk3.*
+import gtk3.GtkButton
+import gtk3.gtk_button_clicked
+import gtk3.gtk_button_get_always_show_image
+import gtk3.gtk_button_get_image
+import gtk3.gtk_button_get_image_position
+import gtk3.gtk_button_get_label
+import gtk3.gtk_button_get_relief
+import gtk3.gtk_button_get_use_underline
+import gtk3.gtk_button_new
+import gtk3.gtk_button_new_from_icon_name
+import gtk3.gtk_button_new_with_label
+import gtk3.gtk_button_new_with_mnemonic
+import gtk3.gtk_button_set_always_show_image
+import gtk3.gtk_button_set_image
+import gtk3.gtk_button_set_image_position
+import gtk3.gtk_button_set_label
+import gtk3.gtk_button_set_relief
+import gtk3.gtk_button_set_use_underline
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
@@ -43,6 +61,18 @@ public val Button.asContainer: Container
 
 public val Button.asBin: Bin
   get() = reinterpret()
+
+public object ButtonFactory {
+  public fun new(): Button = gtk_button_new()!!.reinterpret()
+
+  public fun newFromIconName(iconName: String, size: IconSize): Button =
+      gtk_button_new_from_icon_name(iconName, size)!!.reinterpret()
+
+  public fun newWithLabel(label: String): Button = gtk_button_new_with_label(label)!!.reinterpret()
+
+  public fun newWithMnemonic(label: String): Button =
+      gtk_button_new_with_mnemonic(label)!!.reinterpret()
+}
 
 public var Button.alwaysShowImage: Boolean
   get() = gtk_button_get_always_show_image(this).toBoolean
@@ -125,10 +155,3 @@ public fun Button.onReleased(callback: (Button) -> Unit): Button {
   asObject.connect("released") { callback(this) }
   return this
 }
-
-///////////////////////////////////////////////////////////////////////////
-// Public API (not generated)
-///////////////////////////////////////////////////////////////////////////
-
-@Suppress("FunctionName")
-fun Button(label: String) = gtk_button_new_with_label(label)!!.reinterpret<GtkButton>()

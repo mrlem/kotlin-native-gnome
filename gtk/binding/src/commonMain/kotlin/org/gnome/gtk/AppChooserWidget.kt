@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -9,6 +9,7 @@ import gtk3.gtk_app_chooser_widget_get_show_default
 import gtk3.gtk_app_chooser_widget_get_show_fallback
 import gtk3.gtk_app_chooser_widget_get_show_other
 import gtk3.gtk_app_chooser_widget_get_show_recommended
+import gtk3.gtk_app_chooser_widget_new
 import gtk3.gtk_app_chooser_widget_set_default_text
 import gtk3.gtk_app_chooser_widget_set_show_all
 import gtk3.gtk_app_chooser_widget_set_show_default
@@ -43,6 +44,11 @@ public val AppChooserWidget.asContainer: Container
 
 public val AppChooserWidget.asBox: Box
   get() = reinterpret()
+
+public object AppChooserWidgetFactory {
+  public fun new(contentType: String): AppChooserWidget =
+      gtk_app_chooser_widget_new(contentType)!!.reinterpret()
+}
 
 public var AppChooserWidget.defaultText: String
   get() = gtk_app_chooser_widget_get_default_text(this).toKString

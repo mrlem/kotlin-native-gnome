@@ -1,10 +1,11 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkStatusbar
 import gtk3.gtk_statusbar_get_context_id
 import gtk3.gtk_statusbar_get_message_area
+import gtk3.gtk_statusbar_new
 import gtk3.gtk_statusbar_pop
 import gtk3.gtk_statusbar_push
 import gtk3.gtk_statusbar_remove
@@ -34,6 +35,10 @@ public val Statusbar.asContainer: Container
 
 public val Statusbar.asBox: Box
   get() = reinterpret()
+
+public object StatusbarFactory {
+  public fun new(): Statusbar = gtk_statusbar_new()!!.reinterpret()
+}
 
 public val Statusbar.messageArea: Box?
   get() = gtk_statusbar_get_message_area(this)?.reinterpret()

@@ -1,4 +1,4 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
@@ -15,6 +15,7 @@ import gtk3.gtk_grid_get_row_spacing
 import gtk3.gtk_grid_insert_column
 import gtk3.gtk_grid_insert_next_to
 import gtk3.gtk_grid_insert_row
+import gtk3.gtk_grid_new
 import gtk3.gtk_grid_remove_column
 import gtk3.gtk_grid_remove_row
 import gtk3.gtk_grid_set_baseline_row
@@ -47,6 +48,10 @@ public val Grid.asWidget: Widget
 
 public val Grid.asContainer: Container
   get() = reinterpret()
+
+public object GridFactory {
+  public fun new(): Grid = gtk_grid_new()!!.reinterpret()
+}
 
 public var Grid.baselineRow: Int
   get() = gtk_grid_get_baseline_row(this)

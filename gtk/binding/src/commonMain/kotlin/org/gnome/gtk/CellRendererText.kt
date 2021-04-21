@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkCellRendererText
+import gtk3.gtk_cell_renderer_text_new
 import gtk3.gtk_cell_renderer_text_set_fixed_height_from_font
 import kotlin.Int
 import kotlin.Unit
@@ -22,6 +23,10 @@ public val CellRendererText.asInitiallyUnowned: InitiallyUnowned
 
 public val CellRendererText.asCellRenderer: CellRenderer
   get() = reinterpret()
+
+public object CellRendererTextFactory {
+  public fun new(): CellRendererText = gtk_cell_renderer_text_new()!!.reinterpret()
+}
 
 public fun CellRendererText.setFixedHeightFromFont(numberOfRows: Int): Unit {
   gtk_cell_renderer_text_set_fixed_height_from_font(this, numberOfRows)

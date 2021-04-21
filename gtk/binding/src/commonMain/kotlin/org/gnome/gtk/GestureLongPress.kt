@@ -1,8 +1,9 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkGestureLongPress
+import gtk3.gtk_gesture_long_press_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -22,6 +23,11 @@ public val GestureLongPress.asGesture: Gesture
 
 public val GestureLongPress.asGestureSingle: GestureSingle
   get() = reinterpret()
+
+public object GestureLongPressFactory {
+  public fun new(widget: Widget?): GestureLongPress =
+      gtk_gesture_long_press_new(widget?.reinterpret())!!.reinterpret()
+}
 
 public fun GestureLongPress.onCancelled(callback: (GestureLongPress) -> Unit): GestureLongPress {
   // TODO - handle callback data

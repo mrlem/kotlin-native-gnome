@@ -1,9 +1,10 @@
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 
 package org.gnome.gtk
 
 import gtk3.GtkEventControllerScroll
 import gtk3.gtk_event_controller_scroll_get_flags
+import gtk3.gtk_event_controller_scroll_new
 import gtk3.gtk_event_controller_scroll_set_flags
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -18,6 +19,11 @@ public val EventControllerScroll.asObject: Object
 
 public val EventControllerScroll.asEventController: EventController
   get() = reinterpret()
+
+public object EventControllerScrollFactory {
+  public fun new(widget: Widget?, flags: EventControllerScrollFlags): EventControllerScroll =
+      gtk_event_controller_scroll_new(widget?.reinterpret(), flags)!!.reinterpret()
+}
 
 public var EventControllerScroll.flags: EventControllerScrollFlags
   get() = gtk_event_controller_scroll_get_flags(this)
