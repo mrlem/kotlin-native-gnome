@@ -7,12 +7,8 @@ This sample demonstrates how to create a **GTK application** based on a **Glade*
 ## Features
 
 * a **lightweight GTK object binding**: no wrapper objects, just extension functions & aliases
-* a gradle **glade view binding generator** (coming from android development, it feels like home)
+* a gradle **glade view binding generator**: type-safe widget access (coming from android development, it feels just like home)
 * a sample app
-
-They say a picture is worth a thousand words:
-
-![Generator](doc/readme-generator.png)
 
 ## Build
 
@@ -32,6 +28,10 @@ cd sample
 ## Usage
 
 See [sample](sample/src/commonMain/kotlin/org/mrlem/gtk/sample) module.
+
+The objective is to focus on what matters to the app developer: developing  a UI, and easily integrate it into the code.
+
+![Generator](doc/readme-generator.png)
 
 ## Current status
 
