@@ -4,11 +4,13 @@ plugins {
 
 repositories {
     jcenter()
+    maven("https://jitpack.io")
 }
 
 dependencies {
     // kotlin generation
     implementation("com.squareup:kotlinpoet:1.8.0")
+    implementation("com.github.vishna:watchservice-ktx:master-SNAPSHOT")
 
     // gradle
     // .. plugin API

@@ -3,11 +3,9 @@ package org.mrlem.gnome.glade
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.BasePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import org.mrlem.gnome.glade.generator.kotlin.ViewBindingGenerator
-import org.mrlem.gnome.glade.parser.xml.Parser
+import org.mrlem.gnome.glade.watch.ServiceHandler
 
 /**
  * Gradle plugin that generates a UI class for each glade XML file present in resources.
@@ -19,37 +17,40 @@ import org.mrlem.gnome.glade.parser.xml.Parser
  * Note that the glade file needs to end in .glade.
  */
 class ViewBindingGeneratorPlugin : Plugin<Project> {
-    private lateinit var sourceSetsWithGeneratedDir: Map<KotlinSourceSet, File>
 
     override fun apply(project: Project) {
-        // task to run
-        val generateTask = project.task("generateGladeViewBinding") {
-            group = BasePlugin.BUILD_GROUP
-
+        val startTask = project.task("gladeWatchStart") {
             doLast {
-                // for each glade file, create a UI class
-                sourceSetsWithGeneratedDir.forEach { (sourceSet, generatedDir) ->
-                    generatedDir.deleteRecursively()
-                    sourceSet.listGladeFiles()
-                        .forEach { file -> generateViewBinding(file, generatedDir) }
-                }
+                ServiceHandler.start()
             }
         }
 
-        // project setup
+        project.task("gladeWatchStop") {
+            doLast {
+                ServiceHandler.stop()
+            }
+        }
+
         project.afterEvaluate {
             // task will run immediately before compiling the kotlin sources
             project.tasks
                 .filter { it.name.startsWith("compileKotlin") }
-                .forEach { it.dependsOn(generateTask) }
+                .forEach { it.dependsOn(startTask) }
 
             // lookup kotlin source sets & create generated dirs
             val kotlinExtension = project.extensions.getByName("kotlin") as KotlinMultiplatformExtension
             sourceSetsWithGeneratedDir = kotlinExtension.sourceSets
                 .map { it to createdGeneratedSrcDir(it, project.buildDir) }
                 .toMap()
+
+            // start glade file monitoring
+            ServiceHandler.start()
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Private
+    ///////////////////////////////////////////////////////////////////////////
 
     /**
      * Create a generated sources dir for glade UI classes.
@@ -65,34 +66,8 @@ class ViewBindingGeneratorPlugin : Plugin<Project> {
         return generatedDir
     }
 
-    /**
-     * List all glade files in the source set.
-     *
-     * @return a list of all glade files.
-     */
-    private fun KotlinSourceSet.listGladeFiles(): List<File>{
-        return resources.srcDirs
-            .flatMap { dir ->
-                dir?.listFiles { _, name -> name.endsWith(".glade") }
-                    ?.asList()
-                    .orEmpty()
-            }
-    }
-
-    /**
-     * Generate a UI class file for given glade file.
-     *
-     * @param sourceFile the glade file to create a UI class for.
-     * @param destination destination directory fo generated class.
-     */
-    private fun generateViewBinding(sourceFile: File, destination: File) {
-        println("generating view binding for: ${sourceFile.name}")
-
-        val sourceText = sourceFile.readText()
-        val widgets = Parser().parse(sourceText)
-
-        ViewBindingGenerator()
-            .generate(sourceFile, sourceText, widgets)
-            .run { writeTo(destination) }
+    companion object {
+        const val GLADE_EXTENSION = ".glade"
+        lateinit var sourceSetsWithGeneratedDir: Map<KotlinSourceSet, File>
     }
 }
