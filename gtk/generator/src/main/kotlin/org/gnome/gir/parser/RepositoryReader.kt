@@ -515,7 +515,7 @@ class RepositoryReader {
     private fun Node.readNames(name: String) = all(name)
         .map { it.readName() }
 
-    private fun Node.readSignals() = all("signal")
+    private fun Node.readSignals() = all("glib:signal")
         .map { it.readSignal() }
 
     private fun Node.readVirtualMethods() = all("virtual-method")
