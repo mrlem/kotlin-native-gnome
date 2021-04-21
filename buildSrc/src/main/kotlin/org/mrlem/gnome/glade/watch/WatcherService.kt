@@ -28,6 +28,7 @@ class WatcherService : Service {
         ViewBindingGeneratorPlugin.sourceSetsWithGeneratedDir
             .forEach { (sourceSet, generatedDir) ->
                 sourceSet.resources.srcDirs
+                    .filter { it.exists() }
                     .forEach { dir ->
                         val channel = dir.asWatchChannel()
                             .also { watchChannels += it }
