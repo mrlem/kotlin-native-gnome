@@ -1,7 +1,7 @@
-// TODO - add_buttons
-// TODO - get_action_area
-// TODO - set_alternative_button_order
-// TODO - set_alternative_button_order_from_array
+// TODO - method: add_buttons
+// TODO - method: get_action_area
+// TODO - method: set_alternative_button_order
+// TODO - method: set_alternative_button_order_from_array
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

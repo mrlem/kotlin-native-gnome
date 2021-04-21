@@ -1,16 +1,16 @@
-// TODO - choose_icon
-// TODO - choose_icon_for_scale
-// TODO - get_icon_sizes
-// TODO - get_search_path
-// TODO - list_contexts
-// TODO - list_icons
-// TODO - load_icon
-// TODO - load_icon_for_scale
-// TODO - load_surface
-// TODO - lookup_by_gicon
-// TODO - lookup_by_gicon_for_scale
-// TODO - set_screen
-// TODO - set_search_path
+// TODO - method: choose_icon
+// TODO - method: choose_icon_for_scale
+// TODO - method: get_icon_sizes
+// TODO - method: get_search_path
+// TODO - method: list_contexts
+// TODO - method: list_icons
+// TODO - method: load_icon
+// TODO - method: load_icon_for_scale
+// TODO - method: load_surface
+// TODO - method: lookup_by_gicon
+// TODO - method: lookup_by_gicon_for_scale
+// TODO - method: set_screen
+// TODO - method: set_search_path
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

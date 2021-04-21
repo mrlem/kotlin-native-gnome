@@ -1,111 +1,111 @@
-// TODO - add_accelerator
-// TODO - add_device_events
-// TODO - add_tick_callback
-// TODO - class_path
-// TODO - create_pango_context
-// TODO - create_pango_layout
-// TODO - destroyed
-// TODO - device_is_shadowed
-// TODO - drag_begin
-// TODO - drag_begin_with_coordinates
-// TODO - drag_dest_find_target
-// TODO - drag_dest_set
-// TODO - drag_dest_set_proxy
-// TODO - drag_get_data
-// TODO - drag_source_set
-// TODO - drag_source_set_icon_gicon
-// TODO - drag_source_set_icon_pixbuf
-// TODO - drag_source_set_icon_stock
-// TODO - draw
-// TODO - ensure_style
-// TODO - event
-// TODO - get_accessible
-// TODO - get_action_group
-// TODO - get_allocated_size
-// TODO - get_allocation
-// TODO - get_child_requisition
-// TODO - get_clip
-// TODO - get_clipboard
-// TODO - get_composite_name
-// TODO - get_device_enabled
-// TODO - get_device_events
-// TODO - get_display
-// TODO - get_font_map
-// TODO - get_font_options
-// TODO - get_frame_clock
-// TODO - get_margin_left
-// TODO - get_margin_right
-// TODO - get_modifier_mask
-// TODO - get_modifier_style
-// TODO - get_pango_context
-// TODO - get_parent_window
-// TODO - get_pointer
-// TODO - get_preferred_height
-// TODO - get_preferred_height_and_baseline_for_width
-// TODO - get_preferred_height_for_width
-// TODO - get_preferred_size
-// TODO - get_preferred_width
-// TODO - get_preferred_width_for_height
-// TODO - get_requisition
-// TODO - get_root_window
-// TODO - get_screen
-// TODO - get_size_request
-// TODO - get_state
-// TODO - get_style
-// TODO - get_template_child
-// TODO - get_visual
-// TODO - get_window
-// TODO - has_rc_style
-// TODO - input_shape_combine_region
-// TODO - insert_action_group
-// TODO - intersect
-// TODO - is_composited
-// TODO - list_accel_closures
-// TODO - list_action_prefixes
-// TODO - list_mnemonic_labels
-// TODO - modify_base
-// TODO - modify_bg
-// TODO - modify_cursor
-// TODO - modify_fg
-// TODO - modify_font
-// TODO - modify_style
-// TODO - modify_text
-// TODO - override_background_color
-// TODO - override_color
-// TODO - override_cursor
-// TODO - override_font
-// TODO - override_symbolic_color
-// TODO - path
-// TODO - queue_draw_region
-// TODO - region_intersect
-// TODO - register_window
-// TODO - remove_accelerator
-// TODO - render_icon
-// TODO - render_icon_pixbuf
-// TODO - reparent
-// TODO - reset_rc_styles
-// TODO - send_expose
-// TODO - send_focus_change
-// TODO - set_composite_name
-// TODO - set_device_enabled
-// TODO - set_device_events
-// TODO - set_font_map
-// TODO - set_font_options
-// TODO - set_margin_left
-// TODO - set_margin_right
-// TODO - set_parent_window
-// TODO - set_state
-// TODO - set_style
-// TODO - set_visual
-// TODO - set_window
-// TODO - shape_combine_region
-// TODO - size_request
-// TODO - style_attach
-// TODO - style_get
-// TODO - style_get_property
-// TODO - style_get_valist
-// TODO - translate_coordinates
-// TODO - unregister_window
+// TODO - method: add_accelerator
+// TODO - method: add_device_events
+// TODO - method: add_tick_callback
+// TODO - method: class_path
+// TODO - method: create_pango_context
+// TODO - method: create_pango_layout
+// TODO - method: destroyed
+// TODO - method: device_is_shadowed
+// TODO - method: drag_begin
+// TODO - method: drag_begin_with_coordinates
+// TODO - method: drag_dest_find_target
+// TODO - method: drag_dest_set
+// TODO - method: drag_dest_set_proxy
+// TODO - method: drag_get_data
+// TODO - method: drag_source_set
+// TODO - method: drag_source_set_icon_gicon
+// TODO - method: drag_source_set_icon_pixbuf
+// TODO - method: drag_source_set_icon_stock
+// TODO - method: draw
+// TODO - method: ensure_style
+// TODO - method: event
+// TODO - method: get_accessible
+// TODO - method: get_action_group
+// TODO - method: get_allocated_size
+// TODO - method: get_allocation
+// TODO - method: get_child_requisition
+// TODO - method: get_clip
+// TODO - method: get_clipboard
+// TODO - method: get_composite_name
+// TODO - method: get_device_enabled
+// TODO - method: get_device_events
+// TODO - method: get_display
+// TODO - method: get_font_map
+// TODO - method: get_font_options
+// TODO - method: get_frame_clock
+// TODO - method: get_margin_left
+// TODO - method: get_margin_right
+// TODO - method: get_modifier_mask
+// TODO - method: get_modifier_style
+// TODO - method: get_pango_context
+// TODO - method: get_parent_window
+// TODO - method: get_pointer
+// TODO - method: get_preferred_height
+// TODO - method: get_preferred_height_and_baseline_for_width
+// TODO - method: get_preferred_height_for_width
+// TODO - method: get_preferred_size
+// TODO - method: get_preferred_width
+// TODO - method: get_preferred_width_for_height
+// TODO - method: get_requisition
+// TODO - method: get_root_window
+// TODO - method: get_screen
+// TODO - method: get_size_request
+// TODO - method: get_state
+// TODO - method: get_style
+// TODO - method: get_template_child
+// TODO - method: get_visual
+// TODO - method: get_window
+// TODO - method: has_rc_style
+// TODO - method: input_shape_combine_region
+// TODO - method: insert_action_group
+// TODO - method: intersect
+// TODO - method: is_composited
+// TODO - method: list_accel_closures
+// TODO - method: list_action_prefixes
+// TODO - method: list_mnemonic_labels
+// TODO - method: modify_base
+// TODO - method: modify_bg
+// TODO - method: modify_cursor
+// TODO - method: modify_fg
+// TODO - method: modify_font
+// TODO - method: modify_style
+// TODO - method: modify_text
+// TODO - method: override_background_color
+// TODO - method: override_color
+// TODO - method: override_cursor
+// TODO - method: override_font
+// TODO - method: override_symbolic_color
+// TODO - method: path
+// TODO - method: queue_draw_region
+// TODO - method: region_intersect
+// TODO - method: register_window
+// TODO - method: remove_accelerator
+// TODO - method: render_icon
+// TODO - method: render_icon_pixbuf
+// TODO - method: reparent
+// TODO - method: reset_rc_styles
+// TODO - method: send_expose
+// TODO - method: send_focus_change
+// TODO - method: set_composite_name
+// TODO - method: set_device_enabled
+// TODO - method: set_device_events
+// TODO - method: set_font_map
+// TODO - method: set_font_options
+// TODO - method: set_margin_left
+// TODO - method: set_margin_right
+// TODO - method: set_parent_window
+// TODO - method: set_state
+// TODO - method: set_style
+// TODO - method: set_visual
+// TODO - method: set_window
+// TODO - method: shape_combine_region
+// TODO - method: size_request
+// TODO - method: style_attach
+// TODO - method: style_get
+// TODO - method: style_get_property
+// TODO - method: style_get_valist
+// TODO - method: translate_coordinates
+// TODO - method: unregister_window
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

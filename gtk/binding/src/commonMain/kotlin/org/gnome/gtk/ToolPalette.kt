@@ -1,6 +1,6 @@
-// TODO - add_drag_dest
-// TODO - get_hadjustment
-// TODO - get_vadjustment
+// TODO - method: add_drag_dest
+// TODO - method: get_hadjustment
+// TODO - method: get_vadjustment
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

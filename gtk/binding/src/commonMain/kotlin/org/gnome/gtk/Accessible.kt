@@ -1,4 +1,4 @@
-// TODO - connect_widget_destroyed
+// TODO - method: connect_widget_destroyed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,20 +1,20 @@
-// TODO - add_callback_symbol
-// TODO - add_callback_symbols
-// TODO - add_from_file
-// TODO - add_from_resource
-// TODO - add_from_string
-// TODO - add_objects_from_file
-// TODO - add_objects_from_resource
-// TODO - add_objects_from_string
-// TODO - connect_signals
-// TODO - connect_signals_full
-// TODO - expose_object
-// TODO - extend_with_template
-// TODO - get_object
-// TODO - get_objects
-// TODO - lookup_callback_symbol
-// TODO - value_from_string
-// TODO - value_from_string_type
+// TODO - method: add_callback_symbol
+// TODO - method: add_callback_symbols
+// TODO - method: add_from_file
+// TODO - method: add_from_resource
+// TODO - method: add_from_string
+// TODO - method: add_objects_from_file
+// TODO - method: add_objects_from_resource
+// TODO - method: add_objects_from_string
+// TODO - method: connect_signals
+// TODO - method: connect_signals_full
+// TODO - method: expose_object
+// TODO - method: extend_with_template
+// TODO - method: get_object
+// TODO - method: get_objects
+// TODO - method: lookup_callback_symbol
+// TODO - method: value_from_string
+// TODO - method: value_from_string_type
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

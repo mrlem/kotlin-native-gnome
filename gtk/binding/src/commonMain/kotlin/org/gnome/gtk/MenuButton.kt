@@ -1,5 +1,5 @@
-// TODO - get_menu_model
-// TODO - set_menu_model
+// TODO - method: get_menu_model
+// TODO - method: set_menu_model
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

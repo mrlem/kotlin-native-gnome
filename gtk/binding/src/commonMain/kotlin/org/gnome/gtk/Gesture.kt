@@ -1,16 +1,16 @@
-// TODO - get_bounding_box
-// TODO - get_bounding_box_center
-// TODO - get_device
-// TODO - get_group
-// TODO - get_last_event
-// TODO - get_last_updated_sequence
-// TODO - get_point
-// TODO - get_sequence_state
-// TODO - get_sequences
-// TODO - get_window
-// TODO - handles_sequence
-// TODO - set_sequence_state
-// TODO - set_window
+// TODO - method: get_bounding_box
+// TODO - method: get_bounding_box_center
+// TODO - method: get_device
+// TODO - method: get_group
+// TODO - method: get_last_event
+// TODO - method: get_last_updated_sequence
+// TODO - method: get_point
+// TODO - method: get_sequence_state
+// TODO - method: get_sequences
+// TODO - method: get_window
+// TODO - method: handles_sequence
+// TODO - method: set_sequence_state
+// TODO - method: set_window
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

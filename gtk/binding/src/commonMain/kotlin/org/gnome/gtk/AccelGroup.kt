@@ -1,11 +1,11 @@
-// TODO - activate
-// TODO - connect
-// TODO - connect_by_path
-// TODO - disconnect
-// TODO - disconnect_key
-// TODO - find
-// TODO - get_modifier_mask
-// TODO - query
+// TODO - method: activate
+// TODO - method: connect
+// TODO - method: connect_by_path
+// TODO - method: disconnect
+// TODO - method: disconnect_key
+// TODO - method: find
+// TODO - method: get_modifier_mask
+// TODO - method: query
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

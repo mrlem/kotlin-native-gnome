@@ -1,15 +1,15 @@
-// TODO - get_animation
-// TODO - get_gicon
-// TODO - get_icon_name
-// TODO - get_icon_set
-// TODO - get_pixbuf
-// TODO - get_stock
-// TODO - set_from_animation
-// TODO - set_from_gicon
-// TODO - set_from_icon_set
-// TODO - set_from_pixbuf
-// TODO - set_from_stock
-// TODO - set_from_surface
+// TODO - method: get_animation
+// TODO - method: get_gicon
+// TODO - method: get_icon_name
+// TODO - method: get_icon_set
+// TODO - method: get_pixbuf
+// TODO - method: get_stock
+// TODO - method: set_from_animation
+// TODO - method: set_from_gicon
+// TODO - method: set_from_icon_set
+// TODO - method: set_from_pixbuf
+// TODO - method: set_from_stock
+// TODO - method: set_from_surface
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,22 +1,22 @@
-// TODO - add_with_properties
-// TODO - child_get
-// TODO - child_get_property
-// TODO - child_get_valist
-// TODO - child_notify_by_pspec
-// TODO - child_set
-// TODO - child_set_property
-// TODO - child_set_valist
-// TODO - forall
-// TODO - foreach
-// TODO - get_children
-// TODO - get_focus_chain
-// TODO - get_resize_mode
-// TODO - propagate_draw
-// TODO - resize_children
-// TODO - set_focus_chain
-// TODO - set_reallocate_redraws
-// TODO - set_resize_mode
-// TODO - unset_focus_chain
+// TODO - method: add_with_properties
+// TODO - method: child_get
+// TODO - method: child_get_property
+// TODO - method: child_get_valist
+// TODO - method: child_notify_by_pspec
+// TODO - method: child_set
+// TODO - method: child_set_property
+// TODO - method: child_set_valist
+// TODO - method: forall
+// TODO - method: foreach
+// TODO - method: get_children
+// TODO - method: get_focus_chain
+// TODO - method: get_resize_mode
+// TODO - method: propagate_draw
+// TODO - method: resize_children
+// TODO - method: set_focus_chain
+// TODO - method: set_reallocate_redraws
+// TODO - method: set_resize_mode
+// TODO - method: unset_focus_chain
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

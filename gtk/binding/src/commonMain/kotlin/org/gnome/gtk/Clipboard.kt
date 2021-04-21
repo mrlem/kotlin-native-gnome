@@ -1,22 +1,22 @@
-// TODO - get_display
-// TODO - get_owner
-// TODO - get_selection
-// TODO - request_contents
-// TODO - request_image
-// TODO - request_rich_text
-// TODO - request_targets
-// TODO - request_text
-// TODO - request_uris
-// TODO - set_can_store
-// TODO - set_image
-// TODO - set_with_data
-// TODO - set_with_owner
-// TODO - wait_for_contents
-// TODO - wait_for_image
-// TODO - wait_for_rich_text
-// TODO - wait_for_targets
-// TODO - wait_for_uris
-// TODO - wait_is_target_available
+// TODO - method: get_display
+// TODO - method: get_owner
+// TODO - method: get_selection
+// TODO - method: request_contents
+// TODO - method: request_image
+// TODO - method: request_rich_text
+// TODO - method: request_targets
+// TODO - method: request_text
+// TODO - method: request_uris
+// TODO - method: set_can_store
+// TODO - method: set_image
+// TODO - method: set_with_data
+// TODO - method: set_with_owner
+// TODO - method: wait_for_contents
+// TODO - method: wait_for_image
+// TODO - method: wait_for_rich_text
+// TODO - method: wait_for_targets
+// TODO - method: wait_for_uris
+// TODO - method: wait_is_target_available
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

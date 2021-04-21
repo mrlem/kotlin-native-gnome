@@ -1,25 +1,25 @@
-// TODO - activate
-// TODO - activate_cell
-// TODO - add_with_properties
-// TODO - cell_get
-// TODO - cell_get_property
-// TODO - cell_get_valist
-// TODO - cell_set
-// TODO - cell_set_property
-// TODO - cell_set_valist
-// TODO - event
-// TODO - foreach
-// TODO - foreach_alloc
-// TODO - get_cell_allocation
-// TODO - get_cell_at_position
-// TODO - get_focus_siblings
-// TODO - get_preferred_height
-// TODO - get_preferred_height_for_width
-// TODO - get_preferred_width
-// TODO - get_preferred_width_for_height
-// TODO - inner_cell_area
-// TODO - render
-// TODO - request_renderer
+// TODO - method: activate
+// TODO - method: activate_cell
+// TODO - method: add_with_properties
+// TODO - method: cell_get
+// TODO - method: cell_get_property
+// TODO - method: cell_get_valist
+// TODO - method: cell_set
+// TODO - method: cell_set_property
+// TODO - method: cell_set_valist
+// TODO - method: event
+// TODO - method: foreach
+// TODO - method: foreach_alloc
+// TODO - method: get_cell_allocation
+// TODO - method: get_cell_at_position
+// TODO - method: get_focus_siblings
+// TODO - method: get_preferred_height
+// TODO - method: get_preferred_height_for_width
+// TODO - method: get_preferred_width
+// TODO - method: get_preferred_width_for_height
+// TODO - method: inner_cell_area
+// TODO - method: render
+// TODO - method: request_renderer
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

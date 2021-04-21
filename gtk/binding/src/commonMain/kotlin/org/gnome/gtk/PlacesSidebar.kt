@@ -1,12 +1,12 @@
-// TODO - add_shortcut
-// TODO - get_location
-// TODO - get_nth_bookmark
-// TODO - get_show_connect_to_server
-// TODO - list_shortcuts
-// TODO - remove_shortcut
-// TODO - set_drop_targets_visible
-// TODO - set_location
-// TODO - set_show_connect_to_server
+// TODO - method: add_shortcut
+// TODO - method: get_location
+// TODO - method: get_nth_bookmark
+// TODO - method: get_show_connect_to_server
+// TODO - method: list_shortcuts
+// TODO - method: remove_shortcut
+// TODO - method: set_drop_targets_visible
+// TODO - method: set_location
+// TODO - method: set_show_connect_to_server
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

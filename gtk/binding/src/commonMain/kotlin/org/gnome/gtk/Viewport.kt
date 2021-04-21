@@ -1,9 +1,9 @@
-// TODO - get_bin_window
-// TODO - get_hadjustment
-// TODO - get_vadjustment
-// TODO - get_view_window
-// TODO - set_hadjustment
-// TODO - set_vadjustment
+// TODO - method: get_bin_window
+// TODO - method: get_hadjustment
+// TODO - method: get_vadjustment
+// TODO - method: get_view_window
+// TODO - method: set_hadjustment
+// TODO - method: set_vadjustment
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

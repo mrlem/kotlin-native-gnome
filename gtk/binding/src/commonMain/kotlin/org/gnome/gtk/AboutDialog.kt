@@ -1,12 +1,12 @@
-// TODO - add_credit_section
-// TODO - get_artists
-// TODO - get_authors
-// TODO - get_documenters
-// TODO - get_logo
-// TODO - set_artists
-// TODO - set_authors
-// TODO - set_documenters
-// TODO - set_logo
+// TODO - method: add_credit_section
+// TODO - method: get_artists
+// TODO - method: get_authors
+// TODO - method: get_documenters
+// TODO - method: get_logo
+// TODO - method: set_artists
+// TODO - method: set_authors
+// TODO - method: set_documenters
+// TODO - method: set_logo
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

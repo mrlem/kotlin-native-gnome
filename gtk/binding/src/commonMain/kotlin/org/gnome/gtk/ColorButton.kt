@@ -1,11 +1,11 @@
-// TODO - get_alpha
-// TODO - get_color
-// TODO - get_rgba
-// TODO - get_use_alpha
-// TODO - set_alpha
-// TODO - set_color
-// TODO - set_rgba
-// TODO - set_use_alpha
+// TODO - method: get_alpha
+// TODO - method: get_color
+// TODO - method: get_rgba
+// TODO - method: get_use_alpha
+// TODO - method: set_alpha
+// TODO - method: set_color
+// TODO - method: set_rgba
+// TODO - method: set_use_alpha
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

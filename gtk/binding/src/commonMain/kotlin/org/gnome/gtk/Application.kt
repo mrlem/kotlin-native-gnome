@@ -1,15 +1,15 @@
-// TODO - add_accelerator
-// TODO - get_accels_for_action
-// TODO - get_actions_for_accel
-// TODO - get_app_menu
-// TODO - get_menu_by_id
-// TODO - get_menubar
-// TODO - get_windows
-// TODO - list_action_descriptions
-// TODO - remove_accelerator
-// TODO - set_accels_for_action
-// TODO - set_app_menu
-// TODO - set_menubar
+// TODO - method: add_accelerator
+// TODO - method: get_accels_for_action
+// TODO - method: get_actions_for_accel
+// TODO - method: get_app_menu
+// TODO - method: get_menu_by_id
+// TODO - method: get_menubar
+// TODO - method: get_windows
+// TODO - method: list_action_descriptions
+// TODO - method: remove_accelerator
+// TODO - method: set_accels_for_action
+// TODO - method: set_app_menu
+// TODO - method: set_menubar
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

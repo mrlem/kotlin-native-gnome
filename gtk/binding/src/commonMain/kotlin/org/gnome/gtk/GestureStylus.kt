@@ -1,6 +1,6 @@
-// TODO - get_axes
-// TODO - get_axis
-// TODO - get_device_tool
+// TODO - method: get_axes
+// TODO - method: get_axis
+// TODO - method: get_device_tool
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

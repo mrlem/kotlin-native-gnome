@@ -1,5 +1,5 @@
-// TODO - get_tab_hborder
-// TODO - get_tab_vborder
+// TODO - method: get_tab_hborder
+// TODO - method: get_tab_vborder
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

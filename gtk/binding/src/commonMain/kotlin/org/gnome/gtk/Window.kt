@@ -1,36 +1,36 @@
-// TODO - activate_key
-// TODO - begin_resize_drag
-// TODO - fullscreen_on_monitor
-// TODO - get_default_size
-// TODO - get_gravity
-// TODO - get_has_resize_grip
-// TODO - get_icon
-// TODO - get_icon_list
-// TODO - get_mnemonic_modifier
-// TODO - get_opacity
-// TODO - get_position
-// TODO - get_resize_grip_area
-// TODO - get_screen
-// TODO - get_size
-// TODO - get_type_hint
-// TODO - mnemonic_activate
-// TODO - parse_geometry
-// TODO - propagate_key_event
-// TODO - reshow_with_initial_size
-// TODO - resize_grip_is_visible
-// TODO - resize_to_geometry
-// TODO - set_default_geometry
-// TODO - set_geometry_hints
-// TODO - set_gravity
-// TODO - set_has_resize_grip
-// TODO - set_icon
-// TODO - set_icon_from_file
-// TODO - set_icon_list
-// TODO - set_mnemonic_modifier
-// TODO - set_opacity
-// TODO - set_screen
-// TODO - set_type_hint
-// TODO - set_wmclass
+// TODO - method: activate_key
+// TODO - method: begin_resize_drag
+// TODO - method: fullscreen_on_monitor
+// TODO - method: get_default_size
+// TODO - method: get_gravity
+// TODO - method: get_has_resize_grip
+// TODO - method: get_icon
+// TODO - method: get_icon_list
+// TODO - method: get_mnemonic_modifier
+// TODO - method: get_opacity
+// TODO - method: get_position
+// TODO - method: get_resize_grip_area
+// TODO - method: get_screen
+// TODO - method: get_size
+// TODO - method: get_type_hint
+// TODO - method: mnemonic_activate
+// TODO - method: parse_geometry
+// TODO - method: propagate_key_event
+// TODO - method: reshow_with_initial_size
+// TODO - method: resize_grip_is_visible
+// TODO - method: resize_to_geometry
+// TODO - method: set_default_geometry
+// TODO - method: set_geometry_hints
+// TODO - method: set_gravity
+// TODO - method: set_has_resize_grip
+// TODO - method: set_icon
+// TODO - method: set_icon_from_file
+// TODO - method: set_icon_list
+// TODO - method: set_mnemonic_modifier
+// TODO - method: set_opacity
+// TODO - method: set_screen
+// TODO - method: set_type_hint
+// TODO - method: set_wmclass
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

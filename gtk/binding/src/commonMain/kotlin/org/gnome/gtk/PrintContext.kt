@@ -1,9 +1,9 @@
-// TODO - create_pango_context
-// TODO - create_pango_layout
-// TODO - get_cairo_context
-// TODO - get_hard_margins
-// TODO - get_pango_fontmap
-// TODO - set_cairo_context
+// TODO - method: create_pango_context
+// TODO - method: create_pango_layout
+// TODO - method: get_cairo_context
+// TODO - method: get_hard_margins
+// TODO - method: get_pango_fontmap
+// TODO - method: set_cairo_context
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,4 +1,4 @@
-// TODO - append_menuitems
+// TODO - method: append_menuitems
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

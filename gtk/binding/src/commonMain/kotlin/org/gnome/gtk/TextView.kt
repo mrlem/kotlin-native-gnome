@@ -1,19 +1,19 @@
-// TODO - buffer_to_window_coords
-// TODO - get_cursor_locations
-// TODO - get_hadjustment
-// TODO - get_iter_at_location
-// TODO - get_iter_at_position
-// TODO - get_iter_location
-// TODO - get_line_at_y
-// TODO - get_line_yrange
-// TODO - get_tabs
-// TODO - get_vadjustment
-// TODO - get_visible_rect
-// TODO - get_window
-// TODO - get_window_type
-// TODO - im_context_filter_keypress
-// TODO - set_tabs
-// TODO - window_to_buffer_coords
+// TODO - method: buffer_to_window_coords
+// TODO - method: get_cursor_locations
+// TODO - method: get_hadjustment
+// TODO - method: get_iter_at_location
+// TODO - method: get_iter_at_position
+// TODO - method: get_iter_location
+// TODO - method: get_line_at_y
+// TODO - method: get_line_yrange
+// TODO - method: get_tabs
+// TODO - method: get_vadjustment
+// TODO - method: get_visible_rect
+// TODO - method: get_window
+// TODO - method: get_window_type
+// TODO - method: im_context_filter_keypress
+// TODO - method: set_tabs
+// TODO - method: window_to_buffer_coords
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

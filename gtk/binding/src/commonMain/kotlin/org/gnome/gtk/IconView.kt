@@ -1,16 +1,16 @@
-// TODO - convert_widget_to_bin_window_coords
-// TODO - create_drag_icon
-// TODO - enable_model_drag_dest
-// TODO - enable_model_drag_source
-// TODO - get_cell_rect
-// TODO - get_cursor
-// TODO - get_dest_item_at_pos
-// TODO - get_drag_dest_item
-// TODO - get_item_at_pos
-// TODO - get_selected_items
-// TODO - get_tooltip_context
-// TODO - get_visible_range
-// TODO - selected_foreach
+// TODO - method: convert_widget_to_bin_window_coords
+// TODO - method: create_drag_icon
+// TODO - method: enable_model_drag_dest
+// TODO - method: enable_model_drag_source
+// TODO - method: get_cell_rect
+// TODO - method: get_cursor
+// TODO - method: get_dest_item_at_pos
+// TODO - method: get_drag_dest_item
+// TODO - method: get_item_at_pos
+// TODO - method: get_selected_items
+// TODO - method: get_tooltip_context
+// TODO - method: get_visible_range
+// TODO - method: selected_foreach
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

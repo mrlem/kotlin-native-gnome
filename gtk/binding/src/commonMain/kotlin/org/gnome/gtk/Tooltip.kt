@@ -1,7 +1,7 @@
-// TODO - set_icon
-// TODO - set_icon_from_gicon
-// TODO - set_icon_from_stock
-// TODO - set_tip_area
+// TODO - method: set_icon
+// TODO - method: set_icon_from_gicon
+// TODO - method: set_icon_from_stock
+// TODO - method: set_tip_area
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

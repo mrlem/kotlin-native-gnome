@@ -1,37 +1,37 @@
-// TODO - add_region
-// TODO - cancel_animations
-// TODO - get
-// TODO - get_background_color
-// TODO - get_border
-// TODO - get_border_color
-// TODO - get_color
-// TODO - get_direction
-// TODO - get_font
-// TODO - get_frame_clock
-// TODO - get_margin
-// TODO - get_padding
-// TODO - get_property
-// TODO - get_screen
-// TODO - get_style
-// TODO - get_style_property
-// TODO - get_style_valist
-// TODO - get_valist
-// TODO - has_region
-// TODO - invalidate
-// TODO - list_classes
-// TODO - list_regions
-// TODO - lookup_color
-// TODO - lookup_icon_set
-// TODO - notify_state_change
-// TODO - pop_animatable_region
-// TODO - push_animatable_region
-// TODO - remove_region
-// TODO - scroll_animations
-// TODO - set_background
-// TODO - set_direction
-// TODO - set_frame_clock
-// TODO - set_screen
-// TODO - state_is_running
+// TODO - method: add_region
+// TODO - method: cancel_animations
+// TODO - method: get
+// TODO - method: get_background_color
+// TODO - method: get_border
+// TODO - method: get_border_color
+// TODO - method: get_color
+// TODO - method: get_direction
+// TODO - method: get_font
+// TODO - method: get_frame_clock
+// TODO - method: get_margin
+// TODO - method: get_padding
+// TODO - method: get_property
+// TODO - method: get_screen
+// TODO - method: get_style
+// TODO - method: get_style_property
+// TODO - method: get_style_valist
+// TODO - method: get_valist
+// TODO - method: has_region
+// TODO - method: invalidate
+// TODO - method: list_classes
+// TODO - method: list_regions
+// TODO - method: lookup_color
+// TODO - method: lookup_icon_set
+// TODO - method: notify_state_change
+// TODO - method: pop_animatable_region
+// TODO - method: push_animatable_region
+// TODO - method: remove_region
+// TODO - method: scroll_animations
+// TODO - method: set_background
+// TODO - method: set_direction
+// TODO - method: set_frame_clock
+// TODO - method: set_screen
+// TODO - method: state_is_running
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

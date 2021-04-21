@@ -1,8 +1,8 @@
-// TODO - bind_model
-// TODO - get_pointing_to
-// TODO - get_transitions_enabled
-// TODO - set_pointing_to
-// TODO - set_transitions_enabled
+// TODO - method: bind_model
+// TODO - method: get_pointing_to
+// TODO - method: get_transitions_enabled
+// TODO - method: set_pointing_to
+// TODO - method: set_transitions_enabled
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

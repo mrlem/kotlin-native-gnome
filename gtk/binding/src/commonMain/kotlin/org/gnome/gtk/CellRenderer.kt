@@ -1,16 +1,16 @@
-// TODO - activate
-// TODO - get_aligned_area
-// TODO - get_alignment
-// TODO - get_fixed_size
-// TODO - get_padding
-// TODO - get_preferred_height
-// TODO - get_preferred_height_for_width
-// TODO - get_preferred_size
-// TODO - get_preferred_width
-// TODO - get_preferred_width_for_height
-// TODO - get_size
-// TODO - render
-// TODO - start_editing
+// TODO - method: activate
+// TODO - method: get_aligned_area
+// TODO - method: get_alignment
+// TODO - method: get_fixed_size
+// TODO - method: get_padding
+// TODO - method: get_preferred_height
+// TODO - method: get_preferred_height_for_width
+// TODO - method: get_preferred_size
+// TODO - method: get_preferred_width
+// TODO - method: get_preferred_width_for_height
+// TODO - method: get_size
+// TODO - method: render
+// TODO - method: start_editing
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

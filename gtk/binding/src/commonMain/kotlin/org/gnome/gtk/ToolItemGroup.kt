@@ -1,5 +1,5 @@
-// TODO - get_ellipsize
-// TODO - set_ellipsize
+// TODO - method: get_ellipsize
+// TODO - method: set_ellipsize
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

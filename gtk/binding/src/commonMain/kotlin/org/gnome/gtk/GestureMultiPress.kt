@@ -1,5 +1,5 @@
-// TODO - get_area
-// TODO - set_area
+// TODO - method: get_area
+// TODO - method: set_area
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

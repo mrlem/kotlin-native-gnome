@@ -1,8 +1,8 @@
-// TODO - get_page_header_image
-// TODO - get_page_side_image
-// TODO - set_forward_page_func
-// TODO - set_page_header_image
-// TODO - set_page_side_image
+// TODO - method: get_page_header_image
+// TODO - method: get_page_side_image
+// TODO - method: set_forward_page_func
+// TODO - method: set_page_header_image
+// TODO - method: set_page_side_image
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

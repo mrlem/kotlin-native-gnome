@@ -1,14 +1,14 @@
-// TODO - enter
-// TODO - get_alignment
-// TODO - get_event_window
-// TODO - get_focus_on_click
-// TODO - get_use_stock
-// TODO - leave
-// TODO - pressed
-// TODO - released
-// TODO - set_alignment
-// TODO - set_focus_on_click
-// TODO - set_use_stock
+// TODO - method: enter
+// TODO - method: get_alignment
+// TODO - method: get_event_window
+// TODO - method: get_focus_on_click
+// TODO - method: get_use_stock
+// TODO - method: leave
+// TODO - method: pressed
+// TODO - method: released
+// TODO - method: set_alignment
+// TODO - method: set_focus_on_click
+// TODO - method: set_use_stock
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

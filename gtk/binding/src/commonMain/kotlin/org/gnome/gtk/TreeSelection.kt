@@ -1,8 +1,8 @@
-// TODO - get_selected
-// TODO - get_selected_rows
-// TODO - get_user_data
-// TODO - selected_foreach
-// TODO - set_select_function
+// TODO - method: get_selected
+// TODO - method: get_selected_rows
+// TODO - method: get_user_data
+// TODO - method: selected_foreach
+// TODO - method: set_select_function
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

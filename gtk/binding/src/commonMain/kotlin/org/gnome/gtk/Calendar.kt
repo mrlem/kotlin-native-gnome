@@ -1,5 +1,5 @@
-// TODO - get_date
-// TODO - set_detail_func
+// TODO - method: get_date
+// TODO - method: set_detail_func
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

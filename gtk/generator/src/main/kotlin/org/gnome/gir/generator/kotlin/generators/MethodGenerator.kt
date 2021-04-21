@@ -18,14 +18,14 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
         .takeUnless { it.info.deprecated }
         ?.takeUnless { it.throws } // TODO - handle
         ?.cIdentifier
-        ?: return run { addComment("TODO - ${method.name}\n") }
+        ?: return run { addComment("TODO - method: ${method.name}\n") }
     val name = method.name.snakeCaseToCamelCase.decapitalize()
 
     // determine return type
     val returnType = method.callable.returnValue?.type
     val returnTypeInfo = returnType?.typeInfo(resolver)
     if (returnType != null && returnTypeInfo == null) {
-        addComment("TODO - ${method.name}\n")
+        addComment("TODO - method: ${method.name}\n")
         return
     }
 
@@ -35,7 +35,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
                 ?.takeIf { it.kType != null && it.cType != null }
                 ?.takeUnless { param.direction == Out || param.direction == InOut } // TODO - handle
                 ?: run {
-                    addComment("TODO - ${method.name}\n")
+                    addComment("TODO - method: ${method.name}\n")
                     return@addMethod
                 }
             param.name.snakeCaseToCamelCase.decapitalize() to type

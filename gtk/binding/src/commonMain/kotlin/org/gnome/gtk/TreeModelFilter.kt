@@ -1,7 +1,7 @@
-// TODO - convert_child_iter_to_iter
-// TODO - convert_iter_to_child_iter
-// TODO - set_modify_func
-// TODO - set_visible_func
+// TODO - method: convert_child_iter_to_iter
+// TODO - method: convert_iter_to_child_iter
+// TODO - method: set_modify_func
+// TODO - method: set_visible_func
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,29 +1,29 @@
-// TODO - create_tag
-// TODO - deserialize
-// TODO - deserialize_get_can_create_tags
-// TODO - deserialize_set_can_create_tags
-// TODO - get_bounds
-// TODO - get_deserialize_formats
-// TODO - get_end_iter
-// TODO - get_iter_at_child_anchor
-// TODO - get_iter_at_line
-// TODO - get_iter_at_line_index
-// TODO - get_iter_at_line_offset
-// TODO - get_iter_at_mark
-// TODO - get_iter_at_offset
-// TODO - get_selection_bounds
-// TODO - get_serialize_formats
-// TODO - get_start_iter
-// TODO - insert_pixbuf
-// TODO - insert_with_tags
-// TODO - insert_with_tags_by_name
-// TODO - register_deserialize_format
-// TODO - register_deserialize_tagset
-// TODO - register_serialize_format
-// TODO - register_serialize_tagset
-// TODO - serialize
-// TODO - unregister_deserialize_format
-// TODO - unregister_serialize_format
+// TODO - method: create_tag
+// TODO - method: deserialize
+// TODO - method: deserialize_get_can_create_tags
+// TODO - method: deserialize_set_can_create_tags
+// TODO - method: get_bounds
+// TODO - method: get_deserialize_formats
+// TODO - method: get_end_iter
+// TODO - method: get_iter_at_child_anchor
+// TODO - method: get_iter_at_line
+// TODO - method: get_iter_at_line_index
+// TODO - method: get_iter_at_line_offset
+// TODO - method: get_iter_at_mark
+// TODO - method: get_iter_at_offset
+// TODO - method: get_selection_bounds
+// TODO - method: get_serialize_formats
+// TODO - method: get_start_iter
+// TODO - method: insert_pixbuf
+// TODO - method: insert_with_tags
+// TODO - method: insert_with_tags_by_name
+// TODO - method: register_deserialize_format
+// TODO - method: register_deserialize_tagset
+// TODO - method: register_serialize_format
+// TODO - method: register_serialize_tagset
+// TODO - method: serialize
+// TODO - method: unregister_deserialize_format
+// TODO - method: unregister_serialize_format
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

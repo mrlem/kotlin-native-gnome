@@ -1,6 +1,6 @@
-// TODO - get_accel
-// TODO - set_accel
-// TODO - set_accel_closure
+// TODO - method: get_accel
+// TODO - method: set_accel
+// TODO - method: set_accel_closure
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
