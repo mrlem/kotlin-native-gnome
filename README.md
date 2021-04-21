@@ -16,11 +16,12 @@ They say a picture is worth a thousand words:
 
 ## Status
 
-* glade gradle plugin is fully operational, and refreshes view binding classes automatically
-* generated API coverage is progressing well, though some things are sorely missed:
-  - lambda based signal handlers generation is next
-  - handle remaining data types
-* [GIR](https://gi.readthedocs.io) parsing is complete: the API is nearly 100% generated based on it.
+* glade gradle plugin: 100% complete
+* [GIR](https://gi.readthedocs.io) parsing: 100% complete
+* generated API coverage is progressing well. Notable short-comings:
+  - no lambda-based signal handlers (it's the next step)
+  - no constructors
+  - some data-types are not handled yet (like GLists and arrays)
 * tested on Ubuntu 20.04
 
 ## Build
