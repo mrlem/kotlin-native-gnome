@@ -13,7 +13,6 @@ dependencies {
     // gradle
     // .. plugin API
     implementation(gradleApi())
-    implementation(localGroovy())
     // .. kotlin plugin API
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31")
 }
