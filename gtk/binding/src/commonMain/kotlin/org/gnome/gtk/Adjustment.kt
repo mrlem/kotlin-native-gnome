@@ -1,5 +1,7 @@
 // TODO - method: changed
 // TODO - method: value_changed
+// TODO - signal: changed
+// TODO - signal: value-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

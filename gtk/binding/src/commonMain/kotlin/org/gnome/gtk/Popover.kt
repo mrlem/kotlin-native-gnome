@@ -3,6 +3,7 @@
 // TODO - method: get_transitions_enabled
 // TODO - method: set_pointing_to
 // TODO - method: set_transitions_enabled
+// TODO - signal: closed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

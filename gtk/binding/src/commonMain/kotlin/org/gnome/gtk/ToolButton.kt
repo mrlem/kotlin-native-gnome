@@ -1,5 +1,6 @@
 // TODO - method: get_stock_id
 // TODO - method: set_stock_id
+// TODO - signal: clicked
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

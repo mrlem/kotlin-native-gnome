@@ -1,6 +1,12 @@
 // TODO - method: get_right_justified
 // TODO - method: set_right_justified
 // TODO - method: toggle_size_request
+// TODO - signal: activate
+// TODO - signal: activate-item
+// TODO - signal: deselect
+// TODO - signal: select
+// TODO - signal: toggle-size-allocate
+// TODO - signal: toggle-size-request
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

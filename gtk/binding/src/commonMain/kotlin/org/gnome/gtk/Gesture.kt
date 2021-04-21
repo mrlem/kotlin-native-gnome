@@ -11,6 +11,11 @@
 // TODO - method: handles_sequence
 // TODO - method: set_sequence_state
 // TODO - method: set_window
+// TODO - signal: begin
+// TODO - signal: cancel
+// TODO - signal: end
+// TODO - signal: sequence-state-changed
+// TODO - signal: update
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

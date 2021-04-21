@@ -1,4 +1,6 @@
 // TODO - method: get_ellipsize_mode
+// TODO - signal: create-menu-proxy
+// TODO - signal: toolbar-reconfigured
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

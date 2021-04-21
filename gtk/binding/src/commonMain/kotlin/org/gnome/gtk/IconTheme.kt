@@ -11,6 +11,7 @@
 // TODO - method: lookup_by_gicon_for_scale
 // TODO - method: set_screen
 // TODO - method: set_search_path
+// TODO - signal: changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

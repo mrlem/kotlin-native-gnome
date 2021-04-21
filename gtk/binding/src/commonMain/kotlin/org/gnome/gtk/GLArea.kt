@@ -2,6 +2,9 @@
 // TODO - method: get_error
 // TODO - method: get_required_version
 // TODO - method: set_error
+// TODO - signal: create-context
+// TODO - signal: render
+// TODO - signal: resize
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

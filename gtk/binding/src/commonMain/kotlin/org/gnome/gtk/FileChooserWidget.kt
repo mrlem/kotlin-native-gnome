@@ -1,3 +1,16 @@
+// TODO - signal: desktop-folder
+// TODO - signal: down-folder
+// TODO - signal: home-folder
+// TODO - signal: location-popup
+// TODO - signal: location-popup-on-paste
+// TODO - signal: location-toggle-popup
+// TODO - signal: places-shortcut
+// TODO - signal: quick-bookmark
+// TODO - signal: recent-shortcut
+// TODO - signal: search-shortcut
+// TODO - signal: show-hidden
+// TODO - signal: up-folder
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

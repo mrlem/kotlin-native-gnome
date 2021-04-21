@@ -11,6 +11,8 @@
 // TODO - method: get_size
 // TODO - method: render
 // TODO - method: start_editing
+// TODO - signal: editing-canceled
+// TODO - signal: editing-started
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

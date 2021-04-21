@@ -1,3 +1,6 @@
+// TODO - signal: activate
+// TODO - signal: state-set
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

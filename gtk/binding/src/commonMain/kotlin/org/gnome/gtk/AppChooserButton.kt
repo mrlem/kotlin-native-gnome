@@ -1,4 +1,5 @@
 // TODO - method: append_custom_item
+// TODO - signal: custom-item-activated
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

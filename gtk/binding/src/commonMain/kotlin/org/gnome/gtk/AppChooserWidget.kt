@@ -1,3 +1,7 @@
+// TODO - signal: application-activated
+// TODO - signal: application-selected
+// TODO - signal: populate-popup
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

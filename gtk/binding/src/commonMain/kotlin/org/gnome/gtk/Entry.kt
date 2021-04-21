@@ -16,6 +16,20 @@
 // TODO - method: set_icon_from_stock
 // TODO - method: set_inner_border
 // TODO - method: set_tabs
+// TODO - signal: activate
+// TODO - signal: backspace
+// TODO - signal: copy-clipboard
+// TODO - signal: cut-clipboard
+// TODO - signal: delete-from-cursor
+// TODO - signal: icon-press
+// TODO - signal: icon-release
+// TODO - signal: insert-at-cursor
+// TODO - signal: insert-emoji
+// TODO - signal: move-cursor
+// TODO - signal: paste-clipboard
+// TODO - signal: populate-popup
+// TODO - signal: preedit-changed
+// TODO - signal: toggle-overwrite
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,5 +1,10 @@
 // TODO - method: get_increments
 // TODO - method: get_range
+// TODO - signal: change-value
+// TODO - signal: input
+// TODO - signal: output
+// TODO - signal: value-changed
+// TODO - signal: wrapped
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

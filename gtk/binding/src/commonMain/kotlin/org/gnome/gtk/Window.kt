@@ -31,6 +31,11 @@
 // TODO - method: set_screen
 // TODO - method: set_type_hint
 // TODO - method: set_wmclass
+// TODO - signal: activate-default
+// TODO - signal: activate-focus
+// TODO - signal: enable-debugging
+// TODO - signal: keys-changed
+// TODO - signal: set-focus
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

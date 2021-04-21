@@ -8,6 +8,11 @@
 // TODO - method: set_focus_on_click
 // TODO - method: set_row_separator_func
 // TODO - method: set_title
+// TODO - signal: changed
+// TODO - signal: format-entry-text
+// TODO - signal: move-active
+// TODO - signal: popdown
+// TODO - signal: popup
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

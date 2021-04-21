@@ -40,27 +40,30 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
     }
 
     return FileSpec.builder(packageName, name)
-            .suppressWarningTypes(
-                "RemoveRedundantBackticks",
-                "RedundantVisibilityModifier",
-                "unused",
-                "RedundantUnitReturnType"
-            )
-            // type
-            .addTypeAlias(
-                TypeAliasSpec
-                    .builder(name, cpointerClassName.plusParameter(ClassName(GTK_CINTEROP_PACKAGE, cType)))
-                    .build()
-            )
-            // converters
-            .apply { addConverters(classNameString, className, resolver) }
-            // sub-elements
-            .apply {
-                val methodsToAdd = methods.toMutableList()
-                addProperties(methodsToAdd, className, resolver)
-                methodsToAdd.forEach { addMethod(className, it, resolver) }
-            }
-            .build()
+        .suppressWarningTypes(
+            "RemoveRedundantBackticks",
+            "RedundantVisibilityModifier",
+            "unused",
+            "RedundantUnitReturnType"
+        )
+        // type
+        .addTypeAlias(
+            TypeAliasSpec
+                .builder(name, cpointerClassName.plusParameter(ClassName(GTK_CINTEROP_PACKAGE, cType)))
+                .build()
+        )
+        // converters
+        .apply { addConverters(classNameString, className, resolver) }
+        // sub-elements
+        .apply {
+            val methodsToAdd = methods.toMutableList()
+            addProperties(methodsToAdd, className, resolver)
+            methodsToAdd.forEach { addMethod(className, it, resolver) }
+        }
+        .apply {
+            signals.forEach { addSignal(it) }
+        }
+        .build()
 }
 
 ///////////////////////////////////////////////////////////////////////////

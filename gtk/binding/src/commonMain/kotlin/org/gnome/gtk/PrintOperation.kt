@@ -1,5 +1,16 @@
 // TODO - method: get_error
 // TODO - method: run
+// TODO - signal: begin-print
+// TODO - signal: create-custom-widget
+// TODO - signal: custom-widget-apply
+// TODO - signal: done
+// TODO - signal: draw-page
+// TODO - signal: end-print
+// TODO - signal: paginate
+// TODO - signal: preview
+// TODO - signal: request-page-setup
+// TODO - signal: status-changed
+// TODO - signal: update-custom-widget
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

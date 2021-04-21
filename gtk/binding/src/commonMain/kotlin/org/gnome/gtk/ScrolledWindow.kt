@@ -1,5 +1,9 @@
 // TODO - method: add_with_viewport
 // TODO - method: get_policy
+// TODO - signal: edge-overshot
+// TODO - signal: edge-reached
+// TODO - signal: move-focus-out
+// TODO - signal: scroll-child
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -14,6 +14,22 @@
 // TODO - method: im_context_filter_keypress
 // TODO - method: set_tabs
 // TODO - method: window_to_buffer_coords
+// TODO - signal: backspace
+// TODO - signal: copy-clipboard
+// TODO - signal: cut-clipboard
+// TODO - signal: delete-from-cursor
+// TODO - signal: extend-selection
+// TODO - signal: insert-at-cursor
+// TODO - signal: insert-emoji
+// TODO - signal: move-cursor
+// TODO - signal: move-viewport
+// TODO - signal: paste-clipboard
+// TODO - signal: populate-popup
+// TODO - signal: preedit-changed
+// TODO - signal: select-all
+// TODO - signal: set-anchor
+// TODO - signal: toggle-cursor-visible
+// TODO - signal: toggle-overwrite
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -2,6 +2,7 @@
 // TODO - method: cell_get_size
 // TODO - method: set_attributes
 // TODO - method: set_cell_data_func
+// TODO - signal: clicked
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

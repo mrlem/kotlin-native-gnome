@@ -3,6 +3,11 @@
 // TODO - method: set_forward_page_func
 // TODO - method: set_page_header_image
 // TODO - method: set_page_side_image
+// TODO - signal: apply
+// TODO - signal: cancel
+// TODO - signal: close
+// TODO - signal: escape
+// TODO - signal: prepare
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,5 +1,8 @@
 // TODO - method: get_offset
 // TODO - method: get_start_point
+// TODO - signal: drag-begin
+// TODO - signal: drag-end
+// TODO - signal: drag-update
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

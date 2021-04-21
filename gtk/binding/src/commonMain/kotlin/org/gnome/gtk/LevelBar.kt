@@ -1,4 +1,5 @@
 // TODO - method: get_offset_value
+// TODO - signal: offset-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

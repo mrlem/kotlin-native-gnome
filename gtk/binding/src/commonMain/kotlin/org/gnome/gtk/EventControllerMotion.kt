@@ -1,3 +1,7 @@
+// TODO - signal: enter
+// TODO - signal: leave
+// TODO - signal: motion
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

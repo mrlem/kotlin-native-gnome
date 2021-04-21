@@ -1,4 +1,12 @@
 // TODO - method: bind_model
+// TODO - signal: activate-current
+// TODO - signal: cancel
+// TODO - signal: cycle-focus
+// TODO - signal: deactivate
+// TODO - signal: insert
+// TODO - signal: move-current
+// TODO - signal: move-selected
+// TODO - signal: selection-done
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

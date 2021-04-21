@@ -1,5 +1,12 @@
 // TODO - method: get_date
 // TODO - method: set_detail_func
+// TODO - signal: day-selected
+// TODO - signal: day-selected-double-click
+// TODO - signal: month-changed
+// TODO - signal: next-month
+// TODO - signal: next-year
+// TODO - signal: prev-month
+// TODO - signal: prev-year
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

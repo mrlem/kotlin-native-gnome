@@ -17,6 +17,10 @@
 // TODO - method: set_reallocate_redraws
 // TODO - method: set_resize_mode
 // TODO - method: unset_focus_chain
+// TODO - signal: add
+// TODO - signal: check-resize
+// TODO - signal: remove
+// TODO - signal: set-focus-child
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

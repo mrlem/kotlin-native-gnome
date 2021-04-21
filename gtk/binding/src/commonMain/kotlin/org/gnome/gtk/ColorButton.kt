@@ -6,6 +6,7 @@
 // TODO - method: set_color
 // TODO - method: set_rgba
 // TODO - method: set_use_alpha
+// TODO - signal: color-set
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

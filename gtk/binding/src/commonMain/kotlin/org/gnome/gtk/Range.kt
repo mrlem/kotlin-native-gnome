@@ -2,6 +2,10 @@
 // TODO - method: get_range_rect
 // TODO - method: get_slider_range
 // TODO - method: set_min_slider_size
+// TODO - signal: adjust-bounds
+// TODO - signal: change-value
+// TODO - signal: move-slider
+// TODO - signal: value-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

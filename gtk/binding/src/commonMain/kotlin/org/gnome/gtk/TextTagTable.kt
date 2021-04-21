@@ -1,4 +1,7 @@
 // TODO - method: foreach
+// TODO - signal: tag-added
+// TODO - signal: tag-changed
+// TODO - signal: tag-removed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

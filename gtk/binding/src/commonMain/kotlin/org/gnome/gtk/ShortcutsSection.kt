@@ -1,3 +1,5 @@
+// TODO - signal: change-current-page
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

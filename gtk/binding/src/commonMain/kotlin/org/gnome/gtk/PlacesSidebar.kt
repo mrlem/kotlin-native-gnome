@@ -7,6 +7,19 @@
 // TODO - method: set_drop_targets_visible
 // TODO - method: set_location
 // TODO - method: set_show_connect_to_server
+// TODO - signal: drag-action-ask
+// TODO - signal: drag-action-requested
+// TODO - signal: drag-perform-drop
+// TODO - signal: mount
+// TODO - signal: open-location
+// TODO - signal: populate-popup
+// TODO - signal: show-connect-to-server
+// TODO - signal: show-enter-location
+// TODO - signal: show-error-message
+// TODO - signal: show-other-locations
+// TODO - signal: show-other-locations-with-flags
+// TODO - signal: show-starred-location
+// TODO - signal: unmount
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

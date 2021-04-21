@@ -2,6 +2,8 @@
 // TODO - method: get_action_area
 // TODO - method: set_alternative_button_order
 // TODO - method: set_alternative_button_order_from_array
+// TODO - signal: close
+// TODO - signal: response
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

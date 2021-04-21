@@ -1,3 +1,8 @@
+// TODO - signal: focus-home-or-end
+// TODO - signal: orientation-changed
+// TODO - signal: popup-context-menu
+// TODO - signal: style-changed
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

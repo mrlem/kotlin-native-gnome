@@ -3,6 +3,13 @@
 // TODO - method: selected_foreach
 // TODO - method: set_filter_func
 // TODO - method: set_sort_func
+// TODO - signal: activate-cursor-child
+// TODO - signal: child-activated
+// TODO - signal: move-cursor
+// TODO - signal: select-all
+// TODO - signal: selected-children-changed
+// TODO - signal: toggle-cursor-child
+// TODO - signal: unselect-all
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

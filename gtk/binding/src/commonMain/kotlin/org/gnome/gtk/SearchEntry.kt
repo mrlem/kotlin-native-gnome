@@ -1,4 +1,8 @@
 // TODO - method: handle_event
+// TODO - signal: next-match
+// TODO - signal: previous-match
+// TODO - signal: search-changed
+// TODO - signal: stop-search
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

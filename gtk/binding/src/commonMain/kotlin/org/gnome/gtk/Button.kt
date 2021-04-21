@@ -9,6 +9,12 @@
 // TODO - method: set_alignment
 // TODO - method: set_focus_on_click
 // TODO - method: set_use_stock
+// TODO - signal: activate
+// TODO - signal: clicked
+// TODO - signal: enter
+// TODO - signal: leave
+// TODO - signal: pressed
+// TODO - signal: released
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

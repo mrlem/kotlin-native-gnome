@@ -1,4 +1,7 @@
 // TODO - method: set_icons
+// TODO - signal: popdown
+// TODO - signal: popup
+// TODO - signal: value-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

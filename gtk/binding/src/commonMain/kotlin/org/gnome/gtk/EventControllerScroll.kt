@@ -1,3 +1,8 @@
+// TODO - signal: decelerate
+// TODO - signal: scroll
+// TODO - signal: scroll-begin
+// TODO - signal: scroll-end
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

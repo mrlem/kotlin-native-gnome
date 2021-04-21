@@ -1,4 +1,10 @@
 // TODO - method: get_handle_window
+// TODO - signal: accept-position
+// TODO - signal: cancel-position
+// TODO - signal: cycle-child-focus
+// TODO - signal: cycle-handle-focus
+// TODO - signal: move-handle
+// TODO - signal: toggle-handle-focus
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

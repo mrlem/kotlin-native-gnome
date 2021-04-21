@@ -10,6 +10,9 @@
 // TODO - method: set_accels_for_action
 // TODO - method: set_app_menu
 // TODO - method: set_menubar
+// TODO - signal: query-end
+// TODO - signal: window-added
+// TODO - signal: window-removed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

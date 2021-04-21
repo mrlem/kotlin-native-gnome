@@ -9,6 +9,8 @@
 // TODO - method: set_screen
 // TODO - method: set_tearoff_state
 // TODO - method: set_title
+// TODO - signal: move-scroll
+// TODO - signal: popped-up
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

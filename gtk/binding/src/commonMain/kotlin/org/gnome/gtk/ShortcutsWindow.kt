@@ -1,3 +1,6 @@
+// TODO - signal: close
+// TODO - signal: search
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

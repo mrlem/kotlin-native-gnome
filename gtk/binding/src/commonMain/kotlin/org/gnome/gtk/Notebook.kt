@@ -1,5 +1,15 @@
 // TODO - method: get_tab_hborder
 // TODO - method: get_tab_vborder
+// TODO - signal: change-current-page
+// TODO - signal: create-window
+// TODO - signal: focus-tab
+// TODO - signal: move-focus-out
+// TODO - signal: page-added
+// TODO - signal: page-removed
+// TODO - signal: page-reordered
+// TODO - signal: reorder-tab
+// TODO - signal: select-page
+// TODO - signal: switch-page
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

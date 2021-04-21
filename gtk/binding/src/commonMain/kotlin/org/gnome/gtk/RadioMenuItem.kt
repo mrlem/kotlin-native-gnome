@@ -1,5 +1,6 @@
 // TODO - method: get_group
 // TODO - method: set_group
+// TODO - signal: group-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

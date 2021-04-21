@@ -1,4 +1,9 @@
 // TODO - method: set_match_func
+// TODO - signal: action-activated
+// TODO - signal: cursor-on-match
+// TODO - signal: insert-prefix
+// TODO - signal: match-selected
+// TODO - signal: no-matches
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

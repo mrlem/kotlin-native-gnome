@@ -7,6 +7,11 @@
 // TODO - method: set_attributes
 // TODO - method: set_ellipsize
 // TODO - method: set_line_wrap_mode
+// TODO - signal: activate-current-link
+// TODO - signal: activate-link
+// TODO - signal: copy-clipboard
+// TODO - signal: move-cursor
+// TODO - signal: populate-popup
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

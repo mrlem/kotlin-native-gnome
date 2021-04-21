@@ -1,6 +1,10 @@
 // TODO - method: get_axes
 // TODO - method: get_axis
 // TODO - method: get_device_tool
+// TODO - signal: down
+// TODO - signal: motion
+// TODO - signal: proximity
+// TODO - signal: up
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

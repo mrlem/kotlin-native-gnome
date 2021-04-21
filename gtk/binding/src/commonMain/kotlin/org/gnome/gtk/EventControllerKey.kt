@@ -1,3 +1,10 @@
+// TODO - signal: focus-in
+// TODO - signal: focus-out
+// TODO - signal: im-update
+// TODO - signal: key-pressed
+// TODO - signal: key-released
+// TODO - signal: modifiers
+//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

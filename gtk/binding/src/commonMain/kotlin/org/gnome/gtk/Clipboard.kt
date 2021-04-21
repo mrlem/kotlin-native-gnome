@@ -17,6 +17,7 @@
 // TODO - method: wait_for_targets
 // TODO - method: wait_for_uris
 // TODO - method: wait_is_target_available
+// TODO - signal: owner-change
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

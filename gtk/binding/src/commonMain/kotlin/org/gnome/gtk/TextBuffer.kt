@@ -24,6 +24,19 @@
 // TODO - method: serialize
 // TODO - method: unregister_deserialize_format
 // TODO - method: unregister_serialize_format
+// TODO - signal: apply-tag
+// TODO - signal: begin-user-action
+// TODO - signal: changed
+// TODO - signal: delete-range
+// TODO - signal: end-user-action
+// TODO - signal: insert-child-anchor
+// TODO - signal: insert-pixbuf
+// TODO - signal: insert-text
+// TODO - signal: mark-deleted
+// TODO - signal: mark-set
+// TODO - signal: modified-changed
+// TODO - signal: paste-done
+// TODO - signal: remove-tag
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -11,6 +11,14 @@
 // TODO - method: get_tooltip_context
 // TODO - method: get_visible_range
 // TODO - method: selected_foreach
+// TODO - signal: activate-cursor-item
+// TODO - signal: item-activated
+// TODO - signal: move-cursor
+// TODO - signal: select-all
+// TODO - signal: select-cursor-item
+// TODO - signal: selection-changed
+// TODO - signal: toggle-cursor-item
+// TODO - signal: unselect-all
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

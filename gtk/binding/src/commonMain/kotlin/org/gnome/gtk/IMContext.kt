@@ -3,6 +3,12 @@
 // TODO - method: get_surrounding
 // TODO - method: set_client_window
 // TODO - method: set_cursor_location
+// TODO - signal: commit
+// TODO - signal: delete-surrounding
+// TODO - signal: preedit-changed
+// TODO - signal: preedit-end
+// TODO - signal: preedit-start
+// TODO - signal: retrieve-surrounding
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

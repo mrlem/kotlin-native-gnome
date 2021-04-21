@@ -4,6 +4,14 @@
 // TODO - method: set_filter_func
 // TODO - method: set_header_func
 // TODO - method: set_sort_func
+// TODO - signal: activate-cursor-row
+// TODO - signal: move-cursor
+// TODO - signal: row-activated
+// TODO - signal: row-selected
+// TODO - signal: select-all
+// TODO - signal: selected-rows-changed
+// TODO - signal: toggle-cursor-row
+// TODO - signal: unselect-all
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

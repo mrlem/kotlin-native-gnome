@@ -1,5 +1,8 @@
 // TODO - method: get_area
 // TODO - method: set_area
+// TODO - signal: pressed
+// TODO - signal: released
+// TODO - signal: stopped
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

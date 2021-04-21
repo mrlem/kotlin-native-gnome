@@ -1,4 +1,6 @@
 // TODO - method: add_buttons
+// TODO - signal: close
+// TODO - signal: response
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

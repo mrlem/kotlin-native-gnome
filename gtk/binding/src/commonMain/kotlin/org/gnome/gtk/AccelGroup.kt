@@ -6,6 +6,8 @@
 // TODO - method: find
 // TODO - method: get_modifier_mask
 // TODO - method: query
+// TODO - signal: accel-activate
+// TODO - signal: accel-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

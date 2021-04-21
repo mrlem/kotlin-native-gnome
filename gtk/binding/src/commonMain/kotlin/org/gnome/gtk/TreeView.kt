@@ -33,6 +33,21 @@
 // TODO - method: set_search_equal_func
 // TODO - method: set_search_position_func
 // TODO - method: set_vadjustment
+// TODO - signal: columns-changed
+// TODO - signal: cursor-changed
+// TODO - signal: expand-collapse-cursor-row
+// TODO - signal: move-cursor
+// TODO - signal: row-activated
+// TODO - signal: row-collapsed
+// TODO - signal: row-expanded
+// TODO - signal: select-all
+// TODO - signal: select-cursor-parent
+// TODO - signal: select-cursor-row
+// TODO - signal: start-interactive-search
+// TODO - signal: test-collapse-row
+// TODO - signal: test-expand-row
+// TODO - signal: toggle-cursor-row
+// TODO - signal: unselect-all
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

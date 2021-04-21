@@ -20,6 +20,10 @@
 // TODO - method: inner_cell_area
 // TODO - method: render
 // TODO - method: request_renderer
+// TODO - signal: add-editable
+// TODO - signal: apply-attributes
+// TODO - signal: focus-changed
+// TODO - signal: remove-editable
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
