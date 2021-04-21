@@ -22,10 +22,6 @@ fun InterfaceDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
             println("warning: interface '$name' ignored: deprecated")
             return null
         }
-        name.contains("Accessible") -> {
-            println("warning: interface '$name' ignored: accessibility not handled yet")
-            return null
-        }
     }
 
     return FileSpec.builder(namespace.packageName, name)
