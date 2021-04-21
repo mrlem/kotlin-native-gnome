@@ -16,7 +16,7 @@ They say a picture is worth a thousand words:
 
 ## Status
 
-* glade gradle plugin is fully operational, the next step is to auto-regenerate whenever the glade file changes
+* glade gradle plugin is fully operational, and refreshes view binding classes automatically
 * generated API coverage is progressing well, though some things are sorely missed:
   - lambda based signal handlers generation is next
   - handle remaining data types
