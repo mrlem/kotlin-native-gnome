@@ -61,7 +61,7 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             methodsToAdd.forEach { addMethod(className, it, resolver) }
         }
         .apply {
-            signals.forEach { addSignal(it) }
+            signals.forEach { addSignal(className, it) }
         }
         .build()
 }
