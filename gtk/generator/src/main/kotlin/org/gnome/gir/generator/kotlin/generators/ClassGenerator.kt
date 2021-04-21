@@ -44,7 +44,8 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             "RemoveRedundantBackticks",
             "RedundantVisibilityModifier",
             "unused",
-            "RedundantUnitReturnType"
+            "RedundantUnitReturnType",
+            "FunctionName"
         )
         // type
         .addTypeAlias(
@@ -55,14 +56,21 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
         // converters
         .apply { addConverters(classNameString, className, resolver) }
         // sub-elements
+        .also { fileSpecBuilder ->
+            if (constructors.isNotEmpty()) {
+                fileSpecBuilder.addType(
+                    TypeSpec.objectBuilder("${className.simpleName}Factory")
+                        .apply { constructors.forEach { addConstructor(className, it, fileSpecBuilder, resolver) } }
+                        .build()
+                )
+            }
+        }
         .apply {
             val methodsToAdd = methods.toMutableList()
             addProperties(methodsToAdd, className, resolver)
             methodsToAdd.forEach { addMethod(className, it, resolver) }
         }
-        .apply {
-            signals.forEach { addSignal(className, it) }
-        }
+        .apply { signals.forEach { addSignal(className, it) } }
         .build()
 }
 

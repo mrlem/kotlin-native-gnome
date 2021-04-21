@@ -76,7 +76,7 @@ fun AnyType?.getReturnData(resolver: Resolver): Pair<String, Array<MemberName>> 
         ?: "" to emptyArray()
 }
 
-fun Map<String, AnyType>.getParamsData(reinterpretPointers: Boolean, resolver: Resolver): Pair<String, Array<MemberName>> {
+fun Map<String, AnyType>.getParamsData(reinterpretPointers: Boolean, resolver: Resolver, headingComma: Boolean = true): Pair<String, Array<MemberName>> {
     val paramsConverters = mutableListOf<MemberName>()
     val paramsTemplate = entries.joinToString(", ") { (name, type) ->
         val typeInfo = type.typeInfo(resolver)
@@ -89,7 +89,7 @@ fun Map<String, AnyType>.getParamsData(reinterpretPointers: Boolean, resolver: R
         "$name$paramTemplate"
     }
         .takeUnless { it.isEmpty() }
-        ?.let { ", $it" }
+        ?.let { if (headingComma) ", $it" else it }
         .orEmpty()
     return paramsTemplate to paramsConverters.toTypedArray()
 }

@@ -163,6 +163,12 @@ enum class KnownType(
         ClassName("kotlin", "ULong"),
         null,
         null
+    ),
+    GSSize(
+        "gssize",
+        ClassName("kotlin", "Long"),
+        null,
+        null
     )
     ;
 
