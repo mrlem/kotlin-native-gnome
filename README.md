@@ -7,7 +7,7 @@ This sample demonstrates how to create a **GTK application** based on a **Glade*
 ## Features
 
 * a **lightweight GTK object binding**: no wrapper objects, just extension functions & aliases
-* a gradle **glade view binding generator**: type-safe widget access (coming from android development, it feels just like home)
+* a gradle **glade view binding generator**: type-safe widget access & ui source is embedded into the executable
 * a sample app
 
 ## Build
