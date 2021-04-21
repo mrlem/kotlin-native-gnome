@@ -1,5 +1,3 @@
-// TODO - signal: toggled
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -18,6 +16,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -61,4 +60,11 @@ public var CheckMenuItem.inconsistent: Boolean
 
 public fun CheckMenuItem.toggled(): Unit {
   gtk_check_menu_item_toggled(this)
+}
+
+public fun CheckMenuItem.onToggled(callback: (CheckMenuItem) -> Unit): CheckMenuItem {
+  // TODO - handle callback data
+
+  asObject.connect("toggled") { callback(this) }
+  return this
 }

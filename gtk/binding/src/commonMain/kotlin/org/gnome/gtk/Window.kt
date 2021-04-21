@@ -31,11 +31,6 @@
 // TODO - method: set_screen
 // TODO - method: set_type_hint
 // TODO - method: set_wmclass
-// TODO - signal: activate-default
-// TODO - signal: activate-focus
-// TODO - signal: enable-debugging
-// TODO - signal: keys-changed
-// TODO - signal: set-focus
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -127,6 +122,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -398,4 +394,39 @@ public fun Window.unmaximize(): Unit {
 
 public fun Window.unstick(): Unit {
   gtk_window_unstick(this)
+}
+
+public fun Window.onActivateDefault(callback: (Window) -> Unit): Window {
+  // TODO - handle callback data
+
+  asObject.connect("activate-default") { callback(this) }
+  return this
+}
+
+public fun Window.onActivateFocus(callback: (Window) -> Unit): Window {
+  // TODO - handle callback data
+
+  asObject.connect("activate-focus") { callback(this) }
+  return this
+}
+
+public fun Window.onEnableDebugging(callback: (Window) -> Unit): Window {
+  // TODO - handle callback data
+
+  asObject.connect("enable-debugging") { callback(this) }
+  return this
+}
+
+public fun Window.onKeysChanged(callback: (Window) -> Unit): Window {
+  // TODO - handle callback data
+
+  asObject.connect("keys-changed") { callback(this) }
+  return this
+}
+
+public fun Window.onSetFocus(callback: (Window) -> Unit): Window {
+  // TODO - handle callback data
+
+  asObject.connect("set-focus") { callback(this) }
+  return this
 }

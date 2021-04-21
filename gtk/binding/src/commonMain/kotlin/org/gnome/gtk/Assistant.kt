@@ -3,11 +3,6 @@
 // TODO - method: set_forward_page_func
 // TODO - method: set_page_header_image
 // TODO - method: set_page_side_image
-// TODO - signal: apply
-// TODO - signal: cancel
-// TODO - signal: close
-// TODO - signal: escape
-// TODO - signal: prepare
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -44,6 +39,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -143,4 +139,39 @@ public fun Assistant.setPageType(page: Widget?, type: AssistantPageType): Unit {
 
 public fun Assistant.updateButtonsState(): Unit {
   gtk_assistant_update_buttons_state(this)
+}
+
+public fun Assistant.onApply(callback: (Assistant) -> Unit): Assistant {
+  // TODO - handle callback data
+
+  asObject.connect("apply") { callback(this) }
+  return this
+}
+
+public fun Assistant.onCancel(callback: (Assistant) -> Unit): Assistant {
+  // TODO - handle callback data
+
+  asObject.connect("cancel") { callback(this) }
+  return this
+}
+
+public fun Assistant.onClose(callback: (Assistant) -> Unit): Assistant {
+  // TODO - handle callback data
+
+  asObject.connect("close") { callback(this) }
+  return this
+}
+
+public fun Assistant.onEscape(callback: (Assistant) -> Unit): Assistant {
+  // TODO - handle callback data
+
+  asObject.connect("escape") { callback(this) }
+  return this
+}
+
+public fun Assistant.onPrepare(callback: (Assistant) -> Unit): Assistant {
+  // TODO - handle callback data
+
+  asObject.connect("prepare") { callback(this) }
+  return this
 }

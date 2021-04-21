@@ -11,7 +11,6 @@
 // TODO - method: lookup_by_gicon_for_scale
 // TODO - method: set_screen
 // TODO - method: set_search_path
-// TODO - signal: changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -34,6 +33,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toKString
 
@@ -78,4 +78,11 @@ public fun IconTheme.rescanIfNeeded(): Boolean = gtk_icon_theme_rescan_if_needed
 
 public fun IconTheme.setCustomTheme(themeName: String): Unit {
   gtk_icon_theme_set_custom_theme(this, themeName)
+}
+
+public fun IconTheme.onChanged(callback: (IconTheme) -> Unit): IconTheme {
+  // TODO - handle callback data
+
+  asObject.connect("changed") { callback(this) }
+  return this
 }

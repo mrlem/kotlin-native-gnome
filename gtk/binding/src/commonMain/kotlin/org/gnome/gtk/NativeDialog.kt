@@ -1,5 +1,3 @@
-// TODO - signal: response
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -23,6 +21,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -65,4 +64,11 @@ public fun NativeDialog.run(): Int = gtk_native_dialog_run(this)
 
 public fun NativeDialog.show(): Unit {
   gtk_native_dialog_show(this)
+}
+
+public fun NativeDialog.onResponse(callback: (NativeDialog) -> Unit): NativeDialog {
+  // TODO - handle callback data
+
+  asObject.connect("response") { callback(this) }
+  return this
 }

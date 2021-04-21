@@ -1,5 +1,4 @@
 // TODO - method: append_custom_item
-// TODO - signal: custom-item-activated
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -21,6 +20,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -69,4 +69,12 @@ public fun AppChooserButton.appendSeparator(): Unit {
 
 public fun AppChooserButton.setActiveCustomItem(name: String): Unit {
   gtk_app_chooser_button_set_active_custom_item(this, name)
+}
+
+public fun AppChooserButton.onCustomItemActivated(callback: (AppChooserButton) -> Unit):
+    AppChooserButton {
+  // TODO - handle callback data
+
+  asObject.connect("custom-item-activated") { callback(this) }
+  return this
 }

@@ -3,7 +3,6 @@
 // TODO - method: get_user_data
 // TODO - method: selected_foreach
 // TODO - method: set_select_function
-// TODO - signal: changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -31,6 +30,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 
 public typealias TreeSelection = CPointer<GtkTreeSelection>
@@ -88,4 +88,11 @@ public fun TreeSelection.unselectPath(path: TreePath?): Unit {
 
 public fun TreeSelection.unselectRange(startPath: TreePath?, endPath: TreePath?): Unit {
   gtk_tree_selection_unselect_range(this, startPath?.reinterpret(), endPath?.reinterpret())
+}
+
+public fun TreeSelection.onChanged(callback: (TreeSelection) -> Unit): TreeSelection {
+  // TODO - handle callback data
+
+  asObject.connect("changed") { callback(this) }
+  return this
 }

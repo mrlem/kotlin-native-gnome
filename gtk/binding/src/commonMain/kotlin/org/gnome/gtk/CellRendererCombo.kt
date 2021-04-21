@@ -1,14 +1,14 @@
-// TODO - signal: changed
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import gtk3.GtkCellRendererCombo
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias CellRendererCombo = CPointer<GtkCellRendererCombo>
 
@@ -23,3 +23,10 @@ public val CellRendererCombo.asCellRenderer: CellRenderer
 
 public val CellRendererCombo.asCellRendererText: CellRendererText
   get() = reinterpret()
+
+public fun CellRendererCombo.onChanged(callback: (CellRendererCombo) -> Unit): CellRendererCombo {
+  // TODO - handle callback data
+
+  asObject.connect("changed") { callback(this) }
+  return this
+}

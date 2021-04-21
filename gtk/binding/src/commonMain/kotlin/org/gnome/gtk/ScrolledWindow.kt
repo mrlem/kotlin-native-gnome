@@ -1,9 +1,5 @@
 // TODO - method: add_with_viewport
 // TODO - method: get_policy
-// TODO - signal: edge-overshot
-// TODO - signal: edge-reached
-// TODO - signal: move-focus-out
-// TODO - signal: scroll-child
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -47,6 +43,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -158,4 +155,32 @@ public fun ScrolledWindow.setPolicy(hscrollbarPolicy: PolicyType, vscrollbarPoli
 
 public fun ScrolledWindow.unsetPlacement(): Unit {
   gtk_scrolled_window_unset_placement(this)
+}
+
+public fun ScrolledWindow.onEdgeOvershot(callback: (ScrolledWindow) -> Unit): ScrolledWindow {
+  // TODO - handle callback data
+
+  asObject.connect("edge-overshot") { callback(this) }
+  return this
+}
+
+public fun ScrolledWindow.onEdgeReached(callback: (ScrolledWindow) -> Unit): ScrolledWindow {
+  // TODO - handle callback data
+
+  asObject.connect("edge-reached") { callback(this) }
+  return this
+}
+
+public fun ScrolledWindow.onMoveFocusOut(callback: (ScrolledWindow) -> Unit): ScrolledWindow {
+  // TODO - handle callback data
+
+  asObject.connect("move-focus-out") { callback(this) }
+  return this
+}
+
+public fun ScrolledWindow.onScrollChild(callback: (ScrolledWindow) -> Unit): ScrolledWindow {
+  // TODO - handle callback data
+
+  asObject.connect("scroll-child") { callback(this) }
+  return this
 }

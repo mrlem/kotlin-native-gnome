@@ -1,8 +1,3 @@
-// TODO - signal: focus-home-or-end
-// TODO - signal: orientation-changed
-// TODO - signal: popup-context-menu
-// TODO - signal: style-changed
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -30,6 +25,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -92,4 +88,32 @@ public fun Toolbar.unsetIconSize(): Unit {
 
 public fun Toolbar.unsetStyle(): Unit {
   gtk_toolbar_unset_style(this)
+}
+
+public fun Toolbar.onFocusHomeOrEnd(callback: (Toolbar) -> Unit): Toolbar {
+  // TODO - handle callback data
+
+  asObject.connect("focus-home-or-end") { callback(this) }
+  return this
+}
+
+public fun Toolbar.onOrientationChanged(callback: (Toolbar) -> Unit): Toolbar {
+  // TODO - handle callback data
+
+  asObject.connect("orientation-changed") { callback(this) }
+  return this
+}
+
+public fun Toolbar.onPopupContextMenu(callback: (Toolbar) -> Unit): Toolbar {
+  // TODO - handle callback data
+
+  asObject.connect("popup-context-menu") { callback(this) }
+  return this
+}
+
+public fun Toolbar.onStyleChanged(callback: (Toolbar) -> Unit): Toolbar {
+  // TODO - handle callback data
+
+  asObject.connect("style-changed") { callback(this) }
+  return this
 }

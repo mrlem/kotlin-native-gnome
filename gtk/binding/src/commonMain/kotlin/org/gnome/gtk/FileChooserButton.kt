@@ -1,6 +1,5 @@
 // TODO - method: get_focus_on_click
 // TODO - method: set_focus_on_click
-// TODO - signal: file-set
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -13,10 +12,12 @@ import gtk3.gtk_file_chooser_button_set_title
 import gtk3.gtk_file_chooser_button_set_width_chars
 import kotlin.Int
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toKString
 
 public typealias FileChooserButton = CPointer<GtkFileChooserButton>
@@ -47,3 +48,10 @@ public var FileChooserButton.widthChars: Int
   set(`value`) {
     gtk_file_chooser_button_set_width_chars(this, value)
   }
+
+public fun FileChooserButton.onFileSet(callback: (FileChooserButton) -> Unit): FileChooserButton {
+  // TODO - handle callback data
+
+  asObject.connect("file-set") { callback(this) }
+  return this
+}

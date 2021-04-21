@@ -17,10 +17,6 @@
 // TODO - method: set_reallocate_redraws
 // TODO - method: set_resize_mode
 // TODO - method: unset_focus_chain
-// TODO - signal: add
-// TODO - signal: check-resize
-// TODO - signal: remove
-// TODO - signal: set-focus-child
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -49,6 +45,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias Container = CPointer<GtkContainer>
 
@@ -104,4 +101,32 @@ public fun Container.getPathForChild(child: Widget?): WidgetPath? =
 
 public fun Container.remove(widget: Widget?): Unit {
   gtk_container_remove(this, widget?.reinterpret())
+}
+
+public fun Container.onAdd(callback: (Container) -> Unit): Container {
+  // TODO - handle callback data
+
+  asObject.connect("add") { callback(this) }
+  return this
+}
+
+public fun Container.onCheckResize(callback: (Container) -> Unit): Container {
+  // TODO - handle callback data
+
+  asObject.connect("check-resize") { callback(this) }
+  return this
+}
+
+public fun Container.onRemove(callback: (Container) -> Unit): Container {
+  // TODO - handle callback data
+
+  asObject.connect("remove") { callback(this) }
+  return this
+}
+
+public fun Container.onSetFocusChild(callback: (Container) -> Unit): Container {
+  // TODO - handle callback data
+
+  asObject.connect("set-focus-child") { callback(this) }
+  return this
 }

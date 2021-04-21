@@ -9,12 +9,6 @@
 // TODO - method: set_alignment
 // TODO - method: set_focus_on_click
 // TODO - method: set_use_stock
-// TODO - signal: activate
-// TODO - signal: clicked
-// TODO - signal: enter
-// TODO - signal: leave
-// TODO - signal: pressed
-// TODO - signal: released
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -90,18 +84,51 @@ public fun Button.clicked(): Unit {
   gtk_button_clicked(this)
 }
 
+public fun Button.onActivate(callback: (Button) -> Unit): Button {
+  // TODO - handle callback data
+
+  asObject.connect("activate") { callback(this) }
+  return this
+}
+
+public fun Button.onClicked(callback: (Button) -> Unit): Button {
+  // TODO - handle callback data
+
+  asObject.connect("clicked") { callback(this) }
+  return this
+}
+
+public fun Button.onEnter(callback: (Button) -> Unit): Button {
+  // TODO - handle callback data
+
+  asObject.connect("enter") { callback(this) }
+  return this
+}
+
+public fun Button.onLeave(callback: (Button) -> Unit): Button {
+  // TODO - handle callback data
+
+  asObject.connect("leave") { callback(this) }
+  return this
+}
+
+public fun Button.onPressed(callback: (Button) -> Unit): Button {
+  // TODO - handle callback data
+
+  asObject.connect("pressed") { callback(this) }
+  return this
+}
+
+public fun Button.onReleased(callback: (Button) -> Unit): Button {
+  // TODO - handle callback data
+
+  asObject.connect("released") { callback(this) }
+  return this
+}
+
 ///////////////////////////////////////////////////////////////////////////
 // Public API (not generated)
 ///////////////////////////////////////////////////////////////////////////
 
 @Suppress("FunctionName")
 fun Button(label: String) = gtk_button_new_with_label(label)!!.reinterpret<GtkButton>()
-
-///////////////////////////////////////////////////////////////////////////
-// Event handlers (not generated)
-///////////////////////////////////////////////////////////////////////////
-
-fun Button.onClick(onClick: (Button) -> Unit): Button {
-  asObject.connect("clicked") { onClick(this) }
-  return this
-}

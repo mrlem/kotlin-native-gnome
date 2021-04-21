@@ -1,6 +1,5 @@
 // TODO - method: get_group
 // TODO - method: set_group
-// TODO - signal: group-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -13,6 +12,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias RadioMenuItem = CPointer<GtkRadioMenuItem>
 
@@ -39,4 +39,11 @@ public val RadioMenuItem.asCheckMenuItem: CheckMenuItem
 
 public fun RadioMenuItem.joinGroup(groupSource: RadioMenuItem?): Unit {
   gtk_radio_menu_item_join_group(this, groupSource?.reinterpret())
+}
+
+public fun RadioMenuItem.onGroupChanged(callback: (RadioMenuItem) -> Unit): RadioMenuItem {
+  // TODO - handle callback data
+
+  asObject.connect("group-changed") { callback(this) }
+  return this
 }

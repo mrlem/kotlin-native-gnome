@@ -1,6 +1,5 @@
 // TODO - method: get_stock_id
 // TODO - method: set_stock_id
-// TODO - signal: clicked
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -19,10 +18,12 @@ import gtk3.gtk_tool_button_set_label_widget
 import gtk3.gtk_tool_button_set_use_underline
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -76,3 +77,10 @@ public var ToolButton.useUnderline: Boolean
   set(`value`) {
     gtk_tool_button_set_use_underline(this, value.toInt)
   }
+
+public fun ToolButton.onClicked(callback: (ToolButton) -> Unit): ToolButton {
+  // TODO - handle callback data
+
+  asObject.connect("clicked") { callback(this) }
+  return this
+}

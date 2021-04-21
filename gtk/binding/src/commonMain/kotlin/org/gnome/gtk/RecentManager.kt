@@ -3,7 +3,6 @@
 // TODO - method: move_item
 // TODO - method: purge_items
 // TODO - method: remove_item
-// TODO - signal: changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -15,9 +14,11 @@ import gtk3.gtk_recent_manager_add_item
 import gtk3.gtk_recent_manager_has_item
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 
 public typealias RecentManager = CPointer<GtkRecentManager>
@@ -33,3 +34,10 @@ public fun RecentManager.addItem(uri: String): Boolean = gtk_recent_manager_add_
 
 public fun RecentManager.hasItem(uri: String): Boolean = gtk_recent_manager_has_item(this,
     uri).toBoolean
+
+public fun RecentManager.onChanged(callback: (RecentManager) -> Unit): RecentManager {
+  // TODO - handle callback data
+
+  asObject.connect("changed") { callback(this) }
+  return this
+}

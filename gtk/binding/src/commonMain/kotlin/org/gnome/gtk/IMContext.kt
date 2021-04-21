@@ -3,12 +3,6 @@
 // TODO - method: get_surrounding
 // TODO - method: set_client_window
 // TODO - method: set_cursor_location
-// TODO - signal: commit
-// TODO - signal: delete-surrounding
-// TODO - signal: preedit-changed
-// TODO - signal: preedit-end
-// TODO - signal: preedit-start
-// TODO - signal: retrieve-surrounding
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -28,6 +22,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -61,4 +56,46 @@ public fun IMContext.setSurrounding(
 
 public fun IMContext.setUsePreedit(usePreedit: Boolean): Unit {
   gtk_im_context_set_use_preedit(this, usePreedit.toInt)
+}
+
+public fun IMContext.onCommit(callback: (IMContext) -> Unit): IMContext {
+  // TODO - handle callback data
+
+  asObject.connect("commit") { callback(this) }
+  return this
+}
+
+public fun IMContext.onDeleteSurrounding(callback: (IMContext) -> Unit): IMContext {
+  // TODO - handle callback data
+
+  asObject.connect("delete-surrounding") { callback(this) }
+  return this
+}
+
+public fun IMContext.onPreeditChanged(callback: (IMContext) -> Unit): IMContext {
+  // TODO - handle callback data
+
+  asObject.connect("preedit-changed") { callback(this) }
+  return this
+}
+
+public fun IMContext.onPreeditEnd(callback: (IMContext) -> Unit): IMContext {
+  // TODO - handle callback data
+
+  asObject.connect("preedit-end") { callback(this) }
+  return this
+}
+
+public fun IMContext.onPreeditStart(callback: (IMContext) -> Unit): IMContext {
+  // TODO - handle callback data
+
+  asObject.connect("preedit-start") { callback(this) }
+  return this
+}
+
+public fun IMContext.onRetrieveSurrounding(callback: (IMContext) -> Unit): IMContext {
+  // TODO - handle callback data
+
+  asObject.connect("retrieve-surrounding") { callback(this) }
+  return this
 }

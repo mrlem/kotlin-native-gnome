@@ -1,6 +1,5 @@
 // TODO - method: get_spacing
 // TODO - method: set_spacing
-// TODO - signal: activate
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -23,10 +22,12 @@ import gtk3.gtk_expander_set_use_markup
 import gtk3.gtk_expander_set_use_underline
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -89,3 +90,10 @@ public var Expander.useUnderline: Boolean
   set(`value`) {
     gtk_expander_set_use_underline(this, value.toInt)
   }
+
+public fun Expander.onActivate(callback: (Expander) -> Unit): Expander {
+  // TODO - handle callback data
+
+  asObject.connect("activate") { callback(this) }
+  return this
+}

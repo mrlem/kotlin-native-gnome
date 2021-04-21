@@ -1,6 +1,4 @@
 // TODO - method: get_ellipsize_mode
-// TODO - signal: create-menu-proxy
-// TODO - signal: toolbar-reconfigured
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -41,6 +39,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -142,4 +141,18 @@ public fun ToolItem.setTooltipText(text: String): Unit {
 
 public fun ToolItem.toolbarReconfigured(): Unit {
   gtk_tool_item_toolbar_reconfigured(this)
+}
+
+public fun ToolItem.onCreateMenuProxy(callback: (ToolItem) -> Unit): ToolItem {
+  // TODO - handle callback data
+
+  asObject.connect("create-menu-proxy") { callback(this) }
+  return this
+}
+
+public fun ToolItem.onToolbarReconfigured(callback: (ToolItem) -> Unit): ToolItem {
+  // TODO - handle callback data
+
+  asObject.connect("toolbar-reconfigured") { callback(this) }
+  return this
 }

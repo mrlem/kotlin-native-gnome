@@ -1,6 +1,3 @@
-// TODO - signal: deleted-text
-// TODO - signal: inserted-text
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -24,6 +21,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toKString
 
 public typealias EntryBuffer = CPointer<GtkEntryBuffer>
@@ -69,4 +67,18 @@ public fun EntryBuffer.insertText(
 
 public fun EntryBuffer.setText(chars: String, nChars: Int): Unit {
   gtk_entry_buffer_set_text(this, chars, nChars)
+}
+
+public fun EntryBuffer.onDeletedText(callback: (EntryBuffer) -> Unit): EntryBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("deleted-text") { callback(this) }
+  return this
+}
+
+public fun EntryBuffer.onInsertedText(callback: (EntryBuffer) -> Unit): EntryBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("inserted-text") { callback(this) }
+  return this
 }

@@ -1,6 +1,4 @@
 // TODO - method: add_buttons
-// TODO - signal: close
-// TODO - signal: response
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -28,6 +26,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -89,4 +88,18 @@ public fun InfoBar.setDefaultResponse(responseId: Int): Unit {
 
 public fun InfoBar.setResponseSensitive(responseId: Int, setting: Boolean): Unit {
   gtk_info_bar_set_response_sensitive(this, responseId, setting.toInt)
+}
+
+public fun InfoBar.onClose(callback: (InfoBar) -> Unit): InfoBar {
+  // TODO - handle callback data
+
+  asObject.connect("close") { callback(this) }
+  return this
+}
+
+public fun InfoBar.onResponse(callback: (InfoBar) -> Unit): InfoBar {
+  // TODO - handle callback data
+
+  asObject.connect("response") { callback(this) }
+  return this
 }

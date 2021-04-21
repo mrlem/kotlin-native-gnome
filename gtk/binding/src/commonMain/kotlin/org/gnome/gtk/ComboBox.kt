@@ -8,11 +8,6 @@
 // TODO - method: set_focus_on_click
 // TODO - method: set_row_separator_func
 // TODO - method: set_title
-// TODO - signal: changed
-// TODO - signal: format-entry-text
-// TODO - signal: move-active
-// TODO - signal: popdown
-// TODO - signal: popup
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -52,6 +47,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -149,4 +145,39 @@ public fun ComboBox.popup(): Unit {
 
 public fun ComboBox.setActiveIter(iter: TreeIter?): Unit {
   gtk_combo_box_set_active_iter(this, iter?.reinterpret())
+}
+
+public fun ComboBox.onChanged(callback: (ComboBox) -> Unit): ComboBox {
+  // TODO - handle callback data
+
+  asObject.connect("changed") { callback(this) }
+  return this
+}
+
+public fun ComboBox.onFormatEntryText(callback: (ComboBox) -> Unit): ComboBox {
+  // TODO - handle callback data
+
+  asObject.connect("format-entry-text") { callback(this) }
+  return this
+}
+
+public fun ComboBox.onMoveActive(callback: (ComboBox) -> Unit): ComboBox {
+  // TODO - handle callback data
+
+  asObject.connect("move-active") { callback(this) }
+  return this
+}
+
+public fun ComboBox.onPopdown(callback: (ComboBox) -> Unit): ComboBox {
+  // TODO - handle callback data
+
+  asObject.connect("popdown") { callback(this) }
+  return this
+}
+
+public fun ComboBox.onPopup(callback: (ComboBox) -> Unit): ComboBox {
+  // TODO - handle callback data
+
+  asObject.connect("popup") { callback(this) }
+  return this
 }

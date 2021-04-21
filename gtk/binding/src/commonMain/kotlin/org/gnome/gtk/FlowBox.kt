@@ -3,13 +3,6 @@
 // TODO - method: selected_foreach
 // TODO - method: set_filter_func
 // TODO - method: set_sort_func
-// TODO - signal: activate-cursor-child
-// TODO - signal: child-activated
-// TODO - signal: move-cursor
-// TODO - signal: select-all
-// TODO - signal: selected-children-changed
-// TODO - signal: toggle-cursor-child
-// TODO - signal: unselect-all
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -49,6 +42,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -148,4 +142,53 @@ public fun FlowBox.unselectAll(): Unit {
 
 public fun FlowBox.unselectChild(child: FlowBoxChild?): Unit {
   gtk_flow_box_unselect_child(this, child?.reinterpret())
+}
+
+public fun FlowBox.onActivateCursorChild(callback: (FlowBox) -> Unit): FlowBox {
+  // TODO - handle callback data
+
+  asObject.connect("activate-cursor-child") { callback(this) }
+  return this
+}
+
+public fun FlowBox.onChildActivated(callback: (FlowBox) -> Unit): FlowBox {
+  // TODO - handle callback data
+
+  asObject.connect("child-activated") { callback(this) }
+  return this
+}
+
+public fun FlowBox.onMoveCursor(callback: (FlowBox) -> Unit): FlowBox {
+  // TODO - handle callback data
+
+  asObject.connect("move-cursor") { callback(this) }
+  return this
+}
+
+public fun FlowBox.onSelectAll(callback: (FlowBox) -> Unit): FlowBox {
+  // TODO - handle callback data
+
+  asObject.connect("select-all") { callback(this) }
+  return this
+}
+
+public fun FlowBox.onSelectedChildrenChanged(callback: (FlowBox) -> Unit): FlowBox {
+  // TODO - handle callback data
+
+  asObject.connect("selected-children-changed") { callback(this) }
+  return this
+}
+
+public fun FlowBox.onToggleCursorChild(callback: (FlowBox) -> Unit): FlowBox {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-cursor-child") { callback(this) }
+  return this
+}
+
+public fun FlowBox.onUnselectAll(callback: (FlowBox) -> Unit): FlowBox {
+  // TODO - handle callback data
+
+  asObject.connect("unselect-all") { callback(this) }
+  return this
 }

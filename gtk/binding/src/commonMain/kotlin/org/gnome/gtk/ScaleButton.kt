@@ -1,7 +1,4 @@
 // TODO - method: set_icons
-// TODO - signal: popdown
-// TODO - signal: popup
-// TODO - signal: value-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -16,10 +13,12 @@ import gtk3.gtk_scale_button_get_value
 import gtk3.gtk_scale_button_set_adjustment
 import gtk3.gtk_scale_button_set_value
 import kotlin.Double
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias ScaleButton = CPointer<GtkScaleButton>
 
@@ -61,3 +60,24 @@ public var ScaleButton.`value`: Double
   set(`value`) {
     gtk_scale_button_set_value(this, value)
   }
+
+public fun ScaleButton.onPopdown(callback: (ScaleButton) -> Unit): ScaleButton {
+  // TODO - handle callback data
+
+  asObject.connect("popdown") { callback(this) }
+  return this
+}
+
+public fun ScaleButton.onPopup(callback: (ScaleButton) -> Unit): ScaleButton {
+  // TODO - handle callback data
+
+  asObject.connect("popup") { callback(this) }
+  return this
+}
+
+public fun ScaleButton.onValueChanged(callback: (ScaleButton) -> Unit): ScaleButton {
+  // TODO - handle callback data
+
+  asObject.connect("value-changed") { callback(this) }
+  return this
+}

@@ -1,25 +1,14 @@
-// TODO - signal: desktop-folder
-// TODO - signal: down-folder
-// TODO - signal: home-folder
-// TODO - signal: location-popup
-// TODO - signal: location-popup-on-paste
-// TODO - signal: location-toggle-popup
-// TODO - signal: places-shortcut
-// TODO - signal: quick-bookmark
-// TODO - signal: recent-shortcut
-// TODO - signal: search-shortcut
-// TODO - signal: show-hidden
-// TODO - signal: up-folder
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import gtk3.GtkFileChooserWidget
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias FileChooserWidget = CPointer<GtkFileChooserWidget>
 
@@ -37,3 +26,98 @@ public val FileChooserWidget.asContainer: Container
 
 public val FileChooserWidget.asBox: Box
   get() = reinterpret()
+
+public fun FileChooserWidget.onDesktopFolder(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("desktop-folder") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onDownFolder(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("down-folder") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onHomeFolder(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("home-folder") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onLocationPopup(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("location-popup") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onLocationPopupOnPaste(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("location-popup-on-paste") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onLocationTogglePopup(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("location-toggle-popup") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onPlacesShortcut(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("places-shortcut") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onQuickBookmark(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("quick-bookmark") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onRecentShortcut(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("recent-shortcut") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onSearchShortcut(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("search-shortcut") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onShowHidden(callback: (FileChooserWidget) -> Unit):
+    FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("show-hidden") { callback(this) }
+  return this
+}
+
+public fun FileChooserWidget.onUpFolder(callback: (FileChooserWidget) -> Unit): FileChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("up-folder") { callback(this) }
+  return this
+}

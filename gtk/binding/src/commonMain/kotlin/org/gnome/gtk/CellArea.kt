@@ -20,10 +20,6 @@
 // TODO - method: inner_cell_area
 // TODO - method: render
 // TODO - method: request_renderer
-// TODO - signal: add-editable
-// TODO - signal: apply-attributes
-// TODO - signal: focus-changed
-// TODO - signal: remove-editable
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -60,6 +56,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -153,4 +150,32 @@ public fun CellArea.removeFocusSibling(renderer: CellRenderer?, sibling: CellRen
 
 public fun CellArea.stopEditing(canceled: Boolean): Unit {
   gtk_cell_area_stop_editing(this, canceled.toInt)
+}
+
+public fun CellArea.onAddEditable(callback: (CellArea) -> Unit): CellArea {
+  // TODO - handle callback data
+
+  asObject.connect("add-editable") { callback(this) }
+  return this
+}
+
+public fun CellArea.onApplyAttributes(callback: (CellArea) -> Unit): CellArea {
+  // TODO - handle callback data
+
+  asObject.connect("apply-attributes") { callback(this) }
+  return this
+}
+
+public fun CellArea.onFocusChanged(callback: (CellArea) -> Unit): CellArea {
+  // TODO - handle callback data
+
+  asObject.connect("focus-changed") { callback(this) }
+  return this
+}
+
+public fun CellArea.onRemoveEditable(callback: (CellArea) -> Unit): CellArea {
+  // TODO - handle callback data
+
+  asObject.connect("remove-editable") { callback(this) }
+  return this
 }

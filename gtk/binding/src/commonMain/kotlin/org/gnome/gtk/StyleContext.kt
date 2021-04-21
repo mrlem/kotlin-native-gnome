@@ -32,7 +32,6 @@
 // TODO - method: set_frame_clock
 // TODO - method: set_screen
 // TODO - method: state_is_running
-// TODO - signal: changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -66,6 +65,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toKString
 
@@ -136,3 +136,10 @@ public fun StyleContext.save(): Unit {
 
 public fun StyleContext.toString(flags: StyleContextPrintFlags): String =
     gtk_style_context_to_string(this, flags).toKString
+
+public fun StyleContext.onChanged(callback: (StyleContext) -> Unit): StyleContext {
+  // TODO - handle callback data
+
+  asObject.connect("changed") { callback(this) }
+  return this
+}

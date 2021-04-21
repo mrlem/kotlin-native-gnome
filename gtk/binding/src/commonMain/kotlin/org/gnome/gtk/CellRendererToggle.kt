@@ -1,5 +1,3 @@
-// TODO - signal: toggled
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -12,10 +10,12 @@ import gtk3.gtk_cell_renderer_toggle_set_activatable
 import gtk3.gtk_cell_renderer_toggle_set_active
 import gtk3.gtk_cell_renderer_toggle_set_radio
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -47,3 +47,11 @@ public var CellRendererToggle.radio: Boolean
   set(`value`) {
     gtk_cell_renderer_toggle_set_radio(this, value.toInt)
   }
+
+public fun CellRendererToggle.onToggled(callback: (CellRendererToggle) -> Unit):
+    CellRendererToggle {
+  // TODO - handle callback data
+
+  asObject.connect("toggled") { callback(this) }
+  return this
+}

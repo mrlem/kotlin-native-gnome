@@ -1,12 +1,6 @@
 // TODO - method: get_right_justified
 // TODO - method: set_right_justified
 // TODO - method: toggle_size_request
-// TODO - signal: activate
-// TODO - signal: activate-item
-// TODO - signal: deselect
-// TODO - signal: select
-// TODO - signal: toggle-size-allocate
-// TODO - signal: toggle-size-request
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -35,6 +29,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -101,4 +96,46 @@ public fun MenuItem.setSubmenu(submenu: Menu?): Unit {
 
 public fun MenuItem.toggleSizeAllocate(allocation: Int): Unit {
   gtk_menu_item_toggle_size_allocate(this, allocation)
+}
+
+public fun MenuItem.onActivate(callback: (MenuItem) -> Unit): MenuItem {
+  // TODO - handle callback data
+
+  asObject.connect("activate") { callback(this) }
+  return this
+}
+
+public fun MenuItem.onActivateItem(callback: (MenuItem) -> Unit): MenuItem {
+  // TODO - handle callback data
+
+  asObject.connect("activate-item") { callback(this) }
+  return this
+}
+
+public fun MenuItem.onDeselect(callback: (MenuItem) -> Unit): MenuItem {
+  // TODO - handle callback data
+
+  asObject.connect("deselect") { callback(this) }
+  return this
+}
+
+public fun MenuItem.onSelect(callback: (MenuItem) -> Unit): MenuItem {
+  // TODO - handle callback data
+
+  asObject.connect("select") { callback(this) }
+  return this
+}
+
+public fun MenuItem.onToggleSizeAllocate(callback: (MenuItem) -> Unit): MenuItem {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-size-allocate") { callback(this) }
+  return this
+}
+
+public fun MenuItem.onToggleSizeRequest(callback: (MenuItem) -> Unit): MenuItem {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-size-request") { callback(this) }
+  return this
 }

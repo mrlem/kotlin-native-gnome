@@ -4,14 +4,6 @@
 // TODO - method: set_filter_func
 // TODO - method: set_header_func
 // TODO - method: set_sort_func
-// TODO - signal: activate-cursor-row
-// TODO - signal: move-cursor
-// TODO - signal: row-activated
-// TODO - signal: row-selected
-// TODO - signal: select-all
-// TODO - signal: selected-rows-changed
-// TODO - signal: toggle-cursor-row
-// TODO - signal: unselect-all
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -46,6 +38,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -136,4 +129,60 @@ public fun ListBox.unselectAll(): Unit {
 
 public fun ListBox.unselectRow(row: ListBoxRow?): Unit {
   gtk_list_box_unselect_row(this, row?.reinterpret())
+}
+
+public fun ListBox.onActivateCursorRow(callback: (ListBox) -> Unit): ListBox {
+  // TODO - handle callback data
+
+  asObject.connect("activate-cursor-row") { callback(this) }
+  return this
+}
+
+public fun ListBox.onMoveCursor(callback: (ListBox) -> Unit): ListBox {
+  // TODO - handle callback data
+
+  asObject.connect("move-cursor") { callback(this) }
+  return this
+}
+
+public fun ListBox.onRowActivated(callback: (ListBox) -> Unit): ListBox {
+  // TODO - handle callback data
+
+  asObject.connect("row-activated") { callback(this) }
+  return this
+}
+
+public fun ListBox.onRowSelected(callback: (ListBox) -> Unit): ListBox {
+  // TODO - handle callback data
+
+  asObject.connect("row-selected") { callback(this) }
+  return this
+}
+
+public fun ListBox.onSelectAll(callback: (ListBox) -> Unit): ListBox {
+  // TODO - handle callback data
+
+  asObject.connect("select-all") { callback(this) }
+  return this
+}
+
+public fun ListBox.onSelectedRowsChanged(callback: (ListBox) -> Unit): ListBox {
+  // TODO - handle callback data
+
+  asObject.connect("selected-rows-changed") { callback(this) }
+  return this
+}
+
+public fun ListBox.onToggleCursorRow(callback: (ListBox) -> Unit): ListBox {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-cursor-row") { callback(this) }
+  return this
+}
+
+public fun ListBox.onUnselectAll(callback: (ListBox) -> Unit): ListBox {
+  // TODO - handle callback data
+
+  asObject.connect("unselect-all") { callback(this) }
+  return this
 }

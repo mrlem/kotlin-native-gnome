@@ -1,5 +1,4 @@
 // TODO - method: event
-// TODO - signal: event
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -15,6 +14,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toInt
 
 public typealias TextTag = CPointer<GtkTextTag>
@@ -30,4 +30,11 @@ public var TextTag.priority: Int
 
 public fun TextTag.changed(sizeChanged: Boolean): Unit {
   gtk_text_tag_changed(this, sizeChanged.toInt)
+}
+
+public fun TextTag.onEvent(callback: (TextTag) -> Unit): TextTag {
+  // TODO - handle callback data
+
+  asObject.connect("event") { callback(this) }
+  return this
 }

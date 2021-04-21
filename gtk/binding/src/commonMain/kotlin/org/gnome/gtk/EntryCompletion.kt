@@ -1,9 +1,4 @@
 // TODO - method: set_match_func
-// TODO - signal: action-activated
-// TODO - signal: cursor-on-match
-// TODO - signal: insert-prefix
-// TODO - signal: match-selected
-// TODO - signal: no-matches
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -41,6 +36,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -125,4 +121,39 @@ public fun EntryCompletion.insertActionText(index: Int, text: String): Unit {
 
 public fun EntryCompletion.insertPrefix(): Unit {
   gtk_entry_completion_insert_prefix(this)
+}
+
+public fun EntryCompletion.onActionActivated(callback: (EntryCompletion) -> Unit): EntryCompletion {
+  // TODO - handle callback data
+
+  asObject.connect("action-activated") { callback(this) }
+  return this
+}
+
+public fun EntryCompletion.onCursorOnMatch(callback: (EntryCompletion) -> Unit): EntryCompletion {
+  // TODO - handle callback data
+
+  asObject.connect("cursor-on-match") { callback(this) }
+  return this
+}
+
+public fun EntryCompletion.onInsertPrefix(callback: (EntryCompletion) -> Unit): EntryCompletion {
+  // TODO - handle callback data
+
+  asObject.connect("insert-prefix") { callback(this) }
+  return this
+}
+
+public fun EntryCompletion.onMatchSelected(callback: (EntryCompletion) -> Unit): EntryCompletion {
+  // TODO - handle callback data
+
+  asObject.connect("match-selected") { callback(this) }
+  return this
+}
+
+public fun EntryCompletion.onNoMatches(callback: (EntryCompletion) -> Unit): EntryCompletion {
+  // TODO - handle callback data
+
+  asObject.connect("no-matches") { callback(this) }
+  return this
 }

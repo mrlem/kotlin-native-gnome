@@ -1,12 +1,5 @@
 // TODO - method: get_date
 // TODO - method: set_detail_func
-// TODO - signal: day-selected
-// TODO - signal: day-selected-double-click
-// TODO - signal: month-changed
-// TODO - signal: next-month
-// TODO - signal: next-year
-// TODO - signal: prev-month
-// TODO - signal: prev-year
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -33,6 +26,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 
 public typealias Calendar = CPointer<GtkCalendar>
@@ -85,4 +79,53 @@ public fun Calendar.selectMonth(month: UInt, year: UInt): Unit {
 
 public fun Calendar.unmarkDay(day: UInt): Unit {
   gtk_calendar_unmark_day(this, day)
+}
+
+public fun Calendar.onDaySelected(callback: (Calendar) -> Unit): Calendar {
+  // TODO - handle callback data
+
+  asObject.connect("day-selected") { callback(this) }
+  return this
+}
+
+public fun Calendar.onDaySelectedDoubleClick(callback: (Calendar) -> Unit): Calendar {
+  // TODO - handle callback data
+
+  asObject.connect("day-selected-double-click") { callback(this) }
+  return this
+}
+
+public fun Calendar.onMonthChanged(callback: (Calendar) -> Unit): Calendar {
+  // TODO - handle callback data
+
+  asObject.connect("month-changed") { callback(this) }
+  return this
+}
+
+public fun Calendar.onNextMonth(callback: (Calendar) -> Unit): Calendar {
+  // TODO - handle callback data
+
+  asObject.connect("next-month") { callback(this) }
+  return this
+}
+
+public fun Calendar.onNextYear(callback: (Calendar) -> Unit): Calendar {
+  // TODO - handle callback data
+
+  asObject.connect("next-year") { callback(this) }
+  return this
+}
+
+public fun Calendar.onPrevMonth(callback: (Calendar) -> Unit): Calendar {
+  // TODO - handle callback data
+
+  asObject.connect("prev-month") { callback(this) }
+  return this
+}
+
+public fun Calendar.onPrevYear(callback: (Calendar) -> Unit): Calendar {
+  // TODO - handle callback data
+
+  asObject.connect("prev-year") { callback(this) }
+  return this
 }

@@ -11,8 +11,6 @@
 // TODO - method: get_size
 // TODO - method: render
 // TODO - method: start_editing
-// TODO - signal: editing-canceled
-// TODO - signal: editing-started
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -38,6 +36,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -83,4 +82,18 @@ public fun CellRenderer.setPadding(xpad: Int, ypad: Int): Unit {
 
 public fun CellRenderer.stopEditing(canceled: Boolean): Unit {
   gtk_cell_renderer_stop_editing(this, canceled.toInt)
+}
+
+public fun CellRenderer.onEditingCanceled(callback: (CellRenderer) -> Unit): CellRenderer {
+  // TODO - handle callback data
+
+  asObject.connect("editing-canceled") { callback(this) }
+  return this
+}
+
+public fun CellRenderer.onEditingStarted(callback: (CellRenderer) -> Unit): CellRenderer {
+  // TODO - handle callback data
+
+  asObject.connect("editing-started") { callback(this) }
+  return this
 }

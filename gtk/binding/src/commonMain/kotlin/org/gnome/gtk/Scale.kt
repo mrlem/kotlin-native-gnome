@@ -1,6 +1,5 @@
 // TODO - method: get_layout
 // TODO - method: get_layout_offsets
-// TODO - signal: format-value
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -26,6 +25,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -77,4 +77,11 @@ public fun Scale.addMark(
 
 public fun Scale.clearMarks(): Unit {
   gtk_scale_clear_marks(this)
+}
+
+public fun Scale.onFormatValue(callback: (Scale) -> Unit): Scale {
+  // TODO - handle callback data
+
+  asObject.connect("format-value") { callback(this) }
+  return this
 }

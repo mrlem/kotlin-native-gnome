@@ -2,7 +2,6 @@
 // TODO - method: cell_get_size
 // TODO - method: set_attributes
 // TODO - method: set_cell_data_func
-// TODO - signal: clicked
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -64,6 +63,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -231,4 +231,11 @@ public fun TreeViewColumn.packStart(cell: CellRenderer?, expand: Boolean): Unit 
 
 public fun TreeViewColumn.queueResize(): Unit {
   gtk_tree_view_column_queue_resize(this)
+}
+
+public fun TreeViewColumn.onClicked(callback: (TreeViewColumn) -> Unit): TreeViewColumn {
+  // TODO - handle callback data
+
+  asObject.connect("clicked") { callback(this) }
+  return this
 }

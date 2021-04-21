@@ -1,5 +1,3 @@
-// TODO - signal: activate-link
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -11,10 +9,12 @@ import gtk3.gtk_link_button_set_uri
 import gtk3.gtk_link_button_set_visited
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -50,3 +50,10 @@ public var LinkButton.visited: Boolean
   set(`value`) {
     gtk_link_button_set_visited(this, value.toInt)
   }
+
+public fun LinkButton.onActivateLink(callback: (LinkButton) -> Unit): LinkButton {
+  // TODO - handle callback data
+
+  asObject.connect("activate-link") { callback(this) }
+  return this
+}

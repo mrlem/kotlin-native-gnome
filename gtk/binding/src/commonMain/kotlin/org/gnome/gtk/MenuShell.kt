@@ -1,12 +1,4 @@
 // TODO - method: bind_model
-// TODO - signal: activate-current
-// TODO - signal: cancel
-// TODO - signal: cycle-focus
-// TODO - signal: deactivate
-// TODO - signal: insert
-// TODO - signal: move-current
-// TODO - signal: move-selected
-// TODO - signal: selection-done
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -33,6 +25,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -96,4 +89,60 @@ public fun MenuShell.selectFirst(searchSensitive: Boolean): Unit {
 
 public fun MenuShell.selectItem(menuItem: Widget?): Unit {
   gtk_menu_shell_select_item(this, menuItem?.reinterpret())
+}
+
+public fun MenuShell.onActivateCurrent(callback: (MenuShell) -> Unit): MenuShell {
+  // TODO - handle callback data
+
+  asObject.connect("activate-current") { callback(this) }
+  return this
+}
+
+public fun MenuShell.onCancel(callback: (MenuShell) -> Unit): MenuShell {
+  // TODO - handle callback data
+
+  asObject.connect("cancel") { callback(this) }
+  return this
+}
+
+public fun MenuShell.onCycleFocus(callback: (MenuShell) -> Unit): MenuShell {
+  // TODO - handle callback data
+
+  asObject.connect("cycle-focus") { callback(this) }
+  return this
+}
+
+public fun MenuShell.onDeactivate(callback: (MenuShell) -> Unit): MenuShell {
+  // TODO - handle callback data
+
+  asObject.connect("deactivate") { callback(this) }
+  return this
+}
+
+public fun MenuShell.onInsert(callback: (MenuShell) -> Unit): MenuShell {
+  // TODO - handle callback data
+
+  asObject.connect("insert") { callback(this) }
+  return this
+}
+
+public fun MenuShell.onMoveCurrent(callback: (MenuShell) -> Unit): MenuShell {
+  // TODO - handle callback data
+
+  asObject.connect("move-current") { callback(this) }
+  return this
+}
+
+public fun MenuShell.onMoveSelected(callback: (MenuShell) -> Unit): MenuShell {
+  // TODO - handle callback data
+
+  asObject.connect("move-selected") { callback(this) }
+  return this
+}
+
+public fun MenuShell.onSelectionDone(callback: (MenuShell) -> Unit): MenuShell {
+  // TODO - handle callback data
+
+  asObject.connect("selection-done") { callback(this) }
+  return this
 }

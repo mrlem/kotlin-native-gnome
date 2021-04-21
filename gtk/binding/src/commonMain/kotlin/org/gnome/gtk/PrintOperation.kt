@@ -1,16 +1,5 @@
 // TODO - method: get_error
 // TODO - method: run
-// TODO - signal: begin-print
-// TODO - signal: create-custom-widget
-// TODO - signal: custom-widget-apply
-// TODO - signal: done
-// TODO - signal: draw-page
-// TODO - signal: end-print
-// TODO - signal: paginate
-// TODO - signal: preview
-// TODO - signal: request-page-setup
-// TODO - signal: status-changed
-// TODO - signal: update-custom-widget
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -50,6 +39,7 @@ import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -150,4 +140,86 @@ public fun PrintOperation.setUnit(unit: Unit): kotlin.Unit {
 
 public fun PrintOperation.setUseFullPage(fullPage: Boolean): kotlin.Unit {
   gtk_print_operation_set_use_full_page(this, fullPage.toInt)
+}
+
+public fun PrintOperation.onBeginPrint(callback: (PrintOperation) -> kotlin.Unit): PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("begin-print") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onCreateCustomWidget(callback: (PrintOperation) -> kotlin.Unit):
+    PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("create-custom-widget") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onCustomWidgetApply(callback: (PrintOperation) -> kotlin.Unit):
+    PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("custom-widget-apply") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onDone(callback: (PrintOperation) -> kotlin.Unit): PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("done") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onDrawPage(callback: (PrintOperation) -> kotlin.Unit): PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("draw-page") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onEndPrint(callback: (PrintOperation) -> kotlin.Unit): PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("end-print") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onPaginate(callback: (PrintOperation) -> kotlin.Unit): PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("paginate") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onPreview(callback: (PrintOperation) -> kotlin.Unit): PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("preview") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onRequestPageSetup(callback: (PrintOperation) -> kotlin.Unit):
+    PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("request-page-setup") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onStatusChanged(callback: (PrintOperation) -> kotlin.Unit):
+    PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("status-changed") { callback(this) }
+  return this
+}
+
+public fun PrintOperation.onUpdateCustomWidget(callback: (PrintOperation) -> kotlin.Unit):
+    PrintOperation {
+  // TODO - handle callback data
+
+  asObject.connect("update-custom-widget") { callback(this) }
+  return this
 }

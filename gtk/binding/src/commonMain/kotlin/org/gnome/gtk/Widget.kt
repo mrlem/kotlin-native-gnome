@@ -106,75 +106,6 @@
 // TODO - method: style_get_valist
 // TODO - method: translate_coordinates
 // TODO - method: unregister_window
-// TODO - signal: accel-closures-changed
-// TODO - signal: button-press-event
-// TODO - signal: button-release-event
-// TODO - signal: can-activate-accel
-// TODO - signal: child-notify
-// TODO - signal: composited-changed
-// TODO - signal: configure-event
-// TODO - signal: damage-event
-// TODO - signal: delete-event
-// TODO - signal: destroy
-// TODO - signal: destroy-event
-// TODO - signal: direction-changed
-// TODO - signal: drag-begin
-// TODO - signal: drag-data-delete
-// TODO - signal: drag-data-get
-// TODO - signal: drag-data-received
-// TODO - signal: drag-drop
-// TODO - signal: drag-end
-// TODO - signal: drag-failed
-// TODO - signal: drag-leave
-// TODO - signal: drag-motion
-// TODO - signal: draw
-// TODO - signal: enter-notify-event
-// TODO - signal: event
-// TODO - signal: event-after
-// TODO - signal: focus
-// TODO - signal: focus-in-event
-// TODO - signal: focus-out-event
-// TODO - signal: grab-broken-event
-// TODO - signal: grab-focus
-// TODO - signal: grab-notify
-// TODO - signal: hide
-// TODO - signal: hierarchy-changed
-// TODO - signal: key-press-event
-// TODO - signal: key-release-event
-// TODO - signal: keynav-failed
-// TODO - signal: leave-notify-event
-// TODO - signal: map
-// TODO - signal: map-event
-// TODO - signal: mnemonic-activate
-// TODO - signal: motion-notify-event
-// TODO - signal: move-focus
-// TODO - signal: parent-set
-// TODO - signal: popup-menu
-// TODO - signal: property-notify-event
-// TODO - signal: proximity-in-event
-// TODO - signal: proximity-out-event
-// TODO - signal: query-tooltip
-// TODO - signal: realize
-// TODO - signal: screen-changed
-// TODO - signal: scroll-event
-// TODO - signal: selection-clear-event
-// TODO - signal: selection-get
-// TODO - signal: selection-notify-event
-// TODO - signal: selection-received
-// TODO - signal: selection-request-event
-// TODO - signal: show
-// TODO - signal: show-help
-// TODO - signal: size-allocate
-// TODO - signal: state-changed
-// TODO - signal: state-flags-changed
-// TODO - signal: style-set
-// TODO - signal: style-updated
-// TODO - signal: touch-event
-// TODO - signal: unmap
-// TODO - signal: unmap-event
-// TODO - signal: unrealize
-// TODO - signal: visibility-notify-event
-// TODO - signal: window-state-event
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -347,6 +278,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -871,4 +803,487 @@ public fun Widget.unrealize(): Unit {
 
 public fun Widget.unsetStateFlags(flags: StateFlags): Unit {
   gtk_widget_unset_state_flags(this, flags)
+}
+
+public fun Widget.onAccelClosuresChanged(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("accel-closures-changed") { callback(this) }
+  return this
+}
+
+public fun Widget.onButtonPressEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("button-press-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onButtonReleaseEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("button-release-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onCanActivateAccel(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("can-activate-accel") { callback(this) }
+  return this
+}
+
+public fun Widget.onChildNotify(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("child-notify") { callback(this) }
+  return this
+}
+
+public fun Widget.onCompositedChanged(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("composited-changed") { callback(this) }
+  return this
+}
+
+public fun Widget.onConfigureEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("configure-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onDamageEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("damage-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onDeleteEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("delete-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onDestroy(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("destroy") { callback(this) }
+  return this
+}
+
+public fun Widget.onDestroyEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("destroy-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onDirectionChanged(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("direction-changed") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragBegin(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-begin") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragDataDelete(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-data-delete") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragDataGet(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-data-get") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragDataReceived(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-data-received") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragDrop(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-drop") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragEnd(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-end") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragFailed(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-failed") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragLeave(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-leave") { callback(this) }
+  return this
+}
+
+public fun Widget.onDragMotion(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("drag-motion") { callback(this) }
+  return this
+}
+
+public fun Widget.onDraw(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("draw") { callback(this) }
+  return this
+}
+
+public fun Widget.onEnterNotifyEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("enter-notify-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("event") { callback(this) }
+  return this
+}
+
+public fun Widget.onEventAfter(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("event-after") { callback(this) }
+  return this
+}
+
+public fun Widget.onFocus(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("focus") { callback(this) }
+  return this
+}
+
+public fun Widget.onFocusInEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("focus-in-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onFocusOutEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("focus-out-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onGrabBrokenEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("grab-broken-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onGrabFocus(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("grab-focus") { callback(this) }
+  return this
+}
+
+public fun Widget.onGrabNotify(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("grab-notify") { callback(this) }
+  return this
+}
+
+public fun Widget.onHide(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("hide") { callback(this) }
+  return this
+}
+
+public fun Widget.onHierarchyChanged(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("hierarchy-changed") { callback(this) }
+  return this
+}
+
+public fun Widget.onKeyPressEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("key-press-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onKeyReleaseEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("key-release-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onKeynavFailed(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("keynav-failed") { callback(this) }
+  return this
+}
+
+public fun Widget.onLeaveNotifyEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("leave-notify-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onMap(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("map") { callback(this) }
+  return this
+}
+
+public fun Widget.onMapEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("map-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onMnemonicActivate(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("mnemonic-activate") { callback(this) }
+  return this
+}
+
+public fun Widget.onMotionNotifyEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("motion-notify-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onMoveFocus(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("move-focus") { callback(this) }
+  return this
+}
+
+public fun Widget.onParentSet(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("parent-set") { callback(this) }
+  return this
+}
+
+public fun Widget.onPopupMenu(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("popup-menu") { callback(this) }
+  return this
+}
+
+public fun Widget.onPropertyNotifyEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("property-notify-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onProximityInEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("proximity-in-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onProximityOutEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("proximity-out-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onQueryTooltip(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("query-tooltip") { callback(this) }
+  return this
+}
+
+public fun Widget.onRealize(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("realize") { callback(this) }
+  return this
+}
+
+public fun Widget.onScreenChanged(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("screen-changed") { callback(this) }
+  return this
+}
+
+public fun Widget.onScrollEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("scroll-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onSelectionClearEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("selection-clear-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onSelectionGet(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("selection-get") { callback(this) }
+  return this
+}
+
+public fun Widget.onSelectionNotifyEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("selection-notify-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onSelectionReceived(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("selection-received") { callback(this) }
+  return this
+}
+
+public fun Widget.onSelectionRequestEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("selection-request-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onShow(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("show") { callback(this) }
+  return this
+}
+
+public fun Widget.onShowHelp(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("show-help") { callback(this) }
+  return this
+}
+
+public fun Widget.onSizeAllocate(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("size-allocate") { callback(this) }
+  return this
+}
+
+public fun Widget.onStateChanged(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("state-changed") { callback(this) }
+  return this
+}
+
+public fun Widget.onStateFlagsChanged(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("state-flags-changed") { callback(this) }
+  return this
+}
+
+public fun Widget.onStyleSet(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("style-set") { callback(this) }
+  return this
+}
+
+public fun Widget.onStyleUpdated(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("style-updated") { callback(this) }
+  return this
+}
+
+public fun Widget.onTouchEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("touch-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onUnmap(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("unmap") { callback(this) }
+  return this
+}
+
+public fun Widget.onUnmapEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("unmap-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onUnrealize(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("unrealize") { callback(this) }
+  return this
+}
+
+public fun Widget.onVisibilityNotifyEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("visibility-notify-event") { callback(this) }
+  return this
+}
+
+public fun Widget.onWindowStateEvent(callback: (Widget) -> Unit): Widget {
+  // TODO - handle callback data
+
+  asObject.connect("window-state-event") { callback(this) }
+  return this
 }

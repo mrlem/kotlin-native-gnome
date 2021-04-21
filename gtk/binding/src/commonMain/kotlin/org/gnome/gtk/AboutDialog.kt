@@ -7,7 +7,6 @@
 // TODO - method: set_authors
 // TODO - method: set_documenters
 // TODO - method: set_logo
-// TODO - signal: activate-link
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -38,10 +37,12 @@ import gtk3.gtk_about_dialog_set_website_label
 import gtk3.gtk_about_dialog_set_wrap_license
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -134,3 +135,10 @@ public var AboutDialog.wrapLicense: Boolean
   set(`value`) {
     gtk_about_dialog_set_wrap_license(this, value.toInt)
   }
+
+public fun AboutDialog.onActivateLink(callback: (AboutDialog) -> Unit): AboutDialog {
+  // TODO - handle callback data
+
+  asObject.connect("activate-link") { callback(this) }
+  return this
+}

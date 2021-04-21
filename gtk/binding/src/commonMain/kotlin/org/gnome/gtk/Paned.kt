@@ -1,10 +1,4 @@
 // TODO - method: get_handle_window
-// TODO - signal: accept-position
-// TODO - signal: cancel-position
-// TODO - signal: cycle-child-focus
-// TODO - signal: cycle-handle-focus
-// TODO - signal: move-handle
-// TODO - signal: toggle-handle-focus
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -28,6 +22,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -85,4 +80,46 @@ public fun Paned.pack2(
   shrink: Boolean
 ): Unit {
   gtk_paned_pack2(this, child?.reinterpret(), resize.toInt, shrink.toInt)
+}
+
+public fun Paned.onAcceptPosition(callback: (Paned) -> Unit): Paned {
+  // TODO - handle callback data
+
+  asObject.connect("accept-position") { callback(this) }
+  return this
+}
+
+public fun Paned.onCancelPosition(callback: (Paned) -> Unit): Paned {
+  // TODO - handle callback data
+
+  asObject.connect("cancel-position") { callback(this) }
+  return this
+}
+
+public fun Paned.onCycleChildFocus(callback: (Paned) -> Unit): Paned {
+  // TODO - handle callback data
+
+  asObject.connect("cycle-child-focus") { callback(this) }
+  return this
+}
+
+public fun Paned.onCycleHandleFocus(callback: (Paned) -> Unit): Paned {
+  // TODO - handle callback data
+
+  asObject.connect("cycle-handle-focus") { callback(this) }
+  return this
+}
+
+public fun Paned.onMoveHandle(callback: (Paned) -> Unit): Paned {
+  // TODO - handle callback data
+
+  asObject.connect("move-handle") { callback(this) }
+  return this
+}
+
+public fun Paned.onToggleHandleFocus(callback: (Paned) -> Unit): Paned {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-handle-focus") { callback(this) }
+  return this
 }

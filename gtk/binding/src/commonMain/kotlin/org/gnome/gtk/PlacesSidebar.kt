@@ -7,19 +7,6 @@
 // TODO - method: set_drop_targets_visible
 // TODO - method: set_location
 // TODO - method: set_show_connect_to_server
-// TODO - signal: drag-action-ask
-// TODO - signal: drag-action-requested
-// TODO - signal: drag-perform-drop
-// TODO - signal: mount
-// TODO - signal: open-location
-// TODO - signal: populate-popup
-// TODO - signal: show-connect-to-server
-// TODO - signal: show-enter-location
-// TODO - signal: show-error-message
-// TODO - signal: show-other-locations
-// TODO - signal: show-other-locations-with-flags
-// TODO - signal: show-starred-location
-// TODO - signal: unmount
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -43,10 +30,12 @@ import gtk3.gtk_places_sidebar_set_show_recent
 import gtk3.gtk_places_sidebar_set_show_starred_location
 import gtk3.gtk_places_sidebar_set_show_trash
 import kotlin.Boolean
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -117,3 +106,95 @@ public var PlacesSidebar.showTrash: Boolean
   set(`value`) {
     gtk_places_sidebar_set_show_trash(this, value.toInt)
   }
+
+public fun PlacesSidebar.onDragActionAsk(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("drag-action-ask") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onDragActionRequested(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("drag-action-requested") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onDragPerformDrop(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("drag-perform-drop") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onMount(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("mount") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onOpenLocation(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("open-location") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onPopulatePopup(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("populate-popup") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onShowConnectToServer(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("show-connect-to-server") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onShowEnterLocation(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("show-enter-location") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onShowErrorMessage(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("show-error-message") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onShowOtherLocations(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("show-other-locations") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onShowOtherLocationsWithFlags(callback: (PlacesSidebar) -> Unit):
+    PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("show-other-locations-with-flags") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onShowStarredLocation(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("show-starred-location") { callback(this) }
+  return this
+}
+
+public fun PlacesSidebar.onUnmount(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
+  // TODO - handle callback data
+
+  asObject.connect("unmount") { callback(this) }
+  return this
+}

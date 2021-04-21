@@ -1,10 +1,3 @@
-// TODO - signal: focus-in
-// TODO - signal: focus-out
-// TODO - signal: im-update
-// TODO - signal: key-pressed
-// TODO - signal: key-released
-// TODO - signal: modifiers
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -16,9 +9,11 @@ import gtk3.gtk_event_controller_key_get_im_context
 import gtk3.gtk_event_controller_key_set_im_context
 import kotlin.Boolean
 import kotlin.UInt
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 
 public typealias EventControllerKey = CPointer<GtkEventControllerKey>
@@ -40,3 +35,51 @@ public var EventControllerKey.imContext: IMContext?
 
 public fun EventControllerKey.forward(widget: Widget?): Boolean =
     gtk_event_controller_key_forward(this, widget?.reinterpret()).toBoolean
+
+public fun EventControllerKey.onFocusIn(callback: (EventControllerKey) -> Unit):
+    EventControllerKey {
+  // TODO - handle callback data
+
+  asObject.connect("focus-in") { callback(this) }
+  return this
+}
+
+public fun EventControllerKey.onFocusOut(callback: (EventControllerKey) -> Unit):
+    EventControllerKey {
+  // TODO - handle callback data
+
+  asObject.connect("focus-out") { callback(this) }
+  return this
+}
+
+public fun EventControllerKey.onImUpdate(callback: (EventControllerKey) -> Unit):
+    EventControllerKey {
+  // TODO - handle callback data
+
+  asObject.connect("im-update") { callback(this) }
+  return this
+}
+
+public fun EventControllerKey.onKeyPressed(callback: (EventControllerKey) -> Unit):
+    EventControllerKey {
+  // TODO - handle callback data
+
+  asObject.connect("key-pressed") { callback(this) }
+  return this
+}
+
+public fun EventControllerKey.onKeyReleased(callback: (EventControllerKey) -> Unit):
+    EventControllerKey {
+  // TODO - handle callback data
+
+  asObject.connect("key-released") { callback(this) }
+  return this
+}
+
+public fun EventControllerKey.onModifiers(callback: (EventControllerKey) -> Unit):
+    EventControllerKey {
+  // TODO - handle callback data
+
+  asObject.connect("modifiers") { callback(this) }
+  return this
+}

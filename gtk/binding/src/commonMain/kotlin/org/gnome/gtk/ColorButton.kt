@@ -6,7 +6,6 @@
 // TODO - method: set_color
 // TODO - method: set_rgba
 // TODO - method: set_use_alpha
-// TODO - signal: color-set
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -16,10 +15,12 @@ import gtk3.GtkColorButton
 import gtk3.gtk_color_button_get_title
 import gtk3.gtk_color_button_set_title
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toKString
 
 public typealias ColorButton = CPointer<GtkColorButton>
@@ -47,3 +48,10 @@ public var ColorButton.title: String
   set(`value`) {
     gtk_color_button_set_title(this, value)
   }
+
+public fun ColorButton.onColorSet(callback: (ColorButton) -> Unit): ColorButton {
+  // TODO - handle callback data
+
+  asObject.connect("color-set") { callback(this) }
+  return this
+}

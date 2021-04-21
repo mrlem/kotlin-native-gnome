@@ -1,18 +1,16 @@
 // TODO - method: handle_event
-// TODO - signal: next-match
-// TODO - signal: previous-match
-// TODO - signal: search-changed
-// TODO - signal: stop-search
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import gtk3.GtkSearchEntry
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias SearchEntry = CPointer<GtkSearchEntry>
 
@@ -27,3 +25,31 @@ public val SearchEntry.asWidget: Widget
 
 public val SearchEntry.asEntry: Entry
   get() = reinterpret()
+
+public fun SearchEntry.onNextMatch(callback: (SearchEntry) -> Unit): SearchEntry {
+  // TODO - handle callback data
+
+  asObject.connect("next-match") { callback(this) }
+  return this
+}
+
+public fun SearchEntry.onPreviousMatch(callback: (SearchEntry) -> Unit): SearchEntry {
+  // TODO - handle callback data
+
+  asObject.connect("previous-match") { callback(this) }
+  return this
+}
+
+public fun SearchEntry.onSearchChanged(callback: (SearchEntry) -> Unit): SearchEntry {
+  // TODO - handle callback data
+
+  asObject.connect("search-changed") { callback(this) }
+  return this
+}
+
+public fun SearchEntry.onStopSearch(callback: (SearchEntry) -> Unit): SearchEntry {
+  // TODO - handle callback data
+
+  asObject.connect("stop-search") { callback(this) }
+  return this
+}

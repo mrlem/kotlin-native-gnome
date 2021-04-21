@@ -1,6 +1,5 @@
 // TODO - method: get_font_name
 // TODO - method: set_font_name
-// TODO - signal: font-set
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -19,10 +18,12 @@ import gtk3.gtk_font_button_set_use_font
 import gtk3.gtk_font_button_set_use_size
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -76,3 +77,10 @@ public var FontButton.useSize: Boolean
   set(`value`) {
     gtk_font_button_set_use_size(this, value.toInt)
   }
+
+public fun FontButton.onFontSet(callback: (FontButton) -> Unit): FontButton {
+  // TODO - handle callback data
+
+  asObject.connect("font-set") { callback(this) }
+  return this
+}

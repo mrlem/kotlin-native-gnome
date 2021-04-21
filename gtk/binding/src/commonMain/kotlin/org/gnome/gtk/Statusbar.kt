@@ -1,6 +1,3 @@
-// TODO - signal: text-popped
-// TODO - signal: text-pushed
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -19,6 +16,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias Statusbar = CPointer<GtkStatusbar>
 
@@ -56,4 +54,18 @@ public fun Statusbar.remove(contextId: UInt, messageId: UInt): Unit {
 
 public fun Statusbar.removeAll(contextId: UInt): Unit {
   gtk_statusbar_remove_all(this, contextId)
+}
+
+public fun Statusbar.onTextPopped(callback: (Statusbar) -> Unit): Statusbar {
+  // TODO - handle callback data
+
+  asObject.connect("text-popped") { callback(this) }
+  return this
+}
+
+public fun Statusbar.onTextPushed(callback: (Statusbar) -> Unit): Statusbar {
+  // TODO - handle callback data
+
+  asObject.connect("text-pushed") { callback(this) }
+  return this
 }

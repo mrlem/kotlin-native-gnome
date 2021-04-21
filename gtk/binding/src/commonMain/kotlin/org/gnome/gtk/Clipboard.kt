@@ -17,7 +17,6 @@
 // TODO - method: wait_for_targets
 // TODO - method: wait_for_uris
 // TODO - method: wait_is_target_available
-// TODO - signal: owner-change
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -39,6 +38,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toKString
 
@@ -72,3 +72,10 @@ public fun Clipboard.waitIsTextAvailable(): Boolean =
 
 public fun Clipboard.waitIsUrisAvailable(): Boolean =
     gtk_clipboard_wait_is_uris_available(this).toBoolean
+
+public fun Clipboard.onOwnerChange(callback: (Clipboard) -> Unit): Clipboard {
+  // TODO - handle callback data
+
+  asObject.connect("owner-change") { callback(this) }
+  return this
+}

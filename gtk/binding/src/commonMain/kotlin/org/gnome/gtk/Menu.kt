@@ -9,8 +9,6 @@
 // TODO - method: set_screen
 // TODO - method: set_tearoff_state
 // TODO - method: set_title
-// TODO - signal: move-scroll
-// TODO - signal: popped-up
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -43,6 +41,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -126,4 +125,18 @@ public fun Menu.reposition(): Unit {
 
 public fun Menu.setActive(index: UInt): Unit {
   gtk_menu_set_active(this, index)
+}
+
+public fun Menu.onMoveScroll(callback: (Menu) -> Unit): Menu {
+  // TODO - handle callback data
+
+  asObject.connect("move-scroll") { callback(this) }
+  return this
+}
+
+public fun Menu.onPoppedUp(callback: (Menu) -> Unit): Menu {
+  // TODO - handle callback data
+
+  asObject.connect("popped-up") { callback(this) }
+  return this
 }

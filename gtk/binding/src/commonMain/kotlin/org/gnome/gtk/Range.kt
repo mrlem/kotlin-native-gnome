@@ -2,10 +2,6 @@
 // TODO - method: get_range_rect
 // TODO - method: get_slider_range
 // TODO - method: set_min_slider_size
-// TODO - signal: adjust-bounds
-// TODO - signal: change-value
-// TODO - signal: move-slider
-// TODO - signal: value-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -44,6 +40,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -130,4 +127,32 @@ public fun Range.setIncrements(step: Double, page: Double): Unit {
 
 public fun Range.setRange(min: Double, max: Double): Unit {
   gtk_range_set_range(this, min, max)
+}
+
+public fun Range.onAdjustBounds(callback: (Range) -> Unit): Range {
+  // TODO - handle callback data
+
+  asObject.connect("adjust-bounds") { callback(this) }
+  return this
+}
+
+public fun Range.onChangeValue(callback: (Range) -> Unit): Range {
+  // TODO - handle callback data
+
+  asObject.connect("change-value") { callback(this) }
+  return this
+}
+
+public fun Range.onMoveSlider(callback: (Range) -> Unit): Range {
+  // TODO - handle callback data
+
+  asObject.connect("move-slider") { callback(this) }
+  return this
+}
+
+public fun Range.onValueChanged(callback: (Range) -> Unit): Range {
+  // TODO - handle callback data
+
+  asObject.connect("value-changed") { callback(this) }
+  return this
 }

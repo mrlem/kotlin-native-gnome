@@ -16,20 +16,6 @@
 // TODO - method: set_icon_from_stock
 // TODO - method: set_inner_border
 // TODO - method: set_tabs
-// TODO - signal: activate
-// TODO - signal: backspace
-// TODO - signal: copy-clipboard
-// TODO - signal: cut-clipboard
-// TODO - signal: delete-from-cursor
-// TODO - signal: icon-press
-// TODO - signal: icon-release
-// TODO - signal: insert-at-cursor
-// TODO - signal: insert-emoji
-// TODO - signal: move-cursor
-// TODO - signal: paste-clipboard
-// TODO - signal: populate-popup
-// TODO - signal: preedit-changed
-// TODO - signal: toggle-overwrite
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -104,6 +90,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toChar
 import org.gnome.toInt
@@ -295,4 +282,102 @@ public fun Entry.textIndexToLayoutIndex(textIndex: Int): Int =
 
 public fun Entry.unsetInvisibleChar(): Unit {
   gtk_entry_unset_invisible_char(this)
+}
+
+public fun Entry.onActivate(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("activate") { callback(this) }
+  return this
+}
+
+public fun Entry.onBackspace(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("backspace") { callback(this) }
+  return this
+}
+
+public fun Entry.onCopyClipboard(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("copy-clipboard") { callback(this) }
+  return this
+}
+
+public fun Entry.onCutClipboard(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("cut-clipboard") { callback(this) }
+  return this
+}
+
+public fun Entry.onDeleteFromCursor(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("delete-from-cursor") { callback(this) }
+  return this
+}
+
+public fun Entry.onIconPress(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("icon-press") { callback(this) }
+  return this
+}
+
+public fun Entry.onIconRelease(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("icon-release") { callback(this) }
+  return this
+}
+
+public fun Entry.onInsertAtCursor(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("insert-at-cursor") { callback(this) }
+  return this
+}
+
+public fun Entry.onInsertEmoji(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("insert-emoji") { callback(this) }
+  return this
+}
+
+public fun Entry.onMoveCursor(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("move-cursor") { callback(this) }
+  return this
+}
+
+public fun Entry.onPasteClipboard(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("paste-clipboard") { callback(this) }
+  return this
+}
+
+public fun Entry.onPopulatePopup(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("populate-popup") { callback(this) }
+  return this
+}
+
+public fun Entry.onPreeditChanged(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("preedit-changed") { callback(this) }
+  return this
+}
+
+public fun Entry.onToggleOverwrite(callback: (Entry) -> Unit): Entry {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-overwrite") { callback(this) }
+  return this
 }

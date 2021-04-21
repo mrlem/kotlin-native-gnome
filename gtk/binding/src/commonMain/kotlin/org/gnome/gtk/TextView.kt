@@ -14,22 +14,6 @@
 // TODO - method: im_context_filter_keypress
 // TODO - method: set_tabs
 // TODO - method: window_to_buffer_coords
-// TODO - signal: backspace
-// TODO - signal: copy-clipboard
-// TODO - signal: cut-clipboard
-// TODO - signal: delete-from-cursor
-// TODO - signal: extend-selection
-// TODO - signal: insert-at-cursor
-// TODO - signal: insert-emoji
-// TODO - signal: move-cursor
-// TODO - signal: move-viewport
-// TODO - signal: paste-clipboard
-// TODO - signal: populate-popup
-// TODO - signal: preedit-changed
-// TODO - signal: select-all
-// TODO - signal: set-anchor
-// TODO - signal: toggle-cursor-visible
-// TODO - signal: toggle-overwrite
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -99,6 +83,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -310,3 +295,115 @@ public fun TextView.setBorderWindowSize(type: TextWindowType, size: Int): Unit {
 
 public fun TextView.startsDisplayLine(iter: TextIter?): Boolean =
     gtk_text_view_starts_display_line(this, iter?.reinterpret()).toBoolean
+
+public fun TextView.onBackspace(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("backspace") { callback(this) }
+  return this
+}
+
+public fun TextView.onCopyClipboard(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("copy-clipboard") { callback(this) }
+  return this
+}
+
+public fun TextView.onCutClipboard(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("cut-clipboard") { callback(this) }
+  return this
+}
+
+public fun TextView.onDeleteFromCursor(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("delete-from-cursor") { callback(this) }
+  return this
+}
+
+public fun TextView.onExtendSelection(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("extend-selection") { callback(this) }
+  return this
+}
+
+public fun TextView.onInsertAtCursor(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("insert-at-cursor") { callback(this) }
+  return this
+}
+
+public fun TextView.onInsertEmoji(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("insert-emoji") { callback(this) }
+  return this
+}
+
+public fun TextView.onMoveCursor(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("move-cursor") { callback(this) }
+  return this
+}
+
+public fun TextView.onMoveViewport(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("move-viewport") { callback(this) }
+  return this
+}
+
+public fun TextView.onPasteClipboard(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("paste-clipboard") { callback(this) }
+  return this
+}
+
+public fun TextView.onPopulatePopup(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("populate-popup") { callback(this) }
+  return this
+}
+
+public fun TextView.onPreeditChanged(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("preedit-changed") { callback(this) }
+  return this
+}
+
+public fun TextView.onSelectAll(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("select-all") { callback(this) }
+  return this
+}
+
+public fun TextView.onSetAnchor(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("set-anchor") { callback(this) }
+  return this
+}
+
+public fun TextView.onToggleCursorVisible(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-cursor-visible") { callback(this) }
+  return this
+}
+
+public fun TextView.onToggleOverwrite(callback: (TextView) -> Unit): TextView {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-overwrite") { callback(this) }
+  return this
+}

@@ -3,7 +3,6 @@
 // TODO - method: get_transitions_enabled
 // TODO - method: set_pointing_to
 // TODO - method: set_transitions_enabled
-// TODO - signal: closed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -28,6 +27,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -84,4 +84,11 @@ public fun Popover.popdown(): Unit {
 
 public fun Popover.popup(): Unit {
   gtk_popover_popup(this)
+}
+
+public fun Popover.onClosed(callback: (Popover) -> Unit): Popover {
+  // TODO - handle callback data
+
+  asObject.connect("closed") { callback(this) }
+  return this
 }

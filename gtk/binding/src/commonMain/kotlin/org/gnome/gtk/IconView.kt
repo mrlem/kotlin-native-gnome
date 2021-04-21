@@ -11,14 +11,6 @@
 // TODO - method: get_tooltip_context
 // TODO - method: get_visible_range
 // TODO - method: selected_foreach
-// TODO - signal: activate-cursor-item
-// TODO - signal: item-activated
-// TODO - signal: move-cursor
-// TODO - signal: select-all
-// TODO - signal: select-cursor-item
-// TODO - signal: selection-changed
-// TODO - signal: toggle-cursor-item
-// TODO - signal: unselect-all
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -81,6 +73,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -266,4 +259,60 @@ public fun IconView.unsetModelDragDest(): Unit {
 
 public fun IconView.unsetModelDragSource(): Unit {
   gtk_icon_view_unset_model_drag_source(this)
+}
+
+public fun IconView.onActivateCursorItem(callback: (IconView) -> Unit): IconView {
+  // TODO - handle callback data
+
+  asObject.connect("activate-cursor-item") { callback(this) }
+  return this
+}
+
+public fun IconView.onItemActivated(callback: (IconView) -> Unit): IconView {
+  // TODO - handle callback data
+
+  asObject.connect("item-activated") { callback(this) }
+  return this
+}
+
+public fun IconView.onMoveCursor(callback: (IconView) -> Unit): IconView {
+  // TODO - handle callback data
+
+  asObject.connect("move-cursor") { callback(this) }
+  return this
+}
+
+public fun IconView.onSelectAll(callback: (IconView) -> Unit): IconView {
+  // TODO - handle callback data
+
+  asObject.connect("select-all") { callback(this) }
+  return this
+}
+
+public fun IconView.onSelectCursorItem(callback: (IconView) -> Unit): IconView {
+  // TODO - handle callback data
+
+  asObject.connect("select-cursor-item") { callback(this) }
+  return this
+}
+
+public fun IconView.onSelectionChanged(callback: (IconView) -> Unit): IconView {
+  // TODO - handle callback data
+
+  asObject.connect("selection-changed") { callback(this) }
+  return this
+}
+
+public fun IconView.onToggleCursorItem(callback: (IconView) -> Unit): IconView {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-cursor-item") { callback(this) }
+  return this
+}
+
+public fun IconView.onUnselectAll(callback: (IconView) -> Unit): IconView {
+  // TODO - handle callback data
+
+  asObject.connect("unselect-all") { callback(this) }
+  return this
 }

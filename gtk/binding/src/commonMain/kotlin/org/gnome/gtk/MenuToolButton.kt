@@ -1,5 +1,3 @@
-// TODO - signal: show-menu
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -15,6 +13,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias MenuToolButton = CPointer<GtkMenuToolButton>
 
@@ -51,4 +50,11 @@ public fun MenuToolButton.setArrowTooltipMarkup(markup: String): Unit {
 
 public fun MenuToolButton.setArrowTooltipText(text: String): Unit {
   gtk_menu_tool_button_set_arrow_tooltip_text(this, text)
+}
+
+public fun MenuToolButton.onShowMenu(callback: (MenuToolButton) -> Unit): MenuToolButton {
+  // TODO - handle callback data
+
+  asObject.connect("show-menu") { callback(this) }
+  return this
 }

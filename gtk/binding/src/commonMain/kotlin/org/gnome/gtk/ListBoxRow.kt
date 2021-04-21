@@ -1,5 +1,3 @@
-// TODO - signal: activate
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -21,6 +19,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -67,3 +66,10 @@ public fun ListBoxRow.changed(): Unit {
 }
 
 public fun ListBoxRow.isSelected(): Boolean = gtk_list_box_row_is_selected(this).toBoolean
+
+public fun ListBoxRow.onActivate(callback: (ListBoxRow) -> Unit): ListBoxRow {
+  // TODO - handle callback data
+
+  asObject.connect("activate") { callback(this) }
+  return this
+}

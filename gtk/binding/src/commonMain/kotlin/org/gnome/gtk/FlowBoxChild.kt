@@ -1,5 +1,3 @@
-// TODO - signal: activate
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -15,6 +13,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 
 public typealias FlowBoxChild = CPointer<GtkFlowBoxChild>
@@ -42,3 +41,10 @@ public fun FlowBoxChild.changed(): Unit {
 }
 
 public fun FlowBoxChild.isSelected(): Boolean = gtk_flow_box_child_is_selected(this).toBoolean
+
+public fun FlowBoxChild.onActivate(callback: (FlowBoxChild) -> Unit): FlowBoxChild {
+  // TODO - handle callback data
+
+  asObject.connect("activate") { callback(this) }
+  return this
+}

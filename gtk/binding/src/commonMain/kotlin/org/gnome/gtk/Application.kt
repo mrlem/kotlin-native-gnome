@@ -10,9 +10,6 @@
 // TODO - method: set_accels_for_action
 // TODO - method: set_app_menu
 // TODO - method: set_menubar
-// TODO - signal: query-end
-// TODO - signal: window-added
-// TODO - signal: window-removed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -25,6 +22,7 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toKList
 
@@ -63,6 +61,27 @@ public fun Application.removeWindow(window: Window?): Unit {
 
 public fun Application.uninhibit(cookie: UInt): Unit {
   gtk_application_uninhibit(this, cookie)
+}
+
+public fun Application.onQueryEnd(callback: (Application) -> Unit): Application {
+  // TODO - handle callback data
+
+  asObject.connect("query-end") { callback(this) }
+  return this
+}
+
+public fun Application.onWindowAdded(callback: (Application) -> Unit): Application {
+  // TODO - handle callback data
+
+  asObject.connect("window-added") { callback(this) }
+  return this
+}
+
+public fun Application.onWindowRemoved(callback: (Application) -> Unit): Application {
+  // TODO - handle callback data
+
+  asObject.connect("window-removed") { callback(this) }
+  return this
 }
 
 ///////////////////////////////////////////////////////////////////////////

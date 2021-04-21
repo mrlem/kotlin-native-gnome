@@ -1,10 +1,5 @@
 // TODO - method: get_increments
 // TODO - method: get_range
-// TODO - signal: change-value
-// TODO - signal: input
-// TODO - signal: output
-// TODO - signal: value-changed
-// TODO - signal: wrapped
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -40,6 +35,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -124,4 +120,39 @@ public fun SpinButton.spin(direction: SpinType, increment: Double): Unit {
 
 public fun SpinButton.update(): Unit {
   gtk_spin_button_update(this)
+}
+
+public fun SpinButton.onChangeValue(callback: (SpinButton) -> Unit): SpinButton {
+  // TODO - handle callback data
+
+  asObject.connect("change-value") { callback(this) }
+  return this
+}
+
+public fun SpinButton.onInput(callback: (SpinButton) -> Unit): SpinButton {
+  // TODO - handle callback data
+
+  asObject.connect("input") { callback(this) }
+  return this
+}
+
+public fun SpinButton.onOutput(callback: (SpinButton) -> Unit): SpinButton {
+  // TODO - handle callback data
+
+  asObject.connect("output") { callback(this) }
+  return this
+}
+
+public fun SpinButton.onValueChanged(callback: (SpinButton) -> Unit): SpinButton {
+  // TODO - handle callback data
+
+  asObject.connect("value-changed") { callback(this) }
+  return this
+}
+
+public fun SpinButton.onWrapped(callback: (SpinButton) -> Unit): SpinButton {
+  // TODO - handle callback data
+
+  asObject.connect("wrapped") { callback(this) }
+  return this
 }

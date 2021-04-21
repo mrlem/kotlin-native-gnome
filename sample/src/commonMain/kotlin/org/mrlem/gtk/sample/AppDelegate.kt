@@ -9,14 +9,14 @@ class AppDelegate(private val ui: SampleUI) {
     init {
         ui.apply {
             // setup about dialog
-            aboutButton.onClick {
+            aboutButton.onClicked {
                 aboutDialog.asDialog.run()
                 aboutDialog.asWidget.hide()
             }
 
             // setup conversion
             euroAmountEntry.asObject.onActivate { convert() }
-            convertButton.onClick { convert() }
+            convertButton.onClicked { convert() }
 
             // show UI
             mainWindow.asWidget.showAll()

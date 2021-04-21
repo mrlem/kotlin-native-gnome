@@ -7,11 +7,6 @@
 // TODO - method: set_attributes
 // TODO - method: set_ellipsize
 // TODO - method: set_line_wrap_mode
-// TODO - signal: activate-current-link
-// TODO - signal: activate-link
-// TODO - signal: copy-clipboard
-// TODO - signal: move-cursor
-// TODO - signal: populate-popup
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -68,6 +63,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -206,4 +202,39 @@ public fun Label.setPattern(pattern: String): Unit {
 
 public fun Label.setTextWithMnemonic(str: String): Unit {
   gtk_label_set_text_with_mnemonic(this, str)
+}
+
+public fun Label.onActivateCurrentLink(callback: (Label) -> Unit): Label {
+  // TODO - handle callback data
+
+  asObject.connect("activate-current-link") { callback(this) }
+  return this
+}
+
+public fun Label.onActivateLink(callback: (Label) -> Unit): Label {
+  // TODO - handle callback data
+
+  asObject.connect("activate-link") { callback(this) }
+  return this
+}
+
+public fun Label.onCopyClipboard(callback: (Label) -> Unit): Label {
+  // TODO - handle callback data
+
+  asObject.connect("copy-clipboard") { callback(this) }
+  return this
+}
+
+public fun Label.onMoveCursor(callback: (Label) -> Unit): Label {
+  // TODO - handle callback data
+
+  asObject.connect("move-cursor") { callback(this) }
+  return this
+}
+
+public fun Label.onPopulatePopup(callback: (Label) -> Unit): Label {
+  // TODO - handle callback data
+
+  asObject.connect("populate-popup") { callback(this) }
+  return this
 }

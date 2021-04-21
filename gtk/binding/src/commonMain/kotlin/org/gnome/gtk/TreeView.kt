@@ -33,21 +33,6 @@
 // TODO - method: set_search_equal_func
 // TODO - method: set_search_position_func
 // TODO - method: set_vadjustment
-// TODO - signal: columns-changed
-// TODO - signal: cursor-changed
-// TODO - signal: expand-collapse-cursor-row
-// TODO - signal: move-cursor
-// TODO - signal: row-activated
-// TODO - signal: row-collapsed
-// TODO - signal: row-expanded
-// TODO - signal: select-all
-// TODO - signal: select-cursor-parent
-// TODO - signal: select-cursor-row
-// TODO - signal: start-interactive-search
-// TODO - signal: test-collapse-row
-// TODO - signal: test-expand-row
-// TODO - signal: toggle-cursor-row
-// TODO - signal: unselect-all
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -127,6 +112,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -373,4 +359,109 @@ public fun TreeView.unsetRowsDragDest(): Unit {
 
 public fun TreeView.unsetRowsDragSource(): Unit {
   gtk_tree_view_unset_rows_drag_source(this)
+}
+
+public fun TreeView.onColumnsChanged(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("columns-changed") { callback(this) }
+  return this
+}
+
+public fun TreeView.onCursorChanged(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("cursor-changed") { callback(this) }
+  return this
+}
+
+public fun TreeView.onExpandCollapseCursorRow(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("expand-collapse-cursor-row") { callback(this) }
+  return this
+}
+
+public fun TreeView.onMoveCursor(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("move-cursor") { callback(this) }
+  return this
+}
+
+public fun TreeView.onRowActivated(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("row-activated") { callback(this) }
+  return this
+}
+
+public fun TreeView.onRowCollapsed(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("row-collapsed") { callback(this) }
+  return this
+}
+
+public fun TreeView.onRowExpanded(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("row-expanded") { callback(this) }
+  return this
+}
+
+public fun TreeView.onSelectAll(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("select-all") { callback(this) }
+  return this
+}
+
+public fun TreeView.onSelectCursorParent(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("select-cursor-parent") { callback(this) }
+  return this
+}
+
+public fun TreeView.onSelectCursorRow(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("select-cursor-row") { callback(this) }
+  return this
+}
+
+public fun TreeView.onStartInteractiveSearch(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("start-interactive-search") { callback(this) }
+  return this
+}
+
+public fun TreeView.onTestCollapseRow(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("test-collapse-row") { callback(this) }
+  return this
+}
+
+public fun TreeView.onTestExpandRow(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("test-expand-row") { callback(this) }
+  return this
+}
+
+public fun TreeView.onToggleCursorRow(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("toggle-cursor-row") { callback(this) }
+  return this
+}
+
+public fun TreeView.onUnselectAll(callback: (TreeView) -> Unit): TreeView {
+  // TODO - handle callback data
+
+  asObject.connect("unselect-all") { callback(this) }
+  return this
 }

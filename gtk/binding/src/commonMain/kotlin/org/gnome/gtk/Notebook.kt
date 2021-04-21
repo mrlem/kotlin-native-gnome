@@ -1,15 +1,5 @@
 // TODO - method: get_tab_hborder
 // TODO - method: get_tab_vborder
-// TODO - signal: change-current-page
-// TODO - signal: create-window
-// TODO - signal: focus-tab
-// TODO - signal: move-focus-out
-// TODO - signal: page-added
-// TODO - signal: page-removed
-// TODO - signal: page-reordered
-// TODO - signal: reorder-tab
-// TODO - signal: select-page
-// TODO - signal: switch-page
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -66,6 +56,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -237,4 +228,74 @@ public fun Notebook.setTabLabelText(child: Widget?, tabText: String): Unit {
 
 public fun Notebook.setTabReorderable(child: Widget?, reorderable: Boolean): Unit {
   gtk_notebook_set_tab_reorderable(this, child?.reinterpret(), reorderable.toInt)
+}
+
+public fun Notebook.onChangeCurrentPage(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("change-current-page") { callback(this) }
+  return this
+}
+
+public fun Notebook.onCreateWindow(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("create-window") { callback(this) }
+  return this
+}
+
+public fun Notebook.onFocusTab(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("focus-tab") { callback(this) }
+  return this
+}
+
+public fun Notebook.onMoveFocusOut(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("move-focus-out") { callback(this) }
+  return this
+}
+
+public fun Notebook.onPageAdded(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("page-added") { callback(this) }
+  return this
+}
+
+public fun Notebook.onPageRemoved(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("page-removed") { callback(this) }
+  return this
+}
+
+public fun Notebook.onPageReordered(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("page-reordered") { callback(this) }
+  return this
+}
+
+public fun Notebook.onReorderTab(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("reorder-tab") { callback(this) }
+  return this
+}
+
+public fun Notebook.onSelectPage(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("select-page") { callback(this) }
+  return this
+}
+
+public fun Notebook.onSwitchPage(callback: (Notebook) -> Unit): Notebook {
+  // TODO - handle callback data
+
+  asObject.connect("switch-page") { callback(this) }
+  return this
 }

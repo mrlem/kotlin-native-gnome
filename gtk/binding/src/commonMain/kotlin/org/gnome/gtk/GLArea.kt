@@ -2,9 +2,6 @@
 // TODO - method: get_error
 // TODO - method: get_required_version
 // TODO - method: set_error
-// TODO - signal: create-context
-// TODO - signal: render
-// TODO - signal: resize
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -32,6 +29,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -90,4 +88,25 @@ public fun GLArea.queueRender(): Unit {
 
 public fun GLArea.setRequiredVersion(major: Int, minor: Int): Unit {
   gtk_gl_area_set_required_version(this, major, minor)
+}
+
+public fun GLArea.onCreateContext(callback: (GLArea) -> Unit): GLArea {
+  // TODO - handle callback data
+
+  asObject.connect("create-context") { callback(this) }
+  return this
+}
+
+public fun GLArea.onRender(callback: (GLArea) -> Unit): GLArea {
+  // TODO - handle callback data
+
+  asObject.connect("render") { callback(this) }
+  return this
+}
+
+public fun GLArea.onResize(callback: (GLArea) -> Unit): GLArea {
+  // TODO - handle callback data
+
+  asObject.connect("resize") { callback(this) }
+  return this
 }

@@ -24,19 +24,6 @@
 // TODO - method: serialize
 // TODO - method: unregister_deserialize_format
 // TODO - method: unregister_serialize_format
-// TODO - signal: apply-tag
-// TODO - signal: begin-user-action
-// TODO - signal: changed
-// TODO - signal: delete-range
-// TODO - signal: end-user-action
-// TODO - signal: insert-child-anchor
-// TODO - signal: insert-pixbuf
-// TODO - signal: insert-text
-// TODO - signal: mark-deleted
-// TODO - signal: mark-set
-// TODO - signal: modified-changed
-// TODO - signal: paste-done
-// TODO - signal: remove-tag
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -97,6 +84,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -338,4 +326,95 @@ public fun TextBuffer.selectRange(ins: TextIter?, bound: TextIter?): Unit {
 
 public fun TextBuffer.setText(text: String, len: Int): Unit {
   gtk_text_buffer_set_text(this, text, len)
+}
+
+public fun TextBuffer.onApplyTag(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("apply-tag") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onBeginUserAction(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("begin-user-action") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onChanged(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("changed") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onDeleteRange(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("delete-range") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onEndUserAction(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("end-user-action") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onInsertChildAnchor(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("insert-child-anchor") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onInsertPixbuf(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("insert-pixbuf") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onInsertText(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("insert-text") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onMarkDeleted(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("mark-deleted") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onMarkSet(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("mark-set") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onModifiedChanged(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("modified-changed") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onPasteDone(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("paste-done") { callback(this) }
+  return this
+}
+
+public fun TextBuffer.onRemoveTag(callback: (TextBuffer) -> Unit): TextBuffer {
+  // TODO - handle callback data
+
+  asObject.connect("remove-tag") { callback(this) }
+  return this
 }

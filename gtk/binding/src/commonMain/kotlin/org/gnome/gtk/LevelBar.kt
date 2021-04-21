@@ -1,5 +1,4 @@
 // TODO - method: get_offset_value
-// TODO - signal: offset-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -26,6 +25,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 
@@ -76,4 +76,11 @@ public fun LevelBar.addOffsetValue(name: String, `value`: Double): Unit {
 
 public fun LevelBar.removeOffsetValue(name: String): Unit {
   gtk_level_bar_remove_offset_value(this, name)
+}
+
+public fun LevelBar.onOffsetChanged(callback: (LevelBar) -> Unit): LevelBar {
+  // TODO - handle callback data
+
+  asObject.connect("offset-changed") { callback(this) }
+  return this
 }

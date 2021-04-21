@@ -1,7 +1,5 @@
 // TODO - method: changed
 // TODO - method: value_changed
-// TODO - signal: changed
-// TODO - signal: value-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -29,6 +27,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 
 public typealias Adjustment = CPointer<GtkAdjustment>
 
@@ -90,4 +89,18 @@ public fun Adjustment.configure(
   pageSize: Double
 ): Unit {
   gtk_adjustment_configure(this, value, lower, upper, stepIncrement, pageIncrement, pageSize)
+}
+
+public fun Adjustment.onChanged(callback: (Adjustment) -> Unit): Adjustment {
+  // TODO - handle callback data
+
+  asObject.connect("changed") { callback(this) }
+  return this
+}
+
+public fun Adjustment.onValueChanged(callback: (Adjustment) -> Unit): Adjustment {
+  // TODO - handle callback data
+
+  asObject.connect("value-changed") { callback(this) }
+  return this
 }

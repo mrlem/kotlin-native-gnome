@@ -6,8 +6,6 @@
 // TODO - method: find
 // TODO - method: get_modifier_mask
 // TODO - method: query
-// TODO - signal: accel-activate
-// TODO - signal: accel-changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -22,6 +20,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 
 public typealias AccelGroup = CPointer<GtkAccelGroup>
@@ -38,4 +37,18 @@ public fun AccelGroup.lock(): Unit {
 
 public fun AccelGroup.unlock(): Unit {
   gtk_accel_group_unlock(this)
+}
+
+public fun AccelGroup.onAccelActivate(callback: (AccelGroup) -> Unit): AccelGroup {
+  // TODO - handle callback data
+
+  asObject.connect("accel-activate") { callback(this) }
+  return this
+}
+
+public fun AccelGroup.onAccelChanged(callback: (AccelGroup) -> Unit): AccelGroup {
+  // TODO - handle callback data
+
+  asObject.connect("accel-changed") { callback(this) }
+  return this
 }

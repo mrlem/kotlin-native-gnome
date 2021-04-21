@@ -1,7 +1,3 @@
-// TODO - signal: application-activated
-// TODO - signal: application-selected
-// TODO - signal: populate-popup
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -21,10 +17,12 @@ import gtk3.gtk_app_chooser_widget_set_show_other
 import gtk3.gtk_app_chooser_widget_set_show_recommended
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -81,3 +79,27 @@ public var AppChooserWidget.showRecommended: Boolean
   set(`value`) {
     gtk_app_chooser_widget_set_show_recommended(this, value.toInt)
   }
+
+public fun AppChooserWidget.onApplicationActivated(callback: (AppChooserWidget) -> Unit):
+    AppChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("application-activated") { callback(this) }
+  return this
+}
+
+public fun AppChooserWidget.onApplicationSelected(callback: (AppChooserWidget) -> Unit):
+    AppChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("application-selected") { callback(this) }
+  return this
+}
+
+public fun AppChooserWidget.onPopulatePopup(callback: (AppChooserWidget) -> Unit):
+    AppChooserWidget {
+  // TODO - handle callback data
+
+  asObject.connect("populate-popup") { callback(this) }
+  return this
+}

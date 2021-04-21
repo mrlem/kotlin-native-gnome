@@ -11,11 +11,6 @@
 // TODO - method: handles_sequence
 // TODO - method: set_sequence_state
 // TODO - method: set_window
-// TODO - signal: begin
-// TODO - signal: cancel
-// TODO - signal: end
-// TODO - signal: sequence-state-changed
-// TODO - signal: update
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -33,6 +28,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.connect
 import org.gnome.toBoolean
 
 public typealias Gesture = CPointer<GtkGesture>
@@ -59,4 +55,39 @@ public fun Gesture.setState(state: EventSequenceState): Boolean = gtk_gesture_se
 
 public fun Gesture.ungroup(): Unit {
   gtk_gesture_ungroup(this)
+}
+
+public fun Gesture.onBegin(callback: (Gesture) -> Unit): Gesture {
+  // TODO - handle callback data
+
+  asObject.connect("begin") { callback(this) }
+  return this
+}
+
+public fun Gesture.onCancel(callback: (Gesture) -> Unit): Gesture {
+  // TODO - handle callback data
+
+  asObject.connect("cancel") { callback(this) }
+  return this
+}
+
+public fun Gesture.onEnd(callback: (Gesture) -> Unit): Gesture {
+  // TODO - handle callback data
+
+  asObject.connect("end") { callback(this) }
+  return this
+}
+
+public fun Gesture.onSequenceStateChanged(callback: (Gesture) -> Unit): Gesture {
+  // TODO - handle callback data
+
+  asObject.connect("sequence-state-changed") { callback(this) }
+  return this
+}
+
+public fun Gesture.onUpdate(callback: (Gesture) -> Unit): Gesture {
+  // TODO - handle callback data
+
+  asObject.connect("update") { callback(this) }
+  return this
 }
