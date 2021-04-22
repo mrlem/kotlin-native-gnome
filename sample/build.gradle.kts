@@ -14,9 +14,17 @@ kotlin {
         }
     }
 
+    // for UI-tied code
     val nativeMain by sourceSets.getting {
         dependencies {
             implementation(project(":gtk-binding"))
+        }
+    }
+
+    // for UI-independent code
+    val commonMain by sourceSets.getting {
+        dependencies {
+            implementation(kotlin("stdlib-common"))
         }
     }
 }

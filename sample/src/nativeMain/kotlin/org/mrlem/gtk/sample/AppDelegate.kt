@@ -3,7 +3,6 @@ package org.mrlem.gtk.sample
 import binding.SampleUI
 import org.gnome.gobject.onActivate
 import org.gnome.gtk.*
-import kotlin.math.roundToInt
 
 class AppDelegate(private val ui: SampleUI) {
 
@@ -29,7 +28,7 @@ class AppDelegate(private val ui: SampleUI) {
     }
 
     private fun convert(euros: Float?) = euros
-        ?.let { (euros * 1.19f * 100).roundToInt() / 100f }
+        ?.let { Converter.eurosToDollars(euros) }
         ?.let { "$ $it" }
         ?: "-"
 
