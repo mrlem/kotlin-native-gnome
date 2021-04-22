@@ -1,6 +1,6 @@
 # Kotlin Native GNOME
 
-An API to make **GNOME application** creation easy in **Kotlin Native**, with **Glade** UI integration.
+A set of tools to make **GNOME application** creation easy in **Kotlin Native**, with **Glade** UI integration.
 
 ![Screenshot](doc/readme-screenshot.png)
 
