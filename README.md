@@ -21,11 +21,10 @@ Still a *work in progress*. Here is the detail:
   - methods throwing errors are not handled
   - only generates GTK elements for now (but the parser has been tested with other GIR files)
 * packaging:
-  - not yet exposed on [JitPack](https://jitpack.io), so not easy to integrate
+  - not yet exposed on any Maven repo (Jitpack is not an option due to libgtk absence)
 * platform support:
   - Ubuntu 20.04 .. ok
-  - MacOSX .. ko (untested)
-  - Windows .. ko (untested)
+  - other platforms is not enabled yet
 
 ## Build
 
