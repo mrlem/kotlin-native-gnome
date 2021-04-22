@@ -1,0 +1,5 @@
+package org.gnome.gtk
+
+import interop.GtkClipboardTargetsReceivedFunc
+
+public typealias ClipboardTargetsReceivedFunc = GtkClipboardTargetsReceivedFunc

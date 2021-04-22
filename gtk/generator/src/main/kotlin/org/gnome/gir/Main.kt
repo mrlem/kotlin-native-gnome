@@ -8,7 +8,7 @@ import kotlin.system.exitProcess
 const val GNOME_PACKAGE = "org.gnome"
 const val GOBJECT_PACKAGE = "$GNOME_PACKAGE.gobject"
 const val GTK_PACKAGE = "$GNOME_PACKAGE.gtk"
-const val GTK_CINTEROP_PACKAGE = "gtk3"
+const val INTEROP_PACKAGE = "interop"
 const val KOTLIN_CINTEROP_PACKAGE = "kotlinx.cinterop"
 /**
  * Generates the GTK binding based on GObject introspection (GIR) files.

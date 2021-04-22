@@ -4,7 +4,7 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName
-import org.gnome.gir.GTK_CINTEROP_PACKAGE
+import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.CallableDefinition
 import org.gnome.gir.model.TypeDefinition
@@ -58,7 +58,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
             // block
             .addStatement(
                 "$returnKeyword%M(this$paramsTemplate)$returnTemplate",
-                MemberName(GTK_CINTEROP_PACKAGE, cIdentifier),
+                MemberName(INTEROP_PACKAGE, cIdentifier),
                 *paramsArray,
                 *returnArray
             )

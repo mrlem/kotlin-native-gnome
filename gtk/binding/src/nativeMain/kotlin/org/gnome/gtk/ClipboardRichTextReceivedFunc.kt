@@ -1,0 +1,5 @@
+package org.gnome.gtk
+
+import interop.GtkClipboardRichTextReceivedFunc
+
+public typealias ClipboardRichTextReceivedFunc = GtkClipboardRichTextReceivedFunc

@@ -3,8 +3,11 @@ plugins {
     application
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    // kotlin generation
     implementation("com.squareup:kotlinpoet:1.8.0")
 
     implementation(kotlin("stdlib"))

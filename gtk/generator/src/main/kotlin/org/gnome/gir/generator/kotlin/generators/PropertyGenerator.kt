@@ -1,7 +1,7 @@
 package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.*
-import org.gnome.gir.GTK_CINTEROP_PACKAGE
+import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.CallableDefinition
 import org.gnome.gir.model.TypeDefinition
@@ -32,7 +32,7 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
                     FunSpec.getterBuilder()
                         .addStatement(
                             "return %M(this)$returnTemplate",
-                            MemberName(GTK_CINTEROP_PACKAGE, getterCIdentifier),
+                            MemberName(INTEROP_PACKAGE, getterCIdentifier),
                             *returnArray
                         )
                         .build()
@@ -55,7 +55,7 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
                                     .addParameter("value", typeInfo.kType)
                                     .addStatement(
                                         "%M(this$paramTemplate)",
-                                        MemberName(GTK_CINTEROP_PACKAGE, setter.callable.cIdentifier!!),
+                                        MemberName(INTEROP_PACKAGE, setter.callable.cIdentifier!!),
                                         *paramArray
                                     )
                                     .build()

@@ -3,7 +3,7 @@ package org.gnome.gir.generator.kotlin.generators
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import org.gnome.gir.GNOME_PACKAGE
-import org.gnome.gir.GTK_CINTEROP_PACKAGE
+import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.ClassDefinition
 import org.gnome.gir.model.NamespaceDefinition
@@ -49,7 +49,7 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
         // type
         .addTypeAlias(
             TypeAliasSpec
-                .builder(name, cpointerClassName.plusParameter(ClassName(GTK_CINTEROP_PACKAGE, cType)))
+                .builder(name, cpointerClassName.plusParameter(ClassName(INTEROP_PACKAGE, cType)))
                 .build()
         )
         // converters

@@ -1,7 +1,7 @@
 package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.*
-import org.gnome.gir.GTK_CINTEROP_PACKAGE
+import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.kType
 import org.gnome.gir.generator.kotlin.generators.ext.reinterpretMemberName
 import org.gnome.gir.generator.kotlin.generators.ext.snakeCaseToCamelCase
@@ -51,7 +51,7 @@ fun TypeSpec.Builder.addConstructor(className: ClassName, constructor: CallableD
             // block
             .addStatement(
                 "return %M($paramsTemplate)!!.%M()",
-                MemberName(GTK_CINTEROP_PACKAGE, cIdentifier),
+                MemberName(INTEROP_PACKAGE, cIdentifier),
                 *paramsArray,
                 reinterpretMemberName
             )
