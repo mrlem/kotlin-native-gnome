@@ -44,8 +44,7 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             "RemoveRedundantBackticks",
             "RedundantVisibilityModifier",
             "unused",
-            "RedundantUnitReturnType",
-            "FunctionName"
+            "RedundantUnitReturnType"
         )
         // type
         .addTypeAlias(
