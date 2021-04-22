@@ -18,7 +18,7 @@
 // TODO - method: wait_for_uris
 // TODO - method: wait_is_target_available
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 

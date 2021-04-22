@@ -1,7 +1,7 @@
 // TODO - method: get_ellipsize
 // TODO - method: set_ellipsize
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 

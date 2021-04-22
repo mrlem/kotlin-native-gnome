@@ -4,7 +4,7 @@
 // TODO - method: set_alternative_button_order
 // TODO - method: set_alternative_button_order_from_array
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 

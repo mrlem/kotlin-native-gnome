@@ -12,20 +12,28 @@
 // TODO - method: set_app_menu
 // TODO - method: set_menubar
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
-import gtk3.*
-import kotlinx.cinterop.*
+import gtk3.GtkApplication
+import gtk3.gtk_application_add_window
+import gtk3.gtk_application_get_active_window
+import gtk3.gtk_application_get_window_by_id
+import gtk3.gtk_application_inhibit
+import gtk3.gtk_application_is_inhibited
+import gtk3.gtk_application_prefers_app_menu
+import gtk3.gtk_application_remove_window
+import gtk3.gtk_application_uninhibit
 import kotlin.Boolean
 import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
+import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.gobject.connect
 import org.gnome.toBoolean
-import org.gnome.toKList
 
 public typealias Application = CPointer<GtkApplication>
 
@@ -86,30 +94,3 @@ public fun Application.onWindowRemoved(callback: (Application) -> Unit): Applica
   asObject.connect("window-removed") { callback(this) }
   return this
 }
-
-///////////////////////////////////////////////////////////////////////////
-// Public API (not generated)
-///////////////////////////////////////////////////////////////////////////
-
-// TODO - investigate why this is not generated
-@Suppress("FunctionName")
-fun Application(id: String): Application = gtk_application_new(id, G_APPLICATION_FLAGS_NONE)!!
-
-fun Application.initAndRun(args: Array<String>, init: Application.() -> Unit) = run {
-  init()
-  memScoped {
-    g_application_run(this@run.reinterpret(), args.size, args.map { it.cstr.ptr }.toCValues())
-  }
-  g_object_unref(this)
-}
-
-@Suppress("FunctionName")
-fun Application(id: String, args: Array<String>, init: Application.() -> Unit) = Application(id).initAndRun(args, init)
-
-// TODO - investigate why this is not generated
-fun Application.newWindow() = gtk_application_window_new(this)!!.reinterpret<GtkWindow>()
-
-val Application.windows: List<Window>
-  get() = gtk_application_get_windows(this)
-    ?.toKList<GtkWindow>()
-    .orEmpty()

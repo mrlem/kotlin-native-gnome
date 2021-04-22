@@ -16,16 +16,24 @@
 // TODO - method: value_from_string
 // TODO - method: value_from_string_type
 //
-@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
+@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
-import gtk3.*
+import gtk3.GType
+import gtk3.GtkBuilder
+import gtk3.gtk_builder_get_application
+import gtk3.gtk_builder_get_translation_domain
+import gtk3.gtk_builder_get_type_from_name
+import gtk3.gtk_builder_new
+import gtk3.gtk_builder_new_from_file
+import gtk3.gtk_builder_new_from_resource
+import gtk3.gtk_builder_new_from_string
+import gtk3.gtk_builder_set_application
+import gtk3.gtk_builder_set_translation_domain
 import kotlin.Long
 import kotlin.String
 import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.cValuesOf
-import kotlinx.cinterop.convert
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -62,24 +70,3 @@ public var Builder.translationDomain: String
 
 public fun Builder.getTypeFromName(typeName: String): GType = gtk_builder_get_type_from_name(this,
     typeName)
-
-///////////////////////////////////////////////////////////////////////////
-// Public API (not generated)
-///////////////////////////////////////////////////////////////////////////
-
-@Throws(ParsingException::class)
-fun Builder.addFrom(text: String) {
-    val errors = cValuesOf<GError>()
-    val result: Int = gtk_builder_add_from_string(
-        this,
-        text,
-        text.length.convert(),
-        errors
-    ).convert()
-    if (result == 0) throw ParsingException()
-}
-
-// TODO - why isn't this function mapped or todo?
-operator fun Builder.get(id: String): Object = gtk_builder_get_object(this, id)!!
-
-class ParsingException : Exception("glade parsing failed")
