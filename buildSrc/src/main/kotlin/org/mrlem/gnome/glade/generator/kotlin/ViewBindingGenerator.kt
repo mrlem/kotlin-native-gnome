@@ -59,7 +59,7 @@ class ViewBindingGenerator {
         val reinterpretMemberName = MemberName(KOTLIN_CINTEROP_PACKAGE, "reinterpret")
 
         return FileSpec.builder("binding", uiClassName)
-            .addImport(GTK_PACKAGE, "get")
+            .addImport(GTK_ADDITIONS_PACKAGE, "get")
             .addAnnotation(
                 AnnotationSpec.builder(ClassName("", "Suppress"))
                     .addMember("%S", "RedundantVisibilityModifier")
@@ -78,7 +78,7 @@ class ViewBindingGenerator {
                         .initializer(
                             "%M.new().apply { %M(source) }",
                             MemberName(GTK_PACKAGE, "BuilderFactory"),
-                            MemberName(GTK_PACKAGE, "addFrom")
+                            MemberName(GTK_ADDITIONS_PACKAGE, "addFrom")
                         )
                         .build()
                     )
@@ -108,6 +108,7 @@ class ViewBindingGenerator {
 
     companion object {
         private const val GTK_PACKAGE = "org.gnome.gtk"
+        private const val GTK_ADDITIONS_PACKAGE = "org.mrlem.gnome.gtk"
         private const val KOTLIN_CINTEROP_PACKAGE = "kotlinx.cinterop"
     }
 
