@@ -8,6 +8,24 @@ An API to make **GNOME application** creation easy in **Kotlin Native**, with **
 * a **Glade UI gradle plugin**: produces UI classes for type-safe widget access & glade file integration in the executable
 * a sample app
 
+## Current status
+
+Still a work in progress. Here is the detail:
+
+* [Glade](https://glade.gnome.org/) gradle plugin: 100% complete
+* [GIR](https://gi.readthedocs.io) parsing: 100% complete
+* generated API coverage is progressing well. Notable short-comings:
+  - some data-types are not handled yet (like GLists and arrays)
+  - lambda-based signal handlers don't forward any data
+  - methods throwing errors are not handled
+  - only generates GTK elements for now (but the parser has been tested with other GIR files)
+* packaging:
+  - not yet expososed on [JitPack](https://jitpack.io), so not easy to integrate
+* platform support:
+  - Ubuntu 20.04 .. ok
+  - MacOSX .. ko (untested)
+  - Windows .. ko (untested)
+
 ## Build
 
 Prerequisites:
@@ -30,22 +48,6 @@ See [sample](sample/src/commonMain/kotlin/org/mrlem/gtk/sample) module.
 The objective is to focus on what matters to the app developer: developing  a UI, and easily integrate it into the code.
 
 ![Generator](doc/readme-generator.png)
-
-## Current status
-
-* glade gradle plugin: 100% complete
-* [GIR](https://gi.readthedocs.io) parsing: 100% complete
-* generated API coverage is progressing well. Notable short-comings:
-  - some data-types are not handled yet (like GLists and arrays)
-  - lambda-based signal handlers don't forward any data
-  - methods throwing errors are not handled
-  - only generates GTK elements for now (but the parser has been tested with other GIR files)
-* packaging:
-  - not yet expososed on jitpack, so not easy to integrate
-* platform support:
-  - Ubuntu 20.04 .. ok
-  - MacOSX .. ko (untested)
-  - Windows .. ko (untested)
 
 ## See also
 
