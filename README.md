@@ -39,9 +39,13 @@ The objective is to focus on what matters to the app developer: developing  a UI
   - some data-types are not handled yet (like GLists and arrays)
   - lambda-based signal handlers don't forward any data
   - methods throwing errors are not handled
-* not yet expososed on jitpack, so not easy to integrate
-* automated API generation only exports GTK elements for now
-* tested on Ubuntu 20.04, probably broken on MacOSX and Windows for now
+  - only generates GTK elements for now (but the parser has been tested with other GIR files)
+* packaging:
+  - not yet expososed on jitpack, so not easy to integrate
+* platform support:
+  - Ubuntu 20.04 .. ok
+  - MacOSX .. ko (untested)
+  - Windows .. ko (untested)
 
 ## See also
 
