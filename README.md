@@ -1,8 +1,6 @@
-# Sample Glade GTK application
+# Kotlin Native GNOME
 
-This sample demonstrates how to create a **GTK application** based on a **Glade** UI, using **Kotlin Native**.
-
-![Screenshot](doc/readme-screenshot.png)
+An API to make **GTK application** easy in **Kotlin Native**, with **Glade** UI integration.
 
 ## Features
 
@@ -18,7 +16,7 @@ Prerequisites:
 sudo apt install libgtk-3-dev libtinfo5
 ```
 
-Then:
+To build the sample:
 
 ```bash
 cd sample
@@ -41,6 +39,8 @@ The objective is to focus on what matters to the app developer: developing  a UI
   - some data-types are not handled yet (like GLists and arrays)
   - lambda-based signal handlers don't forward any data
   - methods throwing errors are not handled
+* not yet expososed on jitpack, so not easy to integrate
+* automated API generation only exports GTK elements for now
 * tested on Ubuntu 20.04
 
 ## See also
