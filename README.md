@@ -2,6 +2,8 @@
 
 An API to make **GNOME application** creation easy in **Kotlin Native**, with **Glade** UI integration.
 
+![Screenshot](doc/readme-screenshot.png)
+
 ## Features
 
 * a **lightweight GTK object binding**: no wrapper objects, just extension functions & aliases
@@ -10,8 +12,7 @@ An API to make **GNOME application** creation easy in **Kotlin Native**, with **
 
 ## Current status
 
-Still a work in progress. Here is the detail:
-
+Still a *work in progress*. Here is the detail:
 * [Glade](https://glade.gnome.org/) gradle plugin: 100% complete
 * [GIR](https://gi.readthedocs.io) parsing: 100% complete
 * generated API coverage is progressing well. Notable short-comings:
@@ -20,7 +21,7 @@ Still a work in progress. Here is the detail:
   - methods throwing errors are not handled
   - only generates GTK elements for now (but the parser has been tested with other GIR files)
 * packaging:
-  - not yet expososed on [JitPack](https://jitpack.io), so not easy to integrate
+  - not yet exposed on [JitPack](https://jitpack.io), so not easy to integrate
 * platform support:
   - Ubuntu 20.04 .. ok
   - MacOSX .. ko (untested)
@@ -34,7 +35,7 @@ Prerequisites:
 sudo apt install libgtk-3-dev libtinfo5
 ```
 
-To build the sample:
+To build & run the sample:
 
 ```bash
 cd sample
