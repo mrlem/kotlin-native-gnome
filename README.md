@@ -41,7 +41,7 @@ The objective is to focus on what matters to the app developer: developing  a UI
   - methods throwing errors are not handled
 * not yet expososed on jitpack, so not easy to integrate
 * automated API generation only exports GTK elements for now
-* tested on Ubuntu 20.04
+* tested on Ubuntu 20.04, probably broken on MacOSX and Windows for now
 
 ## See also
 
