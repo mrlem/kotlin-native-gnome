@@ -21,12 +21,7 @@ fun main() {
         exitProcess(1)
     }
 
-    // source GIR file
-    val url = BindingGenerator::class.java.getResource("/gtk3.gir")
-    println("generating binding for: $url to ${sourcesDir.absolutePath}")
-    val sourceText = url.readText()
-
-    // parse & generate
+    // parse GIR file & generate
     val reader = RepositoryReader()
         .apply {
             read("/gtk3.gir")
