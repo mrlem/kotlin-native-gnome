@@ -5,7 +5,7 @@ An API to make **GNOME application** creation easy in **Kotlin Native**, with **
 ## Features
 
 * a **lightweight GTK object binding**: no wrapper objects, just extension functions & aliases
-* a gradle **glade view binding generator**: type-safe widget access & ui source is embedded into the executable
+* a **Glade UI gradle plugin**: produces UI classes for type-safe widget access & glade file integration in the executable
 * a sample app
 
 ## Build
