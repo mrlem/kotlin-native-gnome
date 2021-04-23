@@ -35,22 +35,19 @@ dependencies {
 }
 ```
 
-Then you can get started: take a look at the [sample project](sample)!
-
-The objective is to focus on what matters to the app developer: developing  a UI, and easily integrate it into the code.
-
-![Generator](doc/readme-generator.png)
+Next steps:
+* to get started: take a look at the [sample project](sample).
+* to learn more: see [internals](doc/INTERNALS.md).
 
 ## Current status
 
-Still a *work in progress*. Here is the detail:
+Still a *work in progress*:
 * [Glade](https://glade.gnome.org/) gradle plugin: 100% complete
-* [GIR](https://gi.readthedocs.io) parsing: 100% complete
-* generated API coverage is progressing well. Notable short-comings:
-  - some data-types are not handled yet (like GLists and arrays)
-  - lambda-based signal handlers don't forward any data
-  - methods throwing errors are not handled
-  - only generates GTK elements for now (but the parser has been tested with other GIR files)
+* API coverage is still incomplete:
+  - some unhandled data types (like GLists and arrays)
+  - no signal handlers data
+  - no handling of methods throwing errors
+  - no generation outside GTK (e.g. GLib, GObject)
 * platform support: Linux only for now
 
 ## See also

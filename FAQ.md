@@ -1,5 +1,10 @@
 # FAQ
 
+## Why support only Linux?
+
+Because this is my primary target, as it is where GTK is the native UI.
+Support for Windows / MacOSX shouldn't be too hard to add, if anyone is interested (just need to update build files).
+
 ## Why create a new GTK binding instead of reusing one of the existing ones?
 
 This question is perfectly legitimate. I would have liked to rely on an existing binding (I could have focused on creating tools around it),
