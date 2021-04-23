@@ -29,8 +29,16 @@ kotlin {
 publishing {
     repositories {
         maven {
-            name = "OSSRH"
+            name = "OSSRHStaging"
             url = URI.create("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = System.getenv("ORG_GRADLE_PROJECT_SONATYPE_NEXUS_USERNAME")
+                password = System.getenv("ORG_GRADLE_PROJECT_SONATYPE_NEXUS_PASSWORD")
+            }
+        }
+        maven {
+            name = "OSSRHSnapshots"
+            url = URI.create("https://oss.sonatype.org/content/repositories/snapshots/")
             credentials {
                 username = System.getenv("ORG_GRADLE_PROJECT_SONATYPE_NEXUS_USERNAME")
                 password = System.getenv("ORG_GRADLE_PROJECT_SONATYPE_NEXUS_PASSWORD")
