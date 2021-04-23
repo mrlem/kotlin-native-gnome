@@ -9,6 +9,8 @@ plugins {
 group = "org.mrlem.gnome"
 version = "0.1.3-SNAPSHOT"
 
+extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
+
 repositories {
     mavenCentral()
 }
@@ -80,4 +82,8 @@ publishing {
             sign(it)
         }
     }
+}
+
+tasks.withType<Sign>().configureEach {
+    onlyIf { project.extra["isReleaseVersion"] as Boolean }
 }
