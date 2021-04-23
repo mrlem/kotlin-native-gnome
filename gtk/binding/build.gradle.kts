@@ -3,10 +3,11 @@ import java.net.URI
 plugins {
     kotlin("multiplatform")
     `maven-publish`
+    signing
 }
 
 group = "org.mrlem.gnome"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.2"
 
 repositories {
     mavenCentral()
@@ -63,6 +64,12 @@ publishing {
                 developerConnection.set("scm:git:ssh://github.com/mrlem/kotlin-native-gnome.git")
                 url.set("https://github.com/mrlem/kotlin-native-gnome")
             }
+        }
+    }
+
+    signing {
+        publishing.publications.withType(MavenPublication::class.java).forEach {
+            sign(it)
         }
     }
 }
