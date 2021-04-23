@@ -1,4 +1,5 @@
 # Kotlin Native GNOME
+![maven-central](https://img.shields.io/maven-central/v/org.mrlem.gnome/gtk-binding)
 
 A set of tools to make **GNOME application** creation easy in **Kotlin Native**, with **Glade** UI integration.
 
@@ -10,6 +11,36 @@ A set of tools to make **GNOME application** creation easy in **Kotlin Native**,
 * a **Glade UI gradle plugin**: produces UI classes for type-safe widget access & glade file integration in the executable
 * a sample app
 
+## Usage
+
+Prerequisites:
+
+```bash
+sudo apt install libgtk-3-dev libtinfo5
+```
+
+Then in your build.gradle.kts:
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+```
+
+And:
+
+```kotlin
+dependencies {
+    implementation("org.mrlem.gnome:gtk-binding:0.1.2")
+}
+```
+
+Then you can get started: take a look at the [sample project](sample)!
+
+The objective is to focus on what matters to the app developer: developing  a UI, and easily integrate it into the code.
+
+![Generator](doc/readme-generator.png)
+
 ## Current status
 
 Still a *work in progress*. Here is the detail:
@@ -20,34 +51,7 @@ Still a *work in progress*. Here is the detail:
   - lambda-based signal handlers don't forward any data
   - methods throwing errors are not handled
   - only generates GTK elements for now (but the parser has been tested with other GIR files)
-* packaging:
-  - not yet exposed on any Maven repo (Jitpack is not an option due to libgtk absence)
-* platform support:
-  - Ubuntu 20.04 .. ok
-  - other platforms is not enabled yet
-
-## Build
-
-Prerequisites:
-
-```bash
-sudo apt install libgtk-3-dev libtinfo5
-```
-
-To build & run the sample:
-
-```bash
-cd sample
-../gradlew runDebugExecutableCommon
-```
-
-## Usage
-
-See [sample](sample/src/commonMain/kotlin/org/mrlem/gtk/sample) module.
-
-The objective is to focus on what matters to the app developer: developing  a UI, and easily integrate it into the code.
-
-![Generator](doc/readme-generator.png)
+* platform support: Linux only for now
 
 ## See also
 
