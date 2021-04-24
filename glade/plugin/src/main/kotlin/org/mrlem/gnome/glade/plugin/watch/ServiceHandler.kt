@@ -1,4 +1,4 @@
-package org.mrlem.gnome.glade.watch
+package org.mrlem.gnome.glade.plugin.watch
 
 import java.util.*
 

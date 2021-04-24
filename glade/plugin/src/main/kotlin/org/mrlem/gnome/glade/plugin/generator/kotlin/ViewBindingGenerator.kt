@@ -1,10 +1,10 @@
-package org.mrlem.gnome.glade.generator.kotlin
+package org.mrlem.gnome.glade.plugin.generator.kotlin
 
 import com.squareup.kotlinpoet.*
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.mrlem.gnome.glade.plugin.model.Widget
+import org.mrlem.gnome.glade.plugin.parser.xml.Parser
 import java.io.File
-import org.mrlem.gnome.glade.model.Widget
-import org.mrlem.gnome.glade.parser.xml.Parser
 
 /**
  * Glade widgets view binding generator: generates a class that:

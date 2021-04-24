@@ -1,4 +1,4 @@
-package org.mrlem.gnome.glade.watch
+package org.mrlem.gnome.glade.plugin.watch
 
 import dev.vishna.watchservice.*
 import dev.vishna.watchservice.KWatchEvent.Kind.*
@@ -8,16 +8,15 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import kotlin.concurrent.fixedRateTimer
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import org.mrlem.gnome.glade.ViewBindingGeneratorPlugin
-import org.mrlem.gnome.glade.generator.kotlin.isGladeFile
-import org.mrlem.gnome.glade.generator.kotlin.ViewBindingGenerator
-import org.mrlem.gnome.glade.watch.ServiceHandler.Service
+import org.mrlem.gnome.glade.plugin.GladePlugin
+import org.mrlem.gnome.glade.plugin.generator.kotlin.ViewBindingGenerator
+import org.mrlem.gnome.glade.plugin.generator.kotlin.isGladeFile
 
 /**
  * Service that, when started monitors kotlin source sets resources, and regenerates glade UI classes when glade files
  * change.
  */
-class WatcherService : Service {
+class WatcherService : ServiceHandler.Service {
 
     private val watchChannels = mutableListOf<KWatchChannel>()
     private var timer: Timer? = null
@@ -25,7 +24,7 @@ class WatcherService : Service {
 
     @ObsoleteCoroutinesApi
     override fun onStart() {
-        ViewBindingGeneratorPlugin.sourceSetsWithGeneratedDir
+        GladePlugin.sourceSetsWithGeneratedDir
             .forEach { (sourceSet, generatedDir) ->
                 sourceSet.resources.srcDirs
                     .filter { it.exists() }

@@ -1,4 +1,4 @@
-package org.mrlem.gnome.glade.model
+package org.mrlem.gnome.glade.plugin.model
 
 /**
  * Reference to a widget in the glade file.

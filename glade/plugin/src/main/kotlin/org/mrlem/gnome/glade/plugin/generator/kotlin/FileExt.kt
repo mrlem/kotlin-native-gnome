@@ -1,7 +1,7 @@
-package org.mrlem.gnome.glade.generator.kotlin
+package org.mrlem.gnome.glade.plugin.generator.kotlin
 
+import org.mrlem.gnome.glade.plugin.GladePlugin.Companion.GLADE_EXTENSION
 import java.io.File
-import org.mrlem.gnome.glade.ViewBindingGeneratorPlugin.Companion.GLADE_EXTENSION
 
 val File.uiClassName
     get() = "${nameWithoutExtension.snakeCaseToCamelCase}UI"

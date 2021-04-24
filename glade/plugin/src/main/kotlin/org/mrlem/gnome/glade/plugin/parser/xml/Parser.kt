@@ -1,8 +1,8 @@
-package org.mrlem.gnome.glade.parser.xml
+package org.mrlem.gnome.glade.plugin.parser.xml
 
 import groovy.util.Node
 import groovy.util.XmlParser
-import org.mrlem.gnome.glade.model.Widget
+import org.mrlem.gnome.glade.plugin.model.Widget
 
 /**
  * Glade XML file parser: parses all named widgets.

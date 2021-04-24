@@ -1,11 +1,11 @@
-package org.mrlem.gnome.glade
+package org.mrlem.gnome.glade.plugin
 
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import org.mrlem.gnome.glade.watch.ServiceHandler
+import org.mrlem.gnome.glade.plugin.watch.ServiceHandler
 
 /**
  * Gradle plugin that generates a UI class for each glade XML file present in resources.
@@ -16,7 +16,7 @@ import org.mrlem.gnome.glade.watch.ServiceHandler
  *
  * Note that the glade file needs to end in .glade.
  */
-class ViewBindingGeneratorPlugin : Plugin<Project> {
+class GladePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         val startTask = project.task("gladeWatchStart") {
@@ -70,4 +70,5 @@ class ViewBindingGeneratorPlugin : Plugin<Project> {
         const val GLADE_EXTENSION = ".glade"
         lateinit var sourceSetsWithGeneratedDir: Map<KotlinSourceSet, File>
     }
+
 }
