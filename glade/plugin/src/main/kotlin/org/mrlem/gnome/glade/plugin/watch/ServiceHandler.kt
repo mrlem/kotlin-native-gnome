@@ -14,7 +14,6 @@ object ServiceHandler {
     fun start() {
         if (!started) {
             started = true
-            println("warning: start")
             service.onStart()
         }
     }
@@ -23,7 +22,6 @@ object ServiceHandler {
         if (started) {
             started = false
             service.onStop()
-            println("warning: stop")
             timer?.cancel()
             timer?.purge()
         }
