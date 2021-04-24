@@ -5,6 +5,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
 kotlin {
@@ -17,7 +18,7 @@ kotlin {
     // for UI-tied code
     val nativeMain by sourceSets.getting {
         dependencies {
-            implementation(project(":gtk-binding"))
+            implementation("org.mrlem.gnome:gtk-binding:0.1.3-SNAPSHOT")
         }
     }
 
