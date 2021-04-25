@@ -11,11 +11,8 @@ import org.gnome.gtk.ApplicationFactory
 import org.gnome.gtk.Window
 import org.gnome.toKList
 
-// TODO - investigate why this is not generated
-fun ApplicationFactory.new(id: String): Application = gtk_application_new(id, G_APPLICATION_FLAGS_NONE)!!
-
 fun ApplicationFactory.new(id: String, args: Array<String>, init: Application.() -> Unit) =
-  ApplicationFactory.new(id)
+  ApplicationFactory.new(id, G_APPLICATION_FLAGS_NONE)
     .initAndRun(args, init)
 
 fun Application.initAndRun(args: Array<String>, init: Application.() -> Unit) = run {

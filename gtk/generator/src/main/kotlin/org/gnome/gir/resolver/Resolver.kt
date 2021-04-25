@@ -11,6 +11,7 @@ class Resolver(repository: RepositoryDefinition) {
     private val callbacks = mutableSetOf<String>()
     private val interfaces = mutableSetOf<String>()
     private val enumsInfo = mutableMapOf<String, EnumInfo>()
+    private val bitFieldsInfo = mutableMapOf<String, BitFieldInfo>()
 
     init {
         // add all classes
@@ -20,7 +21,11 @@ class Resolver(repository: RepositoryDefinition) {
             namespace.interfaces.forEach { interfaces.add("${namespace.name}.${it.name}") }
             namespace.enums.forEach {
                 // stored under C type here
-                enumsInfo["${namespace.name}${it.name}"] = EnumInfo(it, namespace)
+                enumsInfo[it.glibTypeName!!] = EnumInfo(it, namespace)
+            }
+            namespace.bitFields.forEach {
+                // stored under C type here
+                bitFieldsInfo[it.glibTypeName!!] = BitFieldInfo(it, namespace)
             }
             namespace.classes.forEach {
                 classesInfo["${namespace.name}.${it.name}"] = ClassInfo(it, namespace, emptyList())
@@ -39,27 +44,33 @@ class Resolver(repository: RepositoryDefinition) {
 
     fun classDefinition(className: String) = classesInfo[className]?.definition
 
-    fun enumDefinition(type: AnyType) = (type as? TypeDefinition)?.cType?.let { enumsInfo[it]?.definition }
+    fun enumInfo(type: AnyType) = (type as? TypeDefinition)?.cType?.let { enumsInfo[it] }
+
+    fun bitFieldInfo(type: AnyType) = (type as? TypeDefinition)?.cType?.let { bitFieldsInfo[it] }
 
     fun isClass(name: String) = classesInfo[name] != null
-
-    fun isRecord(name: String) = records.contains(name)
 
     fun isCallback(name: String) = callbacks.contains(name)
 
     fun isInterface(name: String) = interfaces.contains(name)
 
-    fun isEnum(name: String) = enumsInfo.contains(name)
-
     fun isEnum(type: AnyType) = (type as? TypeDefinition)?.cType?.let { isEnum(it) } == true
 
-    fun isCPointer(name: String) = isClass(name) || isRecord(name) || isCallback(name) || isInterface(name)
+    fun isBitField(type: AnyType) = (type as? TypeDefinition)?.cType?.let { isBitField(it) } == true
 
     fun isCPointer(type: AnyType) = (type as? TypeDefinition)?.name?.let { isCPointer(it) } == true
 
     ///////////////////////////////////////////////////////////////////////////
     // Private
     ///////////////////////////////////////////////////////////////////////////
+
+    private fun isRecord(name: String) = records.contains(name)
+
+    private fun isCPointer(name: String) = isClass(name) || isRecord(name) || isCallback(name) || isInterface(name)
+
+    private fun isBitField(name: String) = bitFieldsInfo.contains(name)
+
+    private fun isEnum(name: String) = enumsInfo.contains(name)
 
     private fun ClassInfo.resolveAncestors(ancestors: Stack<String>) {
         val parent = definition.parent
@@ -83,8 +94,13 @@ class Resolver(repository: RepositoryDefinition) {
         var ancestors: List<String>
     )
 
-    private data class EnumInfo(
+    data class EnumInfo(
         val definition: EnumDefinition,
+        val namespace: NamespaceDefinition,
+    )
+
+    data class BitFieldInfo(
+        val definition: BitFieldDefinition,
         val namespace: NamespaceDefinition,
     )
 

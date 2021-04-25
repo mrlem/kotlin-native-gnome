@@ -4,7 +4,6 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.TypeName
 import org.gnome.gir.GNOME_PACKAGE
-import org.gnome.gir.GTK_PACKAGE
 import org.gnome.gir.resolver.KnownType
 import org.gnome.gir.model.ArrayTypeDefinition
 import org.gnome.gir.model.TypeDefinition
@@ -14,12 +13,19 @@ import org.gnome.gir.resolver.Resolver
 fun AnyType.typeInfo(resolver: Resolver): TypeInfo? {
     val isCPointer = resolver.isCPointer(this)
     val isEnum = !isCPointer && resolver.isEnum(this)
-    val kType =
-        if (isEnum) {
-            ClassName(GTK_PACKAGE, resolver.enumDefinition(this)!!.name)
-        } else {
-            kType
+    val isBitField = !isCPointer && resolver.isBitField(this)
+    val kType = when {
+        isEnum -> {
+            val info = resolver.enumInfo(this)!!
+            ClassName("${GNOME_PACKAGE}.${info.namespace.name!!.toLowerCase()}", info.definition.name)
         }
+        isBitField -> {
+            val info = resolver.bitFieldInfo(this)!!
+            ClassName("${GNOME_PACKAGE}.${info.namespace.name!!.toLowerCase()}", info.definition.name)
+        }
+        else ->
+            kType
+    }
             ?: return null
 
     return TypeInfo(

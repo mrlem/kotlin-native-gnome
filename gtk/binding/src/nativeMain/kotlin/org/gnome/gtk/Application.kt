@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - method: add_accelerator
 // TODO - method: get_accels_for_action
 // TODO - method: get_actions_for_accel
@@ -22,6 +21,7 @@ import interop.gtk_application_get_active_window
 import interop.gtk_application_get_window_by_id
 import interop.gtk_application_inhibit
 import interop.gtk_application_is_inhibited
+import interop.gtk_application_new
 import interop.gtk_application_prefers_app_menu
 import interop.gtk_application_remove_window
 import interop.gtk_application_uninhibit
@@ -31,6 +31,7 @@ import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.ApplicationFlags
 import org.gnome.gobject.Object
 import org.gnome.gobject.connect
 import org.gnome.toBoolean
@@ -43,7 +44,10 @@ public val Application.asObject: Object
 public val Application.asApplication: org.gnome.gio.Application
   get() = reinterpret()
 
-public object ApplicationFactory
+public object ApplicationFactory {
+  public fun new(applicationId: String, flags: ApplicationFlags): Application =
+      gtk_application_new(applicationId, flags)!!.reinterpret()
+}
 
 public val Application.activeWindow: Window?
   get() = gtk_application_get_active_window(this)?.reinterpret()

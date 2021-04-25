@@ -10,6 +10,7 @@ const val GOBJECT_PACKAGE = "$GNOME_PACKAGE.gobject"
 const val GTK_PACKAGE = "$GNOME_PACKAGE.gtk"
 const val INTEROP_PACKAGE = "interop"
 const val KOTLIN_CINTEROP_PACKAGE = "kotlinx.cinterop"
+
 /**
  * Generates the GTK binding based on GObject introspection (GIR) files.
  */
@@ -24,6 +25,7 @@ fun main() {
     // parse GIR file & generate
     val reader = RepositoryReader()
         .apply {
+            read("/gio.gir")
             read("/gtk3.gir")
         }
     reader.repository?.let {

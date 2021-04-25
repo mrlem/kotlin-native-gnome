@@ -9,9 +9,9 @@ import org.gnome.gir.model.BitFieldDefinition
 import org.gnome.gir.model.NamespaceDefinition
 
 fun BitFieldDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
-    val cType = cType
-    if (cType == null) {
-        println("warning: bitfield '$name' ignored: no cType")
+    val glibTypeName = glibTypeName
+    if (glibTypeName == null) {
+        println("warning: bitfield '$name' ignored: no glibTypeName")
         return null
     }
 
@@ -26,7 +26,7 @@ fun BitFieldDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
         // type
         .addTypeAlias(
             TypeAliasSpec
-                .builder(name, ClassName(INTEROP_PACKAGE, cType))
+                .builder(name, ClassName(INTEROP_PACKAGE, glibTypeName))
                 .build()
         )
         .build()

@@ -2,7 +2,6 @@ package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.*
 import org.gnome.gir.INTEROP_PACKAGE
-import org.gnome.gir.generator.kotlin.generators.ext.kType
 import org.gnome.gir.generator.kotlin.generators.ext.reinterpretMemberName
 import org.gnome.gir.generator.kotlin.generators.ext.snakeCaseToCamelCase
 import org.gnome.gir.generator.kotlin.generators.ext.typeInfo
@@ -30,7 +29,7 @@ fun TypeSpec.Builder.addConstructor(className: ClassName, constructor: CallableD
     val params = constructor.callable.parameters
         .map { param ->
             val type = (param.type as? TypeDefinition) // TODO - handle
-                ?.takeIf { it.kType != null && it.cType != null }
+                ?.takeIf { it.typeInfo(resolver)?.kType != null && it.cType != null }
                 ?.takeUnless { param.direction == Direction.Out || param.direction == Direction.InOut } // TODO - handle
                 ?: run {
                     fileSpecBuilder.addComment("TODO - constructor: ${constructor.name}\n")
