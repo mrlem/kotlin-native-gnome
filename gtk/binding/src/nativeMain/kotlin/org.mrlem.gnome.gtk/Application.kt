@@ -26,9 +26,6 @@ fun Application.initAndRun(args: Array<String>, init: Application.() -> Unit) = 
   g_object_unref(this)
 }
 
-// TODO - investigate why this is not generated
-fun Application.newWindow() = gtk_application_window_new(this)!!.reinterpret<GtkWindow>()
-
 val Application.windows: List<Window>
   get() = gtk_application_get_windows(this)
     ?.toKList<GtkWindow>()
