@@ -13,7 +13,7 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
     val setters = methods.filter { it.name.startsWith("set_") && it.callable.parameters.size == 1 }
     for (getter in getters) {
         val getterCIdentifier = getter.callable
-            .takeUnless { it.throws || it.info.deprecated } // TODO - handle
+            .takeUnless { it.throws || it.info.deprecated }
             ?.cIdentifier
             ?: continue
 
