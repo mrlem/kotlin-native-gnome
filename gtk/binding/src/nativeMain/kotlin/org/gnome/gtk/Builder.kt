@@ -1,15 +1,11 @@
 // TODO - method: add_callback_symbol
 // TODO - method: add_callback_symbols
-// TODO - method: add_from_file
-// TODO - method: add_from_resource
-// TODO - method: add_from_string
 // TODO - method: add_objects_from_file
 // TODO - method: add_objects_from_resource
 // TODO - method: add_objects_from_string
 // TODO - method: connect_signals
 // TODO - method: connect_signals_full
 // TODO - method: expose_object
-// TODO - method: extend_with_template
 // TODO - method: get_object
 // TODO - method: get_objects
 // TODO - method: lookup_callback_symbol
@@ -20,8 +16,13 @@
 
 package org.gnome.gtk
 
+import interop.GError
 import interop.GType
 import interop.GtkBuilder
+import interop.gtk_builder_add_from_file
+import interop.gtk_builder_add_from_resource
+import interop.gtk_builder_add_from_string
+import interop.gtk_builder_extend_with_template
 import interop.gtk_builder_get_application
 import interop.gtk_builder_get_translation_domain
 import interop.gtk_builder_get_type_from_name
@@ -33,8 +34,16 @@ import interop.gtk_builder_set_application
 import interop.gtk_builder_set_translation_domain
 import kotlin.Long
 import kotlin.String
+import kotlin.Throws
+import kotlin.UInt
+import kotlin.ULong
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toKString
 
@@ -67,6 +76,44 @@ public var Builder.translationDomain: String
   set(`value`) {
     gtk_builder_set_translation_domain(this, value)
   }
+
+@Throws(Error::class)
+public fun Builder.addFromFile(filename: String): UInt = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: UInt = gtk_builder_add_from_file(this@addFromFile, filename, errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun Builder.addFromResource(resourcePath: String): UInt = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: UInt = gtk_builder_add_from_resource(this@addFromResource, resourcePath, errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun Builder.addFromString(buffer: String, length: ULong): UInt = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: UInt = gtk_builder_add_from_string(this@addFromString, buffer, length, errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun Builder.extendWithTemplate(
+  widget: Widget?,
+  templateType: GType,
+  buffer: String,
+  length: ULong
+): UInt = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: UInt = gtk_builder_extend_with_template(this@extendWithTemplate,
+      widget?.reinterpret(), templateType, buffer, length, errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
 
 public fun Builder.getTypeFromName(typeName: String): GType = gtk_builder_get_type_from_name(this,
     typeName)

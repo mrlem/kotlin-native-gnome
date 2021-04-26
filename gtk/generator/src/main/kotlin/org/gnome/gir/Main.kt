@@ -7,6 +7,7 @@ import kotlin.system.exitProcess
 
 const val GNOME_PACKAGE = "org.gnome"
 const val GOBJECT_PACKAGE = "$GNOME_PACKAGE.gobject"
+const val GLIB_PACKAGE = "$GNOME_PACKAGE.glib"
 const val GTK_PACKAGE = "$GNOME_PACKAGE.gtk"
 const val INTEROP_PACKAGE = "interop"
 const val KOTLIN_CINTEROP_PACKAGE = "kotlinx.cinterop"

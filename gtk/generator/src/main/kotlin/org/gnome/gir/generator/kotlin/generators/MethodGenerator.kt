@@ -1,9 +1,7 @@
 package org.gnome.gir.generator.kotlin.generators
 
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.MemberName
+import com.squareup.kotlinpoet.*
+import org.gnome.gir.GLIB_PACKAGE
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.CallableDefinition
@@ -16,7 +14,6 @@ import org.gnome.gir.resolver.Resolver
 fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition, resolver: Resolver) {
     val cIdentifier = method.callable
         .takeUnless { it.info.deprecated }
-        ?.takeUnless { it.throws } // TODO - handle
         ?.cIdentifier
         ?: return run { addComment("TODO - method: ${method.name}\n") }
     val name = method.name.snakeCaseToCamelCase.decapitalize()
@@ -48,13 +45,45 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
     // params conversion
     val (paramsTemplate, paramsArray) = params.getParamsData(true, resolver)
 
-    addFunction(
-        FunSpec.builder(name)
-            .receiver(className)
-            // params
-            .apply { params.forEach { (name, type) -> addParameter(name, type.typeInfo(resolver)!!.kType) } }
-            // return
-            .apply { returnTypeInfo?.kType?.let { returns(it) } }
+    val builder = FunSpec.builder(name)
+        .receiver(className)
+        // params
+        .apply { params.forEach { (name, type) -> addParameter(name, type.typeInfo(resolver)!!.kType) } }
+        // return
+        .apply { returnTypeInfo?.kType?.let { returns(it) } }
+
+    if (method.callable.throws) {
+        builder
+            .addAnnotation(
+                AnnotationSpec.builder(throwsClassName)
+                    .addMember("%T::class", ClassName(GLIB_PACKAGE, "Error"))
+                    .build()
+            )
+            // block
+            .beginControlFlow("$returnKeyword%M", memScopedMemberName)
+            .addStatement(
+                "val errors = %M<%T>().%M",
+                allocPointerToMemberName,
+                gerrorClassName,
+                ptrMemberName
+            )
+            .addStatement(
+                "val result: %T = %M(this@$name$paramsTemplate, errors)$returnTemplate",
+                returnTypeInfo?.kType ?: unitClassName,
+                MemberName(INTEROP_PACKAGE, cIdentifier),
+                *paramsArray,
+                *returnArray
+            )
+            .addStatement(
+                "errors.%M.%M?.let { throw %T(it) }",
+                pointedMemberName,
+                pointedMemberName,
+                ClassName(GLIB_PACKAGE, "Error")
+            )
+            .addStatement("return result")
+            .endControlFlow()
+    } else {
+        builder
             // block
             .addStatement(
                 "$returnKeyword%M(this$paramsTemplate)$returnTemplate",
@@ -62,8 +91,9 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
                 *paramsArray,
                 *returnArray
             )
-            .build()
-    )
+    }
+
+    addFunction(builder.build())
 }
 
 ///////////////////////////////////////////////////////////////////////////

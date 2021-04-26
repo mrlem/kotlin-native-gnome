@@ -1,9 +1,7 @@
 // TODO - constructor: new_from_file
 // TODO - constructor: new_from_gvariant
 // TODO - constructor: new_from_key_file
-// TODO - method: load_file
 // TODO - method: load_key_file
-// TODO - method: to_file
 // TODO - method: to_gvariant
 // TODO - method: to_key_file
 //
@@ -11,6 +9,7 @@
 
 package org.gnome.gtk
 
+import interop.GError
 import interop.GtkPageSetup
 import interop.gtk_page_setup_copy
 import interop.gtk_page_setup_get_bottom_margin
@@ -23,6 +22,7 @@ import interop.gtk_page_setup_get_paper_size
 import interop.gtk_page_setup_get_paper_width
 import interop.gtk_page_setup_get_right_margin
 import interop.gtk_page_setup_get_top_margin
+import interop.gtk_page_setup_load_file
 import interop.gtk_page_setup_new
 import interop.gtk_page_setup_set_bottom_margin
 import interop.gtk_page_setup_set_left_margin
@@ -31,10 +31,20 @@ import interop.gtk_page_setup_set_paper_size
 import interop.gtk_page_setup_set_paper_size_and_default_margins
 import interop.gtk_page_setup_set_right_margin
 import interop.gtk_page_setup_set_top_margin
+import interop.gtk_page_setup_to_file
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.String
+import kotlin.Throws
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
+import org.gnome.toBoolean
 
 public typealias PageSetup = CPointer<GtkPageSetup>
 
@@ -78,6 +88,14 @@ public fun PageSetup.getRightMargin(unit: Unit): Double = gtk_page_setup_get_rig
 
 public fun PageSetup.getTopMargin(unit: Unit): Double = gtk_page_setup_get_top_margin(this, unit)
 
+@Throws(Error::class)
+public fun PageSetup.loadFile(fileName: String): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gtk_page_setup_load_file(this@loadFile, fileName, errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
 public fun PageSetup.setBottomMargin(margin: Double, unit: Unit): kotlin.Unit {
   gtk_page_setup_set_bottom_margin(this, margin, unit)
 }
@@ -96,4 +114,12 @@ public fun PageSetup.setRightMargin(margin: Double, unit: Unit): kotlin.Unit {
 
 public fun PageSetup.setTopMargin(margin: Double, unit: Unit): kotlin.Unit {
   gtk_page_setup_set_top_margin(this, margin, unit)
+}
+
+@Throws(Error::class)
+public fun PageSetup.toFile(fileName: String): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gtk_page_setup_to_file(this@toFile, fileName, errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
 }

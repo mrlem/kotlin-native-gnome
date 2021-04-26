@@ -24,7 +24,6 @@
 // TODO - method: set_gravity
 // TODO - method: set_has_resize_grip
 // TODO - method: set_icon
-// TODO - method: set_icon_from_file
 // TODO - method: set_icon_list
 // TODO - method: set_mnemonic_modifier
 // TODO - method: set_opacity
@@ -36,6 +35,7 @@
 
 package org.gnome.gtk
 
+import interop.GError
 import interop.GtkWindow
 import interop.gtk_window_activate_default
 import interop.gtk_window_activate_focus
@@ -95,6 +95,7 @@ import interop.gtk_window_set_focus_on_map
 import interop.gtk_window_set_focus_visible
 import interop.gtk_window_set_has_user_ref_count
 import interop.gtk_window_set_hide_titlebar_when_maximized
+import interop.gtk_window_set_icon_from_file
 import interop.gtk_window_set_icon_name
 import interop.gtk_window_set_keep_above
 import interop.gtk_window_set_keep_below
@@ -117,10 +118,16 @@ import interop.gtk_window_unstick
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
+import kotlin.Throws
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.connect
@@ -367,6 +374,15 @@ public fun Window.setDefaultSize(width: Int, height: Int): Unit {
 
 public fun Window.setHasUserRefCount(setting: Boolean): Unit {
   gtk_window_set_has_user_ref_count(this, setting.toInt)
+}
+
+@Throws(Error::class)
+public fun Window.setIconFromFile(filename: String): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gtk_window_set_icon_from_file(this@setIconFromFile, filename,
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
 }
 
 public fun Window.setKeepAbove(setting: Boolean): Unit {

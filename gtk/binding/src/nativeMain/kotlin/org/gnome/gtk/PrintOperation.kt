@@ -1,15 +1,14 @@
-// TODO - method: get_error
-// TODO - method: run
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
+import interop.GError
 import interop.GtkPrintOperation
 import interop.gtk_print_operation_cancel
 import interop.gtk_print_operation_draw_page_finish
 import interop.gtk_print_operation_get_default_page_setup
 import interop.gtk_print_operation_get_embed_page_setup
+import interop.gtk_print_operation_get_error
 import interop.gtk_print_operation_get_has_selection
 import interop.gtk_print_operation_get_n_pages_to_print
 import interop.gtk_print_operation_get_print_settings
@@ -18,6 +17,7 @@ import interop.gtk_print_operation_get_status_string
 import interop.gtk_print_operation_get_support_selection
 import interop.gtk_print_operation_is_finished
 import interop.gtk_print_operation_new
+import interop.gtk_print_operation_run
 import interop.gtk_print_operation_set_allow_async
 import interop.gtk_print_operation_set_current_page
 import interop.gtk_print_operation_set_custom_tab_label
@@ -37,8 +37,14 @@ import interop.gtk_print_operation_set_use_full_page
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
+import kotlin.Throws
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.gobject.connect
 import org.gnome.toBoolean
@@ -101,7 +107,27 @@ public fun PrintOperation.drawPageFinish(): kotlin.Unit {
   gtk_print_operation_draw_page_finish(this)
 }
 
+@Throws(Error::class)
+public fun PrintOperation.getError(): kotlin.Unit {
+  memScoped {
+    val errors = allocPointerTo<GError>().ptr
+    val result: kotlin.Unit = gtk_print_operation_get_error(this@getError, errors)
+    errors.pointed.pointed?.let { throw Error(it) }
+    return result
+  }
+}
+
 public fun PrintOperation.isFinished(): Boolean = gtk_print_operation_is_finished(this).toBoolean
+
+@Throws(Error::class)
+public fun PrintOperation.run(action: PrintOperationAction, parent: Window?): PrintOperationResult =
+    memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: PrintOperationResult = gtk_print_operation_run(this@run, action,
+      parent?.reinterpret(), errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
 
 public fun PrintOperation.setAllowAsync(allowAsync: Boolean): kotlin.Unit {
   gtk_print_operation_set_allow_async(this, allowAsync.toInt)

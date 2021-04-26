@@ -3,10 +3,8 @@
 // TODO - constructor: new_from_key_file
 // TODO - method: foreach
 // TODO - method: get_page_ranges
-// TODO - method: load_file
 // TODO - method: load_key_file
 // TODO - method: set_page_ranges
-// TODO - method: to_file
 // TODO - method: to_gvariant
 // TODO - method: to_key_file
 //
@@ -14,6 +12,7 @@
 
 package org.gnome.gtk
 
+import interop.GError
 import interop.GtkPrintSettings
 import interop.gtk_print_settings_copy
 import interop.gtk_print_settings_get
@@ -49,6 +48,7 @@ import interop.gtk_print_settings_get_reverse
 import interop.gtk_print_settings_get_scale
 import interop.gtk_print_settings_get_use_color
 import interop.gtk_print_settings_has_key
+import interop.gtk_print_settings_load_file
 import interop.gtk_print_settings_new
 import interop.gtk_print_settings_set
 import interop.gtk_print_settings_set_bool
@@ -79,13 +79,20 @@ import interop.gtk_print_settings_set_resolution_xy
 import interop.gtk_print_settings_set_reverse
 import interop.gtk_print_settings_set_scale
 import interop.gtk_print_settings_set_use_color
+import interop.gtk_print_settings_to_file
 import interop.gtk_print_settings_unset
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.String
+import kotlin.Throws
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
@@ -261,6 +268,14 @@ public fun PrintSettings.getPaperWidth(unit: Unit): Double =
 public fun PrintSettings.hasKey(key: String): Boolean = gtk_print_settings_has_key(this,
     key).toBoolean
 
+@Throws(Error::class)
+public fun PrintSettings.loadFile(fileName: String): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gtk_print_settings_load_file(this@loadFile, fileName, errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
 public fun PrintSettings.`set`(key: String, `value`: String): kotlin.Unit {
   gtk_print_settings_set(this, key, value)
 }
@@ -295,6 +310,14 @@ public fun PrintSettings.setPaperWidth(width: Double, unit: Unit): kotlin.Unit {
 
 public fun PrintSettings.setResolutionXy(resolutionX: Int, resolutionY: Int): kotlin.Unit {
   gtk_print_settings_set_resolution_xy(this, resolutionX, resolutionY)
+}
+
+@Throws(Error::class)
+public fun PrintSettings.toFile(fileName: String): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gtk_print_settings_to_file(this@toFile, fileName, errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
 }
 
 public fun PrintSettings.unset(key: String): kotlin.Unit {

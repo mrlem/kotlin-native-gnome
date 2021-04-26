@@ -46,8 +46,7 @@ Still a *work in progress*:
 * API coverage is still incomplete:
   - some unhandled data types (like GLists and arrays)
   - no signal handlers data
-  - no handling of methods throwing errors
-  - no generation outside GTK (e.g. GLib, GObject)
+  - missing generations outside GTK & GIO (e.g. GLib, GObject)
 * platform support: Linux only for now
 
 ## See also
