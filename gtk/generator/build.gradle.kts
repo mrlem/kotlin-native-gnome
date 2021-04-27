@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version(kotlinVersion)
+    kotlin("jvm")
     application
 }
 

@@ -1,9 +1,6 @@
-import java.net.URI
-
 plugins {
-    kotlin("jvm") version(kotlinVersion)
+    kotlin("jvm")
     `java-gradle-plugin`
-    `kotlin-dsl`
     `maven-publish`
     signing
     id("com.gradle.plugin-publish") version "0.14.0"

@@ -1,6 +1,12 @@
+buildscript {
+    repositories {
+        maven("https://jitpack.io")
+    }
+}
+
 plugins {
     kotlin("multiplatform")
-    id("org.mrlem.gnome.glade")
+    id("org.mrlem.gnome.glade") version("0.1.0-SNAPSHOT")
 }
 
 repositories {
