@@ -23,6 +23,10 @@ Z: next stable version
 Wait a few minutes until the release appears on https://search.maven.org/artifact/org.mrlem.gnome/gtk-binding
 
 9. `git push && git push --tags`
+10. Create the github release:
+   - go to https://github.com/mrlem/kotlin-native-gnome/releases/new
+   - use the created tag
+   - enter the release name "Version Y", describe changes, and create
 
 ## Plugin
 
