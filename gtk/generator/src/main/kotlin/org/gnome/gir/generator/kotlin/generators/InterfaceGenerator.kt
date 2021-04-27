@@ -11,12 +11,6 @@ import org.gnome.gir.model.InterfaceDefinition
 import org.gnome.gir.model.NamespaceDefinition
 
 fun InterfaceDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
-    val cType = cType
-    if (cType == null) {
-        println("warning: interface '$name' ignored: no cType")
-        return null
-    }
-
     when {
         deprecated -> {
             println("warning: interface '$name' ignored: deprecated")
@@ -28,7 +22,7 @@ fun InterfaceDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
         // type
         .addTypeAlias(
             TypeAliasSpec
-                .builder(name, cpointerClassName.plusParameter(ClassName(INTEROP_PACKAGE, cType)))
+                .builder(name, cpointerClassName.plusParameter(ClassName(INTEROP_PACKAGE, glibTypeName)))
                 .build()
         )
         .build()

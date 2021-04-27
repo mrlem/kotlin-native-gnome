@@ -26,6 +26,7 @@ fun main() {
     // parse GIR file & generate
     val reader = RepositoryReader()
         .apply {
+            read("/gobject.gir")
             read("/gio.gir")
             read("/gtk3.gir")
         }

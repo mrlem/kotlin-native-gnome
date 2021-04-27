@@ -7,19 +7,15 @@ import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.ClassDefinition
 import org.gnome.gir.model.NamespaceDefinition
+import org.gnome.gir.parser.Fixer.fix
 import org.gnome.gir.resolver.Resolver
 
 fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolver): FileSpec? {
-    val cType = cType
-    if (cType == null) {
-        println("warning: class '$name' ignored: no cType")
-        return null
-    }
-
     val classNameString = "${namespace.name}.$name"
     val className = classNameString.toClassName
     val packageName = namespace.packageName
     val ancestors = resolver.ancestors(classNameString)
+    val glibTypeName = fix(glibTypeName)
 
     // filter out some classes
     when {
@@ -49,7 +45,7 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
         // type
         .addTypeAlias(
             TypeAliasSpec
-                .builder(name, cpointerClassName.plusParameter(ClassName(INTEROP_PACKAGE, cType)))
+                .builder(name, cpointerClassName.plusParameter(ClassName(INTEROP_PACKAGE, glibTypeName)))
                 .build()
         )
         // converters

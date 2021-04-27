@@ -19,13 +19,15 @@ class Resolver(repository: RepositoryDefinition) {
             namespace.callbacks.forEach { callbacks.add("${namespace.name}.${it.name}") }
             namespace.records.forEach { records.add("${namespace.name}.${it.name}") }
             namespace.interfaces.forEach { interfaces.add("${namespace.name}.${it.name}") }
-            namespace.enums.forEach {
+            namespace.enums.forEach { definition ->
                 // stored under C type here
-                enumsInfo[it.glibTypeName!!] = EnumInfo(it, namespace)
+                val glibTypeName = definition.glibTypeName
+                glibTypeName?.let { enumsInfo[glibTypeName] = EnumInfo(definition, namespace) }
             }
-            namespace.bitFields.forEach {
+            namespace.bitFields.forEach { definition ->
                 // stored under C type here
-                bitFieldsInfo[it.glibTypeName!!] = BitFieldInfo(it, namespace)
+                val glibTypeName = definition.glibTypeName
+                glibTypeName?.let { bitFieldsInfo[glibTypeName] = BitFieldInfo(definition, namespace) }
             }
             namespace.classes.forEach {
                 classesInfo["${namespace.name}.${it.name}"] = ClassInfo(it, namespace, emptyList())

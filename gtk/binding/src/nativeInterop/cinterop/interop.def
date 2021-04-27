@@ -1,4 +1,4 @@
-headers = gtk/gtk.h gtk/gtk-a11y.h
+headers = gtk/gtk.h gtk/gtk-a11y.h gio/gunixmounts.h
 headerFilter = gtk/** gobject/* gio/* glib/* atk/*
 compilerOpts.osx = -I/usr/local/include/gtk-3.0 -I/usr/local/include/glib-2.0 -I/usr/local/lib/glib-2.0/include \
 -I/usr/local/include/pango-1.0 -I/usr/local/include/cairo -I/usr/local/include -I/usr/local/include/gdk-pixbuf-2.0 \

@@ -11,11 +11,12 @@ import org.gnome.gir.model.NamespaceDefinition
 import org.gnome.gir.model.RecordDefinition
 
 fun RecordDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
-    val cType = cType
-    if (cType == null) {
-        println("warning: record '$name' ignored: no cType")
-        return null
-    }
+    val cName = cType
+        ?: glibTypeName
+        ?: run {
+            println("warning: record '$name' ignored: no cType or glibTypeName")
+            return null
+        }
 
     when {
         deprecated -> {
@@ -36,7 +37,7 @@ fun RecordDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
             // type
             .addTypeAlias(
                 TypeAliasSpec
-                    .builder(name, cpointerClassName.plusParameter(ClassName(INTEROP_PACKAGE, cType)))
+                    .builder(name, cpointerClassName.plusParameter(ClassName(INTEROP_PACKAGE, cName)))
                     .build()
             )
             .build()

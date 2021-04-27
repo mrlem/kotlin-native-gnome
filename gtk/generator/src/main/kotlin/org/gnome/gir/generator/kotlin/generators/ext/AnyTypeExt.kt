@@ -77,8 +77,6 @@ private val TypeDefinition.className: TypeName?
         return if (name.contains('.')) {
             val (namespaceName, className) = name.split('.')
             ClassName("$GNOME_PACKAGE.${namespaceName.toLowerCase()}", className)
-                // FIXME
-                .takeIf { namespaceName == "Gtk" }
         } else {
             null
         }
