@@ -1,5 +1,3 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -7,11 +5,13 @@ package org.gnome.gtk
 import interop.GtkAppChooserDialog
 import interop.gtk_app_chooser_dialog_get_heading
 import interop.gtk_app_chooser_dialog_get_widget
+import interop.gtk_app_chooser_dialog_new
 import interop.gtk_app_chooser_dialog_new_for_content_type
 import interop.gtk_app_chooser_dialog_set_heading
 import kotlin.String
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.File
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -40,6 +40,13 @@ public val AppChooserDialog.asDialog: Dialog
   get() = reinterpret()
 
 public object AppChooserDialogFactory {
+  public fun new(
+    parent: Window?,
+    flags: DialogFlags,
+    `file`: File?
+  ): AppChooserDialog = gtk_app_chooser_dialog_new(parent?.reinterpret(), flags,
+      file?.reinterpret())!!.reinterpret()
+
   public fun newForContentType(
     parent: Window?,
     flags: DialogFlags,

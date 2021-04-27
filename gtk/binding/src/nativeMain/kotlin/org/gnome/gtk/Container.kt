@@ -1,10 +1,7 @@
 // TODO - method: add_with_properties
 // TODO - method: child_get
-// TODO - method: child_get_property
 // TODO - method: child_get_valist
-// TODO - method: child_notify_by_pspec
 // TODO - method: child_set
-// TODO - method: child_set_property
 // TODO - method: child_set_valist
 // TODO - method: forall
 // TODO - method: foreach
@@ -26,7 +23,10 @@ import interop.GType
 import interop.GtkContainer
 import interop.gtk_container_add
 import interop.gtk_container_check_resize
+import interop.gtk_container_child_get_property
 import interop.gtk_container_child_notify
+import interop.gtk_container_child_notify_by_pspec
+import interop.gtk_container_child_set_property
 import interop.gtk_container_child_type
 import interop.gtk_container_get_border_width
 import interop.gtk_container_get_focus_child
@@ -45,7 +45,9 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
+import org.gnome.gobject.ParamSpec
+import org.gnome.gobject.Value
+import org.mrlem.gnome.gobject.connect
 
 public typealias Container = CPointer<GtkContainer>
 
@@ -90,8 +92,28 @@ public fun Container.checkResize(): Unit {
   gtk_container_check_resize(this)
 }
 
+public fun Container.childGetProperty(
+  child: Widget?,
+  propertyName: String,
+  `value`: Value?
+): Unit {
+  gtk_container_child_get_property(this, child?.reinterpret(), propertyName, value?.reinterpret())
+}
+
 public fun Container.childNotify(child: Widget?, childProperty: String): Unit {
   gtk_container_child_notify(this, child?.reinterpret(), childProperty)
+}
+
+public fun Container.childNotifyByPspec(child: Widget?, pspec: ParamSpec?): Unit {
+  gtk_container_child_notify_by_pspec(this, child?.reinterpret(), pspec?.reinterpret())
+}
+
+public fun Container.childSetProperty(
+  child: Widget?,
+  propertyName: String,
+  `value`: Value?
+): Unit {
+  gtk_container_child_set_property(this, child?.reinterpret(), propertyName, value?.reinterpret())
 }
 
 public fun Container.childType(): GType = gtk_container_child_type(this)

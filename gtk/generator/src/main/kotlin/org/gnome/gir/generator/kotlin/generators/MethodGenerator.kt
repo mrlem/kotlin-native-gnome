@@ -116,7 +116,8 @@ fun Map<String, AnyType>.getParamsData(reinterpretPointers: Boolean, resolver: R
             typeInfo!!.toCType
         }
         paramsConverters += paramArray
-        "$name$paramTemplate"
+        val escapedName = name.takeUnless { it == "object" } ?: "`object`" // FIXME - generalize
+        "$escapedName$paramTemplate"
     }
         .takeUnless { it.isEmpty() }
         ?.let { if (headingComma) ", $it" else it }

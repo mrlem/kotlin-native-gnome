@@ -14,14 +14,12 @@
 // TODO - method: drag_dest_set_proxy
 // TODO - method: drag_get_data
 // TODO - method: drag_source_set
-// TODO - method: drag_source_set_icon_gicon
 // TODO - method: drag_source_set_icon_pixbuf
 // TODO - method: drag_source_set_icon_stock
 // TODO - method: draw
 // TODO - method: ensure_style
 // TODO - method: event
 // TODO - method: get_accessible
-// TODO - method: get_action_group
 // TODO - method: get_allocated_size
 // TODO - method: get_allocation
 // TODO - method: get_child_requisition
@@ -53,12 +51,10 @@
 // TODO - method: get_size_request
 // TODO - method: get_state
 // TODO - method: get_style
-// TODO - method: get_template_child
 // TODO - method: get_visual
 // TODO - method: get_window
 // TODO - method: has_rc_style
 // TODO - method: input_shape_combine_region
-// TODO - method: insert_action_group
 // TODO - method: intersect
 // TODO - method: is_composited
 // TODO - method: list_accel_closures
@@ -103,7 +99,6 @@
 // TODO - method: size_request
 // TODO - method: style_attach
 // TODO - method: style_get
-// TODO - method: style_get_property
 // TODO - method: style_get_valist
 // TODO - method: translate_coordinates
 // TODO - method: unregister_window
@@ -128,6 +123,7 @@ import interop.gtk_drag_source_add_image_targets
 import interop.gtk_drag_source_add_text_targets
 import interop.gtk_drag_source_add_uri_targets
 import interop.gtk_drag_source_get_target_list
+import interop.gtk_drag_source_set_icon_gicon
 import interop.gtk_drag_source_set_icon_name
 import interop.gtk_drag_source_set_target_list
 import interop.gtk_drag_source_unset
@@ -144,6 +140,7 @@ import interop.gtk_widget_compute_expand
 import interop.gtk_widget_destroy
 import interop.gtk_widget_error_bell
 import interop.gtk_widget_freeze_child_notify
+import interop.gtk_widget_get_action_group
 import interop.gtk_widget_get_allocated_baseline
 import interop.gtk_widget_get_allocated_height
 import interop.gtk_widget_get_allocated_width
@@ -180,6 +177,7 @@ import interop.gtk_widget_get_settings
 import interop.gtk_widget_get_state_flags
 import interop.gtk_widget_get_style_context
 import interop.gtk_widget_get_support_multidevice
+import interop.gtk_widget_get_template_child
 import interop.gtk_widget_get_tooltip_markup
 import interop.gtk_widget_get_tooltip_text
 import interop.gtk_widget_get_tooltip_window
@@ -200,6 +198,7 @@ import interop.gtk_widget_hide
 import interop.gtk_widget_hide_on_delete
 import interop.gtk_widget_in_destruction
 import interop.gtk_widget_init_template
+import interop.gtk_widget_insert_action_group
 import interop.gtk_widget_is_ancestor
 import interop.gtk_widget_is_drawable
 import interop.gtk_widget_is_focus
@@ -263,6 +262,7 @@ import interop.gtk_widget_show_all
 import interop.gtk_widget_show_now
 import interop.gtk_widget_size_allocate
 import interop.gtk_widget_size_allocate_with_baseline
+import interop.gtk_widget_style_get_property
 import interop.gtk_widget_thaw_child_notify
 import interop.gtk_widget_trigger_tooltip_query
 import interop.gtk_widget_unmap
@@ -277,12 +277,15 @@ import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.ActionGroup
+import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
+import org.gnome.gobject.Value
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
+import org.mrlem.gnome.gobject.connect
 
 public typealias Widget = CPointer<GtkWidget>
 
@@ -607,6 +610,10 @@ public fun Widget.dragSourceAddUriTargets(): Unit {
 public fun Widget.dragSourceGetTargetList(): TargetList? =
     gtk_drag_source_get_target_list(this)?.reinterpret()
 
+public fun Widget.dragSourceSetIconGicon(icon: Icon?): Unit {
+  gtk_drag_source_set_icon_gicon(this, icon?.reinterpret())
+}
+
 public fun Widget.dragSourceSetIconName(iconName: String): Unit {
   gtk_drag_source_set_icon_name(this, iconName)
 }
@@ -631,8 +638,14 @@ public fun Widget.freezeChildNotify(): Unit {
   gtk_widget_freeze_child_notify(this)
 }
 
+public fun Widget.getActionGroup(prefix: String): ActionGroup? = gtk_widget_get_action_group(this,
+    prefix)?.reinterpret()
+
 public fun Widget.getAncestor(widgetType: GType): Widget? = gtk_widget_get_ancestor(this,
     widgetType)?.reinterpret()
+
+public fun Widget.getTemplateChild(widgetType: GType, name: String): Object? =
+    gtk_widget_get_template_child(this, widgetType, name)?.reinterpret()
 
 public fun Widget.grabAdd(): Unit {
   gtk_grab_add(this)
@@ -670,6 +683,10 @@ public fun Widget.inDestruction(): Boolean = gtk_widget_in_destruction(this).toB
 
 public fun Widget.initTemplate(): Unit {
   gtk_widget_init_template(this)
+}
+
+public fun Widget.insertActionGroup(name: String, group: ActionGroup?): Unit {
+  gtk_widget_insert_action_group(this, name, group?.reinterpret())
 }
 
 public fun Widget.isAncestor(ancestor: Widget?): Boolean = gtk_widget_is_ancestor(this,
@@ -782,6 +799,10 @@ public fun Widget.sizeAllocate(allocation: Allocation): Unit {
 
 public fun Widget.sizeAllocateWithBaseline(allocation: Allocation, baseline: Int): Unit {
   gtk_widget_size_allocate_with_baseline(this, allocation, baseline)
+}
+
+public fun Widget.styleGetProperty(propertyName: String, `value`: Value?): Unit {
+  gtk_widget_style_get_property(this, propertyName, value?.reinterpret())
 }
 
 public fun Widget.thawChildNotify(): Unit {

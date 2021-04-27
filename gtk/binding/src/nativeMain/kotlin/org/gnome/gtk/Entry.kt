@@ -1,6 +1,5 @@
 // TODO - method: get_attributes
 // TODO - method: get_icon_area
-// TODO - method: get_icon_gicon
 // TODO - method: get_icon_pixbuf
 // TODO - method: get_icon_stock
 // TODO - method: get_inner_border
@@ -11,7 +10,6 @@
 // TODO - method: im_context_filter_keypress
 // TODO - method: set_attributes
 // TODO - method: set_icon_drag_source
-// TODO - method: set_icon_from_gicon
 // TODO - method: set_icon_from_pixbuf
 // TODO - method: set_icon_from_stock
 // TODO - method: set_inner_border
@@ -31,6 +29,7 @@ import interop.gtk_entry_get_cursor_hadjustment
 import interop.gtk_entry_get_has_frame
 import interop.gtk_entry_get_icon_activatable
 import interop.gtk_entry_get_icon_at_pos
+import interop.gtk_entry_get_icon_gicon
 import interop.gtk_entry_get_icon_name
 import interop.gtk_entry_get_icon_sensitive
 import interop.gtk_entry_get_icon_storage_type
@@ -62,6 +61,7 @@ import interop.gtk_entry_set_completion
 import interop.gtk_entry_set_cursor_hadjustment
 import interop.gtk_entry_set_has_frame
 import interop.gtk_entry_set_icon_activatable
+import interop.gtk_entry_set_icon_from_gicon
 import interop.gtk_entry_set_icon_from_icon_name
 import interop.gtk_entry_set_icon_sensitive
 import interop.gtk_entry_set_icon_tooltip_markup
@@ -90,14 +90,15 @@ import kotlin.UShort
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toChar
 import org.gnome.toInt
 import org.gnome.toKString
 import org.gnome.toUInt
+import org.mrlem.gnome.gobject.connect
 
 public typealias Entry = CPointer<GtkEntry>
 
@@ -236,6 +237,9 @@ public fun Entry.getIconActivatable(iconPos: EntryIconPosition): Boolean =
 
 public fun Entry.getIconAtPos(x: Int, y: Int): Int = gtk_entry_get_icon_at_pos(this, x, y)
 
+public fun Entry.getIconGicon(iconPos: EntryIconPosition): Icon? = gtk_entry_get_icon_gicon(this,
+    iconPos)?.reinterpret()
+
 public fun Entry.getIconName(iconPos: EntryIconPosition): String = gtk_entry_get_icon_name(this,
     iconPos).toKString
 
@@ -268,6 +272,10 @@ public fun Entry.resetImContext(): Unit {
 
 public fun Entry.setIconActivatable(iconPos: EntryIconPosition, activatable: Boolean): Unit {
   gtk_entry_set_icon_activatable(this, iconPos, activatable.toInt)
+}
+
+public fun Entry.setIconFromGicon(iconPos: EntryIconPosition, icon: Icon?): Unit {
+  gtk_entry_set_icon_from_gicon(this, iconPos, icon?.reinterpret())
 }
 
 public fun Entry.setIconFromIconName(iconPos: EntryIconPosition, iconName: String): Unit {

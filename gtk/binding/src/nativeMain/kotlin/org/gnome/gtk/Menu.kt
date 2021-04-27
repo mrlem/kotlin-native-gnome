@@ -1,4 +1,3 @@
-// TODO - constructor: new_from_model
 // TODO - method: get_tearoff_state
 // TODO - method: get_title
 // TODO - method: place_on_monitor
@@ -26,6 +25,7 @@ import interop.gtk_menu_get_attach_widget
 import interop.gtk_menu_get_monitor
 import interop.gtk_menu_get_reserve_toggle_size
 import interop.gtk_menu_new
+import interop.gtk_menu_new_from_model
 import interop.gtk_menu_popdown
 import interop.gtk_menu_reorder_child
 import interop.gtk_menu_reposition
@@ -41,12 +41,13 @@ import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
+import org.mrlem.gnome.gobject.connect
 
 public typealias Menu = CPointer<GtkMenu>
 
@@ -67,6 +68,9 @@ public val Menu.asMenuShell: MenuShell
 
 public object MenuFactory {
   public fun new(): Menu = gtk_menu_new()!!.reinterpret()
+
+  public fun newFromModel(model: MenuModel?): Menu =
+      gtk_menu_new_from_model(model?.reinterpret())!!.reinterpret()
 }
 
 public var Menu.accelGroup: AccelGroup?

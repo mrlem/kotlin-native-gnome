@@ -7,8 +7,6 @@
 // TODO - method: load_icon
 // TODO - method: load_icon_for_scale
 // TODO - method: load_surface
-// TODO - method: lookup_by_gicon
-// TODO - method: lookup_by_gicon_for_scale
 // TODO - method: set_screen
 // TODO - method: set_search_path
 //
@@ -21,6 +19,8 @@ import interop.gtk_icon_theme_add_resource_path
 import interop.gtk_icon_theme_append_search_path
 import interop.gtk_icon_theme_get_example_icon_name
 import interop.gtk_icon_theme_has_icon
+import interop.gtk_icon_theme_lookup_by_gicon
+import interop.gtk_icon_theme_lookup_by_gicon_for_scale
 import interop.gtk_icon_theme_lookup_icon
 import interop.gtk_icon_theme_lookup_icon_for_scale
 import interop.gtk_icon_theme_new
@@ -33,10 +33,11 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.Icon
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toKString
+import org.mrlem.gnome.gobject.connect
 
 public typealias IconTheme = CPointer<GtkIconTheme>
 
@@ -60,6 +61,20 @@ public fun IconTheme.appendSearchPath(path: String): Unit {
 
 public fun IconTheme.hasIcon(iconName: String): Boolean = gtk_icon_theme_has_icon(this,
     iconName).toBoolean
+
+public fun IconTheme.lookupByGicon(
+  icon: Icon?,
+  size: Int,
+  flags: IconLookupFlags
+): IconInfo? = gtk_icon_theme_lookup_by_gicon(this, icon?.reinterpret(), size, flags)?.reinterpret()
+
+public fun IconTheme.lookupByGiconForScale(
+  icon: Icon?,
+  size: Int,
+  scale: Int,
+  flags: IconLookupFlags
+): IconInfo? = gtk_icon_theme_lookup_by_gicon_for_scale(this, icon?.reinterpret(), size, scale,
+    flags)?.reinterpret()
 
 public fun IconTheme.lookupIcon(
   iconName: String,

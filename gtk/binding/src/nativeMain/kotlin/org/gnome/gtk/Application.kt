@@ -1,15 +1,10 @@
 // TODO - method: add_accelerator
 // TODO - method: get_accels_for_action
 // TODO - method: get_actions_for_accel
-// TODO - method: get_app_menu
-// TODO - method: get_menu_by_id
-// TODO - method: get_menubar
 // TODO - method: get_windows
 // TODO - method: list_action_descriptions
 // TODO - method: remove_accelerator
 // TODO - method: set_accels_for_action
-// TODO - method: set_app_menu
-// TODO - method: set_menubar
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -18,12 +13,17 @@ package org.gnome.gtk
 import interop.GtkApplication
 import interop.gtk_application_add_window
 import interop.gtk_application_get_active_window
+import interop.gtk_application_get_app_menu
+import interop.gtk_application_get_menu_by_id
+import interop.gtk_application_get_menubar
 import interop.gtk_application_get_window_by_id
 import interop.gtk_application_inhibit
 import interop.gtk_application_is_inhibited
 import interop.gtk_application_new
 import interop.gtk_application_prefers_app_menu
 import interop.gtk_application_remove_window
+import interop.gtk_application_set_app_menu
+import interop.gtk_application_set_menubar
 import interop.gtk_application_uninhibit
 import kotlin.Boolean
 import kotlin.String
@@ -32,9 +32,11 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.ApplicationFlags
+import org.gnome.gio.Menu
+import org.gnome.gio.MenuModel
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
+import org.mrlem.gnome.gobject.connect
 
 public typealias Application = CPointer<GtkApplication>
 
@@ -52,9 +54,24 @@ public object ApplicationFactory {
 public val Application.activeWindow: Window?
   get() = gtk_application_get_active_window(this)?.reinterpret()
 
+public var Application.appMenu: MenuModel?
+  get() = gtk_application_get_app_menu(this)?.reinterpret()
+  set(`value`) {
+    gtk_application_set_app_menu(this, value)
+  }
+
+public var Application.menubar: MenuModel?
+  get() = gtk_application_get_menubar(this)?.reinterpret()
+  set(`value`) {
+    gtk_application_set_menubar(this, value)
+  }
+
 public fun Application.addWindow(window: Window?): Unit {
   gtk_application_add_window(this, window?.reinterpret())
 }
+
+public fun Application.getMenuById(id: String): Menu? = gtk_application_get_menu_by_id(this,
+    id)?.reinterpret()
 
 public fun Application.getWindowById(id: UInt): Window? = gtk_application_get_window_by_id(this,
     id)?.reinterpret()

@@ -1,5 +1,4 @@
 // TODO - method: load_from_data
-// TODO - method: load_from_file
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -7,6 +6,7 @@ package org.gnome.gtk
 
 import interop.GError
 import interop.GtkCssProvider
+import interop.gtk_css_provider_load_from_file
 import interop.gtk_css_provider_load_from_path
 import interop.gtk_css_provider_load_from_resource
 import interop.gtk_css_provider_new
@@ -21,11 +21,12 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.File
 import org.gnome.glib.Error
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toKString
+import org.mrlem.gnome.gobject.connect
 
 public typealias CssProvider = CPointer<GtkCssProvider>
 
@@ -34,6 +35,15 @@ public val CssProvider.asObject: Object
 
 public object CssProviderFactory {
   public fun new(): CssProvider = gtk_css_provider_new()!!.reinterpret()
+}
+
+@Throws(Error::class)
+public fun CssProvider.loadFromFile(`file`: File?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gtk_css_provider_load_from_file(this@loadFromFile, file?.reinterpret(),
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
 }
 
 @Throws(Error::class)

@@ -11,7 +11,6 @@
 // TODO - method: set
 // TODO - method: set_column_types
 // TODO - method: set_valist
-// TODO - method: set_value
 // TODO - method: set_valuesv
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -24,12 +23,15 @@ import interop.gtk_list_store_iter_is_valid
 import interop.gtk_list_store_move_after
 import interop.gtk_list_store_move_before
 import interop.gtk_list_store_remove
+import interop.gtk_list_store_set_value
 import interop.gtk_list_store_swap
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.gobject.Value
 import org.gnome.toBoolean
 
 public typealias ListStore = CPointer<GtkListStore>
@@ -56,6 +58,14 @@ public fun ListStore.moveBefore(iter: TreeIter?, position: TreeIter?): Unit {
 
 public fun ListStore.remove(iter: TreeIter?): Boolean = gtk_list_store_remove(this,
     iter?.reinterpret()).toBoolean
+
+public fun ListStore.setValue(
+  iter: TreeIter?,
+  column: Int,
+  `value`: Value?
+): Unit {
+  gtk_list_store_set_value(this, iter?.reinterpret(), column, value?.reinterpret())
+}
 
 public fun ListStore.swap(a: TreeIter?, b: TreeIter?): Unit {
   gtk_list_store_swap(this, a?.reinterpret(), b?.reinterpret())

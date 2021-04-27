@@ -1,9 +1,11 @@
-headers = gtk/gtk.h gtk/gtk-a11y.h gio/gunixmounts.h
+headers = gtk/gtk.h gtk/gtk-a11y.h gio/gunixmounts.h gtk/gtkx.h gio/gdesktopappinfo.h gio/gunixfdlist.h \
+gio/gunixconnection.h gio/gunixfdmessage.h gio/gunixinputstream.h gio/gunixsocketaddress.h gio/gunixoutputstream.h \
+gio/gunixcredentialsmessage.h
 headerFilter = gtk/** gobject/* gio/* glib/* atk/*
 compilerOpts.osx = -I/usr/local/include/gtk-3.0 -I/usr/local/include/glib-2.0 -I/usr/local/lib/glib-2.0/include \
 -I/usr/local/include/pango-1.0 -I/usr/local/include/cairo -I/usr/local/include -I/usr/local/include/gdk-pixbuf-2.0 \
 -I/usr/local/include/atk-1.0
-compilerOpts.linux = -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+compilerOpts.linux = -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include -I/usr/include/x86_64-linux-gnu
 linkerOpts.osx = -L/opt/local/lib -L/usr/local/lib -lglib-2.0 -lgdk-3.0 -lgtk-3 -lgio-2.0 -lgobject-2.0
 linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
 linkerOpts.mingw = -lglib-2.0 -lgdk-3 -lgtk-3 -lgio-2.0 -lgobject-2.0

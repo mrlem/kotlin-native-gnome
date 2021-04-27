@@ -13,7 +13,6 @@
 // TODO - method: get_property
 // TODO - method: get_screen
 // TODO - method: get_style
-// TODO - method: get_style_property
 // TODO - method: get_style_valist
 // TODO - method: get_valist
 // TODO - method: has_region
@@ -46,6 +45,7 @@ import interop.gtk_style_context_get_path
 import interop.gtk_style_context_get_scale
 import interop.gtk_style_context_get_section
 import interop.gtk_style_context_get_state
+import interop.gtk_style_context_get_style_property
 import interop.gtk_style_context_has_class
 import interop.gtk_style_context_new
 import interop.gtk_style_context_remove_class
@@ -66,9 +66,10 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
+import org.gnome.gobject.Value
 import org.gnome.toBoolean
 import org.gnome.toKString
+import org.mrlem.gnome.gobject.connect
 
 public typealias StyleContext = CPointer<GtkStyleContext>
 
@@ -119,6 +120,10 @@ public fun StyleContext.addProvider(provider: StyleProvider?, priority: UInt): U
 
 public fun StyleContext.getSection(`property`: String): CssSection? =
     gtk_style_context_get_section(this, property)?.reinterpret()
+
+public fun StyleContext.getStyleProperty(propertyName: String, `value`: Value?): Unit {
+  gtk_style_context_get_style_property(this, propertyName, value?.reinterpret())
+}
 
 public fun StyleContext.hasClass(className: String): Boolean = gtk_style_context_has_class(this,
     className).toBoolean

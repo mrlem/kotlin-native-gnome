@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - method: get_screen
 // TODO - method: set_screen
 //
@@ -9,6 +8,7 @@ package org.gnome.gtk
 import interop.GtkMountOperation
 import interop.gtk_mount_operation_get_parent
 import interop.gtk_mount_operation_is_showing
+import interop.gtk_mount_operation_new
 import interop.gtk_mount_operation_set_parent
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
@@ -24,7 +24,10 @@ public val MountOperation.asObject: Object
 public val MountOperation.asMountOperation: org.gnome.gio.MountOperation
   get() = reinterpret()
 
-public object MountOperationFactory
+public object MountOperationFactory {
+  public fun new(parent: Window?): MountOperation =
+      gtk_mount_operation_new(parent?.reinterpret())!!.reinterpret()
+}
 
 public var MountOperation.parent: Window?
   get() = gtk_mount_operation_get_parent(this)?.reinterpret()

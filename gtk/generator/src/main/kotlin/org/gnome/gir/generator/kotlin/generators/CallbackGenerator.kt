@@ -10,6 +10,7 @@ import org.gnome.gir.model.NamespaceDefinition
 
 fun CallbackDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
     val cType = cType
+        ?: if (name == "Callback") "GCallback" else null // missing cType in the gir
     if (cType == null) {
         println("warning: callback '$name' ignored: no cType")
         return null

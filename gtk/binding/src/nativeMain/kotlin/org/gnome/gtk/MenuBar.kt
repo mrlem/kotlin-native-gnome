@@ -1,5 +1,3 @@
-// TODO - constructor: new_from_model
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -8,10 +6,12 @@ import interop.GtkMenuBar
 import interop.gtk_menu_bar_get_child_pack_direction
 import interop.gtk_menu_bar_get_pack_direction
 import interop.gtk_menu_bar_new
+import interop.gtk_menu_bar_new_from_model
 import interop.gtk_menu_bar_set_child_pack_direction
 import interop.gtk_menu_bar_set_pack_direction
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 
@@ -34,6 +34,9 @@ public val MenuBar.asMenuShell: MenuShell
 
 public object MenuBarFactory {
   public fun new(): MenuBar = gtk_menu_bar_new()!!.reinterpret()
+
+  public fun newFromModel(model: MenuModel?): MenuBar =
+      gtk_menu_bar_new_from_model(model?.reinterpret())!!.reinterpret()
 }
 
 public var MenuBar.childPackDirection: PackDirection

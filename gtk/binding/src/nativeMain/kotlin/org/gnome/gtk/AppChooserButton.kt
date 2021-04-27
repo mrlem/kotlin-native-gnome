@@ -1,10 +1,9 @@
-// TODO - method: append_custom_item
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkAppChooserButton
+import interop.gtk_app_chooser_button_append_custom_item
 import interop.gtk_app_chooser_button_append_separator
 import interop.gtk_app_chooser_button_get_heading
 import interop.gtk_app_chooser_button_get_show_default_item
@@ -19,12 +18,13 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
+import org.mrlem.gnome.gobject.connect
 
 public typealias AppChooserButton = CPointer<GtkAppChooserButton>
 
@@ -68,6 +68,14 @@ public var AppChooserButton.showDialogItem: Boolean
   set(`value`) {
     gtk_app_chooser_button_set_show_dialog_item(this, value.toInt)
   }
+
+public fun AppChooserButton.appendCustomItem(
+  name: String,
+  label: String,
+  icon: Icon?
+): Unit {
+  gtk_app_chooser_button_append_custom_item(this, name, label, icon?.reinterpret())
+}
 
 public fun AppChooserButton.appendSeparator(): Unit {
   gtk_app_chooser_button_append_separator(this)

@@ -14,7 +14,7 @@ fun FileSpec.Builder.addSignal(className: ClassName, signal: SignalDefinition): 
             .addParameter("callback", LambdaTypeName.get(returnType = UNIT, parameters = arrayOf(className)))
             .addStatement(
                 "asObject.%M(\"${signal.name}\") { callback(this) }",
-                MemberName(GOBJECT_PACKAGE, "connect")
+                MemberName("org.mrlem.gnome.gobject", "connect")
             )
             .addStatement("return this")
             .build()

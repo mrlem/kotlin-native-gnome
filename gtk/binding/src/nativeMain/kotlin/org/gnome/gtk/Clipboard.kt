@@ -1,5 +1,4 @@
 // TODO - method: get_display
-// TODO - method: get_owner
 // TODO - method: get_selection
 // TODO - method: request_contents
 // TODO - method: request_image
@@ -24,6 +23,7 @@ package org.gnome.gtk
 
 import interop.GtkClipboard
 import interop.gtk_clipboard_clear
+import interop.gtk_clipboard_get_owner
 import interop.gtk_clipboard_set_text
 import interop.gtk_clipboard_store
 import interop.gtk_clipboard_wait_for_text
@@ -38,14 +38,17 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toKString
+import org.mrlem.gnome.gobject.connect
 
 public typealias Clipboard = CPointer<GtkClipboard>
 
 public val Clipboard.asObject: Object
   get() = reinterpret()
+
+public val Clipboard.owner: Object?
+  get() = gtk_clipboard_get_owner(this)?.reinterpret()
 
 public fun Clipboard.clear(): Unit {
   gtk_clipboard_clear(this)

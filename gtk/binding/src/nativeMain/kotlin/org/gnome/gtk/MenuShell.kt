@@ -1,5 +1,3 @@
-// TODO - method: bind_model
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -7,6 +5,7 @@ package org.gnome.gtk
 import interop.GtkMenuShell
 import interop.gtk_menu_shell_activate_item
 import interop.gtk_menu_shell_append
+import interop.gtk_menu_shell_bind_model
 import interop.gtk_menu_shell_cancel
 import interop.gtk_menu_shell_deactivate
 import interop.gtk_menu_shell_deselect
@@ -20,14 +19,16 @@ import interop.gtk_menu_shell_select_item
 import interop.gtk_menu_shell_set_take_focus
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
+import org.mrlem.gnome.gobject.connect
 
 public typealias MenuShell = CPointer<GtkMenuShell>
 
@@ -61,6 +62,14 @@ public fun MenuShell.activateItem(menuItem: Widget?, forceDeactivate: Boolean): 
 
 public fun MenuShell.append(child: MenuItem?): Unit {
   gtk_menu_shell_append(this, child?.reinterpret())
+}
+
+public fun MenuShell.bindModel(
+  model: MenuModel?,
+  actionNamespace: String,
+  withSeparators: Boolean
+): Unit {
+  gtk_menu_shell_bind_model(this, model?.reinterpret(), actionNamespace, withSeparators.toInt)
 }
 
 public fun MenuShell.cancel(): Unit {

@@ -1,11 +1,6 @@
-// TODO - method: add_shortcut
-// TODO - method: get_location
-// TODO - method: get_nth_bookmark
 // TODO - method: get_show_connect_to_server
 // TODO - method: list_shortcuts
-// TODO - method: remove_shortcut
 // TODO - method: set_drop_targets_visible
-// TODO - method: set_location
 // TODO - method: set_show_connect_to_server
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -13,7 +8,10 @@
 package org.gnome.gtk
 
 import interop.GtkPlacesSidebar
+import interop.gtk_places_sidebar_add_shortcut
 import interop.gtk_places_sidebar_get_local_only
+import interop.gtk_places_sidebar_get_location
+import interop.gtk_places_sidebar_get_nth_bookmark
 import interop.gtk_places_sidebar_get_open_flags
 import interop.gtk_places_sidebar_get_show_desktop
 import interop.gtk_places_sidebar_get_show_enter_location
@@ -22,7 +20,9 @@ import interop.gtk_places_sidebar_get_show_recent
 import interop.gtk_places_sidebar_get_show_starred_location
 import interop.gtk_places_sidebar_get_show_trash
 import interop.gtk_places_sidebar_new
+import interop.gtk_places_sidebar_remove_shortcut
 import interop.gtk_places_sidebar_set_local_only
+import interop.gtk_places_sidebar_set_location
 import interop.gtk_places_sidebar_set_open_flags
 import interop.gtk_places_sidebar_set_show_desktop
 import interop.gtk_places_sidebar_set_show_enter_location
@@ -31,14 +31,16 @@ import interop.gtk_places_sidebar_set_show_recent
 import interop.gtk_places_sidebar_set_show_starred_location
 import interop.gtk_places_sidebar_set_show_trash
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.File
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
+import org.mrlem.gnome.gobject.connect
 
 public typealias PlacesSidebar = CPointer<GtkPlacesSidebar>
 
@@ -68,6 +70,12 @@ public var PlacesSidebar.localOnly: Boolean
   get() = gtk_places_sidebar_get_local_only(this).toBoolean
   set(`value`) {
     gtk_places_sidebar_set_local_only(this, value.toInt)
+  }
+
+public var PlacesSidebar.location: File?
+  get() = gtk_places_sidebar_get_location(this)?.reinterpret()
+  set(`value`) {
+    gtk_places_sidebar_set_location(this, value)
   }
 
 public var PlacesSidebar.openFlags: PlacesOpenFlags
@@ -111,6 +119,17 @@ public var PlacesSidebar.showTrash: Boolean
   set(`value`) {
     gtk_places_sidebar_set_show_trash(this, value.toInt)
   }
+
+public fun PlacesSidebar.addShortcut(location: File?): Unit {
+  gtk_places_sidebar_add_shortcut(this, location?.reinterpret())
+}
+
+public fun PlacesSidebar.getNthBookmark(n: Int): File? = gtk_places_sidebar_get_nth_bookmark(this,
+    n)?.reinterpret()
+
+public fun PlacesSidebar.removeShortcut(location: File?): Unit {
+  gtk_places_sidebar_remove_shortcut(this, location?.reinterpret())
+}
 
 public fun PlacesSidebar.onDragActionAsk(callback: (PlacesSidebar) -> Unit): PlacesSidebar {
   // TODO - handle callback data

@@ -1,7 +1,6 @@
 package org.mrlem.gtk.sample
 
 import binding.SampleUI
-import org.gnome.gobject.onActivate
 import org.gnome.gtk.*
 
 class AppDelegate(private val ui: SampleUI) {
@@ -15,7 +14,7 @@ class AppDelegate(private val ui: SampleUI) {
             }
 
             // setup conversion
-            euroAmountEntry.asObject.onActivate { showConverted() }
+            euroAmountEntry.onActivate { showConverted() }
             convertButton.onClicked { showConverted() }
 
             // show UI

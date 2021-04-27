@@ -12,7 +12,7 @@ import org.gnome.gtk.Window
 import org.gnome.toKList
 
 fun ApplicationFactory.new(id: String, args: Array<String>, init: Application.() -> Unit) =
-  ApplicationFactory.new(id, G_APPLICATION_FLAGS_NONE)
+  new(id, G_APPLICATION_FLAGS_NONE)
     .initAndRun(args, init)
 
 fun Application.initAndRun(args: Array<String>, init: Application.() -> Unit) = run {

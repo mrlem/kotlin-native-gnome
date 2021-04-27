@@ -2,10 +2,8 @@
 // TODO - method: activate_cell
 // TODO - method: add_with_properties
 // TODO - method: cell_get
-// TODO - method: cell_get_property
 // TODO - method: cell_get_valist
 // TODO - method: cell_set
-// TODO - method: cell_set_property
 // TODO - method: cell_set_valist
 // TODO - method: event
 // TODO - method: foreach
@@ -32,6 +30,8 @@ import interop.gtk_cell_area_apply_attributes
 import interop.gtk_cell_area_attribute_connect
 import interop.gtk_cell_area_attribute_disconnect
 import interop.gtk_cell_area_attribute_get_column
+import interop.gtk_cell_area_cell_get_property
+import interop.gtk_cell_area_cell_set_property
 import interop.gtk_cell_area_copy_context
 import interop.gtk_cell_area_create_context
 import interop.gtk_cell_area_focus
@@ -56,10 +56,11 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
+import org.gnome.gobject.Value
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
+import org.mrlem.gnome.gobject.connect
 
 public typealias CellArea = CPointer<GtkCellArea>
 
@@ -119,6 +120,22 @@ public fun CellArea.attributeDisconnect(renderer: CellRenderer?, attribute: Stri
 
 public fun CellArea.attributeGetColumn(renderer: CellRenderer?, attribute: String): Int =
     gtk_cell_area_attribute_get_column(this, renderer?.reinterpret(), attribute)
+
+public fun CellArea.cellGetProperty(
+  renderer: CellRenderer?,
+  propertyName: String,
+  `value`: Value?
+): Unit {
+  gtk_cell_area_cell_get_property(this, renderer?.reinterpret(), propertyName, value?.reinterpret())
+}
+
+public fun CellArea.cellSetProperty(
+  renderer: CellRenderer?,
+  propertyName: String,
+  `value`: Value?
+): Unit {
+  gtk_cell_area_cell_set_property(this, renderer?.reinterpret(), propertyName, value?.reinterpret())
+}
 
 public fun CellArea.copyContext(context: CellAreaContext?): CellAreaContext? =
     gtk_cell_area_copy_context(this, context?.reinterpret())?.reinterpret()

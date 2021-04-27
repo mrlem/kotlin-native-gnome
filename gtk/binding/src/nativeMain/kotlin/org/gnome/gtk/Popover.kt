@@ -1,5 +1,3 @@
-// TODO - constructor: new_from_model
-// TODO - method: bind_model
 // TODO - method: get_pointing_to
 // TODO - method: get_transitions_enabled
 // TODO - method: set_pointing_to
@@ -10,12 +8,14 @@
 package org.gnome.gtk
 
 import interop.GtkPopover
+import interop.gtk_popover_bind_model
 import interop.gtk_popover_get_constrain_to
 import interop.gtk_popover_get_default_widget
 import interop.gtk_popover_get_modal
 import interop.gtk_popover_get_position
 import interop.gtk_popover_get_relative_to
 import interop.gtk_popover_new
+import interop.gtk_popover_new_from_model
 import interop.gtk_popover_popdown
 import interop.gtk_popover_popup
 import interop.gtk_popover_set_constrain_to
@@ -24,14 +24,16 @@ import interop.gtk_popover_set_modal
 import interop.gtk_popover_set_position
 import interop.gtk_popover_set_relative_to
 import kotlin.Boolean
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.gobject.connect
 import org.gnome.toBoolean
 import org.gnome.toInt
+import org.mrlem.gnome.gobject.connect
 
 public typealias Popover = CPointer<GtkPopover>
 
@@ -53,6 +55,9 @@ public val Popover.asBin: Bin
 public object PopoverFactory {
   public fun new(relativeTo: Widget?): Popover =
       gtk_popover_new(relativeTo?.reinterpret())!!.reinterpret()
+
+  public fun newFromModel(relativeTo: Widget?, model: MenuModel?): Popover =
+      gtk_popover_new_from_model(relativeTo?.reinterpret(), model?.reinterpret())!!.reinterpret()
 }
 
 public var Popover.constrainTo: PopoverConstraint
@@ -84,6 +89,10 @@ public var Popover.relativeTo: Widget?
   set(`value`) {
     gtk_popover_set_relative_to(this, value)
   }
+
+public fun Popover.bindModel(model: MenuModel?, actionNamespace: String): Unit {
+  gtk_popover_bind_model(this, model?.reinterpret(), actionNamespace)
+}
 
 public fun Popover.popdown(): Unit {
   gtk_popover_popdown(this)
