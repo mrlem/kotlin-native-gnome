@@ -1,5 +1,5 @@
 # Kotlin Native GNOME
-[![maven-central](https://img.shields.io/maven-central/v/org.mrlem.gnome/gtk-binding)](https://search.maven.org/artifact/org.mrlem.gnome/gtk-binding/0.1.2/jar)
+[![maven-central](https://img.shields.io/maven-central/v/org.mrlem.gnome/gtk-binding)](https://search.maven.org/artifact/org.mrlem.gnome/gtk-binding/0.1.3/jar)
 
 A set of tools to make **GNOME application** creation easy in **Kotlin Native**, with **Glade** UI integration.
 
@@ -31,7 +31,7 @@ And:
 
 ```kotlin
 dependencies {
-    implementation("org.mrlem.gnome:gtk-binding:0.1.2")
+    implementation("org.mrlem.gnome:gtk-binding:0.1.3")
 }
 ```
 
