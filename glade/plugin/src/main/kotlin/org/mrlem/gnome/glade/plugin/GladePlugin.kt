@@ -5,6 +5,8 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.mrlem.gnome.glade.plugin.tasks.StartTask
+import org.mrlem.gnome.glade.plugin.tasks.StopTask
 import org.mrlem.gnome.glade.plugin.watch.ServiceHandler
 
 /**
@@ -19,17 +21,8 @@ import org.mrlem.gnome.glade.plugin.watch.ServiceHandler
 class GladePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
-        val startTask = project.task("gladeWatchStart") {
-            doLast {
-                ServiceHandler.start()
-            }
-        }
-
-        project.task("gladeWatchStop") {
-            doLast {
-                ServiceHandler.stop()
-            }
-        }
+        val startTask = project.tasks.register("startGladeWatcher", StartTask::class.java)
+        project.tasks.register("stopGladeWatcher", StopTask::class.java)
 
         project.afterEvaluate {
             // task will run immediately before compiling the kotlin sources
@@ -68,6 +61,7 @@ class GladePlugin : Plugin<Project> {
 
     companion object {
         const val GLADE_EXTENSION = ".glade"
+        const val GLADE_TASK_GROUP = "glade"
         lateinit var sourceSetsWithGeneratedDir: Map<KotlinSourceSet, File>
     }
 

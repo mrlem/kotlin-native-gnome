@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+
 plugins {
     kotlin("jvm")
     `java-gradle-plugin`
@@ -7,13 +9,33 @@ plugins {
 }
 
 group = "org.mrlem.gnome"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.8"
+    .also { extra["isReleaseVersion"] = !it.endsWith("SNAPSHOT") }
 
-extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
+tasks.withType<KotlinCompile<*>> {
+    kotlinOptions {
+        // required due to plugin execution environment
+        languageVersion = "1.3"
+    }
+}
 
 repositories {
     mavenCentral()
     maven("https://jitpack.io")
+}
+
+dependencies {
+    // file monitoring
+    implementation("com.github.vishna:watchservice-ktx:master-SNAPSHOT")
+
+    // kotlin generation
+    implementation("com.squareup:kotlinpoet:1.8.0")
+
+    // gradle
+    // .. plugin API
+    implementation(gradleApi())
+    // .. kotlin plugin API
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31")
 }
 
 gradlePlugin {
@@ -25,18 +47,6 @@ gradlePlugin {
             implementationClass = "org.mrlem.gnome.glade.plugin.GladePlugin"
         }
     }
-}
-
-dependencies {
-    // kotlin generation
-    implementation("com.squareup:kotlinpoet:1.8.0")
-    implementation("com.github.vishna:watchservice-ktx:master-SNAPSHOT")
-
-    // gradle
-    // .. plugin API
-    implementation(gradleApi())
-    // .. kotlin plugin API
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31")
 }
 
 pluginBundle {

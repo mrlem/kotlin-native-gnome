@@ -6,12 +6,11 @@ buildscript {
 
 plugins {
     kotlin("multiplatform")
-    id("org.mrlem.gnome.glade") version("0.1.0-SNAPSHOT")
+    id("org.mrlem.gnome.glade") version("0.1.8")
 }
 
 repositories {
     mavenCentral()
-    maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
 kotlin {
