@@ -78,7 +78,7 @@ class ViewBindingGenerator {
                         .initializer(
                             "%M.new().apply { %M(source) }",
                             MemberName(GTK_PACKAGE, "BuilderFactory"),
-                            MemberName(GTK_ADDITIONS_PACKAGE, "addFrom")
+                            MemberName(GTK_ADDITIONS_PACKAGE, "addFromString")
                         )
                         .build()
                     )
