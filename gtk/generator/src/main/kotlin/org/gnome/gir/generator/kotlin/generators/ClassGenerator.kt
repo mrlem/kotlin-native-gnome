@@ -5,8 +5,10 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import org.gnome.gir.GNOME_PACKAGE
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
+import org.gnome.gir.model.CallableDefinition
 import org.gnome.gir.model.ClassDefinition
 import org.gnome.gir.model.NamespaceDefinition
+import org.gnome.gir.model.SignalDefinition
 import org.gnome.gir.parser.Fixer.fix
 import org.gnome.gir.resolver.Resolver
 
@@ -42,30 +44,15 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             "unused",
             "RedundantUnitReturnType"
         )
-        // type
         .addTypeAlias(
             TypeAliasSpec
                 .builder(name, cpointerClassName.plusParameter(ClassName(INTEROP_PACKAGE, glibTypeName)))
                 .build()
         )
-        // converters
-        .apply { addConverters(classNameString, className, resolver) }
-        // sub-elements
-        .also { fileSpecBuilder ->
-            if (constructors.isNotEmpty()) {
-                fileSpecBuilder.addType(
-                    TypeSpec.objectBuilder("${className.simpleName}Factory")
-                        .apply { constructors.forEach { addConstructor(className, it, fileSpecBuilder, resolver) } }
-                        .build()
-                )
-            }
-        }
-        .apply {
-            val methodsToAdd = methods.toMutableList()
-            addProperties(methodsToAdd, className, resolver)
-            methodsToAdd.forEach { addMethod(className, it, resolver) }
-        }
-        .apply { signals.forEach { addSignal(className, it) } }
+        .addConverters(classNameString, className, resolver)
+        .addConstructors(constructors, className, resolver)
+        .addMethods(className, methods, resolver)
+        .addSignals(className, signals)
         .build()
 }
 
@@ -73,12 +60,13 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
 // Private
 ///////////////////////////////////////////////////////////////////////////
 
-private fun FileSpec.Builder.addConverters(classNameString: String, className: ClassName, resolver: Resolver) {
+private fun FileSpec.Builder.addConverters(classNameString: String, className: ClassName, resolver: Resolver): FileSpec.Builder {
     resolver.ancestors(classNameString)
         .reversed()
         .forEach { ancestor ->
             addConverter(className, ancestor)
         }
+    return this
 }
 
 private fun FileSpec.Builder.addConverter(className: ClassName, ancestor: String) {
@@ -95,4 +83,30 @@ private fun FileSpec.Builder.addConverter(className: ClassName, ancestor: String
             )
             .build()
     )
+}
+
+private fun FileSpec.Builder.addConstructors(constructors: List<CallableDefinition>, className: ClassName, resolver: Resolver): FileSpec.Builder {
+    if (constructors.isNotEmpty()) {
+        addType(
+            TypeSpec.objectBuilder("${className.simpleName}Factory")
+                .apply { constructors.forEach { addConstructor(className, it, this@addConstructors, resolver) } }
+                .build()
+        )
+    }
+
+    return this
+}
+
+private fun FileSpec.Builder.addMethods(className: ClassName, methods: List<CallableDefinition>, resolver: Resolver): FileSpec.Builder {
+    val methodsToAdd = methods.toMutableList()
+    addProperties(methodsToAdd, className, resolver)
+    methodsToAdd.forEach { addMethod(className, it, resolver) }
+
+    return this
+}
+
+private fun FileSpec.Builder.addSignals(className: ClassName, signals: List<SignalDefinition>): FileSpec.Builder {
+    signals.forEach { addSignal(className, it) }
+
+    return this
 }
