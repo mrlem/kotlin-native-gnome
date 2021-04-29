@@ -1,4 +1,3 @@
-//@file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType","FunctionName")
 @file:Suppress("unused")
 
 package org.mrlem.gnome.gtk
