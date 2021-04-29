@@ -46,7 +46,7 @@ Still a *work in progress*:
 * API coverage is still incomplete:
   - some unhandled data types (like GLists and arrays)
   - no signal handlers data
-  - missing generations outside GTK & GIO (e.g. GLib, GObject)
+  - some missing generations: GLib, ATK, GDKPixbuf, Cairo, Pango)
 * platform support: Linux only for now
 
 ## See also
