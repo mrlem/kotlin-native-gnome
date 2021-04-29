@@ -26,7 +26,7 @@ fun PublishingExtension.configure(projectName: String) {
     publications.withType(MavenPublication::class.java).configureEach {
         pom {
             name.set(projectName)
-            description.set("GTK binding for Kotlin Native")
+            description.set("GNOME bindings for Kotlin Native")
             url.set("https://github.com/mrlem/kotlin-native-gnome")
 
             licenses {
