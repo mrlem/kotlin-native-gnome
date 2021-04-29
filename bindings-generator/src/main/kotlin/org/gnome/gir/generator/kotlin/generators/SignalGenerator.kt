@@ -1,7 +1,6 @@
 package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.*
-import org.gnome.gir.GOBJECT_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.snakeCaseToCamelCase
 import org.gnome.gir.model.SignalDefinition
 
