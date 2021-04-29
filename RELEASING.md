@@ -17,7 +17,7 @@ Z: next stable version
    - close the staging repository
    - release the staging directory
 6. `git tag -a vY -m "release: version Y"`
-7. Update versions in gtk/binding/build.gradle.kts: Y to Z-SNAPSHOT
+7. Update versions in bindings/gtk/build.gradle.kts: Y to Z-SNAPSHOT
 8. `git commit -am "release: next development version"`
 
 Wait a few minutes until the release appears on https://search.maven.org/artifact/org.mrlem.gnome/gtk-binding

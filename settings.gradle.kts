@@ -10,9 +10,9 @@ pluginManagement {
     }
 }
 
-rootProject.name = "kotlin-glade"
-include("gtk-binding", "gtk-generator", "glade-plugin", "sample")
+rootProject.name = "kotlin-native-gnome"
+include("gtk-binding", "bindings-generator", "glade-plugin", "sample")
 
-project(":gtk-binding").projectDir = File(settingsDir, "gtk/binding")
-project(":gtk-generator").projectDir = File(settingsDir, "gtk/generator")
-project(":glade-plugin").projectDir = File(settingsDir, "glade/plugin")
+project(":gtk-binding").projectDir = File(settingsDir, "bindings/gtk")
+project(":glade-plugin").projectDir = File(settingsDir, "plugins/glade")
+

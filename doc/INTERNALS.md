@@ -26,6 +26,6 @@ Hence, as stated initially, we have the following workflow:
 ## Components
 
 To achieve the above workflow, the project includes:
-* a [Glade gradle plugin](../glade/plugin/README.md) to handle Glade files
-* an [API bindings](../gtk/binding) module, with the current API bindings
-* an [API bindings generator](../gtk/generator/README.md)
+* a [Glade gradle plugin](../plugins/glade/README.md) to handle Glade files
+* an [API bindings](../bindings/gtk) module, with the current API bindings
+* an [API bindings generator](../bindings-generator/README.md)

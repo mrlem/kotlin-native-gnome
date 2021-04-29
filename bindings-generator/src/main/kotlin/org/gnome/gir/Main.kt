@@ -17,7 +17,7 @@ const val KOTLIN_CINTEROP_PACKAGE = "kotlinx.cinterop"
  */
 fun main() {
     // target directory
-    val sourcesDir = File("../../gtk/binding/src/nativeMain/kotlin")
+    val sourcesDir = File("../bindings/gtk/src/nativeMain/kotlin")
     if (!sourcesDir.exists()) {
         println("error: not such directory '${sourcesDir.absolutePath}'")
         exitProcess(1)
