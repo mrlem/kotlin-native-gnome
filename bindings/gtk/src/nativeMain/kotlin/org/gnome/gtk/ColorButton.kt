@@ -20,6 +20,8 @@ import interop.gtk_color_button_set_title
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -49,6 +51,9 @@ public val ColorButton.asButton: Button
 public object ColorButtonFactory {
   public fun new(): ColorButton = gtk_color_button_new()!!.reinterpret()
 }
+
+public val ColorButton.button: Button
+  get() = pointed.button.ptr
 
 public var ColorButton.title: String
   get() = gtk_color_button_get_title(this).toKString

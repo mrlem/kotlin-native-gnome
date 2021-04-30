@@ -16,6 +16,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -46,6 +48,9 @@ public object FileChooserButtonFactory {
   public fun newWithDialog(dialog: Dialog?): FileChooserButton =
       gtk_file_chooser_button_new_with_dialog(dialog?.reinterpret())!!.reinterpret()
 }
+
+public val FileChooserButton.parent: Box
+  get() = pointed.parent.ptr
 
 public var FileChooserButton.title: String
   get() = gtk_file_chooser_button_get_title(this).toKString

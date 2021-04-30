@@ -51,6 +51,8 @@ import interop.g_settings_revert
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -62,6 +64,9 @@ public val Settings.asObject: Object
   get() = reinterpret()
 
 public object SettingsFactory
+
+public val Settings.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val Settings.hasUnapplied: Boolean
   get() = g_settings_get_has_unapplied(this).toBoolean

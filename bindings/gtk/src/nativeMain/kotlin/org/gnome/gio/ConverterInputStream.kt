@@ -7,6 +7,8 @@ package org.gnome.gio
 import interop.GConverterInputStream
 import interop.g_converter_input_stream_get_converter
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -22,6 +24,9 @@ public val ConverterInputStream.asFilterInputStream: FilterInputStream
   get() = reinterpret()
 
 public object ConverterInputStreamFactory
+
+public val ConverterInputStream.parentInstance: FilterInputStream
+  get() = pointed.parent_instance.ptr
 
 public val ConverterInputStream.converter: Converter?
   get() = g_converter_input_stream_get_converter(this)?.reinterpret()

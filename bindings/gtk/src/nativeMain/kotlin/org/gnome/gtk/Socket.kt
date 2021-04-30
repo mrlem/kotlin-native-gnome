@@ -10,6 +10,8 @@ import interop.GtkSocket
 import interop.gtk_socket_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -32,6 +34,9 @@ public val Socket.asContainer: Container
 public object SocketFactory {
   public fun new(): Socket = gtk_socket_new()!!.reinterpret()
 }
+
+public val Socket.container: Container
+  get() = pointed.container.ptr
 
 public fun Socket.onPlugAdded(callback: (Socket) -> Unit): Socket {
   // TODO - handle callback data

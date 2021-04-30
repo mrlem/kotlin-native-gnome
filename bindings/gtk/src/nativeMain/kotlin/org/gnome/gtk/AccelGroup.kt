@@ -20,6 +20,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Closure
 import org.gnome.gobject.Object
@@ -34,6 +36,9 @@ public val AccelGroup.asObject: Object
 public object AccelGroupFactory {
   public fun new(): AccelGroup = gtk_accel_group_new()!!.reinterpret()
 }
+
+public val AccelGroup.parent: Object
+  get() = pointed.parent.ptr
 
 public val AccelGroup.isLocked: Boolean
   get() = gtk_accel_group_get_is_locked(this).toBoolean

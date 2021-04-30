@@ -82,6 +82,8 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -109,6 +111,9 @@ public object TextViewFactory {
   public fun newWithBuffer(buffer: TextBuffer?): TextView =
       gtk_text_view_new_with_buffer(buffer?.reinterpret())!!.reinterpret()
 }
+
+public val TextView.parentInstance: Container
+  get() = pointed.parent_instance.ptr
 
 public var TextView.acceptsTab: Boolean
   get() = gtk_text_view_get_accepts_tab(this).toBoolean

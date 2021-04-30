@@ -52,6 +52,9 @@ public typealias OutputStream = CPointer<GOutputStream>
 public val OutputStream.asObject: Object
   get() = reinterpret()
 
+public val OutputStream.parentInstance: Object
+  get() = pointed.parent_instance.ptr
+
 public fun OutputStream.clearPending(): Unit {
   g_output_stream_clear_pending(this)
 }

@@ -22,6 +22,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -46,6 +48,9 @@ public val HeaderBar.asContainer: Container
 public object HeaderBarFactory {
   public fun new(): HeaderBar = gtk_header_bar_new()!!.reinterpret()
 }
+
+public val HeaderBar.container: Container
+  get() = pointed.container.ptr
 
 public var HeaderBar.customTitle: Widget?
   get() = gtk_header_bar_get_custom_title(this)?.reinterpret()

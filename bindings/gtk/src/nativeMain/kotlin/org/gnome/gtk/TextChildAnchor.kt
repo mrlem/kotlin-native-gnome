@@ -9,6 +9,8 @@ import interop.gtk_text_child_anchor_get_deleted
 import interop.gtk_text_child_anchor_new
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -21,6 +23,9 @@ public val TextChildAnchor.asObject: Object
 public object TextChildAnchorFactory {
   public fun new(): TextChildAnchor = gtk_text_child_anchor_new()!!.reinterpret()
 }
+
+public val TextChildAnchor.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val TextChildAnchor.deleted: Boolean
   get() = gtk_text_child_anchor_get_deleted(this).toBoolean

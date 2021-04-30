@@ -19,6 +19,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -28,6 +30,9 @@ public typealias ApplicationCommandLine = CPointer<GApplicationCommandLine>
 
 public val ApplicationCommandLine.asObject: Object
   get() = reinterpret()
+
+public val ApplicationCommandLine.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val ApplicationCommandLine.cwd: String
   get() = g_application_command_line_get_cwd(this).toKString

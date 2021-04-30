@@ -11,6 +11,8 @@ import interop.g_menu_attribute_iter_next
 import kotlin.Boolean
 import kotlin.String
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -20,6 +22,9 @@ public typealias MenuAttributeIter = CPointer<GMenuAttributeIter>
 
 public val MenuAttributeIter.asObject: Object
   get() = reinterpret()
+
+public val MenuAttributeIter.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val MenuAttributeIter.name: String
   get() = g_menu_attribute_iter_get_name(this).toKString

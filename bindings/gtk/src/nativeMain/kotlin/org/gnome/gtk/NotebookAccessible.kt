@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkNotebookAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -23,3 +25,6 @@ public val NotebookAccessible.asWidgetAccessible: WidgetAccessible
 
 public val NotebookAccessible.asContainerAccessible: ContainerAccessible
   get() = reinterpret()
+
+public val NotebookAccessible.parent: ContainerAccessible
+  get() = pointed.parent.ptr

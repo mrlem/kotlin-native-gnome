@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkRadioButtonAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -29,3 +31,6 @@ public val RadioButtonAccessible.asButtonAccessible: ButtonAccessible
 
 public val RadioButtonAccessible.asToggleButtonAccessible: ToggleButtonAccessible
   get() = reinterpret()
+
+public val RadioButtonAccessible.parent: ToggleButtonAccessible
+  get() = pointed.parent.ptr

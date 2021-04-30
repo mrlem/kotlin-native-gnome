@@ -25,6 +25,8 @@ import interop.gtk_adjustment_set_value
 import kotlin.Double
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -49,6 +51,9 @@ public object AdjustmentFactory {
   ): Adjustment = gtk_adjustment_new(value, lower, upper, stepIncrement, pageIncrement,
       pageSize)!!.reinterpret()
 }
+
+public val Adjustment.parentInstance: InitiallyUnowned
+  get() = pointed.parent_instance.ptr
 
 public var Adjustment.lower: Double
   get() = gtk_adjustment_get_lower(this)

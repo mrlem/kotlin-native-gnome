@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkScrollbar
 import interop.gtk_scrollbar_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -27,3 +29,6 @@ public object ScrollbarFactory {
   public fun new(orientation: Orientation, adjustment: Adjustment?): Scrollbar =
       gtk_scrollbar_new(orientation, adjustment?.reinterpret())!!.reinterpret()
 }
+
+public val Scrollbar.range: Range
+  get() = pointed.range.ptr

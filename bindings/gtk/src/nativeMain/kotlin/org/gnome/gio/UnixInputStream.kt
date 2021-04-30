@@ -11,6 +11,8 @@ import interop.g_unix_input_stream_set_close_fd
 import kotlin.Boolean
 import kotlin.Int
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -25,6 +27,9 @@ public val UnixInputStream.asInputStream: InputStream
   get() = reinterpret()
 
 public object UnixInputStreamFactory
+
+public val UnixInputStream.parentInstance: InputStream
+  get() = pointed.parent_instance.ptr
 
 public var UnixInputStream.closeFd: Boolean
   get() = g_unix_input_stream_get_close_fd(this).toBoolean

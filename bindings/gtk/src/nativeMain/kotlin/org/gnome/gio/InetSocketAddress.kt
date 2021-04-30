@@ -13,6 +13,8 @@ import interop.g_inet_socket_address_get_scope_id
 import kotlin.UInt
 import kotlin.UShort
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -25,6 +27,9 @@ public val InetSocketAddress.asSocketAddress: SocketAddress
   get() = reinterpret()
 
 public object InetSocketAddressFactory
+
+public val InetSocketAddress.parentInstance: SocketAddress
+  get() = pointed.parent_instance.ptr
 
 public val InetSocketAddress.address: InetAddress?
   get() = g_inet_socket_address_get_address(this)?.reinterpret()

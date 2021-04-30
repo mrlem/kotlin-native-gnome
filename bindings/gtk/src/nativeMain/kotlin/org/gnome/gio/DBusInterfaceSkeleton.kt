@@ -19,6 +19,8 @@ import interop.g_dbus_interface_skeleton_unexport
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -28,6 +30,9 @@ public typealias DBusInterfaceSkeleton = CPointer<GDBusInterfaceSkeleton>
 
 public val DBusInterfaceSkeleton.asObject: Object
   get() = reinterpret()
+
+public val DBusInterfaceSkeleton.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val DBusInterfaceSkeleton.connection: DBusConnection?
   get() = g_dbus_interface_skeleton_get_connection(this)?.reinterpret()

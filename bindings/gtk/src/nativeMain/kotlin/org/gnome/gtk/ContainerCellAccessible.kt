@@ -10,6 +10,8 @@ import interop.gtk_container_cell_accessible_new
 import interop.gtk_container_cell_accessible_remove_child
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -30,6 +32,9 @@ public val ContainerCellAccessible.asCellAccessible: CellAccessible
 public object ContainerCellAccessibleFactory {
   public fun new(): ContainerCellAccessible = gtk_container_cell_accessible_new()!!.reinterpret()
 }
+
+public val ContainerCellAccessible.parent: CellAccessible
+  get() = pointed.parent.ptr
 
 public fun ContainerCellAccessible.addChild(child: CellAccessible?): Unit {
   gtk_container_cell_accessible_add_child(this, child?.reinterpret())

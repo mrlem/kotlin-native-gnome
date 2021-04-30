@@ -11,6 +11,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -37,6 +39,9 @@ public val FlowBoxChild.asBin: Bin
 public object FlowBoxChildFactory {
   public fun new(): FlowBoxChild = gtk_flow_box_child_new()!!.reinterpret()
 }
+
+public val FlowBoxChild.parentInstance: Bin
+  get() = pointed.parent_instance.ptr
 
 public val FlowBoxChild.index: Int
   get() = gtk_flow_box_child_get_index(this)

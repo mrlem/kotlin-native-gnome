@@ -12,6 +12,8 @@ import interop.gtk_application_window_set_show_menubar
 import kotlin.Boolean
 import kotlin.UInt
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -42,6 +44,9 @@ public object ApplicationWindowFactory {
   public fun new(application: Application?): ApplicationWindow =
       gtk_application_window_new(application?.reinterpret())!!.reinterpret()
 }
+
+public val ApplicationWindow.parentInstance: Window
+  get() = pointed.parent_instance.ptr
 
 public var ApplicationWindow.helpOverlay: ShortcutsWindow?
   get() = gtk_application_window_get_help_overlay(this)?.reinterpret()

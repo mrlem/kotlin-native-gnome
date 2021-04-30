@@ -40,6 +40,8 @@ import kotlin.Boolean
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -54,6 +56,9 @@ public val SocketClient.asObject: Object
 public object SocketClientFactory {
   public fun new(): SocketClient = g_socket_client_new()!!.reinterpret()
 }
+
+public val SocketClient.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public var SocketClient.enableProxy: Boolean
   get() = g_socket_client_get_enable_proxy(this).toBoolean

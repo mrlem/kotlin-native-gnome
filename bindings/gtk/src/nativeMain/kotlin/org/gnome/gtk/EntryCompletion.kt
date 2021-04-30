@@ -36,6 +36,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -54,6 +56,9 @@ public object EntryCompletionFactory {
   public fun newWithArea(area: CellArea?): EntryCompletion =
       gtk_entry_completion_new_with_area(area?.reinterpret())!!.reinterpret()
 }
+
+public val EntryCompletion.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val EntryCompletion.completionPrefix: String
   get() = gtk_entry_completion_get_completion_prefix(this).toKString

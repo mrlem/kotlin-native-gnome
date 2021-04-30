@@ -6,6 +6,8 @@ import interop.GtkCellRendererAccel
 import interop.gtk_cell_renderer_accel_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -28,6 +30,9 @@ public val CellRendererAccel.asCellRendererText: CellRendererText
 public object CellRendererAccelFactory {
   public fun new(): CellRendererAccel = gtk_cell_renderer_accel_new()!!.reinterpret()
 }
+
+public val CellRendererAccel.parent: CellRendererText
+  get() = pointed.parent.ptr
 
 public fun CellRendererAccel.onAccelCleared(callback: (CellRendererAccel) -> Unit):
     CellRendererAccel {

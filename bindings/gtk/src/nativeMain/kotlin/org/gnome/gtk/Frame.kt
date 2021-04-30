@@ -17,6 +17,8 @@ import kotlin.Float
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -42,6 +44,9 @@ public val Frame.asBin: Bin
 public object FrameFactory {
   public fun new(label: String): Frame = gtk_frame_new(label)!!.reinterpret()
 }
+
+public val Frame.bin: Bin
+  get() = pointed.bin.ptr
 
 public var Frame.label: String
   get() = gtk_frame_get_label(this).toKString

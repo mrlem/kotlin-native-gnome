@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkCellRendererSpin
 import interop.gtk_cell_renderer_spin_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -26,3 +28,6 @@ public val CellRendererSpin.asCellRendererText: CellRendererText
 public object CellRendererSpinFactory {
   public fun new(): CellRendererSpin = gtk_cell_renderer_spin_new()!!.reinterpret()
 }
+
+public val CellRendererSpin.parent: CellRendererText
+  get() = pointed.parent.ptr

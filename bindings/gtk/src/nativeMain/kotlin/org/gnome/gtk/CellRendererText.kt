@@ -8,6 +8,8 @@ import interop.gtk_cell_renderer_text_set_fixed_height_from_font
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -27,6 +29,9 @@ public val CellRendererText.asCellRenderer: CellRenderer
 public object CellRendererTextFactory {
   public fun new(): CellRendererText = gtk_cell_renderer_text_new()!!.reinterpret()
 }
+
+public val CellRendererText.parent: CellRenderer
+  get() = pointed.parent.ptr
 
 public fun CellRendererText.setFixedHeightFromFont(numberOfRows: Int): Unit {
   gtk_cell_renderer_text_set_fixed_height_from_font(this, numberOfRows)

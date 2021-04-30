@@ -37,6 +37,8 @@ import kotlin.Float
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -64,6 +66,9 @@ public val ToolItem.asBin: Bin
 public object ToolItemFactory {
   public fun new(): ToolItem = gtk_tool_item_new()!!.reinterpret()
 }
+
+public val ToolItem.parent: Bin
+  get() = pointed.parent.ptr
 
 public var ToolItem.expand: Boolean
   get() = gtk_tool_item_get_expand(this).toBoolean

@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkVolumeButton
 import interop.gtk_volume_button_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -35,3 +37,6 @@ public val VolumeButton.asScaleButton: ScaleButton
 public object VolumeButtonFactory {
   public fun new(): VolumeButton = gtk_volume_button_new()!!.reinterpret()
 }
+
+public val VolumeButton.parent: ScaleButton
+  get() = pointed.parent.ptr

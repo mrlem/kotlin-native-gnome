@@ -23,6 +23,8 @@ import kotlin.Double
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -44,6 +46,9 @@ public val ProgressBar.asWidget: Widget
 public object ProgressBarFactory {
   public fun new(): ProgressBar = gtk_progress_bar_new()!!.reinterpret()
 }
+
+public val ProgressBar.parent: Widget
+  get() = pointed.parent.ptr
 
 public var ProgressBar.fraction: Double
   get() = gtk_progress_bar_get_fraction(this)

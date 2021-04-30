@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkMenuButtonAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -29,3 +31,6 @@ public val MenuButtonAccessible.asButtonAccessible: ButtonAccessible
 
 public val MenuButtonAccessible.asToggleButtonAccessible: ToggleButtonAccessible
   get() = reinterpret()
+
+public val MenuButtonAccessible.parent: ToggleButtonAccessible
+  get() = pointed.parent.ptr

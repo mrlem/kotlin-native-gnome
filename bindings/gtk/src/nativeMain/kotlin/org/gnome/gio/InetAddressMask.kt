@@ -15,6 +15,8 @@ import interop.g_inet_address_mask_to_string
 import kotlin.String
 import kotlin.UInt
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -25,6 +27,9 @@ public val InetAddressMask.asObject: Object
   get() = reinterpret()
 
 public object InetAddressMaskFactory
+
+public val InetAddressMask.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val InetAddressMask.address: InetAddress?
   get() = g_inet_address_mask_get_address(this)?.reinterpret()

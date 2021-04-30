@@ -62,6 +62,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -89,6 +91,9 @@ public object LabelFactory {
 
   public fun newWithMnemonic(str: String): Label = gtk_label_new_with_mnemonic(str)!!.reinterpret()
 }
+
+public val Label.misc: Misc
+  get() = pointed.misc.ptr
 
 public var Label.angle: Double
   get() = gtk_label_get_angle(this)

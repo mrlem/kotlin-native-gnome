@@ -24,6 +24,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -56,6 +58,9 @@ public object ScaleFactory {
     step: Double
   ): Scale = gtk_scale_new_with_range(orientation, min, max, step)!!.reinterpret()
 }
+
+public val Scale.range: Range
+  get() = pointed.range.ptr
 
 public var Scale.digits: Int
   get() = gtk_scale_get_digits(this)

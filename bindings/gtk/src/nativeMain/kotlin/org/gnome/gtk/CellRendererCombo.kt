@@ -6,6 +6,8 @@ import interop.GtkCellRendererCombo
 import interop.gtk_cell_renderer_combo_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -28,6 +30,9 @@ public val CellRendererCombo.asCellRendererText: CellRendererText
 public object CellRendererComboFactory {
   public fun new(): CellRendererCombo = gtk_cell_renderer_combo_new()!!.reinterpret()
 }
+
+public val CellRendererCombo.parent: CellRendererText
+  get() = pointed.parent.ptr
 
 public fun CellRendererCombo.onChanged(callback: (CellRendererCombo) -> Unit): CellRendererCombo {
   // TODO - handle callback data

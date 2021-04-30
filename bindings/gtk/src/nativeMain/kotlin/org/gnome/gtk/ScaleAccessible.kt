@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkScaleAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -23,3 +25,6 @@ public val ScaleAccessible.asWidgetAccessible: WidgetAccessible
 
 public val ScaleAccessible.asRangeAccessible: RangeAccessible
   get() = reinterpret()
+
+public val ScaleAccessible.parent: RangeAccessible
+  get() = pointed.parent.ptr

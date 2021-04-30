@@ -31,6 +31,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -42,6 +44,9 @@ public val DBusProxy.asObject: Object
   get() = reinterpret()
 
 public object DBusProxyFactory
+
+public val DBusProxy.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val DBusProxy.connection: DBusConnection?
   get() = g_dbus_proxy_get_connection(this)?.reinterpret()

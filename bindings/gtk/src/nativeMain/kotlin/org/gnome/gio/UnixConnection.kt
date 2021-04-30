@@ -13,6 +13,8 @@ package org.gnome.gio
 
 import interop.GUnixConnection
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -26,3 +28,6 @@ public val UnixConnection.asIOStream: IOStream
 
 public val UnixConnection.asSocketConnection: SocketConnection
   get() = reinterpret()
+
+public val UnixConnection.parentInstance: SocketConnection
+  get() = pointed.parent_instance.ptr

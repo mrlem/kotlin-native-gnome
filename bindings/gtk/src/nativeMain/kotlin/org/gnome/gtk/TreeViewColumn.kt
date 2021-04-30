@@ -63,6 +63,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -85,6 +87,9 @@ public object TreeViewColumnFactory {
   public fun newWithArea(area: CellArea?): TreeViewColumn =
       gtk_tree_view_column_new_with_area(area?.reinterpret())!!.reinterpret()
 }
+
+public val TreeViewColumn.parentInstance: InitiallyUnowned
+  get() = pointed.parent_instance.ptr
 
 public var TreeViewColumn.alignment: Float
   get() = gtk_tree_view_column_get_alignment(this)

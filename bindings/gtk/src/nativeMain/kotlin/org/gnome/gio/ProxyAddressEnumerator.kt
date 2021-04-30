@@ -4,6 +4,8 @@ package org.gnome.gio
 
 import interop.GProxyAddressEnumerator
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -14,3 +16,6 @@ public val ProxyAddressEnumerator.asObject: Object
 
 public val ProxyAddressEnumerator.asSocketAddressEnumerator: SocketAddressEnumerator
   get() = reinterpret()
+
+public val ProxyAddressEnumerator.parentInstance: SocketAddressEnumerator
+  get() = pointed.parent_instance.ptr

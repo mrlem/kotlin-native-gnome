@@ -44,6 +44,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -56,6 +58,9 @@ public val Application.asObject: Object
   get() = reinterpret()
 
 public object ApplicationFactory
+
+public val Application.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public var Application.applicationId: String
   get() = g_application_get_application_id(this).toKString

@@ -7,6 +7,8 @@ import interop.g_tcp_connection_get_graceful_disconnect
 import interop.g_tcp_connection_set_graceful_disconnect
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -22,6 +24,9 @@ public val TcpConnection.asIOStream: IOStream
 
 public val TcpConnection.asSocketConnection: SocketConnection
   get() = reinterpret()
+
+public val TcpConnection.parentInstance: SocketConnection
+  get() = pointed.parent_instance.ptr
 
 public var TcpConnection.gracefulDisconnect: Boolean
   get() = g_tcp_connection_get_graceful_disconnect(this).toBoolean

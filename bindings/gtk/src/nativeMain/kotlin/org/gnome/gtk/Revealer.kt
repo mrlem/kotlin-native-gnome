@@ -14,6 +14,8 @@ import interop.gtk_revealer_set_transition_type
 import kotlin.Boolean
 import kotlin.UInt
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -40,6 +42,9 @@ public val Revealer.asBin: Bin
 public object RevealerFactory {
   public fun new(): Revealer = gtk_revealer_new()!!.reinterpret()
 }
+
+public val Revealer.parentInstance: Bin
+  get() = pointed.parent_instance.ptr
 
 public val Revealer.childRevealed: Boolean
   get() = gtk_revealer_get_child_revealed(this).toBoolean

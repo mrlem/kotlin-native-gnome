@@ -12,6 +12,8 @@ import interop.g_network_address_get_scheme
 import kotlin.String
 import kotlin.UShort
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -22,6 +24,9 @@ public val NetworkAddress.asObject: Object
   get() = reinterpret()
 
 public object NetworkAddressFactory
+
+public val NetworkAddress.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val NetworkAddress.hostname: String
   get() = g_network_address_get_hostname(this).toKString

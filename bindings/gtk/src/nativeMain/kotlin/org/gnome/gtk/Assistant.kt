@@ -37,6 +37,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -68,6 +70,9 @@ public val Assistant.asWindow: Window
 public object AssistantFactory {
   public fun new(): Assistant = gtk_assistant_new()!!.reinterpret()
 }
+
+public val Assistant.parent: Window
+  get() = pointed.parent.ptr
 
 public var Assistant.currentPage: Int
   get() = gtk_assistant_get_current_page(this)

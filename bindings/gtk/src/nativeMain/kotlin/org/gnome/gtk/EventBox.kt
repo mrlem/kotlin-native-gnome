@@ -10,6 +10,8 @@ import interop.gtk_event_box_set_above_child
 import interop.gtk_event_box_set_visible_window
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -36,6 +38,9 @@ public val EventBox.asBin: Bin
 public object EventBoxFactory {
   public fun new(): EventBox = gtk_event_box_new()!!.reinterpret()
 }
+
+public val EventBox.bin: Bin
+  get() = pointed.bin.ptr
 
 public var EventBox.aboveChild: Boolean
   get() = gtk_event_box_get_above_child(this).toBoolean

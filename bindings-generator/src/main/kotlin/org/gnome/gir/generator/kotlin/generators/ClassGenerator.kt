@@ -5,10 +5,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.plusParameter
 import org.gnome.gir.GNOME_PACKAGE
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
-import org.gnome.gir.model.CallableDefinition
-import org.gnome.gir.model.ClassDefinition
-import org.gnome.gir.model.NamespaceDefinition
-import org.gnome.gir.model.SignalDefinition
+import org.gnome.gir.model.*
 import org.gnome.gir.parser.Fixer.fix
 import org.gnome.gir.resolver.Resolver
 
@@ -51,6 +48,7 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
         )
         .addConverters(classNameString, className, resolver)
         .addConstructors(constructors, className, resolver)
+        .addFields(className, fields, resolver)
         .addMethods(className, methods, resolver)
         .addSignals(className, signals)
         .build()
@@ -93,6 +91,12 @@ private fun FileSpec.Builder.addConstructors(constructors: List<CallableDefiniti
                 .build()
         )
     }
+
+    return this
+}
+
+private fun FileSpec.Builder.addFields(className: ClassName, fields: List<FieldDefinition>, resolver: Resolver): FileSpec.Builder {
+    fields.forEach { addField( className, it, resolver) }
 
     return this
 }

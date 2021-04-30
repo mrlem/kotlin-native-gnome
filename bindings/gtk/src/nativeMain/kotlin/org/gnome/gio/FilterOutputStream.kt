@@ -8,6 +8,8 @@ import interop.g_filter_output_stream_get_close_base_stream
 import interop.g_filter_output_stream_set_close_base_stream
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -20,6 +22,9 @@ public val FilterOutputStream.asObject: Object
 
 public val FilterOutputStream.asOutputStream: OutputStream
   get() = reinterpret()
+
+public val FilterOutputStream.parentInstance: OutputStream
+  get() = pointed.parent_instance.ptr
 
 public val FilterOutputStream.baseStream: OutputStream?
   get() = g_filter_output_stream_get_base_stream(this)?.reinterpret()

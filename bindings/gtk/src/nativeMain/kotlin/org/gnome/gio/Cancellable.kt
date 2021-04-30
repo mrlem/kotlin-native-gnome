@@ -42,6 +42,9 @@ public object CancellableFactory {
   public fun new(): Cancellable = g_cancellable_new()!!.reinterpret()
 }
 
+public val Cancellable.parentInstance: Object
+  get() = pointed.parent_instance.ptr
+
 public val Cancellable.fd: Int
   get() = g_cancellable_get_fd(this)
 

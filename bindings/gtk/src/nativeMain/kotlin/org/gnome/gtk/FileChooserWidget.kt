@@ -6,6 +6,8 @@ import interop.GtkFileChooserWidget
 import interop.gtk_file_chooser_widget_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -32,6 +34,9 @@ public object FileChooserWidgetFactory {
   public fun new(action: FileChooserAction): FileChooserWidget =
       gtk_file_chooser_widget_new(action)!!.reinterpret()
 }
+
+public val FileChooserWidget.parentInstance: Box
+  get() = pointed.parent_instance.ptr
 
 public fun FileChooserWidget.onDesktopFolder(callback: (FileChooserWidget) -> Unit):
     FileChooserWidget {

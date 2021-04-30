@@ -28,6 +28,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -42,6 +44,9 @@ public val TlsConnection.asObject: Object
 
 public val TlsConnection.asIOStream: IOStream
   get() = reinterpret()
+
+public val TlsConnection.parentInstance: IOStream
+  get() = pointed.parent_instance.ptr
 
 public var TlsConnection.certificate: TlsCertificate?
   get() = g_tls_connection_get_certificate(this)?.reinterpret()

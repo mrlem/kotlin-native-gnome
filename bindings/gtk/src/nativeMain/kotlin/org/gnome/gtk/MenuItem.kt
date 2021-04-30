@@ -29,6 +29,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -63,6 +65,9 @@ public object MenuItemFactory {
   public fun newWithMnemonic(label: String): MenuItem =
       gtk_menu_item_new_with_mnemonic(label)!!.reinterpret()
 }
+
+public val MenuItem.bin: Bin
+  get() = pointed.bin.ptr
 
 public var MenuItem.accelPath: String
   get() = gtk_menu_item_get_accel_path(this).toKString

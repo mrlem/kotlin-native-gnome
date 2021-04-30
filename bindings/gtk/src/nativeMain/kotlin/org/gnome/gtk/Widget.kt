@@ -276,6 +276,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.ActionGroup
 import org.gnome.gio.Icon
@@ -296,6 +298,9 @@ public val Widget.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
 
 public object WidgetFactory
+
+public val Widget.parentInstance: InitiallyUnowned
+  get() = pointed.parent_instance.ptr
 
 public val Widget.allocatedBaseline: Int
   get() = gtk_widget_get_allocated_baseline(this)

@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkDrawingArea
 import interop.gtk_drawing_area_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -23,3 +25,6 @@ public val DrawingArea.asWidget: Widget
 public object DrawingAreaFactory {
   public fun new(): DrawingArea = gtk_drawing_area_new()!!.reinterpret()
 }
+
+public val DrawingArea.widget: Widget
+  get() = pointed.widget.ptr

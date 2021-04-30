@@ -6,6 +6,8 @@ import interop.GtkColorChooserDialog
 import interop.gtk_color_chooser_dialog_new
 import kotlin.String
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -37,3 +39,6 @@ public object ColorChooserDialogFactory {
   public fun new(title: String, parent: Window?): ColorChooserDialog =
       gtk_color_chooser_dialog_new(title, parent?.reinterpret())!!.reinterpret()
 }
+
+public val ColorChooserDialog.parentInstance: Dialog
+  get() = pointed.parent_instance.ptr

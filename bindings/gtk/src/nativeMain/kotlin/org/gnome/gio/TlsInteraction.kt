@@ -13,6 +13,8 @@ package org.gnome.gio
 
 import interop.GTlsInteraction
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -20,3 +22,6 @@ public typealias TlsInteraction = CPointer<GTlsInteraction>
 
 public val TlsInteraction.asObject: Object
   get() = reinterpret()
+
+public val TlsInteraction.parentInstance: Object
+  get() = pointed.parent_instance.ptr

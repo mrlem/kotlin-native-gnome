@@ -28,6 +28,8 @@ import interop.g_data_input_stream_get_newline_type
 import interop.g_data_input_stream_set_byte_order
 import interop.g_data_input_stream_set_newline_type
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -46,6 +48,9 @@ public val DataInputStream.asBufferedInputStream: BufferedInputStream
   get() = reinterpret()
 
 public object DataInputStreamFactory
+
+public val DataInputStream.parentInstance: BufferedInputStream
+  get() = pointed.parent_instance.ptr
 
 public var DataInputStream.byteOrder: DataStreamByteOrder
   get() = g_data_input_stream_get_byte_order(this)

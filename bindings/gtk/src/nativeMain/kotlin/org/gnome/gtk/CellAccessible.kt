@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkCellAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -17,3 +19,6 @@ public val CellAccessible.asAtkObject: org.gnome.atk.Object
 
 public val CellAccessible.asAccessible: Accessible
   get() = reinterpret()
+
+public val CellAccessible.parent: Accessible
+  get() = pointed.parent.ptr

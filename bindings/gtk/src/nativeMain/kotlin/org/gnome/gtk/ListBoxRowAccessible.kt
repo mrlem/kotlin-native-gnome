@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkListBoxRowAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -23,3 +25,6 @@ public val ListBoxRowAccessible.asWidgetAccessible: WidgetAccessible
 
 public val ListBoxRowAccessible.asContainerAccessible: ContainerAccessible
   get() = reinterpret()
+
+public val ListBoxRowAccessible.parent: ContainerAccessible
+  get() = pointed.parent.ptr

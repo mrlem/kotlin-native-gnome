@@ -31,6 +31,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
@@ -42,6 +44,9 @@ public val TreeStore.asObject: Object
   get() = reinterpret()
 
 public object TreeStoreFactory
+
+public val TreeStore.parent: Object
+  get() = pointed.parent.ptr
 
 public fun TreeStore.clear(): Unit {
   gtk_tree_store_clear(this)

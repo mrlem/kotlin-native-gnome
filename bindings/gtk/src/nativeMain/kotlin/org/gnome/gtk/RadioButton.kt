@@ -16,6 +16,8 @@ import interop.gtk_radio_button_new_with_mnemonic_from_widget
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -59,6 +61,9 @@ public object RadioButtonFactory {
       gtk_radio_button_new_with_mnemonic_from_widget(radioGroupMember?.reinterpret(),
       label)!!.reinterpret()
 }
+
+public val RadioButton.checkButton: CheckButton
+  get() = pointed.check_button.ptr
 
 public fun RadioButton.joinGroup(groupSource: RadioButton?): Unit {
   gtk_radio_button_join_group(this, groupSource?.reinterpret())

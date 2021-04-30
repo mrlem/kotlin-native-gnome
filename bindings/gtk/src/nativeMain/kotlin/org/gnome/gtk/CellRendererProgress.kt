@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkCellRendererProgress
 import interop.gtk_cell_renderer_progress_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -23,3 +25,6 @@ public val CellRendererProgress.asCellRenderer: CellRenderer
 public object CellRendererProgressFactory {
   public fun new(): CellRendererProgress = gtk_cell_renderer_progress_new()!!.reinterpret()
 }
+
+public val CellRendererProgress.parentInstance: CellRenderer
+  get() = pointed.parent_instance.ptr

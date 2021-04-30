@@ -19,6 +19,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -30,6 +32,9 @@ public typealias NativeDialog = CPointer<GtkNativeDialog>
 
 public val NativeDialog.asObject: Object
   get() = reinterpret()
+
+public val NativeDialog.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public var NativeDialog.modal: Boolean
   get() = gtk_native_dialog_get_modal(this).toBoolean

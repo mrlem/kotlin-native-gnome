@@ -111,6 +111,8 @@ import kotlin.Int
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -138,6 +140,9 @@ public object TreeViewFactory {
   public fun newWithModel(model: TreeModel?): TreeView =
       gtk_tree_view_new_with_model(model?.reinterpret())!!.reinterpret()
 }
+
+public val TreeView.parent: Container
+  get() = pointed.parent.ptr
 
 public var TreeView.activateOnSingleClick: Boolean
   get() = gtk_tree_view_get_activate_on_single_click(this).toBoolean

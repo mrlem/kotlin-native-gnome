@@ -11,6 +11,8 @@ import interop.g_file_monitor_is_cancelled
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -20,6 +22,9 @@ public typealias FileMonitor = CPointer<GFileMonitor>
 
 public val FileMonitor.asObject: Object
   get() = reinterpret()
+
+public val FileMonitor.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public fun FileMonitor.cancel(): Boolean = g_file_monitor_cancel(this).toBoolean
 

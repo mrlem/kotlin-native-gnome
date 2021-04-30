@@ -12,6 +12,8 @@ import interop.GDBusObjectManagerServer
 import interop.g_dbus_object_manager_server_get_connection
 import interop.g_dbus_object_manager_server_set_connection
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -21,6 +23,9 @@ public val DBusObjectManagerServer.asObject: Object
   get() = reinterpret()
 
 public object DBusObjectManagerServerFactory
+
+public val DBusObjectManagerServer.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public var DBusObjectManagerServer.connection: DBusConnection?
   get() = g_dbus_object_manager_server_get_connection(this)?.reinterpret()

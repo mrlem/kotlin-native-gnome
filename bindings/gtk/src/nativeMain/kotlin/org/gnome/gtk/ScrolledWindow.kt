@@ -41,6 +41,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -70,6 +72,9 @@ public object ScrolledWindowFactory {
       gtk_scrolled_window_new(hadjustment?.reinterpret(),
       vadjustment?.reinterpret())!!.reinterpret()
 }
+
+public val ScrolledWindow.container: Bin
+  get() = pointed.container.ptr
 
 public var ScrolledWindow.captureButtonPress: Boolean
   get() = gtk_scrolled_window_get_capture_button_press(this).toBoolean

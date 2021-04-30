@@ -26,6 +26,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.ULong
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -37,6 +39,9 @@ public val InetAddress.asObject: Object
   get() = reinterpret()
 
 public object InetAddressFactory
+
+public val InetAddress.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val InetAddress.family: SocketFamily
   get() = g_inet_address_get_family(this)

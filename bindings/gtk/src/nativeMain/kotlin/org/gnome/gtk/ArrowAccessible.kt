@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkArrowAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -20,3 +22,6 @@ public val ArrowAccessible.asAccessible: Accessible
 
 public val ArrowAccessible.asWidgetAccessible: WidgetAccessible
   get() = reinterpret()
+
+public val ArrowAccessible.parent: WidgetAccessible
+  get() = pointed.parent.ptr

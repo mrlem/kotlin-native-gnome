@@ -64,6 +64,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
@@ -79,6 +81,9 @@ public val StyleContext.asObject: Object
 public object StyleContextFactory {
   public fun new(): StyleContext = gtk_style_context_new()!!.reinterpret()
 }
+
+public val StyleContext.parentObject: Object
+  get() = pointed.parent_object.ptr
 
 public var StyleContext.junctionSides: JunctionSides
   get() = gtk_style_context_get_junction_sides(this)

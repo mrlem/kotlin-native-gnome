@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkCellRendererPixbuf
 import interop.gtk_cell_renderer_pixbuf_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -23,3 +25,6 @@ public val CellRendererPixbuf.asCellRenderer: CellRenderer
 public object CellRendererPixbufFactory {
   public fun new(): CellRendererPixbuf = gtk_cell_renderer_pixbuf_new()!!.reinterpret()
 }
+
+public val CellRendererPixbuf.parent: CellRenderer
+  get() = pointed.parent.ptr

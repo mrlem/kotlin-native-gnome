@@ -23,6 +23,8 @@ import interop.gtk_cell_view_set_model
 import kotlin.Boolean
 import kotlin.String
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -51,6 +53,9 @@ public object CellViewFactory {
 
   public fun newWithText(text: String): CellView = gtk_cell_view_new_with_text(text)!!.reinterpret()
 }
+
+public val CellView.parentInstance: Widget
+  get() = pointed.parent_instance.ptr
 
 public var CellView.displayedRow: TreePath?
   get() = gtk_cell_view_get_displayed_row(this)?.reinterpret()

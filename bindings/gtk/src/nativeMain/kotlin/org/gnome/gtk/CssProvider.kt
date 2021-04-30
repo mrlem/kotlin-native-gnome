@@ -37,6 +37,9 @@ public object CssProviderFactory {
   public fun new(): CssProvider = gtk_css_provider_new()!!.reinterpret()
 }
 
+public val CssProvider.parentInstance: Object
+  get() = pointed.parent_instance.ptr
+
 @Throws(Error::class)
 public fun CssProvider.loadFromFile(`file`: File?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr

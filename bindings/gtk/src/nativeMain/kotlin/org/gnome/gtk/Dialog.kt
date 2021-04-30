@@ -25,6 +25,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -54,6 +56,9 @@ public val Dialog.asWindow: Window
 public object DialogFactory {
   public fun new(): Dialog = gtk_dialog_new()!!.reinterpret()
 }
+
+public val Dialog.window: Window
+  get() = pointed.window.ptr
 
 public val Dialog.contentArea: Box?
   get() = gtk_dialog_get_content_area(this)?.reinterpret()

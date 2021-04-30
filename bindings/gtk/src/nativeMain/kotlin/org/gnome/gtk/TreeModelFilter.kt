@@ -17,6 +17,8 @@ import interop.gtk_tree_model_filter_set_visible_column
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -24,6 +26,9 @@ public typealias TreeModelFilter = CPointer<GtkTreeModelFilter>
 
 public val TreeModelFilter.asObject: Object
   get() = reinterpret()
+
+public val TreeModelFilter.parent: Object
+  get() = pointed.parent.ptr
 
 public val TreeModelFilter.model: TreeModel?
   get() = gtk_tree_model_filter_get_model(this)?.reinterpret()

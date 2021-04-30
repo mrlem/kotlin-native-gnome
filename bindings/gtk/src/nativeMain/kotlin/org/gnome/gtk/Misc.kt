@@ -9,6 +9,8 @@ package org.gnome.gtk
 
 import interop.GtkMisc
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -23,3 +25,6 @@ public val Misc.asInitiallyUnowned: InitiallyUnowned
 
 public val Misc.asWidget: Widget
   get() = reinterpret()
+
+public val Misc.widget: Widget
+  get() = pointed.widget.ptr

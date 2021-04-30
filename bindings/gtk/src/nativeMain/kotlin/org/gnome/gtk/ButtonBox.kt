@@ -13,6 +13,8 @@ import interop.gtk_button_box_set_layout
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -40,6 +42,9 @@ public object ButtonBoxFactory {
   public fun new(orientation: Orientation): ButtonBox =
       gtk_button_box_new(orientation)!!.reinterpret()
 }
+
+public val ButtonBox.box: Box
+  get() = pointed.box.ptr
 
 public var ButtonBox.layout: ButtonBoxStyle
   get() = gtk_button_box_get_layout(this)

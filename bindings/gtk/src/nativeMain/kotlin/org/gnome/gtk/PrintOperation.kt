@@ -60,6 +60,9 @@ public object PrintOperationFactory {
   public fun new(): PrintOperation = gtk_print_operation_new()!!.reinterpret()
 }
 
+public val PrintOperation.parentInstance: Object
+  get() = pointed.parent_instance.ptr
+
 public var PrintOperation.defaultPageSetup: PageSetup?
   get() = gtk_print_operation_get_default_page_setup(this)?.reinterpret()
   set(`value`) {

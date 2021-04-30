@@ -12,6 +12,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -39,6 +41,9 @@ public val Overlay.asBin: Bin
 public object OverlayFactory {
   public fun new(): Overlay = gtk_overlay_new()!!.reinterpret()
 }
+
+public val Overlay.parent: Bin
+  get() = pointed.parent.ptr
 
 public fun Overlay.addOverlay(widget: Widget?): Unit {
   gtk_overlay_add_overlay(this, widget?.reinterpret())

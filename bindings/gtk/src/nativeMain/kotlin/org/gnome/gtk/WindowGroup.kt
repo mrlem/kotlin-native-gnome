@@ -12,6 +12,8 @@ import interop.gtk_window_group_new
 import interop.gtk_window_group_remove_window
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -23,6 +25,9 @@ public val WindowGroup.asObject: Object
 public object WindowGroupFactory {
   public fun new(): WindowGroup = gtk_window_group_new()!!.reinterpret()
 }
+
+public val WindowGroup.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val WindowGroup.currentGrab: Widget?
   get() = gtk_window_group_get_current_grab(this)?.reinterpret()

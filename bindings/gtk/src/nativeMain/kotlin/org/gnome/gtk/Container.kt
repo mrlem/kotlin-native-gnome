@@ -42,6 +42,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -59,6 +61,9 @@ public val Container.asInitiallyUnowned: InitiallyUnowned
 
 public val Container.asWidget: Widget
   get() = reinterpret()
+
+public val Container.widget: Widget
+  get() = pointed.widget.ptr
 
 public var Container.borderWidth: UInt
   get() = gtk_container_get_border_width(this)

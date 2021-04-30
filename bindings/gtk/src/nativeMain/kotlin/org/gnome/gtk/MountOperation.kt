@@ -12,6 +12,8 @@ import interop.gtk_mount_operation_new
 import interop.gtk_mount_operation_set_parent
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -28,6 +30,9 @@ public object MountOperationFactory {
   public fun new(parent: Window?): MountOperation =
       gtk_mount_operation_new(parent?.reinterpret())!!.reinterpret()
 }
+
+public val MountOperation.parentInstance: org.gnome.gio.MountOperation
+  get() = pointed.parent_instance.ptr
 
 public var MountOperation.parent: Window?
   get() = gtk_mount_operation_get_parent(this)?.reinterpret()

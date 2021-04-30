@@ -16,6 +16,8 @@ import interop.gtk_scale_button_set_value
 import kotlin.Double
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -42,6 +44,9 @@ public val ScaleButton.asButton: Button
   get() = reinterpret()
 
 public object ScaleButtonFactory
+
+public val ScaleButton.parent: Button
+  get() = pointed.parent.ptr
 
 public var ScaleButton.adjustment: Adjustment?
   get() = gtk_scale_button_get_adjustment(this)?.reinterpret()

@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkBooleanCellAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -23,3 +25,6 @@ public val BooleanCellAccessible.asCellAccessible: CellAccessible
 
 public val BooleanCellAccessible.asRendererCellAccessible: RendererCellAccessible
   get() = reinterpret()
+
+public val BooleanCellAccessible.parent: RendererCellAccessible
+  get() = pointed.parent.ptr

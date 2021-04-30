@@ -9,6 +9,8 @@ package org.gnome.gtk
 import interop.GtkInvisible
 import interop.gtk_invisible_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -27,3 +29,6 @@ public val Invisible.asWidget: Widget
 public object InvisibleFactory {
   public fun new(): Invisible = gtk_invisible_new()!!.reinterpret()
 }
+
+public val Invisible.widget: Widget
+  get() = pointed.widget.ptr

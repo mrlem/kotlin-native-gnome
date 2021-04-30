@@ -25,6 +25,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -52,6 +54,9 @@ public val InfoBar.asBox: Box
 public object InfoBarFactory {
   public fun new(): InfoBar = gtk_info_bar_new()!!.reinterpret()
 }
+
+public val InfoBar.parent: Box
+  get() = pointed.parent.ptr
 
 public val InfoBar.actionArea: Box?
   get() = gtk_info_bar_get_action_area(this)?.reinterpret()

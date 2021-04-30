@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkRadioMenuItemAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -29,3 +31,6 @@ public val RadioMenuItemAccessible.asMenuItemAccessible: MenuItemAccessible
 
 public val RadioMenuItemAccessible.asCheckMenuItemAccessible: CheckMenuItemAccessible
   get() = reinterpret()
+
+public val RadioMenuItemAccessible.parent: CheckMenuItemAccessible
+  get() = pointed.parent.ptr

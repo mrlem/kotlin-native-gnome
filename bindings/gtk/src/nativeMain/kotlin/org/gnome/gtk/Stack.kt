@@ -30,6 +30,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -54,6 +56,9 @@ public val Stack.asContainer: Container
 public object StackFactory {
   public fun new(): Stack = gtk_stack_new()!!.reinterpret()
 }
+
+public val Stack.parentInstance: Container
+  get() = pointed.parent_instance.ptr
 
 public var Stack.hhomogeneous: Boolean
   get() = gtk_stack_get_hhomogeneous(this).toBoolean

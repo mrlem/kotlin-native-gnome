@@ -13,6 +13,8 @@ import interop.gtk_cell_renderer_toggle_set_radio
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -34,6 +36,9 @@ public val CellRendererToggle.asCellRenderer: CellRenderer
 public object CellRendererToggleFactory {
   public fun new(): CellRendererToggle = gtk_cell_renderer_toggle_new()!!.reinterpret()
 }
+
+public val CellRendererToggle.parent: CellRenderer
+  get() = pointed.parent.ptr
 
 public var CellRendererToggle.activatable: Boolean
   get() = gtk_cell_renderer_toggle_get_activatable(this).toBoolean

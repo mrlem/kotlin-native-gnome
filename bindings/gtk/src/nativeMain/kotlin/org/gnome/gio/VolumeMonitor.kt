@@ -11,6 +11,8 @@ package org.gnome.gio
 import interop.GVolumeMonitor
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
@@ -19,6 +21,9 @@ public typealias VolumeMonitor = CPointer<GVolumeMonitor>
 
 public val VolumeMonitor.asObject: Object
   get() = reinterpret()
+
+public val VolumeMonitor.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public fun VolumeMonitor.onDriveChanged(callback: (VolumeMonitor) -> Unit): VolumeMonitor {
   // TODO - handle callback data

@@ -8,6 +8,8 @@ import interop.gtk_spinner_start
 import interop.gtk_spinner_stop
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -26,6 +28,9 @@ public val Spinner.asWidget: Widget
 public object SpinnerFactory {
   public fun new(): Spinner = gtk_spinner_new()!!.reinterpret()
 }
+
+public val Spinner.parent: Widget
+  get() = pointed.parent.ptr
 
 public fun Spinner.start(): Unit {
   gtk_spinner_start(this)

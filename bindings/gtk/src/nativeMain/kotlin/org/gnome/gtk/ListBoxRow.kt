@@ -17,6 +17,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -44,6 +46,9 @@ public val ListBoxRow.asBin: Bin
 public object ListBoxRowFactory {
   public fun new(): ListBoxRow = gtk_list_box_row_new()!!.reinterpret()
 }
+
+public val ListBoxRow.parentInstance: Bin
+  get() = pointed.parent_instance.ptr
 
 public var ListBoxRow.activatable: Boolean
   get() = gtk_list_box_row_get_activatable(this).toBoolean

@@ -73,6 +73,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -103,6 +105,9 @@ public object IconViewFactory {
   public fun newWithModel(model: TreeModel?): IconView =
       gtk_icon_view_new_with_model(model?.reinterpret())!!.reinterpret()
 }
+
+public val IconView.parent: Container
+  get() = pointed.parent.ptr
 
 public var IconView.activateOnSingleClick: Boolean
   get() = gtk_icon_view_get_activate_on_single_click(this).toBoolean

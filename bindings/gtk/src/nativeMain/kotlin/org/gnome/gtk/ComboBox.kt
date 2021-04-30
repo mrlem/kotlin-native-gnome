@@ -50,6 +50,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -92,6 +94,9 @@ public object ComboBoxFactory {
   public fun newWithModelAndEntry(model: TreeModel?): ComboBox =
       gtk_combo_box_new_with_model_and_entry(model?.reinterpret())!!.reinterpret()
 }
+
+public val ComboBox.parentInstance: Bin
+  get() = pointed.parent_instance.ptr
 
 public var ComboBox.active: Int
   get() = gtk_combo_box_get_active(this)

@@ -17,6 +17,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
@@ -50,6 +52,9 @@ public object AppChooserButtonFactory {
   public fun new(contentType: String): AppChooserButton =
       gtk_app_chooser_button_new(contentType)!!.reinterpret()
 }
+
+public val AppChooserButton.parent: ComboBox
+  get() = pointed.parent.ptr
 
 public var AppChooserButton.heading: String
   get() = gtk_app_chooser_button_get_heading(this).toKString

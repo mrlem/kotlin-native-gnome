@@ -26,6 +26,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -57,6 +59,9 @@ public object ExpanderFactory {
   public fun newWithMnemonic(label: String): Expander =
       gtk_expander_new_with_mnemonic(label)!!.reinterpret()
 }
+
+public val Expander.bin: Bin
+  get() = pointed.bin.ptr
 
 public var Expander.expanded: Boolean
   get() = gtk_expander_get_expanded(this).toBoolean

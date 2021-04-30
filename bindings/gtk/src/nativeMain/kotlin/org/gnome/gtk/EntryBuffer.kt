@@ -20,6 +20,8 @@ import kotlin.UInt
 import kotlin.ULong
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -34,6 +36,9 @@ public object EntryBufferFactory {
   public fun new(initialChars: String, nInitialChars: Int): EntryBuffer =
       gtk_entry_buffer_new(initialChars, nInitialChars)!!.reinterpret()
 }
+
+public val EntryBuffer.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val EntryBuffer.bytes: ULong
   get() = gtk_entry_buffer_get_bytes(this)

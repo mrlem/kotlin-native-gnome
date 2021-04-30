@@ -13,6 +13,8 @@ import interop.g_buffered_output_stream_set_buffer_size
 import kotlin.Boolean
 import kotlin.ULong
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -30,6 +32,9 @@ public val BufferedOutputStream.asFilterOutputStream: FilterOutputStream
   get() = reinterpret()
 
 public object BufferedOutputStreamFactory
+
+public val BufferedOutputStream.parentInstance: FilterOutputStream
+  get() = pointed.parent_instance.ptr
 
 public var BufferedOutputStream.autoGrow: Boolean
   get() = g_buffered_output_stream_get_auto_grow(this).toBoolean

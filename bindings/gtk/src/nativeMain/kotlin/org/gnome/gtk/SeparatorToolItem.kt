@@ -8,6 +8,8 @@ import interop.gtk_separator_tool_item_new
 import interop.gtk_separator_tool_item_set_draw
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -37,6 +39,9 @@ public val SeparatorToolItem.asToolItem: ToolItem
 public object SeparatorToolItemFactory {
   public fun new(): SeparatorToolItem = gtk_separator_tool_item_new()!!.reinterpret()
 }
+
+public val SeparatorToolItem.parent: ToolItem
+  get() = pointed.parent.ptr
 
 public var SeparatorToolItem.draw: Boolean
   get() = gtk_separator_tool_item_get_draw(this).toBoolean

@@ -29,6 +29,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
@@ -40,6 +42,9 @@ public val ListStore.asObject: Object
   get() = reinterpret()
 
 public object ListStoreFactory
+
+public val ListStore.parent: Object
+  get() = pointed.parent.ptr
 
 public fun ListStore.clear(): Unit {
   gtk_list_store_clear(this)

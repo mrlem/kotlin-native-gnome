@@ -33,6 +33,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -47,6 +49,9 @@ public val CellRenderer.asObject: Object
 
 public val CellRenderer.asInitiallyUnowned: InitiallyUnowned
   get() = reinterpret()
+
+public val CellRenderer.parentInstance: InitiallyUnowned
+  get() = pointed.parent_instance.ptr
 
 public val CellRenderer.requestMode: SizeRequestMode
   get() = gtk_cell_renderer_get_request_mode(this)

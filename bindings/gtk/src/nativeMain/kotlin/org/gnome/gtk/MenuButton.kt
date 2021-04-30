@@ -19,6 +19,8 @@ import interop.gtk_menu_button_set_use_popover
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
@@ -52,6 +54,9 @@ public val MenuButton.asToggleButton: ToggleButton
 public object MenuButtonFactory {
   public fun new(): MenuButton = gtk_menu_button_new()!!.reinterpret()
 }
+
+public val MenuButton.parent: ToggleButton
+  get() = pointed.parent.ptr
 
 public var MenuButton.alignWidget: Widget?
   get() = gtk_menu_button_get_align_widget(this)?.reinterpret()

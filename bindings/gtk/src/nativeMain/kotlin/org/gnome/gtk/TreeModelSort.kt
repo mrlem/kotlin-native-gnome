@@ -16,6 +16,8 @@ import interop.gtk_tree_model_sort_reset_default_sort_func
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -29,6 +31,9 @@ public object TreeModelSortFactory {
   public fun newWithModel(childModel: TreeModel?): TreeModelSort =
       gtk_tree_model_sort_new_with_model(childModel?.reinterpret())!!.reinterpret()
 }
+
+public val TreeModelSort.parent: Object
+  get() = pointed.parent.ptr
 
 public val TreeModelSort.model: TreeModel?
   get() = gtk_tree_model_sort_get_model(this)?.reinterpret()

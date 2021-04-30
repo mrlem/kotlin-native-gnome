@@ -7,6 +7,8 @@ import interop.gtk_lock_button_get_permission
 import interop.gtk_lock_button_new
 import interop.gtk_lock_button_set_permission
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.Permission
 import org.gnome.gobject.InitiallyUnowned
@@ -36,6 +38,9 @@ public object LockButtonFactory {
   public fun new(permission: Permission?): LockButton =
       gtk_lock_button_new(permission?.reinterpret())!!.reinterpret()
 }
+
+public val LockButton.parent: Button
+  get() = pointed.parent.ptr
 
 public var LockButton.permission: Permission?
   get() = gtk_lock_button_get_permission(this)?.reinterpret()

@@ -10,6 +10,8 @@ import interop.gtk_menu_bar_new_from_model
 import interop.gtk_menu_bar_set_child_pack_direction
 import interop.gtk_menu_bar_set_pack_direction
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
@@ -38,6 +40,9 @@ public object MenuBarFactory {
   public fun newFromModel(model: MenuModel?): MenuBar =
       gtk_menu_bar_new_from_model(model?.reinterpret())!!.reinterpret()
 }
+
+public val MenuBar.menuShell: MenuShell
+  get() = pointed.menu_shell.ptr
 
 public var MenuBar.childPackDirection: PackDirection
   get() = gtk_menu_bar_get_child_pack_direction(this)

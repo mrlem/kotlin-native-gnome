@@ -37,6 +37,8 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -54,6 +56,9 @@ public val Range.asInitiallyUnowned: InitiallyUnowned
 
 public val Range.asWidget: Widget
   get() = reinterpret()
+
+public val Range.widget: Widget
+  get() = pointed.widget.ptr
 
 public var Range.adjustment: Adjustment?
   get() = gtk_range_get_adjustment(this)?.reinterpret()

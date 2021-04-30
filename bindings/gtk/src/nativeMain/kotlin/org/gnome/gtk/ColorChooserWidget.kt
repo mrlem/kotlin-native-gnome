@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkColorChooserWidget
 import interop.gtk_color_chooser_widget_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -29,3 +31,6 @@ public val ColorChooserWidget.asBox: Box
 public object ColorChooserWidgetFactory {
   public fun new(): ColorChooserWidget = gtk_color_chooser_widget_new()!!.reinterpret()
 }
+
+public val ColorChooserWidget.parentInstance: Box
+  get() = pointed.parent_instance.ptr

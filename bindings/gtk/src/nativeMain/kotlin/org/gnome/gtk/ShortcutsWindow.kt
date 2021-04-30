@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkShortcutsWindow
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -29,6 +31,9 @@ public val ShortcutsWindow.asBin: Bin
 
 public val ShortcutsWindow.asWindow: Window
   get() = reinterpret()
+
+public val ShortcutsWindow.window: Window
+  get() = pointed.window.ptr
 
 public fun ShortcutsWindow.onClose(callback: (ShortcutsWindow) -> Unit): ShortcutsWindow {
   // TODO - handle callback data

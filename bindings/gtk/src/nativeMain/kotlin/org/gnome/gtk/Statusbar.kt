@@ -14,6 +14,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -39,6 +41,9 @@ public val Statusbar.asBox: Box
 public object StatusbarFactory {
   public fun new(): Statusbar = gtk_statusbar_new()!!.reinterpret()
 }
+
+public val Statusbar.parentWidget: Box
+  get() = pointed.parent_widget.ptr
 
 public val Statusbar.messageArea: Box?
   get() = gtk_statusbar_get_message_area(this)?.reinterpret()

@@ -10,6 +10,8 @@ package org.gnome.gio
 import interop.GMemoryInputStream
 import interop.g_memory_input_stream_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -24,3 +26,6 @@ public val MemoryInputStream.asInputStream: InputStream
 public object MemoryInputStreamFactory {
   public fun new(): MemoryInputStream = g_memory_input_stream_new()!!.reinterpret()
 }
+
+public val MemoryInputStream.parentInstance: InputStream
+  get() = pointed.parent_instance.ptr

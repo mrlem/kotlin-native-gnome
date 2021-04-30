@@ -17,6 +17,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -53,6 +55,9 @@ public object CheckMenuItemFactory {
   public fun newWithMnemonic(label: String): CheckMenuItem =
       gtk_check_menu_item_new_with_mnemonic(label)!!.reinterpret()
 }
+
+public val CheckMenuItem.menuItem: MenuItem
+  get() = pointed.menu_item.ptr
 
 public var CheckMenuItem.active: Boolean
   get() = gtk_check_menu_item_get_active(this).toBoolean

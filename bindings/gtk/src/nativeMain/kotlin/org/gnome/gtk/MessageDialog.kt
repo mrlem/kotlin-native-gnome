@@ -15,6 +15,8 @@ import interop.gtk_message_dialog_set_markup
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -43,6 +45,9 @@ public val MessageDialog.asDialog: Dialog
   get() = reinterpret()
 
 public object MessageDialogFactory
+
+public val MessageDialog.parentInstance: Dialog
+  get() = pointed.parent_instance.ptr
 
 public val MessageDialog.messageArea: Widget?
   get() = gtk_message_dialog_get_message_area(this)?.reinterpret()

@@ -8,6 +8,8 @@ package org.gnome.gtk
 import interop.GtkOffscreenWindow
 import interop.gtk_offscreen_window_new
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -35,3 +37,6 @@ public val OffscreenWindow.asWindow: Window
 public object OffscreenWindowFactory {
   public fun new(): OffscreenWindow = gtk_offscreen_window_new()!!.reinterpret()
 }
+
+public val OffscreenWindow.parentObject: Window
+  get() = pointed.parent_object.ptr

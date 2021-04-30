@@ -16,6 +16,8 @@ import interop.GDataOutputStream
 import interop.g_data_output_stream_get_byte_order
 import interop.g_data_output_stream_set_byte_order
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -31,6 +33,9 @@ public val DataOutputStream.asFilterOutputStream: FilterOutputStream
   get() = reinterpret()
 
 public object DataOutputStreamFactory
+
+public val DataOutputStream.parentInstance: FilterOutputStream
+  get() = pointed.parent_instance.ptr
 
 public var DataOutputStream.byteOrder: DataStreamByteOrder
   get() = g_data_output_stream_get_byte_order(this)

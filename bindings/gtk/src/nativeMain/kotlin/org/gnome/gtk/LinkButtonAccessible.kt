@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkLinkButtonAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -26,3 +28,6 @@ public val LinkButtonAccessible.asContainerAccessible: ContainerAccessible
 
 public val LinkButtonAccessible.asButtonAccessible: ButtonAccessible
   get() = reinterpret()
+
+public val LinkButtonAccessible.parent: ButtonAccessible
+  get() = pointed.parent.ptr

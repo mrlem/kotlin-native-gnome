@@ -11,6 +11,8 @@ package org.gnome.gtk
 import interop.GtkRadioToolButton
 import interop.gtk_radio_tool_button_new_from_widget
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -45,3 +47,6 @@ public object RadioToolButtonFactory {
   public fun newFromWidget(group: RadioToolButton?): RadioToolButton =
       gtk_radio_tool_button_new_from_widget(group?.reinterpret())!!.reinterpret()
 }
+
+public val RadioToolButton.parent: ToggleToolButton
+  get() = pointed.parent.ptr

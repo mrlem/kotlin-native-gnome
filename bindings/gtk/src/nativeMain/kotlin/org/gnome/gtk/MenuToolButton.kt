@@ -13,6 +13,8 @@ import interop.gtk_menu_tool_button_set_menu
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -45,6 +47,9 @@ public object MenuToolButtonFactory {
   public fun new(iconWidget: Widget?, label: String): MenuToolButton =
       gtk_menu_tool_button_new(iconWidget?.reinterpret(), label)!!.reinterpret()
 }
+
+public val MenuToolButton.parent: ToolButton
+  get() = pointed.parent.ptr
 
 public var MenuToolButton.menu: Widget?
   get() = gtk_menu_tool_button_get_menu(this)?.reinterpret()

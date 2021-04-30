@@ -19,6 +19,8 @@ import interop.g_socket_listener_close
 import interop.g_socket_listener_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
@@ -31,6 +33,9 @@ public val SocketListener.asObject: Object
 public object SocketListenerFactory {
   public fun new(): SocketListener = g_socket_listener_new()!!.reinterpret()
 }
+
+public val SocketListener.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public fun SocketListener.close(): Unit {
   g_socket_listener_close(this)

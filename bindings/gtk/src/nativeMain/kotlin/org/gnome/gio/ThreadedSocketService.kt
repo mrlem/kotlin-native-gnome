@@ -7,6 +7,8 @@ package org.gnome.gio
 import interop.GThreadedSocketService
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
@@ -23,6 +25,9 @@ public val ThreadedSocketService.asSocketService: SocketService
   get() = reinterpret()
 
 public object ThreadedSocketServiceFactory
+
+public val ThreadedSocketService.parentInstance: SocketService
+  get() = pointed.parent_instance.ptr
 
 public fun ThreadedSocketService.onRun(callback: (ThreadedSocketService) -> Unit):
     ThreadedSocketService {

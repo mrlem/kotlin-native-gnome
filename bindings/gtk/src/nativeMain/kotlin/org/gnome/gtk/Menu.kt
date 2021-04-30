@@ -40,6 +40,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
@@ -72,6 +74,9 @@ public object MenuFactory {
   public fun newFromModel(model: MenuModel?): Menu =
       gtk_menu_new_from_model(model?.reinterpret())!!.reinterpret()
 }
+
+public val Menu.menuShell: MenuShell
+  get() = pointed.menu_shell.ptr
 
 public var Menu.accelGroup: AccelGroup?
   get() = gtk_menu_get_accel_group(this)?.reinterpret()

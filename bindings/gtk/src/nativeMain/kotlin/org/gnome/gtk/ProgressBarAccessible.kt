@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkProgressBarAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -20,3 +22,6 @@ public val ProgressBarAccessible.asAccessible: Accessible
 
 public val ProgressBarAccessible.asWidgetAccessible: WidgetAccessible
   get() = reinterpret()
+
+public val ProgressBarAccessible.parent: WidgetAccessible
+  get() = pointed.parent.ptr

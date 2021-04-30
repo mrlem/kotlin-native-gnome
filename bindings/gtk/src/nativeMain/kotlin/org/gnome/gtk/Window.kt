@@ -156,6 +156,9 @@ public object WindowFactory {
   public fun new(type: WindowType): Window = gtk_window_new(type)!!.reinterpret()
 }
 
+public val Window.bin: Bin
+  get() = pointed.bin.ptr
+
 public var Window.acceptFocus: Boolean
   get() = gtk_window_get_accept_focus(this).toBoolean
   set(`value`) {

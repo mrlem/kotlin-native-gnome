@@ -34,6 +34,8 @@ import kotlin.Int
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -68,6 +70,9 @@ public object SpinButtonFactory {
     step: Double
   ): SpinButton = gtk_spin_button_new_with_range(min, max, step)!!.reinterpret()
 }
+
+public val SpinButton.entry: Entry
+  get() = pointed.entry.ptr
 
 public var SpinButton.adjustment: Adjustment?
   get() = gtk_spin_button_get_adjustment(this)?.reinterpret()

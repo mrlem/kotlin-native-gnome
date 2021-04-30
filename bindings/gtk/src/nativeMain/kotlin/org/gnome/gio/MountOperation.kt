@@ -30,6 +30,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -45,6 +47,9 @@ public val MountOperation.asObject: Object
 public object MountOperationFactory {
   public fun new(): MountOperation = g_mount_operation_new()!!.reinterpret()
 }
+
+public val MountOperation.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public var MountOperation.anonymous: Boolean
   get() = g_mount_operation_get_anonymous(this).toBoolean

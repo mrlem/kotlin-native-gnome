@@ -13,6 +13,8 @@ import interop.GAppLaunchContext
 import interop.g_app_launch_context_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
@@ -25,6 +27,9 @@ public val AppLaunchContext.asObject: Object
 public object AppLaunchContextFactory {
   public fun new(): AppLaunchContext = g_app_launch_context_new()!!.reinterpret()
 }
+
+public val AppLaunchContext.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public fun AppLaunchContext.onLaunchFailed(callback: (AppLaunchContext) -> Unit): AppLaunchContext {
   // TODO - handle callback data

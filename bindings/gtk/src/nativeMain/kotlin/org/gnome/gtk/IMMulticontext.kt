@@ -10,6 +10,8 @@ import interop.gtk_im_multicontext_new
 import interop.gtk_im_multicontext_set_context_id
 import kotlin.String
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -25,6 +27,9 @@ public val IMMulticontext.asIMContext: IMContext
 public object IMMulticontextFactory {
   public fun new(): IMMulticontext = gtk_im_multicontext_new()!!.reinterpret()
 }
+
+public val IMMulticontext.`object`: IMContext
+  get() = pointed.`object`.ptr
 
 public var IMMulticontext.contextId: String
   get() = gtk_im_multicontext_get_context_id(this).toKString

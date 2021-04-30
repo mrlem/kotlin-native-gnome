@@ -20,6 +20,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -30,6 +32,9 @@ public typealias IMContext = CPointer<GtkIMContext>
 
 public val IMContext.asObject: Object
   get() = reinterpret()
+
+public val IMContext.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public fun IMContext.deleteSurrounding(offset: Int, nChars: Int): Boolean =
     gtk_im_context_delete_surrounding(this, offset, nChars).toBoolean

@@ -17,6 +17,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Closure
 import org.gnome.gobject.InitiallyUnowned
@@ -43,6 +45,9 @@ public val AccelLabel.asLabel: Label
 public object AccelLabelFactory {
   public fun new(string: String): AccelLabel = gtk_accel_label_new(string)!!.reinterpret()
 }
+
+public val AccelLabel.label: Label
+  get() = pointed.label.ptr
 
 public var AccelLabel.accelWidget: Widget?
   get() = gtk_accel_label_get_accel_widget(this)?.reinterpret()

@@ -22,6 +22,8 @@ import interop.GResolver
 import interop.g_resolver_set_default
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
@@ -30,6 +32,9 @@ public typealias Resolver = CPointer<GResolver>
 
 public val Resolver.asObject: Object
   get() = reinterpret()
+
+public val Resolver.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public fun Resolver.setDefault(): Unit {
   g_resolver_set_default(this)

@@ -13,6 +13,8 @@ import interop.g_unix_fd_list_get_length
 import interop.g_unix_fd_list_new
 import kotlin.Int
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -24,6 +26,9 @@ public val UnixFDList.asObject: Object
 public object UnixFDListFactory {
   public fun new(): UnixFDList = g_unix_fd_list_new()!!.reinterpret()
 }
+
+public val UnixFDList.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val UnixFDList.length: Int
   get() = g_unix_fd_list_get_length(this)

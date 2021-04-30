@@ -10,6 +10,8 @@ import interop.gtk_app_chooser_dialog_new_for_content_type
 import interop.gtk_app_chooser_dialog_set_heading
 import kotlin.String
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.File
 import org.gnome.gobject.InitiallyUnowned
@@ -54,6 +56,9 @@ public object AppChooserDialogFactory {
   ): AppChooserDialog = gtk_app_chooser_dialog_new_for_content_type(parent?.reinterpret(), flags,
       contentType)!!.reinterpret()
 }
+
+public val AppChooserDialog.parent: Dialog
+  get() = pointed.parent.ptr
 
 public var AppChooserDialog.heading: String
   get() = gtk_app_chooser_dialog_get_heading(this).toKString

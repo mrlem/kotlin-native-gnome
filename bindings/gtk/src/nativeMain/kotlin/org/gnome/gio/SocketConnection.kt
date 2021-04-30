@@ -32,6 +32,9 @@ public val SocketConnection.asObject: Object
 public val SocketConnection.asIOStream: IOStream
   get() = reinterpret()
 
+public val SocketConnection.parentInstance: IOStream
+  get() = pointed.parent_instance.ptr
+
 public val SocketConnection.socket: Socket?
   get() = g_socket_connection_get_socket(this)?.reinterpret()
 

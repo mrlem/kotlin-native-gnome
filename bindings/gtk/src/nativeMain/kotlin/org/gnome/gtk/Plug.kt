@@ -14,6 +14,8 @@ import interop.gtk_plug_get_embedded
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -41,6 +43,9 @@ public val Plug.asWindow: Window
   get() = reinterpret()
 
 public object PlugFactory
+
+public val Plug.window: Window
+  get() = pointed.window.ptr
 
 public val Plug.embedded: Boolean
   get() = gtk_plug_get_embedded(this).toBoolean

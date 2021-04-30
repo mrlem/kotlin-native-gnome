@@ -1,3 +1,4 @@
+// TODO - field: qdata
 // TODO - method: get_qdata
 // TODO - method: set_qdata
 // TODO - method: steal_qdata
@@ -7,6 +8,7 @@
 package org.gnome.gobject
 
 import interop.GParamSpec
+import interop.GType
 import interop.g_param_spec_get_blurb
 import interop.g_param_spec_get_default_value
 import interop.g_param_spec_get_name
@@ -18,10 +20,23 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
 import org.gnome.toKString
 
 public typealias ParamSpec = CPointer<GParamSpec>
+
+public val ParamSpec.valueType: GType
+  get() = pointed.value_type
+
+public val ParamSpec.ownerType: GType
+  get() = pointed.owner_type
+
+public val ParamSpec.refCount: UInt
+  get() = pointed.ref_count
+
+public val ParamSpec.paramId: UInt
+  get() = pointed.param_id
 
 public val ParamSpec.blurb: String
   get() = g_param_spec_get_blurb(this).toKString

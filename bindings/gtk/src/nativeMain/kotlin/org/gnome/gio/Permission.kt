@@ -16,6 +16,8 @@ import interop.g_permission_get_can_acquire
 import interop.g_permission_get_can_release
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -24,6 +26,9 @@ public typealias Permission = CPointer<GPermission>
 
 public val Permission.asObject: Object
   get() = reinterpret()
+
+public val Permission.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val Permission.allowed: Boolean
   get() = g_permission_get_allowed(this).toBoolean

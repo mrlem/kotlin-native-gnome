@@ -14,6 +14,8 @@ import interop.gtk_viewport_get_shadow_type
 import interop.gtk_viewport_new
 import interop.gtk_viewport_set_shadow_type
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -39,6 +41,9 @@ public object ViewportFactory {
   public fun new(hadjustment: Adjustment?, vadjustment: Adjustment?): Viewport =
       gtk_viewport_new(hadjustment?.reinterpret(), vadjustment?.reinterpret())!!.reinterpret()
 }
+
+public val Viewport.bin: Bin
+  get() = pointed.bin.ptr
 
 public var Viewport.shadowType: ShadowType
   get() = gtk_viewport_get_shadow_type(this)

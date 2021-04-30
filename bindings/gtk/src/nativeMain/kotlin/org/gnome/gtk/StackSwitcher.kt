@@ -7,6 +7,8 @@ import interop.gtk_stack_switcher_get_stack
 import interop.gtk_stack_switcher_new
 import interop.gtk_stack_switcher_set_stack
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -31,6 +33,9 @@ public val StackSwitcher.asBox: Box
 public object StackSwitcherFactory {
   public fun new(): StackSwitcher = gtk_stack_switcher_new()!!.reinterpret()
 }
+
+public val StackSwitcher.widget: Box
+  get() = pointed.widget.ptr
 
 public var StackSwitcher.stack: Stack?
   get() = gtk_stack_switcher_get_stack(this)?.reinterpret()

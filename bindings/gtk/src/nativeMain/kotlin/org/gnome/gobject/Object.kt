@@ -1,4 +1,5 @@
 // TODO - constructor: newv
+// TODO - field: qdata
 // TODO - method: bind_property
 // TODO - method: bind_property_full
 // TODO - method: get_data
@@ -27,8 +28,10 @@ import interop.g_object_run_dispose
 import interop.g_object_thaw_notify
 import interop.g_object_unref
 import kotlin.Boolean
+import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
 import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
@@ -36,6 +39,9 @@ import org.mrlem.gnome.gobject.connect
 public typealias Object = CPointer<GObject>
 
 public object ObjectFactory
+
+public val Object.refCount: UInt
+  get() = pointed.ref_count
 
 public fun Object.forceFloating(): Unit {
   g_object_force_floating(this)

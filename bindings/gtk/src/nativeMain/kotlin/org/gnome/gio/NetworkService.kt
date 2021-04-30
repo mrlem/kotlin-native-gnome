@@ -12,6 +12,8 @@ import interop.g_network_service_get_service
 import interop.g_network_service_set_scheme
 import kotlin.String
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -22,6 +24,9 @@ public val NetworkService.asObject: Object
   get() = reinterpret()
 
 public object NetworkServiceFactory
+
+public val NetworkService.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val NetworkService.domain: String
   get() = g_network_service_get_domain(this).toKString

@@ -14,6 +14,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toInt
@@ -27,6 +29,9 @@ public val TextTag.asObject: Object
 public object TextTagFactory {
   public fun new(name: String): TextTag = gtk_text_tag_new(name)!!.reinterpret()
 }
+
+public val TextTag.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public var TextTag.priority: Int
   get() = gtk_text_tag_get_priority(this)

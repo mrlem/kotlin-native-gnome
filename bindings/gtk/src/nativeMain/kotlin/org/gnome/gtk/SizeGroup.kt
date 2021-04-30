@@ -14,6 +14,8 @@ import interop.gtk_size_group_remove_widget
 import interop.gtk_size_group_set_mode
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -25,6 +27,9 @@ public val SizeGroup.asObject: Object
 public object SizeGroupFactory {
   public fun new(mode: SizeGroupMode): SizeGroup = gtk_size_group_new(mode)!!.reinterpret()
 }
+
+public val SizeGroup.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public var SizeGroup.mode: SizeGroupMode
   get() = gtk_size_group_get_mode(this)

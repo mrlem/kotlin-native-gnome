@@ -20,6 +20,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -49,6 +51,9 @@ public object AppChooserWidgetFactory {
   public fun new(contentType: String): AppChooserWidget =
       gtk_app_chooser_widget_new(contentType)!!.reinterpret()
 }
+
+public val AppChooserWidget.parent: Box
+  get() = pointed.parent.ptr
 
 public var AppChooserWidget.defaultText: String
   get() = gtk_app_chooser_widget_get_default_text(this).toKString

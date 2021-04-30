@@ -15,6 +15,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -24,6 +26,9 @@ public typealias MenuModel = CPointer<GMenuModel>
 
 public val MenuModel.asObject: Object
   get() = reinterpret()
+
+public val MenuModel.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val MenuModel.nItems: Int
   get() = g_menu_model_get_n_items(this)

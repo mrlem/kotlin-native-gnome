@@ -5,6 +5,8 @@ package org.gnome.gtk
 import interop.GtkBin
 import interop.gtk_bin_get_child
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -22,6 +24,9 @@ public val Bin.asWidget: Widget
 
 public val Bin.asContainer: Container
   get() = reinterpret()
+
+public val Bin.container: Container
+  get() = pointed.container.ptr
 
 public val Bin.child: Widget?
   get() = gtk_bin_get_child(this)?.reinterpret()

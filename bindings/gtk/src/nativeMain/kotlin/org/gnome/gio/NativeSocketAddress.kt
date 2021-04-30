@@ -6,6 +6,8 @@ package org.gnome.gio
 
 import interop.GNativeSocketAddress
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -18,3 +20,6 @@ public val NativeSocketAddress.asSocketAddress: SocketAddress
   get() = reinterpret()
 
 public object NativeSocketAddressFactory
+
+public val NativeSocketAddress.parentInstance: SocketAddress
+  get() = pointed.parent_instance.ptr

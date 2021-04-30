@@ -37,6 +37,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
@@ -71,6 +73,9 @@ public object ImageFactory {
   public fun newFromResource(resourcePath: String): Image =
       gtk_image_new_from_resource(resourcePath)!!.reinterpret()
 }
+
+public val Image.misc: Misc
+  get() = pointed.misc.ptr
 
 public var Image.pixelSize: Int
   get() = gtk_image_get_pixel_size(this)

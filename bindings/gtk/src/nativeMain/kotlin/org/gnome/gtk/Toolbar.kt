@@ -23,6 +23,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -47,6 +49,9 @@ public val Toolbar.asContainer: Container
 public object ToolbarFactory {
   public fun new(): Toolbar = gtk_toolbar_new()!!.reinterpret()
 }
+
+public val Toolbar.container: Container
+  get() = pointed.container.ptr
 
 public var Toolbar.iconSize: IconSize
   get() = gtk_toolbar_get_icon_size(this)

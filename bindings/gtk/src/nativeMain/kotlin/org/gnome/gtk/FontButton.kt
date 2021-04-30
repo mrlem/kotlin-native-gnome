@@ -22,6 +22,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -56,6 +58,9 @@ public object FontButtonFactory {
   public fun newWithFont(fontname: String): FontButton =
       gtk_font_button_new_with_font(fontname)!!.reinterpret()
 }
+
+public val FontButton.button: Button
+  get() = pointed.button.ptr
 
 public var FontButton.showSize: Boolean
   get() = gtk_font_button_get_show_size(this).toBoolean

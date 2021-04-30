@@ -28,6 +28,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -51,6 +53,9 @@ public val ToolPalette.asContainer: Container
 public object ToolPaletteFactory {
   public fun new(): ToolPalette = gtk_tool_palette_new()!!.reinterpret()
 }
+
+public val ToolPalette.parentInstance: Container
+  get() = pointed.parent_instance.ptr
 
 public var ToolPalette.iconSize: IconSize
   get() = gtk_tool_palette_get_icon_size(this)

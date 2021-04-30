@@ -9,6 +9,8 @@ import interop.gtk_recent_chooser_menu_new_for_manager
 import interop.gtk_recent_chooser_menu_set_show_numbers
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -41,6 +43,9 @@ public object RecentChooserMenuFactory {
   public fun newForManager(manager: RecentManager?): RecentChooserMenu =
       gtk_recent_chooser_menu_new_for_manager(manager?.reinterpret())!!.reinterpret()
 }
+
+public val RecentChooserMenu.parentInstance: Menu
+  get() = pointed.parent_instance.ptr
 
 public var RecentChooserMenu.showNumbers: Boolean
   get() = gtk_recent_chooser_menu_get_show_numbers(this).toBoolean

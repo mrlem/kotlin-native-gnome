@@ -40,6 +40,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -74,6 +76,9 @@ public val AboutDialog.asDialog: Dialog
 public object AboutDialogFactory {
   public fun new(): AboutDialog = gtk_about_dialog_new()!!.reinterpret()
 }
+
+public val AboutDialog.parentInstance: Dialog
+  get() = pointed.parent_instance.ptr
 
 public var AboutDialog.comments: String
   get() = gtk_about_dialog_get_comments(this).toKString

@@ -18,6 +18,8 @@ package org.gnome.gio
 
 import interop.GTlsDatabase
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -25,3 +27,6 @@ public typealias TlsDatabase = CPointer<GTlsDatabase>
 
 public val TlsDatabase.asObject: Object
   get() = reinterpret()
+
+public val TlsDatabase.parentInstance: Object
+  get() = pointed.parent_instance.ptr

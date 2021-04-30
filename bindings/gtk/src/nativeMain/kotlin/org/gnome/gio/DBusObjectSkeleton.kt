@@ -12,6 +12,8 @@ import interop.GDBusObjectSkeleton
 import interop.g_dbus_object_skeleton_flush
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
@@ -22,6 +24,9 @@ public val DBusObjectSkeleton.asObject: Object
   get() = reinterpret()
 
 public object DBusObjectSkeletonFactory
+
+public val DBusObjectSkeleton.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public fun DBusObjectSkeleton.flush(): Unit {
   g_dbus_object_skeleton_flush(this)

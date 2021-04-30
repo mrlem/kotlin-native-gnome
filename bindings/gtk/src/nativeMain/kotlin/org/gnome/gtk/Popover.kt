@@ -27,6 +27,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
@@ -59,6 +61,9 @@ public object PopoverFactory {
   public fun newFromModel(relativeTo: Widget?, model: MenuModel?): Popover =
       gtk_popover_new_from_model(relativeTo?.reinterpret(), model?.reinterpret())!!.reinterpret()
 }
+
+public val Popover.parentInstance: Bin
+  get() = pointed.parent_instance.ptr
 
 public var Popover.constrainTo: PopoverConstraint
   get() = gtk_popover_get_constrain_to(this)

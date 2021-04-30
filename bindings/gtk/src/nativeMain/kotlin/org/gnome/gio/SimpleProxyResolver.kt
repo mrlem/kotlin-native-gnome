@@ -8,6 +8,8 @@ package org.gnome.gio
 
 import interop.GSimpleProxyResolver
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -15,3 +17,6 @@ public typealias SimpleProxyResolver = CPointer<GSimpleProxyResolver>
 
 public val SimpleProxyResolver.asObject: Object
   get() = reinterpret()
+
+public val SimpleProxyResolver.parentInstance: Object
+  get() = pointed.parent_instance.ptr

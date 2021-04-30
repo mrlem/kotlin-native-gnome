@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkSpinButtonAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -23,3 +25,6 @@ public val SpinButtonAccessible.asWidgetAccessible: WidgetAccessible
 
 public val SpinButtonAccessible.asEntryAccessible: EntryAccessible
   get() = reinterpret()
+
+public val SpinButtonAccessible.parent: EntryAccessible
+  get() = pointed.parent.ptr

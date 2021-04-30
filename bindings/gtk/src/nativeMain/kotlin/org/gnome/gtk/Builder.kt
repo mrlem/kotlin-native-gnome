@@ -67,6 +67,9 @@ public object BuilderFactory {
       gtk_builder_new_from_string(string, length)!!.reinterpret()
 }
 
+public val Builder.parentInstance: Object
+  get() = pointed.parent_instance.ptr
+
 public var Builder.application: Application?
   get() = gtk_builder_get_application(this)?.reinterpret()
   set(`value`) {

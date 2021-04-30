@@ -30,6 +30,8 @@ import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.ApplicationFlags
 import org.gnome.gio.Menu
@@ -50,6 +52,9 @@ public object ApplicationFactory {
   public fun new(applicationId: String, flags: ApplicationFlags): Application =
       gtk_application_new(applicationId, flags)!!.reinterpret()
 }
+
+public val Application.parent: org.gnome.gio.Application
+  get() = pointed.parent.ptr
 
 public val Application.activeWindow: Window?
   get() = gtk_application_get_active_window(this)?.reinterpret()

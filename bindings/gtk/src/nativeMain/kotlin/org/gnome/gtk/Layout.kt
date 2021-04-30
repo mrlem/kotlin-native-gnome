@@ -18,6 +18,8 @@ import kotlin.Int
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -40,6 +42,9 @@ public object LayoutFactory {
   public fun new(hadjustment: Adjustment?, vadjustment: Adjustment?): Layout =
       gtk_layout_new(hadjustment?.reinterpret(), vadjustment?.reinterpret())!!.reinterpret()
 }
+
+public val Layout.container: Container
+  get() = pointed.container.ptr
 
 public fun Layout.move(
   childWidget: Widget?,

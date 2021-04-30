@@ -4,6 +4,8 @@ package org.gnome.gtk
 
 import interop.GtkCheckMenuItemAccessible
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -26,3 +28,6 @@ public val CheckMenuItemAccessible.asContainerAccessible: ContainerAccessible
 
 public val CheckMenuItemAccessible.asMenuItemAccessible: MenuItemAccessible
   get() = reinterpret()
+
+public val CheckMenuItemAccessible.parent: MenuItemAccessible
+  get() = pointed.parent.ptr

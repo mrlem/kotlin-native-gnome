@@ -8,6 +8,8 @@ import interop.gtk_check_button_new_with_label
 import interop.gtk_check_button_new_with_mnemonic
 import kotlin.String
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -44,3 +46,6 @@ public object CheckButtonFactory {
   public fun newWithMnemonic(label: String): CheckButton =
       gtk_check_button_new_with_mnemonic(label)!!.reinterpret()
 }
+
+public val CheckButton.toggleButton: ToggleButton
+  get() = pointed.toggle_button.ptr

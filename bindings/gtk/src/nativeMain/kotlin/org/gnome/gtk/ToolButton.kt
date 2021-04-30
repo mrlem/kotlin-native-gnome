@@ -22,6 +22,8 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -54,6 +56,9 @@ public object ToolButtonFactory {
   public fun new(iconWidget: Widget?, label: String): ToolButton =
       gtk_tool_button_new(iconWidget?.reinterpret(), label)!!.reinterpret()
 }
+
+public val ToolButton.parent: ToolItem
+  get() = pointed.parent.ptr
 
 public var ToolButton.iconName: String
   get() = gtk_tool_button_get_icon_name(this).toKString

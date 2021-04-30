@@ -40,6 +40,8 @@ import kotlin.Int
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -64,6 +66,9 @@ public val FlowBox.asContainer: Container
 public object FlowBoxFactory {
   public fun new(): FlowBox = gtk_flow_box_new()!!.reinterpret()
 }
+
+public val FlowBox.container: Container
+  get() = pointed.container.ptr
 
 public var FlowBox.activateOnSingleClick: Boolean
   get() = gtk_flow_box_get_activate_on_single_click(this).toBoolean

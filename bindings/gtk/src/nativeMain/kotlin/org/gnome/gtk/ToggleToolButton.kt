@@ -11,6 +11,8 @@ import interop.gtk_toggle_tool_button_set_active
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -44,6 +46,9 @@ public val ToggleToolButton.asToolButton: ToolButton
 public object ToggleToolButtonFactory {
   public fun new(): ToggleToolButton = gtk_toggle_tool_button_new()!!.reinterpret()
 }
+
+public val ToggleToolButton.parent: ToolButton
+  get() = pointed.parent.ptr
 
 public var ToggleToolButton.active: Boolean
   get() = gtk_toggle_tool_button_get_active(this).toBoolean

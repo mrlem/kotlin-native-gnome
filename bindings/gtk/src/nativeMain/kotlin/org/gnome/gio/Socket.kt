@@ -85,6 +85,9 @@ public val Socket.asObject: Object
 
 public object SocketFactory
 
+public val Socket.parentInstance: Object
+  get() = pointed.parent_instance.ptr
+
 public val Socket.availableBytes: Long
   get() = g_socket_get_available_bytes(this)
 

@@ -17,6 +17,8 @@ import interop.g_buffered_input_stream_get_buffer_size
 import interop.g_buffered_input_stream_set_buffer_size
 import kotlin.ULong
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -32,6 +34,9 @@ public val BufferedInputStream.asFilterInputStream: FilterInputStream
   get() = reinterpret()
 
 public object BufferedInputStreamFactory
+
+public val BufferedInputStream.parentInstance: FilterInputStream
+  get() = pointed.parent_instance.ptr
 
 public val BufferedInputStream.available: ULong
   get() = g_buffered_input_stream_get_available(this)

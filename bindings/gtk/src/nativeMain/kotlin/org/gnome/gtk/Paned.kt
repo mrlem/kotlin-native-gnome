@@ -20,6 +20,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -44,6 +46,9 @@ public val Paned.asContainer: Container
 public object PanedFactory {
   public fun new(orientation: Orientation): Paned = gtk_paned_new(orientation)!!.reinterpret()
 }
+
+public val Paned.container: Container
+  get() = pointed.container.ptr
 
 public val Paned.child1: Widget?
   get() = gtk_paned_get_child1(this)?.reinterpret()

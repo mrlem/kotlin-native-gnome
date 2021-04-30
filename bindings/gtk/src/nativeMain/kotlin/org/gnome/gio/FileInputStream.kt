@@ -8,6 +8,8 @@ package org.gnome.gio
 
 import interop.GFileInputStream
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 
@@ -18,3 +20,6 @@ public val FileInputStream.asObject: Object
 
 public val FileInputStream.asInputStream: InputStream
   get() = reinterpret()
+
+public val FileInputStream.parentInstance: InputStream
+  get() = pointed.parent_instance.ptr

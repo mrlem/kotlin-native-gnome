@@ -33,6 +33,9 @@ public typealias IOStream = CPointer<GIOStream>
 public val IOStream.asObject: Object
   get() = reinterpret()
 
+public val IOStream.parentInstance: Object
+  get() = pointed.parent_instance.ptr
+
 public val IOStream.inputStream: InputStream?
   get() = g_io_stream_get_input_stream(this)?.reinterpret()
 

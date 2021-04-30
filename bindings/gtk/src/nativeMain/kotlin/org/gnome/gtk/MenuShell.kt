@@ -22,6 +22,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
@@ -43,6 +45,9 @@ public val MenuShell.asWidget: Widget
 
 public val MenuShell.asContainer: Container
   get() = reinterpret()
+
+public val MenuShell.container: Container
+  get() = pointed.container.ptr
 
 public val MenuShell.parentShell: Widget?
   get() = gtk_menu_shell_get_parent_shell(this)?.reinterpret()

@@ -10,6 +10,8 @@ import kotlin.Float
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -45,6 +47,9 @@ public object AspectFrameFactory {
   ): AspectFrame = gtk_aspect_frame_new(label, xalign, yalign, ratio,
       obeyChild.toInt)!!.reinterpret()
 }
+
+public val AspectFrame.frame: Frame
+  get() = pointed.frame.ptr
 
 public fun AspectFrame.`set`(
   xalign: Float,

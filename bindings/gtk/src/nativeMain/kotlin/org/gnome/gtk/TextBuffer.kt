@@ -83,6 +83,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -99,6 +101,9 @@ public object TextBufferFactory {
   public fun new(table: TextTagTable?): TextBuffer =
       gtk_text_buffer_new(table?.reinterpret())!!.reinterpret()
 }
+
+public val TextBuffer.parentInstance: Object
+  get() = pointed.parent_instance.ptr
 
 public val TextBuffer.charCount: Int
   get() = gtk_text_buffer_get_char_count(this)

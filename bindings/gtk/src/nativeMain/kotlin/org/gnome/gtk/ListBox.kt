@@ -36,6 +36,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -60,6 +62,9 @@ public val ListBox.asContainer: Container
 public object ListBoxFactory {
   public fun new(): ListBox = gtk_list_box_new()!!.reinterpret()
 }
+
+public val ListBox.parentInstance: Container
+  get() = pointed.parent_instance.ptr
 
 public var ListBox.activateOnSingleClick: Boolean
   get() = gtk_list_box_get_activate_on_single_click(this).toBoolean

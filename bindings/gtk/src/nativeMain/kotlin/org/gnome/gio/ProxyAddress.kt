@@ -15,6 +15,8 @@ import interop.g_proxy_address_get_username
 import kotlin.String
 import kotlin.UShort
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -31,6 +33,9 @@ public val ProxyAddress.asInetSocketAddress: InetSocketAddress
   get() = reinterpret()
 
 public object ProxyAddressFactory
+
+public val ProxyAddress.parentInstance: InetSocketAddress
+  get() = pointed.parent_instance.ptr
 
 public val ProxyAddress.destinationHostname: String
   get() = g_proxy_address_get_destination_hostname(this).toKString
