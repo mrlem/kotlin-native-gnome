@@ -17,10 +17,7 @@ fun CallbackDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
     }
 
     when {
-        deprecated -> {
-            println("warning: callback '$name' ignored: deprecated")
-            return null
-        }
+        deprecated -> return null
     }
 
     return FileSpec.builder(namespace.packageName, name)

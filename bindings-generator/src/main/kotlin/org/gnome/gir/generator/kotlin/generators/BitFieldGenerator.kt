@@ -10,16 +10,10 @@ import org.gnome.gir.model.NamespaceDefinition
 
 fun BitFieldDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
     val glibTypeName = glibTypeName
-    if (glibTypeName == null) {
-        println("warning: bitfield '$name' ignored: no glibTypeName")
-        return null
-    }
+        ?: "${namespace.cPrefix}$name"
 
     when {
-        deprecated -> {
-            println("warning: bitfield '$name' ignored: deprecated")
-            return null
-        }
+        deprecated -> return null
     }
 
     return FileSpec.builder(namespace.packageName, name)

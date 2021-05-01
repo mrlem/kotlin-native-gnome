@@ -13,24 +13,23 @@ import org.gnome.gir.model.RecordDefinition
 fun RecordDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
     val cName = cType
         ?: glibTypeName
-        ?: run {
-            println("warning: record '$name' ignored: no cType or glibTypeName")
-            return null
-        }
+        ?: "${namespace.cPrefix}$name"
 
     when {
-        deprecated -> {
-            println("warning: record '$name' ignored: deprecated")
-            return null
-        }
+        deprecated -> return null
         glibIsGTypeStructFor != null -> {
-            println("warning: record '$name' ignored: represents type struct")
+            println("info: record '$name' ignored: represents type struct")
             return null
         }
-        disguised -> {
-            println("warning: record '$name' ignored: disguised")
+        // FIXME - these are defined but don't exist
+        listOf("FileDescriptorBasedIface", "SettingsBackendClass").contains(name) -> {
+            println("warning: record '$name' ignored: excluded record")
             return null
         }
+        name.endsWith("Private") -> {
+            return null
+        }
+        disguised -> return null
     }
 
     return FileSpec.builder(namespace.packageName, name)

@@ -19,7 +19,6 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
     // filter out some classes
     when {
         deprecated && classNameString != "Gtk.Misc" -> {
-            println("info: class '$name' ignored: deprecated")
             return null
         }
         // FIXME - Misc is annoying: deprecated, but not its children, try figure that out

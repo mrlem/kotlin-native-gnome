@@ -12,10 +12,7 @@ import org.gnome.gir.model.NamespaceDefinition
 
 fun AliasDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
     when {
-        deprecated -> {
-            println("warning: alias '$name' ignored: deprecated")
-            return null
-        }
+        deprecated -> return null
     }
 
     return FileSpec.builder(namespace.packageName, name)

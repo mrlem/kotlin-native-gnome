@@ -16,10 +16,7 @@ fun EnumDefinition.toFileSpec(namespace: NamespaceDefinition): FileSpec? {
     }
 
     when {
-        deprecated -> {
-            println("warning: enum '$name' ignored: deprecated")
-            return null
-        }
+        deprecated -> return null
     }
 
     return FileSpec.builder(namespace.packageName, name)
