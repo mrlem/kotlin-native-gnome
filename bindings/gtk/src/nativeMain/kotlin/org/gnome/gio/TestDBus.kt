@@ -1,5 +1,3 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -9,6 +7,7 @@ import interop.g_test_dbus_add_service_dir
 import interop.g_test_dbus_down
 import interop.g_test_dbus_get_bus_address
 import interop.g_test_dbus_get_flags
+import interop.g_test_dbus_new
 import interop.g_test_dbus_stop
 import interop.g_test_dbus_up
 import kotlin.String
@@ -23,7 +22,9 @@ public typealias TestDBus = CPointer<GTestDBus>
 public val TestDBus.asObject: Object
   get() = reinterpret()
 
-public object TestDBusFactory
+public object TestDBusFactory {
+  public fun new(flags: TestDBusFlags): TestDBus = g_test_dbus_new(flags)!!.reinterpret()
+}
 
 public val TestDBus.busAddress: String
   get() = g_test_dbus_get_bus_address(this).toKString()

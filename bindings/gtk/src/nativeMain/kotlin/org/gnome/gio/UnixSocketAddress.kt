@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - constructor: new_abstract
 // TODO - constructor: new_with_type
 // TODO - method: get_is_abstract
@@ -11,6 +10,7 @@ import interop.GUnixSocketAddress
 import interop.g_unix_socket_address_get_address_type
 import interop.g_unix_socket_address_get_path
 import interop.g_unix_socket_address_get_path_len
+import interop.g_unix_socket_address_new
 import kotlin.String
 import kotlin.ULong
 import kotlinx.cinterop.CPointer
@@ -28,7 +28,9 @@ public val UnixSocketAddress.asObject: Object
 public val UnixSocketAddress.asSocketAddress: SocketAddress
   get() = reinterpret()
 
-public object UnixSocketAddressFactory
+public object UnixSocketAddressFactory {
+  public fun new(path: String): UnixSocketAddress = g_unix_socket_address_new(path)!!.reinterpret()
+}
 
 public val UnixSocketAddress.parentInstance: SocketAddress
   get() = pointed.parent_instance.ptr

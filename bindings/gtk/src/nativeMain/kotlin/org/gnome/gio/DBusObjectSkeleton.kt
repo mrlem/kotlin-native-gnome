@@ -1,5 +1,3 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -7,6 +5,7 @@ package org.gnome.gio
 import interop.GDBusObjectSkeleton
 import interop.g_dbus_object_skeleton_add_interface
 import interop.g_dbus_object_skeleton_flush
+import interop.g_dbus_object_skeleton_new
 import interop.g_dbus_object_skeleton_remove_interface
 import interop.g_dbus_object_skeleton_remove_interface_by_name
 import interop.g_dbus_object_skeleton_set_object_path
@@ -24,7 +23,10 @@ public typealias DBusObjectSkeleton = CPointer<GDBusObjectSkeleton>
 public val DBusObjectSkeleton.asObject: Object
   get() = reinterpret()
 
-public object DBusObjectSkeletonFactory
+public object DBusObjectSkeletonFactory {
+  public fun new(objectPath: String): DBusObjectSkeleton =
+      g_dbus_object_skeleton_new(objectPath)!!.reinterpret()
+}
 
 public val DBusObjectSkeleton.parentInstance: Object
   get() = pointed.parent_instance.ptr

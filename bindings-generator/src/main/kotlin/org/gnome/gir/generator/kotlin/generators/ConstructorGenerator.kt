@@ -6,8 +6,8 @@ import org.gnome.gir.generator.kotlin.generators.ext.reinterpretMemberName
 import org.gnome.gir.generator.kotlin.generators.ext.snakeCaseToCamelCase
 import org.gnome.gir.generator.kotlin.generators.ext.typeInfo
 import org.gnome.gir.model.CallableDefinition
-import org.gnome.gir.model.TypeDefinition
 import org.gnome.gir.model.enums.Direction
+import org.gnome.gir.model.types.AnyType
 import org.gnome.gir.resolver.Resolver
 
 fun TypeSpec.Builder.addConstructor(className: ClassName, constructor: CallableDefinition, fileSpecBuilder: FileSpec.Builder, resolver: Resolver) {
@@ -28,14 +28,14 @@ fun TypeSpec.Builder.addConstructor(className: ClassName, constructor: CallableD
 
     val params = constructor.callable.parameters
         .map { param ->
-            val type = (param.type as? TypeDefinition) // TODO - handle
-                ?.takeIf { it.typeInfo(resolver)?.kType != null && it.cType != null }
-                ?.takeUnless { param.direction == Direction.Out || param.direction == Direction.InOut } // TODO - handle
+            val typeInfo = (param.type as? AnyType) // TODO - handle varargs
+                ?.takeUnless { param.direction == Direction.Out || param.direction == Direction.InOut } // TODO - handle in/out
+                ?.typeInfo(resolver)
                 ?: run {
                     fileSpecBuilder.addComment("TODO - constructor: ${constructor.name}\n")
                     return@addConstructor
                 }
-            param.name.snakeCaseToCamelCase.decapitalize() to type
+            param.name.snakeCaseToCamelCase.decapitalize() to typeInfo
         }.toMap()
 
     // params conversion
@@ -44,7 +44,7 @@ fun TypeSpec.Builder.addConstructor(className: ClassName, constructor: CallableD
     addFunction(
         FunSpec.builder(name)
             // params
-            .apply { params.forEach { (name, type) -> addParameter(name, type.typeInfo(resolver)!!.kType) } }
+            .apply { params.forEach { (name, typeInfo) -> addParameter(name, typeInfo.kType) } }
             // return
             .apply { returns(className) }
             // block

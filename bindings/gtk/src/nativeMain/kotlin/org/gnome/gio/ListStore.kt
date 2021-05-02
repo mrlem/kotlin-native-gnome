@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - method: find
 // TODO - method: find_with_equal_func
 // TODO - method: insert_sorted
@@ -10,8 +9,10 @@
 package org.gnome.gio
 
 import interop.GListStore
+import interop.GType
 import interop.g_list_store_append
 import interop.g_list_store_insert
+import interop.g_list_store_new
 import interop.g_list_store_remove
 import interop.g_list_store_remove_all
 import kotlin.UInt
@@ -25,7 +26,9 @@ public typealias ListStore = CPointer<GListStore>
 public val ListStore.asObject: Object
   get() = reinterpret()
 
-public object ListStoreFactory
+public object ListStoreFactory {
+  public fun new(itemType: GType): ListStore = g_list_store_new(itemType)!!.reinterpret()
+}
 
 public fun ListStore.append(item: Object?): Unit {
   g_list_store_append(this, item?.reinterpret())

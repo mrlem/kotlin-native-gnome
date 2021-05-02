@@ -1,5 +1,3 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -12,6 +10,7 @@ import interop.g_proxy_address_get_password
 import interop.g_proxy_address_get_protocol
 import interop.g_proxy_address_get_uri
 import interop.g_proxy_address_get_username
+import interop.g_proxy_address_new
 import kotlin.String
 import kotlin.UShort
 import kotlinx.cinterop.CPointer
@@ -32,7 +31,18 @@ public val ProxyAddress.asSocketAddress: SocketAddress
 public val ProxyAddress.asInetSocketAddress: InetSocketAddress
   get() = reinterpret()
 
-public object ProxyAddressFactory
+public object ProxyAddressFactory {
+  public fun new(
+    inetaddr: InetAddress?,
+    port: UShort,
+    protocol: String,
+    destHostname: String,
+    destPort: UShort,
+    username: String,
+    password: String
+  ): ProxyAddress = g_proxy_address_new(inetaddr?.reinterpret(), port, protocol, destHostname,
+      destPort, username, password)!!.reinterpret()
+}
 
 public val ProxyAddress.parentInstance: InetSocketAddress
   get() = pointed.parent_instance.ptr

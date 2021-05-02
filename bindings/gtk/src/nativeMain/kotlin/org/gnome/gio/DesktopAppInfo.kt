@@ -1,5 +1,3 @@
-// TODO - constructor: new
-// TODO - constructor: new_from_filename
 // TODO - constructor: new_from_keyfile
 // TODO - method: get_keywords
 // TODO - method: get_string_list
@@ -25,6 +23,8 @@ import interop.g_desktop_app_info_get_startup_wm_class
 import interop.g_desktop_app_info_get_string
 import interop.g_desktop_app_info_has_key
 import interop.g_desktop_app_info_launch_action
+import interop.g_desktop_app_info_new
+import interop.g_desktop_app_info_new_from_filename
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
@@ -39,7 +39,13 @@ public typealias DesktopAppInfo = CPointer<GDesktopAppInfo>
 public val DesktopAppInfo.asObject: Object
   get() = reinterpret()
 
-public object DesktopAppInfoFactory
+public object DesktopAppInfoFactory {
+  public fun new(desktopId: String): DesktopAppInfo =
+      g_desktop_app_info_new(desktopId)!!.reinterpret()
+
+  public fun newFromFilename(filename: String): DesktopAppInfo =
+      g_desktop_app_info_new_from_filename(filename)!!.reinterpret()
+}
 
 public val DesktopAppInfo.categories: String
   get() = g_desktop_app_info_get_categories(this).toKString()

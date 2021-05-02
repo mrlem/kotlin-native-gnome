@@ -1,5 +1,3 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -9,6 +7,7 @@ import interop.g_dbus_object_manager_server_export
 import interop.g_dbus_object_manager_server_export_uniquely
 import interop.g_dbus_object_manager_server_get_connection
 import interop.g_dbus_object_manager_server_is_exported
+import interop.g_dbus_object_manager_server_new
 import interop.g_dbus_object_manager_server_set_connection
 import interop.g_dbus_object_manager_server_unexport
 import kotlin.Boolean
@@ -26,7 +25,10 @@ public typealias DBusObjectManagerServer = CPointer<GDBusObjectManagerServer>
 public val DBusObjectManagerServer.asObject: Object
   get() = reinterpret()
 
-public object DBusObjectManagerServerFactory
+public object DBusObjectManagerServerFactory {
+  public fun new(objectPath: String): DBusObjectManagerServer =
+      g_dbus_object_manager_server_new(objectPath)!!.reinterpret()
+}
 
 public val DBusObjectManagerServer.parentInstance: Object
   get() = pointed.parent_instance.ptr

@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - method: add_button_with_target
 // TODO - method: set_default_action_and_target
 // TODO - method: set_urgent
@@ -9,6 +8,7 @@ package org.gnome.gio
 
 import interop.GNotification
 import interop.g_notification_add_button
+import interop.g_notification_new
 import interop.g_notification_set_body
 import interop.g_notification_set_default_action
 import interop.g_notification_set_icon
@@ -25,7 +25,9 @@ public typealias Notification = CPointer<GNotification>
 public val Notification.asObject: Object
   get() = reinterpret()
 
-public object NotificationFactory
+public object NotificationFactory {
+  public fun new(title: String): Notification = g_notification_new(title)!!.reinterpret()
+}
 
 public fun Notification.addButton(label: String, detailedAction: String): Unit {
   g_notification_add_button(this, label, detailedAction)

@@ -1,7 +1,4 @@
-// TODO - constructor: new_any
 // TODO - constructor: new_from_bytes
-// TODO - constructor: new_from_string
-// TODO - constructor: new_loopback
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -21,6 +18,9 @@ import interop.g_inet_address_get_is_mc_site_local
 import interop.g_inet_address_get_is_multicast
 import interop.g_inet_address_get_is_site_local
 import interop.g_inet_address_get_native_size
+import interop.g_inet_address_new_any
+import interop.g_inet_address_new_from_string
+import interop.g_inet_address_new_loopback
 import interop.g_inet_address_to_string
 import kotlin.Boolean
 import kotlin.String
@@ -38,7 +38,16 @@ public typealias InetAddress = CPointer<GInetAddress>
 public val InetAddress.asObject: Object
   get() = reinterpret()
 
-public object InetAddressFactory
+public object InetAddressFactory {
+  public fun newAny(family: SocketFamily): InetAddress =
+      g_inet_address_new_any(family)!!.reinterpret()
+
+  public fun newFromString(string: String): InetAddress =
+      g_inet_address_new_from_string(string)!!.reinterpret()
+
+  public fun newLoopback(family: SocketFamily): InetAddress =
+      g_inet_address_new_loopback(family)!!.reinterpret()
+}
 
 public val InetAddress.parentInstance: Object
   get() = pointed.parent_instance.ptr

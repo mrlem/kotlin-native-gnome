@@ -1,11 +1,10 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GTcpWrapperConnection
 import interop.g_tcp_wrapper_connection_get_base_io_stream
+import interop.g_tcp_wrapper_connection_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
@@ -26,7 +25,11 @@ public val TcpWrapperConnection.asSocketConnection: SocketConnection
 public val TcpWrapperConnection.asTcpConnection: TcpConnection
   get() = reinterpret()
 
-public object TcpWrapperConnectionFactory
+public object TcpWrapperConnectionFactory {
+  public fun new(baseIoStream: IOStream?, socket: Socket?): TcpWrapperConnection =
+      g_tcp_wrapper_connection_new(baseIoStream?.reinterpret(),
+      socket?.reinterpret())!!.reinterpret()
+}
 
 public val TcpWrapperConnection.parentInstance: TcpConnection
   get() = pointed.parent_instance.ptr

@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - method: set_environ
 // TODO - method: spawnv
 //
@@ -8,6 +7,7 @@ package org.gnome.gio
 
 import interop.GSubprocessLauncher
 import interop.g_subprocess_launcher_getenv
+import interop.g_subprocess_launcher_new
 import interop.g_subprocess_launcher_set_cwd
 import interop.g_subprocess_launcher_set_flags
 import interop.g_subprocess_launcher_set_stderr_file_path
@@ -34,7 +34,10 @@ public typealias SubprocessLauncher = CPointer<GSubprocessLauncher>
 public val SubprocessLauncher.asObject: Object
   get() = reinterpret()
 
-public object SubprocessLauncherFactory
+public object SubprocessLauncherFactory {
+  public fun new(flags: SubprocessFlags): SubprocessLauncher =
+      g_subprocess_launcher_new(flags)!!.reinterpret()
+}
 
 public fun SubprocessLauncher.getenv(variable: String): String = g_subprocess_launcher_getenv(this,
     variable).toKString()

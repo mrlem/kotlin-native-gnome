@@ -1,5 +1,3 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -7,6 +5,7 @@ package org.gnome.gio
 import interop.GDataOutputStream
 import interop.GError
 import interop.g_data_output_stream_get_byte_order
+import interop.g_data_output_stream_new
 import interop.g_data_output_stream_put_byte
 import interop.g_data_output_stream_put_int16
 import interop.g_data_output_stream_put_int32
@@ -47,7 +46,10 @@ public val DataOutputStream.asOutputStream: OutputStream
 public val DataOutputStream.asFilterOutputStream: FilterOutputStream
   get() = reinterpret()
 
-public object DataOutputStreamFactory
+public object DataOutputStreamFactory {
+  public fun new(baseStream: OutputStream?): DataOutputStream =
+      g_data_output_stream_new(baseStream?.reinterpret())!!.reinterpret()
+}
 
 public val DataOutputStream.parentInstance: FilterOutputStream
   get() = pointed.parent_instance.ptr

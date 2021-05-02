@@ -39,18 +39,18 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
 
     val params = method.callable.parameters
         .map { param ->
-            val type = (param.type as? AnyType) // TODO - handle varargs
-                ?.takeIf { it.typeInfo(resolver)?.kType != null }
+            val typeInfo = (param.type as? AnyType) // TODO - handle varargs
                 ?.takeUnless { param.direction == Out || param.direction == InOut } // TODO - handle in/out
+                ?.typeInfo(resolver)
                 ?: run {
                     addComment("TODO - method: ${method.name}\n")
                     return@addMethod
                 }
-            param.name.snakeCaseToCamelCase.decapitalize() to type
+            param.name.snakeCaseToCamelCase.decapitalize() to typeInfo
         }.toMap()
 
     // return conversion
-    val (returnTemplate, returnArray) = returnType.getReturnData(resolver)
+    val (returnTemplate, returnArray) = returnTypeInfo.getReturnData()
     val returnKeyword = if (returnType != null) "return " else ""
 
     // params conversion
@@ -59,7 +59,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
     val builder = FunSpec.builder(name)
         .receiver(className)
         // params
-        .apply { params.forEach { (name, type) -> addParameter(name, type.typeInfo(resolver)!!.kType) } }
+        .apply { params.forEach { (name, typeInfo) -> addParameter(name, typeInfo.kType) } }
         // return
         .apply { returnTypeInfo?.kType?.let { returns(it) } }
 
@@ -111,20 +111,18 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
 // Internal
 ///////////////////////////////////////////////////////////////////////////
 
-fun AnyType?.getReturnData(resolver: Resolver): Pair<String, Array<MemberName>> {
-    val typeInfo = this?.typeInfo(resolver)
-    return typeInfo?.toKType
+fun TypeInfo?.getReturnData(): Pair<String, Array<MemberName>> {
+    return this?.toKType
         ?: "" to emptyArray()
 }
 
-fun Map<String, AnyType>.getParamsData(reinterpretPointers: Boolean, resolver: Resolver, headingComma: Boolean = true): Pair<String, Array<MemberName>> {
+fun Map<String, TypeInfo>.getParamsData(reinterpretPointers: Boolean, resolver: Resolver, headingComma: Boolean = true): Pair<String, Array<MemberName>> {
     val paramsMembers = mutableListOf<MemberName>()
-    val paramsTemplate = entries.joinToString(", ") { (name, type) ->
-        val typeInfo = type.typeInfo(resolver)
+    val paramsTemplate = entries.joinToString(", ") { (name, typeInfo) ->
         val (paramTemplate, paramArray) = if (reinterpretPointers) {
-            typeInfo!!.toCTypeReinterpreted
+            typeInfo.toCTypeReinterpreted
         } else {
-            typeInfo!!.toCType
+            typeInfo.toCType
         }
         paramsMembers += MemberName("", name)
         paramsMembers += paramArray

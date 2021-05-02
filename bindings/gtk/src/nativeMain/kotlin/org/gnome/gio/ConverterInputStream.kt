@@ -1,11 +1,10 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GConverterInputStream
 import interop.g_converter_input_stream_get_converter
+import interop.g_converter_input_stream_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
@@ -23,7 +22,11 @@ public val ConverterInputStream.asInputStream: InputStream
 public val ConverterInputStream.asFilterInputStream: FilterInputStream
   get() = reinterpret()
 
-public object ConverterInputStreamFactory
+public object ConverterInputStreamFactory {
+  public fun new(baseStream: InputStream?, converter: Converter?): ConverterInputStream =
+      g_converter_input_stream_new(baseStream?.reinterpret(),
+      converter?.reinterpret())!!.reinterpret()
+}
 
 public val ConverterInputStream.parentInstance: FilterInputStream
   get() = pointed.parent_instance.ptr

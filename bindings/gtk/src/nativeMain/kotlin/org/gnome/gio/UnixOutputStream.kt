@@ -1,5 +1,3 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -7,6 +5,7 @@ package org.gnome.gio
 import interop.GUnixOutputStream
 import interop.g_unix_output_stream_get_close_fd
 import interop.g_unix_output_stream_get_fd
+import interop.g_unix_output_stream_new
 import interop.g_unix_output_stream_set_close_fd
 import kotlin.Boolean
 import kotlin.Int
@@ -26,7 +25,10 @@ public val UnixOutputStream.asObject: Object
 public val UnixOutputStream.asOutputStream: OutputStream
   get() = reinterpret()
 
-public object UnixOutputStreamFactory
+public object UnixOutputStreamFactory {
+  public fun new(fd: Int, closeFd: Boolean): UnixOutputStream = g_unix_output_stream_new(fd,
+      closeFd.toInt())!!.reinterpret()
+}
 
 public val UnixOutputStream.parentInstance: OutputStream
   get() = pointed.parent_instance.ptr

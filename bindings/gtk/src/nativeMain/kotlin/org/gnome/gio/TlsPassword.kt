@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - method: get_value
 // TODO - method: set_value
 // TODO - method: set_value_full
@@ -11,6 +10,7 @@ import interop.GTlsPassword
 import interop.g_tls_password_get_description
 import interop.g_tls_password_get_flags
 import interop.g_tls_password_get_warning
+import interop.g_tls_password_new
 import interop.g_tls_password_set_description
 import interop.g_tls_password_set_flags
 import interop.g_tls_password_set_warning
@@ -27,7 +27,10 @@ public typealias TlsPassword = CPointer<GTlsPassword>
 public val TlsPassword.asObject: Object
   get() = reinterpret()
 
-public object TlsPasswordFactory
+public object TlsPasswordFactory {
+  public fun new(flags: TlsPasswordFlags, description: String): TlsPassword =
+      g_tls_password_new(flags, description)!!.reinterpret()
+}
 
 public val TlsPassword.parentInstance: Object
   get() = pointed.parent_instance.ptr

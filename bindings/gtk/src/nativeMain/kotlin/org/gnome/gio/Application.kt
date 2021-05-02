@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - method: add_main_option
 // TODO - method: add_main_option_entries
 // TODO - method: add_option_group
@@ -25,6 +24,7 @@ import interop.g_application_get_is_remote
 import interop.g_application_get_resource_base_path
 import interop.g_application_hold
 import interop.g_application_mark_busy
+import interop.g_application_new
 import interop.g_application_quit
 import interop.g_application_register
 import interop.g_application_release
@@ -62,7 +62,10 @@ public typealias Application = CPointer<GApplication>
 public val Application.asObject: Object
   get() = reinterpret()
 
-public object ApplicationFactory
+public object ApplicationFactory {
+  public fun new(applicationId: String, flags: ApplicationFlags): Application =
+      g_application_new(applicationId, flags)!!.reinterpret()
+}
 
 public val Application.parentInstance: Object
   get() = pointed.parent_instance.ptr

@@ -1,10 +1,10 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GThreadedSocketService
+import interop.g_threaded_socket_service_new
+import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
@@ -24,7 +24,10 @@ public val ThreadedSocketService.asSocketListener: SocketListener
 public val ThreadedSocketService.asSocketService: SocketService
   get() = reinterpret()
 
-public object ThreadedSocketServiceFactory
+public object ThreadedSocketServiceFactory {
+  public fun new(maxThreads: Int): ThreadedSocketService =
+      g_threaded_socket_service_new(maxThreads)!!.reinterpret()
+}
 
 public val ThreadedSocketService.parentInstance: SocketService
   get() = pointed.parent_instance.ptr

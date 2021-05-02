@@ -1,4 +1,3 @@
-// TODO - constructor: new
 // TODO - method: read_line
 // TODO - method: read_line_async
 // TODO - method: read_line_finish
@@ -19,6 +18,7 @@ import interop.GDataInputStream
 import interop.GError
 import interop.g_data_input_stream_get_byte_order
 import interop.g_data_input_stream_get_newline_type
+import interop.g_data_input_stream_new
 import interop.g_data_input_stream_read_byte
 import interop.g_data_input_stream_read_int16
 import interop.g_data_input_stream_read_int32
@@ -59,7 +59,10 @@ public val DataInputStream.asFilterInputStream: FilterInputStream
 public val DataInputStream.asBufferedInputStream: BufferedInputStream
   get() = reinterpret()
 
-public object DataInputStreamFactory
+public object DataInputStreamFactory {
+  public fun new(baseStream: InputStream?): DataInputStream =
+      g_data_input_stream_new(baseStream?.reinterpret())!!.reinterpret()
+}
 
 public val DataInputStream.parentInstance: BufferedInputStream
   get() = pointed.parent_instance.ptr

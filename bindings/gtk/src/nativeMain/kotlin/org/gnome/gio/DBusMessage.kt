@@ -1,6 +1,4 @@
 // TODO - constructor: new_from_blob
-// TODO - constructor: new_method_call
-// TODO - constructor: new_signal
 // TODO - method: get_body
 // TODO - method: get_header
 // TODO - method: get_header_fields
@@ -33,8 +31,10 @@ import interop.g_dbus_message_get_signature
 import interop.g_dbus_message_get_unix_fd_list
 import interop.g_dbus_message_lock
 import interop.g_dbus_message_new
+import interop.g_dbus_message_new_method_call
 import interop.g_dbus_message_new_method_error_literal
 import interop.g_dbus_message_new_method_reply
+import interop.g_dbus_message_new_signal
 import interop.g_dbus_message_print
 import interop.g_dbus_message_set_byte_order
 import interop.g_dbus_message_set_destination
@@ -74,6 +74,19 @@ public val DBusMessage.asObject: Object
 
 public object DBusMessageFactory {
   public fun new(): DBusMessage = g_dbus_message_new()!!.reinterpret()
+
+  public fun newMethodCall(
+    name: String,
+    path: String,
+    `interface`: String,
+    method: String
+  ): DBusMessage = g_dbus_message_new_method_call(name, path, `interface`, method)!!.reinterpret()
+
+  public fun newSignal(
+    path: String,
+    `interface`: String,
+    signal: String
+  ): DBusMessage = g_dbus_message_new_signal(path, `interface`, signal)!!.reinterpret()
 }
 
 public val DBusMessage.arg0: String

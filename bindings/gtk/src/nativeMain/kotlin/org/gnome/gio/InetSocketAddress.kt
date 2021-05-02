@@ -1,6 +1,3 @@
-// TODO - constructor: new
-// TODO - constructor: new_from_string
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -10,6 +7,9 @@ import interop.g_inet_socket_address_get_address
 import interop.g_inet_socket_address_get_flowinfo
 import interop.g_inet_socket_address_get_port
 import interop.g_inet_socket_address_get_scope_id
+import interop.g_inet_socket_address_new
+import interop.g_inet_socket_address_new_from_string
+import kotlin.String
 import kotlin.UInt
 import kotlin.UShort
 import kotlinx.cinterop.CPointer
@@ -26,7 +26,13 @@ public val InetSocketAddress.asObject: Object
 public val InetSocketAddress.asSocketAddress: SocketAddress
   get() = reinterpret()
 
-public object InetSocketAddressFactory
+public object InetSocketAddressFactory {
+  public fun new(address: InetAddress?, port: UShort): InetSocketAddress =
+      g_inet_socket_address_new(address?.reinterpret(), port)!!.reinterpret()
+
+  public fun newFromString(address: String, port: UInt): InetSocketAddress =
+      g_inet_socket_address_new_from_string(address, port)!!.reinterpret()
+}
 
 public val InetSocketAddress.parentInstance: SocketAddress
   get() = pointed.parent_instance.ptr

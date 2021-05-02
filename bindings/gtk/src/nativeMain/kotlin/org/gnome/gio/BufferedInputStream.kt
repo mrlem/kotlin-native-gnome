@@ -1,5 +1,3 @@
-// TODO - constructor: new
-// TODO - constructor: new_sized
 // TODO - method: fill_async
 // TODO - method: peek
 // TODO - method: peek_buffer
@@ -14,6 +12,8 @@ import interop.g_buffered_input_stream_fill
 import interop.g_buffered_input_stream_fill_finish
 import interop.g_buffered_input_stream_get_available
 import interop.g_buffered_input_stream_get_buffer_size
+import interop.g_buffered_input_stream_new
+import interop.g_buffered_input_stream_new_sized
 import interop.g_buffered_input_stream_read_byte
 import interop.g_buffered_input_stream_set_buffer_size
 import kotlin.Int
@@ -40,7 +40,13 @@ public val BufferedInputStream.asInputStream: InputStream
 public val BufferedInputStream.asFilterInputStream: FilterInputStream
   get() = reinterpret()
 
-public object BufferedInputStreamFactory
+public object BufferedInputStreamFactory {
+  public fun new(baseStream: InputStream?): BufferedInputStream =
+      g_buffered_input_stream_new(baseStream?.reinterpret())!!.reinterpret()
+
+  public fun newSized(baseStream: InputStream?, size: ULong): BufferedInputStream =
+      g_buffered_input_stream_new_sized(baseStream?.reinterpret(), size)!!.reinterpret()
+}
 
 public val BufferedInputStream.parentInstance: FilterInputStream
   get() = pointed.parent_instance.ptr

@@ -23,7 +23,7 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
 
         // produce & consume getter
         methods.remove(getter)
-        val (returnTemplate, returnArray) = type.getReturnData(resolver)
+        val (returnTemplate, returnArray) = typeInfo.getReturnData()
         val propertyName = getter.name.removePrefix("get_")
         addProperty(
             PropertySpec.builder(propertyName.snakeCaseToCamelCase.decapitalize(), typeInfo.kType)
@@ -47,7 +47,7 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
                             mutable()
 
                             // setter param conversion
-                            val (paramTemplate, paramArray) = mapOf("value" to type)
+                            val (paramTemplate, paramArray) = mapOf("value" to typeInfo)
                                 .getParamsData(false, resolver)
 
                             setter(

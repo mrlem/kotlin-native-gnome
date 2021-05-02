@@ -1,8 +1,3 @@
-// TODO - constructor: new
-// TODO - constructor: new_full
-// TODO - constructor: new_with_backend
-// TODO - constructor: new_with_backend_and_path
-// TODO - constructor: new_with_path
 // TODO - method: get_default_value
 // TODO - method: get_mapped
 // TODO - method: get_range
@@ -37,6 +32,11 @@ import interop.g_settings_get_string
 import interop.g_settings_get_uint
 import interop.g_settings_get_uint64
 import interop.g_settings_is_writable
+import interop.g_settings_new
+import interop.g_settings_new_full
+import interop.g_settings_new_with_backend
+import interop.g_settings_new_with_backend_and_path
+import interop.g_settings_new_with_path
 import interop.g_settings_reset
 import interop.g_settings_revert
 import interop.g_settings_set_boolean
@@ -71,7 +71,29 @@ public typealias Settings = CPointer<GSettings>
 public val Settings.asObject: Object
   get() = reinterpret()
 
-public object SettingsFactory
+public object SettingsFactory {
+  public fun new(schemaId: String): Settings = g_settings_new(schemaId)!!.reinterpret()
+
+  public fun newFull(
+    schema: SettingsSchema?,
+    backend: SettingsBackend?,
+    path: String
+  ): Settings = g_settings_new_full(schema?.reinterpret(), backend?.reinterpret(),
+      path)!!.reinterpret()
+
+  public fun newWithBackend(schemaId: String, backend: SettingsBackend?): Settings =
+      g_settings_new_with_backend(schemaId, backend?.reinterpret())!!.reinterpret()
+
+  public fun newWithBackendAndPath(
+    schemaId: String,
+    backend: SettingsBackend?,
+    path: String
+  ): Settings = g_settings_new_with_backend_and_path(schemaId, backend?.reinterpret(),
+      path)!!.reinterpret()
+
+  public fun newWithPath(schemaId: String, path: String): Settings =
+      g_settings_new_with_path(schemaId, path)!!.reinterpret()
+}
 
 public val Settings.parentInstance: Object
   get() = pointed.parent_instance.ptr

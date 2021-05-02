@@ -1,4 +1,3 @@
-// TODO - constructor: new_with_fd_list
 // TODO - method: steal_fds
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -10,6 +9,7 @@ import interop.GUnixFDMessage
 import interop.g_unix_fd_message_append_fd
 import interop.g_unix_fd_message_get_fd_list
 import interop.g_unix_fd_message_new
+import interop.g_unix_fd_message_new_with_fd_list
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Throws
@@ -33,6 +33,9 @@ public val UnixFDMessage.asSocketControlMessage: SocketControlMessage
 
 public object UnixFDMessageFactory {
   public fun new(): UnixFDMessage = g_unix_fd_message_new()!!.reinterpret()
+
+  public fun newWithFdList(fdList: UnixFDList?): UnixFDMessage =
+      g_unix_fd_message_new_with_fd_list(fdList?.reinterpret())!!.reinterpret()
 }
 
 public val UnixFDMessage.parentInstance: SocketControlMessage
