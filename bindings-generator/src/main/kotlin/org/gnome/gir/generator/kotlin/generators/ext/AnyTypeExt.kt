@@ -4,7 +4,7 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.TypeName
 import org.gnome.gir.GNOME_PACKAGE
-import org.gnome.gir.resolver.KnownType
+import org.gnome.gir.resolver.SimpleType
 import org.gnome.gir.model.ArrayTypeDefinition
 import org.gnome.gir.model.TypeDefinition
 import org.gnome.gir.model.types.AnyType
@@ -39,7 +39,7 @@ fun AnyType.typeInfo(resolver: Resolver): TypeInfo? {
 
 val AnyType.kType: TypeName?
     get() = when (this) {
-        is TypeDefinition -> KnownType.fromName(name)
+        is TypeDefinition -> SimpleType.fromName(name)
             ?.kTypeName
             ?: className
         is ArrayTypeDefinition -> null // TODO
@@ -48,7 +48,7 @@ val AnyType.kType: TypeName?
 
 val AnyType.toKTypeConverter
     get() = when (this) {
-        is TypeDefinition -> KnownType.fromName(name)
+        is TypeDefinition -> SimpleType.fromName(name)
             ?.toKTypeConverter
             ?.let { ".%M" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
         is ArrayTypeDefinition -> null // TODO
@@ -58,7 +58,7 @@ val AnyType.toKTypeConverter
 
 val AnyType.toCTypeConverter
     get() = when (this) {
-        is TypeDefinition -> KnownType.fromName(name)?.toCTypeConverter
+        is TypeDefinition -> SimpleType.fromName(name)?.toCTypeConverter
             ?.let { ".%M" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
         is ArrayTypeDefinition -> null // TODO
         else -> null

@@ -1,6 +1,6 @@
 package org.gnome.gir.parser
 
-import org.gnome.gir.resolver.KnownType
+import org.gnome.gir.resolver.SimpleType
 import org.gnome.gir.model.*
 import org.gnome.gir.model.enums.*
 import org.gnome.gir.model.meta.*
@@ -374,7 +374,7 @@ class RepositoryReader {
             TypeDefinition(
                 name = this["name"]
                     ?.let {
-                        if (KnownType.fromName(it) != null || it.contains('.')) {
+                        if (SimpleType.fromName(it) != null || it.contains('.')) {
                             it
                         } else {
                             "$currentNamespace.$it"

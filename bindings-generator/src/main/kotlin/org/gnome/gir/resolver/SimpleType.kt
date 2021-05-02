@@ -4,7 +4,8 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
 import org.gnome.gir.INTEROP_PACKAGE
 
-enum class KnownType(
+@Suppress("unused")
+enum class SimpleType(
     val value: String,
     val kTypeName: TypeName?,
     val toKTypeConverter: String?,
@@ -174,7 +175,7 @@ enum class KnownType(
     ;
 
     companion object {
-        fun fromName(name: String): KnownType? = values().firstOrNull { name == it.value }
+        fun fromName(name: String): SimpleType? = values().firstOrNull { name == it.value }
     }
 
 }
