@@ -37,7 +37,7 @@ public val IMContext.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public fun IMContext.deleteSurrounding(offset: Int, nChars: Int): Boolean =
-    gtk_im_context_delete_surrounding(this, offset, nChars).toBoolean
+    gtk_im_context_delete_surrounding(this, offset, nChars).toBoolean()
 
 public fun IMContext.focusIn(): Unit {
   gtk_im_context_focus_in(this)
@@ -60,7 +60,7 @@ public fun IMContext.setSurrounding(
 }
 
 public fun IMContext.setUsePreedit(usePreedit: Boolean): Unit {
-  gtk_im_context_set_use_preedit(this, usePreedit.toInt)
+  gtk_im_context_set_use_preedit(this, usePreedit.toInt())
 }
 
 public fun IMContext.onCommit(callback: (IMContext) -> Unit): IMContext {

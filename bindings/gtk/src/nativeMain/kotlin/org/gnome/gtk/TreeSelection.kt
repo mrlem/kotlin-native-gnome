@@ -53,10 +53,10 @@ public val TreeSelection.treeView: TreeView?
 public fun TreeSelection.countSelectedRows(): Int = gtk_tree_selection_count_selected_rows(this)
 
 public fun TreeSelection.iterIsSelected(iter: TreeIter?): Boolean =
-    gtk_tree_selection_iter_is_selected(this, iter?.reinterpret()).toBoolean
+    gtk_tree_selection_iter_is_selected(this, iter?.reinterpret()).toBoolean()
 
 public fun TreeSelection.pathIsSelected(path: TreePath?): Boolean =
-    gtk_tree_selection_path_is_selected(this, path?.reinterpret()).toBoolean
+    gtk_tree_selection_path_is_selected(this, path?.reinterpret()).toBoolean()
 
 public fun TreeSelection.selectAll(): Unit {
   gtk_tree_selection_select_all(this)

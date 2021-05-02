@@ -50,7 +50,7 @@ public object ComboBoxTextFactory {
 }
 
 public val ComboBoxText.activeText: String
-  get() = gtk_combo_box_text_get_active_text(this).toKString
+  get() = gtk_combo_box_text_get_active_text(this).toKString()
 
 public fun ComboBoxText.append(id: String, text: String): Unit {
   gtk_combo_box_text_append(this, id, text)

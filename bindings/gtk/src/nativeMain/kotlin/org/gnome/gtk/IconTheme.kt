@@ -49,7 +49,7 @@ public object IconThemeFactory {
 }
 
 public val IconTheme.exampleIconName: String
-  get() = gtk_icon_theme_get_example_icon_name(this).toKString
+  get() = gtk_icon_theme_get_example_icon_name(this).toKString()
 
 public fun IconTheme.addResourcePath(path: String): Unit {
   gtk_icon_theme_add_resource_path(this, path)
@@ -60,7 +60,7 @@ public fun IconTheme.appendSearchPath(path: String): Unit {
 }
 
 public fun IconTheme.hasIcon(iconName: String): Boolean = gtk_icon_theme_has_icon(this,
-    iconName).toBoolean
+    iconName).toBoolean()
 
 public fun IconTheme.lookupByGicon(
   icon: Icon?,
@@ -94,7 +94,7 @@ public fun IconTheme.prependSearchPath(path: String): Unit {
   gtk_icon_theme_prepend_search_path(this, path)
 }
 
-public fun IconTheme.rescanIfNeeded(): Boolean = gtk_icon_theme_rescan_if_needed(this).toBoolean
+public fun IconTheme.rescanIfNeeded(): Boolean = gtk_icon_theme_rescan_if_needed(this).toBoolean()
 
 public fun IconTheme.setCustomTheme(themeName: String): Unit {
   gtk_icon_theme_set_custom_theme(this, themeName)

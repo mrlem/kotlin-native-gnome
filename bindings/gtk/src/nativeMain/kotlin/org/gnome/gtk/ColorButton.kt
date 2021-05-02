@@ -56,7 +56,7 @@ public val ColorButton.button: Button
   get() = pointed.button.ptr
 
 public var ColorButton.title: String
-  get() = gtk_color_button_get_title(this).toKString
+  get() = gtk_color_button_get_title(this).toKString()
   set(`value`) {
     gtk_color_button_set_title(this, `value`)
   }

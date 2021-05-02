@@ -42,40 +42,40 @@ public val DesktopAppInfo.asObject: Object
 public object DesktopAppInfoFactory
 
 public val DesktopAppInfo.categories: String
-  get() = g_desktop_app_info_get_categories(this).toKString
+  get() = g_desktop_app_info_get_categories(this).toKString()
 
 public val DesktopAppInfo.filename: String
-  get() = g_desktop_app_info_get_filename(this).toKString
+  get() = g_desktop_app_info_get_filename(this).toKString()
 
 public val DesktopAppInfo.genericName: String
-  get() = g_desktop_app_info_get_generic_name(this).toKString
+  get() = g_desktop_app_info_get_generic_name(this).toKString()
 
 public val DesktopAppInfo.isHidden: Boolean
-  get() = g_desktop_app_info_get_is_hidden(this).toBoolean
+  get() = g_desktop_app_info_get_is_hidden(this).toBoolean()
 
 public val DesktopAppInfo.nodisplay: Boolean
-  get() = g_desktop_app_info_get_nodisplay(this).toBoolean
+  get() = g_desktop_app_info_get_nodisplay(this).toBoolean()
 
 public val DesktopAppInfo.startupWmClass: String
-  get() = g_desktop_app_info_get_startup_wm_class(this).toKString
+  get() = g_desktop_app_info_get_startup_wm_class(this).toKString()
 
 public fun DesktopAppInfo.getActionName(actionName: String): String =
-    g_desktop_app_info_get_action_name(this, actionName).toKString
+    g_desktop_app_info_get_action_name(this, actionName).toKString()
 
 public fun DesktopAppInfo.getBoolean(key: String): Boolean = g_desktop_app_info_get_boolean(this,
-    key).toBoolean
+    key).toBoolean()
 
 public fun DesktopAppInfo.getLocaleString(key: String): String =
-    g_desktop_app_info_get_locale_string(this, key).toKString
+    g_desktop_app_info_get_locale_string(this, key).toKString()
 
 public fun DesktopAppInfo.getShowIn(desktopEnv: String): Boolean =
-    g_desktop_app_info_get_show_in(this, desktopEnv).toBoolean
+    g_desktop_app_info_get_show_in(this, desktopEnv).toBoolean()
 
 public fun DesktopAppInfo.getString(key: String): String = g_desktop_app_info_get_string(this,
-    key).toKString
+    key).toKString()
 
 public fun DesktopAppInfo.hasKey(key: String): Boolean = g_desktop_app_info_has_key(this,
-    key).toBoolean
+    key).toBoolean()
 
 public fun DesktopAppInfo.launchAction(actionName: String, launchContext: AppLaunchContext?): Unit {
   g_desktop_app_info_launch_action(this, actionName, launchContext?.reinterpret())

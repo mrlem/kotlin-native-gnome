@@ -62,19 +62,19 @@ public fun Clipboard.store(): Unit {
   gtk_clipboard_store(this)
 }
 
-public fun Clipboard.waitForText(): String = gtk_clipboard_wait_for_text(this).toKString
+public fun Clipboard.waitForText(): String = gtk_clipboard_wait_for_text(this).toKString()
 
 public fun Clipboard.waitIsImageAvailable(): Boolean =
-    gtk_clipboard_wait_is_image_available(this).toBoolean
+    gtk_clipboard_wait_is_image_available(this).toBoolean()
 
 public fun Clipboard.waitIsRichTextAvailable(buffer: TextBuffer?): Boolean =
-    gtk_clipboard_wait_is_rich_text_available(this, buffer?.reinterpret()).toBoolean
+    gtk_clipboard_wait_is_rich_text_available(this, buffer?.reinterpret()).toBoolean()
 
 public fun Clipboard.waitIsTextAvailable(): Boolean =
-    gtk_clipboard_wait_is_text_available(this).toBoolean
+    gtk_clipboard_wait_is_text_available(this).toBoolean()
 
 public fun Clipboard.waitIsUrisAvailable(): Boolean =
-    gtk_clipboard_wait_is_uris_available(this).toBoolean
+    gtk_clipboard_wait_is_uris_available(this).toBoolean()
 
 public fun Clipboard.onOwnerChange(callback: (Clipboard) -> Unit): Clipboard {
   // TODO - handle callback data

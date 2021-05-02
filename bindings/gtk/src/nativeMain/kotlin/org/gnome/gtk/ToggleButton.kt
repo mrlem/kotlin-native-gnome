@@ -55,21 +55,21 @@ public object ToggleButtonFactory {
 }
 
 public var ToggleButton.active: Boolean
-  get() = gtk_toggle_button_get_active(this).toBoolean
+  get() = gtk_toggle_button_get_active(this).toBoolean()
   set(`value`) {
-    gtk_toggle_button_set_active(this, `value`.toInt)
+    gtk_toggle_button_set_active(this, `value`.toInt())
   }
 
 public var ToggleButton.inconsistent: Boolean
-  get() = gtk_toggle_button_get_inconsistent(this).toBoolean
+  get() = gtk_toggle_button_get_inconsistent(this).toBoolean()
   set(`value`) {
-    gtk_toggle_button_set_inconsistent(this, `value`.toInt)
+    gtk_toggle_button_set_inconsistent(this, `value`.toInt())
   }
 
 public var ToggleButton.mode: Boolean
-  get() = gtk_toggle_button_get_mode(this).toBoolean
+  get() = gtk_toggle_button_get_mode(this).toBoolean()
   set(`value`) {
-    gtk_toggle_button_set_mode(this, `value`.toInt)
+    gtk_toggle_button_set_mode(this, `value`.toInt())
   }
 
 public fun ToggleButton.toggled(): Unit {

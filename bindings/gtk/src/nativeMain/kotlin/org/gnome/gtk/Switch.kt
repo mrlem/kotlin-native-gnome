@@ -34,15 +34,15 @@ public object SwitchFactory {
 }
 
 public var Switch.active: Boolean
-  get() = gtk_switch_get_active(this).toBoolean
+  get() = gtk_switch_get_active(this).toBoolean()
   set(`value`) {
-    gtk_switch_set_active(this, `value`.toInt)
+    gtk_switch_set_active(this, `value`.toInt())
   }
 
 public var Switch.state: Boolean
-  get() = gtk_switch_get_state(this).toBoolean
+  get() = gtk_switch_get_state(this).toBoolean()
   set(`value`) {
-    gtk_switch_set_state(this, `value`.toInt)
+    gtk_switch_set_state(this, `value`.toInt())
   }
 
 public fun Switch.onActivate(callback: (Switch) -> Unit): Switch {

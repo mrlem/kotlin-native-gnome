@@ -44,7 +44,8 @@ public fun CellAreaBox.packEnd(
   align: Boolean,
   fixed: Boolean
 ): Unit {
-  gtk_cell_area_box_pack_end(this, renderer?.reinterpret(), expand.toInt, align.toInt, fixed.toInt)
+  gtk_cell_area_box_pack_end(this, renderer?.reinterpret(), expand.toInt(), align.toInt(),
+      fixed.toInt())
 }
 
 public fun CellAreaBox.packStart(
@@ -53,6 +54,6 @@ public fun CellAreaBox.packStart(
   align: Boolean,
   fixed: Boolean
 ): Unit {
-  gtk_cell_area_box_pack_start(this, renderer?.reinterpret(), expand.toInt, align.toInt,
-      fixed.toInt)
+  gtk_cell_area_box_pack_start(this, renderer?.reinterpret(), expand.toInt(), align.toInt(),
+      fixed.toInt())
 }

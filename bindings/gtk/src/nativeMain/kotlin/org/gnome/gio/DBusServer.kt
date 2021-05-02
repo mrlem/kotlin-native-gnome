@@ -29,15 +29,15 @@ public val DBusServer.asObject: Object
 public object DBusServerFactory
 
 public val DBusServer.clientAddress: String
-  get() = g_dbus_server_get_client_address(this).toKString
+  get() = g_dbus_server_get_client_address(this).toKString()
 
 public val DBusServer.flags: DBusServerFlags
   get() = g_dbus_server_get_flags(this)
 
 public val DBusServer.guid: String
-  get() = g_dbus_server_get_guid(this).toKString
+  get() = g_dbus_server_get_guid(this).toKString()
 
-public fun DBusServer.isActive(): Boolean = g_dbus_server_is_active(this).toBoolean
+public fun DBusServer.isActive(): Boolean = g_dbus_server_is_active(this).toBoolean()
 
 public fun DBusServer.start(): Unit {
   g_dbus_server_start(this)

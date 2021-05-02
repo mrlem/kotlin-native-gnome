@@ -51,9 +51,9 @@ public val MountOperation.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public var MountOperation.anonymous: Boolean
-  get() = g_mount_operation_get_anonymous(this).toBoolean
+  get() = g_mount_operation_get_anonymous(this).toBoolean()
   set(`value`) {
-    g_mount_operation_set_anonymous(this, `value`.toInt)
+    g_mount_operation_set_anonymous(this, `value`.toInt())
   }
 
 public var MountOperation.choice: Int
@@ -63,25 +63,25 @@ public var MountOperation.choice: Int
   }
 
 public var MountOperation.domain: String
-  get() = g_mount_operation_get_domain(this).toKString
+  get() = g_mount_operation_get_domain(this).toKString()
   set(`value`) {
     g_mount_operation_set_domain(this, `value`)
   }
 
 public var MountOperation.isTcryptHiddenVolume: Boolean
-  get() = g_mount_operation_get_is_tcrypt_hidden_volume(this).toBoolean
+  get() = g_mount_operation_get_is_tcrypt_hidden_volume(this).toBoolean()
   set(`value`) {
-    g_mount_operation_set_is_tcrypt_hidden_volume(this, `value`.toInt)
+    g_mount_operation_set_is_tcrypt_hidden_volume(this, `value`.toInt())
   }
 
 public var MountOperation.isTcryptSystemVolume: Boolean
-  get() = g_mount_operation_get_is_tcrypt_system_volume(this).toBoolean
+  get() = g_mount_operation_get_is_tcrypt_system_volume(this).toBoolean()
   set(`value`) {
-    g_mount_operation_set_is_tcrypt_system_volume(this, `value`.toInt)
+    g_mount_operation_set_is_tcrypt_system_volume(this, `value`.toInt())
   }
 
 public var MountOperation.password: String
-  get() = g_mount_operation_get_password(this).toKString
+  get() = g_mount_operation_get_password(this).toKString()
   set(`value`) {
     g_mount_operation_set_password(this, `value`)
   }
@@ -99,7 +99,7 @@ public var MountOperation.pim: UInt
   }
 
 public var MountOperation.username: String
-  get() = g_mount_operation_get_username(this).toKString
+  get() = g_mount_operation_get_username(this).toKString()
   set(`value`) {
     g_mount_operation_set_username(this, `value`)
   }

@@ -58,7 +58,7 @@ public val ApplicationWindow.id: UInt
   get() = gtk_application_window_get_id(this)
 
 public var ApplicationWindow.showMenubar: Boolean
-  get() = gtk_application_window_get_show_menubar(this).toBoolean
+  get() = gtk_application_window_get_show_menubar(this).toBoolean()
   set(`value`) {
-    gtk_application_window_set_show_menubar(this, `value`.toInt)
+    gtk_application_window_set_show_menubar(this, `value`.toInt())
   }

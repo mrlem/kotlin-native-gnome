@@ -105,7 +105,7 @@ public var ComboBox.active: Int
   }
 
 public var ComboBox.activeId: String
-  get() = gtk_combo_box_get_active_id(this).toKString
+  get() = gtk_combo_box_get_active_id(this).toKString()
   set(`value`) {
     gtk_combo_box_set_active_id(this, `value`)
   }
@@ -129,7 +129,7 @@ public var ComboBox.entryTextColumn: Int
   }
 
 public val ComboBox.hasEntry: Boolean
-  get() = gtk_combo_box_get_has_entry(this).toBoolean
+  get() = gtk_combo_box_get_has_entry(this).toBoolean()
 
 public var ComboBox.idColumn: Int
   get() = gtk_combo_box_get_id_column(this)
@@ -144,9 +144,9 @@ public var ComboBox.model: TreeModel?
   }
 
 public var ComboBox.popupFixedWidth: Boolean
-  get() = gtk_combo_box_get_popup_fixed_width(this).toBoolean
+  get() = gtk_combo_box_get_popup_fixed_width(this).toBoolean()
   set(`value`) {
-    gtk_combo_box_set_popup_fixed_width(this, `value`.toInt)
+    gtk_combo_box_set_popup_fixed_width(this, `value`.toInt())
   }
 
 public val ComboBox.rowSeparatorFunc: TreeViewRowSeparatorFunc?

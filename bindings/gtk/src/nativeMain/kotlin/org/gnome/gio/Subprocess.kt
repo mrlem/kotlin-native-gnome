@@ -57,13 +57,13 @@ public val Subprocess.exitStatus: Int
   get() = g_subprocess_get_exit_status(this)
 
 public val Subprocess.identifier: String
-  get() = g_subprocess_get_identifier(this).toKString
+  get() = g_subprocess_get_identifier(this).toKString()
 
 public val Subprocess.ifExited: Boolean
-  get() = g_subprocess_get_if_exited(this).toBoolean
+  get() = g_subprocess_get_if_exited(this).toBoolean()
 
 public val Subprocess.ifSignaled: Boolean
-  get() = g_subprocess_get_if_signaled(this).toBoolean
+  get() = g_subprocess_get_if_signaled(this).toBoolean()
 
 public val Subprocess.status: Int
   get() = g_subprocess_get_status(this)
@@ -78,7 +78,7 @@ public val Subprocess.stdoutPipe: InputStream?
   get() = g_subprocess_get_stdout_pipe(this)?.reinterpret()
 
 public val Subprocess.successful: Boolean
-  get() = g_subprocess_get_successful(this).toBoolean
+  get() = g_subprocess_get_successful(this).toBoolean()
 
 public val Subprocess.termSig: Int
   get() = g_subprocess_get_term_sig(this)
@@ -94,7 +94,7 @@ public fun Subprocess.sendSignal(signalNum: Int): Unit {
 @Throws(Error::class)
 public fun Subprocess.wait(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_subprocess_wait(this@wait, cancellable?.reinterpret(), errors).toBoolean
+  val result: Boolean = g_subprocess_wait(this@wait, cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -103,7 +103,7 @@ public fun Subprocess.wait(cancellable: Cancellable?): Boolean = memScoped {
 public fun Subprocess.waitCheck(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_subprocess_wait_check(this@waitCheck, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -112,7 +112,7 @@ public fun Subprocess.waitCheck(cancellable: Cancellable?): Boolean = memScoped 
 public fun Subprocess.waitCheckFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_subprocess_wait_check_finish(this@waitCheckFinish, result?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -121,7 +121,7 @@ public fun Subprocess.waitCheckFinish(result: AsyncResult?): Boolean = memScoped
 public fun Subprocess.waitFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_subprocess_wait_finish(this@waitFinish, result?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

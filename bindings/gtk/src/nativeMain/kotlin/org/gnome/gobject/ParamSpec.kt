@@ -39,19 +39,19 @@ public val ParamSpec.paramId: UInt
   get() = pointed.param_id
 
 public val ParamSpec.blurb: String
-  get() = g_param_spec_get_blurb(this).toKString
+  get() = g_param_spec_get_blurb(this).toKString()
 
 public val ParamSpec.defaultValue: Value?
   get() = g_param_spec_get_default_value(this)?.reinterpret()
 
 public val ParamSpec.name: String
-  get() = g_param_spec_get_name(this).toKString
+  get() = g_param_spec_get_name(this).toKString()
 
 public val ParamSpec.nameQuark: UInt
   get() = g_param_spec_get_name_quark(this)
 
 public val ParamSpec.nick: String
-  get() = g_param_spec_get_nick(this).toKString
+  get() = g_param_spec_get_nick(this).toKString()
 
 public val ParamSpec.redirectTarget: ParamSpec?
   get() = g_param_spec_get_redirect_target(this)?.reinterpret()

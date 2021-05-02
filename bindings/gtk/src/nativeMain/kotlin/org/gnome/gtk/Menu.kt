@@ -85,7 +85,7 @@ public var Menu.accelGroup: AccelGroup?
   }
 
 public var Menu.accelPath: String
-  get() = gtk_menu_get_accel_path(this).toKString
+  get() = gtk_menu_get_accel_path(this).toKString()
   set(`value`) {
     gtk_menu_set_accel_path(this, `value`)
   }
@@ -103,9 +103,9 @@ public var Menu.monitor: Int
   }
 
 public var Menu.reserveToggleSize: Boolean
-  get() = gtk_menu_get_reserve_toggle_size(this).toBoolean
+  get() = gtk_menu_get_reserve_toggle_size(this).toBoolean()
   set(`value`) {
-    gtk_menu_set_reserve_toggle_size(this, `value`.toInt)
+    gtk_menu_set_reserve_toggle_size(this, `value`.toInt())
   }
 
 public fun Menu.attach(

@@ -66,9 +66,9 @@ public val Toolbar.reliefStyle: ReliefStyle
   get() = gtk_toolbar_get_relief_style(this)
 
 public var Toolbar.showArrow: Boolean
-  get() = gtk_toolbar_get_show_arrow(this).toBoolean
+  get() = gtk_toolbar_get_show_arrow(this).toBoolean()
   set(`value`) {
-    gtk_toolbar_set_show_arrow(this, `value`.toInt)
+    gtk_toolbar_set_show_arrow(this, `value`.toInt())
   }
 
 public var Toolbar.style: ToolbarStyle

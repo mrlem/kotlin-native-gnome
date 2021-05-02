@@ -74,7 +74,7 @@ public fun Object.getProperty(propertyName: String, `value`: Value?): Unit {
   g_object_get_property(this, propertyName, `value`?.reinterpret())
 }
 
-public fun Object.isFloating(): Boolean = g_object_is_floating(this).toBoolean
+public fun Object.isFloating(): Boolean = g_object_is_floating(this).toBoolean()
 
 public fun Object.notify(propertyName: String): Unit {
   g_object_notify(this, propertyName)

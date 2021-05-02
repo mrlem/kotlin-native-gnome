@@ -116,9 +116,9 @@ public val TextView.parentInstance: Container
   get() = pointed.parent_instance.ptr
 
 public var TextView.acceptsTab: Boolean
-  get() = gtk_text_view_get_accepts_tab(this).toBoolean
+  get() = gtk_text_view_get_accepts_tab(this).toBoolean()
   set(`value`) {
-    gtk_text_view_set_accepts_tab(this, `value`.toInt)
+    gtk_text_view_set_accepts_tab(this, `value`.toInt())
   }
 
 public var TextView.bottomMargin: Int
@@ -134,18 +134,18 @@ public var TextView.buffer: TextBuffer?
   }
 
 public var TextView.cursorVisible: Boolean
-  get() = gtk_text_view_get_cursor_visible(this).toBoolean
+  get() = gtk_text_view_get_cursor_visible(this).toBoolean()
   set(`value`) {
-    gtk_text_view_set_cursor_visible(this, `value`.toInt)
+    gtk_text_view_set_cursor_visible(this, `value`.toInt())
   }
 
 public val TextView.defaultAttributes: TextAttributes?
   get() = gtk_text_view_get_default_attributes(this)?.reinterpret()
 
 public var TextView.editable: Boolean
-  get() = gtk_text_view_get_editable(this).toBoolean
+  get() = gtk_text_view_get_editable(this).toBoolean()
   set(`value`) {
-    gtk_text_view_set_editable(this, `value`.toInt)
+    gtk_text_view_set_editable(this, `value`.toInt())
   }
 
 public var TextView.indent: Int
@@ -179,15 +179,15 @@ public var TextView.leftMargin: Int
   }
 
 public var TextView.monospace: Boolean
-  get() = gtk_text_view_get_monospace(this).toBoolean
+  get() = gtk_text_view_get_monospace(this).toBoolean()
   set(`value`) {
-    gtk_text_view_set_monospace(this, `value`.toInt)
+    gtk_text_view_set_monospace(this, `value`.toInt())
   }
 
 public var TextView.overwrite: Boolean
-  get() = gtk_text_view_get_overwrite(this).toBoolean
+  get() = gtk_text_view_get_overwrite(this).toBoolean()
   set(`value`) {
-    gtk_text_view_set_overwrite(this, `value`.toInt)
+    gtk_text_view_set_overwrite(this, `value`.toInt())
   }
 
 public var TextView.pixelsAboveLines: Int
@@ -240,16 +240,16 @@ public fun TextView.addChildInWindow(
 }
 
 public fun TextView.backwardDisplayLine(iter: TextIter?): Boolean =
-    gtk_text_view_backward_display_line(this, iter?.reinterpret()).toBoolean
+    gtk_text_view_backward_display_line(this, iter?.reinterpret()).toBoolean()
 
 public fun TextView.backwardDisplayLineStart(iter: TextIter?): Boolean =
-    gtk_text_view_backward_display_line_start(this, iter?.reinterpret()).toBoolean
+    gtk_text_view_backward_display_line_start(this, iter?.reinterpret()).toBoolean()
 
 public fun TextView.forwardDisplayLine(iter: TextIter?): Boolean =
-    gtk_text_view_forward_display_line(this, iter?.reinterpret()).toBoolean
+    gtk_text_view_forward_display_line(this, iter?.reinterpret()).toBoolean()
 
 public fun TextView.forwardDisplayLineEnd(iter: TextIter?): Boolean =
-    gtk_text_view_forward_display_line_end(this, iter?.reinterpret()).toBoolean
+    gtk_text_view_forward_display_line_end(this, iter?.reinterpret()).toBoolean()
 
 public fun TextView.getBorderWindowSize(type: TextWindowType): Int =
     gtk_text_view_get_border_window_size(this, type)
@@ -263,13 +263,13 @@ public fun TextView.moveChild(
 }
 
 public fun TextView.moveMarkOnscreen(mark: TextMark?): Boolean =
-    gtk_text_view_move_mark_onscreen(this, mark?.reinterpret()).toBoolean
+    gtk_text_view_move_mark_onscreen(this, mark?.reinterpret()).toBoolean()
 
 public fun TextView.moveVisually(iter: TextIter?, count: Int): Boolean =
-    gtk_text_view_move_visually(this, iter?.reinterpret(), count).toBoolean
+    gtk_text_view_move_visually(this, iter?.reinterpret(), count).toBoolean()
 
 public fun TextView.placeCursorOnscreen(): Boolean =
-    gtk_text_view_place_cursor_onscreen(this).toBoolean
+    gtk_text_view_place_cursor_onscreen(this).toBoolean()
 
 public fun TextView.resetCursorBlink(): Unit {
   gtk_text_view_reset_cursor_blink(this)
@@ -289,8 +289,8 @@ public fun TextView.scrollToIter(
   useAlign: Boolean,
   xalign: Double,
   yalign: Double
-): Boolean = gtk_text_view_scroll_to_iter(this, iter?.reinterpret(), withinMargin, useAlign.toInt,
-    xalign, yalign).toBoolean
+): Boolean = gtk_text_view_scroll_to_iter(this, iter?.reinterpret(), withinMargin, useAlign.toInt(),
+    xalign, yalign).toBoolean()
 
 public fun TextView.scrollToMark(
   mark: TextMark?,
@@ -299,7 +299,7 @@ public fun TextView.scrollToMark(
   xalign: Double,
   yalign: Double
 ): Unit {
-  gtk_text_view_scroll_to_mark(this, mark?.reinterpret(), withinMargin, useAlign.toInt, xalign,
+  gtk_text_view_scroll_to_mark(this, mark?.reinterpret(), withinMargin, useAlign.toInt(), xalign,
       yalign)
 }
 
@@ -308,7 +308,7 @@ public fun TextView.setBorderWindowSize(type: TextWindowType, size: Int): Unit {
 }
 
 public fun TextView.startsDisplayLine(iter: TextIter?): Boolean =
-    gtk_text_view_starts_display_line(this, iter?.reinterpret()).toBoolean
+    gtk_text_view_starts_display_line(this, iter?.reinterpret()).toBoolean()
 
 public fun TextView.onBackspace(callback: (TextView) -> Unit): TextView {
   // TODO - handle callback data

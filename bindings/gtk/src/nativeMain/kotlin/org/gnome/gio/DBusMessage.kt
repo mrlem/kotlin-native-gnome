@@ -77,7 +77,7 @@ public object DBusMessageFactory {
 }
 
 public val DBusMessage.arg0: String
-  get() = g_dbus_message_get_arg0(this).toKString
+  get() = g_dbus_message_get_arg0(this).toKString()
 
 public var DBusMessage.byteOrder: DBusMessageByteOrder
   get() = g_dbus_message_get_byte_order(this)
@@ -86,13 +86,13 @@ public var DBusMessage.byteOrder: DBusMessageByteOrder
   }
 
 public var DBusMessage.destination: String
-  get() = g_dbus_message_get_destination(this).toKString
+  get() = g_dbus_message_get_destination(this).toKString()
   set(`value`) {
     g_dbus_message_set_destination(this, `value`)
   }
 
 public var DBusMessage.errorName: String
-  get() = g_dbus_message_get_error_name(this).toKString
+  get() = g_dbus_message_get_error_name(this).toKString()
   set(`value`) {
     g_dbus_message_set_error_name(this, `value`)
   }
@@ -104,16 +104,16 @@ public var DBusMessage.flags: DBusMessageFlags
   }
 
 public var DBusMessage.`interface`: String
-  get() = g_dbus_message_get_interface(this).toKString
+  get() = g_dbus_message_get_interface(this).toKString()
   set(`value`) {
     g_dbus_message_set_interface(this, `value`)
   }
 
 public val DBusMessage.locked: Boolean
-  get() = g_dbus_message_get_locked(this).toBoolean
+  get() = g_dbus_message_get_locked(this).toBoolean()
 
 public var DBusMessage.member: String
-  get() = g_dbus_message_get_member(this).toKString
+  get() = g_dbus_message_get_member(this).toKString()
   set(`value`) {
     g_dbus_message_set_member(this, `value`)
   }
@@ -131,7 +131,7 @@ public var DBusMessage.numUnixFds: UInt
   }
 
 public var DBusMessage.path: String
-  get() = g_dbus_message_get_path(this).toKString
+  get() = g_dbus_message_get_path(this).toKString()
   set(`value`) {
     g_dbus_message_set_path(this, `value`)
   }
@@ -143,7 +143,7 @@ public var DBusMessage.replySerial: UInt
   }
 
 public var DBusMessage.sender: String
-  get() = g_dbus_message_get_sender(this).toKString
+  get() = g_dbus_message_get_sender(this).toKString()
   set(`value`) {
     g_dbus_message_set_sender(this, `value`)
   }
@@ -155,7 +155,7 @@ public var DBusMessage.serial: UInt
   }
 
 public var DBusMessage.signature: String
-  get() = g_dbus_message_get_signature(this).toKString
+  get() = g_dbus_message_get_signature(this).toKString()
   set(`value`) {
     g_dbus_message_set_signature(this, `value`)
   }
@@ -184,12 +184,12 @@ public fun DBusMessage.newMethodErrorLiteral(errorName: String, errorMessage: St
 public fun DBusMessage.newMethodReply(): DBusMessage? =
     g_dbus_message_new_method_reply(this)?.reinterpret()
 
-public fun DBusMessage.print(indent: UInt): String = g_dbus_message_print(this, indent).toKString
+public fun DBusMessage.print(indent: UInt): String = g_dbus_message_print(this, indent).toKString()
 
 @Throws(Error::class)
 public fun DBusMessage.toGerror(): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_dbus_message_to_gerror(this@toGerror, errors).toBoolean
+  val result: Boolean = g_dbus_message_to_gerror(this@toGerror, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

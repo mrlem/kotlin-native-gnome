@@ -21,13 +21,13 @@ public val ParamSpecString.parentInstance: ParamSpec
   get() = pointed.parent_instance.ptr
 
 public val ParamSpecString.defaultValue: String
-  get() = pointed.default_value.toKString
+  get() = pointed.default_value.toKString()
 
 public val ParamSpecString.csetFirst: String
-  get() = pointed.cset_first.toKString
+  get() = pointed.cset_first.toKString()
 
 public val ParamSpecString.csetNth: String
-  get() = pointed.cset_nth.toKString
+  get() = pointed.cset_nth.toKString()
 
 public val ParamSpecString.substitutor: Byte
   get() = pointed.substitutor

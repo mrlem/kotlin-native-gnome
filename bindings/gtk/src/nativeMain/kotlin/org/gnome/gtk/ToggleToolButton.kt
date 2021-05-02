@@ -51,9 +51,9 @@ public val ToggleToolButton.parent: ToolButton
   get() = pointed.parent.ptr
 
 public var ToggleToolButton.active: Boolean
-  get() = gtk_toggle_tool_button_get_active(this).toBoolean
+  get() = gtk_toggle_tool_button_get_active(this).toBoolean()
   set(`value`) {
-    gtk_toggle_tool_button_set_active(this, `value`.toInt)
+    gtk_toggle_tool_button_set_active(this, `value`.toInt())
   }
 
 public fun ToggleToolButton.onToggled(callback: (ToggleToolButton) -> Unit): ToggleToolButton {

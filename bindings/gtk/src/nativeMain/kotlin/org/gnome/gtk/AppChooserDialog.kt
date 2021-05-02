@@ -61,7 +61,7 @@ public val AppChooserDialog.parent: Dialog
   get() = pointed.parent.ptr
 
 public var AppChooserDialog.heading: String
-  get() = gtk_app_chooser_dialog_get_heading(this).toKString
+  get() = gtk_app_chooser_dialog_get_heading(this).toKString()
   set(`value`) {
     gtk_app_chooser_dialog_set_heading(this, `value`)
   }

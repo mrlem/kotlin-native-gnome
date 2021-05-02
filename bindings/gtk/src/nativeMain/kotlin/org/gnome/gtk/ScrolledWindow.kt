@@ -77,9 +77,9 @@ public val ScrolledWindow.container: Bin
   get() = pointed.container.ptr
 
 public var ScrolledWindow.captureButtonPress: Boolean
-  get() = gtk_scrolled_window_get_capture_button_press(this).toBoolean
+  get() = gtk_scrolled_window_get_capture_button_press(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_capture_button_press(this, `value`.toInt)
+    gtk_scrolled_window_set_capture_button_press(this, `value`.toInt())
   }
 
 public var ScrolledWindow.hadjustment: Adjustment?
@@ -92,9 +92,9 @@ public val ScrolledWindow.hscrollbar: Widget?
   get() = gtk_scrolled_window_get_hscrollbar(this)?.reinterpret()
 
 public var ScrolledWindow.kineticScrolling: Boolean
-  get() = gtk_scrolled_window_get_kinetic_scrolling(this).toBoolean
+  get() = gtk_scrolled_window_get_kinetic_scrolling(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_kinetic_scrolling(this, `value`.toInt)
+    gtk_scrolled_window_set_kinetic_scrolling(this, `value`.toInt())
   }
 
 public var ScrolledWindow.maxContentHeight: Int
@@ -122,9 +122,9 @@ public var ScrolledWindow.minContentWidth: Int
   }
 
 public var ScrolledWindow.overlayScrolling: Boolean
-  get() = gtk_scrolled_window_get_overlay_scrolling(this).toBoolean
+  get() = gtk_scrolled_window_get_overlay_scrolling(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_overlay_scrolling(this, `value`.toInt)
+    gtk_scrolled_window_set_overlay_scrolling(this, `value`.toInt())
   }
 
 public var ScrolledWindow.placement: CornerType
@@ -134,15 +134,15 @@ public var ScrolledWindow.placement: CornerType
   }
 
 public var ScrolledWindow.propagateNaturalHeight: Boolean
-  get() = gtk_scrolled_window_get_propagate_natural_height(this).toBoolean
+  get() = gtk_scrolled_window_get_propagate_natural_height(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_propagate_natural_height(this, `value`.toInt)
+    gtk_scrolled_window_set_propagate_natural_height(this, `value`.toInt())
   }
 
 public var ScrolledWindow.propagateNaturalWidth: Boolean
-  get() = gtk_scrolled_window_get_propagate_natural_width(this).toBoolean
+  get() = gtk_scrolled_window_get_propagate_natural_width(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_propagate_natural_width(this, `value`.toInt)
+    gtk_scrolled_window_set_propagate_natural_width(this, `value`.toInt())
   }
 
 public var ScrolledWindow.shadowType: ShadowType

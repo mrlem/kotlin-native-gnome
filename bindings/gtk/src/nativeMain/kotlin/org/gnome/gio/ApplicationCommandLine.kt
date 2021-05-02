@@ -35,7 +35,7 @@ public val ApplicationCommandLine.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public val ApplicationCommandLine.cwd: String
-  get() = g_application_command_line_get_cwd(this).toKString
+  get() = g_application_command_line_get_cwd(this).toKString()
 
 public var ApplicationCommandLine.exitStatus: Int
   get() = g_application_command_line_get_exit_status(this)
@@ -44,7 +44,7 @@ public var ApplicationCommandLine.exitStatus: Int
   }
 
 public val ApplicationCommandLine.isRemote: Boolean
-  get() = g_application_command_line_get_is_remote(this).toBoolean
+  get() = g_application_command_line_get_is_remote(this).toBoolean()
 
 public val ApplicationCommandLine.stdin: InputStream?
   get() = g_application_command_line_get_stdin(this)?.reinterpret()
@@ -53,4 +53,4 @@ public fun ApplicationCommandLine.createFileForArg(arg: String): File? =
     g_application_command_line_create_file_for_arg(this, arg)?.reinterpret()
 
 public fun ApplicationCommandLine.getenv(name: String): String =
-    g_application_command_line_getenv(this, name).toKString
+    g_application_command_line_getenv(this, name).toKString()

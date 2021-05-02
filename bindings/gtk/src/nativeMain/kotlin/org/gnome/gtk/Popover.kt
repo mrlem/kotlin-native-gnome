@@ -78,9 +78,9 @@ public var Popover.defaultWidget: Widget?
   }
 
 public var Popover.modal: Boolean
-  get() = gtk_popover_get_modal(this).toBoolean
+  get() = gtk_popover_get_modal(this).toBoolean()
   set(`value`) {
-    gtk_popover_set_modal(this, `value`.toInt)
+    gtk_popover_set_modal(this, `value`.toInt())
   }
 
 public var Popover.position: PositionType

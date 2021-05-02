@@ -72,7 +72,7 @@ public var TlsConnection.interaction: TlsInteraction?
   }
 
 public val TlsConnection.negotiatedProtocol: String
-  get() = g_tls_connection_get_negotiated_protocol(this).toKString
+  get() = g_tls_connection_get_negotiated_protocol(this).toKString()
 
 public val TlsConnection.peerCertificate: TlsCertificate?
   get() = g_tls_connection_get_peer_certificate(this)?.reinterpret()
@@ -81,20 +81,20 @@ public val TlsConnection.peerCertificateErrors: TlsCertificateFlags
   get() = g_tls_connection_get_peer_certificate_errors(this)
 
 public var TlsConnection.requireCloseNotify: Boolean
-  get() = g_tls_connection_get_require_close_notify(this).toBoolean
+  get() = g_tls_connection_get_require_close_notify(this).toBoolean()
   set(`value`) {
-    g_tls_connection_set_require_close_notify(this, `value`.toInt)
+    g_tls_connection_set_require_close_notify(this, `value`.toInt())
   }
 
 public fun TlsConnection.emitAcceptCertificate(peerCert: TlsCertificate?,
     errors: TlsCertificateFlags): Boolean = g_tls_connection_emit_accept_certificate(this,
-    peerCert?.reinterpret(), errors).toBoolean
+    peerCert?.reinterpret(), errors).toBoolean()
 
 @Throws(Error::class)
 public fun TlsConnection.handshake(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_tls_connection_handshake(this@handshake, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -103,7 +103,7 @@ public fun TlsConnection.handshake(cancellable: Cancellable?): Boolean = memScop
 public fun TlsConnection.handshakeFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_tls_connection_handshake_finish(this@handshakeFinish,
-      result?.reinterpret(), errors).toBoolean
+      result?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

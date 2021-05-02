@@ -46,7 +46,7 @@ public val FileEnumerator.container: File?
 public fun FileEnumerator.close(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_file_enumerator_close(this@close, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -55,7 +55,7 @@ public fun FileEnumerator.close(cancellable: Cancellable?): Boolean = memScoped 
 public fun FileEnumerator.closeFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_file_enumerator_close_finish(this@closeFinish, result?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -63,9 +63,9 @@ public fun FileEnumerator.closeFinish(result: AsyncResult?): Boolean = memScoped
 public fun FileEnumerator.getChild(info: FileInfo?): File? = g_file_enumerator_get_child(this,
     info?.reinterpret())?.reinterpret()
 
-public fun FileEnumerator.hasPending(): Boolean = g_file_enumerator_has_pending(this).toBoolean
+public fun FileEnumerator.hasPending(): Boolean = g_file_enumerator_has_pending(this).toBoolean()
 
-public fun FileEnumerator.isClosed(): Boolean = g_file_enumerator_is_closed(this).toBoolean
+public fun FileEnumerator.isClosed(): Boolean = g_file_enumerator_is_closed(this).toBoolean()
 
 @Throws(Error::class)
 public fun FileEnumerator.nextFile(cancellable: Cancellable?): FileInfo? = memScoped {
@@ -77,5 +77,5 @@ public fun FileEnumerator.nextFile(cancellable: Cancellable?): FileInfo? = memSc
 }
 
 public fun FileEnumerator.setPending(pending: Boolean): Unit {
-  g_file_enumerator_set_pending(this, pending.toInt)
+  g_file_enumerator_set_pending(this, pending.toInt())
 }

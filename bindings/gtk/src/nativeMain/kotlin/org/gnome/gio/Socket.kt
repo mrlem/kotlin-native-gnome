@@ -93,15 +93,15 @@ public val Socket.availableBytes: Long
   get() = g_socket_get_available_bytes(this)
 
 public var Socket.blocking: Boolean
-  get() = g_socket_get_blocking(this).toBoolean
+  get() = g_socket_get_blocking(this).toBoolean()
   set(`value`) {
-    g_socket_set_blocking(this, `value`.toInt)
+    g_socket_set_blocking(this, `value`.toInt())
   }
 
 public var Socket.broadcast: Boolean
-  get() = g_socket_get_broadcast(this).toBoolean
+  get() = g_socket_get_broadcast(this).toBoolean()
   set(`value`) {
-    g_socket_set_broadcast(this, `value`.toInt)
+    g_socket_set_broadcast(this, `value`.toInt())
   }
 
 public val Socket.family: SocketFamily
@@ -111,9 +111,9 @@ public val Socket.fd: Int
   get() = g_socket_get_fd(this)
 
 public var Socket.keepalive: Boolean
-  get() = g_socket_get_keepalive(this).toBoolean
+  get() = g_socket_get_keepalive(this).toBoolean()
   set(`value`) {
-    g_socket_set_keepalive(this, `value`.toInt)
+    g_socket_set_keepalive(this, `value`.toInt())
   }
 
 public var Socket.listenBacklog: Int
@@ -123,9 +123,9 @@ public var Socket.listenBacklog: Int
   }
 
 public var Socket.multicastLoopback: Boolean
-  get() = g_socket_get_multicast_loopback(this).toBoolean
+  get() = g_socket_get_multicast_loopback(this).toBoolean()
   set(`value`) {
-    g_socket_set_multicast_loopback(this, `value`.toInt)
+    g_socket_set_multicast_loopback(this, `value`.toInt())
   }
 
 public var Socket.multicastTtl: UInt
@@ -164,8 +164,8 @@ public fun Socket.accept(cancellable: Cancellable?): Socket? = memScoped {
 @Throws(Error::class)
 public fun Socket.bind(address: SocketAddress?, allowReuse: Boolean): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_socket_bind(this@bind, address?.reinterpret(), allowReuse.toInt,
-      errors).toBoolean
+  val result: Boolean = g_socket_bind(this@bind, address?.reinterpret(), allowReuse.toInt(),
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -173,7 +173,7 @@ public fun Socket.bind(address: SocketAddress?, allowReuse: Boolean): Boolean = 
 @Throws(Error::class)
 public fun Socket.checkConnectResult(): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_socket_check_connect_result(this@checkConnectResult, errors).toBoolean
+  val result: Boolean = g_socket_check_connect_result(this@checkConnectResult, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -181,7 +181,7 @@ public fun Socket.checkConnectResult(): Boolean = memScoped {
 @Throws(Error::class)
 public fun Socket.close(): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_socket_close(this@close, errors).toBoolean
+  val result: Boolean = g_socket_close(this@close, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -190,7 +190,7 @@ public fun Socket.close(): Boolean = memScoped {
 public fun Socket.connect(address: SocketAddress?, cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_connect(this@connect, address?.reinterpret(),
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -224,9 +224,9 @@ public fun Socket.getRemoteAddress(): SocketAddress? = memScoped {
   return result
 }
 
-public fun Socket.isClosed(): Boolean = g_socket_is_closed(this).toBoolean
+public fun Socket.isClosed(): Boolean = g_socket_is_closed(this).toBoolean()
 
-public fun Socket.isConnected(): Boolean = g_socket_is_connected(this).toBoolean
+public fun Socket.isConnected(): Boolean = g_socket_is_connected(this).toBoolean()
 
 @Throws(Error::class)
 public fun Socket.joinMulticastGroup(
@@ -236,7 +236,7 @@ public fun Socket.joinMulticastGroup(
 ): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_join_multicast_group(this@joinMulticastGroup, group?.reinterpret(),
-      sourceSpecific.toInt, iface, errors).toBoolean
+      sourceSpecific.toInt(), iface, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -249,7 +249,7 @@ public fun Socket.joinMulticastGroupSsm(
 ): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_join_multicast_group_ssm(this@joinMulticastGroupSsm,
-      group?.reinterpret(), sourceSpecific?.reinterpret(), iface, errors).toBoolean
+      group?.reinterpret(), sourceSpecific?.reinterpret(), iface, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -262,7 +262,7 @@ public fun Socket.leaveMulticastGroup(
 ): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_leave_multicast_group(this@leaveMulticastGroup,
-      group?.reinterpret(), sourceSpecific.toInt, iface, errors).toBoolean
+      group?.reinterpret(), sourceSpecific.toInt(), iface, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -275,7 +275,7 @@ public fun Socket.leaveMulticastGroupSsm(
 ): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_leave_multicast_group_ssm(this@leaveMulticastGroupSsm,
-      group?.reinterpret(), sourceSpecific?.reinterpret(), iface, errors).toBoolean
+      group?.reinterpret(), sourceSpecific?.reinterpret(), iface, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -283,7 +283,7 @@ public fun Socket.leaveMulticastGroupSsm(
 @Throws(Error::class)
 public fun Socket.listen(): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_socket_listen(this@listen, errors).toBoolean
+  val result: Boolean = g_socket_listen(this@listen, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -296,7 +296,7 @@ public fun Socket.setOption(
 ): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_set_option(this@setOption, level, optname, `value`,
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -304,10 +304,10 @@ public fun Socket.setOption(
 @Throws(Error::class)
 public fun Socket.shutdown(shutdownRead: Boolean, shutdownWrite: Boolean): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_socket_shutdown(this@shutdown, shutdownRead.toInt, shutdownWrite.toInt,
-      errors).toBoolean
+  val result: Boolean = g_socket_shutdown(this@shutdown, shutdownRead.toInt(),
+      shutdownWrite.toInt(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
-public fun Socket.speaksIpv4(): Boolean = g_socket_speaks_ipv4(this).toBoolean
+public fun Socket.speaksIpv4(): Boolean = g_socket_speaks_ipv4(this).toBoolean()

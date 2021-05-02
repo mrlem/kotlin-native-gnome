@@ -55,7 +55,7 @@ private val AnyType.toKTypeConverter
     get() = when (this) {
         is TypeDefinition -> SimpleType.fromName(name)
             ?.toKTypeConverter
-            ?.let { ".%M" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
+            ?.let { ".%M()" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
         is ArrayTypeDefinition -> null // TODO - handle arrays conversion
         else -> null
     }
@@ -64,7 +64,7 @@ private val AnyType.toKTypeConverter
 private val AnyType.toCTypeConverter
     get() = when (this) {
         is TypeDefinition -> SimpleType.fromName(name)?.toCTypeConverter
-            ?.let { ".%M" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
+            ?.let { ".%M()" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
         is ArrayTypeDefinition -> null // TODO - handle arrays conversion
         else -> null
     }

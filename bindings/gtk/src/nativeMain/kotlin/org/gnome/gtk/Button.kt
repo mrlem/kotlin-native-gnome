@@ -75,9 +75,9 @@ public object ButtonFactory {
 }
 
 public var Button.alwaysShowImage: Boolean
-  get() = gtk_button_get_always_show_image(this).toBoolean
+  get() = gtk_button_get_always_show_image(this).toBoolean()
   set(`value`) {
-    gtk_button_set_always_show_image(this, `value`.toInt)
+    gtk_button_set_always_show_image(this, `value`.toInt())
   }
 
 public var Button.image: Widget?
@@ -93,7 +93,7 @@ public var Button.imagePosition: PositionType
   }
 
 public var Button.label: String
-  get() = gtk_button_get_label(this).toKString
+  get() = gtk_button_get_label(this).toKString()
   set(`value`) {
     gtk_button_set_label(this, `value`)
   }
@@ -105,9 +105,9 @@ public var Button.relief: ReliefStyle
   }
 
 public var Button.useUnderline: Boolean
-  get() = gtk_button_get_use_underline(this).toBoolean
+  get() = gtk_button_get_use_underline(this).toBoolean()
   set(`value`) {
-    gtk_button_set_use_underline(this, `value`.toInt)
+    gtk_button_set_use_underline(this, `value`.toInt())
   }
 
 public fun Button.clicked(): Unit {

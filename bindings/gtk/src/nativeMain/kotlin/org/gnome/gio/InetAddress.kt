@@ -47,39 +47,39 @@ public val InetAddress.family: SocketFamily
   get() = g_inet_address_get_family(this)
 
 public val InetAddress.isAny: Boolean
-  get() = g_inet_address_get_is_any(this).toBoolean
+  get() = g_inet_address_get_is_any(this).toBoolean()
 
 public val InetAddress.isLinkLocal: Boolean
-  get() = g_inet_address_get_is_link_local(this).toBoolean
+  get() = g_inet_address_get_is_link_local(this).toBoolean()
 
 public val InetAddress.isLoopback: Boolean
-  get() = g_inet_address_get_is_loopback(this).toBoolean
+  get() = g_inet_address_get_is_loopback(this).toBoolean()
 
 public val InetAddress.isMcGlobal: Boolean
-  get() = g_inet_address_get_is_mc_global(this).toBoolean
+  get() = g_inet_address_get_is_mc_global(this).toBoolean()
 
 public val InetAddress.isMcLinkLocal: Boolean
-  get() = g_inet_address_get_is_mc_link_local(this).toBoolean
+  get() = g_inet_address_get_is_mc_link_local(this).toBoolean()
 
 public val InetAddress.isMcNodeLocal: Boolean
-  get() = g_inet_address_get_is_mc_node_local(this).toBoolean
+  get() = g_inet_address_get_is_mc_node_local(this).toBoolean()
 
 public val InetAddress.isMcOrgLocal: Boolean
-  get() = g_inet_address_get_is_mc_org_local(this).toBoolean
+  get() = g_inet_address_get_is_mc_org_local(this).toBoolean()
 
 public val InetAddress.isMcSiteLocal: Boolean
-  get() = g_inet_address_get_is_mc_site_local(this).toBoolean
+  get() = g_inet_address_get_is_mc_site_local(this).toBoolean()
 
 public val InetAddress.isMulticast: Boolean
-  get() = g_inet_address_get_is_multicast(this).toBoolean
+  get() = g_inet_address_get_is_multicast(this).toBoolean()
 
 public val InetAddress.isSiteLocal: Boolean
-  get() = g_inet_address_get_is_site_local(this).toBoolean
+  get() = g_inet_address_get_is_site_local(this).toBoolean()
 
 public val InetAddress.nativeSize: ULong
   get() = g_inet_address_get_native_size(this)
 
 public fun InetAddress.equal(otherAddress: InetAddress?): Boolean = g_inet_address_equal(this,
-    otherAddress?.reinterpret()).toBoolean
+    otherAddress?.reinterpret()).toBoolean()
 
-public fun InetAddress.toString(): String = g_inet_address_to_string(this).toKString
+public fun InetAddress.toString(): String = g_inet_address_to_string(this).toKString()

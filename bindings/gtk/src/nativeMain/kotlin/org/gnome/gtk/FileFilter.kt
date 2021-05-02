@@ -38,7 +38,7 @@ public object FileFilterFactory {
 }
 
 public var FileFilter.name: String
-  get() = gtk_file_filter_get_name(this).toKString
+  get() = gtk_file_filter_get_name(this).toKString()
   set(`value`) {
     gtk_file_filter_set_name(this, `value`)
   }
@@ -59,4 +59,4 @@ public fun FileFilter.addPixbufFormats(): Unit {
 }
 
 public fun FileFilter.filter(filterInfo: FileFilterInfo?): Boolean = gtk_file_filter_filter(this,
-    filterInfo?.reinterpret()).toBoolean
+    filterInfo?.reinterpret()).toBoolean()

@@ -33,10 +33,10 @@ public fun Vfs.getFileForPath(path: String): File? = g_vfs_get_file_for_path(thi
 
 public fun Vfs.getFileForUri(uri: String): File? = g_vfs_get_file_for_uri(this, uri)?.reinterpret()
 
-public fun Vfs.isActive(): Boolean = g_vfs_is_active(this).toBoolean
+public fun Vfs.isActive(): Boolean = g_vfs_is_active(this).toBoolean()
 
 public fun Vfs.parseName(parseName: String): File? = g_vfs_parse_name(this,
     parseName)?.reinterpret()
 
 public fun Vfs.unregisterUriScheme(scheme: String): Boolean = g_vfs_unregister_uri_scheme(this,
-    scheme).toBoolean
+    scheme).toBoolean()

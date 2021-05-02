@@ -71,15 +71,15 @@ public var InfoBar.messageType: MessageType
   }
 
 public var InfoBar.revealed: Boolean
-  get() = gtk_info_bar_get_revealed(this).toBoolean
+  get() = gtk_info_bar_get_revealed(this).toBoolean()
   set(`value`) {
-    gtk_info_bar_set_revealed(this, `value`.toInt)
+    gtk_info_bar_set_revealed(this, `value`.toInt())
   }
 
 public var InfoBar.showCloseButton: Boolean
-  get() = gtk_info_bar_get_show_close_button(this).toBoolean
+  get() = gtk_info_bar_get_show_close_button(this).toBoolean()
   set(`value`) {
-    gtk_info_bar_set_show_close_button(this, `value`.toInt)
+    gtk_info_bar_set_show_close_button(this, `value`.toInt())
   }
 
 public fun InfoBar.addActionWidget(child: Widget?, responseId: Int): Unit {
@@ -98,7 +98,7 @@ public fun InfoBar.setDefaultResponse(responseId: Int): Unit {
 }
 
 public fun InfoBar.setResponseSensitive(responseId: Int, setting: Boolean): Unit {
-  gtk_info_bar_set_response_sensitive(this, responseId, setting.toInt)
+  gtk_info_bar_set_response_sensitive(this, responseId, setting.toInt())
 }
 
 public fun InfoBar.onClose(callback: (InfoBar) -> Unit): InfoBar {

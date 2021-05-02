@@ -44,7 +44,7 @@ public val CssProvider.parentInstance: Object
 public fun CssProvider.loadFromFile(`file`: File?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = gtk_css_provider_load_from_file(this@loadFromFile, `file`?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -52,7 +52,7 @@ public fun CssProvider.loadFromFile(`file`: File?): Boolean = memScoped {
 @Throws(Error::class)
 public fun CssProvider.loadFromPath(path: String): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = gtk_css_provider_load_from_path(this@loadFromPath, path, errors).toBoolean
+  val result: Boolean = gtk_css_provider_load_from_path(this@loadFromPath, path, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -61,7 +61,7 @@ public fun CssProvider.loadFromResource(resourcePath: String): Unit {
   gtk_css_provider_load_from_resource(this, resourcePath)
 }
 
-public fun CssProvider.toString(): String = gtk_css_provider_to_string(this).toKString
+public fun CssProvider.toString(): String = gtk_css_provider_to_string(this).toKString()
 
 public fun CssProvider.onParsingError(callback: (CssProvider) -> Unit): CssProvider {
   // TODO - handle callback data

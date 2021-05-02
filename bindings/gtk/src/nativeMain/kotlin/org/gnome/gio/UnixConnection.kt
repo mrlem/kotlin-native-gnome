@@ -71,7 +71,7 @@ public fun UnixConnection.receiveFd(cancellable: Cancellable?): Int = memScoped 
 public fun UnixConnection.sendCredentials(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_unix_connection_send_credentials(this@sendCredentials,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -80,7 +80,7 @@ public fun UnixConnection.sendCredentials(cancellable: Cancellable?): Boolean = 
 public fun UnixConnection.sendCredentialsFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_unix_connection_send_credentials_finish(this@sendCredentialsFinish,
-      result?.reinterpret(), errors).toBoolean
+      result?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -89,7 +89,7 @@ public fun UnixConnection.sendCredentialsFinish(result: AsyncResult?): Boolean =
 public fun UnixConnection.sendFd(fd: Int, cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_unix_connection_send_fd(this@sendFd, fd, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

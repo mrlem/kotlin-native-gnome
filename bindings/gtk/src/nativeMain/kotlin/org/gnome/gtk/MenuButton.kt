@@ -83,9 +83,9 @@ public val MenuButton.popup: Menu?
   get() = gtk_menu_button_get_popup(this)?.reinterpret()
 
 public var MenuButton.usePopover: Boolean
-  get() = gtk_menu_button_get_use_popover(this).toBoolean
+  get() = gtk_menu_button_get_use_popover(this).toBoolean()
   set(`value`) {
-    gtk_menu_button_set_use_popover(this, `value`.toInt)
+    gtk_menu_button_set_use_popover(this, `value`.toInt())
   }
 
 public fun MenuButton.setPopover(popover: Widget?): Unit {

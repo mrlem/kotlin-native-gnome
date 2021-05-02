@@ -51,7 +51,7 @@ public fun ListStore.clear(): Unit {
 }
 
 public fun ListStore.iterIsValid(iter: TreeIter?): Boolean = gtk_list_store_iter_is_valid(this,
-    iter?.reinterpret()).toBoolean
+    iter?.reinterpret()).toBoolean()
 
 public fun ListStore.moveAfter(iter: TreeIter?, position: TreeIter?): Unit {
   gtk_list_store_move_after(this, iter?.reinterpret(), position?.reinterpret())
@@ -62,7 +62,7 @@ public fun ListStore.moveBefore(iter: TreeIter?, position: TreeIter?): Unit {
 }
 
 public fun ListStore.remove(iter: TreeIter?): Boolean = gtk_list_store_remove(this,
-    iter?.reinterpret()).toBoolean
+    iter?.reinterpret()).toBoolean()
 
 public fun ListStore.setValue(
   iter: TreeIter?,

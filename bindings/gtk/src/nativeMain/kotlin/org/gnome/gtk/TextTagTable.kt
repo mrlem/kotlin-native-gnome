@@ -38,7 +38,7 @@ public val TextTagTable.size: Int
   get() = gtk_text_tag_table_get_size(this)
 
 public fun TextTagTable.add(tag: TextTag?): Boolean = gtk_text_tag_table_add(this,
-    tag?.reinterpret()).toBoolean
+    tag?.reinterpret()).toBoolean()
 
 public fun TextTagTable.lookup(name: String): TextTag? = gtk_text_tag_table_lookup(this,
     name)?.reinterpret()

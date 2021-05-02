@@ -71,24 +71,24 @@ public val ToolItem.parent: Bin
   get() = pointed.parent.ptr
 
 public var ToolItem.expand: Boolean
-  get() = gtk_tool_item_get_expand(this).toBoolean
+  get() = gtk_tool_item_get_expand(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_expand(this, `value`.toInt)
+    gtk_tool_item_set_expand(this, `value`.toInt())
   }
 
 public var ToolItem.homogeneous: Boolean
-  get() = gtk_tool_item_get_homogeneous(this).toBoolean
+  get() = gtk_tool_item_get_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_homogeneous(this, `value`.toInt)
+    gtk_tool_item_set_homogeneous(this, `value`.toInt())
   }
 
 public val ToolItem.iconSize: IconSize
   get() = gtk_tool_item_get_icon_size(this)
 
 public var ToolItem.isImportant: Boolean
-  get() = gtk_tool_item_get_is_important(this).toBoolean
+  get() = gtk_tool_item_get_is_important(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_is_important(this, `value`.toInt)
+    gtk_tool_item_set_is_important(this, `value`.toInt())
   }
 
 public val ToolItem.orientation: Orientation
@@ -110,21 +110,21 @@ public val ToolItem.toolbarStyle: ToolbarStyle
   get() = gtk_tool_item_get_toolbar_style(this)
 
 public var ToolItem.useDragWindow: Boolean
-  get() = gtk_tool_item_get_use_drag_window(this).toBoolean
+  get() = gtk_tool_item_get_use_drag_window(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_use_drag_window(this, `value`.toInt)
+    gtk_tool_item_set_use_drag_window(this, `value`.toInt())
   }
 
 public var ToolItem.visibleHorizontal: Boolean
-  get() = gtk_tool_item_get_visible_horizontal(this).toBoolean
+  get() = gtk_tool_item_get_visible_horizontal(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_visible_horizontal(this, `value`.toInt)
+    gtk_tool_item_set_visible_horizontal(this, `value`.toInt())
   }
 
 public var ToolItem.visibleVertical: Boolean
-  get() = gtk_tool_item_get_visible_vertical(this).toBoolean
+  get() = gtk_tool_item_get_visible_vertical(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_visible_vertical(this, `value`.toInt)
+    gtk_tool_item_set_visible_vertical(this, `value`.toInt())
   }
 
 public fun ToolItem.getProxyMenuItem(menuItemId: String): Widget? =

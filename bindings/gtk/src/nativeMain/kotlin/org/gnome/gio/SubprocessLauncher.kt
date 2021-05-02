@@ -37,7 +37,7 @@ public val SubprocessLauncher.asObject: Object
 public object SubprocessLauncherFactory
 
 public fun SubprocessLauncher.getenv(variable: String): String = g_subprocess_launcher_getenv(this,
-    variable).toKString
+    variable).toKString()
 
 public fun SubprocessLauncher.setCwd(cwd: String): Unit {
   g_subprocess_launcher_set_cwd(this, cwd)
@@ -64,7 +64,7 @@ public fun SubprocessLauncher.setenv(
   `value`: String,
   overwrite: Boolean
 ): Unit {
-  g_subprocess_launcher_setenv(this, variable, `value`, overwrite.toInt)
+  g_subprocess_launcher_setenv(this, variable, `value`, overwrite.toInt())
 }
 
 public fun SubprocessLauncher.takeFd(sourceFd: Int, targetFd: Int): Unit {

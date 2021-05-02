@@ -48,7 +48,7 @@ public fun Resolver.lookupByAddress(address: InetAddress?, cancellable: Cancella
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: String = g_resolver_lookup_by_address(this@lookupByAddress, address?.reinterpret(),
-      cancellable?.reinterpret(), errors).toKString
+      cancellable?.reinterpret(), errors).toKString()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -57,7 +57,7 @@ public fun Resolver.lookupByAddress(address: InetAddress?, cancellable: Cancella
 public fun Resolver.lookupByAddressFinish(result: AsyncResult?): String = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: String = g_resolver_lookup_by_address_finish(this@lookupByAddressFinish,
-      result?.reinterpret(), errors).toKString
+      result?.reinterpret(), errors).toKString()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

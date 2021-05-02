@@ -108,19 +108,19 @@ public object PrintSettingsFactory {
 }
 
 public var PrintSettings.collate: Boolean
-  get() = gtk_print_settings_get_collate(this).toBoolean
+  get() = gtk_print_settings_get_collate(this).toBoolean()
   set(`value`) {
-    gtk_print_settings_set_collate(this, `value`.toInt)
+    gtk_print_settings_set_collate(this, `value`.toInt())
   }
 
 public var PrintSettings.defaultSource: String
-  get() = gtk_print_settings_get_default_source(this).toKString
+  get() = gtk_print_settings_get_default_source(this).toKString()
   set(`value`) {
     gtk_print_settings_set_default_source(this, `value`)
   }
 
 public var PrintSettings.dither: String
-  get() = gtk_print_settings_get_dither(this).toKString
+  get() = gtk_print_settings_get_dither(this).toKString()
   set(`value`) {
     gtk_print_settings_set_dither(this, `value`)
   }
@@ -132,13 +132,13 @@ public var PrintSettings.duplex: PrintDuplex
   }
 
 public var PrintSettings.finishings: String
-  get() = gtk_print_settings_get_finishings(this).toKString
+  get() = gtk_print_settings_get_finishings(this).toKString()
   set(`value`) {
     gtk_print_settings_set_finishings(this, `value`)
   }
 
 public var PrintSettings.mediaType: String
-  get() = gtk_print_settings_get_media_type(this).toKString
+  get() = gtk_print_settings_get_media_type(this).toKString()
   set(`value`) {
     gtk_print_settings_set_media_type(this, `value`)
   }
@@ -168,7 +168,7 @@ public var PrintSettings.orientation: PageOrientation
   }
 
 public var PrintSettings.outputBin: String
-  get() = gtk_print_settings_get_output_bin(this).toKString
+  get() = gtk_print_settings_get_output_bin(this).toKString()
   set(`value`) {
     gtk_print_settings_set_output_bin(this, `value`)
   }
@@ -192,7 +192,7 @@ public var PrintSettings.printPages: PrintPages
   }
 
 public var PrintSettings.printer: String
-  get() = gtk_print_settings_get_printer(this).toKString
+  get() = gtk_print_settings_get_printer(this).toKString()
   set(`value`) {
     gtk_print_settings_set_printer(this, `value`)
   }
@@ -222,9 +222,9 @@ public val PrintSettings.resolutionY: Int
   get() = gtk_print_settings_get_resolution_y(this)
 
 public var PrintSettings.reverse: Boolean
-  get() = gtk_print_settings_get_reverse(this).toBoolean
+  get() = gtk_print_settings_get_reverse(this).toBoolean()
   set(`value`) {
-    gtk_print_settings_set_reverse(this, `value`.toInt)
+    gtk_print_settings_set_reverse(this, `value`.toInt())
   }
 
 public var PrintSettings.scale: Double
@@ -234,17 +234,17 @@ public var PrintSettings.scale: Double
   }
 
 public var PrintSettings.useColor: Boolean
-  get() = gtk_print_settings_get_use_color(this).toBoolean
+  get() = gtk_print_settings_get_use_color(this).toBoolean()
   set(`value`) {
-    gtk_print_settings_set_use_color(this, `value`.toInt)
+    gtk_print_settings_set_use_color(this, `value`.toInt())
   }
 
 public fun PrintSettings.copy(): PrintSettings? = gtk_print_settings_copy(this)?.reinterpret()
 
-public fun PrintSettings.`get`(key: String): String = gtk_print_settings_get(this, key).toKString
+public fun PrintSettings.`get`(key: String): String = gtk_print_settings_get(this, key).toKString()
 
 public fun PrintSettings.getBool(key: String): Boolean = gtk_print_settings_get_bool(this,
-    key).toBoolean
+    key).toBoolean()
 
 public fun PrintSettings.getDouble(key: String): Double = gtk_print_settings_get_double(this, key)
 
@@ -266,12 +266,12 @@ public fun PrintSettings.getPaperWidth(unit: Unit): Double =
     gtk_print_settings_get_paper_width(this, unit)
 
 public fun PrintSettings.hasKey(key: String): Boolean = gtk_print_settings_has_key(this,
-    key).toBoolean
+    key).toBoolean()
 
 @Throws(Error::class)
 public fun PrintSettings.loadFile(fileName: String): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = gtk_print_settings_load_file(this@loadFile, fileName, errors).toBoolean
+  val result: Boolean = gtk_print_settings_load_file(this@loadFile, fileName, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -281,7 +281,7 @@ public fun PrintSettings.`set`(key: String, `value`: String): kotlin.Unit {
 }
 
 public fun PrintSettings.setBool(key: String, `value`: Boolean): kotlin.Unit {
-  gtk_print_settings_set_bool(this, key, `value`.toInt)
+  gtk_print_settings_set_bool(this, key, `value`.toInt())
 }
 
 public fun PrintSettings.setDouble(key: String, `value`: Double): kotlin.Unit {
@@ -315,7 +315,7 @@ public fun PrintSettings.setResolutionXy(resolutionX: Int, resolutionY: Int): ko
 @Throws(Error::class)
 public fun PrintSettings.toFile(fileName: String): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = gtk_print_settings_to_file(this@toFile, fileName, errors).toBoolean
+  val result: Boolean = gtk_print_settings_to_file(this@toFile, fileName, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

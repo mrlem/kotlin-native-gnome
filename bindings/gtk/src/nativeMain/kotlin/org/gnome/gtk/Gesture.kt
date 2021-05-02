@@ -43,15 +43,15 @@ public fun Gesture.group(gesture: Gesture?): Unit {
   gtk_gesture_group(this, gesture?.reinterpret())
 }
 
-public fun Gesture.isActive(): Boolean = gtk_gesture_is_active(this).toBoolean
+public fun Gesture.isActive(): Boolean = gtk_gesture_is_active(this).toBoolean()
 
 public fun Gesture.isGroupedWith(other: Gesture?): Boolean = gtk_gesture_is_grouped_with(this,
-    other?.reinterpret()).toBoolean
+    other?.reinterpret()).toBoolean()
 
-public fun Gesture.isRecognized(): Boolean = gtk_gesture_is_recognized(this).toBoolean
+public fun Gesture.isRecognized(): Boolean = gtk_gesture_is_recognized(this).toBoolean()
 
 public fun Gesture.setState(state: EventSequenceState): Boolean = gtk_gesture_set_state(this,
-    state).toBoolean
+    state).toBoolean()
 
 public fun Gesture.ungroup(): Unit {
   gtk_gesture_ungroup(this)

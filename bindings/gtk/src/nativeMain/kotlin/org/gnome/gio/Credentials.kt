@@ -57,7 +57,7 @@ public fun Credentials.getUnixUser(): UInt = memScoped {
 public fun Credentials.isSameUser(otherCredentials: Credentials?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_credentials_is_same_user(this@isSameUser, otherCredentials?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -65,9 +65,9 @@ public fun Credentials.isSameUser(otherCredentials: Credentials?): Boolean = mem
 @Throws(Error::class)
 public fun Credentials.setUnixUser(uid: UInt): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_credentials_set_unix_user(this@setUnixUser, uid, errors).toBoolean
+  val result: Boolean = g_credentials_set_unix_user(this@setUnixUser, uid, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
-public fun Credentials.toString(): String = g_credentials_to_string(this).toKString
+public fun Credentials.toString(): String = g_credentials_to_string(this).toKString()

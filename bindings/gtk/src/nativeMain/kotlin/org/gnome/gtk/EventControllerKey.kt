@@ -40,7 +40,7 @@ public var EventControllerKey.imContext: IMContext?
   }
 
 public fun EventControllerKey.forward(widget: Widget?): Boolean =
-    gtk_event_controller_key_forward(this, widget?.reinterpret()).toBoolean
+    gtk_event_controller_key_forward(this, widget?.reinterpret()).toBoolean()
 
 public fun EventControllerKey.onFocusIn(callback: (EventControllerKey) -> Unit):
     EventControllerKey {

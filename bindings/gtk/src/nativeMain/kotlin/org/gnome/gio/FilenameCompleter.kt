@@ -28,10 +28,10 @@ public object FilenameCompleterFactory {
 }
 
 public fun FilenameCompleter.getCompletionSuffix(initialText: String): String =
-    g_filename_completer_get_completion_suffix(this, initialText).toKString
+    g_filename_completer_get_completion_suffix(this, initialText).toKString()
 
 public fun FilenameCompleter.setDirsOnly(dirsOnly: Boolean): Unit {
-  g_filename_completer_set_dirs_only(this, dirsOnly.toInt)
+  g_filename_completer_set_dirs_only(this, dirsOnly.toInt())
 }
 
 public fun FilenameCompleter.onGotCompletionData(callback: (FilenameCompleter) -> Unit):

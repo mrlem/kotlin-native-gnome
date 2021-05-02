@@ -110,9 +110,9 @@ public val IconView.parent: Container
   get() = pointed.parent.ptr
 
 public var IconView.activateOnSingleClick: Boolean
-  get() = gtk_icon_view_get_activate_on_single_click(this).toBoolean
+  get() = gtk_icon_view_get_activate_on_single_click(this).toBoolean()
   set(`value`) {
-    gtk_icon_view_set_activate_on_single_click(this, `value`.toInt)
+    gtk_icon_view_set_activate_on_single_click(this, `value`.toInt())
   }
 
 public var IconView.columnSpacing: Int
@@ -170,9 +170,9 @@ public var IconView.pixbufColumn: Int
   }
 
 public var IconView.reorderable: Boolean
-  get() = gtk_icon_view_get_reorderable(this).toBoolean
+  get() = gtk_icon_view_get_reorderable(this).toBoolean()
   set(`value`) {
-    gtk_icon_view_set_reorderable(this, `value`.toInt)
+    gtk_icon_view_set_reorderable(this, `value`.toInt())
   }
 
 public var IconView.rowSpacing: Int
@@ -219,7 +219,7 @@ public fun IconView.itemActivated(path: TreePath?): Unit {
 }
 
 public fun IconView.pathIsSelected(path: TreePath?): Boolean = gtk_icon_view_path_is_selected(this,
-    path?.reinterpret()).toBoolean
+    path?.reinterpret()).toBoolean()
 
 public fun IconView.scrollToPath(
   path: TreePath?,
@@ -227,7 +227,7 @@ public fun IconView.scrollToPath(
   rowAlign: Float,
   colAlign: Float
 ): Unit {
-  gtk_icon_view_scroll_to_path(this, path?.reinterpret(), useAlign.toInt, rowAlign, colAlign)
+  gtk_icon_view_scroll_to_path(this, path?.reinterpret(), useAlign.toInt(), rowAlign, colAlign)
 }
 
 public fun IconView.selectAll(): Unit {
@@ -243,7 +243,7 @@ public fun IconView.setCursor(
   cell: CellRenderer?,
   startEditing: Boolean
 ): Unit {
-  gtk_icon_view_set_cursor(this, path?.reinterpret(), cell?.reinterpret(), startEditing.toInt)
+  gtk_icon_view_set_cursor(this, path?.reinterpret(), cell?.reinterpret(), startEditing.toInt())
 }
 
 public fun IconView.setDragDestItem(path: TreePath?, pos: IconViewDropPosition): Unit {

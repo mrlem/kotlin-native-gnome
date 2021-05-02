@@ -29,16 +29,16 @@ public val NetworkService.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public val NetworkService.domain: String
-  get() = g_network_service_get_domain(this).toKString
+  get() = g_network_service_get_domain(this).toKString()
 
 public val NetworkService.protocol: String
-  get() = g_network_service_get_protocol(this).toKString
+  get() = g_network_service_get_protocol(this).toKString()
 
 public var NetworkService.scheme: String
-  get() = g_network_service_get_scheme(this).toKString
+  get() = g_network_service_get_scheme(this).toKString()
   set(`value`) {
     g_network_service_set_scheme(this, `value`)
   }
 
 public val NetworkService.service: String
-  get() = g_network_service_get_service(this).toKString
+  get() = g_network_service_get_service(this).toKString()

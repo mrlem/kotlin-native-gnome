@@ -88,9 +88,10 @@ public fun Application.inhibit(
 ): UInt = gtk_application_inhibit(this, window?.reinterpret(), flags, reason)
 
 public fun Application.isInhibited(flags: ApplicationInhibitFlags): Boolean =
-    gtk_application_is_inhibited(this, flags).toBoolean
+    gtk_application_is_inhibited(this, flags).toBoolean()
 
-public fun Application.prefersAppMenu(): Boolean = gtk_application_prefers_app_menu(this).toBoolean
+public fun Application.prefersAppMenu(): Boolean =
+    gtk_application_prefers_app_menu(this).toBoolean()
 
 public fun Application.removeWindow(window: Window?): Unit {
   gtk_application_remove_window(this, window?.reinterpret())

@@ -37,9 +37,9 @@ public val BufferedOutputStream.parentInstance: FilterOutputStream
   get() = pointed.parent_instance.ptr
 
 public var BufferedOutputStream.autoGrow: Boolean
-  get() = g_buffered_output_stream_get_auto_grow(this).toBoolean
+  get() = g_buffered_output_stream_get_auto_grow(this).toBoolean()
   set(`value`) {
-    g_buffered_output_stream_set_auto_grow(this, `value`.toInt)
+    g_buffered_output_stream_set_auto_grow(this, `value`.toInt())
   }
 
 public var BufferedOutputStream.bufferSize: ULong

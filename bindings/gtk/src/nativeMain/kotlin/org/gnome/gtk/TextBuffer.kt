@@ -112,7 +112,7 @@ public val TextBuffer.copyTargetList: TargetList?
   get() = gtk_text_buffer_get_copy_target_list(this)?.reinterpret()
 
 public val TextBuffer.hasSelection: Boolean
-  get() = gtk_text_buffer_get_has_selection(this).toBoolean
+  get() = gtk_text_buffer_get_has_selection(this).toBoolean()
 
 public val TextBuffer.insert: TextMark?
   get() = gtk_text_buffer_get_insert(this)?.reinterpret()
@@ -121,9 +121,9 @@ public val TextBuffer.lineCount: Int
   get() = gtk_text_buffer_get_line_count(this)
 
 public var TextBuffer.modified: Boolean
-  get() = gtk_text_buffer_get_modified(this).toBoolean
+  get() = gtk_text_buffer_get_modified(this).toBoolean()
   set(`value`) {
-    gtk_text_buffer_set_modified(this, `value`.toInt)
+    gtk_text_buffer_set_modified(this, `value`.toInt())
   }
 
 public val TextBuffer.pasteTargetList: TargetList?
@@ -163,8 +163,8 @@ public fun TextBuffer.backspace(
   iter: TextIter?,
   interactive: Boolean,
   defaultEditable: Boolean
-): Boolean = gtk_text_buffer_backspace(this, iter?.reinterpret(), interactive.toInt,
-    defaultEditable.toInt).toBoolean
+): Boolean = gtk_text_buffer_backspace(this, iter?.reinterpret(), interactive.toInt(),
+    defaultEditable.toInt()).toBoolean()
 
 public fun TextBuffer.beginUserAction(): Unit {
   gtk_text_buffer_begin_user_action(this)
@@ -182,10 +182,10 @@ public fun TextBuffer.createMark(
   `where`: TextIter?,
   leftGravity: Boolean
 ): TextMark? = gtk_text_buffer_create_mark(this, markName, `where`?.reinterpret(),
-    leftGravity.toInt)?.reinterpret()
+    leftGravity.toInt())?.reinterpret()
 
 public fun TextBuffer.cutClipboard(clipboard: Clipboard?, defaultEditable: Boolean): Unit {
-  gtk_text_buffer_cut_clipboard(this, clipboard?.reinterpret(), defaultEditable.toInt)
+  gtk_text_buffer_cut_clipboard(this, clipboard?.reinterpret(), defaultEditable.toInt())
 }
 
 public fun TextBuffer.delete(start: TextIter?, end: TextIter?): Unit {
@@ -197,7 +197,7 @@ public fun TextBuffer.deleteInteractive(
   endIter: TextIter?,
   defaultEditable: Boolean
 ): Boolean = gtk_text_buffer_delete_interactive(this, startIter?.reinterpret(),
-    endIter?.reinterpret(), defaultEditable.toInt).toBoolean
+    endIter?.reinterpret(), defaultEditable.toInt()).toBoolean()
 
 public fun TextBuffer.deleteMark(mark: TextMark?): Unit {
   gtk_text_buffer_delete_mark(this, mark?.reinterpret())
@@ -208,7 +208,7 @@ public fun TextBuffer.deleteMarkByName(name: String): Unit {
 }
 
 public fun TextBuffer.deleteSelection(interactive: Boolean, defaultEditable: Boolean): Boolean =
-    gtk_text_buffer_delete_selection(this, interactive.toInt, defaultEditable.toInt).toBoolean
+    gtk_text_buffer_delete_selection(this, interactive.toInt(), defaultEditable.toInt()).toBoolean()
 
 public fun TextBuffer.endUserAction(): Unit {
   gtk_text_buffer_end_user_action(this)
@@ -222,14 +222,14 @@ public fun TextBuffer.getSlice(
   end: TextIter?,
   includeHiddenChars: Boolean
 ): String = gtk_text_buffer_get_slice(this, start?.reinterpret(), end?.reinterpret(),
-    includeHiddenChars.toInt).toKString
+    includeHiddenChars.toInt()).toKString()
 
 public fun TextBuffer.getText(
   start: TextIter?,
   end: TextIter?,
   includeHiddenChars: Boolean
 ): String = gtk_text_buffer_get_text(this, start?.reinterpret(), end?.reinterpret(),
-    includeHiddenChars.toInt).toKString
+    includeHiddenChars.toInt()).toKString()
 
 public fun TextBuffer.insert(
   iter: TextIter?,
@@ -253,14 +253,14 @@ public fun TextBuffer.insertInteractive(
   len: Int,
   defaultEditable: Boolean
 ): Boolean = gtk_text_buffer_insert_interactive(this, iter?.reinterpret(), text, len,
-    defaultEditable.toInt).toBoolean
+    defaultEditable.toInt()).toBoolean()
 
 public fun TextBuffer.insertInteractiveAtCursor(
   text: String,
   len: Int,
   defaultEditable: Boolean
 ): Boolean = gtk_text_buffer_insert_interactive_at_cursor(this, text, len,
-    defaultEditable.toInt).toBoolean
+    defaultEditable.toInt()).toBoolean()
 
 public fun TextBuffer.insertMarkup(
   iter: TextIter?,
@@ -284,7 +284,7 @@ public fun TextBuffer.insertRangeInteractive(
   end: TextIter?,
   defaultEditable: Boolean
 ): Boolean = gtk_text_buffer_insert_range_interactive(this, iter?.reinterpret(),
-    start?.reinterpret(), end?.reinterpret(), defaultEditable.toInt).toBoolean
+    start?.reinterpret(), end?.reinterpret(), defaultEditable.toInt()).toBoolean()
 
 public fun TextBuffer.moveMark(mark: TextMark?, `where`: TextIter?): Unit {
   gtk_text_buffer_move_mark(this, mark?.reinterpret(), `where`?.reinterpret())
@@ -300,7 +300,7 @@ public fun TextBuffer.pasteClipboard(
   defaultEditable: Boolean
 ): Unit {
   gtk_text_buffer_paste_clipboard(this, clipboard?.reinterpret(), overrideLocation?.reinterpret(),
-      defaultEditable.toInt)
+      defaultEditable.toInt())
 }
 
 public fun TextBuffer.placeCursor(`where`: TextIter?): Unit {

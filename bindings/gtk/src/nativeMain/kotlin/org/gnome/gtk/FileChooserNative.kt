@@ -34,13 +34,13 @@ public object FileChooserNativeFactory {
 }
 
 public var FileChooserNative.acceptLabel: String
-  get() = gtk_file_chooser_native_get_accept_label(this).toKString
+  get() = gtk_file_chooser_native_get_accept_label(this).toKString()
   set(`value`) {
     gtk_file_chooser_native_set_accept_label(this, `value`)
   }
 
 public var FileChooserNative.cancelLabel: String
-  get() = gtk_file_chooser_native_get_cancel_label(this).toKString
+  get() = gtk_file_chooser_native_get_cancel_label(this).toKString()
   set(`value`) {
     gtk_file_chooser_native_set_cancel_label(this, `value`)
   }

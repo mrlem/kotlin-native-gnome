@@ -64,15 +64,15 @@ public var CellView.displayedRow: TreePath?
   }
 
 public var CellView.drawSensitive: Boolean
-  get() = gtk_cell_view_get_draw_sensitive(this).toBoolean
+  get() = gtk_cell_view_get_draw_sensitive(this).toBoolean()
   set(`value`) {
-    gtk_cell_view_set_draw_sensitive(this, `value`.toInt)
+    gtk_cell_view_set_draw_sensitive(this, `value`.toInt())
   }
 
 public var CellView.fitModel: Boolean
-  get() = gtk_cell_view_get_fit_model(this).toBoolean
+  get() = gtk_cell_view_get_fit_model(this).toBoolean()
   set(`value`) {
-    gtk_cell_view_set_fit_model(this, `value`.toInt)
+    gtk_cell_view_set_fit_model(this, `value`.toInt())
   }
 
 public var CellView.model: TreeModel?

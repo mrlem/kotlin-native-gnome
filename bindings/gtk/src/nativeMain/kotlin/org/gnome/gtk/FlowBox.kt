@@ -71,9 +71,9 @@ public val FlowBox.container: Container
   get() = pointed.container.ptr
 
 public var FlowBox.activateOnSingleClick: Boolean
-  get() = gtk_flow_box_get_activate_on_single_click(this).toBoolean
+  get() = gtk_flow_box_get_activate_on_single_click(this).toBoolean()
   set(`value`) {
-    gtk_flow_box_set_activate_on_single_click(this, `value`.toInt)
+    gtk_flow_box_set_activate_on_single_click(this, `value`.toInt())
   }
 
 public var FlowBox.columnSpacing: UInt
@@ -83,9 +83,9 @@ public var FlowBox.columnSpacing: UInt
   }
 
 public var FlowBox.homogeneous: Boolean
-  get() = gtk_flow_box_get_homogeneous(this).toBoolean
+  get() = gtk_flow_box_get_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_flow_box_set_homogeneous(this, `value`.toInt)
+    gtk_flow_box_set_homogeneous(this, `value`.toInt())
   }
 
 public var FlowBox.maxChildrenPerLine: UInt

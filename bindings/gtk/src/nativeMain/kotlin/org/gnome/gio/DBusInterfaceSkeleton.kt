@@ -54,14 +54,14 @@ public val DBusInterfaceSkeleton.info: DBusInterfaceInfo?
   get() = g_dbus_interface_skeleton_get_info(this)?.reinterpret()
 
 public val DBusInterfaceSkeleton.objectPath: String
-  get() = g_dbus_interface_skeleton_get_object_path(this).toKString
+  get() = g_dbus_interface_skeleton_get_object_path(this).toKString()
 
 @Throws(Error::class)
 public fun DBusInterfaceSkeleton.export(connection: DBusConnection?, objectPath: String): Boolean =
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_dbus_interface_skeleton_export(this@export, connection?.reinterpret(),
-      objectPath, errors).toBoolean
+      objectPath, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -71,7 +71,7 @@ public fun DBusInterfaceSkeleton.flush(): Unit {
 }
 
 public fun DBusInterfaceSkeleton.hasConnection(connection: DBusConnection?): Boolean =
-    g_dbus_interface_skeleton_has_connection(this, connection?.reinterpret()).toBoolean
+    g_dbus_interface_skeleton_has_connection(this, connection?.reinterpret()).toBoolean()
 
 public fun DBusInterfaceSkeleton.unexport(): Unit {
   g_dbus_interface_skeleton_unexport(this)

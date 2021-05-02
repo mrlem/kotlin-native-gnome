@@ -62,7 +62,7 @@ public var DataOutputStream.byteOrder: DataStreamByteOrder
 public fun DataOutputStream.putByte(`data`: UByte, cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_byte(this@putByte, `data`,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -72,7 +72,7 @@ public fun DataOutputStream.putInt16(`data`: Short, cancellable: Cancellable?): 
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_int16(this@putInt16, `data`,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -81,7 +81,7 @@ public fun DataOutputStream.putInt16(`data`: Short, cancellable: Cancellable?): 
 public fun DataOutputStream.putInt32(`data`: Int, cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_int32(this@putInt32, `data`,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -90,7 +90,7 @@ public fun DataOutputStream.putInt32(`data`: Int, cancellable: Cancellable?): Bo
 public fun DataOutputStream.putInt64(`data`: Long, cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_int64(this@putInt64, `data`,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -99,7 +99,7 @@ public fun DataOutputStream.putInt64(`data`: Long, cancellable: Cancellable?): B
 public fun DataOutputStream.putString(str: String, cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_string(this@putString, str,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -109,7 +109,7 @@ public fun DataOutputStream.putUint16(`data`: UShort, cancellable: Cancellable?)
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_uint16(this@putUint16, `data`,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -119,7 +119,7 @@ public fun DataOutputStream.putUint32(`data`: UInt, cancellable: Cancellable?): 
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_uint32(this@putUint32, `data`,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -129,7 +129,7 @@ public fun DataOutputStream.putUint64(`data`: ULong, cancellable: Cancellable?):
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_uint64(this@putUint64, `data`,
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

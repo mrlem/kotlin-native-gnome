@@ -50,14 +50,14 @@ public fun Overlay.addOverlay(widget: Widget?): Unit {
 }
 
 public fun Overlay.getOverlayPassThrough(widget: Widget?): Boolean =
-    gtk_overlay_get_overlay_pass_through(this, widget?.reinterpret()).toBoolean
+    gtk_overlay_get_overlay_pass_through(this, widget?.reinterpret()).toBoolean()
 
 public fun Overlay.reorderOverlay(child: Widget?, index: Int): Unit {
   gtk_overlay_reorder_overlay(this, child?.reinterpret(), index)
 }
 
 public fun Overlay.setOverlayPassThrough(widget: Widget?, passThrough: Boolean): Unit {
-  gtk_overlay_set_overlay_pass_through(this, widget?.reinterpret(), passThrough.toInt)
+  gtk_overlay_set_overlay_pass_through(this, widget?.reinterpret(), passThrough.toInt())
 }
 
 public fun Overlay.onGetChildPosition(callback: (Overlay) -> Unit): Overlay {

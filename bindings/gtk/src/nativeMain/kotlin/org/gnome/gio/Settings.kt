@@ -77,7 +77,7 @@ public val Settings.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public val Settings.hasUnapplied: Boolean
-  get() = g_settings_get_has_unapplied(this).toBoolean
+  get() = g_settings_get_has_unapplied(this).toBoolean()
 
 public fun Settings.apply(): Unit {
   g_settings_apply(this)
@@ -98,7 +98,7 @@ public fun Settings.bindWritable(
   `property`: String,
   inverted: Boolean
 ): Unit {
-  g_settings_bind_writable(this, key, `object`?.reinterpret(), `property`, inverted.toInt)
+  g_settings_bind_writable(this, key, `object`?.reinterpret(), `property`, inverted.toInt())
 }
 
 public fun Settings.createAction(key: String): Action? = g_settings_create_action(this,
@@ -108,7 +108,7 @@ public fun Settings.delay(): Unit {
   g_settings_delay(this)
 }
 
-public fun Settings.getBoolean(key: String): Boolean = g_settings_get_boolean(this, key).toBoolean
+public fun Settings.getBoolean(key: String): Boolean = g_settings_get_boolean(this, key).toBoolean()
 
 public fun Settings.getChild(name: String): Settings? = g_settings_get_child(this,
     name)?.reinterpret()
@@ -123,13 +123,14 @@ public fun Settings.getInt(key: String): Int = g_settings_get_int(this, key)
 
 public fun Settings.getInt64(key: String): Long = g_settings_get_int64(this, key)
 
-public fun Settings.getString(key: String): String = g_settings_get_string(this, key).toKString
+public fun Settings.getString(key: String): String = g_settings_get_string(this, key).toKString()
 
 public fun Settings.getUint(key: String): UInt = g_settings_get_uint(this, key)
 
 public fun Settings.getUint64(key: String): ULong = g_settings_get_uint64(this, key)
 
-public fun Settings.isWritable(name: String): Boolean = g_settings_is_writable(this, name).toBoolean
+public fun Settings.isWritable(name: String): Boolean = g_settings_is_writable(this,
+    name).toBoolean()
 
 public fun Settings.reset(key: String): Unit {
   g_settings_reset(this, key)
@@ -140,31 +141,31 @@ public fun Settings.revert(): Unit {
 }
 
 public fun Settings.setBoolean(key: String, `value`: Boolean): Boolean =
-    g_settings_set_boolean(this, key, `value`.toInt).toBoolean
+    g_settings_set_boolean(this, key, `value`.toInt()).toBoolean()
 
 public fun Settings.setDouble(key: String, `value`: Double): Boolean = g_settings_set_double(this,
-    key, `value`).toBoolean
+    key, `value`).toBoolean()
 
 public fun Settings.setEnum(key: String, `value`: Int): Boolean = g_settings_set_enum(this, key,
-    `value`).toBoolean
+    `value`).toBoolean()
 
 public fun Settings.setFlags(key: String, `value`: UInt): Boolean = g_settings_set_flags(this, key,
-    `value`).toBoolean
+    `value`).toBoolean()
 
 public fun Settings.setInt(key: String, `value`: Int): Boolean = g_settings_set_int(this, key,
-    `value`).toBoolean
+    `value`).toBoolean()
 
 public fun Settings.setInt64(key: String, `value`: Long): Boolean = g_settings_set_int64(this, key,
-    `value`).toBoolean
+    `value`).toBoolean()
 
 public fun Settings.setString(key: String, `value`: String): Boolean = g_settings_set_string(this,
-    key, `value`).toBoolean
+    key, `value`).toBoolean()
 
 public fun Settings.setUint(key: String, `value`: UInt): Boolean = g_settings_set_uint(this, key,
-    `value`).toBoolean
+    `value`).toBoolean()
 
 public fun Settings.setUint64(key: String, `value`: ULong): Boolean = g_settings_set_uint64(this,
-    key, `value`).toBoolean
+    key, `value`).toBoolean()
 
 public fun Settings.onChangeEvent(callback: (Settings) -> Unit): Settings {
   // TODO - handle callback data

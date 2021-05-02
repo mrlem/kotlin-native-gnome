@@ -60,9 +60,9 @@ public var Grid.baselineRow: Int
   }
 
 public var Grid.columnHomogeneous: Boolean
-  get() = gtk_grid_get_column_homogeneous(this).toBoolean
+  get() = gtk_grid_get_column_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_grid_set_column_homogeneous(this, `value`.toInt)
+    gtk_grid_set_column_homogeneous(this, `value`.toInt())
   }
 
 public var Grid.columnSpacing: UInt
@@ -72,9 +72,9 @@ public var Grid.columnSpacing: UInt
   }
 
 public var Grid.rowHomogeneous: Boolean
-  get() = gtk_grid_get_row_homogeneous(this).toBoolean
+  get() = gtk_grid_get_row_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_grid_set_row_homogeneous(this, `value`.toInt)
+    gtk_grid_set_row_homogeneous(this, `value`.toInt())
   }
 
 public var Grid.rowSpacing: UInt

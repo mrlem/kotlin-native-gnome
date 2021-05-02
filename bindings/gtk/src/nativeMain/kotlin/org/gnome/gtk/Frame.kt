@@ -49,7 +49,7 @@ public val Frame.bin: Bin
   get() = pointed.bin.ptr
 
 public var Frame.label: String
-  get() = gtk_frame_get_label(this).toKString
+  get() = gtk_frame_get_label(this).toKString()
   set(`value`) {
     gtk_frame_set_label(this, `value`)
   }

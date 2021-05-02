@@ -57,7 +57,7 @@ public fun Cancellable.disconnect(handlerId: ULong): Unit {
   g_cancellable_disconnect(this, handlerId)
 }
 
-public fun Cancellable.isCancelled(): Boolean = g_cancellable_is_cancelled(this).toBoolean
+public fun Cancellable.isCancelled(): Boolean = g_cancellable_is_cancelled(this).toBoolean()
 
 public fun Cancellable.popCurrent(): Unit {
   g_cancellable_pop_current(this)
@@ -79,7 +79,7 @@ public fun Cancellable.reset(): Unit {
 public fun Cancellable.setErrorIfCancelled(): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_cancellable_set_error_if_cancelled(this@setErrorIfCancelled,
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

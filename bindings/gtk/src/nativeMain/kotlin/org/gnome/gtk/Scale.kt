@@ -69,15 +69,15 @@ public var Scale.digits: Int
   }
 
 public var Scale.drawValue: Boolean
-  get() = gtk_scale_get_draw_value(this).toBoolean
+  get() = gtk_scale_get_draw_value(this).toBoolean()
   set(`value`) {
-    gtk_scale_set_draw_value(this, `value`.toInt)
+    gtk_scale_set_draw_value(this, `value`.toInt())
   }
 
 public var Scale.hasOrigin: Boolean
-  get() = gtk_scale_get_has_origin(this).toBoolean
+  get() = gtk_scale_get_has_origin(this).toBoolean()
   set(`value`) {
-    gtk_scale_set_has_origin(this, `value`.toInt)
+    gtk_scale_set_has_origin(this, `value`.toInt())
   }
 
 public var Scale.valuePos: PositionType

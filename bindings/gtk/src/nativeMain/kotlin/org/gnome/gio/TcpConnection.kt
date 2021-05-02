@@ -29,7 +29,7 @@ public val TcpConnection.parentInstance: SocketConnection
   get() = pointed.parent_instance.ptr
 
 public var TcpConnection.gracefulDisconnect: Boolean
-  get() = g_tcp_connection_get_graceful_disconnect(this).toBoolean
+  get() = g_tcp_connection_get_graceful_disconnect(this).toBoolean()
   set(`value`) {
-    g_tcp_connection_set_graceful_disconnect(this, `value`.toInt)
+    g_tcp_connection_set_graceful_disconnect(this, `value`.toInt())
   }

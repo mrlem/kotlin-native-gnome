@@ -73,7 +73,7 @@ public fun Calendar.clearMarks(): Unit {
 }
 
 public fun Calendar.getDayIsMarked(day: UInt): Boolean = gtk_calendar_get_day_is_marked(this,
-    day).toBoolean
+    day).toBoolean()
 
 public fun Calendar.markDay(day: UInt): Unit {
   gtk_calendar_mark_day(this, day)

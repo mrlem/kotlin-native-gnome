@@ -64,21 +64,21 @@ public val Expander.bin: Bin
   get() = pointed.bin.ptr
 
 public var Expander.expanded: Boolean
-  get() = gtk_expander_get_expanded(this).toBoolean
+  get() = gtk_expander_get_expanded(this).toBoolean()
   set(`value`) {
-    gtk_expander_set_expanded(this, `value`.toInt)
+    gtk_expander_set_expanded(this, `value`.toInt())
   }
 
 public var Expander.label: String
-  get() = gtk_expander_get_label(this).toKString
+  get() = gtk_expander_get_label(this).toKString()
   set(`value`) {
     gtk_expander_set_label(this, `value`)
   }
 
 public var Expander.labelFill: Boolean
-  get() = gtk_expander_get_label_fill(this).toBoolean
+  get() = gtk_expander_get_label_fill(this).toBoolean()
   set(`value`) {
-    gtk_expander_set_label_fill(this, `value`.toInt)
+    gtk_expander_set_label_fill(this, `value`.toInt())
   }
 
 public var Expander.labelWidget: Widget?
@@ -88,21 +88,21 @@ public var Expander.labelWidget: Widget?
   }
 
 public var Expander.resizeToplevel: Boolean
-  get() = gtk_expander_get_resize_toplevel(this).toBoolean
+  get() = gtk_expander_get_resize_toplevel(this).toBoolean()
   set(`value`) {
-    gtk_expander_set_resize_toplevel(this, `value`.toInt)
+    gtk_expander_set_resize_toplevel(this, `value`.toInt())
   }
 
 public var Expander.useMarkup: Boolean
-  get() = gtk_expander_get_use_markup(this).toBoolean
+  get() = gtk_expander_get_use_markup(this).toBoolean()
   set(`value`) {
-    gtk_expander_set_use_markup(this, `value`.toInt)
+    gtk_expander_set_use_markup(this, `value`.toInt())
   }
 
 public var Expander.useUnderline: Boolean
-  get() = gtk_expander_get_use_underline(this).toBoolean
+  get() = gtk_expander_get_use_underline(this).toBoolean()
   set(`value`) {
-    gtk_expander_set_use_underline(this, `value`.toInt)
+    gtk_expander_set_use_underline(this, `value`.toInt())
   }
 
 public fun Expander.onActivate(callback: (Expander) -> Unit): Expander {

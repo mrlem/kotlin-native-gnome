@@ -77,7 +77,7 @@ public var Builder.application: Application?
   }
 
 public var Builder.translationDomain: String
-  get() = gtk_builder_get_translation_domain(this).toKString
+  get() = gtk_builder_get_translation_domain(this).toKString()
   set(`value`) {
     gtk_builder_set_translation_domain(this, `value`)
   }

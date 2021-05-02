@@ -53,15 +53,15 @@ public var ButtonBox.layout: ButtonBoxStyle
   }
 
 public fun ButtonBox.getChildNonHomogeneous(child: Widget?): Boolean =
-    gtk_button_box_get_child_non_homogeneous(this, child?.reinterpret()).toBoolean
+    gtk_button_box_get_child_non_homogeneous(this, child?.reinterpret()).toBoolean()
 
 public fun ButtonBox.getChildSecondary(child: Widget?): Boolean =
-    gtk_button_box_get_child_secondary(this, child?.reinterpret()).toBoolean
+    gtk_button_box_get_child_secondary(this, child?.reinterpret()).toBoolean()
 
 public fun ButtonBox.setChildNonHomogeneous(child: Widget?, nonHomogeneous: Boolean): Unit {
-  gtk_button_box_set_child_non_homogeneous(this, child?.reinterpret(), nonHomogeneous.toInt)
+  gtk_button_box_set_child_non_homogeneous(this, child?.reinterpret(), nonHomogeneous.toInt())
 }
 
 public fun ButtonBox.setChildSecondary(child: Widget?, isSecondary: Boolean): Unit {
-  gtk_button_box_set_child_secondary(this, child?.reinterpret(), isSecondary.toInt)
+  gtk_button_box_set_child_secondary(this, child?.reinterpret(), isSecondary.toInt())
 }

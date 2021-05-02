@@ -79,16 +79,16 @@ public val DBusConnection.capabilities: DBusCapabilityFlags
   get() = g_dbus_connection_get_capabilities(this)
 
 public var DBusConnection.exitOnClose: Boolean
-  get() = g_dbus_connection_get_exit_on_close(this).toBoolean
+  get() = g_dbus_connection_get_exit_on_close(this).toBoolean()
   set(`value`) {
-    g_dbus_connection_set_exit_on_close(this, `value`.toInt)
+    g_dbus_connection_set_exit_on_close(this, `value`.toInt())
   }
 
 public val DBusConnection.flags: DBusConnectionFlags
   get() = g_dbus_connection_get_flags(this)
 
 public val DBusConnection.guid: String
-  get() = g_dbus_connection_get_guid(this).toKString
+  get() = g_dbus_connection_get_guid(this).toKString()
 
 public val DBusConnection.lastSerial: UInt
   get() = g_dbus_connection_get_last_serial(this)
@@ -100,13 +100,13 @@ public val DBusConnection.stream: IOStream?
   get() = g_dbus_connection_get_stream(this)?.reinterpret()
 
 public val DBusConnection.uniqueName: String
-  get() = g_dbus_connection_get_unique_name(this).toKString
+  get() = g_dbus_connection_get_unique_name(this).toKString()
 
 @Throws(Error::class)
 public fun DBusConnection.closeFinish(res: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_dbus_connection_close_finish(this@closeFinish, res?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -115,7 +115,7 @@ public fun DBusConnection.closeFinish(res: AsyncResult?): Boolean = memScoped {
 public fun DBusConnection.closeSync(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_dbus_connection_close_sync(this@closeSync, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -143,7 +143,7 @@ public fun DBusConnection.exportMenuModel(objectPath: String, menu: MenuModel?):
 public fun DBusConnection.flushFinish(res: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_dbus_connection_flush_finish(this@flushFinish, res?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -152,12 +152,12 @@ public fun DBusConnection.flushFinish(res: AsyncResult?): Boolean = memScoped {
 public fun DBusConnection.flushSync(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_dbus_connection_flush_sync(this@flushSync, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
-public fun DBusConnection.isClosed(): Boolean = g_dbus_connection_is_closed(this).toBoolean
+public fun DBusConnection.isClosed(): Boolean = g_dbus_connection_is_closed(this).toBoolean()
 
 @Throws(Error::class)
 public fun DBusConnection.registerObject(
@@ -206,10 +206,10 @@ public fun DBusConnection.unexportMenuModel(exportId: UInt): Unit {
 }
 
 public fun DBusConnection.unregisterObject(registrationId: UInt): Boolean =
-    g_dbus_connection_unregister_object(this, registrationId).toBoolean
+    g_dbus_connection_unregister_object(this, registrationId).toBoolean()
 
 public fun DBusConnection.unregisterSubtree(registrationId: UInt): Boolean =
-    g_dbus_connection_unregister_subtree(this, registrationId).toBoolean
+    g_dbus_connection_unregister_subtree(this, registrationId).toBoolean()
 
 public fun DBusConnection.onClosed(callback: (DBusConnection) -> Unit): DBusConnection {
   // TODO - handle callback data

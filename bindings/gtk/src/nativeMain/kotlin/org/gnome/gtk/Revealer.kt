@@ -47,12 +47,12 @@ public val Revealer.parentInstance: Bin
   get() = pointed.parent_instance.ptr
 
 public val Revealer.childRevealed: Boolean
-  get() = gtk_revealer_get_child_revealed(this).toBoolean
+  get() = gtk_revealer_get_child_revealed(this).toBoolean()
 
 public var Revealer.revealChild: Boolean
-  get() = gtk_revealer_get_reveal_child(this).toBoolean
+  get() = gtk_revealer_get_reveal_child(this).toBoolean()
   set(`value`) {
-    gtk_revealer_set_reveal_child(this, `value`.toInt)
+    gtk_revealer_set_reveal_child(this, `value`.toInt())
   }
 
 public var Revealer.transitionDuration: UInt

@@ -131,7 +131,7 @@ public fun StyleContext.getStyleProperty(propertyName: String, `value`: Value?):
 }
 
 public fun StyleContext.hasClass(className: String): Boolean = gtk_style_context_has_class(this,
-    className).toBoolean
+    className).toBoolean()
 
 public fun StyleContext.removeClass(className: String): Unit {
   gtk_style_context_remove_class(this, className)
@@ -150,7 +150,7 @@ public fun StyleContext.save(): Unit {
 }
 
 public fun StyleContext.toString(flags: StyleContextPrintFlags): String =
-    gtk_style_context_to_string(this, flags).toKString
+    gtk_style_context_to_string(this, flags).toKString()
 
 public fun StyleContext.onChanged(callback: (StyleContext) -> Unit): StyleContext {
   // TODO - handle callback data

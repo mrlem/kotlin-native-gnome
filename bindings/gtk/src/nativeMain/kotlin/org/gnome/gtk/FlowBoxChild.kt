@@ -50,7 +50,7 @@ public fun FlowBoxChild.changed(): Unit {
   gtk_flow_box_child_changed(this)
 }
 
-public fun FlowBoxChild.isSelected(): Boolean = gtk_flow_box_child_is_selected(this).toBoolean
+public fun FlowBoxChild.isSelected(): Boolean = gtk_flow_box_child_is_selected(this).toBoolean()
 
 public fun FlowBoxChild.onActivate(callback: (FlowBoxChild) -> Unit): FlowBoxChild {
   // TODO - handle callback data

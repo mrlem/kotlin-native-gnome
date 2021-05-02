@@ -64,7 +64,7 @@ public fun OutputStream.clearPending(): Unit {
 public fun OutputStream.close(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_output_stream_close(this@close, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -73,7 +73,7 @@ public fun OutputStream.close(cancellable: Cancellable?): Boolean = memScoped {
 public fun OutputStream.closeFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_output_stream_close_finish(this@closeFinish, result?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -82,7 +82,7 @@ public fun OutputStream.closeFinish(result: AsyncResult?): Boolean = memScoped {
 public fun OutputStream.flush(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_output_stream_flush(this@flush, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -91,21 +91,21 @@ public fun OutputStream.flush(cancellable: Cancellable?): Boolean = memScoped {
 public fun OutputStream.flushFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_output_stream_flush_finish(this@flushFinish, result?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
-public fun OutputStream.hasPending(): Boolean = g_output_stream_has_pending(this).toBoolean
+public fun OutputStream.hasPending(): Boolean = g_output_stream_has_pending(this).toBoolean()
 
-public fun OutputStream.isClosed(): Boolean = g_output_stream_is_closed(this).toBoolean
+public fun OutputStream.isClosed(): Boolean = g_output_stream_is_closed(this).toBoolean()
 
-public fun OutputStream.isClosing(): Boolean = g_output_stream_is_closing(this).toBoolean
+public fun OutputStream.isClosing(): Boolean = g_output_stream_is_closing(this).toBoolean()
 
 @Throws(Error::class)
 public fun OutputStream.setPending(): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_output_stream_set_pending(this@setPending, errors).toBoolean
+  val result: Boolean = g_output_stream_set_pending(this@setPending, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

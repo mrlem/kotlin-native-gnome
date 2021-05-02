@@ -32,7 +32,7 @@ public val IMMulticontext.`object`: IMContext
   get() = pointed.`object`.ptr
 
 public var IMMulticontext.contextId: String
-  get() = gtk_im_multicontext_get_context_id(this).toKString
+  get() = gtk_im_multicontext_get_context_id(this).toKString()
   set(`value`) {
     gtk_im_multicontext_set_context_id(this, `value`)
   }

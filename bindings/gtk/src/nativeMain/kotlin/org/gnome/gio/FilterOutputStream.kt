@@ -30,7 +30,7 @@ public val FilterOutputStream.baseStream: OutputStream?
   get() = g_filter_output_stream_get_base_stream(this)?.reinterpret()
 
 public var FilterOutputStream.closeBaseStream: Boolean
-  get() = g_filter_output_stream_get_close_base_stream(this).toBoolean
+  get() = g_filter_output_stream_get_close_base_stream(this).toBoolean()
   set(`value`) {
-    g_filter_output_stream_set_close_base_stream(this, `value`.toInt)
+    g_filter_output_stream_set_close_base_stream(this, `value`.toInt())
   }

@@ -67,16 +67,16 @@ public var DBusProxy.interfaceInfo: DBusInterfaceInfo?
   }
 
 public val DBusProxy.interfaceName: String
-  get() = g_dbus_proxy_get_interface_name(this).toKString
+  get() = g_dbus_proxy_get_interface_name(this).toKString()
 
 public val DBusProxy.name: String
-  get() = g_dbus_proxy_get_name(this).toKString
+  get() = g_dbus_proxy_get_name(this).toKString()
 
 public val DBusProxy.nameOwner: String
-  get() = g_dbus_proxy_get_name_owner(this).toKString
+  get() = g_dbus_proxy_get_name_owner(this).toKString()
 
 public val DBusProxy.objectPath: String
-  get() = g_dbus_proxy_get_object_path(this).toKString
+  get() = g_dbus_proxy_get_object_path(this).toKString()
 
 public fun DBusProxy.onGPropertiesChanged(callback: (DBusProxy) -> Unit): DBusProxy {
   // TODO - handle callback data

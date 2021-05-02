@@ -160,9 +160,9 @@ public val Window.bin: Bin
   get() = pointed.bin.ptr
 
 public var Window.acceptFocus: Boolean
-  get() = gtk_window_get_accept_focus(this).toBoolean
+  get() = gtk_window_get_accept_focus(this).toBoolean()
   set(`value`) {
-    gtk_window_set_accept_focus(this, `value`.toInt)
+    gtk_window_set_accept_focus(this, `value`.toInt())
   }
 
 public var Window.application: Application?
@@ -178,24 +178,24 @@ public var Window.attachedTo: Widget?
   }
 
 public var Window.decorated: Boolean
-  get() = gtk_window_get_decorated(this).toBoolean
+  get() = gtk_window_get_decorated(this).toBoolean()
   set(`value`) {
-    gtk_window_set_decorated(this, `value`.toInt)
+    gtk_window_set_decorated(this, `value`.toInt())
   }
 
 public val Window.defaultWidget: Widget?
   get() = gtk_window_get_default_widget(this)?.reinterpret()
 
 public var Window.deletable: Boolean
-  get() = gtk_window_get_deletable(this).toBoolean
+  get() = gtk_window_get_deletable(this).toBoolean()
   set(`value`) {
-    gtk_window_set_deletable(this, `value`.toInt)
+    gtk_window_set_deletable(this, `value`.toInt())
   }
 
 public var Window.destroyWithParent: Boolean
-  get() = gtk_window_get_destroy_with_parent(this).toBoolean
+  get() = gtk_window_get_destroy_with_parent(this).toBoolean()
   set(`value`) {
-    gtk_window_set_destroy_with_parent(this, `value`.toInt)
+    gtk_window_set_destroy_with_parent(this, `value`.toInt())
   }
 
 public var Window.focus: Widget?
@@ -205,70 +205,70 @@ public var Window.focus: Widget?
   }
 
 public var Window.focusOnMap: Boolean
-  get() = gtk_window_get_focus_on_map(this).toBoolean
+  get() = gtk_window_get_focus_on_map(this).toBoolean()
   set(`value`) {
-    gtk_window_set_focus_on_map(this, `value`.toInt)
+    gtk_window_set_focus_on_map(this, `value`.toInt())
   }
 
 public var Window.focusVisible: Boolean
-  get() = gtk_window_get_focus_visible(this).toBoolean
+  get() = gtk_window_get_focus_visible(this).toBoolean()
   set(`value`) {
-    gtk_window_set_focus_visible(this, `value`.toInt)
+    gtk_window_set_focus_visible(this, `value`.toInt())
   }
 
 public val Window.group: WindowGroup?
   get() = gtk_window_get_group(this)?.reinterpret()
 
 public var Window.hideTitlebarWhenMaximized: Boolean
-  get() = gtk_window_get_hide_titlebar_when_maximized(this).toBoolean
+  get() = gtk_window_get_hide_titlebar_when_maximized(this).toBoolean()
   set(`value`) {
-    gtk_window_set_hide_titlebar_when_maximized(this, `value`.toInt)
+    gtk_window_set_hide_titlebar_when_maximized(this, `value`.toInt())
   }
 
 public var Window.iconName: String
-  get() = gtk_window_get_icon_name(this).toKString
+  get() = gtk_window_get_icon_name(this).toKString()
   set(`value`) {
     gtk_window_set_icon_name(this, `value`)
   }
 
 public var Window.mnemonicsVisible: Boolean
-  get() = gtk_window_get_mnemonics_visible(this).toBoolean
+  get() = gtk_window_get_mnemonics_visible(this).toBoolean()
   set(`value`) {
-    gtk_window_set_mnemonics_visible(this, `value`.toInt)
+    gtk_window_set_mnemonics_visible(this, `value`.toInt())
   }
 
 public var Window.modal: Boolean
-  get() = gtk_window_get_modal(this).toBoolean
+  get() = gtk_window_get_modal(this).toBoolean()
   set(`value`) {
-    gtk_window_set_modal(this, `value`.toInt)
+    gtk_window_set_modal(this, `value`.toInt())
   }
 
 public var Window.resizable: Boolean
-  get() = gtk_window_get_resizable(this).toBoolean
+  get() = gtk_window_get_resizable(this).toBoolean()
   set(`value`) {
-    gtk_window_set_resizable(this, `value`.toInt)
+    gtk_window_set_resizable(this, `value`.toInt())
   }
 
 public var Window.role: String
-  get() = gtk_window_get_role(this).toKString
+  get() = gtk_window_get_role(this).toKString()
   set(`value`) {
     gtk_window_set_role(this, `value`)
   }
 
 public var Window.skipPagerHint: Boolean
-  get() = gtk_window_get_skip_pager_hint(this).toBoolean
+  get() = gtk_window_get_skip_pager_hint(this).toBoolean()
   set(`value`) {
-    gtk_window_set_skip_pager_hint(this, `value`.toInt)
+    gtk_window_set_skip_pager_hint(this, `value`.toInt())
   }
 
 public var Window.skipTaskbarHint: Boolean
-  get() = gtk_window_get_skip_taskbar_hint(this).toBoolean
+  get() = gtk_window_get_skip_taskbar_hint(this).toBoolean()
   set(`value`) {
-    gtk_window_set_skip_taskbar_hint(this, `value`.toInt)
+    gtk_window_set_skip_taskbar_hint(this, `value`.toInt())
   }
 
 public var Window.title: String
-  get() = gtk_window_get_title(this).toKString
+  get() = gtk_window_get_title(this).toKString()
   set(`value`) {
     gtk_window_set_title(this, `value`)
   }
@@ -286,17 +286,17 @@ public var Window.transientFor: Window?
   }
 
 public var Window.urgencyHint: Boolean
-  get() = gtk_window_get_urgency_hint(this).toBoolean
+  get() = gtk_window_get_urgency_hint(this).toBoolean()
   set(`value`) {
-    gtk_window_set_urgency_hint(this, `value`.toInt)
+    gtk_window_set_urgency_hint(this, `value`.toInt())
   }
 
 public val Window.windowType: WindowType
   get() = gtk_window_get_window_type(this)
 
-public fun Window.activateDefault(): Boolean = gtk_window_activate_default(this).toBoolean
+public fun Window.activateDefault(): Boolean = gtk_window_activate_default(this).toBoolean()
 
-public fun Window.activateFocus(): Boolean = gtk_window_activate_focus(this).toBoolean
+public fun Window.activateFocus(): Boolean = gtk_window_activate_focus(this).toBoolean()
 
 public fun Window.addAccelGroup(accelGroup: AccelGroup?): Unit {
   gtk_window_add_accel_group(this, accelGroup?.reinterpret())
@@ -327,17 +327,17 @@ public fun Window.fullscreen(): Unit {
   gtk_window_fullscreen(this)
 }
 
-public fun Window.hasGroup(): Boolean = gtk_window_has_group(this).toBoolean
+public fun Window.hasGroup(): Boolean = gtk_window_has_group(this).toBoolean()
 
-public fun Window.hasToplevelFocus(): Boolean = gtk_window_has_toplevel_focus(this).toBoolean
+public fun Window.hasToplevelFocus(): Boolean = gtk_window_has_toplevel_focus(this).toBoolean()
 
 public fun Window.iconify(): Unit {
   gtk_window_iconify(this)
 }
 
-public fun Window.isActive(): Boolean = gtk_window_is_active(this).toBoolean
+public fun Window.isActive(): Boolean = gtk_window_is_active(this).toBoolean()
 
-public fun Window.isMaximized(): Boolean = gtk_window_is_maximized(this).toBoolean
+public fun Window.isMaximized(): Boolean = gtk_window_is_maximized(this).toBoolean()
 
 public fun Window.maximize(): Unit {
   gtk_window_maximize(this)
@@ -376,24 +376,24 @@ public fun Window.setDefaultSize(width: Int, height: Int): Unit {
 }
 
 public fun Window.setHasUserRefCount(setting: Boolean): Unit {
-  gtk_window_set_has_user_ref_count(this, setting.toInt)
+  gtk_window_set_has_user_ref_count(this, setting.toInt())
 }
 
 @Throws(Error::class)
 public fun Window.setIconFromFile(filename: String): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = gtk_window_set_icon_from_file(this@setIconFromFile, filename,
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
 public fun Window.setKeepAbove(setting: Boolean): Unit {
-  gtk_window_set_keep_above(this, setting.toInt)
+  gtk_window_set_keep_above(this, setting.toInt())
 }
 
 public fun Window.setKeepBelow(setting: Boolean): Unit {
-  gtk_window_set_keep_below(this, setting.toInt)
+  gtk_window_set_keep_below(this, setting.toInt())
 }
 
 public fun Window.setPosition(position: WindowPosition): Unit {

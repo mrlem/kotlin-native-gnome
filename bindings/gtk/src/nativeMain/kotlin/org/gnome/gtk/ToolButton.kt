@@ -61,7 +61,7 @@ public val ToolButton.parent: ToolItem
   get() = pointed.parent.ptr
 
 public var ToolButton.iconName: String
-  get() = gtk_tool_button_get_icon_name(this).toKString
+  get() = gtk_tool_button_get_icon_name(this).toKString()
   set(`value`) {
     gtk_tool_button_set_icon_name(this, `value`)
   }
@@ -73,7 +73,7 @@ public var ToolButton.iconWidget: Widget?
   }
 
 public var ToolButton.label: String
-  get() = gtk_tool_button_get_label(this).toKString
+  get() = gtk_tool_button_get_label(this).toKString()
   set(`value`) {
     gtk_tool_button_set_label(this, `value`)
   }
@@ -85,9 +85,9 @@ public var ToolButton.labelWidget: Widget?
   }
 
 public var ToolButton.useUnderline: Boolean
-  get() = gtk_tool_button_get_use_underline(this).toBoolean
+  get() = gtk_tool_button_get_use_underline(this).toBoolean()
   set(`value`) {
-    gtk_tool_button_set_use_underline(this, `value`.toInt)
+    gtk_tool_button_set_use_underline(this, `value`.toInt())
   }
 
 public fun ToolButton.onClicked(callback: (ToolButton) -> Unit): ToolButton {

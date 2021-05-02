@@ -38,22 +38,22 @@ public val ProxyAddress.parentInstance: InetSocketAddress
   get() = pointed.parent_instance.ptr
 
 public val ProxyAddress.destinationHostname: String
-  get() = g_proxy_address_get_destination_hostname(this).toKString
+  get() = g_proxy_address_get_destination_hostname(this).toKString()
 
 public val ProxyAddress.destinationPort: UShort
   get() = g_proxy_address_get_destination_port(this)
 
 public val ProxyAddress.destinationProtocol: String
-  get() = g_proxy_address_get_destination_protocol(this).toKString
+  get() = g_proxy_address_get_destination_protocol(this).toKString()
 
 public val ProxyAddress.password: String
-  get() = g_proxy_address_get_password(this).toKString
+  get() = g_proxy_address_get_password(this).toKString()
 
 public val ProxyAddress.protocol: String
-  get() = g_proxy_address_get_protocol(this).toKString
+  get() = g_proxy_address_get_protocol(this).toKString()
 
 public val ProxyAddress.uri: String
-  get() = g_proxy_address_get_uri(this).toKString
+  get() = g_proxy_address_get_uri(this).toKString()
 
 public val ProxyAddress.username: String
-  get() = g_proxy_address_get_username(this).toKString
+  get() = g_proxy_address_get_username(this).toKString()

@@ -66,9 +66,9 @@ public var Box.centerWidget: Widget?
   }
 
 public var Box.homogeneous: Boolean
-  get() = gtk_box_get_homogeneous(this).toBoolean
+  get() = gtk_box_get_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_box_set_homogeneous(this, `value`.toInt)
+    gtk_box_set_homogeneous(this, `value`.toInt())
   }
 
 public var Box.spacing: Int
@@ -83,7 +83,7 @@ public fun Box.packEnd(
   fill: Boolean,
   padding: UInt
 ): Unit {
-  gtk_box_pack_end(this, child?.reinterpret(), expand.toInt, fill.toInt, padding)
+  gtk_box_pack_end(this, child?.reinterpret(), expand.toInt(), fill.toInt(), padding)
 }
 
 public fun Box.packStart(
@@ -92,7 +92,7 @@ public fun Box.packStart(
   fill: Boolean,
   padding: UInt
 ): Unit {
-  gtk_box_pack_start(this, child?.reinterpret(), expand.toInt, fill.toInt, padding)
+  gtk_box_pack_start(this, child?.reinterpret(), expand.toInt(), fill.toInt(), padding)
 }
 
 public fun Box.reorderChild(child: Widget?, position: Int): Unit {
@@ -106,5 +106,6 @@ public fun Box.setChildPacking(
   padding: UInt,
   packType: PackType
 ): Unit {
-  gtk_box_set_child_packing(this, child?.reinterpret(), expand.toInt, fill.toInt, padding, packType)
+  gtk_box_set_child_packing(this, child?.reinterpret(), expand.toInt(), fill.toInt(), padding,
+      packType)
 }

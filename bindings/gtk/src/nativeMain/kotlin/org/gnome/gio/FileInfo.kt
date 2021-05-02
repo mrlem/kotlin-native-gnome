@@ -93,25 +93,25 @@ public object FileInfoFactory {
 }
 
 public var FileInfo.contentType: String
-  get() = g_file_info_get_content_type(this).toKString
+  get() = g_file_info_get_content_type(this).toKString()
   set(`value`) {
     g_file_info_set_content_type(this, `value`)
   }
 
 public var FileInfo.displayName: String
-  get() = g_file_info_get_display_name(this).toKString
+  get() = g_file_info_get_display_name(this).toKString()
   set(`value`) {
     g_file_info_set_display_name(this, `value`)
   }
 
 public var FileInfo.editName: String
-  get() = g_file_info_get_edit_name(this).toKString
+  get() = g_file_info_get_edit_name(this).toKString()
   set(`value`) {
     g_file_info_set_edit_name(this, `value`)
   }
 
 public val FileInfo.etag: String
-  get() = g_file_info_get_etag(this).toKString
+  get() = g_file_info_get_etag(this).toKString()
 
 public var FileInfo.fileType: FileType
   get() = g_file_info_get_file_type(this)
@@ -126,22 +126,22 @@ public var FileInfo.icon: Icon?
   }
 
 public val FileInfo.isBackup: Boolean
-  get() = g_file_info_get_is_backup(this).toBoolean
+  get() = g_file_info_get_is_backup(this).toBoolean()
 
 public var FileInfo.isHidden: Boolean
-  get() = g_file_info_get_is_hidden(this).toBoolean
+  get() = g_file_info_get_is_hidden(this).toBoolean()
   set(`value`) {
-    g_file_info_set_is_hidden(this, `value`.toInt)
+    g_file_info_set_is_hidden(this, `value`.toInt())
   }
 
 public var FileInfo.isSymlink: Boolean
-  get() = g_file_info_get_is_symlink(this).toBoolean
+  get() = g_file_info_get_is_symlink(this).toBoolean()
   set(`value`) {
-    g_file_info_set_is_symlink(this, `value`.toInt)
+    g_file_info_set_is_symlink(this, `value`.toInt())
   }
 
 public var FileInfo.name: String
-  get() = g_file_info_get_name(this).toKString
+  get() = g_file_info_get_name(this).toKString()
   set(`value`) {
     g_file_info_set_name(this, `value`)
   }
@@ -165,7 +165,7 @@ public var FileInfo.symbolicIcon: Icon?
   }
 
 public var FileInfo.symlinkTarget: String
-  get() = g_file_info_get_symlink_target(this).toKString
+  get() = g_file_info_get_symlink_target(this).toKString()
   set(`value`) {
     g_file_info_set_symlink_target(this, `value`)
   }
@@ -181,13 +181,13 @@ public fun FileInfo.copyInto(destInfo: FileInfo?): Unit {
 public fun FileInfo.dup(): FileInfo? = g_file_info_dup(this)?.reinterpret()
 
 public fun FileInfo.getAttributeAsString(attribute: String): String =
-    g_file_info_get_attribute_as_string(this, attribute).toKString
+    g_file_info_get_attribute_as_string(this, attribute).toKString()
 
 public fun FileInfo.getAttributeBoolean(attribute: String): Boolean =
-    g_file_info_get_attribute_boolean(this, attribute).toBoolean
+    g_file_info_get_attribute_boolean(this, attribute).toBoolean()
 
 public fun FileInfo.getAttributeByteString(attribute: String): String =
-    g_file_info_get_attribute_byte_string(this, attribute).toKString
+    g_file_info_get_attribute_byte_string(this, attribute).toKString()
 
 public fun FileInfo.getAttributeInt32(attribute: String): Int =
     g_file_info_get_attribute_int32(this, attribute)
@@ -202,7 +202,7 @@ public fun FileInfo.getAttributeStatus(attribute: String): FileAttributeStatus =
     g_file_info_get_attribute_status(this, attribute)
 
 public fun FileInfo.getAttributeString(attribute: String): String =
-    g_file_info_get_attribute_string(this, attribute).toKString
+    g_file_info_get_attribute_string(this, attribute).toKString()
 
 public fun FileInfo.getAttributeType(attribute: String): FileAttributeType =
     g_file_info_get_attribute_type(this, attribute)
@@ -214,17 +214,17 @@ public fun FileInfo.getAttributeUint64(attribute: String): ULong =
     g_file_info_get_attribute_uint64(this, attribute)
 
 public fun FileInfo.hasAttribute(attribute: String): Boolean = g_file_info_has_attribute(this,
-    attribute).toBoolean
+    attribute).toBoolean()
 
 public fun FileInfo.hasNamespace(nameSpace: String): Boolean = g_file_info_has_namespace(this,
-    nameSpace).toBoolean
+    nameSpace).toBoolean()
 
 public fun FileInfo.removeAttribute(attribute: String): Unit {
   g_file_info_remove_attribute(this, attribute)
 }
 
 public fun FileInfo.setAttributeBoolean(attribute: String, attrValue: Boolean): Unit {
-  g_file_info_set_attribute_boolean(this, attribute, attrValue.toInt)
+  g_file_info_set_attribute_boolean(this, attribute, attrValue.toInt())
 }
 
 public fun FileInfo.setAttributeByteString(attribute: String, attrValue: String): Unit {
@@ -248,7 +248,7 @@ public fun FileInfo.setAttributeObject(attribute: String, attrValue: Object?): U
 }
 
 public fun FileInfo.setAttributeStatus(attribute: String, status: FileAttributeStatus): Boolean =
-    g_file_info_set_attribute_status(this, attribute, status).toBoolean
+    g_file_info_set_attribute_status(this, attribute, status).toBoolean()
 
 public fun FileInfo.setAttributeString(attribute: String, attrValue: String): Unit {
   g_file_info_set_attribute_string(this, attribute, attrValue)

@@ -57,9 +57,9 @@ public var ProgressBar.fraction: Double
   }
 
 public var ProgressBar.inverted: Boolean
-  get() = gtk_progress_bar_get_inverted(this).toBoolean
+  get() = gtk_progress_bar_get_inverted(this).toBoolean()
   set(`value`) {
-    gtk_progress_bar_set_inverted(this, `value`.toInt)
+    gtk_progress_bar_set_inverted(this, `value`.toInt())
   }
 
 public var ProgressBar.pulseStep: Double
@@ -69,13 +69,13 @@ public var ProgressBar.pulseStep: Double
   }
 
 public var ProgressBar.showText: Boolean
-  get() = gtk_progress_bar_get_show_text(this).toBoolean
+  get() = gtk_progress_bar_get_show_text(this).toBoolean()
   set(`value`) {
-    gtk_progress_bar_set_show_text(this, `value`.toInt)
+    gtk_progress_bar_set_show_text(this, `value`.toInt())
   }
 
 public var ProgressBar.text: String
-  get() = gtk_progress_bar_get_text(this).toKString
+  get() = gtk_progress_bar_get_text(this).toKString()
   set(`value`) {
     gtk_progress_bar_set_text(this, `value`)
   }

@@ -91,7 +91,7 @@ public fun PageSetup.getTopMargin(unit: Unit): Double = gtk_page_setup_get_top_m
 @Throws(Error::class)
 public fun PageSetup.loadFile(fileName: String): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = gtk_page_setup_load_file(this@loadFile, fileName, errors).toBoolean
+  val result: Boolean = gtk_page_setup_load_file(this@loadFile, fileName, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -119,7 +119,7 @@ public fun PageSetup.setTopMargin(margin: Double, unit: Unit): kotlin.Unit {
 @Throws(Error::class)
 public fun PageSetup.toFile(fileName: String): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = gtk_page_setup_to_file(this@toFile, fileName, errors).toBoolean
+  val result: Boolean = gtk_page_setup_to_file(this@toFile, fileName, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

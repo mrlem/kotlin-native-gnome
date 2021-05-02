@@ -26,7 +26,7 @@ public val FileMonitor.asObject: Object
 public val FileMonitor.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public fun FileMonitor.cancel(): Boolean = g_file_monitor_cancel(this).toBoolean
+public fun FileMonitor.cancel(): Boolean = g_file_monitor_cancel(this).toBoolean()
 
 public fun FileMonitor.emitEvent(
   child: File?,
@@ -36,7 +36,7 @@ public fun FileMonitor.emitEvent(
   g_file_monitor_emit_event(this, child?.reinterpret(), otherFile?.reinterpret(), eventType)
 }
 
-public fun FileMonitor.isCancelled(): Boolean = g_file_monitor_is_cancelled(this).toBoolean
+public fun FileMonitor.isCancelled(): Boolean = g_file_monitor_is_cancelled(this).toBoolean()
 
 public fun FileMonitor.setRateLimit(limitMsecs: Int): Unit {
   g_file_monitor_set_rate_limit(this, limitMsecs)

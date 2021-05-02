@@ -26,7 +26,7 @@ public val TestDBus.asObject: Object
 public object TestDBusFactory
 
 public val TestDBus.busAddress: String
-  get() = g_test_dbus_get_bus_address(this).toKString
+  get() = g_test_dbus_get_bus_address(this).toKString()
 
 public val TestDBus.flags: TestDBusFlags
   get() = g_test_dbus_get_flags(this)

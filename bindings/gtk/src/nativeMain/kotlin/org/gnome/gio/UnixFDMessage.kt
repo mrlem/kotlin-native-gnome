@@ -44,7 +44,7 @@ public val UnixFDMessage.fdList: UnixFDList?
 @Throws(Error::class)
 public fun UnixFDMessage.appendFd(fd: Int): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_unix_fd_message_append_fd(this@appendFd, fd, errors).toBoolean
+  val result: Boolean = g_unix_fd_message_append_fd(this@appendFd, fd, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

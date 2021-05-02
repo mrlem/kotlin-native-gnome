@@ -53,7 +53,7 @@ public val FileChooserButton.parent: Box
   get() = pointed.parent.ptr
 
 public var FileChooserButton.title: String
-  get() = gtk_file_chooser_button_get_title(this).toKString
+  get() = gtk_file_chooser_button_get_title(this).toKString()
   set(`value`) {
     gtk_file_chooser_button_set_title(this, `value`)
   }

@@ -40,7 +40,7 @@ public var TextTag.priority: Int
   }
 
 public fun TextTag.changed(sizeChanged: Boolean): Unit {
-  gtk_text_tag_changed(this, sizeChanged.toInt)
+  gtk_text_tag_changed(this, sizeChanged.toInt())
 }
 
 public fun TextTag.onEvent(callback: (TextTag) -> Unit): TextTag {

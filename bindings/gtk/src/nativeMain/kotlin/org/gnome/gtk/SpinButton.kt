@@ -87,15 +87,15 @@ public var SpinButton.digits: UInt
   }
 
 public var SpinButton.numeric: Boolean
-  get() = gtk_spin_button_get_numeric(this).toBoolean
+  get() = gtk_spin_button_get_numeric(this).toBoolean()
   set(`value`) {
-    gtk_spin_button_set_numeric(this, `value`.toInt)
+    gtk_spin_button_set_numeric(this, `value`.toInt())
   }
 
 public var SpinButton.snapToTicks: Boolean
-  get() = gtk_spin_button_get_snap_to_ticks(this).toBoolean
+  get() = gtk_spin_button_get_snap_to_ticks(this).toBoolean()
   set(`value`) {
-    gtk_spin_button_set_snap_to_ticks(this, `value`.toInt)
+    gtk_spin_button_set_snap_to_ticks(this, `value`.toInt())
   }
 
 public var SpinButton.updatePolicy: SpinButtonUpdatePolicy
@@ -114,9 +114,9 @@ public val SpinButton.valueAsInt: Int
   get() = gtk_spin_button_get_value_as_int(this)
 
 public var SpinButton.wrap: Boolean
-  get() = gtk_spin_button_get_wrap(this).toBoolean
+  get() = gtk_spin_button_get_wrap(this).toBoolean()
   set(`value`) {
-    gtk_spin_button_set_wrap(this, `value`.toInt)
+    gtk_spin_button_set_wrap(this, `value`.toInt())
   }
 
 public fun SpinButton.configure(

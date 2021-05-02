@@ -90,7 +90,7 @@ public fun Dialog.setDefaultResponse(responseId: Int): Unit {
 }
 
 public fun Dialog.setResponseSensitive(responseId: Int, setting: Boolean): Unit {
-  gtk_dialog_set_response_sensitive(this, responseId, setting.toInt)
+  gtk_dialog_set_response_sensitive(this, responseId, setting.toInt())
 }
 
 public fun Dialog.onClose(callback: (Dialog) -> Unit): Dialog {

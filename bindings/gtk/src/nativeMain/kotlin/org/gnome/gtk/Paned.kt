@@ -63,9 +63,9 @@ public var Paned.position: Int
   }
 
 public var Paned.wideHandle: Boolean
-  get() = gtk_paned_get_wide_handle(this).toBoolean
+  get() = gtk_paned_get_wide_handle(this).toBoolean()
   set(`value`) {
-    gtk_paned_set_wide_handle(this, `value`.toInt)
+    gtk_paned_set_wide_handle(this, `value`.toInt())
   }
 
 public fun Paned.add1(child: Widget?): Unit {
@@ -81,7 +81,7 @@ public fun Paned.pack1(
   resize: Boolean,
   shrink: Boolean
 ): Unit {
-  gtk_paned_pack1(this, child?.reinterpret(), resize.toInt, shrink.toInt)
+  gtk_paned_pack1(this, child?.reinterpret(), resize.toInt(), shrink.toInt())
 }
 
 public fun Paned.pack2(
@@ -89,7 +89,7 @@ public fun Paned.pack2(
   resize: Boolean,
   shrink: Boolean
 ): Unit {
-  gtk_paned_pack2(this, child?.reinterpret(), resize.toInt, shrink.toInt)
+  gtk_paned_pack2(this, child?.reinterpret(), resize.toInt(), shrink.toInt())
 }
 
 public fun Paned.onAcceptPosition(callback: (Paned) -> Unit): Paned {

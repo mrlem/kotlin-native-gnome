@@ -57,21 +57,22 @@ public val CellRenderer.requestMode: SizeRequestMode
   get() = gtk_cell_renderer_get_request_mode(this)
 
 public var CellRenderer.sensitive: Boolean
-  get() = gtk_cell_renderer_get_sensitive(this).toBoolean
+  get() = gtk_cell_renderer_get_sensitive(this).toBoolean()
   set(`value`) {
-    gtk_cell_renderer_set_sensitive(this, `value`.toInt)
+    gtk_cell_renderer_set_sensitive(this, `value`.toInt())
   }
 
 public var CellRenderer.visible: Boolean
-  get() = gtk_cell_renderer_get_visible(this).toBoolean
+  get() = gtk_cell_renderer_get_visible(this).toBoolean()
   set(`value`) {
-    gtk_cell_renderer_set_visible(this, `value`.toInt)
+    gtk_cell_renderer_set_visible(this, `value`.toInt())
   }
 
 public fun CellRenderer.getState(widget: Widget?, cellState: CellRendererState): StateFlags =
     gtk_cell_renderer_get_state(this, widget?.reinterpret(), cellState)
 
-public fun CellRenderer.isActivatable(): Boolean = gtk_cell_renderer_is_activatable(this).toBoolean
+public fun CellRenderer.isActivatable(): Boolean =
+    gtk_cell_renderer_is_activatable(this).toBoolean()
 
 public fun CellRenderer.setAlignment(xalign: Float, yalign: Float): Unit {
   gtk_cell_renderer_set_alignment(this, xalign, yalign)
@@ -86,7 +87,7 @@ public fun CellRenderer.setPadding(xpad: Int, ypad: Int): Unit {
 }
 
 public fun CellRenderer.stopEditing(canceled: Boolean): Unit {
-  gtk_cell_renderer_stop_editing(this, canceled.toInt)
+  gtk_cell_renderer_stop_editing(this, canceled.toInt())
 }
 
 public fun CellRenderer.onEditingCanceled(callback: (CellRenderer) -> Unit): CellRenderer {

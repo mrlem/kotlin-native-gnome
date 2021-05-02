@@ -98,13 +98,13 @@ public fun Assistant.getNthPage(pageNum: Int): Widget? = gtk_assistant_get_nth_p
     pageNum)?.reinterpret()
 
 public fun Assistant.getPageComplete(page: Widget?): Boolean = gtk_assistant_get_page_complete(this,
-    page?.reinterpret()).toBoolean
+    page?.reinterpret()).toBoolean()
 
 public fun Assistant.getPageHasPadding(page: Widget?): Boolean =
-    gtk_assistant_get_page_has_padding(this, page?.reinterpret()).toBoolean
+    gtk_assistant_get_page_has_padding(this, page?.reinterpret()).toBoolean()
 
 public fun Assistant.getPageTitle(page: Widget?): String = gtk_assistant_get_page_title(this,
-    page?.reinterpret()).toKString
+    page?.reinterpret()).toKString()
 
 public fun Assistant.getPageType(page: Widget?): AssistantPageType =
     gtk_assistant_get_page_type(this, page?.reinterpret())
@@ -132,11 +132,11 @@ public fun Assistant.removePage(pageNum: Int): Unit {
 }
 
 public fun Assistant.setPageComplete(page: Widget?, complete: Boolean): Unit {
-  gtk_assistant_set_page_complete(this, page?.reinterpret(), complete.toInt)
+  gtk_assistant_set_page_complete(this, page?.reinterpret(), complete.toInt())
 }
 
 public fun Assistant.setPageHasPadding(page: Widget?, hasPadding: Boolean): Unit {
-  gtk_assistant_set_page_has_padding(this, page?.reinterpret(), hasPadding.toInt)
+  gtk_assistant_set_page_has_padding(this, page?.reinterpret(), hasPadding.toInt())
 }
 
 public fun Assistant.setPageTitle(page: Widget?, title: String): Unit {

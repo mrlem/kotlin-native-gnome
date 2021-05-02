@@ -48,7 +48,7 @@ public val Plug.window: Window
   get() = pointed.window.ptr
 
 public val Plug.embedded: Boolean
-  get() = gtk_plug_get_embedded(this).toBoolean
+  get() = gtk_plug_get_embedded(this).toBoolean()
 
 public fun Plug.onEmbedded(callback: (Plug) -> Unit): Plug {
   // TODO - handle callback data

@@ -59,7 +59,7 @@ public fun SocketListener.addAnyInetPort(sourceObject: Object?): UShort = memSco
 public fun SocketListener.addInetPort(port: UShort, sourceObject: Object?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_listener_add_inet_port(this@addInetPort, port,
-      sourceObject?.reinterpret(), errors).toBoolean
+      sourceObject?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -68,7 +68,7 @@ public fun SocketListener.addInetPort(port: UShort, sourceObject: Object?): Bool
 public fun SocketListener.addSocket(socket: Socket?, sourceObject: Object?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_listener_add_socket(this@addSocket, socket?.reinterpret(),
-      sourceObject?.reinterpret(), errors).toBoolean
+      sourceObject?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

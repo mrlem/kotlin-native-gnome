@@ -32,9 +32,9 @@ public val UnixInputStream.parentInstance: InputStream
   get() = pointed.parent_instance.ptr
 
 public var UnixInputStream.closeFd: Boolean
-  get() = g_unix_input_stream_get_close_fd(this).toBoolean
+  get() = g_unix_input_stream_get_close_fd(this).toBoolean()
   set(`value`) {
-    g_unix_input_stream_set_close_fd(this, `value`.toInt)
+    g_unix_input_stream_set_close_fd(this, `value`.toInt())
   }
 
 public val UnixInputStream.fd: Int

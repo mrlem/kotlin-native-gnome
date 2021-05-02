@@ -38,19 +38,19 @@ public val Permission.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public val Permission.allowed: Boolean
-  get() = g_permission_get_allowed(this).toBoolean
+  get() = g_permission_get_allowed(this).toBoolean()
 
 public val Permission.canAcquire: Boolean
-  get() = g_permission_get_can_acquire(this).toBoolean
+  get() = g_permission_get_can_acquire(this).toBoolean()
 
 public val Permission.canRelease: Boolean
-  get() = g_permission_get_can_release(this).toBoolean
+  get() = g_permission_get_can_release(this).toBoolean()
 
 @Throws(Error::class)
 public fun Permission.acquire(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_permission_acquire(this@acquire, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -59,7 +59,7 @@ public fun Permission.acquire(cancellable: Cancellable?): Boolean = memScoped {
 public fun Permission.acquireFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_permission_acquire_finish(this@acquireFinish, result?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -69,14 +69,14 @@ public fun Permission.implUpdate(
   canAcquire: Boolean,
   canRelease: Boolean
 ): Unit {
-  g_permission_impl_update(this, allowed.toInt, canAcquire.toInt, canRelease.toInt)
+  g_permission_impl_update(this, allowed.toInt(), canAcquire.toInt(), canRelease.toInt())
 }
 
 @Throws(Error::class)
 public fun Permission.release(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_permission_release(this@release, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -85,7 +85,7 @@ public fun Permission.release(cancellable: Cancellable?): Boolean = memScoped {
 public fun Permission.releaseFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_permission_release_finish(this@releaseFinish, result?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

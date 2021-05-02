@@ -37,7 +37,7 @@ public val TypeModule.useCount: UInt
   get() = pointed.use_count
 
 public val TypeModule.name: String
-  get() = pointed.name.toKString
+  get() = pointed.name.toKString()
 
 public fun TypeModule.addInterface(
   instanceType: GType,
@@ -68,4 +68,4 @@ public fun TypeModule.unuse(): Unit {
   g_type_module_unuse(this)
 }
 
-public fun TypeModule.use(): Boolean = g_type_module_use(this).toBoolean
+public fun TypeModule.use(): Boolean = g_type_module_use(this).toBoolean()

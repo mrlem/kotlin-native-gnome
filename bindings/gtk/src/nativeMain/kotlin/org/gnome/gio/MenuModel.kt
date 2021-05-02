@@ -37,7 +37,7 @@ public val MenuModel.nItems: Int
 public fun MenuModel.getItemLink(itemIndex: Int, link: String): MenuModel? =
     g_menu_model_get_item_link(this, itemIndex, link)?.reinterpret()
 
-public fun MenuModel.isMutable(): Boolean = g_menu_model_is_mutable(this).toBoolean
+public fun MenuModel.isMutable(): Boolean = g_menu_model_is_mutable(this).toBoolean()
 
 public fun MenuModel.itemsChanged(
   position: Int,

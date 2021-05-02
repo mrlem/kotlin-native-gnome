@@ -73,15 +73,15 @@ public var Range.fillLevel: Double
   }
 
 public var Range.flippable: Boolean
-  get() = gtk_range_get_flippable(this).toBoolean
+  get() = gtk_range_get_flippable(this).toBoolean()
   set(`value`) {
-    gtk_range_set_flippable(this, `value`.toInt)
+    gtk_range_set_flippable(this, `value`.toInt())
   }
 
 public var Range.inverted: Boolean
-  get() = gtk_range_get_inverted(this).toBoolean
+  get() = gtk_range_get_inverted(this).toBoolean()
   set(`value`) {
-    gtk_range_set_inverted(this, `value`.toInt)
+    gtk_range_set_inverted(this, `value`.toInt())
   }
 
 public var Range.lowerStepperSensitivity: SensitivityType
@@ -91,9 +91,9 @@ public var Range.lowerStepperSensitivity: SensitivityType
   }
 
 public var Range.restrictToFillLevel: Boolean
-  get() = gtk_range_get_restrict_to_fill_level(this).toBoolean
+  get() = gtk_range_get_restrict_to_fill_level(this).toBoolean()
   set(`value`) {
-    gtk_range_set_restrict_to_fill_level(this, `value`.toInt)
+    gtk_range_set_restrict_to_fill_level(this, `value`.toInt())
   }
 
 public var Range.roundDigits: Int
@@ -103,15 +103,15 @@ public var Range.roundDigits: Int
   }
 
 public var Range.showFillLevel: Boolean
-  get() = gtk_range_get_show_fill_level(this).toBoolean
+  get() = gtk_range_get_show_fill_level(this).toBoolean()
   set(`value`) {
-    gtk_range_set_show_fill_level(this, `value`.toInt)
+    gtk_range_set_show_fill_level(this, `value`.toInt())
   }
 
 public var Range.sliderSizeFixed: Boolean
-  get() = gtk_range_get_slider_size_fixed(this).toBoolean
+  get() = gtk_range_get_slider_size_fixed(this).toBoolean()
   set(`value`) {
-    gtk_range_set_slider_size_fixed(this, `value`.toInt)
+    gtk_range_set_slider_size_fixed(this, `value`.toInt())
   }
 
 public var Range.upperStepperSensitivity: SensitivityType

@@ -48,7 +48,7 @@ public val RecentChooserMenu.parentInstance: Menu
   get() = pointed.parent_instance.ptr
 
 public var RecentChooserMenu.showNumbers: Boolean
-  get() = gtk_recent_chooser_menu_get_show_numbers(this).toBoolean
+  get() = gtk_recent_chooser_menu_get_show_numbers(this).toBoolean()
   set(`value`) {
-    gtk_recent_chooser_menu_set_show_numbers(this, `value`.toInt)
+    gtk_recent_chooser_menu_set_show_numbers(this, `value`.toInt())
   }

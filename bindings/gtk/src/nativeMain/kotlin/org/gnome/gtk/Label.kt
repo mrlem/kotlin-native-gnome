@@ -102,7 +102,7 @@ public var Label.angle: Double
   }
 
 public val Label.currentUri: String
-  get() = gtk_label_get_current_uri(this).toKString
+  get() = gtk_label_get_current_uri(this).toKString()
 
 public var Label.justify: Justification
   get() = gtk_label_get_justify(this)
@@ -111,15 +111,15 @@ public var Label.justify: Justification
   }
 
 public var Label.label: String
-  get() = gtk_label_get_label(this).toKString
+  get() = gtk_label_get_label(this).toKString()
   set(`value`) {
     gtk_label_set_label(this, `value`)
   }
 
 public var Label.lineWrap: Boolean
-  get() = gtk_label_get_line_wrap(this).toBoolean
+  get() = gtk_label_get_line_wrap(this).toBoolean()
   set(`value`) {
-    gtk_label_set_line_wrap(this, `value`.toInt)
+    gtk_label_set_line_wrap(this, `value`.toInt())
   }
 
 public var Label.lines: Int
@@ -144,39 +144,39 @@ public var Label.mnemonicWidget: Widget?
   }
 
 public var Label.selectable: Boolean
-  get() = gtk_label_get_selectable(this).toBoolean
+  get() = gtk_label_get_selectable(this).toBoolean()
   set(`value`) {
-    gtk_label_set_selectable(this, `value`.toInt)
+    gtk_label_set_selectable(this, `value`.toInt())
   }
 
 public var Label.singleLineMode: Boolean
-  get() = gtk_label_get_single_line_mode(this).toBoolean
+  get() = gtk_label_get_single_line_mode(this).toBoolean()
   set(`value`) {
-    gtk_label_set_single_line_mode(this, `value`.toInt)
+    gtk_label_set_single_line_mode(this, `value`.toInt())
   }
 
 public var Label.text: String
-  get() = gtk_label_get_text(this).toKString
+  get() = gtk_label_get_text(this).toKString()
   set(`value`) {
     gtk_label_set_text(this, `value`)
   }
 
 public var Label.trackVisitedLinks: Boolean
-  get() = gtk_label_get_track_visited_links(this).toBoolean
+  get() = gtk_label_get_track_visited_links(this).toBoolean()
   set(`value`) {
-    gtk_label_set_track_visited_links(this, `value`.toInt)
+    gtk_label_set_track_visited_links(this, `value`.toInt())
   }
 
 public var Label.useMarkup: Boolean
-  get() = gtk_label_get_use_markup(this).toBoolean
+  get() = gtk_label_get_use_markup(this).toBoolean()
   set(`value`) {
-    gtk_label_set_use_markup(this, `value`.toInt)
+    gtk_label_set_use_markup(this, `value`.toInt())
   }
 
 public var Label.useUnderline: Boolean
-  get() = gtk_label_get_use_underline(this).toBoolean
+  get() = gtk_label_get_use_underline(this).toBoolean()
   set(`value`) {
-    gtk_label_set_use_underline(this, `value`.toInt)
+    gtk_label_set_use_underline(this, `value`.toInt())
   }
 
 public var Label.widthChars: Int

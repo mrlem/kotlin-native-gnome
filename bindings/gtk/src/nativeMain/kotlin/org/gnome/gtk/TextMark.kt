@@ -28,7 +28,7 @@ public val TextMark.asObject: Object
 
 public object TextMarkFactory {
   public fun new(name: String, leftGravity: Boolean): TextMark = gtk_text_mark_new(name,
-      leftGravity.toInt)!!.reinterpret()
+      leftGravity.toInt())!!.reinterpret()
 }
 
 public val TextMark.parentInstance: Object
@@ -38,16 +38,16 @@ public val TextMark.buffer: TextBuffer?
   get() = gtk_text_mark_get_buffer(this)?.reinterpret()
 
 public val TextMark.deleted: Boolean
-  get() = gtk_text_mark_get_deleted(this).toBoolean
+  get() = gtk_text_mark_get_deleted(this).toBoolean()
 
 public val TextMark.leftGravity: Boolean
-  get() = gtk_text_mark_get_left_gravity(this).toBoolean
+  get() = gtk_text_mark_get_left_gravity(this).toBoolean()
 
 public val TextMark.name: String
-  get() = gtk_text_mark_get_name(this).toKString
+  get() = gtk_text_mark_get_name(this).toKString()
 
 public var TextMark.visible: Boolean
-  get() = gtk_text_mark_get_visible(this).toBoolean
+  get() = gtk_text_mark_get_visible(this).toBoolean()
   set(`value`) {
-    gtk_text_mark_set_visible(this, `value`.toInt)
+    gtk_text_mark_set_visible(this, `value`.toInt())
   }

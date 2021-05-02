@@ -68,7 +68,7 @@ public val Application.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public var Application.applicationId: String
-  get() = g_application_get_application_id(this).toKString
+  get() = g_application_get_application_id(this).toKString()
   set(`value`) {
     g_application_set_application_id(this, `value`)
   }
@@ -77,7 +77,7 @@ public val Application.dbusConnection: DBusConnection?
   get() = g_application_get_dbus_connection(this)?.reinterpret()
 
 public val Application.dbusObjectPath: String
-  get() = g_application_get_dbus_object_path(this).toKString
+  get() = g_application_get_dbus_object_path(this).toKString()
 
 public var Application.flags: ApplicationFlags
   get() = g_application_get_flags(this)
@@ -92,16 +92,16 @@ public var Application.inactivityTimeout: UInt
   }
 
 public val Application.isBusy: Boolean
-  get() = g_application_get_is_busy(this).toBoolean
+  get() = g_application_get_is_busy(this).toBoolean()
 
 public val Application.isRegistered: Boolean
-  get() = g_application_get_is_registered(this).toBoolean
+  get() = g_application_get_is_registered(this).toBoolean()
 
 public val Application.isRemote: Boolean
-  get() = g_application_get_is_remote(this).toBoolean
+  get() = g_application_get_is_remote(this).toBoolean()
 
 public var Application.resourceBasePath: String
-  get() = g_application_get_resource_base_path(this).toKString
+  get() = g_application_get_resource_base_path(this).toKString()
   set(`value`) {
     g_application_set_resource_base_path(this, `value`)
   }
@@ -130,7 +130,7 @@ public fun Application.quit(): Unit {
 public fun Application.register(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_application_register(this@register, cancellable?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

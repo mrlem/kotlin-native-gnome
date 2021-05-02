@@ -61,21 +61,21 @@ public val EntryCompletion.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public val EntryCompletion.completionPrefix: String
-  get() = gtk_entry_completion_get_completion_prefix(this).toKString
+  get() = gtk_entry_completion_get_completion_prefix(this).toKString()
 
 public val EntryCompletion.entry: Widget?
   get() = gtk_entry_completion_get_entry(this)?.reinterpret()
 
 public var EntryCompletion.inlineCompletion: Boolean
-  get() = gtk_entry_completion_get_inline_completion(this).toBoolean
+  get() = gtk_entry_completion_get_inline_completion(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_inline_completion(this, `value`.toInt)
+    gtk_entry_completion_set_inline_completion(this, `value`.toInt())
   }
 
 public var EntryCompletion.inlineSelection: Boolean
-  get() = gtk_entry_completion_get_inline_selection(this).toBoolean
+  get() = gtk_entry_completion_get_inline_selection(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_inline_selection(this, `value`.toInt)
+    gtk_entry_completion_set_inline_selection(this, `value`.toInt())
   }
 
 public var EntryCompletion.minimumKeyLength: Int
@@ -91,21 +91,21 @@ public var EntryCompletion.model: TreeModel?
   }
 
 public var EntryCompletion.popupCompletion: Boolean
-  get() = gtk_entry_completion_get_popup_completion(this).toBoolean
+  get() = gtk_entry_completion_get_popup_completion(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_popup_completion(this, `value`.toInt)
+    gtk_entry_completion_set_popup_completion(this, `value`.toInt())
   }
 
 public var EntryCompletion.popupSetWidth: Boolean
-  get() = gtk_entry_completion_get_popup_set_width(this).toBoolean
+  get() = gtk_entry_completion_get_popup_set_width(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_popup_set_width(this, `value`.toInt)
+    gtk_entry_completion_set_popup_set_width(this, `value`.toInt())
   }
 
 public var EntryCompletion.popupSingleMatch: Boolean
-  get() = gtk_entry_completion_get_popup_single_match(this).toBoolean
+  get() = gtk_entry_completion_get_popup_single_match(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_popup_single_match(this, `value`.toInt)
+    gtk_entry_completion_set_popup_single_match(this, `value`.toInt())
   }
 
 public var EntryCompletion.textColumn: Int
@@ -119,7 +119,7 @@ public fun EntryCompletion.complete(): Unit {
 }
 
 public fun EntryCompletion.computePrefix(key: String): String =
-    gtk_entry_completion_compute_prefix(this, key).toKString
+    gtk_entry_completion_compute_prefix(this, key).toKString()
 
 public fun EntryCompletion.deleteAction(index: Int): Unit {
   gtk_entry_completion_delete_action(this, index)

@@ -46,7 +46,7 @@ public fun DBusObjectManagerServer.exportUniquely(`object`: DBusObjectSkeleton?)
 }
 
 public fun DBusObjectManagerServer.isExported(`object`: DBusObjectSkeleton?): Boolean =
-    g_dbus_object_manager_server_is_exported(this, `object`?.reinterpret()).toBoolean
+    g_dbus_object_manager_server_is_exported(this, `object`?.reinterpret()).toBoolean()
 
 public fun DBusObjectManagerServer.unexport(objectPath: String): Boolean =
-    g_dbus_object_manager_server_unexport(this, objectPath).toBoolean
+    g_dbus_object_manager_server_unexport(this, objectPath).toBoolean()

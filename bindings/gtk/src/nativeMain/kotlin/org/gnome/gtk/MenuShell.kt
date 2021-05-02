@@ -56,13 +56,13 @@ public val MenuShell.selectedItem: Widget?
   get() = gtk_menu_shell_get_selected_item(this)?.reinterpret()
 
 public var MenuShell.takeFocus: Boolean
-  get() = gtk_menu_shell_get_take_focus(this).toBoolean
+  get() = gtk_menu_shell_get_take_focus(this).toBoolean()
   set(`value`) {
-    gtk_menu_shell_set_take_focus(this, `value`.toInt)
+    gtk_menu_shell_set_take_focus(this, `value`.toInt())
   }
 
 public fun MenuShell.activateItem(menuItem: Widget?, forceDeactivate: Boolean): Unit {
-  gtk_menu_shell_activate_item(this, menuItem?.reinterpret(), forceDeactivate.toInt)
+  gtk_menu_shell_activate_item(this, menuItem?.reinterpret(), forceDeactivate.toInt())
 }
 
 public fun MenuShell.append(child: MenuItem?): Unit {
@@ -74,7 +74,7 @@ public fun MenuShell.bindModel(
   actionNamespace: String,
   withSeparators: Boolean
 ): Unit {
-  gtk_menu_shell_bind_model(this, model?.reinterpret(), actionNamespace, withSeparators.toInt)
+  gtk_menu_shell_bind_model(this, model?.reinterpret(), actionNamespace, withSeparators.toInt())
 }
 
 public fun MenuShell.cancel(): Unit {
@@ -98,7 +98,7 @@ public fun MenuShell.prepend(child: Widget?): Unit {
 }
 
 public fun MenuShell.selectFirst(searchSensitive: Boolean): Unit {
-  gtk_menu_shell_select_first(this, searchSensitive.toInt)
+  gtk_menu_shell_select_first(this, searchSensitive.toInt())
 }
 
 public fun MenuShell.selectItem(menuItem: Widget?): Unit {

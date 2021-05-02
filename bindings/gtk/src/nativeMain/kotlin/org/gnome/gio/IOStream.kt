@@ -49,7 +49,8 @@ public fun IOStream.clearPending(): Unit {
 @Throws(Error::class)
 public fun IOStream.close(cancellable: Cancellable?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_io_stream_close(this@close, cancellable?.reinterpret(), errors).toBoolean
+  val result: Boolean = g_io_stream_close(this@close, cancellable?.reinterpret(),
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -58,19 +59,19 @@ public fun IOStream.close(cancellable: Cancellable?): Boolean = memScoped {
 public fun IOStream.closeFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_io_stream_close_finish(this@closeFinish, result?.reinterpret(),
-      errors).toBoolean
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
-public fun IOStream.hasPending(): Boolean = g_io_stream_has_pending(this).toBoolean
+public fun IOStream.hasPending(): Boolean = g_io_stream_has_pending(this).toBoolean()
 
-public fun IOStream.isClosed(): Boolean = g_io_stream_is_closed(this).toBoolean
+public fun IOStream.isClosed(): Boolean = g_io_stream_is_closed(this).toBoolean()
 
 @Throws(Error::class)
 public fun IOStream.setPending(): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = g_io_stream_set_pending(this@setPending, errors).toBoolean
+  val result: Boolean = g_io_stream_set_pending(this@setPending, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

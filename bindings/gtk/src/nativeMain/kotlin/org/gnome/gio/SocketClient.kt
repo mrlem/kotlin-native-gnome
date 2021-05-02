@@ -68,9 +68,9 @@ public val SocketClient.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public var SocketClient.enableProxy: Boolean
-  get() = g_socket_client_get_enable_proxy(this).toBoolean
+  get() = g_socket_client_get_enable_proxy(this).toBoolean()
   set(`value`) {
-    g_socket_client_set_enable_proxy(this, `value`.toInt)
+    g_socket_client_set_enable_proxy(this, `value`.toInt())
   }
 
 public var SocketClient.family: SocketFamily
@@ -110,9 +110,9 @@ public var SocketClient.timeout: UInt
   }
 
 public var SocketClient.tls: Boolean
-  get() = g_socket_client_get_tls(this).toBoolean
+  get() = g_socket_client_get_tls(this).toBoolean()
   set(`value`) {
-    g_socket_client_set_tls(this, `value`.toInt)
+    g_socket_client_set_tls(this, `value`.toInt())
   }
 
 public var SocketClient.tlsValidationFlags: TlsCertificateFlags

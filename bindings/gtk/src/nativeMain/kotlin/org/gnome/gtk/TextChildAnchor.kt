@@ -28,4 +28,4 @@ public val TextChildAnchor.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public val TextChildAnchor.deleted: Boolean
-  get() = gtk_text_child_anchor_get_deleted(this).toBoolean
+  get() = gtk_text_child_anchor_get_deleted(this).toBoolean()

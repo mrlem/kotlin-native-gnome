@@ -25,11 +25,11 @@ public object DBusAuthObserverFactory {
 }
 
 public fun DBusAuthObserver.allowMechanism(mechanism: String): Boolean =
-    g_dbus_auth_observer_allow_mechanism(this, mechanism).toBoolean
+    g_dbus_auth_observer_allow_mechanism(this, mechanism).toBoolean()
 
 public fun DBusAuthObserver.authorizeAuthenticatedPeer(stream: IOStream?,
     credentials: Credentials?): Boolean = g_dbus_auth_observer_authorize_authenticated_peer(this,
-    stream?.reinterpret(), credentials?.reinterpret()).toBoolean
+    stream?.reinterpret(), credentials?.reinterpret()).toBoolean()
 
 public fun DBusAuthObserver.onAllowMechanism(callback: (DBusAuthObserver) -> Unit):
     DBusAuthObserver {

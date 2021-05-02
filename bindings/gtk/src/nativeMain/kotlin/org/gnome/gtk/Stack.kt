@@ -61,21 +61,21 @@ public val Stack.parentInstance: Container
   get() = pointed.parent_instance.ptr
 
 public var Stack.hhomogeneous: Boolean
-  get() = gtk_stack_get_hhomogeneous(this).toBoolean
+  get() = gtk_stack_get_hhomogeneous(this).toBoolean()
   set(`value`) {
-    gtk_stack_set_hhomogeneous(this, `value`.toInt)
+    gtk_stack_set_hhomogeneous(this, `value`.toInt())
   }
 
 public var Stack.homogeneous: Boolean
-  get() = gtk_stack_get_homogeneous(this).toBoolean
+  get() = gtk_stack_get_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_stack_set_homogeneous(this, `value`.toInt)
+    gtk_stack_set_homogeneous(this, `value`.toInt())
   }
 
 public var Stack.interpolateSize: Boolean
-  get() = gtk_stack_get_interpolate_size(this).toBoolean
+  get() = gtk_stack_get_interpolate_size(this).toBoolean()
   set(`value`) {
-    gtk_stack_set_interpolate_size(this, `value`.toInt)
+    gtk_stack_set_interpolate_size(this, `value`.toInt())
   }
 
 public var Stack.transitionDuration: UInt
@@ -85,7 +85,7 @@ public var Stack.transitionDuration: UInt
   }
 
 public val Stack.transitionRunning: Boolean
-  get() = gtk_stack_get_transition_running(this).toBoolean
+  get() = gtk_stack_get_transition_running(this).toBoolean()
 
 public var Stack.transitionType: StackTransitionType
   get() = gtk_stack_get_transition_type(this)
@@ -94,9 +94,9 @@ public var Stack.transitionType: StackTransitionType
   }
 
 public var Stack.vhomogeneous: Boolean
-  get() = gtk_stack_get_vhomogeneous(this).toBoolean
+  get() = gtk_stack_get_vhomogeneous(this).toBoolean()
   set(`value`) {
-    gtk_stack_set_vhomogeneous(this, `value`.toInt)
+    gtk_stack_set_vhomogeneous(this, `value`.toInt())
   }
 
 public var Stack.visibleChild: Widget?
@@ -106,7 +106,7 @@ public var Stack.visibleChild: Widget?
   }
 
 public var Stack.visibleChildName: String
-  get() = gtk_stack_get_visible_child_name(this).toKString
+  get() = gtk_stack_get_visible_child_name(this).toKString()
   set(`value`) {
     gtk_stack_set_visible_child_name(this, `value`)
   }

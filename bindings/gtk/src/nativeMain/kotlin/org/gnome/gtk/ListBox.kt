@@ -67,9 +67,9 @@ public val ListBox.parentInstance: Container
   get() = pointed.parent_instance.ptr
 
 public var ListBox.activateOnSingleClick: Boolean
-  get() = gtk_list_box_get_activate_on_single_click(this).toBoolean
+  get() = gtk_list_box_get_activate_on_single_click(this).toBoolean()
   set(`value`) {
-    gtk_list_box_set_activate_on_single_click(this, `value`.toInt)
+    gtk_list_box_set_activate_on_single_click(this, `value`.toInt())
   }
 
 public var ListBox.adjustment: Adjustment?

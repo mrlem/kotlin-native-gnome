@@ -53,7 +53,7 @@ public var EntryBuffer.maxLength: Int
   }
 
 public val EntryBuffer.text: String
-  get() = gtk_entry_buffer_get_text(this).toKString
+  get() = gtk_entry_buffer_get_text(this).toKString()
 
 public fun EntryBuffer.deleteText(position: UInt, nChars: Int): UInt =
     gtk_entry_buffer_delete_text(this, position, nChars)

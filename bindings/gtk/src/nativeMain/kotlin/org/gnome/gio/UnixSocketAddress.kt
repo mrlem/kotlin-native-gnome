@@ -37,7 +37,7 @@ public val UnixSocketAddress.addressType: UnixSocketAddressType
   get() = g_unix_socket_address_get_address_type(this)
 
 public val UnixSocketAddress.path: String
-  get() = g_unix_socket_address_get_path(this).toKString
+  get() = g_unix_socket_address_get_path(this).toKString()
 
 public val UnixSocketAddress.pathLen: ULong
   get() = g_unix_socket_address_get_path_len(this)

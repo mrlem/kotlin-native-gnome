@@ -33,7 +33,7 @@ public val FileIOStream.parentInstance: IOStream
   get() = pointed.parent_instance.ptr
 
 public val FileIOStream.etag: String
-  get() = g_file_io_stream_get_etag(this).toKString
+  get() = g_file_io_stream_get_etag(this).toKString()
 
 @Throws(Error::class)
 public fun FileIOStream.queryInfo(attributes: String, cancellable: Cancellable?): FileInfo? =

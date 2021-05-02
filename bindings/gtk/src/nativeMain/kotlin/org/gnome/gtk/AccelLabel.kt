@@ -58,7 +58,7 @@ public var AccelLabel.accelWidget: Widget?
 public val AccelLabel.accelWidth: UInt
   get() = gtk_accel_label_get_accel_width(this)
 
-public fun AccelLabel.refetch(): Boolean = gtk_accel_label_refetch(this).toBoolean
+public fun AccelLabel.refetch(): Boolean = gtk_accel_label_refetch(this).toBoolean()
 
 public fun AccelLabel.setAccelClosure(accelClosure: Closure?): Unit {
   gtk_accel_label_set_accel_closure(this, accelClosure?.reinterpret())

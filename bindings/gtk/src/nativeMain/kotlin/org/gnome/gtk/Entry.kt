@@ -119,9 +119,9 @@ public object EntryFactory {
 }
 
 public var Entry.activatesDefault: Boolean
-  get() = gtk_entry_get_activates_default(this).toBoolean
+  get() = gtk_entry_get_activates_default(this).toBoolean()
   set(`value`) {
-    gtk_entry_set_activates_default(this, `value`.toInt)
+    gtk_entry_set_activates_default(this, `value`.toInt())
   }
 
 public var Entry.alignment: Float
@@ -152,9 +152,9 @@ public var Entry.cursorHadjustment: Adjustment?
   }
 
 public var Entry.hasFrame: Boolean
-  get() = gtk_entry_get_has_frame(this).toBoolean
+  get() = gtk_entry_get_has_frame(this).toBoolean()
   set(`value`) {
-    gtk_entry_set_has_frame(this, `value`.toInt)
+    gtk_entry_set_has_frame(this, `value`.toInt())
   }
 
 public var Entry.inputHints: InputHints
@@ -170,9 +170,9 @@ public var Entry.inputPurpose: InputPurpose
   }
 
 public var Entry.invisibleChar: Char
-  get() = gtk_entry_get_invisible_char(this).toChar
+  get() = gtk_entry_get_invisible_char(this).toChar()
   set(`value`) {
-    gtk_entry_set_invisible_char(this, `value`.toUInt)
+    gtk_entry_set_invisible_char(this, `value`.toUInt())
   }
 
 public var Entry.maxLength: Int
@@ -188,13 +188,13 @@ public var Entry.maxWidthChars: Int
   }
 
 public var Entry.overwriteMode: Boolean
-  get() = gtk_entry_get_overwrite_mode(this).toBoolean
+  get() = gtk_entry_get_overwrite_mode(this).toBoolean()
   set(`value`) {
-    gtk_entry_set_overwrite_mode(this, `value`.toInt)
+    gtk_entry_set_overwrite_mode(this, `value`.toInt())
   }
 
 public var Entry.placeholderText: String
-  get() = gtk_entry_get_placeholder_text(this).toKString
+  get() = gtk_entry_get_placeholder_text(this).toKString()
   set(`value`) {
     gtk_entry_set_placeholder_text(this, `value`)
   }
@@ -212,7 +212,7 @@ public var Entry.progressPulseStep: Double
   }
 
 public var Entry.text: String
-  get() = gtk_entry_get_text(this).toKString
+  get() = gtk_entry_get_text(this).toKString()
   set(`value`) {
     gtk_entry_set_text(this, `value`)
   }
@@ -221,9 +221,9 @@ public val Entry.textLength: UShort
   get() = gtk_entry_get_text_length(this)
 
 public var Entry.visibility: Boolean
-  get() = gtk_entry_get_visibility(this).toBoolean
+  get() = gtk_entry_get_visibility(this).toBoolean()
   set(`value`) {
-    gtk_entry_set_visibility(this, `value`.toInt)
+    gtk_entry_set_visibility(this, `value`.toInt())
   }
 
 public var Entry.widthChars: Int
@@ -233,7 +233,7 @@ public var Entry.widthChars: Int
   }
 
 public fun Entry.getIconActivatable(iconPos: EntryIconPosition): Boolean =
-    gtk_entry_get_icon_activatable(this, iconPos).toBoolean
+    gtk_entry_get_icon_activatable(this, iconPos).toBoolean()
 
 public fun Entry.getIconAtPos(x: Int, y: Int): Int = gtk_entry_get_icon_at_pos(this, x, y)
 
@@ -241,19 +241,19 @@ public fun Entry.getIconGicon(iconPos: EntryIconPosition): Icon? = gtk_entry_get
     iconPos)?.reinterpret()
 
 public fun Entry.getIconName(iconPos: EntryIconPosition): String = gtk_entry_get_icon_name(this,
-    iconPos).toKString
+    iconPos).toKString()
 
 public fun Entry.getIconSensitive(iconPos: EntryIconPosition): Boolean =
-    gtk_entry_get_icon_sensitive(this, iconPos).toBoolean
+    gtk_entry_get_icon_sensitive(this, iconPos).toBoolean()
 
 public fun Entry.getIconStorageType(iconPos: EntryIconPosition): ImageType =
     gtk_entry_get_icon_storage_type(this, iconPos)
 
 public fun Entry.getIconTooltipMarkup(iconPos: EntryIconPosition): String =
-    gtk_entry_get_icon_tooltip_markup(this, iconPos).toKString
+    gtk_entry_get_icon_tooltip_markup(this, iconPos).toKString()
 
 public fun Entry.getIconTooltipText(iconPos: EntryIconPosition): String =
-    gtk_entry_get_icon_tooltip_text(this, iconPos).toKString
+    gtk_entry_get_icon_tooltip_text(this, iconPos).toKString()
 
 public fun Entry.grabFocusWithoutSelecting(): Unit {
   gtk_entry_grab_focus_without_selecting(this)
@@ -271,7 +271,7 @@ public fun Entry.resetImContext(): Unit {
 }
 
 public fun Entry.setIconActivatable(iconPos: EntryIconPosition, activatable: Boolean): Unit {
-  gtk_entry_set_icon_activatable(this, iconPos, activatable.toInt)
+  gtk_entry_set_icon_activatable(this, iconPos, activatable.toInt())
 }
 
 public fun Entry.setIconFromGicon(iconPos: EntryIconPosition, icon: Icon?): Unit {
@@ -283,7 +283,7 @@ public fun Entry.setIconFromIconName(iconPos: EntryIconPosition, iconName: Strin
 }
 
 public fun Entry.setIconSensitive(iconPos: EntryIconPosition, sensitive: Boolean): Unit {
-  gtk_entry_set_icon_sensitive(this, iconPos, sensitive.toInt)
+  gtk_entry_set_icon_sensitive(this, iconPos, sensitive.toInt())
 }
 
 public fun Entry.setIconTooltipMarkup(iconPos: EntryIconPosition, tooltip: String): Unit {

@@ -58,9 +58,9 @@ public val ToolItemGroup.parentInstance: Container
   get() = pointed.parent_instance.ptr
 
 public var ToolItemGroup.collapsed: Boolean
-  get() = gtk_tool_item_group_get_collapsed(this).toBoolean
+  get() = gtk_tool_item_group_get_collapsed(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_group_set_collapsed(this, `value`.toInt)
+    gtk_tool_item_group_set_collapsed(this, `value`.toInt())
   }
 
 public var ToolItemGroup.headerRelief: ReliefStyle
@@ -70,7 +70,7 @@ public var ToolItemGroup.headerRelief: ReliefStyle
   }
 
 public var ToolItemGroup.label: String
-  get() = gtk_tool_item_group_get_label(this).toKString
+  get() = gtk_tool_item_group_get_label(this).toKString()
   set(`value`) {
     gtk_tool_item_group_set_label(this, `value`)
   }

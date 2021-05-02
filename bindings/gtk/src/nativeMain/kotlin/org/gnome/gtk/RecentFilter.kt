@@ -40,7 +40,7 @@ public object RecentFilterFactory {
 }
 
 public var RecentFilter.name: String
-  get() = gtk_recent_filter_get_name(this).toKString
+  get() = gtk_recent_filter_get_name(this).toKString()
   set(`value`) {
     gtk_recent_filter_set_name(this, `value`)
   }
@@ -73,4 +73,4 @@ public fun RecentFilter.addPixbufFormats(): Unit {
 }
 
 public fun RecentFilter.filter(filterInfo: RecentFilterInfo?): Boolean =
-    gtk_recent_filter_filter(this, filterInfo?.reinterpret()).toBoolean
+    gtk_recent_filter_filter(this, filterInfo?.reinterpret()).toBoolean()

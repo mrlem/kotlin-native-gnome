@@ -39,7 +39,7 @@ public val TlsDatabase.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public fun TlsDatabase.createCertificateHandle(certificate: TlsCertificate?): String =
-    g_tls_database_create_certificate_handle(this, certificate?.reinterpret()).toKString
+    g_tls_database_create_certificate_handle(this, certificate?.reinterpret()).toKString()
 
 @Throws(Error::class)
 public fun TlsDatabase.lookupCertificateForHandle(

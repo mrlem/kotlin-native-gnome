@@ -70,15 +70,15 @@ public var PrintOperation.defaultPageSetup: PageSetup?
   }
 
 public var PrintOperation.embedPageSetup: Boolean
-  get() = gtk_print_operation_get_embed_page_setup(this).toBoolean
+  get() = gtk_print_operation_get_embed_page_setup(this).toBoolean()
   set(`value`) {
-    gtk_print_operation_set_embed_page_setup(this, `value`.toInt)
+    gtk_print_operation_set_embed_page_setup(this, `value`.toInt())
   }
 
 public var PrintOperation.hasSelection: Boolean
-  get() = gtk_print_operation_get_has_selection(this).toBoolean
+  get() = gtk_print_operation_get_has_selection(this).toBoolean()
   set(`value`) {
-    gtk_print_operation_set_has_selection(this, `value`.toInt)
+    gtk_print_operation_set_has_selection(this, `value`.toInt())
   }
 
 public val PrintOperation.nPagesToPrint: Int
@@ -94,12 +94,12 @@ public val PrintOperation.status: PrintStatus
   get() = gtk_print_operation_get_status(this)
 
 public val PrintOperation.statusString: String
-  get() = gtk_print_operation_get_status_string(this).toKString
+  get() = gtk_print_operation_get_status_string(this).toKString()
 
 public var PrintOperation.supportSelection: Boolean
-  get() = gtk_print_operation_get_support_selection(this).toBoolean
+  get() = gtk_print_operation_get_support_selection(this).toBoolean()
   set(`value`) {
-    gtk_print_operation_set_support_selection(this, `value`.toInt)
+    gtk_print_operation_set_support_selection(this, `value`.toInt())
   }
 
 public fun PrintOperation.cancel(): kotlin.Unit {
@@ -120,7 +120,7 @@ public fun PrintOperation.getError(): kotlin.Unit {
   }
 }
 
-public fun PrintOperation.isFinished(): Boolean = gtk_print_operation_is_finished(this).toBoolean
+public fun PrintOperation.isFinished(): Boolean = gtk_print_operation_is_finished(this).toBoolean()
 
 @Throws(Error::class)
 public fun PrintOperation.run(action: PrintOperationAction, parent: Window?): PrintOperationResult =
@@ -133,7 +133,7 @@ public fun PrintOperation.run(action: PrintOperationAction, parent: Window?): Pr
 }
 
 public fun PrintOperation.setAllowAsync(allowAsync: Boolean): kotlin.Unit {
-  gtk_print_operation_set_allow_async(this, allowAsync.toInt)
+  gtk_print_operation_set_allow_async(this, allowAsync.toInt())
 }
 
 public fun PrintOperation.setCurrentPage(currentPage: Int): kotlin.Unit {
@@ -161,11 +161,11 @@ public fun PrintOperation.setNPages(nPages: Int): kotlin.Unit {
 }
 
 public fun PrintOperation.setShowProgress(showProgress: Boolean): kotlin.Unit {
-  gtk_print_operation_set_show_progress(this, showProgress.toInt)
+  gtk_print_operation_set_show_progress(this, showProgress.toInt())
 }
 
 public fun PrintOperation.setTrackPrintStatus(trackStatus: Boolean): kotlin.Unit {
-  gtk_print_operation_set_track_print_status(this, trackStatus.toInt)
+  gtk_print_operation_set_track_print_status(this, trackStatus.toInt())
 }
 
 public fun PrintOperation.setUnit(unit: Unit): kotlin.Unit {
@@ -173,7 +173,7 @@ public fun PrintOperation.setUnit(unit: Unit): kotlin.Unit {
 }
 
 public fun PrintOperation.setUseFullPage(fullPage: Boolean): kotlin.Unit {
-  gtk_print_operation_set_use_full_page(this, fullPage.toInt)
+  gtk_print_operation_set_use_full_page(this, fullPage.toInt())
 }
 
 public fun PrintOperation.onBeginPrint(callback: (PrintOperation) -> kotlin.Unit): PrintOperation {

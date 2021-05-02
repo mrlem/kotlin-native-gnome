@@ -79,10 +79,10 @@ public fun ToolPalette.getDropItem(x: Int, y: Int): ToolItem? = gtk_tool_palette
     x, y)?.reinterpret()
 
 public fun ToolPalette.getExclusive(group: ToolItemGroup?): Boolean =
-    gtk_tool_palette_get_exclusive(this, group?.reinterpret()).toBoolean
+    gtk_tool_palette_get_exclusive(this, group?.reinterpret()).toBoolean()
 
 public fun ToolPalette.getExpand(group: ToolItemGroup?): Boolean = gtk_tool_palette_get_expand(this,
-    group?.reinterpret()).toBoolean
+    group?.reinterpret()).toBoolean()
 
 public fun ToolPalette.getGroupPosition(group: ToolItemGroup?): Int =
     gtk_tool_palette_get_group_position(this, group?.reinterpret())
@@ -92,11 +92,11 @@ public fun ToolPalette.setDragSource(targets: ToolPaletteDragTargets): Unit {
 }
 
 public fun ToolPalette.setExclusive(group: ToolItemGroup?, exclusive: Boolean): Unit {
-  gtk_tool_palette_set_exclusive(this, group?.reinterpret(), exclusive.toInt)
+  gtk_tool_palette_set_exclusive(this, group?.reinterpret(), exclusive.toInt())
 }
 
 public fun ToolPalette.setExpand(group: ToolItemGroup?, expand: Boolean): Unit {
-  gtk_tool_palette_set_expand(this, group?.reinterpret(), expand.toInt)
+  gtk_tool_palette_set_expand(this, group?.reinterpret(), expand.toInt())
 }
 
 public fun ToolPalette.setGroupPosition(group: ToolItemGroup?, position: Int): Unit {

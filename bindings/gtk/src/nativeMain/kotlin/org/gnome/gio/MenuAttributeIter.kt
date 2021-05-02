@@ -27,6 +27,6 @@ public val MenuAttributeIter.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public val MenuAttributeIter.name: String
-  get() = g_menu_attribute_iter_get_name(this).toKString
+  get() = g_menu_attribute_iter_get_name(this).toKString()
 
-public fun MenuAttributeIter.next(): Boolean = g_menu_attribute_iter_next(this).toBoolean
+public fun MenuAttributeIter.next(): Boolean = g_menu_attribute_iter_next(this).toBoolean()

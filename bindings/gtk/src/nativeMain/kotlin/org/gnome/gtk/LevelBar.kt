@@ -50,9 +50,9 @@ public object LevelBarFactory {
 }
 
 public var LevelBar.inverted: Boolean
-  get() = gtk_level_bar_get_inverted(this).toBoolean
+  get() = gtk_level_bar_get_inverted(this).toBoolean()
   set(`value`) {
-    gtk_level_bar_set_inverted(this, `value`.toInt)
+    gtk_level_bar_set_inverted(this, `value`.toInt())
   }
 
 public var LevelBar.maxValue: Double

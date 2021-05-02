@@ -40,4 +40,4 @@ public var MountOperation.parent: Window?
     gtk_mount_operation_set_parent(this, `value`)
   }
 
-public fun MountOperation.isShowing(): Boolean = gtk_mount_operation_is_showing(this).toBoolean
+public fun MountOperation.isShowing(): Boolean = gtk_mount_operation_is_showing(this).toBoolean()

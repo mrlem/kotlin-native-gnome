@@ -53,13 +53,13 @@ public fun TreeStore.clear(): Unit {
 }
 
 public fun TreeStore.isAncestor(iter: TreeIter?, descendant: TreeIter?): Boolean =
-    gtk_tree_store_is_ancestor(this, iter?.reinterpret(), descendant?.reinterpret()).toBoolean
+    gtk_tree_store_is_ancestor(this, iter?.reinterpret(), descendant?.reinterpret()).toBoolean()
 
 public fun TreeStore.iterDepth(iter: TreeIter?): Int = gtk_tree_store_iter_depth(this,
     iter?.reinterpret())
 
 public fun TreeStore.iterIsValid(iter: TreeIter?): Boolean = gtk_tree_store_iter_is_valid(this,
-    iter?.reinterpret()).toBoolean
+    iter?.reinterpret()).toBoolean()
 
 public fun TreeStore.moveAfter(iter: TreeIter?, position: TreeIter?): Unit {
   gtk_tree_store_move_after(this, iter?.reinterpret(), position?.reinterpret())
@@ -70,7 +70,7 @@ public fun TreeStore.moveBefore(iter: TreeIter?, position: TreeIter?): Unit {
 }
 
 public fun TreeStore.remove(iter: TreeIter?): Boolean = gtk_tree_store_remove(this,
-    iter?.reinterpret()).toBoolean
+    iter?.reinterpret()).toBoolean()
 
 public fun TreeStore.setValue(
   iter: TreeIter?,

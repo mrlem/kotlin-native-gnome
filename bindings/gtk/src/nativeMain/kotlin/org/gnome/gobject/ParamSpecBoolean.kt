@@ -19,4 +19,4 @@ public val ParamSpecBoolean.parentInstance: ParamSpec
   get() = pointed.parent_instance.ptr
 
 public val ParamSpecBoolean.defaultValue: Boolean
-  get() = pointed.default_value.toBoolean
+  get() = pointed.default_value.toBoolean()

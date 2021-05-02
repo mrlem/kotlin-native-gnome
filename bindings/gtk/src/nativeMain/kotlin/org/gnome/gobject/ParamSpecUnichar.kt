@@ -19,4 +19,4 @@ public val ParamSpecUnichar.parentInstance: ParamSpec
   get() = pointed.parent_instance.ptr
 
 public val ParamSpecUnichar.defaultValue: Char
-  get() = pointed.default_value.toChar
+  get() = pointed.default_value.toChar()

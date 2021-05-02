@@ -43,7 +43,7 @@ public fun SocketConnection.connect(address: SocketAddress?, cancellable: Cancel
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_connection_connect(this@connect, address?.reinterpret(),
-      cancellable?.reinterpret(), errors).toBoolean
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -52,7 +52,7 @@ public fun SocketConnection.connect(address: SocketAddress?, cancellable: Cancel
 public fun SocketConnection.connectFinish(result: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_connection_connect_finish(this@connectFinish,
-      result?.reinterpret(), errors).toBoolean
+      result?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -76,4 +76,4 @@ public fun SocketConnection.getRemoteAddress(): SocketAddress? = memScoped {
 }
 
 public fun SocketConnection.isConnected(): Boolean =
-    g_socket_connection_is_connected(this).toBoolean
+    g_socket_connection_is_connected(this).toBoolean()
