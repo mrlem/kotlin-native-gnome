@@ -2,8 +2,6 @@
 // TODO - method: changed_tree
 // TODO - method: keys_changed
 // TODO - method: path_changed
-// TODO - method: path_writable_changed
-// TODO - method: writable_changed
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
