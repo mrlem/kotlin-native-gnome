@@ -47,7 +47,7 @@ private val AnyType.kType: TypeName?
         is TypeDefinition -> SimpleType.fromName(name)
             ?.kTypeName
             ?: className
-        is ArrayTypeDefinition -> null // TODO
+        is ArrayTypeDefinition -> null // TODO - handle arrays
         else -> null
     }
 
@@ -56,7 +56,7 @@ private val AnyType.toKTypeConverter
         is TypeDefinition -> SimpleType.fromName(name)
             ?.toKTypeConverter
             ?.let { ".%M" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
-        is ArrayTypeDefinition -> null // TODO
+        is ArrayTypeDefinition -> null // TODO - handle arrays conversion
         else -> null
     }
         ?: "" to emptyArray()
@@ -65,7 +65,7 @@ private val AnyType.toCTypeConverter
     get() = when (this) {
         is TypeDefinition -> SimpleType.fromName(name)?.toCTypeConverter
             ?.let { ".%M" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
-        is ArrayTypeDefinition -> null // TODO
+        is ArrayTypeDefinition -> null // TODO - handle arrays conversion
         else -> null
     }
         ?: "" to emptyArray()
@@ -75,8 +75,12 @@ private val TypeDefinition.className: TypeName?
         return if (name.contains('.')) {
             val (namespaceName, className) = name.split('.')
             ClassName("$GNOME_PACKAGE.${namespaceName.toLowerCase()}", className)
-                // FIXME
+                // TODO - generate more namespaces
                 .takeIf { namespaceName == "Gtk" || namespaceName == "Gio" || namespaceName == "GObject" }
+                ?: run {
+                    println("warning: ignoring class from unknown namespace: $className")
+                    null
+                }
         } else {
             null
         }
