@@ -1,16 +1,17 @@
 // TODO - method: get_display
 // TODO - method: get_environment
 // TODO - method: get_startup_notify_id
-// TODO - method: launch_failed
-// TODO - method: setenv
-// TODO - method: unsetenv
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GAppLaunchContext
+import interop.g_app_launch_context_launch_failed
 import interop.g_app_launch_context_new
+import interop.g_app_launch_context_setenv
+import interop.g_app_launch_context_unsetenv
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
@@ -30,6 +31,18 @@ public object AppLaunchContextFactory {
 
 public val AppLaunchContext.parentInstance: Object
   get() = pointed.parent_instance.ptr
+
+public fun AppLaunchContext.launchFailed(startupNotifyId: String): Unit {
+  g_app_launch_context_launch_failed(this, startupNotifyId)
+}
+
+public fun AppLaunchContext.setenv(variable: String, `value`: String): Unit {
+  g_app_launch_context_setenv(this, variable, `value`)
+}
+
+public fun AppLaunchContext.unsetenv(variable: String): Unit {
+  g_app_launch_context_unsetenv(this, variable)
+}
 
 public fun AppLaunchContext.onLaunchFailed(callback: (AppLaunchContext) -> Unit): AppLaunchContext {
   // TODO - handle callback data

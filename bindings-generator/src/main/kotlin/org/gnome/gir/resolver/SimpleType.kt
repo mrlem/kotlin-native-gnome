@@ -128,13 +128,6 @@ enum class SimpleType(
         null,
         null
     ),
-    Any(
-        "any",
-        ClassName("kotlin", "Any"),
-        null,
-        // TODO
-        null
-    ),
     Type(
         "GType",
         ClassName(INTEROP_PACKAGE, "GType"),
@@ -150,14 +143,18 @@ enum class SimpleType(
         // TODO
         null
     ),
-    // TODO
+    // TODO - handler as gpointer
+    Any(
+        "any",
+        null,
+        null,
+        null
+    ),
+    // TODO - handle gpointer
     GPointer(
         "gpointer",
-        // TODO
         null,
-        // TODO
         null,
-        // TODO
         null
     ),
     GSize(

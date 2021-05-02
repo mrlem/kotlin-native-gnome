@@ -1,36 +1,11 @@
-// TODO - method: copy_into
-// TODO - method: get_attribute_as_string
-// TODO - method: get_attribute_boolean
-// TODO - method: get_attribute_byte_string
 // TODO - method: get_attribute_data
-// TODO - method: get_attribute_int32
-// TODO - method: get_attribute_int64
-// TODO - method: get_attribute_object
-// TODO - method: get_attribute_status
-// TODO - method: get_attribute_string
 // TODO - method: get_attribute_stringv
-// TODO - method: get_attribute_type
-// TODO - method: get_attribute_uint32
-// TODO - method: get_attribute_uint64
 // TODO - method: get_deletion_date
 // TODO - method: get_modification_date_time
 // TODO - method: get_modification_time
-// TODO - method: has_attribute
-// TODO - method: has_namespace
 // TODO - method: list_attributes
-// TODO - method: remove_attribute
 // TODO - method: set_attribute
-// TODO - method: set_attribute_boolean
-// TODO - method: set_attribute_byte_string
-// TODO - method: set_attribute_int32
-// TODO - method: set_attribute_int64
-// TODO - method: set_attribute_mask
-// TODO - method: set_attribute_object
-// TODO - method: set_attribute_status
-// TODO - method: set_attribute_string
 // TODO - method: set_attribute_stringv
-// TODO - method: set_attribute_uint32
-// TODO - method: set_attribute_uint64
 // TODO - method: set_modification_date_time
 // TODO - method: set_modification_time
 //
@@ -40,7 +15,19 @@ package org.gnome.gio
 
 import interop.GFileInfo
 import interop.g_file_info_clear_status
+import interop.g_file_info_copy_into
 import interop.g_file_info_dup
+import interop.g_file_info_get_attribute_as_string
+import interop.g_file_info_get_attribute_boolean
+import interop.g_file_info_get_attribute_byte_string
+import interop.g_file_info_get_attribute_int32
+import interop.g_file_info_get_attribute_int64
+import interop.g_file_info_get_attribute_object
+import interop.g_file_info_get_attribute_status
+import interop.g_file_info_get_attribute_string
+import interop.g_file_info_get_attribute_type
+import interop.g_file_info_get_attribute_uint32
+import interop.g_file_info_get_attribute_uint64
 import interop.g_file_info_get_content_type
 import interop.g_file_info_get_display_name
 import interop.g_file_info_get_edit_name
@@ -55,7 +42,20 @@ import interop.g_file_info_get_size
 import interop.g_file_info_get_sort_order
 import interop.g_file_info_get_symbolic_icon
 import interop.g_file_info_get_symlink_target
+import interop.g_file_info_has_attribute
+import interop.g_file_info_has_namespace
 import interop.g_file_info_new
+import interop.g_file_info_remove_attribute
+import interop.g_file_info_set_attribute_boolean
+import interop.g_file_info_set_attribute_byte_string
+import interop.g_file_info_set_attribute_int32
+import interop.g_file_info_set_attribute_int64
+import interop.g_file_info_set_attribute_mask
+import interop.g_file_info_set_attribute_object
+import interop.g_file_info_set_attribute_status
+import interop.g_file_info_set_attribute_string
+import interop.g_file_info_set_attribute_uint32
+import interop.g_file_info_set_attribute_uint64
 import interop.g_file_info_set_content_type
 import interop.g_file_info_set_display_name
 import interop.g_file_info_set_edit_name
@@ -73,6 +73,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
+import kotlin.UInt
+import kotlin.ULong
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -172,7 +174,93 @@ public fun FileInfo.clearStatus(): Unit {
   g_file_info_clear_status(this)
 }
 
+public fun FileInfo.copyInto(destInfo: FileInfo?): Unit {
+  g_file_info_copy_into(this, destInfo?.reinterpret())
+}
+
 public fun FileInfo.dup(): FileInfo? = g_file_info_dup(this)?.reinterpret()
+
+public fun FileInfo.getAttributeAsString(attribute: String): String =
+    g_file_info_get_attribute_as_string(this, attribute).toKString
+
+public fun FileInfo.getAttributeBoolean(attribute: String): Boolean =
+    g_file_info_get_attribute_boolean(this, attribute).toBoolean
+
+public fun FileInfo.getAttributeByteString(attribute: String): String =
+    g_file_info_get_attribute_byte_string(this, attribute).toKString
+
+public fun FileInfo.getAttributeInt32(attribute: String): Int =
+    g_file_info_get_attribute_int32(this, attribute)
+
+public fun FileInfo.getAttributeInt64(attribute: String): Long =
+    g_file_info_get_attribute_int64(this, attribute)
+
+public fun FileInfo.getAttributeObject(attribute: String): Object? =
+    g_file_info_get_attribute_object(this, attribute)?.reinterpret()
+
+public fun FileInfo.getAttributeStatus(attribute: String): FileAttributeStatus =
+    g_file_info_get_attribute_status(this, attribute)
+
+public fun FileInfo.getAttributeString(attribute: String): String =
+    g_file_info_get_attribute_string(this, attribute).toKString
+
+public fun FileInfo.getAttributeType(attribute: String): FileAttributeType =
+    g_file_info_get_attribute_type(this, attribute)
+
+public fun FileInfo.getAttributeUint32(attribute: String): UInt =
+    g_file_info_get_attribute_uint32(this, attribute)
+
+public fun FileInfo.getAttributeUint64(attribute: String): ULong =
+    g_file_info_get_attribute_uint64(this, attribute)
+
+public fun FileInfo.hasAttribute(attribute: String): Boolean = g_file_info_has_attribute(this,
+    attribute).toBoolean
+
+public fun FileInfo.hasNamespace(nameSpace: String): Boolean = g_file_info_has_namespace(this,
+    nameSpace).toBoolean
+
+public fun FileInfo.removeAttribute(attribute: String): Unit {
+  g_file_info_remove_attribute(this, attribute)
+}
+
+public fun FileInfo.setAttributeBoolean(attribute: String, attrValue: Boolean): Unit {
+  g_file_info_set_attribute_boolean(this, attribute, attrValue.toInt)
+}
+
+public fun FileInfo.setAttributeByteString(attribute: String, attrValue: String): Unit {
+  g_file_info_set_attribute_byte_string(this, attribute, attrValue)
+}
+
+public fun FileInfo.setAttributeInt32(attribute: String, attrValue: Int): Unit {
+  g_file_info_set_attribute_int32(this, attribute, attrValue)
+}
+
+public fun FileInfo.setAttributeInt64(attribute: String, attrValue: Long): Unit {
+  g_file_info_set_attribute_int64(this, attribute, attrValue)
+}
+
+public fun FileInfo.setAttributeMask(mask: FileAttributeMatcher?): Unit {
+  g_file_info_set_attribute_mask(this, mask?.reinterpret())
+}
+
+public fun FileInfo.setAttributeObject(attribute: String, attrValue: Object?): Unit {
+  g_file_info_set_attribute_object(this, attribute, attrValue?.reinterpret())
+}
+
+public fun FileInfo.setAttributeStatus(attribute: String, status: FileAttributeStatus): Boolean =
+    g_file_info_set_attribute_status(this, attribute, status).toBoolean
+
+public fun FileInfo.setAttributeString(attribute: String, attrValue: String): Unit {
+  g_file_info_set_attribute_string(this, attribute, attrValue)
+}
+
+public fun FileInfo.setAttributeUint32(attribute: String, attrValue: UInt): Unit {
+  g_file_info_set_attribute_uint32(this, attribute, attrValue)
+}
+
+public fun FileInfo.setAttributeUint64(attribute: String, attrValue: ULong): Unit {
+  g_file_info_set_attribute_uint64(this, attribute, attrValue)
+}
 
 public fun FileInfo.unsetAttributeMask(): Unit {
   g_file_info_unset_attribute_mask(this)

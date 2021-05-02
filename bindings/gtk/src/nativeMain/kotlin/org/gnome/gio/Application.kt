@@ -2,24 +2,18 @@
 // TODO - method: add_main_option
 // TODO - method: add_main_option_entries
 // TODO - method: add_option_group
-// TODO - method: bind_busy_property
 // TODO - method: open
-// TODO - method: register
 // TODO - method: run
-// TODO - method: send_notification
 // TODO - method: set_action_group
-// TODO - method: set_option_context_description
-// TODO - method: set_option_context_parameter_string
-// TODO - method: set_option_context_summary
-// TODO - method: unbind_busy_property
-// TODO - method: withdraw_notification
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GApplication
+import interop.GError
 import interop.g_application_activate
+import interop.g_application_bind_busy_property
 import interop.g_application_get_application_id
 import interop.g_application_get_dbus_connection
 import interop.g_application_get_dbus_object_path
@@ -32,21 +26,32 @@ import interop.g_application_get_resource_base_path
 import interop.g_application_hold
 import interop.g_application_mark_busy
 import interop.g_application_quit
+import interop.g_application_register
 import interop.g_application_release
+import interop.g_application_send_notification
 import interop.g_application_set_application_id
 import interop.g_application_set_default
 import interop.g_application_set_flags
 import interop.g_application_set_inactivity_timeout
+import interop.g_application_set_option_context_description
+import interop.g_application_set_option_context_parameter_string
+import interop.g_application_set_option_context_summary
 import interop.g_application_set_resource_base_path
+import interop.g_application_unbind_busy_property
 import interop.g_application_unmark_busy
+import interop.g_application_withdraw_notification
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Throws
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toKString
@@ -105,6 +110,10 @@ public fun Application.activate(): Unit {
   g_application_activate(this)
 }
 
+public fun Application.bindBusyProperty(`object`: Object?, `property`: String): Unit {
+  g_application_bind_busy_property(this, `object`?.reinterpret(), `property`)
+}
+
 public fun Application.hold(): Unit {
   g_application_hold(this)
 }
@@ -117,16 +126,49 @@ public fun Application.quit(): Unit {
   g_application_quit(this)
 }
 
+@Throws(Error::class)
+public fun Application.register(cancellable: Cancellable?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_application_register(this@register, cancellable?.reinterpret(),
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
 public fun Application.release(): Unit {
   g_application_release(this)
+}
+
+public fun Application.sendNotification(id: String, notification: Notification?): Unit {
+  g_application_send_notification(this, id, notification?.reinterpret())
 }
 
 public fun Application.setDefault(): Unit {
   g_application_set_default(this)
 }
 
+public fun Application.setOptionContextDescription(description: String): Unit {
+  g_application_set_option_context_description(this, description)
+}
+
+public fun Application.setOptionContextParameterString(parameterString: String): Unit {
+  g_application_set_option_context_parameter_string(this, parameterString)
+}
+
+public fun Application.setOptionContextSummary(summary: String): Unit {
+  g_application_set_option_context_summary(this, summary)
+}
+
+public fun Application.unbindBusyProperty(`object`: Object?, `property`: String): Unit {
+  g_application_unbind_busy_property(this, `object`?.reinterpret(), `property`)
+}
+
 public fun Application.unmarkBusy(): Unit {
   g_application_unmark_busy(this)
+}
+
+public fun Application.withdrawNotification(id: String): Unit {
+  g_application_withdraw_notification(this, id)
 }
 
 public fun Application.onActivate(callback: (Application) -> Unit): Application {

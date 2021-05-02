@@ -4,8 +4,6 @@
 // TODO - method: get_body
 // TODO - method: get_header
 // TODO - method: get_header_fields
-// TODO - method: new_method_error_literal
-// TODO - method: print
 // TODO - method: set_body
 // TODO - method: set_header
 // TODO - method: to_blob
@@ -35,7 +33,9 @@ import interop.g_dbus_message_get_signature
 import interop.g_dbus_message_get_unix_fd_list
 import interop.g_dbus_message_lock
 import interop.g_dbus_message_new
+import interop.g_dbus_message_new_method_error_literal
 import interop.g_dbus_message_new_method_reply
+import interop.g_dbus_message_print
 import interop.g_dbus_message_set_byte_order
 import interop.g_dbus_message_set_destination
 import interop.g_dbus_message_set_error_name
@@ -178,8 +178,13 @@ public fun DBusMessage.lock(): Unit {
   g_dbus_message_lock(this)
 }
 
+public fun DBusMessage.newMethodErrorLiteral(errorName: String, errorMessage: String): DBusMessage?
+    = g_dbus_message_new_method_error_literal(this, errorName, errorMessage)?.reinterpret()
+
 public fun DBusMessage.newMethodReply(): DBusMessage? =
     g_dbus_message_new_method_reply(this)?.reinterpret()
+
+public fun DBusMessage.print(indent: UInt): String = g_dbus_message_print(this, indent).toKString
 
 @Throws(Error::class)
 public fun DBusMessage.toGerror(): Boolean = memScoped {

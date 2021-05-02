@@ -1,5 +1,4 @@
 // TODO - method: connect
-// TODO - method: disconnect
 // TODO - method: make_pollfd
 // TODO - method: source_new
 //
@@ -10,6 +9,7 @@ package org.gnome.gio
 import interop.GCancellable
 import interop.GError
 import interop.g_cancellable_cancel
+import interop.g_cancellable_disconnect
 import interop.g_cancellable_get_fd
 import interop.g_cancellable_is_cancelled
 import interop.g_cancellable_new
@@ -21,6 +21,7 @@ import interop.g_cancellable_set_error_if_cancelled
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Throws
+import kotlin.ULong
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
@@ -50,6 +51,10 @@ public val Cancellable.fd: Int
 
 public fun Cancellable.cancel(): Unit {
   g_cancellable_cancel(this)
+}
+
+public fun Cancellable.disconnect(handlerId: ULong): Unit {
+  g_cancellable_disconnect(this, handlerId)
 }
 
 public fun Cancellable.isCancelled(): Boolean = g_cancellable_is_cancelled(this).toBoolean

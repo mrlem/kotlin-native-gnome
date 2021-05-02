@@ -1,18 +1,19 @@
 // TODO - method: get_item_attribute_value
-// TODO - method: get_item_link
-// TODO - method: items_changed
-// TODO - method: iterate_item_attributes
-// TODO - method: iterate_item_links
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GMenuModel
+import interop.g_menu_model_get_item_link
 import interop.g_menu_model_get_n_items
 import interop.g_menu_model_is_mutable
+import interop.g_menu_model_items_changed
+import interop.g_menu_model_iterate_item_attributes
+import interop.g_menu_model_iterate_item_links
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
@@ -33,7 +34,24 @@ public val MenuModel.parentInstance: Object
 public val MenuModel.nItems: Int
   get() = g_menu_model_get_n_items(this)
 
+public fun MenuModel.getItemLink(itemIndex: Int, link: String): MenuModel? =
+    g_menu_model_get_item_link(this, itemIndex, link)?.reinterpret()
+
 public fun MenuModel.isMutable(): Boolean = g_menu_model_is_mutable(this).toBoolean
+
+public fun MenuModel.itemsChanged(
+  position: Int,
+  removed: Int,
+  added: Int
+): Unit {
+  g_menu_model_items_changed(this, position, removed, added)
+}
+
+public fun MenuModel.iterateItemAttributes(itemIndex: Int): MenuAttributeIter? =
+    g_menu_model_iterate_item_attributes(this, itemIndex)?.reinterpret()
+
+public fun MenuModel.iterateItemLinks(itemIndex: Int): MenuLinkIter? =
+    g_menu_model_iterate_item_links(this, itemIndex)?.reinterpret()
 
 public fun MenuModel.onItemsChanged(callback: (MenuModel) -> Unit): MenuModel {
   // TODO - handle callback data

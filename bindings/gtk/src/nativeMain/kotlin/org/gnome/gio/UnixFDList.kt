@@ -1,6 +1,4 @@
 // TODO - constructor: new_from_array
-// TODO - method: append
-// TODO - method: get
 // TODO - method: peek_fds
 // TODO - method: steal_fds
 //
@@ -8,14 +6,21 @@
 
 package org.gnome.gio
 
+import interop.GError
 import interop.GUnixFDList
+import interop.g_unix_fd_list_append
+import interop.g_unix_fd_list_get
 import interop.g_unix_fd_list_get_length
 import interop.g_unix_fd_list_new
 import kotlin.Int
+import kotlin.Throws
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 
 public typealias UnixFDList = CPointer<GUnixFDList>
@@ -32,3 +37,19 @@ public val UnixFDList.parentInstance: Object
 
 public val UnixFDList.length: Int
   get() = g_unix_fd_list_get_length(this)
+
+@Throws(Error::class)
+public fun UnixFDList.append(fd: Int): Int = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Int = g_unix_fd_list_append(this@append, fd, errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun UnixFDList.`get`(index: Int): Int = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Int = g_unix_fd_list_get(this@get, index, errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}

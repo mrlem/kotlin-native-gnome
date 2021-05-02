@@ -1,19 +1,19 @@
-// TODO - method: create_file_for_arg
 // TODO - method: get_arguments
 // TODO - method: get_environ
 // TODO - method: get_options_dict
 // TODO - method: get_platform_data
-// TODO - method: getenv
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GApplicationCommandLine
+import interop.g_application_command_line_create_file_for_arg
 import interop.g_application_command_line_get_cwd
 import interop.g_application_command_line_get_exit_status
 import interop.g_application_command_line_get_is_remote
 import interop.g_application_command_line_get_stdin
+import interop.g_application_command_line_getenv
 import interop.g_application_command_line_set_exit_status
 import kotlin.Boolean
 import kotlin.Int
@@ -48,3 +48,9 @@ public val ApplicationCommandLine.isRemote: Boolean
 
 public val ApplicationCommandLine.stdin: InputStream?
   get() = g_application_command_line_get_stdin(this)?.reinterpret()
+
+public fun ApplicationCommandLine.createFileForArg(arg: String): File? =
+    g_application_command_line_create_file_for_arg(this, arg)?.reinterpret()
+
+public fun ApplicationCommandLine.getenv(name: String): String =
+    g_application_command_line_getenv(this, name).toKString

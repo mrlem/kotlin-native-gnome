@@ -1,6 +1,4 @@
-// TODO - method: is_same_user
 // TODO - method: set_native
-// TODO - method: set_unix_user
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -10,8 +8,11 @@ import interop.GCredentials
 import interop.GError
 import interop.g_credentials_get_unix_pid
 import interop.g_credentials_get_unix_user
+import interop.g_credentials_is_same_user
 import interop.g_credentials_new
+import interop.g_credentials_set_unix_user
 import interop.g_credentials_to_string
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Throws
@@ -24,6 +25,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Error
 import org.gnome.gobject.Object
+import org.gnome.toBoolean
 import org.gnome.toKString
 
 public typealias Credentials = CPointer<GCredentials>
@@ -47,6 +49,23 @@ public fun Credentials.getUnixPid(): Int = memScoped {
 public fun Credentials.getUnixUser(): UInt = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: UInt = g_credentials_get_unix_user(this@getUnixUser, errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun Credentials.isSameUser(otherCredentials: Credentials?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_credentials_is_same_user(this@isSameUser, otherCredentials?.reinterpret(),
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun Credentials.setUnixUser(uid: UInt): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_credentials_set_unix_user(this@setUnixUser, uid, errors).toBoolean
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

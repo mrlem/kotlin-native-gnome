@@ -1,6 +1,4 @@
-// TODO - method: close
 // TODO - method: close_async
-// TODO - method: close_finish
 // TODO - method: splice_async
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -10,6 +8,8 @@ package org.gnome.gio
 import interop.GError
 import interop.GIOStream
 import interop.g_io_stream_clear_pending
+import interop.g_io_stream_close
+import interop.g_io_stream_close_finish
 import interop.g_io_stream_get_input_stream
 import interop.g_io_stream_get_output_stream
 import interop.g_io_stream_has_pending
@@ -44,6 +44,23 @@ public val IOStream.outputStream: OutputStream?
 
 public fun IOStream.clearPending(): Unit {
   g_io_stream_clear_pending(this)
+}
+
+@Throws(Error::class)
+public fun IOStream.close(cancellable: Cancellable?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_io_stream_close(this@close, cancellable?.reinterpret(), errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun IOStream.closeFinish(result: AsyncResult?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_io_stream_close_finish(this@closeFinish, result?.reinterpret(),
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
 }
 
 public fun IOStream.hasPending(): Boolean = g_io_stream_has_pending(this).toBoolean

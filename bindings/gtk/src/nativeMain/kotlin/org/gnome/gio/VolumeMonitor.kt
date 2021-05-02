@@ -1,7 +1,5 @@
 // TODO - method: get_connected_drives
-// TODO - method: get_mount_for_uuid
 // TODO - method: get_mounts
-// TODO - method: get_volume_for_uuid
 // TODO - method: get_volumes
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -9,6 +7,9 @@
 package org.gnome.gio
 
 import interop.GVolumeMonitor
+import interop.g_volume_monitor_get_mount_for_uuid
+import interop.g_volume_monitor_get_volume_for_uuid
+import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
@@ -24,6 +25,12 @@ public val VolumeMonitor.asObject: Object
 
 public val VolumeMonitor.parentInstance: Object
   get() = pointed.parent_instance.ptr
+
+public fun VolumeMonitor.getMountForUuid(uuid: String): Mount? =
+    g_volume_monitor_get_mount_for_uuid(this, uuid)?.reinterpret()
+
+public fun VolumeMonitor.getVolumeForUuid(uuid: String): Volume? =
+    g_volume_monitor_get_volume_for_uuid(this, uuid)?.reinterpret()
 
 public fun VolumeMonitor.onDriveChanged(callback: (VolumeMonitor) -> Unit): VolumeMonitor {
   // TODO - handle callback data

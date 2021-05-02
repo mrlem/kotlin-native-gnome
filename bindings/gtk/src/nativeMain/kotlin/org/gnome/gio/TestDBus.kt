@@ -1,11 +1,11 @@
 // TODO - constructor: new
-// TODO - method: add_service_dir
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GTestDBus
+import interop.g_test_dbus_add_service_dir
 import interop.g_test_dbus_down
 import interop.g_test_dbus_get_bus_address
 import interop.g_test_dbus_get_flags
@@ -30,6 +30,10 @@ public val TestDBus.busAddress: String
 
 public val TestDBus.flags: TestDBusFlags
   get() = g_test_dbus_get_flags(this)
+
+public fun TestDBus.addServiceDir(path: String): Unit {
+  g_test_dbus_add_service_dir(this, path)
+}
 
 public fun TestDBus.down(): Unit {
   g_test_dbus_down(this)

@@ -1,25 +1,32 @@
 // TODO - constructor: new
 // TODO - constructor: new_sized
-// TODO - method: fill
 // TODO - method: fill_async
-// TODO - method: fill_finish
 // TODO - method: peek
 // TODO - method: peek_buffer
-// TODO - method: read_byte
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GBufferedInputStream
+import interop.GError
+import interop.g_buffered_input_stream_fill
+import interop.g_buffered_input_stream_fill_finish
 import interop.g_buffered_input_stream_get_available
 import interop.g_buffered_input_stream_get_buffer_size
+import interop.g_buffered_input_stream_read_byte
 import interop.g_buffered_input_stream_set_buffer_size
+import kotlin.Int
+import kotlin.Long
+import kotlin.Throws
 import kotlin.ULong
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 
 public typealias BufferedInputStream = CPointer<GBufferedInputStream>
@@ -46,3 +53,30 @@ public var BufferedInputStream.bufferSize: ULong
   set(`value`) {
     g_buffered_input_stream_set_buffer_size(this, `value`)
   }
+
+@Throws(Error::class)
+public fun BufferedInputStream.fill(count: Long, cancellable: Cancellable?): Long = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Long = g_buffered_input_stream_fill(this@fill, count, cancellable?.reinterpret(),
+      errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun BufferedInputStream.fillFinish(result: AsyncResult?): Long = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Long = g_buffered_input_stream_fill_finish(this@fillFinish, result?.reinterpret(),
+      errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun BufferedInputStream.readByte(cancellable: Cancellable?): Int = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Int = g_buffered_input_stream_read_byte(this@readByte, cancellable?.reinterpret(),
+      errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}

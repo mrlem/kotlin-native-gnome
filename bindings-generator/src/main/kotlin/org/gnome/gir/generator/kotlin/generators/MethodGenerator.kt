@@ -5,7 +5,6 @@ import org.gnome.gir.GLIB_PACKAGE
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.CallableDefinition
-import org.gnome.gir.model.TypeDefinition
 import org.gnome.gir.model.enums.Direction.InOut
 import org.gnome.gir.model.enums.Direction.Out
 import org.gnome.gir.model.types.AnyType
@@ -18,6 +17,18 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
         ?: return run { addComment("TODO - method: ${method.name}\n") }
     val name = method.name.snakeCaseToCamelCase.decapitalize()
 
+    when (cIdentifier) {
+        // TODO - seem to pass an array instead of a single value
+        "g_simple_proxy_resolver_set_ignore_hosts",
+        "g_tls_password_get_value",
+        // TODO - see why they don't exist
+        "g_settings_backend_path_writable_changed",
+        "g_settings_backend_writable_changed" -> {
+            addComment("TODO - method: ${method.name}\n")
+            return
+        }
+    }
+
     // determine return type
     val returnType = method.callable.returnValue?.type
     val returnTypeInfo = returnType?.typeInfo(resolver)
@@ -28,9 +39,9 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
 
     val params = method.callable.parameters
         .map { param ->
-            val type = (param.type as? TypeDefinition) // TODO - handle
-                ?.takeIf { it.kType != null && it.cType != null }
-                ?.takeUnless { param.direction == Out || param.direction == InOut } // TODO - handle
+            val type = (param.type as? AnyType) // TODO - handle varargs
+                ?.takeIf { it.kType != null }
+                ?.takeUnless { param.direction == Out || param.direction == InOut } // TODO - handle in/out
                 ?: run {
                     addComment("TODO - method: ${method.name}\n")
                     return@addMethod

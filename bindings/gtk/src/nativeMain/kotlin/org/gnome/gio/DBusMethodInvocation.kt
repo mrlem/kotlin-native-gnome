@@ -1,6 +1,4 @@
 // TODO - method: get_parameters
-// TODO - method: return_dbus_error
-// TODO - method: return_error_literal
 // TODO - method: return_gerror
 // TODO - method: return_value
 // TODO - method: return_value_with_unix_fd_list
@@ -18,7 +16,12 @@ import interop.g_dbus_method_invocation_get_method_name
 import interop.g_dbus_method_invocation_get_object_path
 import interop.g_dbus_method_invocation_get_property_info
 import interop.g_dbus_method_invocation_get_sender
+import interop.g_dbus_method_invocation_return_dbus_error
+import interop.g_dbus_method_invocation_return_error_literal
+import kotlin.Int
 import kotlin.String
+import kotlin.UInt
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
@@ -52,3 +55,15 @@ public val DBusMethodInvocation.propertyInfo: DBusPropertyInfo?
 
 public val DBusMethodInvocation.sender: String
   get() = g_dbus_method_invocation_get_sender(this).toKString
+
+public fun DBusMethodInvocation.returnDbusError(errorName: String, errorMessage: String): Unit {
+  g_dbus_method_invocation_return_dbus_error(this, errorName, errorMessage)
+}
+
+public fun DBusMethodInvocation.returnErrorLiteral(
+  domain: UInt,
+  code: Int,
+  message: String
+): Unit {
+  g_dbus_method_invocation_return_error_literal(this, domain, code, message)
+}

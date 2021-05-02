@@ -1,28 +1,35 @@
-// TODO - method: export
 // TODO - method: get_connections
 // TODO - method: get_properties
-// TODO - method: has_connection
-// TODO - method: unexport_from_connection
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GDBusInterfaceSkeleton
+import interop.GError
+import interop.g_dbus_interface_skeleton_export
 import interop.g_dbus_interface_skeleton_flush
 import interop.g_dbus_interface_skeleton_get_connection
 import interop.g_dbus_interface_skeleton_get_flags
 import interop.g_dbus_interface_skeleton_get_info
 import interop.g_dbus_interface_skeleton_get_object_path
+import interop.g_dbus_interface_skeleton_has_connection
 import interop.g_dbus_interface_skeleton_set_flags
 import interop.g_dbus_interface_skeleton_unexport
+import interop.g_dbus_interface_skeleton_unexport_from_connection
+import kotlin.Boolean
 import kotlin.String
+import kotlin.Throws
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
+import org.gnome.toBoolean
 import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
 
@@ -49,12 +56,29 @@ public val DBusInterfaceSkeleton.info: DBusInterfaceInfo?
 public val DBusInterfaceSkeleton.objectPath: String
   get() = g_dbus_interface_skeleton_get_object_path(this).toKString
 
+@Throws(Error::class)
+public fun DBusInterfaceSkeleton.export(connection: DBusConnection?, objectPath: String): Boolean =
+    memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_dbus_interface_skeleton_export(this@export, connection?.reinterpret(),
+      objectPath, errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
 public fun DBusInterfaceSkeleton.flush(): Unit {
   g_dbus_interface_skeleton_flush(this)
 }
 
+public fun DBusInterfaceSkeleton.hasConnection(connection: DBusConnection?): Boolean =
+    g_dbus_interface_skeleton_has_connection(this, connection?.reinterpret()).toBoolean
+
 public fun DBusInterfaceSkeleton.unexport(): Unit {
   g_dbus_interface_skeleton_unexport(this)
+}
+
+public fun DBusInterfaceSkeleton.unexportFromConnection(connection: DBusConnection?): Unit {
+  g_dbus_interface_skeleton_unexport_from_connection(this, connection?.reinterpret())
 }
 
 public fun DBusInterfaceSkeleton.onGAuthorizeMethod(callback: (DBusInterfaceSkeleton) -> Unit):

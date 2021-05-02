@@ -1,22 +1,23 @@
-// TODO - method: add_application_proxy
-// TODO - method: connect
 // TODO - method: connect_async
-// TODO - method: connect_finish
-// TODO - method: connect_to_host
 // TODO - method: connect_to_host_async
-// TODO - method: connect_to_host_finish
-// TODO - method: connect_to_service
 // TODO - method: connect_to_service_async
-// TODO - method: connect_to_service_finish
-// TODO - method: connect_to_uri
 // TODO - method: connect_to_uri_async
-// TODO - method: connect_to_uri_finish
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
+import interop.GError
 import interop.GSocketClient
+import interop.g_socket_client_add_application_proxy
+import interop.g_socket_client_connect
+import interop.g_socket_client_connect_finish
+import interop.g_socket_client_connect_to_host
+import interop.g_socket_client_connect_to_host_finish
+import interop.g_socket_client_connect_to_service
+import interop.g_socket_client_connect_to_service_finish
+import interop.g_socket_client_connect_to_uri
+import interop.g_socket_client_connect_to_uri_finish
 import interop.g_socket_client_get_enable_proxy
 import interop.g_socket_client_get_family
 import interop.g_socket_client_get_local_address
@@ -37,12 +38,18 @@ import interop.g_socket_client_set_timeout
 import interop.g_socket_client_set_tls
 import interop.g_socket_client_set_tls_validation_flags
 import kotlin.Boolean
+import kotlin.String
+import kotlin.Throws
 import kotlin.UInt
+import kotlin.UShort
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
@@ -113,6 +120,97 @@ public var SocketClient.tlsValidationFlags: TlsCertificateFlags
   set(`value`) {
     g_socket_client_set_tls_validation_flags(this, `value`)
   }
+
+public fun SocketClient.addApplicationProxy(protocol: String): Unit {
+  g_socket_client_add_application_proxy(this, protocol)
+}
+
+@Throws(Error::class)
+public fun SocketClient.connect(connectable: SocketConnectable?, cancellable: Cancellable?):
+    SocketConnection? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: SocketConnection? = g_socket_client_connect(this@connect, connectable?.reinterpret(),
+      cancellable?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun SocketClient.connectFinish(result: AsyncResult?): SocketConnection? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: SocketConnection? = g_socket_client_connect_finish(this@connectFinish,
+      result?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun SocketClient.connectToHost(
+  hostAndPort: String,
+  defaultPort: UShort,
+  cancellable: Cancellable?
+): SocketConnection? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: SocketConnection? = g_socket_client_connect_to_host(this@connectToHost, hostAndPort,
+      defaultPort, cancellable?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun SocketClient.connectToHostFinish(result: AsyncResult?): SocketConnection? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: SocketConnection? = g_socket_client_connect_to_host_finish(this@connectToHostFinish,
+      result?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun SocketClient.connectToService(
+  domain: String,
+  service: String,
+  cancellable: Cancellable?
+): SocketConnection? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: SocketConnection? = g_socket_client_connect_to_service(this@connectToService, domain,
+      service, cancellable?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun SocketClient.connectToServiceFinish(result: AsyncResult?): SocketConnection? =
+    memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: SocketConnection? =
+      g_socket_client_connect_to_service_finish(this@connectToServiceFinish, result?.reinterpret(),
+      errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun SocketClient.connectToUri(
+  uri: String,
+  defaultPort: UShort,
+  cancellable: Cancellable?
+): SocketConnection? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: SocketConnection? = g_socket_client_connect_to_uri(this@connectToUri, uri,
+      defaultPort, cancellable?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun SocketClient.connectToUriFinish(result: AsyncResult?): SocketConnection? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: SocketConnection? = g_socket_client_connect_to_uri_finish(this@connectToUriFinish,
+      result?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
 
 public fun SocketClient.onEvent(callback: (SocketClient) -> Unit): SocketClient {
   // TODO - handle callback data

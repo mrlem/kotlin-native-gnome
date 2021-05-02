@@ -10,33 +10,26 @@
 // TODO - method: call_with_unix_fd_list_finish
 // TODO - method: call_with_unix_fd_list_sync
 // TODO - method: close
-// TODO - method: close_finish
-// TODO - method: close_sync
 // TODO - method: emit_signal
-// TODO - method: export_action_group
-// TODO - method: export_menu_model
 // TODO - method: flush
-// TODO - method: flush_finish
-// TODO - method: flush_sync
-// TODO - method: register_object
 // TODO - method: register_subtree
-// TODO - method: remove_filter
 // TODO - method: send_message
 // TODO - method: send_message_with_reply
-// TODO - method: send_message_with_reply_finish
 // TODO - method: send_message_with_reply_sync
 // TODO - method: signal_subscribe
-// TODO - method: signal_unsubscribe
-// TODO - method: unexport_action_group
-// TODO - method: unexport_menu_model
-// TODO - method: unregister_object
-// TODO - method: unregister_subtree
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GDBusConnection
+import interop.GError
+import interop.g_dbus_connection_close_finish
+import interop.g_dbus_connection_close_sync
+import interop.g_dbus_connection_export_action_group
+import interop.g_dbus_connection_export_menu_model
+import interop.g_dbus_connection_flush_finish
+import interop.g_dbus_connection_flush_sync
 import interop.g_dbus_connection_get_capabilities
 import interop.g_dbus_connection_get_exit_on_close
 import interop.g_dbus_connection_get_flags
@@ -46,14 +39,29 @@ import interop.g_dbus_connection_get_peer_credentials
 import interop.g_dbus_connection_get_stream
 import interop.g_dbus_connection_get_unique_name
 import interop.g_dbus_connection_is_closed
+import interop.g_dbus_connection_register_object_with_closures
+import interop.g_dbus_connection_remove_filter
+import interop.g_dbus_connection_send_message_with_reply_finish
 import interop.g_dbus_connection_set_exit_on_close
+import interop.g_dbus_connection_signal_unsubscribe
 import interop.g_dbus_connection_start_message_processing
+import interop.g_dbus_connection_unexport_action_group
+import interop.g_dbus_connection_unexport_menu_model
+import interop.g_dbus_connection_unregister_object
+import interop.g_dbus_connection_unregister_subtree
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Throws
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Error
+import org.gnome.gobject.Closure
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
@@ -94,11 +102,114 @@ public val DBusConnection.stream: IOStream?
 public val DBusConnection.uniqueName: String
   get() = g_dbus_connection_get_unique_name(this).toKString
 
+@Throws(Error::class)
+public fun DBusConnection.closeFinish(res: AsyncResult?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_dbus_connection_close_finish(this@closeFinish, res?.reinterpret(),
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun DBusConnection.closeSync(cancellable: Cancellable?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_dbus_connection_close_sync(this@closeSync, cancellable?.reinterpret(),
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun DBusConnection.exportActionGroup(objectPath: String, actionGroup: ActionGroup?): UInt =
+    memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: UInt = g_dbus_connection_export_action_group(this@exportActionGroup, objectPath,
+      actionGroup?.reinterpret(), errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun DBusConnection.exportMenuModel(objectPath: String, menu: MenuModel?): UInt = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: UInt = g_dbus_connection_export_menu_model(this@exportMenuModel, objectPath,
+      menu?.reinterpret(), errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun DBusConnection.flushFinish(res: AsyncResult?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_dbus_connection_flush_finish(this@flushFinish, res?.reinterpret(),
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun DBusConnection.flushSync(cancellable: Cancellable?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_dbus_connection_flush_sync(this@flushSync, cancellable?.reinterpret(),
+      errors).toBoolean
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
 public fun DBusConnection.isClosed(): Boolean = g_dbus_connection_is_closed(this).toBoolean
+
+@Throws(Error::class)
+public fun DBusConnection.registerObject(
+  objectPath: String,
+  interfaceInfo: DBusInterfaceInfo?,
+  methodCallClosure: Closure?,
+  getPropertyClosure: Closure?,
+  setPropertyClosure: Closure?
+): UInt = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: UInt = g_dbus_connection_register_object_with_closures(this@registerObject,
+      objectPath, interfaceInfo?.reinterpret(), methodCallClosure?.reinterpret(),
+      getPropertyClosure?.reinterpret(), setPropertyClosure?.reinterpret(), errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+public fun DBusConnection.removeFilter(filterId: UInt): Unit {
+  g_dbus_connection_remove_filter(this, filterId)
+}
+
+@Throws(Error::class)
+public fun DBusConnection.sendMessageWithReplyFinish(res: AsyncResult?): DBusMessage? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: DBusMessage? =
+      g_dbus_connection_send_message_with_reply_finish(this@sendMessageWithReplyFinish,
+      res?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+public fun DBusConnection.signalUnsubscribe(subscriptionId: UInt): Unit {
+  g_dbus_connection_signal_unsubscribe(this, subscriptionId)
+}
 
 public fun DBusConnection.startMessageProcessing(): Unit {
   g_dbus_connection_start_message_processing(this)
 }
+
+public fun DBusConnection.unexportActionGroup(exportId: UInt): Unit {
+  g_dbus_connection_unexport_action_group(this, exportId)
+}
+
+public fun DBusConnection.unexportMenuModel(exportId: UInt): Unit {
+  g_dbus_connection_unexport_menu_model(this, exportId)
+}
+
+public fun DBusConnection.unregisterObject(registrationId: UInt): Boolean =
+    g_dbus_connection_unregister_object(this, registrationId).toBoolean
+
+public fun DBusConnection.unregisterSubtree(registrationId: UInt): Boolean =
+    g_dbus_connection_unregister_subtree(this, registrationId).toBoolean
 
 public fun DBusConnection.onClosed(callback: (DBusConnection) -> Unit): DBusConnection {
   // TODO - handle callback data

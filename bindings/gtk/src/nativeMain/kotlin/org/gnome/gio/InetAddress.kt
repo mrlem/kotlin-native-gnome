@@ -2,13 +2,13 @@
 // TODO - constructor: new_from_bytes
 // TODO - constructor: new_from_string
 // TODO - constructor: new_loopback
-// TODO - method: equal
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GInetAddress
+import interop.g_inet_address_equal
 import interop.g_inet_address_get_family
 import interop.g_inet_address_get_is_any
 import interop.g_inet_address_get_is_link_local
@@ -78,5 +78,8 @@ public val InetAddress.isSiteLocal: Boolean
 
 public val InetAddress.nativeSize: ULong
   get() = g_inet_address_get_native_size(this)
+
+public fun InetAddress.equal(otherAddress: InetAddress?): Boolean = g_inet_address_equal(this,
+    otherAddress?.reinterpret()).toBoolean
 
 public fun InetAddress.toString(): String = g_inet_address_to_string(this).toKString

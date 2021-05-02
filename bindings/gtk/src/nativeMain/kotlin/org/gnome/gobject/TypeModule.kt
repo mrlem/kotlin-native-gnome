@@ -1,16 +1,17 @@
 // TODO - field: type_infos
 // TODO - field: interface_infos
-// TODO - method: add_interface
-// TODO - method: register_enum
-// TODO - method: register_flags
-// TODO - method: register_type
-// TODO - method: set_name
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gobject
 
+import interop.GType
 import interop.GTypeModule
+import interop.g_type_module_add_interface
+import interop.g_type_module_register_enum
+import interop.g_type_module_register_flags
+import interop.g_type_module_register_type
+import interop.g_type_module_set_name
 import interop.g_type_module_unuse
 import interop.g_type_module_use
 import kotlin.Boolean
@@ -37,6 +38,31 @@ public val TypeModule.useCount: UInt
 
 public val TypeModule.name: String
   get() = pointed.name.toKString
+
+public fun TypeModule.addInterface(
+  instanceType: GType,
+  interfaceType: GType,
+  interfaceInfo: InterfaceInfo?
+): Unit {
+  g_type_module_add_interface(this, instanceType, interfaceType, interfaceInfo?.reinterpret())
+}
+
+public fun TypeModule.registerEnum(name: String, constStaticValues: EnumValue?): GType =
+    g_type_module_register_enum(this, name, constStaticValues?.reinterpret())
+
+public fun TypeModule.registerFlags(name: String, constStaticValues: FlagsValue?): GType =
+    g_type_module_register_flags(this, name, constStaticValues?.reinterpret())
+
+public fun TypeModule.registerType(
+  parentType: GType,
+  typeName: String,
+  typeInfo: TypeInfo?,
+  flags: TypeFlags
+): GType = g_type_module_register_type(this, parentType, typeName, typeInfo?.reinterpret(), flags)
+
+public fun TypeModule.setName(name: String): Unit {
+  g_type_module_set_name(this, name)
+}
 
 public fun TypeModule.unuse(): Unit {
   g_type_module_unuse(this)

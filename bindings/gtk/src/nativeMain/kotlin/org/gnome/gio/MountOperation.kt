@@ -1,5 +1,3 @@
-// TODO - method: reply
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -15,6 +13,7 @@ import interop.g_mount_operation_get_password_save
 import interop.g_mount_operation_get_pim
 import interop.g_mount_operation_get_username
 import interop.g_mount_operation_new
+import interop.g_mount_operation_reply
 import interop.g_mount_operation_set_anonymous
 import interop.g_mount_operation_set_choice
 import interop.g_mount_operation_set_domain
@@ -104,6 +103,10 @@ public var MountOperation.username: String
   set(`value`) {
     g_mount_operation_set_username(this, `value`)
   }
+
+public fun MountOperation.reply(result: MountOperationResult): Unit {
+  g_mount_operation_reply(this, result)
+}
 
 public fun MountOperation.onAborted(callback: (MountOperation) -> Unit): MountOperation {
   // TODO - handle callback data
