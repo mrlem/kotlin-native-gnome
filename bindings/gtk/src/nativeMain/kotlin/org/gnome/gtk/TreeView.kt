@@ -147,73 +147,73 @@ public val TreeView.parent: Container
 public var TreeView.activateOnSingleClick: Boolean
   get() = gtk_tree_view_get_activate_on_single_click(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_activate_on_single_click(this, value.toInt)
+    gtk_tree_view_set_activate_on_single_click(this, `value`.toInt)
   }
 
 public var TreeView.enableSearch: Boolean
   get() = gtk_tree_view_get_enable_search(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_enable_search(this, value.toInt)
+    gtk_tree_view_set_enable_search(this, `value`.toInt)
   }
 
 public var TreeView.enableTreeLines: Boolean
   get() = gtk_tree_view_get_enable_tree_lines(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_enable_tree_lines(this, value.toInt)
+    gtk_tree_view_set_enable_tree_lines(this, `value`.toInt)
   }
 
 public var TreeView.expanderColumn: TreeViewColumn?
   get() = gtk_tree_view_get_expander_column(this)?.reinterpret()
   set(`value`) {
-    gtk_tree_view_set_expander_column(this, value)
+    gtk_tree_view_set_expander_column(this, `value`)
   }
 
 public var TreeView.fixedHeightMode: Boolean
   get() = gtk_tree_view_get_fixed_height_mode(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_fixed_height_mode(this, value.toInt)
+    gtk_tree_view_set_fixed_height_mode(this, `value`.toInt)
   }
 
 public var TreeView.gridLines: TreeViewGridLines
   get() = gtk_tree_view_get_grid_lines(this)
   set(`value`) {
-    gtk_tree_view_set_grid_lines(this, value)
+    gtk_tree_view_set_grid_lines(this, `value`)
   }
 
 public var TreeView.headersClickable: Boolean
   get() = gtk_tree_view_get_headers_clickable(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_headers_clickable(this, value.toInt)
+    gtk_tree_view_set_headers_clickable(this, `value`.toInt)
   }
 
 public var TreeView.headersVisible: Boolean
   get() = gtk_tree_view_get_headers_visible(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_headers_visible(this, value.toInt)
+    gtk_tree_view_set_headers_visible(this, `value`.toInt)
   }
 
 public var TreeView.hoverExpand: Boolean
   get() = gtk_tree_view_get_hover_expand(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_hover_expand(this, value.toInt)
+    gtk_tree_view_set_hover_expand(this, `value`.toInt)
   }
 
 public var TreeView.hoverSelection: Boolean
   get() = gtk_tree_view_get_hover_selection(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_hover_selection(this, value.toInt)
+    gtk_tree_view_set_hover_selection(this, `value`.toInt)
   }
 
 public var TreeView.levelIndentation: Int
   get() = gtk_tree_view_get_level_indentation(this)
   set(`value`) {
-    gtk_tree_view_set_level_indentation(this, value)
+    gtk_tree_view_set_level_indentation(this, `value`)
   }
 
 public var TreeView.model: TreeModel?
   get() = gtk_tree_view_get_model(this)?.reinterpret()
   set(`value`) {
-    gtk_tree_view_set_model(this, value)
+    gtk_tree_view_set_model(this, `value`)
   }
 
 public val TreeView.nColumns: UInt
@@ -222,7 +222,7 @@ public val TreeView.nColumns: UInt
 public var TreeView.reorderable: Boolean
   get() = gtk_tree_view_get_reorderable(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_reorderable(this, value.toInt)
+    gtk_tree_view_set_reorderable(this, `value`.toInt)
   }
 
 public val TreeView.rowSeparatorFunc: TreeViewRowSeparatorFunc?
@@ -231,19 +231,19 @@ public val TreeView.rowSeparatorFunc: TreeViewRowSeparatorFunc?
 public var TreeView.rubberBanding: Boolean
   get() = gtk_tree_view_get_rubber_banding(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_rubber_banding(this, value.toInt)
+    gtk_tree_view_set_rubber_banding(this, `value`.toInt)
   }
 
 public var TreeView.searchColumn: Int
   get() = gtk_tree_view_get_search_column(this)
   set(`value`) {
-    gtk_tree_view_set_search_column(this, value)
+    gtk_tree_view_set_search_column(this, `value`)
   }
 
 public var TreeView.searchEntry: Entry?
   get() = gtk_tree_view_get_search_entry(this)?.reinterpret()
   set(`value`) {
-    gtk_tree_view_set_search_entry(this, value)
+    gtk_tree_view_set_search_entry(this, `value`)
   }
 
 public val TreeView.searchEqualFunc: TreeViewSearchEqualFunc?
@@ -258,13 +258,13 @@ public val TreeView.selection: TreeSelection?
 public var TreeView.showExpanders: Boolean
   get() = gtk_tree_view_get_show_expanders(this).toBoolean
   set(`value`) {
-    gtk_tree_view_set_show_expanders(this, value.toInt)
+    gtk_tree_view_set_show_expanders(this, `value`.toInt)
   }
 
 public var TreeView.tooltipColumn: Int
   get() = gtk_tree_view_get_tooltip_column(this)
   set(`value`) {
-    gtk_tree_view_set_tooltip_column(this, value)
+    gtk_tree_view_set_tooltip_column(this, `value`)
   }
 
 public fun TreeView.appendColumn(column: TreeViewColumn?): Int = gtk_tree_view_append_column(this,

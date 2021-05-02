@@ -69,49 +69,49 @@ public val EntryCompletion.entry: Widget?
 public var EntryCompletion.inlineCompletion: Boolean
   get() = gtk_entry_completion_get_inline_completion(this).toBoolean
   set(`value`) {
-    gtk_entry_completion_set_inline_completion(this, value.toInt)
+    gtk_entry_completion_set_inline_completion(this, `value`.toInt)
   }
 
 public var EntryCompletion.inlineSelection: Boolean
   get() = gtk_entry_completion_get_inline_selection(this).toBoolean
   set(`value`) {
-    gtk_entry_completion_set_inline_selection(this, value.toInt)
+    gtk_entry_completion_set_inline_selection(this, `value`.toInt)
   }
 
 public var EntryCompletion.minimumKeyLength: Int
   get() = gtk_entry_completion_get_minimum_key_length(this)
   set(`value`) {
-    gtk_entry_completion_set_minimum_key_length(this, value)
+    gtk_entry_completion_set_minimum_key_length(this, `value`)
   }
 
 public var EntryCompletion.model: TreeModel?
   get() = gtk_entry_completion_get_model(this)?.reinterpret()
   set(`value`) {
-    gtk_entry_completion_set_model(this, value)
+    gtk_entry_completion_set_model(this, `value`)
   }
 
 public var EntryCompletion.popupCompletion: Boolean
   get() = gtk_entry_completion_get_popup_completion(this).toBoolean
   set(`value`) {
-    gtk_entry_completion_set_popup_completion(this, value.toInt)
+    gtk_entry_completion_set_popup_completion(this, `value`.toInt)
   }
 
 public var EntryCompletion.popupSetWidth: Boolean
   get() = gtk_entry_completion_get_popup_set_width(this).toBoolean
   set(`value`) {
-    gtk_entry_completion_set_popup_set_width(this, value.toInt)
+    gtk_entry_completion_set_popup_set_width(this, `value`.toInt)
   }
 
 public var EntryCompletion.popupSingleMatch: Boolean
   get() = gtk_entry_completion_get_popup_single_match(this).toBoolean
   set(`value`) {
-    gtk_entry_completion_set_popup_single_match(this, value.toInt)
+    gtk_entry_completion_set_popup_single_match(this, `value`.toInt)
   }
 
 public var EntryCompletion.textColumn: Int
   get() = gtk_entry_completion_get_text_column(this)
   set(`value`) {
-    gtk_entry_completion_set_text_column(this, value)
+    gtk_entry_completion_set_text_column(this, `value`)
   }
 
 public fun EntryCompletion.complete(): Unit {

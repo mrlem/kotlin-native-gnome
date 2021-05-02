@@ -47,7 +47,7 @@ public object AppChooserDialogFactory {
     flags: DialogFlags,
     `file`: File?
   ): AppChooserDialog = gtk_app_chooser_dialog_new(parent?.reinterpret(), flags,
-      file?.reinterpret())!!.reinterpret()
+      `file`?.reinterpret())!!.reinterpret()
 
   public fun newForContentType(
     parent: Window?,
@@ -63,7 +63,7 @@ public val AppChooserDialog.parent: Dialog
 public var AppChooserDialog.heading: String
   get() = gtk_app_chooser_dialog_get_heading(this).toKString
   set(`value`) {
-    gtk_app_chooser_dialog_set_heading(this, value)
+    gtk_app_chooser_dialog_set_heading(this, `value`)
   }
 
 public val AppChooserDialog.widget: Widget?

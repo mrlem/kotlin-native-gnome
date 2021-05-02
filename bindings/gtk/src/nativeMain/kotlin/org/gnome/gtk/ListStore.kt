@@ -69,7 +69,7 @@ public fun ListStore.setValue(
   column: Int,
   `value`: Value?
 ): Unit {
-  gtk_list_store_set_value(this, iter?.reinterpret(), column, value?.reinterpret())
+  gtk_list_store_set_value(this, iter?.reinterpret(), column, `value`?.reinterpret())
 }
 
 public fun ListStore.swap(a: TreeIter?, b: TreeIter?): Unit {

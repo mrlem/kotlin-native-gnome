@@ -37,7 +37,7 @@ public val NetworkService.protocol: String
 public var NetworkService.scheme: String
   get() = g_network_service_get_scheme(this).toKString
   set(`value`) {
-    g_network_service_set_scheme(this, value)
+    g_network_service_set_scheme(this, `value`)
   }
 
 public val NetworkService.service: String

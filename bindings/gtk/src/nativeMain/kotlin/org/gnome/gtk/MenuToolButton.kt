@@ -54,7 +54,7 @@ public val MenuToolButton.parent: ToolButton
 public var MenuToolButton.menu: Widget?
   get() = gtk_menu_tool_button_get_menu(this)?.reinterpret()
   set(`value`) {
-    gtk_menu_tool_button_set_menu(this, value)
+    gtk_menu_tool_button_set_menu(this, `value`)
   }
 
 public fun MenuToolButton.setArrowTooltipMarkup(markup: String): Unit {

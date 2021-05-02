@@ -37,7 +37,7 @@ public object GesturePanFactory {
 public var GesturePan.orientation: Orientation
   get() = gtk_gesture_pan_get_orientation(this)
   set(`value`) {
-    gtk_gesture_pan_set_orientation(this, value)
+    gtk_gesture_pan_set_orientation(this, `value`)
   }
 
 public fun GesturePan.onPan(callback: (GesturePan) -> Unit): GesturePan {

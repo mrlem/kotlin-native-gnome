@@ -45,11 +45,11 @@ public val EventBox.bin: Bin
 public var EventBox.aboveChild: Boolean
   get() = gtk_event_box_get_above_child(this).toBoolean
   set(`value`) {
-    gtk_event_box_set_above_child(this, value.toInt)
+    gtk_event_box_set_above_child(this, `value`.toInt)
   }
 
 public var EventBox.visibleWindow: Boolean
   get() = gtk_event_box_get_visible_window(this).toBoolean
   set(`value`) {
-    gtk_event_box_set_visible_window(this, value.toInt)
+    gtk_event_box_set_visible_window(this, `value`.toInt)
   }

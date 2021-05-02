@@ -94,13 +94,13 @@ public val Socket.availableBytes: Long
 public var Socket.blocking: Boolean
   get() = g_socket_get_blocking(this).toBoolean
   set(`value`) {
-    g_socket_set_blocking(this, value.toInt)
+    g_socket_set_blocking(this, `value`.toInt)
   }
 
 public var Socket.broadcast: Boolean
   get() = g_socket_get_broadcast(this).toBoolean
   set(`value`) {
-    g_socket_set_broadcast(this, value.toInt)
+    g_socket_set_broadcast(this, `value`.toInt)
   }
 
 public val Socket.family: SocketFamily
@@ -112,25 +112,25 @@ public val Socket.fd: Int
 public var Socket.keepalive: Boolean
   get() = g_socket_get_keepalive(this).toBoolean
   set(`value`) {
-    g_socket_set_keepalive(this, value.toInt)
+    g_socket_set_keepalive(this, `value`.toInt)
   }
 
 public var Socket.listenBacklog: Int
   get() = g_socket_get_listen_backlog(this)
   set(`value`) {
-    g_socket_set_listen_backlog(this, value)
+    g_socket_set_listen_backlog(this, `value`)
   }
 
 public var Socket.multicastLoopback: Boolean
   get() = g_socket_get_multicast_loopback(this).toBoolean
   set(`value`) {
-    g_socket_set_multicast_loopback(this, value.toInt)
+    g_socket_set_multicast_loopback(this, `value`.toInt)
   }
 
 public var Socket.multicastTtl: UInt
   get() = g_socket_get_multicast_ttl(this)
   set(`value`) {
-    g_socket_set_multicast_ttl(this, value)
+    g_socket_set_multicast_ttl(this, `value`)
   }
 
 public val Socket.protocol: SocketProtocol
@@ -142,13 +142,13 @@ public val Socket.socketType: SocketType
 public var Socket.timeout: UInt
   get() = g_socket_get_timeout(this)
   set(`value`) {
-    g_socket_set_timeout(this, value)
+    g_socket_set_timeout(this, `value`)
   }
 
 public var Socket.ttl: UInt
   get() = g_socket_get_ttl(this)
   set(`value`) {
-    g_socket_set_ttl(this, value)
+    g_socket_set_ttl(this, `value`)
   }
 
 @Throws(Error::class)

@@ -49,5 +49,5 @@ public val TextMark.name: String
 public var TextMark.visible: Boolean
   get() = gtk_text_mark_get_visible(this).toBoolean
   set(`value`) {
-    gtk_text_mark_set_visible(this, value.toInt)
+    gtk_text_mark_set_visible(this, `value`.toInt)
   }

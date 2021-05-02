@@ -56,25 +56,25 @@ public val Box.container: Container
 public var Box.baselinePosition: BaselinePosition
   get() = gtk_box_get_baseline_position(this)
   set(`value`) {
-    gtk_box_set_baseline_position(this, value)
+    gtk_box_set_baseline_position(this, `value`)
   }
 
 public var Box.centerWidget: Widget?
   get() = gtk_box_get_center_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_box_set_center_widget(this, value)
+    gtk_box_set_center_widget(this, `value`)
   }
 
 public var Box.homogeneous: Boolean
   get() = gtk_box_get_homogeneous(this).toBoolean
   set(`value`) {
-    gtk_box_set_homogeneous(this, value.toInt)
+    gtk_box_set_homogeneous(this, `value`.toInt)
   }
 
 public var Box.spacing: Int
   get() = gtk_box_get_spacing(this)
   set(`value`) {
-    gtk_box_set_spacing(this, value)
+    gtk_box_set_spacing(this, `value`)
   }
 
 public fun Box.packEnd(

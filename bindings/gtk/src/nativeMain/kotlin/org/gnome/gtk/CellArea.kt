@@ -82,7 +82,7 @@ public val CellArea.editedCell: CellRenderer?
 public var CellArea.focusCell: CellRenderer?
   get() = gtk_cell_area_get_focus_cell(this)?.reinterpret()
   set(`value`) {
-    gtk_cell_area_set_focus_cell(this, value)
+    gtk_cell_area_set_focus_cell(this, `value`)
   }
 
 public val CellArea.requestMode: SizeRequestMode
@@ -126,7 +126,8 @@ public fun CellArea.cellGetProperty(
   propertyName: String,
   `value`: Value?
 ): Unit {
-  gtk_cell_area_cell_get_property(this, renderer?.reinterpret(), propertyName, value?.reinterpret())
+  gtk_cell_area_cell_get_property(this, renderer?.reinterpret(), propertyName,
+      `value`?.reinterpret())
 }
 
 public fun CellArea.cellSetProperty(
@@ -134,7 +135,8 @@ public fun CellArea.cellSetProperty(
   propertyName: String,
   `value`: Value?
 ): Unit {
-  gtk_cell_area_cell_set_property(this, renderer?.reinterpret(), propertyName, value?.reinterpret())
+  gtk_cell_area_cell_set_property(this, renderer?.reinterpret(), propertyName,
+      `value`?.reinterpret())
 }
 
 public fun CellArea.copyContext(context: CellAreaContext?): CellAreaContext? =

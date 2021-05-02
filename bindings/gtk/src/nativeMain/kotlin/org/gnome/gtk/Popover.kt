@@ -68,31 +68,31 @@ public val Popover.parentInstance: Bin
 public var Popover.constrainTo: PopoverConstraint
   get() = gtk_popover_get_constrain_to(this)
   set(`value`) {
-    gtk_popover_set_constrain_to(this, value)
+    gtk_popover_set_constrain_to(this, `value`)
   }
 
 public var Popover.defaultWidget: Widget?
   get() = gtk_popover_get_default_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_popover_set_default_widget(this, value)
+    gtk_popover_set_default_widget(this, `value`)
   }
 
 public var Popover.modal: Boolean
   get() = gtk_popover_get_modal(this).toBoolean
   set(`value`) {
-    gtk_popover_set_modal(this, value.toInt)
+    gtk_popover_set_modal(this, `value`.toInt)
   }
 
 public var Popover.position: PositionType
   get() = gtk_popover_get_position(this)
   set(`value`) {
-    gtk_popover_set_position(this, value)
+    gtk_popover_set_position(this, `value`)
   }
 
 public var Popover.relativeTo: Widget?
   get() = gtk_popover_get_relative_to(this)?.reinterpret()
   set(`value`) {
-    gtk_popover_set_relative_to(this, value)
+    gtk_popover_set_relative_to(this, `value`)
   }
 
 public fun Popover.bindModel(model: MenuModel?, actionNamespace: String): Unit {

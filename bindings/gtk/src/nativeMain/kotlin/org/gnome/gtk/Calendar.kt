@@ -53,19 +53,19 @@ public val Calendar.widget: Widget
 public var Calendar.detailHeightRows: Int
   get() = gtk_calendar_get_detail_height_rows(this)
   set(`value`) {
-    gtk_calendar_set_detail_height_rows(this, value)
+    gtk_calendar_set_detail_height_rows(this, `value`)
   }
 
 public var Calendar.detailWidthChars: Int
   get() = gtk_calendar_get_detail_width_chars(this)
   set(`value`) {
-    gtk_calendar_set_detail_width_chars(this, value)
+    gtk_calendar_set_detail_width_chars(this, `value`)
   }
 
 public var Calendar.displayOptions: CalendarDisplayOptions
   get() = gtk_calendar_get_display_options(this)
   set(`value`) {
-    gtk_calendar_set_display_options(this, value)
+    gtk_calendar_set_display_options(this, `value`)
   }
 
 public fun Calendar.clearMarks(): Unit {

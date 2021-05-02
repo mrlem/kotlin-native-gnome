@@ -51,7 +51,7 @@ public val ApplicationWindow.parentInstance: Window
 public var ApplicationWindow.helpOverlay: ShortcutsWindow?
   get() = gtk_application_window_get_help_overlay(this)?.reinterpret()
   set(`value`) {
-    gtk_application_window_set_help_overlay(this, value)
+    gtk_application_window_set_help_overlay(this, `value`)
   }
 
 public val ApplicationWindow.id: UInt
@@ -60,5 +60,5 @@ public val ApplicationWindow.id: UInt
 public var ApplicationWindow.showMenubar: Boolean
   get() = gtk_application_window_get_show_menubar(this).toBoolean
   set(`value`) {
-    gtk_application_window_set_show_menubar(this, value.toInt)
+    gtk_application_window_set_show_menubar(this, `value`.toInt)
   }

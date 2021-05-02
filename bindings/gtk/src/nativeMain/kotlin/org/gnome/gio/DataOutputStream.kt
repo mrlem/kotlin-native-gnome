@@ -40,5 +40,5 @@ public val DataOutputStream.parentInstance: FilterOutputStream
 public var DataOutputStream.byteOrder: DataStreamByteOrder
   get() = g_data_output_stream_get_byte_order(this)
   set(`value`) {
-    g_data_output_stream_set_byte_order(this, value)
+    g_data_output_stream_set_byte_order(this, `value`)
   }

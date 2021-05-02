@@ -67,19 +67,19 @@ public val InfoBar.contentArea: Box?
 public var InfoBar.messageType: MessageType
   get() = gtk_info_bar_get_message_type(this)
   set(`value`) {
-    gtk_info_bar_set_message_type(this, value)
+    gtk_info_bar_set_message_type(this, `value`)
   }
 
 public var InfoBar.revealed: Boolean
   get() = gtk_info_bar_get_revealed(this).toBoolean
   set(`value`) {
-    gtk_info_bar_set_revealed(this, value.toInt)
+    gtk_info_bar_set_revealed(this, `value`.toInt)
   }
 
 public var InfoBar.showCloseButton: Boolean
   get() = gtk_info_bar_get_show_close_button(this).toBoolean
   set(`value`) {
-    gtk_info_bar_set_show_close_button(this, value.toInt)
+    gtk_info_bar_set_show_close_button(this, `value`.toInt)
   }
 
 public fun InfoBar.addActionWidget(child: Widget?, responseId: Int): Unit {

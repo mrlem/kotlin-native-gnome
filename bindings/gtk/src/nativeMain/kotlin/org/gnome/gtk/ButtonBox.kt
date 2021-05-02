@@ -49,7 +49,7 @@ public val ButtonBox.box: Box
 public var ButtonBox.layout: ButtonBoxStyle
   get() = gtk_button_box_get_layout(this)
   set(`value`) {
-    gtk_button_box_set_layout(this, value)
+    gtk_button_box_set_layout(this, `value`)
   }
 
 public fun ButtonBox.getChildNonHomogeneous(child: Widget?): Boolean =

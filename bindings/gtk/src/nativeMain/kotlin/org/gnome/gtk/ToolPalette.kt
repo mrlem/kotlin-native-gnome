@@ -60,13 +60,13 @@ public val ToolPalette.parentInstance: Container
 public var ToolPalette.iconSize: IconSize
   get() = gtk_tool_palette_get_icon_size(this)
   set(`value`) {
-    gtk_tool_palette_set_icon_size(this, value)
+    gtk_tool_palette_set_icon_size(this, `value`)
   }
 
 public var ToolPalette.style: ToolbarStyle
   get() = gtk_tool_palette_get_style(this)
   set(`value`) {
-    gtk_tool_palette_set_style(this, value)
+    gtk_tool_palette_set_style(this, `value`)
   }
 
 public fun ToolPalette.getDragItem(selection: SelectionData?): Widget? =

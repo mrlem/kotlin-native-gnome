@@ -58,7 +58,7 @@ public val MenuShell.selectedItem: Widget?
 public var MenuShell.takeFocus: Boolean
   get() = gtk_menu_shell_get_take_focus(this).toBoolean
   set(`value`) {
-    gtk_menu_shell_set_take_focus(this, value.toInt)
+    gtk_menu_shell_set_take_focus(this, `value`.toInt)
   }
 
 public fun MenuShell.activateItem(menuItem: Widget?, forceDeactivate: Boolean): Unit {

@@ -60,25 +60,25 @@ public val ToolItemGroup.parentInstance: Container
 public var ToolItemGroup.collapsed: Boolean
   get() = gtk_tool_item_group_get_collapsed(this).toBoolean
   set(`value`) {
-    gtk_tool_item_group_set_collapsed(this, value.toInt)
+    gtk_tool_item_group_set_collapsed(this, `value`.toInt)
   }
 
 public var ToolItemGroup.headerRelief: ReliefStyle
   get() = gtk_tool_item_group_get_header_relief(this)
   set(`value`) {
-    gtk_tool_item_group_set_header_relief(this, value)
+    gtk_tool_item_group_set_header_relief(this, `value`)
   }
 
 public var ToolItemGroup.label: String
   get() = gtk_tool_item_group_get_label(this).toKString
   set(`value`) {
-    gtk_tool_item_group_set_label(this, value)
+    gtk_tool_item_group_set_label(this, `value`)
   }
 
 public var ToolItemGroup.labelWidget: Widget?
   get() = gtk_tool_item_group_get_label_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_tool_item_group_set_label_widget(this, value)
+    gtk_tool_item_group_set_label_widget(this, `value`)
   }
 
 public val ToolItemGroup.nItems: UInt

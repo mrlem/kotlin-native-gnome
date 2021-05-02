@@ -40,11 +40,11 @@ public object ShortcutLabelFactory {
 public var ShortcutLabel.accelerator: String
   get() = gtk_shortcut_label_get_accelerator(this).toKString
   set(`value`) {
-    gtk_shortcut_label_set_accelerator(this, value)
+    gtk_shortcut_label_set_accelerator(this, `value`)
   }
 
 public var ShortcutLabel.disabledText: String
   get() = gtk_shortcut_label_get_disabled_text(this).toKString
   set(`value`) {
-    gtk_shortcut_label_set_disabled_text(this, value)
+    gtk_shortcut_label_set_disabled_text(this, `value`)
   }

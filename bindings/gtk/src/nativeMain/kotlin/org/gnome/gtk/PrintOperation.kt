@@ -66,19 +66,19 @@ public val PrintOperation.parentInstance: Object
 public var PrintOperation.defaultPageSetup: PageSetup?
   get() = gtk_print_operation_get_default_page_setup(this)?.reinterpret()
   set(`value`) {
-    gtk_print_operation_set_default_page_setup(this, value)
+    gtk_print_operation_set_default_page_setup(this, `value`)
   }
 
 public var PrintOperation.embedPageSetup: Boolean
   get() = gtk_print_operation_get_embed_page_setup(this).toBoolean
   set(`value`) {
-    gtk_print_operation_set_embed_page_setup(this, value.toInt)
+    gtk_print_operation_set_embed_page_setup(this, `value`.toInt)
   }
 
 public var PrintOperation.hasSelection: Boolean
   get() = gtk_print_operation_get_has_selection(this).toBoolean
   set(`value`) {
-    gtk_print_operation_set_has_selection(this, value.toInt)
+    gtk_print_operation_set_has_selection(this, `value`.toInt)
   }
 
 public val PrintOperation.nPagesToPrint: Int
@@ -87,7 +87,7 @@ public val PrintOperation.nPagesToPrint: Int
 public var PrintOperation.printSettings: PrintSettings?
   get() = gtk_print_operation_get_print_settings(this)?.reinterpret()
   set(`value`) {
-    gtk_print_operation_set_print_settings(this, value)
+    gtk_print_operation_set_print_settings(this, `value`)
   }
 
 public val PrintOperation.status: PrintStatus
@@ -99,7 +99,7 @@ public val PrintOperation.statusString: String
 public var PrintOperation.supportSelection: Boolean
   get() = gtk_print_operation_get_support_selection(this).toBoolean
   set(`value`) {
-    gtk_print_operation_set_support_selection(this, value.toInt)
+    gtk_print_operation_set_support_selection(this, `value`.toInt)
   }
 
 public fun PrintOperation.cancel(): kotlin.Unit {

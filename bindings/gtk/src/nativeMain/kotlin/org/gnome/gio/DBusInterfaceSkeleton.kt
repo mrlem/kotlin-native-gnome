@@ -40,7 +40,7 @@ public val DBusInterfaceSkeleton.connection: DBusConnection?
 public var DBusInterfaceSkeleton.flags: DBusInterfaceSkeletonFlags
   get() = g_dbus_interface_skeleton_get_flags(this)
   set(`value`) {
-    g_dbus_interface_skeleton_set_flags(this, value)
+    g_dbus_interface_skeleton_set_flags(this, `value`)
   }
 
 public val DBusInterfaceSkeleton.info: DBusInterfaceInfo?

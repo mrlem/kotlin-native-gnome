@@ -49,7 +49,7 @@ public val EntryBuffer.length: UInt
 public var EntryBuffer.maxLength: Int
   get() = gtk_entry_buffer_get_max_length(this)
   set(`value`) {
-    gtk_entry_buffer_set_max_length(this, value)
+    gtk_entry_buffer_set_max_length(this, `value`)
   }
 
 public val EntryBuffer.text: String

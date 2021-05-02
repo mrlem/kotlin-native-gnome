@@ -30,5 +30,5 @@ public val DBusObjectManagerServer.parentInstance: Object
 public var DBusObjectManagerServer.connection: DBusConnection?
   get() = g_dbus_object_manager_server_get_connection(this)?.reinterpret()
   set(`value`) {
-    g_dbus_object_manager_server_set_connection(this, value)
+    g_dbus_object_manager_server_set_connection(this, `value`)
   }

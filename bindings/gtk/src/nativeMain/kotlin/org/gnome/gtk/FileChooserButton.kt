@@ -55,13 +55,13 @@ public val FileChooserButton.parent: Box
 public var FileChooserButton.title: String
   get() = gtk_file_chooser_button_get_title(this).toKString
   set(`value`) {
-    gtk_file_chooser_button_set_title(this, value)
+    gtk_file_chooser_button_set_title(this, `value`)
   }
 
 public var FileChooserButton.widthChars: Int
   get() = gtk_file_chooser_button_get_width_chars(this)
   set(`value`) {
-    gtk_file_chooser_button_set_width_chars(this, value)
+    gtk_file_chooser_button_set_width_chars(this, `value`)
   }
 
 public fun FileChooserButton.onFileSet(callback: (FileChooserButton) -> Unit): FileChooserButton {

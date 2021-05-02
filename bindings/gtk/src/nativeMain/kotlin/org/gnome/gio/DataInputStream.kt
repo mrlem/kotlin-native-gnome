@@ -55,11 +55,11 @@ public val DataInputStream.parentInstance: BufferedInputStream
 public var DataInputStream.byteOrder: DataStreamByteOrder
   get() = g_data_input_stream_get_byte_order(this)
   set(`value`) {
-    g_data_input_stream_set_byte_order(this, value)
+    g_data_input_stream_set_byte_order(this, `value`)
   }
 
 public var DataInputStream.newlineType: DataStreamNewlineType
   get() = g_data_input_stream_get_newline_type(this)
   set(`value`) {
-    g_data_input_stream_set_newline_type(this, value)
+    g_data_input_stream_set_newline_type(this, `value`)
   }

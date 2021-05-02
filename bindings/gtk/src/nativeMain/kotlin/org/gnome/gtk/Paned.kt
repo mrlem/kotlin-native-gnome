@@ -59,13 +59,13 @@ public val Paned.child2: Widget?
 public var Paned.position: Int
   get() = gtk_paned_get_position(this)
   set(`value`) {
-    gtk_paned_set_position(this, value)
+    gtk_paned_set_position(this, `value`)
   }
 
 public var Paned.wideHandle: Boolean
   get() = gtk_paned_get_wide_handle(this).toBoolean
   set(`value`) {
-    gtk_paned_set_wide_handle(this, value.toInt)
+    gtk_paned_set_wide_handle(this, `value`.toInt)
   }
 
 public fun Paned.add1(child: Widget?): Unit {

@@ -29,5 +29,5 @@ public val CharsetConverter.numFallbacks: UInt
 public var CharsetConverter.useFallback: Boolean
   get() = g_charset_converter_get_use_fallback(this).toBoolean
   set(`value`) {
-    g_charset_converter_set_use_fallback(this, value.toInt)
+    g_charset_converter_set_use_fallback(this, `value`.toInt)
   }

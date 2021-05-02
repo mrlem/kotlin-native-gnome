@@ -28,7 +28,7 @@ public object EventControllerScrollFactory {
 public var EventControllerScroll.flags: EventControllerScrollFlags
   get() = gtk_event_controller_scroll_get_flags(this)
   set(`value`) {
-    gtk_event_controller_scroll_set_flags(this, value)
+    gtk_event_controller_scroll_set_flags(this, `value`)
   }
 
 public fun EventControllerScroll.onDecelerate(callback: (EventControllerScroll) -> Unit):

@@ -41,7 +41,7 @@ public val TreeSelection.asObject: Object
 public var TreeSelection.mode: SelectionMode
   get() = gtk_tree_selection_get_mode(this)
   set(`value`) {
-    gtk_tree_selection_set_mode(this, value)
+    gtk_tree_selection_set_mode(this, `value`)
   }
 
 public val TreeSelection.selectFunction: TreeSelectionFunc?

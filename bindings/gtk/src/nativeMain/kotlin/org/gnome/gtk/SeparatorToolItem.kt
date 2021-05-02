@@ -46,5 +46,5 @@ public val SeparatorToolItem.parent: ToolItem
 public var SeparatorToolItem.draw: Boolean
   get() = gtk_separator_tool_item_get_draw(this).toBoolean
   set(`value`) {
-    gtk_separator_tool_item_set_draw(this, value.toInt)
+    gtk_separator_tool_item_set_draw(this, `value`.toInt)
   }

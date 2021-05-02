@@ -110,109 +110,109 @@ public object PrintSettingsFactory {
 public var PrintSettings.collate: Boolean
   get() = gtk_print_settings_get_collate(this).toBoolean
   set(`value`) {
-    gtk_print_settings_set_collate(this, value.toInt)
+    gtk_print_settings_set_collate(this, `value`.toInt)
   }
 
 public var PrintSettings.defaultSource: String
   get() = gtk_print_settings_get_default_source(this).toKString
   set(`value`) {
-    gtk_print_settings_set_default_source(this, value)
+    gtk_print_settings_set_default_source(this, `value`)
   }
 
 public var PrintSettings.dither: String
   get() = gtk_print_settings_get_dither(this).toKString
   set(`value`) {
-    gtk_print_settings_set_dither(this, value)
+    gtk_print_settings_set_dither(this, `value`)
   }
 
 public var PrintSettings.duplex: PrintDuplex
   get() = gtk_print_settings_get_duplex(this)
   set(`value`) {
-    gtk_print_settings_set_duplex(this, value)
+    gtk_print_settings_set_duplex(this, `value`)
   }
 
 public var PrintSettings.finishings: String
   get() = gtk_print_settings_get_finishings(this).toKString
   set(`value`) {
-    gtk_print_settings_set_finishings(this, value)
+    gtk_print_settings_set_finishings(this, `value`)
   }
 
 public var PrintSettings.mediaType: String
   get() = gtk_print_settings_get_media_type(this).toKString
   set(`value`) {
-    gtk_print_settings_set_media_type(this, value)
+    gtk_print_settings_set_media_type(this, `value`)
   }
 
 public var PrintSettings.nCopies: Int
   get() = gtk_print_settings_get_n_copies(this)
   set(`value`) {
-    gtk_print_settings_set_n_copies(this, value)
+    gtk_print_settings_set_n_copies(this, `value`)
   }
 
 public var PrintSettings.numberUp: Int
   get() = gtk_print_settings_get_number_up(this)
   set(`value`) {
-    gtk_print_settings_set_number_up(this, value)
+    gtk_print_settings_set_number_up(this, `value`)
   }
 
 public var PrintSettings.numberUpLayout: NumberUpLayout
   get() = gtk_print_settings_get_number_up_layout(this)
   set(`value`) {
-    gtk_print_settings_set_number_up_layout(this, value)
+    gtk_print_settings_set_number_up_layout(this, `value`)
   }
 
 public var PrintSettings.orientation: PageOrientation
   get() = gtk_print_settings_get_orientation(this)
   set(`value`) {
-    gtk_print_settings_set_orientation(this, value)
+    gtk_print_settings_set_orientation(this, `value`)
   }
 
 public var PrintSettings.outputBin: String
   get() = gtk_print_settings_get_output_bin(this).toKString
   set(`value`) {
-    gtk_print_settings_set_output_bin(this, value)
+    gtk_print_settings_set_output_bin(this, `value`)
   }
 
 public var PrintSettings.pageSet: PageSet
   get() = gtk_print_settings_get_page_set(this)
   set(`value`) {
-    gtk_print_settings_set_page_set(this, value)
+    gtk_print_settings_set_page_set(this, `value`)
   }
 
 public var PrintSettings.paperSize: PaperSize?
   get() = gtk_print_settings_get_paper_size(this)?.reinterpret()
   set(`value`) {
-    gtk_print_settings_set_paper_size(this, value)
+    gtk_print_settings_set_paper_size(this, `value`)
   }
 
 public var PrintSettings.printPages: PrintPages
   get() = gtk_print_settings_get_print_pages(this)
   set(`value`) {
-    gtk_print_settings_set_print_pages(this, value)
+    gtk_print_settings_set_print_pages(this, `value`)
   }
 
 public var PrintSettings.printer: String
   get() = gtk_print_settings_get_printer(this).toKString
   set(`value`) {
-    gtk_print_settings_set_printer(this, value)
+    gtk_print_settings_set_printer(this, `value`)
   }
 
 public var PrintSettings.printerLpi: Double
   get() = gtk_print_settings_get_printer_lpi(this)
   set(`value`) {
-    gtk_print_settings_set_printer_lpi(this, value)
+    gtk_print_settings_set_printer_lpi(this, `value`)
   }
 
 public var PrintSettings.quality: PrintQuality
   get() = gtk_print_settings_get_quality(this)
   set(`value`) {
-    gtk_print_settings_set_quality(this, value)
+    gtk_print_settings_set_quality(this, `value`)
   }
 
 public var PrintSettings.resolution: Int
   get() = gtk_print_settings_get_resolution(this)
   set(`value`) {
-    gtk_print_settings_set_resolution(this, value)
+    gtk_print_settings_set_resolution(this, `value`)
   }
 
 public val PrintSettings.resolutionX: Int
@@ -224,19 +224,19 @@ public val PrintSettings.resolutionY: Int
 public var PrintSettings.reverse: Boolean
   get() = gtk_print_settings_get_reverse(this).toBoolean
   set(`value`) {
-    gtk_print_settings_set_reverse(this, value.toInt)
+    gtk_print_settings_set_reverse(this, `value`.toInt)
   }
 
 public var PrintSettings.scale: Double
   get() = gtk_print_settings_get_scale(this)
   set(`value`) {
-    gtk_print_settings_set_scale(this, value)
+    gtk_print_settings_set_scale(this, `value`)
   }
 
 public var PrintSettings.useColor: Boolean
   get() = gtk_print_settings_get_use_color(this).toBoolean
   set(`value`) {
-    gtk_print_settings_set_use_color(this, value.toInt)
+    gtk_print_settings_set_use_color(this, `value`.toInt)
   }
 
 public fun PrintSettings.copy(): PrintSettings? = gtk_print_settings_copy(this)?.reinterpret()
@@ -277,19 +277,19 @@ public fun PrintSettings.loadFile(fileName: String): Boolean = memScoped {
 }
 
 public fun PrintSettings.`set`(key: String, `value`: String): kotlin.Unit {
-  gtk_print_settings_set(this, key, value)
+  gtk_print_settings_set(this, key, `value`)
 }
 
 public fun PrintSettings.setBool(key: String, `value`: Boolean): kotlin.Unit {
-  gtk_print_settings_set_bool(this, key, value.toInt)
+  gtk_print_settings_set_bool(this, key, `value`.toInt)
 }
 
 public fun PrintSettings.setDouble(key: String, `value`: Double): kotlin.Unit {
-  gtk_print_settings_set_double(this, key, value)
+  gtk_print_settings_set_double(this, key, `value`)
 }
 
 public fun PrintSettings.setInt(key: String, `value`: Int): kotlin.Unit {
-  gtk_print_settings_set_int(this, key, value)
+  gtk_print_settings_set_int(this, key, `value`)
 }
 
 public fun PrintSettings.setLength(
@@ -297,7 +297,7 @@ public fun PrintSettings.setLength(
   `value`: Double,
   unit: Unit
 ): kotlin.Unit {
-  gtk_print_settings_set_length(this, key, value, unit)
+  gtk_print_settings_set_length(this, key, `value`, unit)
 }
 
 public fun PrintSettings.setPaperHeight(height: Double, unit: Unit): kotlin.Unit {

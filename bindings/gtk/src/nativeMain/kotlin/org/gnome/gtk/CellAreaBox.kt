@@ -35,7 +35,7 @@ public object CellAreaBoxFactory {
 public var CellAreaBox.spacing: Int
   get() = gtk_cell_area_box_get_spacing(this)
   set(`value`) {
-    gtk_cell_area_box_set_spacing(this, value)
+    gtk_cell_area_box_set_spacing(this, `value`)
   }
 
 public fun CellAreaBox.packEnd(

@@ -44,5 +44,5 @@ public val BufferedInputStream.available: ULong
 public var BufferedInputStream.bufferSize: ULong
   get() = g_buffered_input_stream_get_buffer_size(this)
   set(`value`) {
-    g_buffered_input_stream_set_buffer_size(this, value)
+    g_buffered_input_stream_set_buffer_size(this, `value`)
   }

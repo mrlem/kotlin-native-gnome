@@ -63,55 +63,55 @@ public val SocketClient.parentInstance: Object
 public var SocketClient.enableProxy: Boolean
   get() = g_socket_client_get_enable_proxy(this).toBoolean
   set(`value`) {
-    g_socket_client_set_enable_proxy(this, value.toInt)
+    g_socket_client_set_enable_proxy(this, `value`.toInt)
   }
 
 public var SocketClient.family: SocketFamily
   get() = g_socket_client_get_family(this)
   set(`value`) {
-    g_socket_client_set_family(this, value)
+    g_socket_client_set_family(this, `value`)
   }
 
 public var SocketClient.localAddress: SocketAddress?
   get() = g_socket_client_get_local_address(this)?.reinterpret()
   set(`value`) {
-    g_socket_client_set_local_address(this, value)
+    g_socket_client_set_local_address(this, `value`)
   }
 
 public var SocketClient.protocol: SocketProtocol
   get() = g_socket_client_get_protocol(this)
   set(`value`) {
-    g_socket_client_set_protocol(this, value)
+    g_socket_client_set_protocol(this, `value`)
   }
 
 public var SocketClient.proxyResolver: ProxyResolver?
   get() = g_socket_client_get_proxy_resolver(this)?.reinterpret()
   set(`value`) {
-    g_socket_client_set_proxy_resolver(this, value)
+    g_socket_client_set_proxy_resolver(this, `value`)
   }
 
 public var SocketClient.socketType: SocketType
   get() = g_socket_client_get_socket_type(this)
   set(`value`) {
-    g_socket_client_set_socket_type(this, value)
+    g_socket_client_set_socket_type(this, `value`)
   }
 
 public var SocketClient.timeout: UInt
   get() = g_socket_client_get_timeout(this)
   set(`value`) {
-    g_socket_client_set_timeout(this, value)
+    g_socket_client_set_timeout(this, `value`)
   }
 
 public var SocketClient.tls: Boolean
   get() = g_socket_client_get_tls(this).toBoolean
   set(`value`) {
-    g_socket_client_set_tls(this, value.toInt)
+    g_socket_client_set_tls(this, `value`.toInt)
   }
 
 public var SocketClient.tlsValidationFlags: TlsCertificateFlags
   get() = g_socket_client_get_tls_validation_flags(this)
   set(`value`) {
-    g_socket_client_set_tls_validation_flags(this, value)
+    g_socket_client_set_tls_validation_flags(this, `value`)
   }
 
 public fun SocketClient.onEvent(callback: (SocketClient) -> Unit): SocketClient {

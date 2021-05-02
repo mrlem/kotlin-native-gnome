@@ -34,7 +34,7 @@ public val SizeGroup.parentInstance: Object
 public var SizeGroup.mode: SizeGroupMode
   get() = gtk_size_group_get_mode(this)
   set(`value`) {
-    gtk_size_group_set_mode(this, value)
+    gtk_size_group_set_mode(this, `value`)
   }
 
 public fun SizeGroup.addWidget(widget: Widget?): Unit {

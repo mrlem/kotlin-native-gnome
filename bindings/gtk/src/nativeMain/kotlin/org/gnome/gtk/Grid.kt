@@ -56,31 +56,31 @@ public object GridFactory {
 public var Grid.baselineRow: Int
   get() = gtk_grid_get_baseline_row(this)
   set(`value`) {
-    gtk_grid_set_baseline_row(this, value)
+    gtk_grid_set_baseline_row(this, `value`)
   }
 
 public var Grid.columnHomogeneous: Boolean
   get() = gtk_grid_get_column_homogeneous(this).toBoolean
   set(`value`) {
-    gtk_grid_set_column_homogeneous(this, value.toInt)
+    gtk_grid_set_column_homogeneous(this, `value`.toInt)
   }
 
 public var Grid.columnSpacing: UInt
   get() = gtk_grid_get_column_spacing(this)
   set(`value`) {
-    gtk_grid_set_column_spacing(this, value)
+    gtk_grid_set_column_spacing(this, `value`)
   }
 
 public var Grid.rowHomogeneous: Boolean
   get() = gtk_grid_get_row_homogeneous(this).toBoolean
   set(`value`) {
-    gtk_grid_set_row_homogeneous(this, value.toInt)
+    gtk_grid_set_row_homogeneous(this, `value`.toInt)
   }
 
 public var Grid.rowSpacing: UInt
   get() = gtk_grid_get_row_spacing(this)
   set(`value`) {
-    gtk_grid_set_row_spacing(this, value)
+    gtk_grid_set_row_spacing(this, `value`)
   }
 
 public fun Grid.attach(

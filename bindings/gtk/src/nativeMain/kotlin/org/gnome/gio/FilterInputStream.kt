@@ -32,5 +32,5 @@ public val FilterInputStream.baseStream: InputStream?
 public var FilterInputStream.closeBaseStream: Boolean
   get() = g_filter_input_stream_get_close_base_stream(this).toBoolean
   set(`value`) {
-    g_filter_input_stream_set_close_base_stream(this, value.toInt)
+    g_filter_input_stream_set_close_base_stream(this, `value`.toInt)
   }

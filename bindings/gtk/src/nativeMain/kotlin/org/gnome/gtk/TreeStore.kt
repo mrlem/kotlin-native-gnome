@@ -77,7 +77,7 @@ public fun TreeStore.setValue(
   column: Int,
   `value`: Value?
 ): Unit {
-  gtk_tree_store_set_value(this, iter?.reinterpret(), column, value?.reinterpret())
+  gtk_tree_store_set_value(this, iter?.reinterpret(), column, `value`?.reinterpret())
 }
 
 public fun TreeStore.swap(a: TreeIter?, b: TreeIter?): Unit {

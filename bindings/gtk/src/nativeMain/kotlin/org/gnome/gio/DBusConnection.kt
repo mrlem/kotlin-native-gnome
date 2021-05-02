@@ -73,7 +73,7 @@ public val DBusConnection.capabilities: DBusCapabilityFlags
 public var DBusConnection.exitOnClose: Boolean
   get() = g_dbus_connection_get_exit_on_close(this).toBoolean
   set(`value`) {
-    g_dbus_connection_set_exit_on_close(this, value.toInt)
+    g_dbus_connection_set_exit_on_close(this, `value`.toInt)
   }
 
 public val DBusConnection.flags: DBusConnectionFlags

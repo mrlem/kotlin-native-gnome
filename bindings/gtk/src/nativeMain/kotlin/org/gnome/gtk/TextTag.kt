@@ -36,7 +36,7 @@ public val TextTag.parentInstance: Object
 public var TextTag.priority: Int
   get() = gtk_text_tag_get_priority(this)
   set(`value`) {
-    gtk_text_tag_set_priority(this, value)
+    gtk_text_tag_set_priority(this, `value`)
   }
 
 public fun TextTag.changed(sizeChanged: Boolean): Unit {

@@ -69,55 +69,55 @@ public object PlacesSidebarFactory {
 public var PlacesSidebar.localOnly: Boolean
   get() = gtk_places_sidebar_get_local_only(this).toBoolean
   set(`value`) {
-    gtk_places_sidebar_set_local_only(this, value.toInt)
+    gtk_places_sidebar_set_local_only(this, `value`.toInt)
   }
 
 public var PlacesSidebar.location: File?
   get() = gtk_places_sidebar_get_location(this)?.reinterpret()
   set(`value`) {
-    gtk_places_sidebar_set_location(this, value)
+    gtk_places_sidebar_set_location(this, `value`)
   }
 
 public var PlacesSidebar.openFlags: PlacesOpenFlags
   get() = gtk_places_sidebar_get_open_flags(this)
   set(`value`) {
-    gtk_places_sidebar_set_open_flags(this, value)
+    gtk_places_sidebar_set_open_flags(this, `value`)
   }
 
 public var PlacesSidebar.showDesktop: Boolean
   get() = gtk_places_sidebar_get_show_desktop(this).toBoolean
   set(`value`) {
-    gtk_places_sidebar_set_show_desktop(this, value.toInt)
+    gtk_places_sidebar_set_show_desktop(this, `value`.toInt)
   }
 
 public var PlacesSidebar.showEnterLocation: Boolean
   get() = gtk_places_sidebar_get_show_enter_location(this).toBoolean
   set(`value`) {
-    gtk_places_sidebar_set_show_enter_location(this, value.toInt)
+    gtk_places_sidebar_set_show_enter_location(this, `value`.toInt)
   }
 
 public var PlacesSidebar.showOtherLocations: Boolean
   get() = gtk_places_sidebar_get_show_other_locations(this).toBoolean
   set(`value`) {
-    gtk_places_sidebar_set_show_other_locations(this, value.toInt)
+    gtk_places_sidebar_set_show_other_locations(this, `value`.toInt)
   }
 
 public var PlacesSidebar.showRecent: Boolean
   get() = gtk_places_sidebar_get_show_recent(this).toBoolean
   set(`value`) {
-    gtk_places_sidebar_set_show_recent(this, value.toInt)
+    gtk_places_sidebar_set_show_recent(this, `value`.toInt)
   }
 
 public var PlacesSidebar.showStarredLocation: Boolean
   get() = gtk_places_sidebar_get_show_starred_location(this).toBoolean
   set(`value`) {
-    gtk_places_sidebar_set_show_starred_location(this, value.toInt)
+    gtk_places_sidebar_set_show_starred_location(this, `value`.toInt)
   }
 
 public var PlacesSidebar.showTrash: Boolean
   get() = gtk_places_sidebar_get_show_trash(this).toBoolean
   set(`value`) {
-    gtk_places_sidebar_set_show_trash(this, value.toInt)
+    gtk_places_sidebar_set_show_trash(this, `value`.toInt)
   }
 
 public fun PlacesSidebar.addShortcut(location: File?): Unit {

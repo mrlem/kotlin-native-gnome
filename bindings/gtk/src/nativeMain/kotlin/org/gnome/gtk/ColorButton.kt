@@ -58,7 +58,7 @@ public val ColorButton.button: Button
 public var ColorButton.title: String
   get() = gtk_color_button_get_title(this).toKString
   set(`value`) {
-    gtk_color_button_set_title(this, value)
+    gtk_color_button_set_title(this, `value`)
   }
 
 public fun ColorButton.onColorSet(callback: (ColorButton) -> Unit): ColorButton {

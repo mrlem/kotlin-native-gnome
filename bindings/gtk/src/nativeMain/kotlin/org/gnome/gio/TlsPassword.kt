@@ -35,17 +35,17 @@ public val TlsPassword.parentInstance: Object
 public var TlsPassword.description: String
   get() = g_tls_password_get_description(this).toKString
   set(`value`) {
-    g_tls_password_set_description(this, value)
+    g_tls_password_set_description(this, `value`)
   }
 
 public var TlsPassword.flags: TlsPasswordFlags
   get() = g_tls_password_get_flags(this)
   set(`value`) {
-    g_tls_password_set_flags(this, value)
+    g_tls_password_set_flags(this, `value`)
   }
 
 public var TlsPassword.warning: String
   get() = g_tls_password_get_warning(this).toKString
   set(`value`) {
-    g_tls_password_set_warning(this, value)
+    g_tls_password_set_warning(this, `value`)
   }

@@ -52,17 +52,17 @@ public val Revealer.childRevealed: Boolean
 public var Revealer.revealChild: Boolean
   get() = gtk_revealer_get_reveal_child(this).toBoolean
   set(`value`) {
-    gtk_revealer_set_reveal_child(this, value.toInt)
+    gtk_revealer_set_reveal_child(this, `value`.toInt)
   }
 
 public var Revealer.transitionDuration: UInt
   get() = gtk_revealer_get_transition_duration(this)
   set(`value`) {
-    gtk_revealer_set_transition_duration(this, value)
+    gtk_revealer_set_transition_duration(this, `value`)
   }
 
 public var Revealer.transitionType: RevealerTransitionType
   get() = gtk_revealer_get_transition_type(this)
   set(`value`) {
-    gtk_revealer_set_transition_type(this, value)
+    gtk_revealer_set_transition_type(this, `value`)
   }

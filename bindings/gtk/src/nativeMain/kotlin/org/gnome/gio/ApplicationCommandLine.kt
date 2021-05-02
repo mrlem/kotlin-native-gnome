@@ -40,7 +40,7 @@ public val ApplicationCommandLine.cwd: String
 public var ApplicationCommandLine.exitStatus: Int
   get() = g_application_command_line_get_exit_status(this)
   set(`value`) {
-    g_application_command_line_set_exit_status(this, value)
+    g_application_command_line_set_exit_status(this, `value`)
   }
 
 public val ApplicationCommandLine.isRemote: Boolean

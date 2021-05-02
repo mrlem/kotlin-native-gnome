@@ -68,25 +68,25 @@ public val Container.widget: Widget
 public var Container.borderWidth: UInt
   get() = gtk_container_get_border_width(this)
   set(`value`) {
-    gtk_container_set_border_width(this, value)
+    gtk_container_set_border_width(this, `value`)
   }
 
 public var Container.focusChild: Widget?
   get() = gtk_container_get_focus_child(this)?.reinterpret()
   set(`value`) {
-    gtk_container_set_focus_child(this, value)
+    gtk_container_set_focus_child(this, `value`)
   }
 
 public var Container.focusHadjustment: Adjustment?
   get() = gtk_container_get_focus_hadjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_container_set_focus_hadjustment(this, value)
+    gtk_container_set_focus_hadjustment(this, `value`)
   }
 
 public var Container.focusVadjustment: Adjustment?
   get() = gtk_container_get_focus_vadjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_container_set_focus_vadjustment(this, value)
+    gtk_container_set_focus_vadjustment(this, `value`)
   }
 
 public fun Container.add(widget: Widget?): Unit {
@@ -102,7 +102,7 @@ public fun Container.childGetProperty(
   propertyName: String,
   `value`: Value?
 ): Unit {
-  gtk_container_child_get_property(this, child?.reinterpret(), propertyName, value?.reinterpret())
+  gtk_container_child_get_property(this, child?.reinterpret(), propertyName, `value`?.reinterpret())
 }
 
 public fun Container.childNotify(child: Widget?, childProperty: String): Unit {
@@ -118,7 +118,7 @@ public fun Container.childSetProperty(
   propertyName: String,
   `value`: Value?
 ): Unit {
-  gtk_container_child_set_property(this, child?.reinterpret(), propertyName, value?.reinterpret())
+  gtk_container_child_set_property(this, child?.reinterpret(), propertyName, `value`?.reinterpret())
 }
 
 public fun Container.childType(): GType = gtk_container_child_type(this)

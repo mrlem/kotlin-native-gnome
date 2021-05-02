@@ -118,25 +118,25 @@ public val TextView.parentInstance: Container
 public var TextView.acceptsTab: Boolean
   get() = gtk_text_view_get_accepts_tab(this).toBoolean
   set(`value`) {
-    gtk_text_view_set_accepts_tab(this, value.toInt)
+    gtk_text_view_set_accepts_tab(this, `value`.toInt)
   }
 
 public var TextView.bottomMargin: Int
   get() = gtk_text_view_get_bottom_margin(this)
   set(`value`) {
-    gtk_text_view_set_bottom_margin(this, value)
+    gtk_text_view_set_bottom_margin(this, `value`)
   }
 
 public var TextView.buffer: TextBuffer?
   get() = gtk_text_view_get_buffer(this)?.reinterpret()
   set(`value`) {
-    gtk_text_view_set_buffer(this, value)
+    gtk_text_view_set_buffer(this, `value`)
   }
 
 public var TextView.cursorVisible: Boolean
   get() = gtk_text_view_get_cursor_visible(this).toBoolean
   set(`value`) {
-    gtk_text_view_set_cursor_visible(this, value.toInt)
+    gtk_text_view_set_cursor_visible(this, `value`.toInt)
   }
 
 public val TextView.defaultAttributes: TextAttributes?
@@ -145,85 +145,85 @@ public val TextView.defaultAttributes: TextAttributes?
 public var TextView.editable: Boolean
   get() = gtk_text_view_get_editable(this).toBoolean
   set(`value`) {
-    gtk_text_view_set_editable(this, value.toInt)
+    gtk_text_view_set_editable(this, `value`.toInt)
   }
 
 public var TextView.indent: Int
   get() = gtk_text_view_get_indent(this)
   set(`value`) {
-    gtk_text_view_set_indent(this, value)
+    gtk_text_view_set_indent(this, `value`)
   }
 
 public var TextView.inputHints: InputHints
   get() = gtk_text_view_get_input_hints(this)
   set(`value`) {
-    gtk_text_view_set_input_hints(this, value)
+    gtk_text_view_set_input_hints(this, `value`)
   }
 
 public var TextView.inputPurpose: InputPurpose
   get() = gtk_text_view_get_input_purpose(this)
   set(`value`) {
-    gtk_text_view_set_input_purpose(this, value)
+    gtk_text_view_set_input_purpose(this, `value`)
   }
 
 public var TextView.justification: Justification
   get() = gtk_text_view_get_justification(this)
   set(`value`) {
-    gtk_text_view_set_justification(this, value)
+    gtk_text_view_set_justification(this, `value`)
   }
 
 public var TextView.leftMargin: Int
   get() = gtk_text_view_get_left_margin(this)
   set(`value`) {
-    gtk_text_view_set_left_margin(this, value)
+    gtk_text_view_set_left_margin(this, `value`)
   }
 
 public var TextView.monospace: Boolean
   get() = gtk_text_view_get_monospace(this).toBoolean
   set(`value`) {
-    gtk_text_view_set_monospace(this, value.toInt)
+    gtk_text_view_set_monospace(this, `value`.toInt)
   }
 
 public var TextView.overwrite: Boolean
   get() = gtk_text_view_get_overwrite(this).toBoolean
   set(`value`) {
-    gtk_text_view_set_overwrite(this, value.toInt)
+    gtk_text_view_set_overwrite(this, `value`.toInt)
   }
 
 public var TextView.pixelsAboveLines: Int
   get() = gtk_text_view_get_pixels_above_lines(this)
   set(`value`) {
-    gtk_text_view_set_pixels_above_lines(this, value)
+    gtk_text_view_set_pixels_above_lines(this, `value`)
   }
 
 public var TextView.pixelsBelowLines: Int
   get() = gtk_text_view_get_pixels_below_lines(this)
   set(`value`) {
-    gtk_text_view_set_pixels_below_lines(this, value)
+    gtk_text_view_set_pixels_below_lines(this, `value`)
   }
 
 public var TextView.pixelsInsideWrap: Int
   get() = gtk_text_view_get_pixels_inside_wrap(this)
   set(`value`) {
-    gtk_text_view_set_pixels_inside_wrap(this, value)
+    gtk_text_view_set_pixels_inside_wrap(this, `value`)
   }
 
 public var TextView.rightMargin: Int
   get() = gtk_text_view_get_right_margin(this)
   set(`value`) {
-    gtk_text_view_set_right_margin(this, value)
+    gtk_text_view_set_right_margin(this, `value`)
   }
 
 public var TextView.topMargin: Int
   get() = gtk_text_view_get_top_margin(this)
   set(`value`) {
-    gtk_text_view_set_top_margin(this, value)
+    gtk_text_view_set_top_margin(this, `value`)
   }
 
 public var TextView.wrapMode: WrapMode
   get() = gtk_text_view_get_wrap_mode(this)
   set(`value`) {
-    gtk_text_view_set_wrap_mode(this, value)
+    gtk_text_view_set_wrap_mode(this, `value`)
   }
 
 public fun TextView.addChildAtAnchor(child: Widget?, anchor: TextChildAnchor?): Unit {

@@ -36,7 +36,7 @@ public val EventControllerKey.group: UInt
 public var EventControllerKey.imContext: IMContext?
   get() = gtk_event_controller_key_get_im_context(this)?.reinterpret()
   set(`value`) {
-    gtk_event_controller_key_set_im_context(this, value)
+    gtk_event_controller_key_set_im_context(this, `value`)
   }
 
 public fun EventControllerKey.forward(widget: Widget?): Boolean =

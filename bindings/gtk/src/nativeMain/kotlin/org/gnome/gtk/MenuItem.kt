@@ -72,19 +72,19 @@ public val MenuItem.bin: Bin
 public var MenuItem.accelPath: String
   get() = gtk_menu_item_get_accel_path(this).toKString
   set(`value`) {
-    gtk_menu_item_set_accel_path(this, value)
+    gtk_menu_item_set_accel_path(this, `value`)
   }
 
 public var MenuItem.label: String
   get() = gtk_menu_item_get_label(this).toKString
   set(`value`) {
-    gtk_menu_item_set_label(this, value)
+    gtk_menu_item_set_label(this, `value`)
   }
 
 public var MenuItem.reserveIndicator: Boolean
   get() = gtk_menu_item_get_reserve_indicator(this).toBoolean
   set(`value`) {
-    gtk_menu_item_set_reserve_indicator(this, value.toInt)
+    gtk_menu_item_set_reserve_indicator(this, `value`.toInt)
   }
 
 public val MenuItem.submenu: Widget?
@@ -93,7 +93,7 @@ public val MenuItem.submenu: Widget?
 public var MenuItem.useUnderline: Boolean
   get() = gtk_menu_item_get_use_underline(this).toBoolean
   set(`value`) {
-    gtk_menu_item_set_use_underline(this, value.toInt)
+    gtk_menu_item_set_use_underline(this, `value`.toInt)
   }
 
 public fun MenuItem.activate(): Unit {

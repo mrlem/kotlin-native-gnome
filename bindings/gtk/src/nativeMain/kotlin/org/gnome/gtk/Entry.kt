@@ -121,25 +121,25 @@ public object EntryFactory {
 public var Entry.activatesDefault: Boolean
   get() = gtk_entry_get_activates_default(this).toBoolean
   set(`value`) {
-    gtk_entry_set_activates_default(this, value.toInt)
+    gtk_entry_set_activates_default(this, `value`.toInt)
   }
 
 public var Entry.alignment: Float
   get() = gtk_entry_get_alignment(this)
   set(`value`) {
-    gtk_entry_set_alignment(this, value)
+    gtk_entry_set_alignment(this, `value`)
   }
 
 public var Entry.buffer: EntryBuffer?
   get() = gtk_entry_get_buffer(this)?.reinterpret()
   set(`value`) {
-    gtk_entry_set_buffer(this, value)
+    gtk_entry_set_buffer(this, `value`)
   }
 
 public var Entry.completion: EntryCompletion?
   get() = gtk_entry_get_completion(this)?.reinterpret()
   set(`value`) {
-    gtk_entry_set_completion(this, value)
+    gtk_entry_set_completion(this, `value`)
   }
 
 public val Entry.currentIconDragSource: Int
@@ -148,73 +148,73 @@ public val Entry.currentIconDragSource: Int
 public var Entry.cursorHadjustment: Adjustment?
   get() = gtk_entry_get_cursor_hadjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_entry_set_cursor_hadjustment(this, value)
+    gtk_entry_set_cursor_hadjustment(this, `value`)
   }
 
 public var Entry.hasFrame: Boolean
   get() = gtk_entry_get_has_frame(this).toBoolean
   set(`value`) {
-    gtk_entry_set_has_frame(this, value.toInt)
+    gtk_entry_set_has_frame(this, `value`.toInt)
   }
 
 public var Entry.inputHints: InputHints
   get() = gtk_entry_get_input_hints(this)
   set(`value`) {
-    gtk_entry_set_input_hints(this, value)
+    gtk_entry_set_input_hints(this, `value`)
   }
 
 public var Entry.inputPurpose: InputPurpose
   get() = gtk_entry_get_input_purpose(this)
   set(`value`) {
-    gtk_entry_set_input_purpose(this, value)
+    gtk_entry_set_input_purpose(this, `value`)
   }
 
 public var Entry.invisibleChar: Char
   get() = gtk_entry_get_invisible_char(this).toChar
   set(`value`) {
-    gtk_entry_set_invisible_char(this, value.toUInt)
+    gtk_entry_set_invisible_char(this, `value`.toUInt)
   }
 
 public var Entry.maxLength: Int
   get() = gtk_entry_get_max_length(this)
   set(`value`) {
-    gtk_entry_set_max_length(this, value)
+    gtk_entry_set_max_length(this, `value`)
   }
 
 public var Entry.maxWidthChars: Int
   get() = gtk_entry_get_max_width_chars(this)
   set(`value`) {
-    gtk_entry_set_max_width_chars(this, value)
+    gtk_entry_set_max_width_chars(this, `value`)
   }
 
 public var Entry.overwriteMode: Boolean
   get() = gtk_entry_get_overwrite_mode(this).toBoolean
   set(`value`) {
-    gtk_entry_set_overwrite_mode(this, value.toInt)
+    gtk_entry_set_overwrite_mode(this, `value`.toInt)
   }
 
 public var Entry.placeholderText: String
   get() = gtk_entry_get_placeholder_text(this).toKString
   set(`value`) {
-    gtk_entry_set_placeholder_text(this, value)
+    gtk_entry_set_placeholder_text(this, `value`)
   }
 
 public var Entry.progressFraction: Double
   get() = gtk_entry_get_progress_fraction(this)
   set(`value`) {
-    gtk_entry_set_progress_fraction(this, value)
+    gtk_entry_set_progress_fraction(this, `value`)
   }
 
 public var Entry.progressPulseStep: Double
   get() = gtk_entry_get_progress_pulse_step(this)
   set(`value`) {
-    gtk_entry_set_progress_pulse_step(this, value)
+    gtk_entry_set_progress_pulse_step(this, `value`)
   }
 
 public var Entry.text: String
   get() = gtk_entry_get_text(this).toKString
   set(`value`) {
-    gtk_entry_set_text(this, value)
+    gtk_entry_set_text(this, `value`)
   }
 
 public val Entry.textLength: UShort
@@ -223,13 +223,13 @@ public val Entry.textLength: UShort
 public var Entry.visibility: Boolean
   get() = gtk_entry_get_visibility(this).toBoolean
   set(`value`) {
-    gtk_entry_set_visibility(this, value.toInt)
+    gtk_entry_set_visibility(this, `value`.toInt)
   }
 
 public var Entry.widthChars: Int
   get() = gtk_entry_get_width_chars(this)
   set(`value`) {
-    gtk_entry_set_width_chars(this, value)
+    gtk_entry_set_width_chars(this, `value`)
   }
 
 public fun Entry.getIconActivatable(iconPos: EntryIconPosition): Boolean =

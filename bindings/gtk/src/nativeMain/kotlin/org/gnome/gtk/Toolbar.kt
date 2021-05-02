@@ -56,7 +56,7 @@ public val Toolbar.container: Container
 public var Toolbar.iconSize: IconSize
   get() = gtk_toolbar_get_icon_size(this)
   set(`value`) {
-    gtk_toolbar_set_icon_size(this, value)
+    gtk_toolbar_set_icon_size(this, `value`)
   }
 
 public val Toolbar.nItems: Int
@@ -68,13 +68,13 @@ public val Toolbar.reliefStyle: ReliefStyle
 public var Toolbar.showArrow: Boolean
   get() = gtk_toolbar_get_show_arrow(this).toBoolean
   set(`value`) {
-    gtk_toolbar_set_show_arrow(this, value.toInt)
+    gtk_toolbar_set_show_arrow(this, `value`.toInt)
   }
 
 public var Toolbar.style: ToolbarStyle
   get() = gtk_toolbar_get_style(this)
   set(`value`) {
-    gtk_toolbar_set_style(this, value)
+    gtk_toolbar_set_style(this, `value`)
   }
 
 public fun Toolbar.getDropIndex(x: Int, y: Int): Int = gtk_toolbar_get_drop_index(this, x, y)

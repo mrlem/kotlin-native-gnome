@@ -69,13 +69,13 @@ public val ListBox.parentInstance: Container
 public var ListBox.activateOnSingleClick: Boolean
   get() = gtk_list_box_get_activate_on_single_click(this).toBoolean
   set(`value`) {
-    gtk_list_box_set_activate_on_single_click(this, value.toInt)
+    gtk_list_box_set_activate_on_single_click(this, `value`.toInt)
   }
 
 public var ListBox.adjustment: Adjustment?
   get() = gtk_list_box_get_adjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_list_box_set_adjustment(this, value)
+    gtk_list_box_set_adjustment(this, `value`)
   }
 
 public val ListBox.selectedRow: ListBoxRow?
@@ -84,7 +84,7 @@ public val ListBox.selectedRow: ListBoxRow?
 public var ListBox.selectionMode: SelectionMode
   get() = gtk_list_box_get_selection_mode(this)
   set(`value`) {
-    gtk_list_box_set_selection_mode(this, value)
+    gtk_list_box_set_selection_mode(this, `value`)
   }
 
 public fun ListBox.dragHighlightRow(row: ListBoxRow?): Unit {

@@ -65,25 +65,25 @@ public val Scale.range: Range
 public var Scale.digits: Int
   get() = gtk_scale_get_digits(this)
   set(`value`) {
-    gtk_scale_set_digits(this, value)
+    gtk_scale_set_digits(this, `value`)
   }
 
 public var Scale.drawValue: Boolean
   get() = gtk_scale_get_draw_value(this).toBoolean
   set(`value`) {
-    gtk_scale_set_draw_value(this, value.toInt)
+    gtk_scale_set_draw_value(this, `value`.toInt)
   }
 
 public var Scale.hasOrigin: Boolean
   get() = gtk_scale_get_has_origin(this).toBoolean
   set(`value`) {
-    gtk_scale_set_has_origin(this, value.toInt)
+    gtk_scale_set_has_origin(this, `value`.toInt)
   }
 
 public var Scale.valuePos: PositionType
   get() = gtk_scale_get_value_pos(this)
   set(`value`) {
-    gtk_scale_set_value_pos(this, value)
+    gtk_scale_set_value_pos(this, `value`)
   }
 
 public fun Scale.addMark(
@@ -91,7 +91,7 @@ public fun Scale.addMark(
   position: PositionType,
   markup: String
 ): Unit {
-  gtk_scale_add_mark(this, value, position, markup)
+  gtk_scale_add_mark(this, `value`, position, markup)
 }
 
 public fun Scale.clearMarks(): Unit {

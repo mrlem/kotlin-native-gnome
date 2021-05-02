@@ -80,7 +80,7 @@ public val Image.misc: Misc
 public var Image.pixelSize: Int
   get() = gtk_image_get_pixel_size(this)
   set(`value`) {
-    gtk_image_set_pixel_size(this, value)
+    gtk_image_set_pixel_size(this, `value`)
   }
 
 public val Image.storageType: ImageType

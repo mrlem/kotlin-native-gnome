@@ -37,7 +37,7 @@ public val MountOperation.parentInstance: org.gnome.gio.MountOperation
 public var MountOperation.parent: Window?
   get() = gtk_mount_operation_get_parent(this)?.reinterpret()
   set(`value`) {
-    gtk_mount_operation_set_parent(this, value)
+    gtk_mount_operation_set_parent(this, `value`)
   }
 
 public fun MountOperation.isShowing(): Boolean = gtk_mount_operation_is_showing(this).toBoolean

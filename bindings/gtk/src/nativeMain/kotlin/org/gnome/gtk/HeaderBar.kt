@@ -55,37 +55,37 @@ public val HeaderBar.container: Container
 public var HeaderBar.customTitle: Widget?
   get() = gtk_header_bar_get_custom_title(this)?.reinterpret()
   set(`value`) {
-    gtk_header_bar_set_custom_title(this, value)
+    gtk_header_bar_set_custom_title(this, `value`)
   }
 
 public var HeaderBar.decorationLayout: String
   get() = gtk_header_bar_get_decoration_layout(this).toKString
   set(`value`) {
-    gtk_header_bar_set_decoration_layout(this, value)
+    gtk_header_bar_set_decoration_layout(this, `value`)
   }
 
 public var HeaderBar.hasSubtitle: Boolean
   get() = gtk_header_bar_get_has_subtitle(this).toBoolean
   set(`value`) {
-    gtk_header_bar_set_has_subtitle(this, value.toInt)
+    gtk_header_bar_set_has_subtitle(this, `value`.toInt)
   }
 
 public var HeaderBar.showCloseButton: Boolean
   get() = gtk_header_bar_get_show_close_button(this).toBoolean
   set(`value`) {
-    gtk_header_bar_set_show_close_button(this, value.toInt)
+    gtk_header_bar_set_show_close_button(this, `value`.toInt)
   }
 
 public var HeaderBar.subtitle: String
   get() = gtk_header_bar_get_subtitle(this).toKString
   set(`value`) {
-    gtk_header_bar_set_subtitle(this, value)
+    gtk_header_bar_set_subtitle(this, `value`)
   }
 
 public var HeaderBar.title: String
   get() = gtk_header_bar_get_title(this).toKString
   set(`value`) {
-    gtk_header_bar_set_title(this, value)
+    gtk_header_bar_set_title(this, `value`)
   }
 
 public fun HeaderBar.packEnd(child: Widget?): Unit {

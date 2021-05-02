@@ -62,13 +62,13 @@ public val Application.activeWindow: Window?
 public var Application.appMenu: MenuModel?
   get() = gtk_application_get_app_menu(this)?.reinterpret()
   set(`value`) {
-    gtk_application_set_app_menu(this, value)
+    gtk_application_set_app_menu(this, `value`)
   }
 
 public var Application.menubar: MenuModel?
   get() = gtk_application_get_menubar(this)?.reinterpret()
   set(`value`) {
-    gtk_application_set_menubar(this, value)
+    gtk_application_set_menubar(this, `value`)
   }
 
 public fun Application.addWindow(window: Window?): Unit {

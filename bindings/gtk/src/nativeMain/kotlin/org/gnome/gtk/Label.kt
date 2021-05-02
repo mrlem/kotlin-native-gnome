@@ -98,7 +98,7 @@ public val Label.misc: Misc
 public var Label.angle: Double
   get() = gtk_label_get_angle(this)
   set(`value`) {
-    gtk_label_set_angle(this, value)
+    gtk_label_set_angle(this, `value`)
   }
 
 public val Label.currentUri: String
@@ -107,31 +107,31 @@ public val Label.currentUri: String
 public var Label.justify: Justification
   get() = gtk_label_get_justify(this)
   set(`value`) {
-    gtk_label_set_justify(this, value)
+    gtk_label_set_justify(this, `value`)
   }
 
 public var Label.label: String
   get() = gtk_label_get_label(this).toKString
   set(`value`) {
-    gtk_label_set_label(this, value)
+    gtk_label_set_label(this, `value`)
   }
 
 public var Label.lineWrap: Boolean
   get() = gtk_label_get_line_wrap(this).toBoolean
   set(`value`) {
-    gtk_label_set_line_wrap(this, value.toInt)
+    gtk_label_set_line_wrap(this, `value`.toInt)
   }
 
 public var Label.lines: Int
   get() = gtk_label_get_lines(this)
   set(`value`) {
-    gtk_label_set_lines(this, value)
+    gtk_label_set_lines(this, `value`)
   }
 
 public var Label.maxWidthChars: Int
   get() = gtk_label_get_max_width_chars(this)
   set(`value`) {
-    gtk_label_set_max_width_chars(this, value)
+    gtk_label_set_max_width_chars(this, `value`)
   }
 
 public val Label.mnemonicKeyval: UInt
@@ -140,61 +140,61 @@ public val Label.mnemonicKeyval: UInt
 public var Label.mnemonicWidget: Widget?
   get() = gtk_label_get_mnemonic_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_label_set_mnemonic_widget(this, value)
+    gtk_label_set_mnemonic_widget(this, `value`)
   }
 
 public var Label.selectable: Boolean
   get() = gtk_label_get_selectable(this).toBoolean
   set(`value`) {
-    gtk_label_set_selectable(this, value.toInt)
+    gtk_label_set_selectable(this, `value`.toInt)
   }
 
 public var Label.singleLineMode: Boolean
   get() = gtk_label_get_single_line_mode(this).toBoolean
   set(`value`) {
-    gtk_label_set_single_line_mode(this, value.toInt)
+    gtk_label_set_single_line_mode(this, `value`.toInt)
   }
 
 public var Label.text: String
   get() = gtk_label_get_text(this).toKString
   set(`value`) {
-    gtk_label_set_text(this, value)
+    gtk_label_set_text(this, `value`)
   }
 
 public var Label.trackVisitedLinks: Boolean
   get() = gtk_label_get_track_visited_links(this).toBoolean
   set(`value`) {
-    gtk_label_set_track_visited_links(this, value.toInt)
+    gtk_label_set_track_visited_links(this, `value`.toInt)
   }
 
 public var Label.useMarkup: Boolean
   get() = gtk_label_get_use_markup(this).toBoolean
   set(`value`) {
-    gtk_label_set_use_markup(this, value.toInt)
+    gtk_label_set_use_markup(this, `value`.toInt)
   }
 
 public var Label.useUnderline: Boolean
   get() = gtk_label_get_use_underline(this).toBoolean
   set(`value`) {
-    gtk_label_set_use_underline(this, value.toInt)
+    gtk_label_set_use_underline(this, `value`.toInt)
   }
 
 public var Label.widthChars: Int
   get() = gtk_label_get_width_chars(this)
   set(`value`) {
-    gtk_label_set_width_chars(this, value)
+    gtk_label_set_width_chars(this, `value`)
   }
 
 public var Label.xalign: Float
   get() = gtk_label_get_xalign(this)
   set(`value`) {
-    gtk_label_set_xalign(this, value)
+    gtk_label_set_xalign(this, `value`)
   }
 
 public var Label.yalign: Float
   get() = gtk_label_get_yalign(this)
   set(`value`) {
-    gtk_label_set_yalign(this, value)
+    gtk_label_set_yalign(this, `value`)
   }
 
 public fun Label.selectRegion(startOffset: Int, endOffset: Int): Unit {

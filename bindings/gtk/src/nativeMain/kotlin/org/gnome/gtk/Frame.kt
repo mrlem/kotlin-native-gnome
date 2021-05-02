@@ -51,19 +51,19 @@ public val Frame.bin: Bin
 public var Frame.label: String
   get() = gtk_frame_get_label(this).toKString
   set(`value`) {
-    gtk_frame_set_label(this, value)
+    gtk_frame_set_label(this, `value`)
   }
 
 public var Frame.labelWidget: Widget?
   get() = gtk_frame_get_label_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_frame_set_label_widget(this, value)
+    gtk_frame_set_label_widget(this, `value`)
   }
 
 public var Frame.shadowType: ShadowType
   get() = gtk_frame_get_shadow_type(this)
   set(`value`) {
-    gtk_frame_set_shadow_type(this, value)
+    gtk_frame_set_shadow_type(this, `value`)
   }
 
 public fun Frame.setLabelAlign(xalign: Float, yalign: Float): Unit {

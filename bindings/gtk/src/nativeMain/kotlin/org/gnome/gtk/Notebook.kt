@@ -83,13 +83,13 @@ public object NotebookFactory {
 public var Notebook.currentPage: Int
   get() = gtk_notebook_get_current_page(this)
   set(`value`) {
-    gtk_notebook_set_current_page(this, value)
+    gtk_notebook_set_current_page(this, `value`)
   }
 
 public var Notebook.groupName: String
   get() = gtk_notebook_get_group_name(this).toKString
   set(`value`) {
-    gtk_notebook_set_group_name(this, value)
+    gtk_notebook_set_group_name(this, `value`)
   }
 
 public val Notebook.nPages: Int
@@ -98,25 +98,25 @@ public val Notebook.nPages: Int
 public var Notebook.scrollable: Boolean
   get() = gtk_notebook_get_scrollable(this).toBoolean
   set(`value`) {
-    gtk_notebook_set_scrollable(this, value.toInt)
+    gtk_notebook_set_scrollable(this, `value`.toInt)
   }
 
 public var Notebook.showBorder: Boolean
   get() = gtk_notebook_get_show_border(this).toBoolean
   set(`value`) {
-    gtk_notebook_set_show_border(this, value.toInt)
+    gtk_notebook_set_show_border(this, `value`.toInt)
   }
 
 public var Notebook.showTabs: Boolean
   get() = gtk_notebook_get_show_tabs(this).toBoolean
   set(`value`) {
-    gtk_notebook_set_show_tabs(this, value.toInt)
+    gtk_notebook_set_show_tabs(this, `value`.toInt)
   }
 
 public var Notebook.tabPos: PositionType
   get() = gtk_notebook_get_tab_pos(this)
   set(`value`) {
-    gtk_notebook_set_tab_pos(this, value)
+    gtk_notebook_set_tab_pos(this, `value`)
   }
 
 public fun Notebook.appendPage(child: Widget?, tabLabel: Widget?): Int =

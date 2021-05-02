@@ -38,7 +38,7 @@ public object ActionBarFactory {
 public var ActionBar.centerWidget: Widget?
   get() = gtk_action_bar_get_center_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_action_bar_set_center_widget(this, value)
+    gtk_action_bar_set_center_widget(this, `value`)
   }
 
 public fun ActionBar.packEnd(child: Widget?): Unit {

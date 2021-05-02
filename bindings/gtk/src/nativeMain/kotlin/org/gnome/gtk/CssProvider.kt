@@ -43,7 +43,7 @@ public val CssProvider.parentInstance: Object
 @Throws(Error::class)
 public fun CssProvider.loadFromFile(`file`: File?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: Boolean = gtk_css_provider_load_from_file(this@loadFromFile, file?.reinterpret(),
+  val result: Boolean = gtk_css_provider_load_from_file(this@loadFromFile, `file`?.reinterpret(),
       errors).toBoolean
   errors.pointed.pointed?.let { throw Error(it) }
   return result

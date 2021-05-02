@@ -63,25 +63,25 @@ public val Stack.parentInstance: Container
 public var Stack.hhomogeneous: Boolean
   get() = gtk_stack_get_hhomogeneous(this).toBoolean
   set(`value`) {
-    gtk_stack_set_hhomogeneous(this, value.toInt)
+    gtk_stack_set_hhomogeneous(this, `value`.toInt)
   }
 
 public var Stack.homogeneous: Boolean
   get() = gtk_stack_get_homogeneous(this).toBoolean
   set(`value`) {
-    gtk_stack_set_homogeneous(this, value.toInt)
+    gtk_stack_set_homogeneous(this, `value`.toInt)
   }
 
 public var Stack.interpolateSize: Boolean
   get() = gtk_stack_get_interpolate_size(this).toBoolean
   set(`value`) {
-    gtk_stack_set_interpolate_size(this, value.toInt)
+    gtk_stack_set_interpolate_size(this, `value`.toInt)
   }
 
 public var Stack.transitionDuration: UInt
   get() = gtk_stack_get_transition_duration(this)
   set(`value`) {
-    gtk_stack_set_transition_duration(this, value)
+    gtk_stack_set_transition_duration(this, `value`)
   }
 
 public val Stack.transitionRunning: Boolean
@@ -90,25 +90,25 @@ public val Stack.transitionRunning: Boolean
 public var Stack.transitionType: StackTransitionType
   get() = gtk_stack_get_transition_type(this)
   set(`value`) {
-    gtk_stack_set_transition_type(this, value)
+    gtk_stack_set_transition_type(this, `value`)
   }
 
 public var Stack.vhomogeneous: Boolean
   get() = gtk_stack_get_vhomogeneous(this).toBoolean
   set(`value`) {
-    gtk_stack_set_vhomogeneous(this, value.toInt)
+    gtk_stack_set_vhomogeneous(this, `value`.toInt)
   }
 
 public var Stack.visibleChild: Widget?
   get() = gtk_stack_get_visible_child(this)?.reinterpret()
   set(`value`) {
-    gtk_stack_set_visible_child(this, value)
+    gtk_stack_set_visible_child(this, `value`)
   }
 
 public var Stack.visibleChildName: String
   get() = gtk_stack_get_visible_child_name(this).toKString
   set(`value`) {
-    gtk_stack_set_visible_child_name(this, value)
+    gtk_stack_set_visible_child_name(this, `value`)
   }
 
 public fun Stack.addNamed(child: Widget?, name: String): Unit {

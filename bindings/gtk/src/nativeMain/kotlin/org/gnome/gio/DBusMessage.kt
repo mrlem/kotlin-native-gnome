@@ -82,31 +82,31 @@ public val DBusMessage.arg0: String
 public var DBusMessage.byteOrder: DBusMessageByteOrder
   get() = g_dbus_message_get_byte_order(this)
   set(`value`) {
-    g_dbus_message_set_byte_order(this, value)
+    g_dbus_message_set_byte_order(this, `value`)
   }
 
 public var DBusMessage.destination: String
   get() = g_dbus_message_get_destination(this).toKString
   set(`value`) {
-    g_dbus_message_set_destination(this, value)
+    g_dbus_message_set_destination(this, `value`)
   }
 
 public var DBusMessage.errorName: String
   get() = g_dbus_message_get_error_name(this).toKString
   set(`value`) {
-    g_dbus_message_set_error_name(this, value)
+    g_dbus_message_set_error_name(this, `value`)
   }
 
 public var DBusMessage.flags: DBusMessageFlags
   get() = g_dbus_message_get_flags(this)
   set(`value`) {
-    g_dbus_message_set_flags(this, value)
+    g_dbus_message_set_flags(this, `value`)
   }
 
 public var DBusMessage.`interface`: String
   get() = g_dbus_message_get_interface(this).toKString
   set(`value`) {
-    g_dbus_message_set_interface(this, value)
+    g_dbus_message_set_interface(this, `value`)
   }
 
 public val DBusMessage.locked: Boolean
@@ -115,55 +115,55 @@ public val DBusMessage.locked: Boolean
 public var DBusMessage.member: String
   get() = g_dbus_message_get_member(this).toKString
   set(`value`) {
-    g_dbus_message_set_member(this, value)
+    g_dbus_message_set_member(this, `value`)
   }
 
 public var DBusMessage.messageType: DBusMessageType
   get() = g_dbus_message_get_message_type(this)
   set(`value`) {
-    g_dbus_message_set_message_type(this, value)
+    g_dbus_message_set_message_type(this, `value`)
   }
 
 public var DBusMessage.numUnixFds: UInt
   get() = g_dbus_message_get_num_unix_fds(this)
   set(`value`) {
-    g_dbus_message_set_num_unix_fds(this, value)
+    g_dbus_message_set_num_unix_fds(this, `value`)
   }
 
 public var DBusMessage.path: String
   get() = g_dbus_message_get_path(this).toKString
   set(`value`) {
-    g_dbus_message_set_path(this, value)
+    g_dbus_message_set_path(this, `value`)
   }
 
 public var DBusMessage.replySerial: UInt
   get() = g_dbus_message_get_reply_serial(this)
   set(`value`) {
-    g_dbus_message_set_reply_serial(this, value)
+    g_dbus_message_set_reply_serial(this, `value`)
   }
 
 public var DBusMessage.sender: String
   get() = g_dbus_message_get_sender(this).toKString
   set(`value`) {
-    g_dbus_message_set_sender(this, value)
+    g_dbus_message_set_sender(this, `value`)
   }
 
 public var DBusMessage.serial: UInt
   get() = g_dbus_message_get_serial(this)
   set(`value`) {
-    g_dbus_message_set_serial(this, value)
+    g_dbus_message_set_serial(this, `value`)
   }
 
 public var DBusMessage.signature: String
   get() = g_dbus_message_get_signature(this).toKString
   set(`value`) {
-    g_dbus_message_set_signature(this, value)
+    g_dbus_message_set_signature(this, `value`)
   }
 
 public var DBusMessage.unixFdList: UnixFDList?
   get() = g_dbus_message_get_unix_fd_list(this)?.reinterpret()
   set(`value`) {
-    g_dbus_message_set_unix_fd_list(this, value)
+    g_dbus_message_set_unix_fd_list(this, `value`)
   }
 
 @Throws(Error::class)

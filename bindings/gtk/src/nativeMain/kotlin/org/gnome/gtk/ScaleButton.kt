@@ -51,7 +51,7 @@ public val ScaleButton.parent: Button
 public var ScaleButton.adjustment: Adjustment?
   get() = gtk_scale_button_get_adjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_scale_button_set_adjustment(this, value)
+    gtk_scale_button_set_adjustment(this, `value`)
   }
 
 public val ScaleButton.minusButton: Button?
@@ -66,7 +66,7 @@ public val ScaleButton.popup: Widget?
 public var ScaleButton.`value`: Double
   get() = gtk_scale_button_get_value(this)
   set(`value`) {
-    gtk_scale_button_set_value(this, value)
+    gtk_scale_button_set_value(this, `value`)
   }
 
 public fun ScaleButton.onPopdown(callback: (ScaleButton) -> Unit): ScaleButton {

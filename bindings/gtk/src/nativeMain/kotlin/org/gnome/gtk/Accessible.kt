@@ -23,5 +23,5 @@ public val Accessible.asAtkObject: org.gnome.atk.Object
 public var Accessible.widget: Widget?
   get() = gtk_accessible_get_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_accessible_set_widget(this, value)
+    gtk_accessible_set_widget(this, `value`)
   }

@@ -123,7 +123,7 @@ public val TextBuffer.lineCount: Int
 public var TextBuffer.modified: Boolean
   get() = gtk_text_buffer_get_modified(this).toBoolean
   set(`value`) {
-    gtk_text_buffer_set_modified(this, value.toInt)
+    gtk_text_buffer_set_modified(this, `value`.toInt)
   }
 
 public val TextBuffer.pasteTargetList: TargetList?
@@ -136,7 +136,7 @@ public val TextBuffer.tagTable: TextTagTable?
   get() = gtk_text_buffer_get_tag_table(this)?.reinterpret()
 
 public fun TextBuffer.addMark(mark: TextMark?, `where`: TextIter?): Unit {
-  gtk_text_buffer_add_mark(this, mark?.reinterpret(), where?.reinterpret())
+  gtk_text_buffer_add_mark(this, mark?.reinterpret(), `where`?.reinterpret())
 }
 
 public fun TextBuffer.addSelectionClipboard(clipboard: Clipboard?): Unit {
@@ -181,7 +181,7 @@ public fun TextBuffer.createMark(
   markName: String,
   `where`: TextIter?,
   leftGravity: Boolean
-): TextMark? = gtk_text_buffer_create_mark(this, markName, where?.reinterpret(),
+): TextMark? = gtk_text_buffer_create_mark(this, markName, `where`?.reinterpret(),
     leftGravity.toInt)?.reinterpret()
 
 public fun TextBuffer.cutClipboard(clipboard: Clipboard?, defaultEditable: Boolean): Unit {
@@ -287,11 +287,11 @@ public fun TextBuffer.insertRangeInteractive(
     start?.reinterpret(), end?.reinterpret(), defaultEditable.toInt).toBoolean
 
 public fun TextBuffer.moveMark(mark: TextMark?, `where`: TextIter?): Unit {
-  gtk_text_buffer_move_mark(this, mark?.reinterpret(), where?.reinterpret())
+  gtk_text_buffer_move_mark(this, mark?.reinterpret(), `where`?.reinterpret())
 }
 
 public fun TextBuffer.moveMarkByName(name: String, `where`: TextIter?): Unit {
-  gtk_text_buffer_move_mark_by_name(this, name, where?.reinterpret())
+  gtk_text_buffer_move_mark_by_name(this, name, `where`?.reinterpret())
 }
 
 public fun TextBuffer.pasteClipboard(
@@ -304,7 +304,7 @@ public fun TextBuffer.pasteClipboard(
 }
 
 public fun TextBuffer.placeCursor(`where`: TextIter?): Unit {
-  gtk_text_buffer_place_cursor(this, where?.reinterpret())
+  gtk_text_buffer_place_cursor(this, `where`?.reinterpret())
 }
 
 public fun TextBuffer.removeAllTags(start: TextIter?, end: TextIter?): Unit {

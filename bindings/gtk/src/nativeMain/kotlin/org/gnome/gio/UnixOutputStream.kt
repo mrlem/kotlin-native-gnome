@@ -34,7 +34,7 @@ public val UnixOutputStream.parentInstance: OutputStream
 public var UnixOutputStream.closeFd: Boolean
   get() = g_unix_output_stream_get_close_fd(this).toBoolean
   set(`value`) {
-    g_unix_output_stream_set_close_fd(this, value.toInt)
+    g_unix_output_stream_set_close_fd(this, `value`.toInt)
   }
 
 public val UnixOutputStream.fd: Int

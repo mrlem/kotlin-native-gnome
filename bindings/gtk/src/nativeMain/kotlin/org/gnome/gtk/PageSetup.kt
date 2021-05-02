@@ -58,13 +58,13 @@ public object PageSetupFactory {
 public var PageSetup.orientation: PageOrientation
   get() = gtk_page_setup_get_orientation(this)
   set(`value`) {
-    gtk_page_setup_set_orientation(this, value)
+    gtk_page_setup_set_orientation(this, `value`)
   }
 
 public var PageSetup.paperSize: PaperSize?
   get() = gtk_page_setup_get_paper_size(this)?.reinterpret()
   set(`value`) {
-    gtk_page_setup_set_paper_size(this, value)
+    gtk_page_setup_set_paper_size(this, `value`)
   }
 
 public fun PageSetup.copy(): PageSetup? = gtk_page_setup_copy(this)?.reinterpret()

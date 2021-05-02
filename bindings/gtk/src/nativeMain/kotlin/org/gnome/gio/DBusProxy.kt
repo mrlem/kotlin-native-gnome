@@ -54,7 +54,7 @@ public val DBusProxy.connection: DBusConnection?
 public var DBusProxy.defaultTimeout: Int
   get() = g_dbus_proxy_get_default_timeout(this)
   set(`value`) {
-    g_dbus_proxy_set_default_timeout(this, value)
+    g_dbus_proxy_set_default_timeout(this, `value`)
   }
 
 public val DBusProxy.flags: DBusProxyFlags
@@ -63,7 +63,7 @@ public val DBusProxy.flags: DBusProxyFlags
 public var DBusProxy.interfaceInfo: DBusInterfaceInfo?
   get() = g_dbus_proxy_get_interface_info(this)?.reinterpret()
   set(`value`) {
-    g_dbus_proxy_set_interface_info(this, value)
+    g_dbus_proxy_set_interface_info(this, `value`)
   }
 
 public val DBusProxy.interfaceName: String

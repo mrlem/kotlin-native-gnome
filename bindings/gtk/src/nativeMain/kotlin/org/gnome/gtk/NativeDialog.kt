@@ -39,19 +39,19 @@ public val NativeDialog.parentInstance: Object
 public var NativeDialog.modal: Boolean
   get() = gtk_native_dialog_get_modal(this).toBoolean
   set(`value`) {
-    gtk_native_dialog_set_modal(this, value.toInt)
+    gtk_native_dialog_set_modal(this, `value`.toInt)
   }
 
 public var NativeDialog.title: String
   get() = gtk_native_dialog_get_title(this).toKString
   set(`value`) {
-    gtk_native_dialog_set_title(this, value)
+    gtk_native_dialog_set_title(this, `value`)
   }
 
 public var NativeDialog.transientFor: Window?
   get() = gtk_native_dialog_get_transient_for(this)?.reinterpret()
   set(`value`) {
-    gtk_native_dialog_set_transient_for(this, value)
+    gtk_native_dialog_set_transient_for(this, `value`)
   }
 
 public val NativeDialog.visible: Boolean

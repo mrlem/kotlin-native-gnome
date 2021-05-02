@@ -73,43 +73,43 @@ public val FlowBox.container: Container
 public var FlowBox.activateOnSingleClick: Boolean
   get() = gtk_flow_box_get_activate_on_single_click(this).toBoolean
   set(`value`) {
-    gtk_flow_box_set_activate_on_single_click(this, value.toInt)
+    gtk_flow_box_set_activate_on_single_click(this, `value`.toInt)
   }
 
 public var FlowBox.columnSpacing: UInt
   get() = gtk_flow_box_get_column_spacing(this)
   set(`value`) {
-    gtk_flow_box_set_column_spacing(this, value)
+    gtk_flow_box_set_column_spacing(this, `value`)
   }
 
 public var FlowBox.homogeneous: Boolean
   get() = gtk_flow_box_get_homogeneous(this).toBoolean
   set(`value`) {
-    gtk_flow_box_set_homogeneous(this, value.toInt)
+    gtk_flow_box_set_homogeneous(this, `value`.toInt)
   }
 
 public var FlowBox.maxChildrenPerLine: UInt
   get() = gtk_flow_box_get_max_children_per_line(this)
   set(`value`) {
-    gtk_flow_box_set_max_children_per_line(this, value)
+    gtk_flow_box_set_max_children_per_line(this, `value`)
   }
 
 public var FlowBox.minChildrenPerLine: UInt
   get() = gtk_flow_box_get_min_children_per_line(this)
   set(`value`) {
-    gtk_flow_box_set_min_children_per_line(this, value)
+    gtk_flow_box_set_min_children_per_line(this, `value`)
   }
 
 public var FlowBox.rowSpacing: UInt
   get() = gtk_flow_box_get_row_spacing(this)
   set(`value`) {
-    gtk_flow_box_set_row_spacing(this, value)
+    gtk_flow_box_set_row_spacing(this, `value`)
   }
 
 public var FlowBox.selectionMode: SelectionMode
   get() = gtk_flow_box_get_selection_mode(this)
   set(`value`) {
-    gtk_flow_box_set_selection_mode(this, value)
+    gtk_flow_box_set_selection_mode(this, `value`)
   }
 
 public fun FlowBox.getChildAtIndex(idx: Int): FlowBoxChild? = gtk_flow_box_get_child_at_index(this,

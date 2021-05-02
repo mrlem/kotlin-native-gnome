@@ -94,7 +94,7 @@ public val TreeViewColumn.parentInstance: InitiallyUnowned
 public var TreeViewColumn.alignment: Float
   get() = gtk_tree_view_column_get_alignment(this)
   set(`value`) {
-    gtk_tree_view_column_set_alignment(this, value)
+    gtk_tree_view_column_set_alignment(this, `value`)
   }
 
 public val TreeViewColumn.button: Widget?
@@ -103,79 +103,79 @@ public val TreeViewColumn.button: Widget?
 public var TreeViewColumn.clickable: Boolean
   get() = gtk_tree_view_column_get_clickable(this).toBoolean
   set(`value`) {
-    gtk_tree_view_column_set_clickable(this, value.toInt)
+    gtk_tree_view_column_set_clickable(this, `value`.toInt)
   }
 
 public var TreeViewColumn.expand: Boolean
   get() = gtk_tree_view_column_get_expand(this).toBoolean
   set(`value`) {
-    gtk_tree_view_column_set_expand(this, value.toInt)
+    gtk_tree_view_column_set_expand(this, `value`.toInt)
   }
 
 public var TreeViewColumn.fixedWidth: Int
   get() = gtk_tree_view_column_get_fixed_width(this)
   set(`value`) {
-    gtk_tree_view_column_set_fixed_width(this, value)
+    gtk_tree_view_column_set_fixed_width(this, `value`)
   }
 
 public var TreeViewColumn.maxWidth: Int
   get() = gtk_tree_view_column_get_max_width(this)
   set(`value`) {
-    gtk_tree_view_column_set_max_width(this, value)
+    gtk_tree_view_column_set_max_width(this, `value`)
   }
 
 public var TreeViewColumn.minWidth: Int
   get() = gtk_tree_view_column_get_min_width(this)
   set(`value`) {
-    gtk_tree_view_column_set_min_width(this, value)
+    gtk_tree_view_column_set_min_width(this, `value`)
   }
 
 public var TreeViewColumn.reorderable: Boolean
   get() = gtk_tree_view_column_get_reorderable(this).toBoolean
   set(`value`) {
-    gtk_tree_view_column_set_reorderable(this, value.toInt)
+    gtk_tree_view_column_set_reorderable(this, `value`.toInt)
   }
 
 public var TreeViewColumn.resizable: Boolean
   get() = gtk_tree_view_column_get_resizable(this).toBoolean
   set(`value`) {
-    gtk_tree_view_column_set_resizable(this, value.toInt)
+    gtk_tree_view_column_set_resizable(this, `value`.toInt)
   }
 
 public var TreeViewColumn.sizing: TreeViewColumnSizing
   get() = gtk_tree_view_column_get_sizing(this)
   set(`value`) {
-    gtk_tree_view_column_set_sizing(this, value)
+    gtk_tree_view_column_set_sizing(this, `value`)
   }
 
 public var TreeViewColumn.sortColumnId: Int
   get() = gtk_tree_view_column_get_sort_column_id(this)
   set(`value`) {
-    gtk_tree_view_column_set_sort_column_id(this, value)
+    gtk_tree_view_column_set_sort_column_id(this, `value`)
   }
 
 public var TreeViewColumn.sortIndicator: Boolean
   get() = gtk_tree_view_column_get_sort_indicator(this).toBoolean
   set(`value`) {
-    gtk_tree_view_column_set_sort_indicator(this, value.toInt)
+    gtk_tree_view_column_set_sort_indicator(this, `value`.toInt)
   }
 
 public var TreeViewColumn.sortOrder: SortType
   get() = gtk_tree_view_column_get_sort_order(this)
   set(`value`) {
-    gtk_tree_view_column_set_sort_order(this, value)
+    gtk_tree_view_column_set_sort_order(this, `value`)
   }
 
 public var TreeViewColumn.spacing: Int
   get() = gtk_tree_view_column_get_spacing(this)
   set(`value`) {
-    gtk_tree_view_column_set_spacing(this, value)
+    gtk_tree_view_column_set_spacing(this, `value`)
   }
 
 public var TreeViewColumn.title: String
   get() = gtk_tree_view_column_get_title(this).toKString
   set(`value`) {
-    gtk_tree_view_column_set_title(this, value)
+    gtk_tree_view_column_set_title(this, `value`)
   }
 
 public val TreeViewColumn.treeView: Widget?
@@ -184,13 +184,13 @@ public val TreeViewColumn.treeView: Widget?
 public var TreeViewColumn.visible: Boolean
   get() = gtk_tree_view_column_get_visible(this).toBoolean
   set(`value`) {
-    gtk_tree_view_column_set_visible(this, value.toInt)
+    gtk_tree_view_column_set_visible(this, `value`.toInt)
   }
 
 public var TreeViewColumn.widget: Widget?
   get() = gtk_tree_view_column_get_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_tree_view_column_set_widget(this, value)
+    gtk_tree_view_column_set_widget(this, `value`)
   }
 
 public val TreeViewColumn.width: Int

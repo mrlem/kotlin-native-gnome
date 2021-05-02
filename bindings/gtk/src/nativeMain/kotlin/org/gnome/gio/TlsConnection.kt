@@ -51,19 +51,19 @@ public val TlsConnection.parentInstance: IOStream
 public var TlsConnection.certificate: TlsCertificate?
   get() = g_tls_connection_get_certificate(this)?.reinterpret()
   set(`value`) {
-    g_tls_connection_set_certificate(this, value)
+    g_tls_connection_set_certificate(this, `value`)
   }
 
 public var TlsConnection.database: TlsDatabase?
   get() = g_tls_connection_get_database(this)?.reinterpret()
   set(`value`) {
-    g_tls_connection_set_database(this, value)
+    g_tls_connection_set_database(this, `value`)
   }
 
 public var TlsConnection.interaction: TlsInteraction?
   get() = g_tls_connection_get_interaction(this)?.reinterpret()
   set(`value`) {
-    g_tls_connection_set_interaction(this, value)
+    g_tls_connection_set_interaction(this, `value`)
   }
 
 public val TlsConnection.negotiatedProtocol: String
@@ -78,7 +78,7 @@ public val TlsConnection.peerCertificateErrors: TlsCertificateFlags
 public var TlsConnection.requireCloseNotify: Boolean
   get() = g_tls_connection_get_require_close_notify(this).toBoolean
   set(`value`) {
-    g_tls_connection_set_require_close_notify(this, value.toInt)
+    g_tls_connection_set_require_close_notify(this, `value`.toInt)
   }
 
 public fun TlsConnection.onAcceptCertificate(callback: (TlsConnection) -> Unit): TlsConnection {

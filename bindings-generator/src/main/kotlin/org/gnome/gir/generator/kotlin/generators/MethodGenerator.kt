@@ -107,7 +107,7 @@ fun AnyType?.getReturnData(resolver: Resolver): Pair<String, Array<MemberName>> 
 }
 
 fun Map<String, AnyType>.getParamsData(reinterpretPointers: Boolean, resolver: Resolver, headingComma: Boolean = true): Pair<String, Array<MemberName>> {
-    val paramsConverters = mutableListOf<MemberName>()
+    val paramsMembers = mutableListOf<MemberName>()
     val paramsTemplate = entries.joinToString(", ") { (name, type) ->
         val typeInfo = type.typeInfo(resolver)
         val (paramTemplate, paramArray) = if (reinterpretPointers) {
@@ -115,12 +115,12 @@ fun Map<String, AnyType>.getParamsData(reinterpretPointers: Boolean, resolver: R
         } else {
             typeInfo!!.toCType
         }
-        paramsConverters += paramArray
-        val escapedName = name.takeUnless { it == "object" } ?: "`object`" // FIXME - generalize
-        "$escapedName$paramTemplate"
+        paramsMembers += MemberName("", name)
+        paramsMembers += paramArray
+        "%M$paramTemplate"
     }
         .takeUnless { it.isEmpty() }
         ?.let { if (headingComma) ", $it" else it }
         .orEmpty()
-    return paramsTemplate to paramsConverters.toTypedArray()
+    return paramsTemplate to paramsMembers.toTypedArray()
 }

@@ -59,13 +59,13 @@ public val CellRenderer.requestMode: SizeRequestMode
 public var CellRenderer.sensitive: Boolean
   get() = gtk_cell_renderer_get_sensitive(this).toBoolean
   set(`value`) {
-    gtk_cell_renderer_set_sensitive(this, value.toInt)
+    gtk_cell_renderer_set_sensitive(this, `value`.toInt)
   }
 
 public var CellRenderer.visible: Boolean
   get() = gtk_cell_renderer_get_visible(this).toBoolean
   set(`value`) {
-    gtk_cell_renderer_set_visible(this, value.toInt)
+    gtk_cell_renderer_set_visible(this, `value`.toInt)
   }
 
 public fun CellRenderer.getState(widget: Widget?, cellState: CellRendererState): StateFlags =

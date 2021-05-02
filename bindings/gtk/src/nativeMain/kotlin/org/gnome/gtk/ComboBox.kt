@@ -101,31 +101,31 @@ public val ComboBox.parentInstance: Bin
 public var ComboBox.active: Int
   get() = gtk_combo_box_get_active(this)
   set(`value`) {
-    gtk_combo_box_set_active(this, value)
+    gtk_combo_box_set_active(this, `value`)
   }
 
 public var ComboBox.activeId: String
   get() = gtk_combo_box_get_active_id(this).toKString
   set(`value`) {
-    gtk_combo_box_set_active_id(this, value)
+    gtk_combo_box_set_active_id(this, `value`)
   }
 
 public var ComboBox.buttonSensitivity: SensitivityType
   get() = gtk_combo_box_get_button_sensitivity(this)
   set(`value`) {
-    gtk_combo_box_set_button_sensitivity(this, value)
+    gtk_combo_box_set_button_sensitivity(this, `value`)
   }
 
 public var ComboBox.columnSpanColumn: Int
   get() = gtk_combo_box_get_column_span_column(this)
   set(`value`) {
-    gtk_combo_box_set_column_span_column(this, value)
+    gtk_combo_box_set_column_span_column(this, `value`)
   }
 
 public var ComboBox.entryTextColumn: Int
   get() = gtk_combo_box_get_entry_text_column(this)
   set(`value`) {
-    gtk_combo_box_set_entry_text_column(this, value)
+    gtk_combo_box_set_entry_text_column(this, `value`)
   }
 
 public val ComboBox.hasEntry: Boolean
@@ -134,19 +134,19 @@ public val ComboBox.hasEntry: Boolean
 public var ComboBox.idColumn: Int
   get() = gtk_combo_box_get_id_column(this)
   set(`value`) {
-    gtk_combo_box_set_id_column(this, value)
+    gtk_combo_box_set_id_column(this, `value`)
   }
 
 public var ComboBox.model: TreeModel?
   get() = gtk_combo_box_get_model(this)?.reinterpret()
   set(`value`) {
-    gtk_combo_box_set_model(this, value)
+    gtk_combo_box_set_model(this, `value`)
   }
 
 public var ComboBox.popupFixedWidth: Boolean
   get() = gtk_combo_box_get_popup_fixed_width(this).toBoolean
   set(`value`) {
-    gtk_combo_box_set_popup_fixed_width(this, value.toInt)
+    gtk_combo_box_set_popup_fixed_width(this, `value`.toInt)
   }
 
 public val ComboBox.rowSeparatorFunc: TreeViewRowSeparatorFunc?
@@ -155,13 +155,13 @@ public val ComboBox.rowSeparatorFunc: TreeViewRowSeparatorFunc?
 public var ComboBox.rowSpanColumn: Int
   get() = gtk_combo_box_get_row_span_column(this)
   set(`value`) {
-    gtk_combo_box_set_row_span_column(this, value)
+    gtk_combo_box_set_row_span_column(this, `value`)
   }
 
 public var ComboBox.wrapWidth: Int
   get() = gtk_combo_box_get_wrap_width(this)
   set(`value`) {
-    gtk_combo_box_set_wrap_width(this, value)
+    gtk_combo_box_set_wrap_width(this, `value`)
   }
 
 public fun ComboBox.popdown(): Unit {

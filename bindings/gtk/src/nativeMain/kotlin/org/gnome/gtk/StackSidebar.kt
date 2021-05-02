@@ -40,5 +40,5 @@ public val StackSidebar.parent: Bin
 public var StackSidebar.stack: Stack?
   get() = gtk_stack_sidebar_get_stack(this)?.reinterpret()
   set(`value`) {
-    gtk_stack_sidebar_set_stack(this, value)
+    gtk_stack_sidebar_set_stack(this, `value`)
   }

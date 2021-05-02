@@ -52,7 +52,7 @@ public val AccelLabel.label: Label
 public var AccelLabel.accelWidget: Widget?
   get() = gtk_accel_label_get_accel_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_accel_label_set_accel_widget(this, value)
+    gtk_accel_label_set_accel_widget(this, `value`)
   }
 
 public val AccelLabel.accelWidth: UInt

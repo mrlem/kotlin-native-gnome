@@ -83,67 +83,67 @@ public val AboutDialog.parentInstance: Dialog
 public var AboutDialog.comments: String
   get() = gtk_about_dialog_get_comments(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_comments(this, value)
+    gtk_about_dialog_set_comments(this, `value`)
   }
 
 public var AboutDialog.copyright: String
   get() = gtk_about_dialog_get_copyright(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_copyright(this, value)
+    gtk_about_dialog_set_copyright(this, `value`)
   }
 
 public var AboutDialog.license: String
   get() = gtk_about_dialog_get_license(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_license(this, value)
+    gtk_about_dialog_set_license(this, `value`)
   }
 
 public var AboutDialog.licenseType: License
   get() = gtk_about_dialog_get_license_type(this)
   set(`value`) {
-    gtk_about_dialog_set_license_type(this, value)
+    gtk_about_dialog_set_license_type(this, `value`)
   }
 
 public var AboutDialog.logoIconName: String
   get() = gtk_about_dialog_get_logo_icon_name(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_logo_icon_name(this, value)
+    gtk_about_dialog_set_logo_icon_name(this, `value`)
   }
 
 public var AboutDialog.programName: String
   get() = gtk_about_dialog_get_program_name(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_program_name(this, value)
+    gtk_about_dialog_set_program_name(this, `value`)
   }
 
 public var AboutDialog.translatorCredits: String
   get() = gtk_about_dialog_get_translator_credits(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_translator_credits(this, value)
+    gtk_about_dialog_set_translator_credits(this, `value`)
   }
 
 public var AboutDialog.version: String
   get() = gtk_about_dialog_get_version(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_version(this, value)
+    gtk_about_dialog_set_version(this, `value`)
   }
 
 public var AboutDialog.website: String
   get() = gtk_about_dialog_get_website(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_website(this, value)
+    gtk_about_dialog_set_website(this, `value`)
   }
 
 public var AboutDialog.websiteLabel: String
   get() = gtk_about_dialog_get_website_label(this).toKString
   set(`value`) {
-    gtk_about_dialog_set_website_label(this, value)
+    gtk_about_dialog_set_website_label(this, `value`)
   }
 
 public var AboutDialog.wrapLicense: Boolean
   get() = gtk_about_dialog_get_wrap_license(this).toBoolean
   set(`value`) {
-    gtk_about_dialog_set_wrap_license(this, value.toInt)
+    gtk_about_dialog_set_wrap_license(this, `value`.toInt)
   }
 
 public fun AboutDialog.onActivateLink(callback: (AboutDialog) -> Unit): AboutDialog {

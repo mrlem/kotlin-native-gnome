@@ -40,7 +40,7 @@ public object FileFilterFactory {
 public var FileFilter.name: String
   get() = gtk_file_filter_get_name(this).toKString
   set(`value`) {
-    gtk_file_filter_set_name(this, value)
+    gtk_file_filter_set_name(this, `value`)
   }
 
 public val FileFilter.needed: FileFilterFlags

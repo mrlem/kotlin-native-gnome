@@ -65,7 +65,7 @@ public val Application.parentInstance: Object
 public var Application.applicationId: String
   get() = g_application_get_application_id(this).toKString
   set(`value`) {
-    g_application_set_application_id(this, value)
+    g_application_set_application_id(this, `value`)
   }
 
 public val Application.dbusConnection: DBusConnection?
@@ -77,13 +77,13 @@ public val Application.dbusObjectPath: String
 public var Application.flags: ApplicationFlags
   get() = g_application_get_flags(this)
   set(`value`) {
-    g_application_set_flags(this, value)
+    g_application_set_flags(this, `value`)
   }
 
 public var Application.inactivityTimeout: UInt
   get() = g_application_get_inactivity_timeout(this)
   set(`value`) {
-    g_application_set_inactivity_timeout(this, value)
+    g_application_set_inactivity_timeout(this, `value`)
   }
 
 public val Application.isBusy: Boolean
@@ -98,7 +98,7 @@ public val Application.isRemote: Boolean
 public var Application.resourceBasePath: String
   get() = g_application_get_resource_base_path(this).toKString
   set(`value`) {
-    g_application_set_resource_base_path(this, value)
+    g_application_set_resource_base_path(this, `value`)
   }
 
 public fun Application.activate(): Unit {

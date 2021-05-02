@@ -77,7 +77,7 @@ public val Assistant.parent: Window
 public var Assistant.currentPage: Int
   get() = gtk_assistant_get_current_page(this)
   set(`value`) {
-    gtk_assistant_set_current_page(this, value)
+    gtk_assistant_set_current_page(this, `value`)
   }
 
 public val Assistant.nPages: Int

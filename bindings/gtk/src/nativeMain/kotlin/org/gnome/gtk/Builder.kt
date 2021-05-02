@@ -73,13 +73,13 @@ public val Builder.parentInstance: Object
 public var Builder.application: Application?
   get() = gtk_builder_get_application(this)?.reinterpret()
   set(`value`) {
-    gtk_builder_set_application(this, value)
+    gtk_builder_set_application(this, `value`)
   }
 
 public var Builder.translationDomain: String
   get() = gtk_builder_get_translation_domain(this).toKString
   set(`value`) {
-    gtk_builder_set_translation_domain(this, value)
+    gtk_builder_set_translation_domain(this, `value`)
   }
 
 public fun Builder.addCallbackSymbol(callbackName: String, callbackSymbol: Callback?): Unit {

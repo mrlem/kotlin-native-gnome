@@ -60,23 +60,23 @@ public val CellView.parentInstance: Widget
 public var CellView.displayedRow: TreePath?
   get() = gtk_cell_view_get_displayed_row(this)?.reinterpret()
   set(`value`) {
-    gtk_cell_view_set_displayed_row(this, value)
+    gtk_cell_view_set_displayed_row(this, `value`)
   }
 
 public var CellView.drawSensitive: Boolean
   get() = gtk_cell_view_get_draw_sensitive(this).toBoolean
   set(`value`) {
-    gtk_cell_view_set_draw_sensitive(this, value.toInt)
+    gtk_cell_view_set_draw_sensitive(this, `value`.toInt)
   }
 
 public var CellView.fitModel: Boolean
   get() = gtk_cell_view_get_fit_model(this).toBoolean
   set(`value`) {
-    gtk_cell_view_set_fit_model(this, value.toInt)
+    gtk_cell_view_set_fit_model(this, `value`.toInt)
   }
 
 public var CellView.model: TreeModel?
   get() = gtk_cell_view_get_model(this)?.reinterpret()
   set(`value`) {
-    gtk_cell_view_set_model(this, value)
+    gtk_cell_view_set_model(this, `value`)
   }

@@ -40,5 +40,5 @@ public val StackSwitcher.widget: Box
 public var StackSwitcher.stack: Stack?
   get() = gtk_stack_switcher_get_stack(this)?.reinterpret()
   set(`value`) {
-    gtk_stack_switcher_set_stack(this, value)
+    gtk_stack_switcher_set_stack(this, `value`)
   }

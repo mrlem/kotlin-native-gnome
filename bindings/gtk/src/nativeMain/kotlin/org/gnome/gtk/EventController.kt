@@ -22,7 +22,7 @@ public val EventController.asObject: Object
 public var EventController.propagationPhase: PropagationPhase
   get() = gtk_event_controller_get_propagation_phase(this)
   set(`value`) {
-    gtk_event_controller_set_propagation_phase(this, value)
+    gtk_event_controller_set_propagation_phase(this, `value`)
   }
 
 public val EventController.widget: Widget?
