@@ -28,13 +28,12 @@ fun FileSpec.Builder.addField(className: ClassName, field: FieldDefinition, reso
         (className.simpleName == "ParamSpec" && field.name == "name") ||
         // just an alias of GObject with  common field
         (className.simpleName == "InitiallyUnowned") ||
-        // FIXME - record are not read correctly (only name attr is recognized: parser bug?)
-        (className.simpleName == "ParamSpecEnum" && field.name == "enum_class") ||
         // FIXME - investigate
         ((type as? TypeDefinition)?.name == "GObject.ParamFlags") ||
         ((type as? TypeDefinition)?.name == "GObject.FlagsClass") ||
         ((type as? TypeDefinition)?.name == "GObject.TypeInstance") ||
         // FIXME - hard to guess what is a CPointer and what is a CPointed
+        (className.simpleName == "ParamSpecEnum" && field.name == "enum_class") ||
         (className.simpleName == "ParamSpecValueArray" && field.name == "element_spec") ||
         (className.simpleName == "ParamSpecOverride" && field.name == "overridden") ||
         // FIXME - does not exist
