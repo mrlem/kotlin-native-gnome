@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.TypeName
 import org.gnome.gir.GNOME_PACKAGE
+import org.gnome.gir.generator.kotlin.generators.TypeInfo
 import org.gnome.gir.resolver.SimpleType
 import org.gnome.gir.model.ArrayTypeDefinition
 import org.gnome.gir.model.TypeDefinition
@@ -36,13 +37,6 @@ fun AnyType.typeInfo(resolver: Resolver): TypeInfo? {
         toCTypeReinterpreted = if (isCPointer) "?.%M()" to arrayOf(reinterpretMemberName) else toCTypeConverter,
     )
 }
-
-data class TypeInfo(
-    val kType: TypeName,
-    val toKType: Pair<String, Array<MemberName>>,
-    val toCType: Pair<String, Array<MemberName>>,
-    val toCTypeReinterpreted: Pair<String, Array<MemberName>>
-)
 
 ///////////////////////////////////////////////////////////////////////////
 // Private
