@@ -40,7 +40,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
     val params = method.callable.parameters
         .map { param ->
             val type = (param.type as? AnyType) // TODO - handle varargs
-                ?.takeIf { it.kType != null }
+                ?.takeIf { it.typeInfo(resolver)?.kType != null }
                 ?.takeUnless { param.direction == Out || param.direction == InOut } // TODO - handle in/out
                 ?: run {
                     addComment("TODO - method: ${method.name}\n")

@@ -37,7 +37,18 @@ fun AnyType.typeInfo(resolver: Resolver): TypeInfo? {
     )
 }
 
-val AnyType.kType: TypeName?
+data class TypeInfo(
+    val kType: TypeName,
+    val toKType: Pair<String, Array<MemberName>>,
+    val toCType: Pair<String, Array<MemberName>>,
+    val toCTypeReinterpreted: Pair<String, Array<MemberName>>
+)
+
+///////////////////////////////////////////////////////////////////////////
+// Private
+///////////////////////////////////////////////////////////////////////////
+
+private val AnyType.kType: TypeName?
     get() = when (this) {
         is TypeDefinition -> SimpleType.fromName(name)
             ?.kTypeName
@@ -46,7 +57,7 @@ val AnyType.kType: TypeName?
         else -> null
     }
 
-val AnyType.toKTypeConverter
+private val AnyType.toKTypeConverter
     get() = when (this) {
         is TypeDefinition -> SimpleType.fromName(name)
             ?.toKTypeConverter
@@ -56,7 +67,7 @@ val AnyType.toKTypeConverter
     }
         ?: "" to emptyArray()
 
-val AnyType.toCTypeConverter
+private val AnyType.toCTypeConverter
     get() = when (this) {
         is TypeDefinition -> SimpleType.fromName(name)?.toCTypeConverter
             ?.let { ".%M" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
@@ -64,13 +75,6 @@ val AnyType.toCTypeConverter
         else -> null
     }
         ?: "" to emptyArray()
-
-data class TypeInfo(
-    val kType: TypeName,
-    val toKType: Pair<String, Array<MemberName>>,
-    val toCType: Pair<String, Array<MemberName>>,
-    val toCTypeReinterpreted: Pair<String, Array<MemberName>>
-)
 
 private val TypeDefinition.className: TypeName?
     get() {
