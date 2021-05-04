@@ -29,11 +29,6 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
             println("info: class '$name' ignored: deprecated ancestor")
             return null
         }
-        // TODO - problematic classes: use gpointer
-        arrayOf("Gio.Task", "Gio.MemoryOutputStream", "Gtk.EntryIconAccessible", "Gtk.HeaderBarAccessible").contains(classNameString) -> {
-            println("warning: class '$name' ignored: excluded class")
-            return null
-        }
     }
 
     return FileSpec.builder(packageName, name)

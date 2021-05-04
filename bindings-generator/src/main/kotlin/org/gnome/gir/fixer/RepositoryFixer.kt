@@ -26,6 +26,17 @@ object RepositoryFixer {
             .methods
             .removeAll { it.name == "read_pixels" }
 
+        // FIXME - apparently, the includes for those were forgotten in gtk/gtk-a11y.h
+        repository.namespaces["Gtk"]!!
+            .classes
+            .removeAll { it.name == "HeaderBarAccessible" || it.name == "EntryIconAccessible" }
+
+        // FIXME - needs callback generation
+        repository.namespaces["Gio"]!!
+            .classes["Task"]!!
+            .methods
+            .removeAll { it.name == "run_in_thread" || it.name == "run_in_thread_sync" }
+
         // incorrectly typed as GObject
         repository.namespaces["Gio"]!!
             .classes["ListStore"]!!
