@@ -18,7 +18,6 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
 
     // filter out some classes
     when {
-        deprecated && classNameString != "Gtk.Misc" -> return null
         // FIXME - Misc is annoying: deprecated, but not its children, try figure that out
         ancestors.any { it != "Gtk.Misc" && resolver.classDefinition(it)?.deprecated == true } -> {
             println("info: class '$name' ignored: deprecated ancestor")

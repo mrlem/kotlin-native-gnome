@@ -37,6 +37,11 @@ object RepositoryFixer {
             .classes
             .removeAll { it.name == "NoOpObjectFactory" }
 
+        // remove all deprecated class... except Misc, as it is parent to non deprecated classes
+        repository.namespaces.forEach { namespace ->
+            namespace.classes.removeAll { it.deprecated && !(namespace.name == "Gtk" && it.name == "Misc") }
+        }
+
         // incorrectly typed as GObject
         repository.namespaces["Gio"]!!
             .classes["ListStore"]!!
