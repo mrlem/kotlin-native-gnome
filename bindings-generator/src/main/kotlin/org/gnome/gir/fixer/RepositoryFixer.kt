@@ -26,11 +26,6 @@ object RepositoryFixer {
             .methods
             .removeAll { it.name == "read_pixels" }
 
-        // FIXME - apparently, the includes for those were forgotten in gtk/gtk-a11y.h
-        repository.namespaces["Gtk"]!!
-            .classes
-            .removeAll { it.name == "HeaderBarAccessible" || it.name == "EntryIconAccessible" }
-
         // FIXME - needs callback generation
         repository.namespaces["Gio"]!!
             .classes["Task"]!!
@@ -59,6 +54,11 @@ object RepositoryFixer {
         repository.namespaces["GdkPixbuf"]!!
             .classes
             .removeAll { it.name == "PixbufSimpleAnimIter" }
+
+        // apparently, the includes for those were forgotten in gtk/gtk-a11y.h
+        repository.namespaces["Gtk"]!!
+            .classes
+            .removeAll { it.name == "HeaderBarAccessible" || it.name == "EntryIconAccessible" }
     }
 
     ///////////////////////////////////////////////////////////////////////////
