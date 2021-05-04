@@ -19,12 +19,6 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
     val name = method.name.snakeCaseToCamelCase.decapitalize()
 
     when (cIdentifier) {
-        // TODO - seem to pass an array instead of a single value
-        "g_simple_proxy_resolver_set_ignore_hosts",
-        "g_tls_password_get_value" -> {
-            addComment("TODO - method: ${method.name}\n")
-            return
-        }
         // TODO - see why these methods don't exist
         "g_settings_backend_path_writable_changed",
         "g_settings_backend_writable_changed" -> return

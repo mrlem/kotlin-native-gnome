@@ -1,4 +1,3 @@
-// TODO - method: get_value
 // TODO - method: set_value_full
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")

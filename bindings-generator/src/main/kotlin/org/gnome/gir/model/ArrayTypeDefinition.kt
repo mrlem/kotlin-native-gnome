@@ -15,4 +15,18 @@ data class ArrayTypeDefinition(
     val length: Int?,
     val cType: String?,
     var type: TypeDefinition
-) : AnyType
+) : AnyType {
+
+    companion object {
+        fun create(type: TypeDefinition) = ArrayTypeDefinition(
+            name = null,
+            zeroTerminated = true,
+            fixedSize = null,
+            introspectable = false,
+            length = null,
+            cType = null,
+            type = type
+        )
+    }
+
+}

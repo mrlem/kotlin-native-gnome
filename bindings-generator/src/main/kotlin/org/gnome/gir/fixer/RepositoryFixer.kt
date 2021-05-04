@@ -37,10 +37,23 @@ object RepositoryFixer {
             .classes
             .removeAll { it.name == "NoOpObjectFactory" }
 
+        // FIXME - string based on gucharVar instead of gcharVar
+        repository.namespaces["Gio"]!!
+            .classes["TlsPassword"]!!
+            .methods
+            .removeAll { it.name == "get_value" }
+
         // remove all deprecated class... except Misc, as it is parent to non deprecated classes
         repository.namespaces.forEach { namespace ->
             namespace.classes.removeAll { it.deprecated && !(namespace.name == "Gtk" && it.name == "Misc") }
         }
+
+        // incorrectly typed as String instead of string array
+        repository.namespaces["Gio"]!!
+            .classes["SimpleProxyResolver"]!!
+            .methods["set_ignore_hosts"]!!
+            .callable.parameters["ignore_hosts"]!!
+            .apply { type = ArrayTypeDefinition.create(TypeDefinition.create("utf8")) }
 
         // incorrectly typed as GObject
         repository.namespaces["Gio"]!!
