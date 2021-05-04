@@ -46,7 +46,7 @@ data class ClassDefinition(
     val glibGetValueFunc: String?,
     val glibSetValueFunc: String?,
     val glibTypeStruct: String?,
-    val glibTypeName: String,
+    var glibTypeName: String,
     val glibGetType: String,
     val cSymbolPrefix: String?,
     val cType: String?,

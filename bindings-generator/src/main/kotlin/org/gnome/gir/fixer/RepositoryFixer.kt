@@ -50,6 +50,12 @@ object RepositoryFixer {
             // remove all deprecated methods
             namespace.classes.forEach { `class` ->
                 `class`.methods.removeAll { it.callable.info.deprecated }
+
+                // replace some incorrect class names
+                `class`.glibTypeName
+                    .takeIf { it.startsWith("GParam") }
+                    ?.let { it.replace("GParam", "GParamSpec") }
+                    ?.let { `class`.glibTypeName = it }
             }
         }
 

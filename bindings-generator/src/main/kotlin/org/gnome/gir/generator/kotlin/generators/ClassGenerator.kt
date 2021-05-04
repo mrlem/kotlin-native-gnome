@@ -6,7 +6,6 @@ import org.gnome.gir.GNOME_PACKAGE
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.*
-import org.gnome.gir.parser.Fixer.fix
 import org.gnome.gir.resolver.Resolver
 
 fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolver): FileSpec? {
@@ -14,7 +13,6 @@ fun ClassDefinition.toFileSpec(namespace: NamespaceDefinition, resolver: Resolve
     val className = classNameString.toClassName
     val packageName = namespace.packageName
     val ancestors = resolver.ancestors(classNameString)
-    val glibTypeName = fix(glibTypeName)
 
     // filter out some classes
     when {
