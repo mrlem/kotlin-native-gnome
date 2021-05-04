@@ -191,7 +191,6 @@ class RepositoryReader {
     private fun Node.readVarargs() = VarargsDefinition()
         .also { if (nodeName != "varargs") error("invalid node name") }
 
-    // FIXME - fails to read all attributes (at least for ActionEntry)
     private fun Node.readRecord() = RecordDefinition(
         name = this["name"] ?: throw error("missing name"),
         glibGetType = this["glib:get-type"],

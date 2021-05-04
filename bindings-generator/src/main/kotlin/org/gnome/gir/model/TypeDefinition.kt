@@ -14,4 +14,16 @@ data class TypeDefinition(
     val introspectable: Boolean,
     val doc: DocElements,
     val types: List<AnyType>
-) : AnyType
+) : AnyType {
+
+    companion object {
+        fun create(name: String) = TypeDefinition(
+            name = name,
+            cType = null,
+            introspectable = false,
+            doc = DocElements.create(),
+            types = emptyList()
+        )
+    }
+
+}

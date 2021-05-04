@@ -14,5 +14,5 @@ data class ArrayTypeDefinition(
     val introspectable: Boolean,
     val length: Int?,
     val cType: String?,
-    val type: TypeDefinition
+    var type: TypeDefinition
 ) : AnyType

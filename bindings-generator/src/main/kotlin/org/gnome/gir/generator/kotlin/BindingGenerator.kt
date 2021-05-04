@@ -5,7 +5,7 @@ import org.gnome.gir.model.RepositoryDefinition
 import org.gnome.gir.resolver.Resolver
 import java.io.File
 
-class BindingGenerator {
+object BindingGenerator {
 
     fun generate(repository: RepositoryDefinition, destination: File) {
         val resolver = Resolver(repository)

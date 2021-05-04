@@ -17,4 +17,16 @@ data class DocElements(
     val doc: DocDefinition?,
     val deprecated: DocTextDefinition?,
     val sourcePosition: SourcePositionDefinition?
-)
+) {
+
+    companion object {
+        fun create() = DocElements(
+            version = null,
+            stability = null,
+            doc = null,
+            deprecated = null,
+            sourcePosition = null
+        )
+    }
+
+}

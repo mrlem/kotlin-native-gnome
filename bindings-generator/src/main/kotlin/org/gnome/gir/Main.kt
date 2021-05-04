@@ -1,5 +1,6 @@
 package org.gnome.gir
 
+import org.gnome.gir.fixer.RepositoryFixer
 import org.gnome.gir.generator.kotlin.BindingGenerator
 import org.gnome.gir.parser.RepositoryReader
 import java.io.File
@@ -29,6 +30,7 @@ fun main() {
             read("/gtk3.gir")
         }
     reader.repository?.let {
-        BindingGenerator().generate(it, sourcesDir)
+        RepositoryFixer.fix(it)
+        BindingGenerator.generate(it, sourcesDir)
     }
 }
