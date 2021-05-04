@@ -1,5 +1,5 @@
-// TODO - method: get_next
-// TODO - method: get_value
+// TODO - method: get_next (param type)
+// TODO - method: get_value (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

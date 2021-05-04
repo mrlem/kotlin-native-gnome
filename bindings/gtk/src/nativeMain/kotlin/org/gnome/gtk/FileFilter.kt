@@ -1,6 +1,6 @@
 // TODO - constructor: new_from_gvariant
-// TODO - method: add_custom
-// TODO - method: to_gvariant
+// TODO - method: add_custom (param type)
+// TODO - method: to_gvariant (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

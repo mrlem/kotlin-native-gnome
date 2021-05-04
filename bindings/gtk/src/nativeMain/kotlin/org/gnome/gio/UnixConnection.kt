@@ -1,5 +1,5 @@
-// TODO - method: receive_credentials_async
-// TODO - method: send_credentials_async
+// TODO - method: receive_credentials_async (param type)
+// TODO - method: send_credentials_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

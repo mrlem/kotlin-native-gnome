@@ -1,5 +1,5 @@
 // TODO - constructor: new
-// TODO - method: get_bytes
+// TODO - method: get_bytes (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,8 +1,4 @@
-// TODO - method: get_rehandshake_mode
-// TODO - method: get_use_system_certdb
-// TODO - method: handshake_async
-// TODO - method: set_rehandshake_mode
-// TODO - method: set_use_system_certdb
+// TODO - method: handshake_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,5 +1,4 @@
-// TODO - method: get_object
-// TODO - method: is_selected_link
+// TODO - method: get_object (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

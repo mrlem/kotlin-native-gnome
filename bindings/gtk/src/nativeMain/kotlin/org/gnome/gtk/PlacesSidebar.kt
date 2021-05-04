@@ -1,7 +1,5 @@
-// TODO - method: get_show_connect_to_server
-// TODO - method: list_shortcuts
-// TODO - method: set_drop_targets_visible
-// TODO - method: set_show_connect_to_server
+// TODO - method: list_shortcuts (return type)
+// TODO - method: set_drop_targets_visible (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

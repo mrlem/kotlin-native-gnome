@@ -1,6 +1,6 @@
-// TODO - method: get_cairo_context
-// TODO - method: get_clip
-// TODO - method: get_window
+// TODO - method: get_cairo_context (return type)
+// TODO - method: get_clip (return type)
+// TODO - method: get_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

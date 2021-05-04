@@ -1,9 +1,9 @@
-// TODO - method: add_callback_symbols
-// TODO - method: connect_signals
-// TODO - method: connect_signals_full
-// TODO - method: get_objects
-// TODO - method: value_from_string
-// TODO - method: value_from_string_type
+// TODO - method: add_callback_symbols (param type)
+// TODO - method: connect_signals (param type)
+// TODO - method: connect_signals_full (param type)
+// TODO - method: get_objects (return type)
+// TODO - method: value_from_string (param type)
+// TODO - method: value_from_string_type (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

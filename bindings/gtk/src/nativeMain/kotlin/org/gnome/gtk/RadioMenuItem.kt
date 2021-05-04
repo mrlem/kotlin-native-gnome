@@ -1,8 +1,8 @@
 // TODO - constructor: new
 // TODO - constructor: new_with_label
 // TODO - constructor: new_with_mnemonic
-// TODO - method: get_group
-// TODO - method: set_group
+// TODO - method: get_group (return type)
+// TODO - method: set_group (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

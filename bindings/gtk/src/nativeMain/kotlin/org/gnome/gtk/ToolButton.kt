@@ -1,6 +1,4 @@
 // TODO - constructor: new_from_stock
-// TODO - method: get_stock_id
-// TODO - method: set_stock_id
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

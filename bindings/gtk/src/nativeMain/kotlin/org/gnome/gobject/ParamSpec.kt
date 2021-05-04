@@ -1,6 +1,6 @@
-// TODO - method: get_qdata
-// TODO - method: set_qdata
-// TODO - method: steal_qdata
+// TODO - method: get_qdata (return type)
+// TODO - method: set_qdata (param type)
+// TODO - method: steal_qdata (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

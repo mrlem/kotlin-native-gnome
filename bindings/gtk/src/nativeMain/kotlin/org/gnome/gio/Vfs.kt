@@ -1,4 +1,4 @@
-// TODO - method: register_uri_scheme
+// TODO - method: register_uri_scheme (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

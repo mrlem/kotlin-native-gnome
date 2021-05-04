@@ -1,13 +1,13 @@
-// TODO - method: close_async
-// TODO - method: read
-// TODO - method: read_all
-// TODO - method: read_all_async
-// TODO - method: read_all_finish
-// TODO - method: read_async
-// TODO - method: read_bytes
-// TODO - method: read_bytes_async
-// TODO - method: read_bytes_finish
-// TODO - method: skip_async
+// TODO - method: close_async (param type)
+// TODO - method: read (param type)
+// TODO - method: read_all (param type)
+// TODO - method: read_all_async (param type)
+// TODO - method: read_all_finish (param type)
+// TODO - method: read_async (param type)
+// TODO - method: read_bytes (return type)
+// TODO - method: read_bytes_async (param type)
+// TODO - method: read_bytes_finish (return type)
+// TODO - method: skip_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

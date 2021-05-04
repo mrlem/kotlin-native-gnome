@@ -1,25 +1,23 @@
-// TODO - method: get_associated_device
-// TODO - method: get_axes
-// TODO - method: get_axis_use
-// TODO - method: get_device_type
-// TODO - method: get_display
-// TODO - method: get_key
-// TODO - method: get_last_event_window
-// TODO - method: get_mode
-// TODO - method: get_position
-// TODO - method: get_position_double
-// TODO - method: get_seat
-// TODO - method: get_source
-// TODO - method: get_window_at_position
-// TODO - method: get_window_at_position_double
-// TODO - method: grab
-// TODO - method: list_axes
-// TODO - method: list_slave_devices
-// TODO - method: set_axis_use
-// TODO - method: set_key
-// TODO - method: set_mode
-// TODO - method: ungrab
-// TODO - method: warp
+// TODO - method: get_associated_device (return type)
+// TODO - method: get_axes (return type)
+// TODO - method: get_axis_use (return type)
+// TODO - method: get_device_type (return type)
+// TODO - method: get_display (return type)
+// TODO - method: get_key (param type)
+// TODO - method: get_last_event_window (return type)
+// TODO - method: get_mode (return type)
+// TODO - method: get_position (param type)
+// TODO - method: get_position_double (param type)
+// TODO - method: get_seat (return type)
+// TODO - method: get_source (return type)
+// TODO - method: get_window_at_position (return type)
+// TODO - method: get_window_at_position_double (return type)
+// TODO - method: list_axes (return type)
+// TODO - method: list_slave_devices (return type)
+// TODO - method: set_axis_use (param type)
+// TODO - method: set_key (param type)
+// TODO - method: set_mode (param type)
+// TODO - method: warp (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

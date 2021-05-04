@@ -1,8 +1,8 @@
-// TODO - method: find
-// TODO - method: find_with_equal_func
-// TODO - method: insert_sorted
-// TODO - method: sort
-// TODO - method: splice
+// TODO - method: find (param type)
+// TODO - method: find_with_equal_func (param type)
+// TODO - method: insert_sorted (param type)
+// TODO - method: sort (param type)
+// TODO - method: splice (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

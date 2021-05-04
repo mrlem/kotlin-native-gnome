@@ -1,13 +1,7 @@
-// TODO - method: get_active_iter
-// TODO - method: get_add_tearoffs
-// TODO - method: get_focus_on_click
-// TODO - method: get_popup_accessible
-// TODO - method: get_title
-// TODO - method: popup_for_device
-// TODO - method: set_add_tearoffs
-// TODO - method: set_focus_on_click
-// TODO - method: set_row_separator_func
-// TODO - method: set_title
+// TODO - method: get_active_iter (param type)
+// TODO - method: get_popup_accessible (return type)
+// TODO - method: popup_for_device (param type)
+// TODO - method: set_row_separator_func (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

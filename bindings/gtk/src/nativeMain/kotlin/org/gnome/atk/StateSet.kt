@@ -1,12 +1,12 @@
 // TODO - constructor: new
-// TODO - method: add_state
-// TODO - method: add_states
-// TODO - method: and_sets
-// TODO - method: contains_state
-// TODO - method: contains_states
-// TODO - method: or_sets
-// TODO - method: remove_state
-// TODO - method: xor_sets
+// TODO - method: add_state (param type)
+// TODO - method: add_states (param type)
+// TODO - method: and_sets (return type)
+// TODO - method: contains_state (param type)
+// TODO - method: contains_states (param type)
+// TODO - method: or_sets (return type)
+// TODO - method: remove_state (param type)
+// TODO - method: xor_sets (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

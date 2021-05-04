@@ -1,4 +1,4 @@
-// TODO - method: serialize
+// TODO - method: serialize (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

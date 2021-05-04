@@ -1,101 +1,58 @@
 // TODO - constructor: new
-// TODO - method: add_device_events
-// TODO - method: add_tick_callback
-// TODO - method: class_path
-// TODO - method: create_pango_context
-// TODO - method: create_pango_layout
-// TODO - method: destroyed
-// TODO - method: device_is_shadowed
-// TODO - method: drag_begin
-// TODO - method: drag_begin_with_coordinates
-// TODO - method: drag_dest_find_target
-// TODO - method: drag_dest_set_proxy
-// TODO - method: drag_get_data
-// TODO - method: drag_source_set_icon_pixbuf
-// TODO - method: drag_source_set_icon_stock
-// TODO - method: draw
-// TODO - method: ensure_style
-// TODO - method: event
-// TODO - method: get_accessible
-// TODO - method: get_allocated_size
-// TODO - method: get_allocation
-// TODO - method: get_child_requisition
-// TODO - method: get_clip
-// TODO - method: get_clipboard
-// TODO - method: get_composite_name
-// TODO - method: get_device_enabled
-// TODO - method: get_device_events
-// TODO - method: get_display
-// TODO - method: get_font_map
-// TODO - method: get_font_options
-// TODO - method: get_frame_clock
-// TODO - method: get_margin_left
-// TODO - method: get_margin_right
-// TODO - method: get_modifier_style
-// TODO - method: get_pango_context
-// TODO - method: get_parent_window
-// TODO - method: get_pointer
-// TODO - method: get_preferred_height
-// TODO - method: get_preferred_height_and_baseline_for_width
-// TODO - method: get_preferred_height_for_width
-// TODO - method: get_preferred_size
-// TODO - method: get_preferred_width
-// TODO - method: get_preferred_width_for_height
-// TODO - method: get_requisition
-// TODO - method: get_root_window
-// TODO - method: get_screen
-// TODO - method: get_size_request
-// TODO - method: get_state
-// TODO - method: get_style
-// TODO - method: get_visual
-// TODO - method: get_window
-// TODO - method: has_rc_style
-// TODO - method: input_shape_combine_region
-// TODO - method: intersect
-// TODO - method: is_composited
-// TODO - method: list_accel_closures
-// TODO - method: list_mnemonic_labels
-// TODO - method: modify_base
-// TODO - method: modify_bg
-// TODO - method: modify_cursor
-// TODO - method: modify_fg
-// TODO - method: modify_font
-// TODO - method: modify_style
-// TODO - method: modify_text
-// TODO - method: override_background_color
-// TODO - method: override_color
-// TODO - method: override_cursor
-// TODO - method: override_font
-// TODO - method: override_symbolic_color
-// TODO - method: path
-// TODO - method: queue_draw_region
-// TODO - method: region_intersect
-// TODO - method: register_window
-// TODO - method: render_icon
-// TODO - method: render_icon_pixbuf
-// TODO - method: reparent
-// TODO - method: reset_rc_styles
-// TODO - method: send_expose
-// TODO - method: send_focus_change
-// TODO - method: set_composite_name
-// TODO - method: set_device_enabled
-// TODO - method: set_device_events
-// TODO - method: set_font_map
-// TODO - method: set_font_options
-// TODO - method: set_margin_left
-// TODO - method: set_margin_right
-// TODO - method: set_parent_window
-// TODO - method: set_state
-// TODO - method: set_style
-// TODO - method: set_visual
-// TODO - method: set_window
-// TODO - method: shape_combine_region
-// TODO - method: size_request
-// TODO - method: style_attach
-// TODO - method: style_get
-// TODO - method: style_get_valist
-// TODO - method: translate_coordinates
-// TODO - method: unregister_window
+// TODO - method: add_device_events (param type)
+// TODO - method: add_tick_callback (param type)
+// TODO - method: create_pango_context (return type)
+// TODO - method: create_pango_layout (return type)
+// TODO - method: destroyed (param type)
+// TODO - method: device_is_shadowed (param type)
+// TODO - method: drag_begin_with_coordinates (return type)
+// TODO - method: drag_dest_find_target (return type)
+// TODO - method: drag_get_data (param type)
+// TODO - method: drag_source_set_icon_pixbuf (param type)
+// TODO - method: draw (param type)
+// TODO - method: event (param type)
+// TODO - method: get_accessible (return type)
+// TODO - method: get_allocated_size (param type)
+// TODO - method: get_allocation (param type)
+// TODO - method: get_clip (param type)
+// TODO - method: get_clipboard (param type)
+// TODO - method: get_device_enabled (param type)
+// TODO - method: get_device_events (param type)
+// TODO - method: get_display (return type)
+// TODO - method: get_font_map (return type)
+// TODO - method: get_font_options (return type)
+// TODO - method: get_frame_clock (return type)
+// TODO - method: get_pango_context (return type)
+// TODO - method: get_parent_window (return type)
+// TODO - method: get_preferred_height (param type)
+// TODO - method: get_preferred_height_and_baseline_for_width (param type)
+// TODO - method: get_preferred_height_for_width (param type)
+// TODO - method: get_preferred_size (param type)
+// TODO - method: get_preferred_width (param type)
+// TODO - method: get_preferred_width_for_height (param type)
+// TODO - method: get_screen (return type)
+// TODO - method: get_size_request (param type)
+// TODO - method: get_visual (return type)
+// TODO - method: get_window (return type)
+// TODO - method: input_shape_combine_region (param type)
+// TODO - method: intersect (param type)
+// TODO - method: list_accel_closures (return type)
+// TODO - method: list_mnemonic_labels (return type)
+// TODO - method: queue_draw_region (param type)
+// TODO - method: register_window (param type)
+// TODO - method: send_focus_change (param type)
+// TODO - method: set_device_enabled (param type)
+// TODO - method: set_device_events (param type)
+// TODO - method: set_font_map (param type)
+// TODO - method: set_font_options (param type)
+// TODO - method: set_parent_window (param type)
+// TODO - method: set_visual (param type)
+// TODO - method: set_window (param type)
+// TODO - method: shape_combine_region (param type)
+// TODO - method: style_get (param type)
+// TODO - method: style_get_valist (param type)
+// TODO - method: translate_coordinates (param type)
+// TODO - method: unregister_window (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -226,7 +183,6 @@ import interop.gtk_widget_set_can_focus
 import interop.gtk_widget_set_child_visible
 import interop.gtk_widget_set_clip
 import interop.gtk_widget_set_direction
-import interop.gtk_widget_set_double_buffered
 import interop.gtk_widget_set_events
 import interop.gtk_widget_set_focus_on_click
 import interop.gtk_widget_set_halign
@@ -350,11 +306,8 @@ public var Widget.direction: TextDirection
     gtk_widget_set_direction(this@direction, `value`)
   }
 
-public var Widget.doubleBuffered: Boolean
+public val Widget.doubleBuffered: Boolean
   get() = gtk_widget_get_double_buffered(this).toBoolean()
-  set(`value`) {
-    gtk_widget_set_double_buffered(this@doubleBuffered, `value`.toInt())
-  }
 
 public var Widget.events: Int
   get() = gtk_widget_get_events(this)

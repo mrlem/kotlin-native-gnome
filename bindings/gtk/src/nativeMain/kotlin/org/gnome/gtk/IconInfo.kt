@@ -1,22 +1,14 @@
 // TODO - constructor: new_for_pixbuf
-// TODO - method: copy
-// TODO - method: free
-// TODO - method: get_attach_points
-// TODO - method: get_builtin_pixbuf
-// TODO - method: get_display_name
-// TODO - method: get_embedded_rect
-// TODO - method: load_icon
-// TODO - method: load_icon_async
-// TODO - method: load_icon_finish
-// TODO - method: load_surface
-// TODO - method: load_symbolic
-// TODO - method: load_symbolic_async
-// TODO - method: load_symbolic_finish
-// TODO - method: load_symbolic_for_context
-// TODO - method: load_symbolic_for_context_async
-// TODO - method: load_symbolic_for_context_finish
-// TODO - method: load_symbolic_for_style
-// TODO - method: set_raw_coordinates
+// TODO - method: load_icon (return type)
+// TODO - method: load_icon_async (param type)
+// TODO - method: load_icon_finish (return type)
+// TODO - method: load_surface (return type)
+// TODO - method: load_symbolic (return type)
+// TODO - method: load_symbolic_async (param type)
+// TODO - method: load_symbolic_finish (return type)
+// TODO - method: load_symbolic_for_context (return type)
+// TODO - method: load_symbolic_for_context_async (param type)
+// TODO - method: load_symbolic_for_context_finish (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

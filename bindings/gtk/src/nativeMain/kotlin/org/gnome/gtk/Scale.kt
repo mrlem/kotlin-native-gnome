@@ -1,5 +1,5 @@
-// TODO - method: get_layout
-// TODO - method: get_layout_offsets
+// TODO - method: get_layout (return type)
+// TODO - method: get_layout_offsets (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

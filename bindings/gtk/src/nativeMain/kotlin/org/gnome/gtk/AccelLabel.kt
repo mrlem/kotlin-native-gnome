@@ -1,4 +1,4 @@
-// TODO - method: get_accel
+// TODO - method: get_accel (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

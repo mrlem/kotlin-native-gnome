@@ -1,6 +1,3 @@
-// TODO - method: get_tab_hborder
-// TODO - method: get_tab_vborder
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

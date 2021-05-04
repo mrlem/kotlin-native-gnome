@@ -1,5 +1,5 @@
 // TODO - constructor: new_with_buttons
-// TODO - method: add_buttons
+// TODO - method: add_buttons (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

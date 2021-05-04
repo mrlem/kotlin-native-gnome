@@ -1,5 +1,5 @@
-// TODO - method: get_current_device_grab
-// TODO - method: list_windows
+// TODO - method: get_current_device_grab (param type)
+// TODO - method: list_windows (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -2,21 +2,21 @@
 // TODO - constructor: new_for_address_finish
 // TODO - constructor: new_for_address_sync
 // TODO - constructor: new_sync
-// TODO - method: add_filter
-// TODO - method: call
-// TODO - method: call_finish
-// TODO - method: call_sync
-// TODO - method: call_with_unix_fd_list
-// TODO - method: call_with_unix_fd_list_finish
-// TODO - method: call_with_unix_fd_list_sync
-// TODO - method: close
-// TODO - method: emit_signal
-// TODO - method: flush
-// TODO - method: register_subtree
-// TODO - method: send_message
-// TODO - method: send_message_with_reply
-// TODO - method: send_message_with_reply_sync
-// TODO - method: signal_subscribe
+// TODO - method: add_filter (param type)
+// TODO - method: call (param type)
+// TODO - method: call_finish (return type)
+// TODO - method: call_sync (return type)
+// TODO - method: call_with_unix_fd_list (param type)
+// TODO - method: call_with_unix_fd_list_finish (return type)
+// TODO - method: call_with_unix_fd_list_sync (return type)
+// TODO - method: close (param type)
+// TODO - method: emit_signal (param type)
+// TODO - method: flush (param type)
+// TODO - method: register_subtree (param type)
+// TODO - method: send_message (param type)
+// TODO - method: send_message_with_reply (param type)
+// TODO - method: send_message_with_reply_sync (param type)
+// TODO - method: signal_subscribe (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

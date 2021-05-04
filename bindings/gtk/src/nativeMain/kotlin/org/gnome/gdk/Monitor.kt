@@ -1,7 +1,7 @@
-// TODO - method: get_display
-// TODO - method: get_geometry
-// TODO - method: get_subpixel_layout
-// TODO - method: get_workarea
+// TODO - method: get_display (return type)
+// TODO - method: get_geometry (param type)
+// TODO - method: get_subpixel_layout (return type)
+// TODO - method: get_workarea (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,5 +1,4 @@
 // TODO - constructor: new
-// TODO - method: set_rate_limit
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,5 +1,5 @@
-// TODO - method: peek_fds
-// TODO - method: steal_fds
+// TODO - method: peek_fds (param type)
+// TODO - method: steal_fds (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

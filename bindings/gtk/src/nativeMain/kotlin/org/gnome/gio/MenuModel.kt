@@ -1,4 +1,4 @@
-// TODO - method: get_item_attribute_value
+// TODO - method: get_item_attribute_value (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

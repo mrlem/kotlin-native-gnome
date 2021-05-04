@@ -1,18 +1,14 @@
-// TODO - method: get_attributes
-// TODO - method: get_icon_area
-// TODO - method: get_icon_pixbuf
-// TODO - method: get_icon_stock
-// TODO - method: get_inner_border
-// TODO - method: get_layout
-// TODO - method: get_layout_offsets
-// TODO - method: get_tabs
-// TODO - method: get_text_area
-// TODO - method: im_context_filter_keypress
-// TODO - method: set_attributes
-// TODO - method: set_icon_from_pixbuf
-// TODO - method: set_icon_from_stock
-// TODO - method: set_inner_border
-// TODO - method: set_tabs
+// TODO - method: get_attributes (return type)
+// TODO - method: get_icon_area (param type)
+// TODO - method: get_icon_pixbuf (return type)
+// TODO - method: get_layout (return type)
+// TODO - method: get_layout_offsets (param type)
+// TODO - method: get_tabs (return type)
+// TODO - method: get_text_area (param type)
+// TODO - method: im_context_filter_keypress (param type)
+// TODO - method: set_attributes (param type)
+// TODO - method: set_icon_from_pixbuf (param type)
+// TODO - method: set_tabs (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

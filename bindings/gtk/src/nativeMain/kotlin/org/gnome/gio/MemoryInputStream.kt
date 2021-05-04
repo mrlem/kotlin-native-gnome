@@ -1,7 +1,7 @@
 // TODO - constructor: new_from_bytes
 // TODO - constructor: new_from_data
-// TODO - method: add_bytes
-// TODO - method: add_data
+// TODO - method: add_bytes (param type)
+// TODO - method: add_data (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

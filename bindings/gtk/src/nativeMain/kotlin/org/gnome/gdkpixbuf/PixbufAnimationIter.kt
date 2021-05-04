@@ -1,5 +1,5 @@
-// TODO - method: advance
-// TODO - method: get_pixbuf
+// TODO - method: advance (param type)
+// TODO - method: get_pixbuf (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

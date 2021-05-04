@@ -2,14 +2,14 @@
 // TODO - constructor: new_for_bus_finish
 // TODO - constructor: new_for_bus_sync
 // TODO - constructor: new_sync
-// TODO - method: call
-// TODO - method: call_finish
-// TODO - method: call_sync
-// TODO - method: call_with_unix_fd_list
-// TODO - method: call_with_unix_fd_list_finish
-// TODO - method: call_with_unix_fd_list_sync
-// TODO - method: get_cached_property
-// TODO - method: set_cached_property
+// TODO - method: call (param type)
+// TODO - method: call_finish (return type)
+// TODO - method: call_sync (return type)
+// TODO - method: call_with_unix_fd_list (param type)
+// TODO - method: call_with_unix_fd_list_finish (return type)
+// TODO - method: call_with_unix_fd_list_sync (return type)
+// TODO - method: get_cached_property (return type)
+// TODO - method: set_cached_property (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

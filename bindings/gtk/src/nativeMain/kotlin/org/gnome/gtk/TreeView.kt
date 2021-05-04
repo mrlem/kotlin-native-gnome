@@ -1,36 +1,29 @@
-// TODO - method: convert_bin_window_to_tree_coords
-// TODO - method: convert_bin_window_to_widget_coords
-// TODO - method: convert_tree_to_bin_window_coords
-// TODO - method: convert_tree_to_widget_coords
-// TODO - method: convert_widget_to_bin_window_coords
-// TODO - method: convert_widget_to_tree_coords
-// TODO - method: create_row_drag_icon
-// TODO - method: get_background_area
-// TODO - method: get_bin_window
-// TODO - method: get_cell_area
-// TODO - method: get_columns
-// TODO - method: get_cursor
-// TODO - method: get_dest_row_at_pos
-// TODO - method: get_drag_dest_row
-// TODO - method: get_hadjustment
-// TODO - method: get_path_at_pos
-// TODO - method: get_rules_hint
-// TODO - method: get_tooltip_context
-// TODO - method: get_vadjustment
-// TODO - method: get_visible_range
-// TODO - method: get_visible_rect
-// TODO - method: insert_column_with_attributes
-// TODO - method: insert_column_with_data_func
-// TODO - method: is_blank_at_pos
-// TODO - method: map_expanded_rows
-// TODO - method: set_column_drag_function
-// TODO - method: set_destroy_count_func
-// TODO - method: set_hadjustment
-// TODO - method: set_row_separator_func
-// TODO - method: set_rules_hint
-// TODO - method: set_search_equal_func
-// TODO - method: set_search_position_func
-// TODO - method: set_vadjustment
+// TODO - method: convert_bin_window_to_tree_coords (param type)
+// TODO - method: convert_bin_window_to_widget_coords (param type)
+// TODO - method: convert_tree_to_bin_window_coords (param type)
+// TODO - method: convert_tree_to_widget_coords (param type)
+// TODO - method: convert_widget_to_bin_window_coords (param type)
+// TODO - method: convert_widget_to_tree_coords (param type)
+// TODO - method: create_row_drag_icon (return type)
+// TODO - method: get_background_area (param type)
+// TODO - method: get_bin_window (return type)
+// TODO - method: get_cell_area (param type)
+// TODO - method: get_columns (return type)
+// TODO - method: get_cursor (param type)
+// TODO - method: get_dest_row_at_pos (param type)
+// TODO - method: get_drag_dest_row (param type)
+// TODO - method: get_path_at_pos (param type)
+// TODO - method: get_tooltip_context (param type)
+// TODO - method: get_visible_range (param type)
+// TODO - method: get_visible_rect (param type)
+// TODO - method: insert_column_with_attributes (param type)
+// TODO - method: insert_column_with_data_func (param type)
+// TODO - method: is_blank_at_pos (param type)
+// TODO - method: map_expanded_rows (param type)
+// TODO - method: set_column_drag_function (param type)
+// TODO - method: set_row_separator_func (param type)
+// TODO - method: set_search_equal_func (param type)
+// TODO - method: set_search_position_func (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

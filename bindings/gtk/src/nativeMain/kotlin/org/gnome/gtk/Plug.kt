@@ -1,9 +1,9 @@
 // TODO - constructor: new
 // TODO - constructor: new_for_display
-// TODO - method: construct
-// TODO - method: construct_for_display
-// TODO - method: get_id
-// TODO - method: get_socket_window
+// TODO - method: construct (param type)
+// TODO - method: construct_for_display (param type)
+// TODO - method: get_id (return type)
+// TODO - method: get_socket_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

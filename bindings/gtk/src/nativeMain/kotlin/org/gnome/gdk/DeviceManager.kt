@@ -1,6 +1,4 @@
-// TODO - method: get_client_pointer
-// TODO - method: get_display
-// TODO - method: list_devices
+// TODO - method: get_display (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

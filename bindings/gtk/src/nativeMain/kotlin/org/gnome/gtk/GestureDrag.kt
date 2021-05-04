@@ -1,5 +1,5 @@
-// TODO - method: get_offset
-// TODO - method: get_start_point
+// TODO - method: get_offset (param type)
+// TODO - method: get_start_point (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

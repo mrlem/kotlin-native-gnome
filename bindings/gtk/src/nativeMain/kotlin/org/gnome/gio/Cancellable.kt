@@ -1,6 +1,6 @@
-// TODO - method: connect
-// TODO - method: make_pollfd
-// TODO - method: source_new
+// TODO - method: connect (param type)
+// TODO - method: make_pollfd (param type)
+// TODO - method: source_new (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

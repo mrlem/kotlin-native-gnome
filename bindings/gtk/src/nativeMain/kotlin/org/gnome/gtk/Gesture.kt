@@ -1,16 +1,16 @@
-// TODO - method: get_bounding_box
-// TODO - method: get_bounding_box_center
-// TODO - method: get_device
-// TODO - method: get_group
-// TODO - method: get_last_event
-// TODO - method: get_last_updated_sequence
-// TODO - method: get_point
-// TODO - method: get_sequence_state
-// TODO - method: get_sequences
-// TODO - method: get_window
-// TODO - method: handles_sequence
-// TODO - method: set_sequence_state
-// TODO - method: set_window
+// TODO - method: get_bounding_box (param type)
+// TODO - method: get_bounding_box_center (param type)
+// TODO - method: get_device (return type)
+// TODO - method: get_group (return type)
+// TODO - method: get_last_event (return type)
+// TODO - method: get_last_updated_sequence (return type)
+// TODO - method: get_point (param type)
+// TODO - method: get_sequence_state (param type)
+// TODO - method: get_sequences (return type)
+// TODO - method: get_window (return type)
+// TODO - method: handles_sequence (param type)
+// TODO - method: set_sequence_state (param type)
+// TODO - method: set_window (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

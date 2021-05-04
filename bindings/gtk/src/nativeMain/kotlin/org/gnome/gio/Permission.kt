@@ -1,5 +1,5 @@
-// TODO - method: acquire_async
-// TODO - method: release_async
+// TODO - method: acquire_async (param type)
+// TODO - method: release_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -46,6 +46,11 @@ object RepositoryFixer {
         // remove all deprecated class... except Misc, as it is parent to non deprecated classes
         repository.namespaces.forEach { namespace ->
             namespace.classes.removeAll { it.deprecated && !(namespace.name == "Gtk" && it.name == "Misc") }
+
+            // remove all deprecated methods
+            namespace.classes.forEach { `class` ->
+                `class`.methods.removeAll { it.callable.info.deprecated }
+            }
         }
 
         // incorrectly typed as String instead of string array

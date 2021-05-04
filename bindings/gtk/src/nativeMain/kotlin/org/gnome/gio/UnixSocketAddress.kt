@@ -1,5 +1,4 @@
 // TODO - constructor: new_abstract
-// TODO - method: get_is_abstract
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,29 +1,29 @@
-// TODO - method: create_tag
-// TODO - method: deserialize
-// TODO - method: deserialize_get_can_create_tags
-// TODO - method: deserialize_set_can_create_tags
-// TODO - method: get_bounds
-// TODO - method: get_deserialize_formats
-// TODO - method: get_end_iter
-// TODO - method: get_iter_at_child_anchor
-// TODO - method: get_iter_at_line
-// TODO - method: get_iter_at_line_index
-// TODO - method: get_iter_at_line_offset
-// TODO - method: get_iter_at_mark
-// TODO - method: get_iter_at_offset
-// TODO - method: get_selection_bounds
-// TODO - method: get_serialize_formats
-// TODO - method: get_start_iter
-// TODO - method: insert_pixbuf
-// TODO - method: insert_with_tags
-// TODO - method: insert_with_tags_by_name
-// TODO - method: register_deserialize_format
-// TODO - method: register_deserialize_tagset
-// TODO - method: register_serialize_format
-// TODO - method: register_serialize_tagset
-// TODO - method: serialize
-// TODO - method: unregister_deserialize_format
-// TODO - method: unregister_serialize_format
+// TODO - method: create_tag (param type)
+// TODO - method: deserialize (param type)
+// TODO - method: deserialize_get_can_create_tags (param type)
+// TODO - method: deserialize_set_can_create_tags (param type)
+// TODO - method: get_bounds (param type)
+// TODO - method: get_deserialize_formats (return type)
+// TODO - method: get_end_iter (param type)
+// TODO - method: get_iter_at_child_anchor (param type)
+// TODO - method: get_iter_at_line (param type)
+// TODO - method: get_iter_at_line_index (param type)
+// TODO - method: get_iter_at_line_offset (param type)
+// TODO - method: get_iter_at_mark (param type)
+// TODO - method: get_iter_at_offset (param type)
+// TODO - method: get_selection_bounds (param type)
+// TODO - method: get_serialize_formats (return type)
+// TODO - method: get_start_iter (param type)
+// TODO - method: insert_pixbuf (param type)
+// TODO - method: insert_with_tags (param type)
+// TODO - method: insert_with_tags_by_name (param type)
+// TODO - method: register_deserialize_format (return type)
+// TODO - method: register_deserialize_tagset (return type)
+// TODO - method: register_serialize_format (return type)
+// TODO - method: register_serialize_tagset (return type)
+// TODO - method: serialize (param type)
+// TODO - method: unregister_deserialize_format (param type)
+// TODO - method: unregister_serialize_format (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

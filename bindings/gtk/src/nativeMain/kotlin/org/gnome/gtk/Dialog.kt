@@ -1,8 +1,5 @@
 // TODO - constructor: new_with_buttons
-// TODO - method: add_buttons
-// TODO - method: get_action_area
-// TODO - method: set_alternative_button_order
-// TODO - method: set_alternative_button_order_from_array
+// TODO - method: add_buttons (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -13,9 +13,8 @@ import org.gnome.gir.resolver.Resolver
 
 fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition, resolver: Resolver) {
     val cIdentifier = method.callable
-        .takeUnless { it.info.deprecated }
-        ?.cIdentifier
-        ?: return run { addComment("TODO - method: ${method.name}\n") }
+        .cIdentifier
+        ?: return run { addComment("TODO - method: ${method.name} (c-identifier)\n") }
     val name = method.name.snakeCaseToCamelCase.decapitalize()
 
     when (cIdentifier) {
@@ -28,7 +27,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
     val returnType = method.callable.returnValue?.type
     val returnTypeInfo = returnType?.typeInfo(resolver)
     if (returnType != null && returnTypeInfo == null) {
-        addComment("TODO - method: ${method.name}\n")
+        addComment("TODO - method: ${method.name} (return type)\n")
         return
     }
 
@@ -40,7 +39,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
                 ?.takeUnless { param.direction == Out || param.direction == InOut } // TODO - handle in/out
                 ?.typeInfo(resolver)
                 ?: run {
-                    addComment("TODO - method: ${method.name}\n")
+                    addComment("TODO - method: ${method.name} (param type)\n")
                     return@addMethod
                 }
             param.name.snakeCaseToCamelCase.decapitalize() to typeInfo

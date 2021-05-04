@@ -1,14 +1,14 @@
-// TODO - method: convert_widget_to_bin_window_coords
-// TODO - method: create_drag_icon
-// TODO - method: get_cell_rect
-// TODO - method: get_cursor
-// TODO - method: get_dest_item_at_pos
-// TODO - method: get_drag_dest_item
-// TODO - method: get_item_at_pos
-// TODO - method: get_selected_items
-// TODO - method: get_tooltip_context
-// TODO - method: get_visible_range
-// TODO - method: selected_foreach
+// TODO - method: convert_widget_to_bin_window_coords (param type)
+// TODO - method: create_drag_icon (return type)
+// TODO - method: get_cell_rect (param type)
+// TODO - method: get_cursor (param type)
+// TODO - method: get_dest_item_at_pos (param type)
+// TODO - method: get_drag_dest_item (param type)
+// TODO - method: get_item_at_pos (param type)
+// TODO - method: get_selected_items (return type)
+// TODO - method: get_tooltip_context (param type)
+// TODO - method: get_visible_range (param type)
+// TODO - method: selected_foreach (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,9 +1,9 @@
 // TODO - constructor: new
 // TODO - field: relationship
-// TODO - method: add_target
-// TODO - method: get_relation_type
-// TODO - method: get_target
-// TODO - method: remove_target
+// TODO - method: add_target (param type)
+// TODO - method: get_relation_type (return type)
+// TODO - method: get_target (return type)
+// TODO - method: remove_target (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

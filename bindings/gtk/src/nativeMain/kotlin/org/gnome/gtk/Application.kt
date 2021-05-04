@@ -1,6 +1,4 @@
-// TODO - method: add_accelerator
-// TODO - method: get_windows
-// TODO - method: remove_accelerator
+// TODO - method: get_windows (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

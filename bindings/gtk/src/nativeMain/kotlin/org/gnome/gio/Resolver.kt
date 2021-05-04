@@ -1,16 +1,16 @@
-// TODO - method: lookup_by_address_async
-// TODO - method: lookup_by_name
-// TODO - method: lookup_by_name_async
-// TODO - method: lookup_by_name_finish
-// TODO - method: lookup_by_name_with_flags
-// TODO - method: lookup_by_name_with_flags_async
-// TODO - method: lookup_by_name_with_flags_finish
-// TODO - method: lookup_records
-// TODO - method: lookup_records_async
-// TODO - method: lookup_records_finish
-// TODO - method: lookup_service
-// TODO - method: lookup_service_async
-// TODO - method: lookup_service_finish
+// TODO - method: lookup_by_address_async (param type)
+// TODO - method: lookup_by_name (return type)
+// TODO - method: lookup_by_name_async (param type)
+// TODO - method: lookup_by_name_finish (return type)
+// TODO - method: lookup_by_name_with_flags (return type)
+// TODO - method: lookup_by_name_with_flags_async (param type)
+// TODO - method: lookup_by_name_with_flags_finish (return type)
+// TODO - method: lookup_records (return type)
+// TODO - method: lookup_records_async (param type)
+// TODO - method: lookup_records_finish (return type)
+// TODO - method: lookup_service (return type)
+// TODO - method: lookup_service_async (param type)
+// TODO - method: lookup_service_finish (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

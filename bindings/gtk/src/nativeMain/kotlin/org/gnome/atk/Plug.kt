@@ -1,6 +1,6 @@
 // TODO - constructor: new
 // TODO - field: parent
-// TODO - method: set_child
+// TODO - method: set_child (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

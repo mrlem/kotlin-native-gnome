@@ -1,9 +1,9 @@
-// TODO - method: lookup_certificate_for_handle_async
-// TODO - method: lookup_certificate_issuer_async
-// TODO - method: lookup_certificates_issued_by
-// TODO - method: lookup_certificates_issued_by_async
-// TODO - method: lookup_certificates_issued_by_finish
-// TODO - method: verify_chain_async
+// TODO - method: lookup_certificate_for_handle_async (param type)
+// TODO - method: lookup_certificate_issuer_async (param type)
+// TODO - method: lookup_certificates_issued_by (return type)
+// TODO - method: lookup_certificates_issued_by_async (param type)
+// TODO - method: lookup_certificates_issued_by_finish (return type)
+// TODO - method: verify_chain_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

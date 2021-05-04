@@ -1,36 +1,18 @@
-// TODO - method: add_region
-// TODO - method: cancel_animations
-// TODO - method: get
-// TODO - method: get_background_color
-// TODO - method: get_border
-// TODO - method: get_border_color
-// TODO - method: get_color
-// TODO - method: get_direction
-// TODO - method: get_font
-// TODO - method: get_frame_clock
-// TODO - method: get_margin
-// TODO - method: get_padding
-// TODO - method: get_property
-// TODO - method: get_screen
-// TODO - method: get_style
-// TODO - method: get_style_valist
-// TODO - method: get_valist
-// TODO - method: has_region
-// TODO - method: invalidate
-// TODO - method: list_classes
-// TODO - method: list_regions
-// TODO - method: lookup_color
-// TODO - method: lookup_icon_set
-// TODO - method: notify_state_change
-// TODO - method: pop_animatable_region
-// TODO - method: push_animatable_region
-// TODO - method: remove_region
-// TODO - method: scroll_animations
-// TODO - method: set_background
-// TODO - method: set_direction
-// TODO - method: set_frame_clock
-// TODO - method: set_screen
-// TODO - method: state_is_running
+// TODO - method: get (param type)
+// TODO - method: get_border (param type)
+// TODO - method: get_color (param type)
+// TODO - method: get_frame_clock (return type)
+// TODO - method: get_margin (param type)
+// TODO - method: get_padding (param type)
+// TODO - method: get_property (param type)
+// TODO - method: get_screen (return type)
+// TODO - method: get_style (param type)
+// TODO - method: get_style_valist (param type)
+// TODO - method: get_valist (param type)
+// TODO - method: list_classes (return type)
+// TODO - method: lookup_color (param type)
+// TODO - method: set_frame_clock (param type)
+// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

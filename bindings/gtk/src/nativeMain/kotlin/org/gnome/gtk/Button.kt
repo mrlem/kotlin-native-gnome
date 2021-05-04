@@ -1,15 +1,5 @@
 // TODO - constructor: new_from_stock
-// TODO - method: enter
-// TODO - method: get_alignment
-// TODO - method: get_event_window
-// TODO - method: get_focus_on_click
-// TODO - method: get_use_stock
-// TODO - method: leave
-// TODO - method: pressed
-// TODO - method: released
-// TODO - method: set_alignment
-// TODO - method: set_focus_on_click
-// TODO - method: set_use_stock
+// TODO - method: get_event_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

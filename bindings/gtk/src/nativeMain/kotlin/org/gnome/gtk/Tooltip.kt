@@ -1,6 +1,5 @@
-// TODO - method: set_icon
-// TODO - method: set_icon_from_stock
-// TODO - method: set_tip_area
+// TODO - method: set_icon (param type)
+// TODO - method: set_tip_area (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,13 +1,13 @@
 // TODO - constructor: new
-// TODO - method: get_context
-// TODO - method: get_source_tag
-// TODO - method: get_task_data
-// TODO - method: propagate_pointer
-// TODO - method: propagate_value
-// TODO - method: return_error
-// TODO - method: return_pointer
-// TODO - method: set_source_tag
-// TODO - method: set_task_data
+// TODO - method: get_context (return type)
+// TODO - method: get_source_tag (return type)
+// TODO - method: get_task_data (return type)
+// TODO - method: propagate_pointer (return type)
+// TODO - method: propagate_value (param type)
+// TODO - method: return_error (param type)
+// TODO - method: return_pointer (param type)
+// TODO - method: set_source_tag (param type)
+// TODO - method: set_task_data (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

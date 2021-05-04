@@ -1,7 +1,5 @@
-// TODO - method: get_pointing_to
-// TODO - method: get_transitions_enabled
-// TODO - method: set_pointing_to
-// TODO - method: set_transitions_enabled
+// TODO - method: get_pointing_to (param type)
+// TODO - method: set_pointing_to (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

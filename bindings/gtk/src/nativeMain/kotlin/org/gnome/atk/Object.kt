@@ -1,20 +1,17 @@
 // TODO - field: accessible_parent
 // TODO - field: relation_set
-// TODO - method: add_relationship
-// TODO - method: get_attributes
-// TODO - method: get_layer
-// TODO - method: get_mdi_zorder
-// TODO - method: get_parent
-// TODO - method: get_role
-// TODO - method: initialize
-// TODO - method: peek_parent
-// TODO - method: ref_accessible_child
-// TODO - method: ref_relation_set
-// TODO - method: ref_state_set
-// TODO - method: remove_property_change_handler
-// TODO - method: remove_relationship
-// TODO - method: set_parent
-// TODO - method: set_role
+// TODO - method: add_relationship (param type)
+// TODO - method: get_attributes (return type)
+// TODO - method: get_parent (return type)
+// TODO - method: get_role (return type)
+// TODO - method: initialize (param type)
+// TODO - method: peek_parent (return type)
+// TODO - method: ref_accessible_child (return type)
+// TODO - method: ref_relation_set (return type)
+// TODO - method: ref_state_set (return type)
+// TODO - method: remove_relationship (param type)
+// TODO - method: set_parent (param type)
+// TODO - method: set_role (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

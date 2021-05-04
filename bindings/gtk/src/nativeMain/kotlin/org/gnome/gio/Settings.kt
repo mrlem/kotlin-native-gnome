@@ -1,11 +1,8 @@
-// TODO - method: get_default_value
-// TODO - method: get_mapped
-// TODO - method: get_range
-// TODO - method: get_user_value
-// TODO - method: get_value
-// TODO - method: list_keys
-// TODO - method: range_check
-// TODO - method: set_value
+// TODO - method: get_default_value (return type)
+// TODO - method: get_mapped (return type)
+// TODO - method: get_user_value (return type)
+// TODO - method: get_value (return type)
+// TODO - method: set_value (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

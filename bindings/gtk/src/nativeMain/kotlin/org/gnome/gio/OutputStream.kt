@@ -1,18 +1,18 @@
-// TODO - method: close_async
-// TODO - method: flush_async
-// TODO - method: splice_async
-// TODO - method: write_all
-// TODO - method: write_all_async
-// TODO - method: write_all_finish
-// TODO - method: write_async
-// TODO - method: write_bytes
-// TODO - method: write_bytes_async
-// TODO - method: writev
-// TODO - method: writev_all
-// TODO - method: writev_all_async
-// TODO - method: writev_all_finish
-// TODO - method: writev_async
-// TODO - method: writev_finish
+// TODO - method: close_async (param type)
+// TODO - method: flush_async (param type)
+// TODO - method: splice_async (param type)
+// TODO - method: write_all (param type)
+// TODO - method: write_all_async (param type)
+// TODO - method: write_all_finish (param type)
+// TODO - method: write_async (param type)
+// TODO - method: write_bytes (param type)
+// TODO - method: write_bytes_async (param type)
+// TODO - method: writev (param type)
+// TODO - method: writev_all (param type)
+// TODO - method: writev_all_async (param type)
+// TODO - method: writev_all_finish (param type)
+// TODO - method: writev_async (param type)
+// TODO - method: writev_finish (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

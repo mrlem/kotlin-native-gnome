@@ -1,14 +1,8 @@
-// TODO - method: get_tearoff_state
-// TODO - method: get_title
-// TODO - method: place_on_monitor
-// TODO - method: popup
-// TODO - method: popup_at_pointer
-// TODO - method: popup_at_rect
-// TODO - method: popup_at_widget
-// TODO - method: popup_for_device
-// TODO - method: set_screen
-// TODO - method: set_tearoff_state
-// TODO - method: set_title
+// TODO - method: place_on_monitor (param type)
+// TODO - method: popup_at_pointer (param type)
+// TODO - method: popup_at_rect (param type)
+// TODO - method: popup_at_widget (param type)
+// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

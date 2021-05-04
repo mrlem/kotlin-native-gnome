@@ -1,4 +1,4 @@
-// TODO - method: get_emblems
+// TODO - method: get_emblems (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,8 +1,3 @@
-// TODO - method: set_double_property
-// TODO - method: set_long_property
-// TODO - method: set_property_value
-// TODO - method: set_string_property
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

@@ -1,12 +1,12 @@
 // TODO - constructor: new
-// TODO - method: communicate
-// TODO - method: communicate_async
-// TODO - method: communicate_finish
-// TODO - method: communicate_utf8
-// TODO - method: communicate_utf8_async
-// TODO - method: communicate_utf8_finish
-// TODO - method: wait_async
-// TODO - method: wait_check_async
+// TODO - method: communicate (param type)
+// TODO - method: communicate_async (param type)
+// TODO - method: communicate_finish (param type)
+// TODO - method: communicate_utf8 (param type)
+// TODO - method: communicate_utf8_async (param type)
+// TODO - method: communicate_utf8_finish (param type)
+// TODO - method: wait_async (param type)
+// TODO - method: wait_check_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

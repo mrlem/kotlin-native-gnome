@@ -1,19 +1,17 @@
-// TODO - method: buffer_to_window_coords
-// TODO - method: get_cursor_locations
-// TODO - method: get_hadjustment
-// TODO - method: get_iter_at_location
-// TODO - method: get_iter_at_position
-// TODO - method: get_iter_location
-// TODO - method: get_line_at_y
-// TODO - method: get_line_yrange
-// TODO - method: get_tabs
-// TODO - method: get_vadjustment
-// TODO - method: get_visible_rect
-// TODO - method: get_window
-// TODO - method: get_window_type
-// TODO - method: im_context_filter_keypress
-// TODO - method: set_tabs
-// TODO - method: window_to_buffer_coords
+// TODO - method: buffer_to_window_coords (param type)
+// TODO - method: get_cursor_locations (param type)
+// TODO - method: get_iter_at_location (param type)
+// TODO - method: get_iter_at_position (param type)
+// TODO - method: get_iter_location (param type)
+// TODO - method: get_line_at_y (param type)
+// TODO - method: get_line_yrange (param type)
+// TODO - method: get_tabs (return type)
+// TODO - method: get_visible_rect (param type)
+// TODO - method: get_window (return type)
+// TODO - method: get_window_type (param type)
+// TODO - method: im_context_filter_keypress (param type)
+// TODO - method: set_tabs (param type)
+// TODO - method: window_to_buffer_coords (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

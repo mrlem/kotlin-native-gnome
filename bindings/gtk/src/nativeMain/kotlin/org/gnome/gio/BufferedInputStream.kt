@@ -1,5 +1,5 @@
-// TODO - method: fill_async
-// TODO - method: peek_buffer
+// TODO - method: fill_async (param type)
+// TODO - method: peek_buffer (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

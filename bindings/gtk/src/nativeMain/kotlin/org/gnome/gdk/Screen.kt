@@ -1,29 +1,12 @@
-// TODO - method: get_active_window
-// TODO - method: get_display
-// TODO - method: get_font_options
-// TODO - method: get_height
-// TODO - method: get_height_mm
-// TODO - method: get_monitor_at_point
-// TODO - method: get_monitor_at_window
-// TODO - method: get_monitor_geometry
-// TODO - method: get_monitor_height_mm
-// TODO - method: get_monitor_plug_name
-// TODO - method: get_monitor_scale_factor
-// TODO - method: get_monitor_width_mm
-// TODO - method: get_monitor_workarea
-// TODO - method: get_n_monitors
-// TODO - method: get_number
-// TODO - method: get_primary_monitor
-// TODO - method: get_rgba_visual
-// TODO - method: get_root_window
-// TODO - method: get_system_visual
-// TODO - method: get_toplevel_windows
-// TODO - method: get_width
-// TODO - method: get_width_mm
-// TODO - method: get_window_stack
-// TODO - method: list_visuals
-// TODO - method: make_display_name
-// TODO - method: set_font_options
+// TODO - method: get_display (return type)
+// TODO - method: get_font_options (return type)
+// TODO - method: get_rgba_visual (return type)
+// TODO - method: get_root_window (return type)
+// TODO - method: get_system_visual (return type)
+// TODO - method: get_toplevel_windows (return type)
+// TODO - method: get_window_stack (return type)
+// TODO - method: list_visuals (return type)
+// TODO - method: set_font_options (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

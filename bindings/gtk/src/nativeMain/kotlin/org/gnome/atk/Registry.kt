@@ -1,6 +1,6 @@
 // TODO - field: factory_type_registry
 // TODO - field: factory_singleton_cache
-// TODO - method: get_factory
+// TODO - method: get_factory (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

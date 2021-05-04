@@ -1,5 +1,5 @@
-// TODO - method: get_pixbuf
-// TODO - method: get_surface
+// TODO - method: get_pixbuf (return type)
+// TODO - method: get_surface (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

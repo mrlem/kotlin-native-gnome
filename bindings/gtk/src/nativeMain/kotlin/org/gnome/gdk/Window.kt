@@ -1,90 +1,74 @@
 // TODO - constructor: new
-// TODO - method: begin_draw_frame
-// TODO - method: begin_move_drag_for_device
-// TODO - method: begin_paint_rect
-// TODO - method: begin_paint_region
-// TODO - method: begin_resize_drag
-// TODO - method: begin_resize_drag_for_device
-// TODO - method: configure_finished
-// TODO - method: coords_from_parent
-// TODO - method: coords_to_parent
-// TODO - method: create_gl_context
-// TODO - method: create_similar_image_surface
-// TODO - method: create_similar_surface
-// TODO - method: enable_synchronized_configure
-// TODO - method: end_draw_frame
-// TODO - method: flush
-// TODO - method: freeze_toplevel_updates_libgtk_only
-// TODO - method: get_background_pattern
-// TODO - method: get_children
-// TODO - method: get_children_with_user_data
-// TODO - method: get_clip_region
-// TODO - method: get_composited
-// TODO - method: get_cursor
-// TODO - method: get_decorations
-// TODO - method: get_device_cursor
-// TODO - method: get_device_events
-// TODO - method: get_device_position
-// TODO - method: get_device_position_double
-// TODO - method: get_display
-// TODO - method: get_drag_protocol
-// TODO - method: get_effective_parent
-// TODO - method: get_effective_toplevel
-// TODO - method: get_events
-// TODO - method: get_frame_clock
-// TODO - method: get_frame_extents
-// TODO - method: get_fullscreen_mode
-// TODO - method: get_geometry
-// TODO - method: get_group
-// TODO - method: get_origin
-// TODO - method: get_parent
-// TODO - method: get_pointer
-// TODO - method: get_position
-// TODO - method: get_root_coords
-// TODO - method: get_root_origin
-// TODO - method: get_screen
-// TODO - method: get_source_events
-// TODO - method: get_state
-// TODO - method: get_toplevel
-// TODO - method: get_type_hint
-// TODO - method: get_update_area
-// TODO - method: get_user_data
-// TODO - method: get_visible_region
-// TODO - method: get_visual
-// TODO - method: get_window_type
-// TODO - method: input_shape_combine_region
-// TODO - method: invalidate_maybe_recurse
-// TODO - method: invalidate_rect
-// TODO - method: invalidate_region
-// TODO - method: mark_paint_from_clip
-// TODO - method: move_region
-// TODO - method: move_to_rect
-// TODO - method: peek_children
-// TODO - method: process_updates
-// TODO - method: reparent
-// TODO - method: restack
-// TODO - method: set_background
-// TODO - method: set_background_pattern
-// TODO - method: set_background_rgba
-// TODO - method: set_composited
-// TODO - method: set_cursor
-// TODO - method: set_decorations
-// TODO - method: set_device_cursor
-// TODO - method: set_device_events
-// TODO - method: set_events
-// TODO - method: set_fullscreen_mode
-// TODO - method: set_functions
-// TODO - method: set_geometry_hints
-// TODO - method: set_group
-// TODO - method: set_icon_list
-// TODO - method: set_opaque_region
-// TODO - method: set_source_events
-// TODO - method: set_static_gravities
-// TODO - method: set_transient_for
-// TODO - method: set_type_hint
-// TODO - method: shape_combine_region
-// TODO - method: show_window_menu
-// TODO - method: thaw_toplevel_updates_libgtk_only
+// TODO - method: begin_draw_frame (return type)
+// TODO - method: begin_move_drag_for_device (param type)
+// TODO - method: begin_resize_drag (param type)
+// TODO - method: begin_resize_drag_for_device (param type)
+// TODO - method: coords_from_parent (param type)
+// TODO - method: coords_to_parent (param type)
+// TODO - method: create_gl_context (return type)
+// TODO - method: create_similar_image_surface (return type)
+// TODO - method: create_similar_surface (return type)
+// TODO - method: end_draw_frame (param type)
+// TODO - method: get_children (return type)
+// TODO - method: get_children_with_user_data (return type)
+// TODO - method: get_clip_region (return type)
+// TODO - method: get_cursor (return type)
+// TODO - method: get_decorations (param type)
+// TODO - method: get_device_cursor (return type)
+// TODO - method: get_device_events (return type)
+// TODO - method: get_device_position (return type)
+// TODO - method: get_device_position_double (return type)
+// TODO - method: get_display (return type)
+// TODO - method: get_drag_protocol (return type)
+// TODO - method: get_effective_parent (return type)
+// TODO - method: get_effective_toplevel (return type)
+// TODO - method: get_events (return type)
+// TODO - method: get_frame_clock (return type)
+// TODO - method: get_frame_extents (param type)
+// TODO - method: get_fullscreen_mode (return type)
+// TODO - method: get_geometry (param type)
+// TODO - method: get_group (return type)
+// TODO - method: get_origin (param type)
+// TODO - method: get_parent (return type)
+// TODO - method: get_position (param type)
+// TODO - method: get_root_coords (param type)
+// TODO - method: get_root_origin (param type)
+// TODO - method: get_screen (return type)
+// TODO - method: get_source_events (return type)
+// TODO - method: get_state (return type)
+// TODO - method: get_toplevel (return type)
+// TODO - method: get_type_hint (return type)
+// TODO - method: get_update_area (return type)
+// TODO - method: get_user_data (param type)
+// TODO - method: get_visible_region (return type)
+// TODO - method: get_visual (return type)
+// TODO - method: get_window_type (return type)
+// TODO - method: input_shape_combine_region (param type)
+// TODO - method: invalidate_maybe_recurse (param type)
+// TODO - method: invalidate_rect (param type)
+// TODO - method: invalidate_region (param type)
+// TODO - method: mark_paint_from_clip (param type)
+// TODO - method: move_region (param type)
+// TODO - method: move_to_rect (param type)
+// TODO - method: peek_children (return type)
+// TODO - method: reparent (param type)
+// TODO - method: restack (param type)
+// TODO - method: set_cursor (param type)
+// TODO - method: set_decorations (param type)
+// TODO - method: set_device_cursor (param type)
+// TODO - method: set_device_events (param type)
+// TODO - method: set_events (param type)
+// TODO - method: set_fullscreen_mode (param type)
+// TODO - method: set_functions (param type)
+// TODO - method: set_geometry_hints (param type)
+// TODO - method: set_group (param type)
+// TODO - method: set_icon_list (param type)
+// TODO - method: set_opaque_region (param type)
+// TODO - method: set_source_events (param type)
+// TODO - method: set_transient_for (param type)
+// TODO - method: set_type_hint (param type)
+// TODO - method: shape_combine_region (param type)
+// TODO - method: show_window_menu (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

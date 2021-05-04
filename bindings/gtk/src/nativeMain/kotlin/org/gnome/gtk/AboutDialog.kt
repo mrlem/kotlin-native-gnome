@@ -1,5 +1,5 @@
-// TODO - method: get_logo
-// TODO - method: set_logo
+// TODO - method: get_logo (return type)
+// TODO - method: set_logo (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

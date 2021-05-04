@@ -1,10 +1,10 @@
-// TODO - method: get_search_path
-// TODO - method: list_contexts
-// TODO - method: list_icons
-// TODO - method: load_icon
-// TODO - method: load_icon_for_scale
-// TODO - method: load_surface
-// TODO - method: set_screen
+// TODO - method: get_search_path (param type)
+// TODO - method: list_contexts (return type)
+// TODO - method: list_icons (return type)
+// TODO - method: load_icon (return type)
+// TODO - method: load_icon_for_scale (return type)
+// TODO - method: load_surface (return type)
+// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

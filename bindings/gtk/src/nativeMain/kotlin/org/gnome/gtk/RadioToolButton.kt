@@ -1,8 +1,8 @@
 // TODO - constructor: new
 // TODO - constructor: new_from_stock
 // TODO - constructor: new_with_stock_from_widget
-// TODO - method: get_group
-// TODO - method: set_group
+// TODO - method: get_group (return type)
+// TODO - method: set_group (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

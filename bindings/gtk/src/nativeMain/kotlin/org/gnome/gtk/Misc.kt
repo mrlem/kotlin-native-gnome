@@ -1,8 +1,3 @@
-// TODO - method: get_alignment
-// TODO - method: get_padding
-// TODO - method: set_alignment
-// TODO - method: set_padding
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

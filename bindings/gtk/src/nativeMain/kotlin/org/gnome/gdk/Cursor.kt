@@ -3,12 +3,10 @@
 // TODO - constructor: new_from_name
 // TODO - constructor: new_from_pixbuf
 // TODO - constructor: new_from_surface
-// TODO - method: get_cursor_type
-// TODO - method: get_display
-// TODO - method: get_image
-// TODO - method: get_surface
-// TODO - method: ref
-// TODO - method: unref
+// TODO - method: get_cursor_type (return type)
+// TODO - method: get_display (return type)
+// TODO - method: get_image (return type)
+// TODO - method: get_surface (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

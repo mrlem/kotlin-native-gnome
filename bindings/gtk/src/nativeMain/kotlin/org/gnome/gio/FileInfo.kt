@@ -1,10 +1,8 @@
-// TODO - method: get_attribute_data
-// TODO - method: get_deletion_date
-// TODO - method: get_modification_date_time
-// TODO - method: get_modification_time
-// TODO - method: set_attribute
-// TODO - method: set_modification_date_time
-// TODO - method: set_modification_time
+// TODO - method: get_attribute_data (param type)
+// TODO - method: get_deletion_date (return type)
+// TODO - method: get_modification_date_time (return type)
+// TODO - method: set_attribute (param type)
+// TODO - method: set_modification_date_time (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

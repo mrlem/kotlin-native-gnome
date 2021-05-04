@@ -1,5 +1,5 @@
-// TODO - method: ask_password_async
-// TODO - method: request_certificate_async
+// TODO - method: ask_password_async (param type)
+// TODO - method: request_certificate_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

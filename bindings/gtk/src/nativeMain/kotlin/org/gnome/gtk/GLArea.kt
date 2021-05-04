@@ -1,7 +1,7 @@
-// TODO - method: get_context
-// TODO - method: get_error
-// TODO - method: get_required_version
-// TODO - method: set_error
+// TODO - method: get_context (return type)
+// TODO - method: get_error (return type)
+// TODO - method: get_required_version (param type)
+// TODO - method: set_error (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,7 +1,7 @@
-// TODO - method: get_parameters
-// TODO - method: return_gerror
-// TODO - method: return_value
-// TODO - method: return_value_with_unix_fd_list
+// TODO - method: get_parameters (return type)
+// TODO - method: return_gerror (param type)
+// TODO - method: return_value (param type)
+// TODO - method: return_value_with_unix_fd_list (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,6 +1,3 @@
-// TODO - method: get_spacing
-// TODO - method: set_spacing
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

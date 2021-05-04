@@ -1,5 +1,5 @@
-// TODO - method: get_connections
-// TODO - method: get_properties
+// TODO - method: get_connections (return type)
+// TODO - method: get_properties (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

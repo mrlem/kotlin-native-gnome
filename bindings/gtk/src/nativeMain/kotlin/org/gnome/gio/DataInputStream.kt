@@ -1,14 +1,11 @@
-// TODO - method: read_line
-// TODO - method: read_line_async
-// TODO - method: read_line_finish
-// TODO - method: read_line_finish_utf8
-// TODO - method: read_line_utf8
-// TODO - method: read_until
-// TODO - method: read_until_async
-// TODO - method: read_until_finish
-// TODO - method: read_upto
-// TODO - method: read_upto_async
-// TODO - method: read_upto_finish
+// TODO - method: read_line (param type)
+// TODO - method: read_line_async (param type)
+// TODO - method: read_line_finish (param type)
+// TODO - method: read_line_finish_utf8 (param type)
+// TODO - method: read_line_utf8 (param type)
+// TODO - method: read_upto (param type)
+// TODO - method: read_upto_async (param type)
+// TODO - method: read_upto_finish (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

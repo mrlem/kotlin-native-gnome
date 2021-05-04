@@ -1,11 +1,11 @@
-// TODO - method: add_virtual_modifiers
-// TODO - method: get_direction
-// TODO - method: get_entries_for_keycode
-// TODO - method: get_entries_for_keyval
-// TODO - method: get_modifier_mask
-// TODO - method: lookup_key
-// TODO - method: map_virtual_modifiers
-// TODO - method: translate_keyboard_state
+// TODO - method: add_virtual_modifiers (param type)
+// TODO - method: get_direction (return type)
+// TODO - method: get_entries_for_keycode (param type)
+// TODO - method: get_entries_for_keyval (param type)
+// TODO - method: get_modifier_mask (return type)
+// TODO - method: lookup_key (param type)
+// TODO - method: map_virtual_modifiers (param type)
+// TODO - method: translate_keyboard_state (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

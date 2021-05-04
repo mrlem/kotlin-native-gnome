@@ -1,4 +1,4 @@
-// TODO - method: get_handle_window
+// TODO - method: get_handle_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

@@ -1,30 +1,19 @@
-// TODO - method: device_is_grabbed
-// TODO - method: get_app_launch_context
-// TODO - method: get_default_group
-// TODO - method: get_default_screen
-// TODO - method: get_default_seat
-// TODO - method: get_device_manager
-// TODO - method: get_event
-// TODO - method: get_maximal_cursor_size
-// TODO - method: get_monitor
-// TODO - method: get_monitor_at_point
-// TODO - method: get_monitor_at_window
-// TODO - method: get_n_screens
-// TODO - method: get_pointer
-// TODO - method: get_primary_monitor
-// TODO - method: get_screen
-// TODO - method: get_window_at_pointer
-// TODO - method: keyboard_ungrab
-// TODO - method: list_devices
-// TODO - method: list_seats
-// TODO - method: peek_event
-// TODO - method: pointer_is_grabbed
-// TODO - method: pointer_ungrab
-// TODO - method: put_event
-// TODO - method: request_selection_notification
-// TODO - method: store_clipboard
-// TODO - method: supports_composite
-// TODO - method: warp_pointer
+// TODO - method: device_is_grabbed (param type)
+// TODO - method: get_app_launch_context (return type)
+// TODO - method: get_default_group (return type)
+// TODO - method: get_default_screen (return type)
+// TODO - method: get_default_seat (return type)
+// TODO - method: get_event (return type)
+// TODO - method: get_maximal_cursor_size (param type)
+// TODO - method: get_monitor (return type)
+// TODO - method: get_monitor_at_point (return type)
+// TODO - method: get_monitor_at_window (return type)
+// TODO - method: get_primary_monitor (return type)
+// TODO - method: list_seats (return type)
+// TODO - method: peek_event (return type)
+// TODO - method: put_event (param type)
+// TODO - method: request_selection_notification (param type)
+// TODO - method: store_clipboard (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

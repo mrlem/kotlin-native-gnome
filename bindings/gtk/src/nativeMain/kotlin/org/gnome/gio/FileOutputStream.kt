@@ -1,4 +1,4 @@
-// TODO - method: query_info_async
+// TODO - method: query_info_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

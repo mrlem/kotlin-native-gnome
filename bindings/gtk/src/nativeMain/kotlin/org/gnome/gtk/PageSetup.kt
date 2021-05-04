@@ -1,9 +1,9 @@
 // TODO - constructor: new_from_file
 // TODO - constructor: new_from_gvariant
 // TODO - constructor: new_from_key_file
-// TODO - method: load_key_file
-// TODO - method: to_gvariant
-// TODO - method: to_key_file
+// TODO - method: load_key_file (param type)
+// TODO - method: to_gvariant (return type)
+// TODO - method: to_key_file (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

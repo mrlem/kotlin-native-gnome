@@ -1,6 +1,3 @@
-// TODO - method: get_hadjustment
-// TODO - method: get_vadjustment
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

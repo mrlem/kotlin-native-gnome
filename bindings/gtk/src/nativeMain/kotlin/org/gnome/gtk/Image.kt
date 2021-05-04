@@ -3,17 +3,13 @@
 // TODO - constructor: new_from_pixbuf
 // TODO - constructor: new_from_stock
 // TODO - constructor: new_from_surface
-// TODO - method: get_animation
-// TODO - method: get_gicon
-// TODO - method: get_icon_name
-// TODO - method: get_icon_set
-// TODO - method: get_pixbuf
-// TODO - method: get_stock
-// TODO - method: set_from_animation
-// TODO - method: set_from_icon_set
-// TODO - method: set_from_pixbuf
-// TODO - method: set_from_stock
-// TODO - method: set_from_surface
+// TODO - method: get_animation (return type)
+// TODO - method: get_gicon (param type)
+// TODO - method: get_icon_name (param type)
+// TODO - method: get_pixbuf (return type)
+// TODO - method: set_from_animation (param type)
+// TODO - method: set_from_pixbuf (param type)
+// TODO - method: set_from_surface (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

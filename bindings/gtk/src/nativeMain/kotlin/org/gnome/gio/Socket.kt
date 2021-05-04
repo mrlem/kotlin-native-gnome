@@ -1,12 +1,12 @@
 // TODO - constructor: new
 // TODO - constructor: new_from_fd
-// TODO - method: condition_check
-// TODO - method: condition_timed_wait
-// TODO - method: condition_wait
-// TODO - method: get_option
-// TODO - method: receive_from
-// TODO - method: receive_message
-// TODO - method: send_message_with_timeout
+// TODO - method: condition_check (return type)
+// TODO - method: condition_timed_wait (param type)
+// TODO - method: condition_wait (param type)
+// TODO - method: get_option (param type)
+// TODO - method: receive_from (param type)
+// TODO - method: receive_message (param type)
+// TODO - method: send_message_with_timeout (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

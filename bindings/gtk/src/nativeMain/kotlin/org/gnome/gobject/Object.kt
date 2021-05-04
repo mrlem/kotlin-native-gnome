@@ -1,9 +1,9 @@
 // TODO - constructor: newv
-// TODO - method: get_data
-// TODO - method: get_qdata
-// TODO - method: set_data
-// TODO - method: steal_data
-// TODO - method: steal_qdata
+// TODO - method: get_data (return type)
+// TODO - method: get_qdata (return type)
+// TODO - method: set_data (param type)
+// TODO - method: steal_data (return type)
+// TODO - method: steal_qdata (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

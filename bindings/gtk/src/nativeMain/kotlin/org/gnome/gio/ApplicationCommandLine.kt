@@ -1,6 +1,6 @@
-// TODO - method: get_arguments
-// TODO - method: get_options_dict
-// TODO - method: get_platform_data
+// TODO - method: get_arguments (param type)
+// TODO - method: get_options_dict (return type)
+// TODO - method: get_platform_data (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

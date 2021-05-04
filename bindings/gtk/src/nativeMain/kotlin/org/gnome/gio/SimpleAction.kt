@@ -1,7 +1,7 @@
 // TODO - constructor: new
 // TODO - constructor: new_stateful
-// TODO - method: set_state
-// TODO - method: set_state_hint
+// TODO - method: set_state (param type)
+// TODO - method: set_state_hint (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

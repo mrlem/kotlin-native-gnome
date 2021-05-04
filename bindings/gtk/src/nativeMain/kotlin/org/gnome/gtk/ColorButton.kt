@@ -1,13 +1,5 @@
 // TODO - constructor: new_with_color
 // TODO - constructor: new_with_rgba
-// TODO - method: get_alpha
-// TODO - method: get_color
-// TODO - method: get_rgba
-// TODO - method: get_use_alpha
-// TODO - method: set_alpha
-// TODO - method: set_color
-// TODO - method: set_rgba
-// TODO - method: set_use_alpha
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

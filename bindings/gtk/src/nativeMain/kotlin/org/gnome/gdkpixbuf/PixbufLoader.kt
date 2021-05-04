@@ -1,10 +1,10 @@
 // TODO - constructor: new
 // TODO - constructor: new_with_mime_type
 // TODO - constructor: new_with_type
-// TODO - method: get_animation
-// TODO - method: get_format
-// TODO - method: get_pixbuf
-// TODO - method: write_bytes
+// TODO - method: get_animation (return type)
+// TODO - method: get_format (return type)
+// TODO - method: get_pixbuf (return type)
+// TODO - method: write_bytes (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

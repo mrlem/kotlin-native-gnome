@@ -1,12 +1,12 @@
-// TODO - method: get_attributes
-// TODO - method: get_ellipsize
-// TODO - method: get_layout
-// TODO - method: get_layout_offsets
-// TODO - method: get_line_wrap_mode
-// TODO - method: get_selection_bounds
-// TODO - method: set_attributes
-// TODO - method: set_ellipsize
-// TODO - method: set_line_wrap_mode
+// TODO - method: get_attributes (return type)
+// TODO - method: get_ellipsize (return type)
+// TODO - method: get_layout (return type)
+// TODO - method: get_layout_offsets (param type)
+// TODO - method: get_line_wrap_mode (return type)
+// TODO - method: get_selection_bounds (param type)
+// TODO - method: set_attributes (param type)
+// TODO - method: set_ellipsize (param type)
+// TODO - method: set_line_wrap_mode (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

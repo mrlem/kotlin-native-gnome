@@ -1,7 +1,7 @@
 // TODO - constructor: new_from_keyfile
-// TODO - method: get_string_list
-// TODO - method: launch_uris_as_manager
-// TODO - method: launch_uris_as_manager_with_fds
+// TODO - method: get_string_list (param type)
+// TODO - method: launch_uris_as_manager (param type)
+// TODO - method: launch_uris_as_manager_with_fds (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

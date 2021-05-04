@@ -1,8 +1,8 @@
 // TODO - constructor: new_with_attributes
-// TODO - method: cell_get_position
-// TODO - method: cell_get_size
-// TODO - method: set_attributes
-// TODO - method: set_cell_data_func
+// TODO - method: cell_get_position (param type)
+// TODO - method: cell_get_size (param type)
+// TODO - method: set_attributes (param type)
+// TODO - method: set_cell_data_func (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

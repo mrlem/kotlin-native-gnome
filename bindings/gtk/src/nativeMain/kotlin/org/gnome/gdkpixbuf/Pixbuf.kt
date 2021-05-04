@@ -11,33 +11,31 @@
 // TODO - constructor: new_from_stream_at_scale
 // TODO - constructor: new_from_stream_finish
 // TODO - constructor: new_from_xpm_data
-// TODO - method: add_alpha
-// TODO - method: apply_embedded_orientation
-// TODO - method: composite
-// TODO - method: composite_color
-// TODO - method: composite_color_simple
-// TODO - method: copy
-// TODO - method: copy_area
-// TODO - method: copy_options
-// TODO - method: flip
-// TODO - method: get_options
-// TODO - method: get_pixels_with_length
-// TODO - method: new_subpixbuf
-// TODO - method: read_pixel_bytes
-// TODO - method: ref
-// TODO - method: rotate_simple
-// TODO - method: saturate_and_pixelate
-// TODO - method: save
-// TODO - method: save_to_buffer
-// TODO - method: save_to_bufferv
-// TODO - method: save_to_callback
-// TODO - method: save_to_callbackv
-// TODO - method: save_to_stream
-// TODO - method: save_to_stream_async
-// TODO - method: save_to_streamv_async
-// TODO - method: scale
-// TODO - method: scale_simple
-// TODO - method: unref
+// TODO - method: add_alpha (return type)
+// TODO - method: apply_embedded_orientation (return type)
+// TODO - method: composite (param type)
+// TODO - method: composite_color (param type)
+// TODO - method: composite_color_simple (return type)
+// TODO - method: copy (return type)
+// TODO - method: copy_area (param type)
+// TODO - method: copy_options (param type)
+// TODO - method: flip (return type)
+// TODO - method: get_options (return type)
+// TODO - method: get_pixels_with_length (param type)
+// TODO - method: new_subpixbuf (return type)
+// TODO - method: read_pixel_bytes (return type)
+// TODO - method: rotate_simple (return type)
+// TODO - method: saturate_and_pixelate (param type)
+// TODO - method: save (param type)
+// TODO - method: save_to_buffer (param type)
+// TODO - method: save_to_bufferv (param type)
+// TODO - method: save_to_callback (param type)
+// TODO - method: save_to_callbackv (param type)
+// TODO - method: save_to_stream (param type)
+// TODO - method: save_to_stream_async (param type)
+// TODO - method: save_to_streamv_async (param type)
+// TODO - method: scale (param type)
+// TODO - method: scale_simple (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

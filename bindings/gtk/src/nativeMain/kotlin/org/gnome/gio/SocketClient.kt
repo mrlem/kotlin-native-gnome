@@ -1,7 +1,7 @@
-// TODO - method: connect_async
-// TODO - method: connect_to_host_async
-// TODO - method: connect_to_service_async
-// TODO - method: connect_to_uri_async
+// TODO - method: connect_async (param type)
+// TODO - method: connect_to_host_async (param type)
+// TODO - method: connect_to_service_async (param type)
+// TODO - method: connect_to_uri_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

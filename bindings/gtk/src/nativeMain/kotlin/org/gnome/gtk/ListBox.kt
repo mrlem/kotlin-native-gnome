@@ -1,9 +1,9 @@
-// TODO - method: bind_model
-// TODO - method: get_selected_rows
-// TODO - method: selected_foreach
-// TODO - method: set_filter_func
-// TODO - method: set_header_func
-// TODO - method: set_sort_func
+// TODO - method: bind_model (param type)
+// TODO - method: get_selected_rows (return type)
+// TODO - method: selected_foreach (param type)
+// TODO - method: set_filter_func (param type)
+// TODO - method: set_header_func (param type)
+// TODO - method: set_sort_func (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

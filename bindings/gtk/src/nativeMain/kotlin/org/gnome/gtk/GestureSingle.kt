@@ -1,4 +1,4 @@
-// TODO - method: get_current_sequence
+// TODO - method: get_current_sequence (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

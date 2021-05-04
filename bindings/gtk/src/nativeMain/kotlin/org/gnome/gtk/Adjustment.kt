@@ -1,6 +1,3 @@
-// TODO - method: changed
-// TODO - method: value_changed
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk

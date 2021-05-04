@@ -1,27 +1,16 @@
-// TODO - method: activate_key
-// TODO - method: fullscreen_on_monitor
-// TODO - method: get_default_size
-// TODO - method: get_has_resize_grip
-// TODO - method: get_icon
-// TODO - method: get_icon_list
-// TODO - method: get_opacity
-// TODO - method: get_position
-// TODO - method: get_resize_grip_area
-// TODO - method: get_screen
-// TODO - method: get_size
-// TODO - method: parse_geometry
-// TODO - method: propagate_key_event
-// TODO - method: reshow_with_initial_size
-// TODO - method: resize_grip_is_visible
-// TODO - method: resize_to_geometry
-// TODO - method: set_default_geometry
-// TODO - method: set_geometry_hints
-// TODO - method: set_has_resize_grip
-// TODO - method: set_icon
-// TODO - method: set_icon_list
-// TODO - method: set_opacity
-// TODO - method: set_screen
-// TODO - method: set_wmclass
+// TODO - method: activate_key (param type)
+// TODO - method: fullscreen_on_monitor (param type)
+// TODO - method: get_default_size (param type)
+// TODO - method: get_icon (return type)
+// TODO - method: get_icon_list (return type)
+// TODO - method: get_position (param type)
+// TODO - method: get_screen (return type)
+// TODO - method: get_size (param type)
+// TODO - method: propagate_key_event (param type)
+// TODO - method: set_geometry_hints (param type)
+// TODO - method: set_icon (param type)
+// TODO - method: set_icon_list (param type)
+// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

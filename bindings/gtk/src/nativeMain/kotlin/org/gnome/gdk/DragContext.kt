@@ -1,14 +1,14 @@
-// TODO - method: get_actions
-// TODO - method: get_dest_window
-// TODO - method: get_device
-// TODO - method: get_drag_window
-// TODO - method: get_protocol
-// TODO - method: get_selected_action
-// TODO - method: get_source_window
-// TODO - method: get_suggested_action
-// TODO - method: list_targets
-// TODO - method: manage_dnd
-// TODO - method: set_device
+// TODO - method: get_actions (return type)
+// TODO - method: get_dest_window (return type)
+// TODO - method: get_device (return type)
+// TODO - method: get_drag_window (return type)
+// TODO - method: get_protocol (return type)
+// TODO - method: get_selected_action (return type)
+// TODO - method: get_source_window (return type)
+// TODO - method: get_suggested_action (return type)
+// TODO - method: list_targets (return type)
+// TODO - method: manage_dnd (param type)
+// TODO - method: set_device (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

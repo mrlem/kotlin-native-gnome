@@ -1,8 +1,8 @@
-// TODO - method: get_display
-// TODO - method: get_required_version
-// TODO - method: get_shared_context
-// TODO - method: get_version
-// TODO - method: get_window
+// TODO - method: get_display (return type)
+// TODO - method: get_required_version (param type)
+// TODO - method: get_shared_context (return type)
+// TODO - method: get_version (param type)
+// TODO - method: get_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

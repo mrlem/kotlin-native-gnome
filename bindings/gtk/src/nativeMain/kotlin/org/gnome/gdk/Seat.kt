@@ -1,9 +1,9 @@
-// TODO - method: get_capabilities
-// TODO - method: get_display
-// TODO - method: get_keyboard
-// TODO - method: get_pointer
-// TODO - method: get_slaves
-// TODO - method: grab
+// TODO - method: get_capabilities (return type)
+// TODO - method: get_display (return type)
+// TODO - method: get_keyboard (return type)
+// TODO - method: get_pointer (return type)
+// TODO - method: get_slaves (return type)
+// TODO - method: grab (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

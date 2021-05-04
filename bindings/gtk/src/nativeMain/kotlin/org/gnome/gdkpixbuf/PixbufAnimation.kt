@@ -2,10 +2,8 @@
 // TODO - constructor: new_from_resource
 // TODO - constructor: new_from_stream
 // TODO - constructor: new_from_stream_finish
-// TODO - method: get_iter
-// TODO - method: get_static_image
-// TODO - method: ref
-// TODO - method: unref
+// TODO - method: get_iter (return type)
+// TODO - method: get_static_image (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

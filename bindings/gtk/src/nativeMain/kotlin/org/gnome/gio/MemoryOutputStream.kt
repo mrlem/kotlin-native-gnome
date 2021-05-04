@@ -1,6 +1,6 @@
-// TODO - method: get_data
-// TODO - method: steal_as_bytes
-// TODO - method: steal_data
+// TODO - method: get_data (return type)
+// TODO - method: steal_as_bytes (return type)
+// TODO - method: steal_data (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

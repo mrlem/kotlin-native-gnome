@@ -1,5 +1,5 @@
-// TODO - method: get_display
-// TODO - method: get_startup_notify_id
+// TODO - method: get_display (param type)
+// TODO - method: get_startup_notify_id (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

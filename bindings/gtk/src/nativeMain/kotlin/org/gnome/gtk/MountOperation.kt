@@ -1,5 +1,5 @@
-// TODO - method: get_screen
-// TODO - method: set_screen
+// TODO - method: get_screen (return type)
+// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

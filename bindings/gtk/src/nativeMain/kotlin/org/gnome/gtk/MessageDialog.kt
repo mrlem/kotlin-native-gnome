@@ -1,9 +1,7 @@
 // TODO - constructor: new
 // TODO - constructor: new_with_markup
-// TODO - method: format_secondary_markup
-// TODO - method: format_secondary_text
-// TODO - method: get_image
-// TODO - method: set_image
+// TODO - method: format_secondary_markup (param type)
+// TODO - method: format_secondary_text (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

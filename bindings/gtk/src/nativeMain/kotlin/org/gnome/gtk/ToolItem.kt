@@ -1,4 +1,4 @@
-// TODO - method: get_ellipsize_mode
+// TODO - method: get_ellipsize_mode (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

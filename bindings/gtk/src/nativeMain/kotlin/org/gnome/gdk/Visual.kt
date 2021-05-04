@@ -1,11 +1,8 @@
-// TODO - method: get_bits_per_rgb
-// TODO - method: get_blue_pixel_details
-// TODO - method: get_byte_order
-// TODO - method: get_colormap_size
-// TODO - method: get_green_pixel_details
-// TODO - method: get_red_pixel_details
-// TODO - method: get_screen
-// TODO - method: get_visual_type
+// TODO - method: get_blue_pixel_details (param type)
+// TODO - method: get_green_pixel_details (param type)
+// TODO - method: get_red_pixel_details (param type)
+// TODO - method: get_screen (return type)
+// TODO - method: get_visual_type (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

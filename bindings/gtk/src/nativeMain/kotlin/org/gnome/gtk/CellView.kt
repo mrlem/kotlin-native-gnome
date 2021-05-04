@@ -1,7 +1,5 @@
 // TODO - constructor: new_with_pixbuf
-// TODO - method: get_size_of_row
-// TODO - method: set_background_color
-// TODO - method: set_background_rgba
+// TODO - method: set_background_rgba (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

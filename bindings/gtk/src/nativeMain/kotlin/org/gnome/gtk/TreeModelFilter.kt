@@ -1,7 +1,7 @@
-// TODO - method: convert_child_iter_to_iter
-// TODO - method: convert_iter_to_child_iter
-// TODO - method: set_modify_func
-// TODO - method: set_visible_func
+// TODO - method: convert_child_iter_to_iter (param type)
+// TODO - method: convert_iter_to_child_iter (param type)
+// TODO - method: set_modify_func (param type)
+// TODO - method: set_visible_func (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

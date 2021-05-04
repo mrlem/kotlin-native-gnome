@@ -1,6 +1,6 @@
-// TODO - method: activate
-// TODO - method: find
-// TODO - method: query
+// TODO - method: activate (param type)
+// TODO - method: find (param type)
+// TODO - method: query (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

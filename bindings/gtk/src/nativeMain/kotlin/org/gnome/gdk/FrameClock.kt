@@ -1,7 +1,7 @@
-// TODO - method: get_current_timings
-// TODO - method: get_refresh_info
-// TODO - method: get_timings
-// TODO - method: request_phase
+// TODO - method: get_current_timings (return type)
+// TODO - method: get_refresh_info (param type)
+// TODO - method: get_timings (return type)
+// TODO - method: request_phase (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

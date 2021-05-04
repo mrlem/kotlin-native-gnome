@@ -1,9 +1,9 @@
 // TODO - constructor: new_from_blob
-// TODO - method: get_body
-// TODO - method: get_header
-// TODO - method: set_body
-// TODO - method: set_header
-// TODO - method: to_blob
+// TODO - method: get_body (return type)
+// TODO - method: get_header (return type)
+// TODO - method: set_body (param type)
+// TODO - method: set_header (param type)
+// TODO - method: to_blob (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

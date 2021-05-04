@@ -1,12 +1,12 @@
 // TODO - constructor: new
 // TODO - field: relations
-// TODO - method: add
-// TODO - method: add_relation_by_type
-// TODO - method: contains
-// TODO - method: contains_target
-// TODO - method: get_relation
-// TODO - method: get_relation_by_type
-// TODO - method: remove
+// TODO - method: add (param type)
+// TODO - method: add_relation_by_type (param type)
+// TODO - method: contains (param type)
+// TODO - method: contains_target (param type)
+// TODO - method: get_relation (return type)
+// TODO - method: get_relation_by_type (return type)
+// TODO - method: remove (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

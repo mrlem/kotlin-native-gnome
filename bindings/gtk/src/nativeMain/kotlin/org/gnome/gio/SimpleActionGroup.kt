@@ -1,8 +1,3 @@
-// TODO - method: add_entries
-// TODO - method: insert
-// TODO - method: lookup
-// TODO - method: remove
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio

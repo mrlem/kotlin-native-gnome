@@ -1,6 +1,3 @@
-// TODO - method: threads_enter
-// TODO - method: threads_leave
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.atk

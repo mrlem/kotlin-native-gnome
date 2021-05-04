@@ -1,7 +1,7 @@
-// TODO - method: close_async
-// TODO - method: iterate
-// TODO - method: next_files_async
-// TODO - method: next_files_finish
+// TODO - method: close_async (param type)
+// TODO - method: iterate (param type)
+// TODO - method: next_files_async (param type)
+// TODO - method: next_files_finish (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

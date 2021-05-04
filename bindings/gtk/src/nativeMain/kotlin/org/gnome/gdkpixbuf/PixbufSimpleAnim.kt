@@ -1,5 +1,5 @@
 // TODO - constructor: new
-// TODO - method: add_frame
+// TODO - method: add_frame (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

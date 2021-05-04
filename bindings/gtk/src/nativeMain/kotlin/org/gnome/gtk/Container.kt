@@ -1,19 +1,12 @@
-// TODO - method: add_with_properties
-// TODO - method: child_get
-// TODO - method: child_get_valist
-// TODO - method: child_set
-// TODO - method: child_set_valist
-// TODO - method: forall
-// TODO - method: foreach
-// TODO - method: get_children
-// TODO - method: get_focus_chain
-// TODO - method: get_resize_mode
-// TODO - method: propagate_draw
-// TODO - method: resize_children
-// TODO - method: set_focus_chain
-// TODO - method: set_reallocate_redraws
-// TODO - method: set_resize_mode
-// TODO - method: unset_focus_chain
+// TODO - method: add_with_properties (param type)
+// TODO - method: child_get (param type)
+// TODO - method: child_get_valist (param type)
+// TODO - method: child_set (param type)
+// TODO - method: child_set_valist (param type)
+// TODO - method: forall (param type)
+// TODO - method: foreach (param type)
+// TODO - method: get_children (return type)
+// TODO - method: propagate_draw (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

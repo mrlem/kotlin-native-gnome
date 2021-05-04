@@ -1,8 +1,8 @@
-// TODO - method: filter_keypress
-// TODO - method: get_preedit_string
-// TODO - method: get_surrounding
-// TODO - method: set_client_window
-// TODO - method: set_cursor_location
+// TODO - method: filter_keypress (param type)
+// TODO - method: get_preedit_string (param type)
+// TODO - method: get_surrounding (param type)
+// TODO - method: set_client_window (param type)
+// TODO - method: set_cursor_location (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

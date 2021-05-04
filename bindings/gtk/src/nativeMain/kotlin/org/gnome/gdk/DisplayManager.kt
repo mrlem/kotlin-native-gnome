@@ -1,7 +1,7 @@
-// TODO - method: get_default_display
-// TODO - method: list_displays
-// TODO - method: open_display
-// TODO - method: set_default_display
+// TODO - method: get_default_display (return type)
+// TODO - method: list_displays (return type)
+// TODO - method: open_display (return type)
+// TODO - method: set_default_display (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 

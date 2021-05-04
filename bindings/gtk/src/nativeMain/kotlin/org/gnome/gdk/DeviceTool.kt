@@ -1,4 +1,4 @@
-// TODO - method: get_tool_type
+// TODO - method: get_tool_type (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
