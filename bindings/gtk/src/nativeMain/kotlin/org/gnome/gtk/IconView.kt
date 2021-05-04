@@ -1,7 +1,5 @@
 // TODO - method: convert_widget_to_bin_window_coords
 // TODO - method: create_drag_icon
-// TODO - method: enable_model_drag_dest
-// TODO - method: enable_model_drag_source
 // TODO - method: get_cell_rect
 // TODO - method: get_cursor
 // TODO - method: get_dest_item_at_pos
@@ -17,6 +15,8 @@
 package org.gnome.gtk
 
 import interop.GtkIconView
+import interop.gtk_icon_view_enable_model_drag_dest
+import interop.gtk_icon_view_enable_model_drag_source
 import interop.gtk_icon_view_get_activate_on_single_click
 import interop.gtk_icon_view_get_column_spacing
 import interop.gtk_icon_view_get_columns
@@ -68,17 +68,24 @@ import interop.gtk_icon_view_unselect_all
 import interop.gtk_icon_view_unselect_path
 import interop.gtk_icon_view_unset_model_drag_dest
 import interop.gtk_icon_view_unset_model_drag_source
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Unit
+import kotlin.collections.map
+import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.DragAction
+import org.gnome.gdk.ModifierType
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toCArray
 import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
 
@@ -204,6 +211,25 @@ public var IconView.tooltipColumn: Int
   set(`value`) {
     gtk_icon_view_set_tooltip_column(this@tooltipColumn, `value`)
   }
+
+public fun IconView.enableModelDragDest(
+  targets: Array<TargetEntry>?,
+  nTargets: Int,
+  actions: DragAction
+): Unit {
+  memScoped { gtk_icon_view_enable_model_drag_dest(this@enableModelDragDest, targets?.map {
+      it.pointed }?.toTypedArray()?.toCArray(memScope), nTargets, actions) }
+}
+
+public fun IconView.enableModelDragSource(
+  startButtonMask: ModifierType,
+  targets: Array<TargetEntry>?,
+  nTargets: Int,
+  actions: DragAction
+): Unit {
+  memScoped { gtk_icon_view_enable_model_drag_source(this@enableModelDragSource, startButtonMask,
+      targets?.map { it.pointed }?.toTypedArray()?.toCArray(memScope), nTargets, actions) }
+}
 
 public fun IconView.getItemColumn(path: TreePath?): Int =
     gtk_icon_view_get_item_column(this@getItemColumn, path?.reinterpret())

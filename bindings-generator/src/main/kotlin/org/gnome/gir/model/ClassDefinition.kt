@@ -53,7 +53,7 @@ data class ClassDefinition(
     val info: InfoElements,
     val implements: List<NameDefinition>,
     val constructors: List<CallableDefinition>,
-    val methods: List<CallableDefinition>,
+    val methods: MutableList<CallableDefinition>,
     val functions: List<CallableDefinition>,
     val virtualMethods: List<VirtualMethodDefinition>,
     val fields: MutableList<FieldDefinition>,

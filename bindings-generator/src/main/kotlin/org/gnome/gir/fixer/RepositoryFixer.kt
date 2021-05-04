@@ -15,12 +15,23 @@ object RepositoryFixer {
         repository.fixArrayTypesAsByte()
         repository.fixFieldsDuplicatingMethods()
 
+        // FIXME - declared as a CPointer unlike all other records
+        repository.namespaces["Gdk"]!!
+            .records
+            .removeAll { it.name == "Atom" }
+
         // incorrectly typed as GObject
         repository.namespaces["Gio"]!!
             .classes["ListStore"]!!
             .methods["splice"]!!
             .callable.parameters["additions"]!!
             .type = TypeDefinition.create("gpointer")
+
+        // should be marked private
+        repository.namespaces["Gdk"]!!
+            .classes["Window"]!!
+            .methods
+            .removeAll { it.name == "destroy_notify" }
     }
 
     ///////////////////////////////////////////////////////////////////////////

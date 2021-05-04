@@ -9,7 +9,6 @@
 // TODO - method: get_text_area
 // TODO - method: im_context_filter_keypress
 // TODO - method: set_attributes
-// TODO - method: set_icon_drag_source
 // TODO - method: set_icon_from_pixbuf
 // TODO - method: set_icon_from_stock
 // TODO - method: set_inner_border
@@ -61,6 +60,7 @@ import interop.gtk_entry_set_completion
 import interop.gtk_entry_set_cursor_hadjustment
 import interop.gtk_entry_set_has_frame
 import interop.gtk_entry_set_icon_activatable
+import interop.gtk_entry_set_icon_drag_source
 import interop.gtk_entry_set_icon_from_gicon
 import interop.gtk_entry_set_icon_from_icon_name
 import interop.gtk_entry_set_icon_sensitive
@@ -90,6 +90,7 @@ import kotlin.UShort
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.DragAction
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -273,6 +274,15 @@ public fun Entry.resetImContext(): Unit {
 
 public fun Entry.setIconActivatable(iconPos: EntryIconPosition, activatable: Boolean): Unit {
   gtk_entry_set_icon_activatable(this@setIconActivatable, iconPos, activatable.toInt())
+}
+
+public fun Entry.setIconDragSource(
+  iconPos: EntryIconPosition,
+  targetList: TargetList?,
+  actions: DragAction
+): Unit {
+  gtk_entry_set_icon_drag_source(this@setIconDragSource, iconPos, targetList?.reinterpret(),
+      actions)
 }
 
 public fun Entry.setIconFromGicon(iconPos: EntryIconPosition, icon: Icon?): Unit {

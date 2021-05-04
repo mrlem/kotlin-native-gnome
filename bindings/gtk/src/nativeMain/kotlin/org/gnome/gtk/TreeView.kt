@@ -5,8 +5,6 @@
 // TODO - method: convert_widget_to_bin_window_coords
 // TODO - method: convert_widget_to_tree_coords
 // TODO - method: create_row_drag_icon
-// TODO - method: enable_model_drag_dest
-// TODO - method: enable_model_drag_source
 // TODO - method: get_background_area
 // TODO - method: get_bin_window
 // TODO - method: get_cell_area
@@ -43,6 +41,8 @@ import interop.gtk_tree_view_append_column
 import interop.gtk_tree_view_collapse_all
 import interop.gtk_tree_view_collapse_row
 import interop.gtk_tree_view_columns_autosize
+import interop.gtk_tree_view_enable_model_drag_dest
+import interop.gtk_tree_view_enable_model_drag_source
 import interop.gtk_tree_view_expand_all
 import interop.gtk_tree_view_expand_row
 import interop.gtk_tree_view_expand_to_path
@@ -105,18 +105,25 @@ import interop.gtk_tree_view_set_tooltip_column
 import interop.gtk_tree_view_set_tooltip_row
 import interop.gtk_tree_view_unset_rows_drag_dest
 import interop.gtk_tree_view_unset_rows_drag_source
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.map
+import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.DragAction
+import org.gnome.gdk.ModifierType
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toCArray
 import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
 
@@ -279,6 +286,25 @@ public fun TreeView.collapseRow(path: TreePath?): Boolean =
 
 public fun TreeView.columnsAutosize(): Unit {
   gtk_tree_view_columns_autosize(this@columnsAutosize)
+}
+
+public fun TreeView.enableModelDragDest(
+  targets: Array<TargetEntry>?,
+  nTargets: Int,
+  actions: DragAction
+): Unit {
+  memScoped { gtk_tree_view_enable_model_drag_dest(this@enableModelDragDest, targets?.map {
+      it.pointed }?.toTypedArray()?.toCArray(memScope), nTargets, actions) }
+}
+
+public fun TreeView.enableModelDragSource(
+  startButtonMask: ModifierType,
+  targets: Array<TargetEntry>?,
+  nTargets: Int,
+  actions: DragAction
+): Unit {
+  memScoped { gtk_tree_view_enable_model_drag_source(this@enableModelDragSource, startButtonMask,
+      targets?.map { it.pointed }?.toTypedArray()?.toCArray(memScope), nTargets, actions) }
 }
 
 public fun TreeView.expandAll(): Unit {

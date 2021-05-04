@@ -1,5 +1,4 @@
 // TODO - constructor: new
-// TODO - method: add_accelerator
 // TODO - method: add_device_events
 // TODO - method: add_tick_callback
 // TODO - method: class_path
@@ -10,10 +9,8 @@
 // TODO - method: drag_begin
 // TODO - method: drag_begin_with_coordinates
 // TODO - method: drag_dest_find_target
-// TODO - method: drag_dest_set
 // TODO - method: drag_dest_set_proxy
 // TODO - method: drag_get_data
-// TODO - method: drag_source_set
 // TODO - method: drag_source_set_icon_pixbuf
 // TODO - method: drag_source_set_icon_stock
 // TODO - method: draw
@@ -34,7 +31,6 @@
 // TODO - method: get_frame_clock
 // TODO - method: get_margin_left
 // TODO - method: get_margin_right
-// TODO - method: get_modifier_mask
 // TODO - method: get_modifier_style
 // TODO - method: get_pango_context
 // TODO - method: get_parent_window
@@ -75,7 +71,6 @@
 // TODO - method: queue_draw_region
 // TODO - method: region_intersect
 // TODO - method: register_window
-// TODO - method: remove_accelerator
 // TODO - method: render_icon
 // TODO - method: render_icon_pixbuf
 // TODO - method: reparent
@@ -114,6 +109,7 @@ import interop.gtk_drag_dest_add_text_targets
 import interop.gtk_drag_dest_add_uri_targets
 import interop.gtk_drag_dest_get_target_list
 import interop.gtk_drag_dest_get_track_motion
+import interop.gtk_drag_dest_set
 import interop.gtk_drag_dest_set_target_list
 import interop.gtk_drag_dest_set_track_motion
 import interop.gtk_drag_dest_unset
@@ -122,6 +118,7 @@ import interop.gtk_drag_source_add_image_targets
 import interop.gtk_drag_source_add_text_targets
 import interop.gtk_drag_source_add_uri_targets
 import interop.gtk_drag_source_get_target_list
+import interop.gtk_drag_source_set
 import interop.gtk_drag_source_set_icon_gicon
 import interop.gtk_drag_source_set_icon_name
 import interop.gtk_drag_source_set_target_list
@@ -130,6 +127,7 @@ import interop.gtk_drag_unhighlight
 import interop.gtk_grab_add
 import interop.gtk_grab_remove
 import interop.gtk_widget_activate
+import interop.gtk_widget_add_accelerator
 import interop.gtk_widget_add_events
 import interop.gtk_widget_add_mnemonic_label
 import interop.gtk_widget_can_activate_accel
@@ -162,6 +160,7 @@ import interop.gtk_widget_get_margin_bottom
 import interop.gtk_widget_get_margin_end
 import interop.gtk_widget_get_margin_start
 import interop.gtk_widget_get_margin_top
+import interop.gtk_widget_get_modifier_mask
 import interop.gtk_widget_get_name
 import interop.gtk_widget_get_no_show_all
 import interop.gtk_widget_get_opacity
@@ -215,6 +214,7 @@ import interop.gtk_widget_queue_draw_area
 import interop.gtk_widget_queue_resize
 import interop.gtk_widget_queue_resize_no_redraw
 import interop.gtk_widget_realize
+import interop.gtk_widget_remove_accelerator
 import interop.gtk_widget_remove_mnemonic_label
 import interop.gtk_widget_remove_tick_callback
 import interop.gtk_widget_reset_style
@@ -276,16 +276,23 @@ import kotlin.Int
 import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.map
+import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.DragAction
+import org.gnome.gdk.ModifierIntent
+import org.gnome.gdk.ModifierType
 import org.gnome.gio.ActionGroup
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
 import org.gnome.toBoolean
+import org.gnome.toCArray
 import org.gnome.toInt
 import org.gnome.toKArray
 import org.gnome.toKString
@@ -537,6 +544,17 @@ public var Widget.visible: Boolean
 
 public fun Widget.activate(): Boolean = gtk_widget_activate(this@activate).toBoolean()
 
+public fun Widget.addAccelerator(
+  accelSignal: String?,
+  accelGroup: AccelGroup?,
+  accelKey: UInt,
+  accelMods: ModifierType,
+  accelFlags: AccelFlags
+): Unit {
+  gtk_widget_add_accelerator(this@addAccelerator, accelSignal, accelGroup?.reinterpret(), accelKey,
+      accelMods, accelFlags)
+}
+
 public fun Widget.addEvents(events: Int): Unit {
   gtk_widget_add_events(this@addEvents, events)
 }
@@ -588,6 +606,16 @@ public fun Widget.dragDestGetTargetList(): TargetList? =
 public fun Widget.dragDestGetTrackMotion(): Boolean =
     gtk_drag_dest_get_track_motion(this@dragDestGetTrackMotion).toBoolean()
 
+public fun Widget.dragDestSet(
+  flags: DestDefaults,
+  targets: Array<TargetEntry>?,
+  nTargets: Int,
+  actions: DragAction
+): Unit {
+  memScoped { gtk_drag_dest_set(this@dragDestSet, flags, targets?.map { it.pointed
+      }?.toTypedArray()?.toCArray(memScope), nTargets, actions) }
+}
+
 public fun Widget.dragDestSetTargetList(targetList: TargetList?): Unit {
   gtk_drag_dest_set_target_list(this@dragDestSetTargetList, targetList?.reinterpret())
 }
@@ -618,6 +646,16 @@ public fun Widget.dragSourceAddUriTargets(): Unit {
 
 public fun Widget.dragSourceGetTargetList(): TargetList? =
     gtk_drag_source_get_target_list(this@dragSourceGetTargetList)?.reinterpret()
+
+public fun Widget.dragSourceSet(
+  startButtonMask: ModifierType,
+  targets: Array<TargetEntry>?,
+  nTargets: Int,
+  actions: DragAction
+): Unit {
+  memScoped { gtk_drag_source_set(this@dragSourceSet, startButtonMask, targets?.map { it.pointed
+      }?.toTypedArray()?.toCArray(memScope), nTargets, actions) }
+}
 
 public fun Widget.dragSourceSetIconGicon(icon: Icon?): Unit {
   gtk_drag_source_set_icon_gicon(this@dragSourceSetIconGicon, icon?.reinterpret())
@@ -652,6 +690,9 @@ public fun Widget.getActionGroup(prefix: String?): ActionGroup? =
 
 public fun Widget.getAncestor(widgetType: GType): Widget? =
     gtk_widget_get_ancestor(this@getAncestor, widgetType)?.reinterpret()
+
+public fun Widget.getModifierMask(intent: ModifierIntent): ModifierType =
+    gtk_widget_get_modifier_mask(this@getModifierMask, intent)
 
 public fun Widget.getTemplateChild(widgetType: GType, name: String?): Object? =
     gtk_widget_get_template_child(this@getTemplateChild, widgetType, name)?.reinterpret()
@@ -758,6 +799,13 @@ public fun Widget.queueResizeNoRedraw(): Unit {
 public fun Widget.realize(): Unit {
   gtk_widget_realize(this@realize)
 }
+
+public fun Widget.removeAccelerator(
+  accelGroup: AccelGroup?,
+  accelKey: UInt,
+  accelMods: ModifierType
+): Boolean = gtk_widget_remove_accelerator(this@removeAccelerator, accelGroup?.reinterpret(),
+    accelKey, accelMods).toBoolean()
 
 public fun Widget.removeMnemonicLabel(label: Widget?): Unit {
   gtk_widget_remove_mnemonic_label(this@removeMnemonicLabel, label?.reinterpret())

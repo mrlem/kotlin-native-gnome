@@ -1,4 +1,3 @@
-// TODO - method: add_drag_dest
 // TODO - method: get_hadjustment
 // TODO - method: get_vadjustment
 //
@@ -7,6 +6,7 @@
 package org.gnome.gtk
 
 import interop.GtkToolPalette
+import interop.gtk_tool_palette_add_drag_dest
 import interop.gtk_tool_palette_get_drag_item
 import interop.gtk_tool_palette_get_drop_group
 import interop.gtk_tool_palette_get_drop_item
@@ -31,6 +31,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.DragAction
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -68,6 +69,15 @@ public var ToolPalette.style: ToolbarStyle
   set(`value`) {
     gtk_tool_palette_set_style(this@style, `value`)
   }
+
+public fun ToolPalette.addDragDest(
+  widget: Widget?,
+  flags: DestDefaults,
+  targets: ToolPaletteDragTargets,
+  actions: DragAction
+): Unit {
+  gtk_tool_palette_add_drag_dest(this@addDragDest, widget?.reinterpret(), flags, targets, actions)
+}
 
 public fun ToolPalette.getDragItem(selection: SelectionData?): Widget? =
     gtk_tool_palette_get_drag_item(this@getDragItem, selection?.reinterpret())?.reinterpret()
