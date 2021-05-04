@@ -20,6 +20,12 @@ object RepositoryFixer {
             .records
             .removeAll { it.name == "Atom" }
 
+        // FIXME - handle difference between type name & c-type
+        repository.namespaces["GdkPixbuf"]!!
+            .classes["Pixbuf"]!!
+            .methods
+            .removeAll { it.name == "read_pixels" }
+
         // incorrectly typed as GObject
         repository.namespaces["Gio"]!!
             .classes["ListStore"]!!
@@ -32,6 +38,11 @@ object RepositoryFixer {
             .classes["Window"]!!
             .methods
             .removeAll { it.name == "destroy_notify" }
+
+        // doesn't exist
+        repository.namespaces["GdkPixbuf"]!!
+            .classes
+            .removeAll { it.name == "PixbufSimpleAnimIter" }
     }
 
     ///////////////////////////////////////////////////////////////////////////

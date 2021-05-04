@@ -1,5 +1,6 @@
 package org.gnome.gir.parser
 
+// TODO - merge in RepositoryFixer
 object Fixer {
 
     fun fix(name: String) = when {

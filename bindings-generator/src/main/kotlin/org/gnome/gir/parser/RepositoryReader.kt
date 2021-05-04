@@ -82,7 +82,7 @@ class RepositoryReader {
         sharedLibrary = this["shared-library"],
         classes = readClasses().toMutableList(),
         interfaces = readInterfaces(),
-        enums = readEnums(),
+        enums = readEnums().toMutableList(),
         records = readRecords().toMutableList(),
         bitFields = readBitFields(),
         functions = readCallables("function"),

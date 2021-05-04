@@ -37,7 +37,7 @@ data class NamespaceDefinition(
     val classes: MutableList<ClassDefinition>,
     val interfaces: List<InterfaceDefinition>,
     val records: MutableList<RecordDefinition>,
-    val enums: List<EnumDefinition>,
+    val enums: MutableList<EnumDefinition>,
     val functions: List<CallableDefinition>,
     val unions: List<UnionDefinition>,
     val bitFields: List<BitFieldDefinition>,
