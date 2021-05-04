@@ -241,7 +241,7 @@ class RepositoryReader {
         glibUnrefFunc = this["glib:unref-func"],
         info = readInfoElements(),
         methods = readCallables("method"),
-        fields = readFields(),
+        fields = readFields().toMutableList(),
         constructors = readCallables("constructor"),
         functions = readCallables("functions"),
         unions = readUnions(),

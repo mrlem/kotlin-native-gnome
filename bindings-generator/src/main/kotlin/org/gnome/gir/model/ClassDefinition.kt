@@ -56,7 +56,7 @@ data class ClassDefinition(
     val methods: List<CallableDefinition>,
     val functions: List<CallableDefinition>,
     val virtualMethods: List<VirtualMethodDefinition>,
-    val fields: List<FieldDefinition>,
+    val fields: MutableList<FieldDefinition>,
     val properties: List<PropertyDefinition>,
     val signals: List<SignalDefinition>,
     val unions: List<UnionDefinition>,

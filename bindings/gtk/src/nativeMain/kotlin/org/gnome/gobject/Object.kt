@@ -1,5 +1,4 @@
 // TODO - constructor: newv
-// TODO - field: qdata
 // TODO - method: get_data
 // TODO - method: get_qdata
 // TODO - method: set_data

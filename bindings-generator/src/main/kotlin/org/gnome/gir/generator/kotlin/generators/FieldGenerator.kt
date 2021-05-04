@@ -22,13 +22,6 @@ fun FileSpec.Builder.addField(className: ClassName, field: FieldDefinition, reso
     }
 
     when {
-        // duplicated with method
-        (className.simpleName == "Object" && field.name == "description") ||
-        (className.simpleName == "Object" && field.name == "name") ||
-        (className.simpleName == "Object" && field.name == "description") ||
-        (className.simpleName == "FilterInputStream" && field.name == "base_stream") ||
-        (className.simpleName == "FilterOutputStream" && field.name == "base_stream") ||
-        (className.simpleName == "ParamSpec" && field.name == "name") ||
         // just an alias of GObject with  common field
         (className.simpleName == "InitiallyUnowned") ||
         // FIXME - investigate

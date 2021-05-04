@@ -1,5 +1,4 @@
 // TODO - constructor: new
-// TODO - field: target
 // TODO - field: relationship
 // TODO - method: add_target
 // TODO - method: get_relation_type

@@ -1,7 +1,5 @@
 // TODO - field: accessible_parent
-// TODO - field: role
 // TODO - field: relation_set
-// TODO - field: layer
 // TODO - method: add_relationship
 // TODO - method: get_attributes
 // TODO - method: get_layer
@@ -39,8 +37,6 @@ import kotlin.String
 import kotlin.ULong
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.pointed
-import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.toInt
 import org.gnome.toKString
@@ -50,9 +46,6 @@ public typealias Object = CPointer<AtkObject>
 
 public val Object.asObject: org.gnome.gobject.Object
   get() = reinterpret()
-
-public val Object.parent: org.gnome.gobject.Object
-  get() = pointed.parent.ptr
 
 public var Object.accessibleId: String?
   get() = atk_object_get_accessible_id(this).toKString()
