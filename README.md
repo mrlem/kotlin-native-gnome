@@ -46,7 +46,7 @@ Still a *work in progress*:
 * API coverage is still incomplete:
   - some unhandled data types (like GLists)
   - no signal handlers data
-  - some missing generations: GLib, GDK, GDKPixbuf, Cairo, Pango)
+  - some missing generations: GLib, GDKPixbuf, Cairo, Pango)
 * platform support: Linux only for now
 
 ## See also
