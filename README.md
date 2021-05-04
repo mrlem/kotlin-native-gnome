@@ -44,7 +44,7 @@ Next steps:
 Still a *work in progress*:
 * [Glade](https://glade.gnome.org/) gradle plugin: 100% complete
 * API coverage is still incomplete:
-  - some unhandled data types (like GLists and arrays)
+  - some unhandled data types (like GLists)
   - no signal handlers data
   - some missing generations: GLib, ATK, GDKPixbuf, Cairo, Pango)
 * platform support: Linux only for now
