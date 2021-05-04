@@ -25,21 +25,21 @@ public val Tooltip.asObject: Object
   get() = reinterpret()
 
 public fun Tooltip.setCustom(customWidget: Widget?): Unit {
-  gtk_tooltip_set_custom(this, customWidget?.reinterpret())
+  gtk_tooltip_set_custom(this@setCustom, customWidget?.reinterpret())
 }
 
 public fun Tooltip.setIconFromGicon(gicon: Icon?, size: IconSize): Unit {
-  gtk_tooltip_set_icon_from_gicon(this, gicon?.reinterpret(), size)
+  gtk_tooltip_set_icon_from_gicon(this@setIconFromGicon, gicon?.reinterpret(), size)
 }
 
-public fun Tooltip.setIconFromIconName(iconName: String, size: IconSize): Unit {
-  gtk_tooltip_set_icon_from_icon_name(this, iconName, size)
+public fun Tooltip.setIconFromIconName(iconName: String?, size: IconSize): Unit {
+  gtk_tooltip_set_icon_from_icon_name(this@setIconFromIconName, iconName, size)
 }
 
-public fun Tooltip.setMarkup(markup: String): Unit {
-  gtk_tooltip_set_markup(this, markup)
+public fun Tooltip.setMarkup(markup: String?): Unit {
+  gtk_tooltip_set_markup(this@setMarkup, markup)
 }
 
-public fun Tooltip.setText(text: String): Unit {
-  gtk_tooltip_set_text(this, text)
+public fun Tooltip.setText(text: String?): Unit {
+  gtk_tooltip_set_text(this@setText, text)
 }

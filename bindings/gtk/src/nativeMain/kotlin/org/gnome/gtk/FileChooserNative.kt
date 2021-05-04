@@ -24,23 +24,23 @@ public val FileChooserNative.asNativeDialog: NativeDialog
 
 public object FileChooserNativeFactory {
   public fun new(
-    title: String,
+    title: String?,
     parent: Window?,
     action: FileChooserAction,
-    acceptLabel: String,
-    cancelLabel: String
+    acceptLabel: String?,
+    cancelLabel: String?
   ): FileChooserNative = gtk_file_chooser_native_new(title, parent?.reinterpret(), action,
       acceptLabel, cancelLabel)!!.reinterpret()
 }
 
-public var FileChooserNative.acceptLabel: String
+public var FileChooserNative.acceptLabel: String?
   get() = gtk_file_chooser_native_get_accept_label(this).toKString()
   set(`value`) {
-    gtk_file_chooser_native_set_accept_label(this, `value`)
+    gtk_file_chooser_native_set_accept_label(this@acceptLabel, `value`)
   }
 
-public var FileChooserNative.cancelLabel: String
+public var FileChooserNative.cancelLabel: String?
   get() = gtk_file_chooser_native_get_cancel_label(this).toKString()
   set(`value`) {
-    gtk_file_chooser_native_set_cancel_label(this, `value`)
+    gtk_file_chooser_native_set_cancel_label(this@cancelLabel, `value`)
   }

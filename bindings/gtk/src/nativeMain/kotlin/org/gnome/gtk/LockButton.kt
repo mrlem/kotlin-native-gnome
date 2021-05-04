@@ -45,5 +45,5 @@ public val LockButton.parent: Button
 public var LockButton.permission: Permission?
   get() = gtk_lock_button_get_permission(this)?.reinterpret()
   set(`value`) {
-    gtk_lock_button_set_permission(this, `value`)
+    gtk_lock_button_set_permission(this@permission, `value`)
   }

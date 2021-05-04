@@ -73,13 +73,13 @@ public val ToolItem.parent: Bin
 public var ToolItem.expand: Boolean
   get() = gtk_tool_item_get_expand(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_expand(this, `value`.toInt())
+    gtk_tool_item_set_expand(this@expand, `value`.toInt())
   }
 
 public var ToolItem.homogeneous: Boolean
   get() = gtk_tool_item_get_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_homogeneous(this, `value`.toInt())
+    gtk_tool_item_set_homogeneous(this@homogeneous, `value`.toInt())
   }
 
 public val ToolItem.iconSize: IconSize
@@ -88,7 +88,7 @@ public val ToolItem.iconSize: IconSize
 public var ToolItem.isImportant: Boolean
   get() = gtk_tool_item_get_is_important(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_is_important(this, `value`.toInt())
+    gtk_tool_item_set_is_important(this@isImportant, `value`.toInt())
   }
 
 public val ToolItem.orientation: Orientation
@@ -112,45 +112,45 @@ public val ToolItem.toolbarStyle: ToolbarStyle
 public var ToolItem.useDragWindow: Boolean
   get() = gtk_tool_item_get_use_drag_window(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_use_drag_window(this, `value`.toInt())
+    gtk_tool_item_set_use_drag_window(this@useDragWindow, `value`.toInt())
   }
 
 public var ToolItem.visibleHorizontal: Boolean
   get() = gtk_tool_item_get_visible_horizontal(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_visible_horizontal(this, `value`.toInt())
+    gtk_tool_item_set_visible_horizontal(this@visibleHorizontal, `value`.toInt())
   }
 
 public var ToolItem.visibleVertical: Boolean
   get() = gtk_tool_item_get_visible_vertical(this).toBoolean()
   set(`value`) {
-    gtk_tool_item_set_visible_vertical(this, `value`.toInt())
+    gtk_tool_item_set_visible_vertical(this@visibleVertical, `value`.toInt())
   }
 
-public fun ToolItem.getProxyMenuItem(menuItemId: String): Widget? =
-    gtk_tool_item_get_proxy_menu_item(this, menuItemId)?.reinterpret()
+public fun ToolItem.getProxyMenuItem(menuItemId: String?): Widget? =
+    gtk_tool_item_get_proxy_menu_item(this@getProxyMenuItem, menuItemId)?.reinterpret()
 
 public fun ToolItem.rebuildMenu(): Unit {
-  gtk_tool_item_rebuild_menu(this)
+  gtk_tool_item_rebuild_menu(this@rebuildMenu)
 }
 
 public fun ToolItem.retrieveProxyMenuItem(): Widget? =
-    gtk_tool_item_retrieve_proxy_menu_item(this)?.reinterpret()
+    gtk_tool_item_retrieve_proxy_menu_item(this@retrieveProxyMenuItem)?.reinterpret()
 
-public fun ToolItem.setProxyMenuItem(menuItemId: String, menuItem: Widget?): Unit {
-  gtk_tool_item_set_proxy_menu_item(this, menuItemId, menuItem?.reinterpret())
+public fun ToolItem.setProxyMenuItem(menuItemId: String?, menuItem: Widget?): Unit {
+  gtk_tool_item_set_proxy_menu_item(this@setProxyMenuItem, menuItemId, menuItem?.reinterpret())
 }
 
-public fun ToolItem.setTooltipMarkup(markup: String): Unit {
-  gtk_tool_item_set_tooltip_markup(this, markup)
+public fun ToolItem.setTooltipMarkup(markup: String?): Unit {
+  gtk_tool_item_set_tooltip_markup(this@setTooltipMarkup, markup)
 }
 
-public fun ToolItem.setTooltipText(text: String): Unit {
-  gtk_tool_item_set_tooltip_text(this, text)
+public fun ToolItem.setTooltipText(text: String?): Unit {
+  gtk_tool_item_set_tooltip_text(this@setTooltipText, text)
 }
 
 public fun ToolItem.toolbarReconfigured(): Unit {
-  gtk_tool_item_toolbar_reconfigured(this)
+  gtk_tool_item_toolbar_reconfigured(this@toolbarReconfigured)
 }
 
 public fun ToolItem.onCreateMenuProxy(callback: (ToolItem) -> Unit): ToolItem {

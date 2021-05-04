@@ -33,18 +33,18 @@ public val ShortcutLabel.asBox: Box
   get() = reinterpret()
 
 public object ShortcutLabelFactory {
-  public fun new(accelerator: String): ShortcutLabel =
+  public fun new(accelerator: String?): ShortcutLabel =
       gtk_shortcut_label_new(accelerator)!!.reinterpret()
 }
 
-public var ShortcutLabel.accelerator: String
+public var ShortcutLabel.accelerator: String?
   get() = gtk_shortcut_label_get_accelerator(this).toKString()
   set(`value`) {
-    gtk_shortcut_label_set_accelerator(this, `value`)
+    gtk_shortcut_label_set_accelerator(this@accelerator, `value`)
   }
 
-public var ShortcutLabel.disabledText: String
+public var ShortcutLabel.disabledText: String?
   get() = gtk_shortcut_label_get_disabled_text(this).toKString()
   set(`value`) {
-    gtk_shortcut_label_set_disabled_text(this, `value`)
+    gtk_shortcut_label_set_disabled_text(this@disabledText, `value`)
   }

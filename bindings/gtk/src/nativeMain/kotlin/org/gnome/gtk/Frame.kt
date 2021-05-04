@@ -42,30 +42,30 @@ public val Frame.asBin: Bin
   get() = reinterpret()
 
 public object FrameFactory {
-  public fun new(label: String): Frame = gtk_frame_new(label)!!.reinterpret()
+  public fun new(label: String?): Frame = gtk_frame_new(label)!!.reinterpret()
 }
 
 public val Frame.bin: Bin
   get() = pointed.bin.ptr
 
-public var Frame.label: String
+public var Frame.label: String?
   get() = gtk_frame_get_label(this).toKString()
   set(`value`) {
-    gtk_frame_set_label(this, `value`)
+    gtk_frame_set_label(this@label, `value`)
   }
 
 public var Frame.labelWidget: Widget?
   get() = gtk_frame_get_label_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_frame_set_label_widget(this, `value`)
+    gtk_frame_set_label_widget(this@labelWidget, `value`)
   }
 
 public var Frame.shadowType: ShadowType
   get() = gtk_frame_get_shadow_type(this)
   set(`value`) {
-    gtk_frame_set_shadow_type(this, `value`)
+    gtk_frame_set_shadow_type(this@shadowType, `value`)
   }
 
 public fun Frame.setLabelAlign(xalign: Float, yalign: Float): Unit {
-  gtk_frame_set_label_align(this, xalign, yalign)
+  gtk_frame_set_label_align(this@setLabelAlign, xalign, yalign)
 }

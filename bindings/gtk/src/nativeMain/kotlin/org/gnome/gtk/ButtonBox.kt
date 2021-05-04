@@ -49,19 +49,22 @@ public val ButtonBox.box: Box
 public var ButtonBox.layout: ButtonBoxStyle
   get() = gtk_button_box_get_layout(this)
   set(`value`) {
-    gtk_button_box_set_layout(this, `value`)
+    gtk_button_box_set_layout(this@layout, `value`)
   }
 
 public fun ButtonBox.getChildNonHomogeneous(child: Widget?): Boolean =
-    gtk_button_box_get_child_non_homogeneous(this, child?.reinterpret()).toBoolean()
+    gtk_button_box_get_child_non_homogeneous(this@getChildNonHomogeneous,
+    child?.reinterpret()).toBoolean()
 
 public fun ButtonBox.getChildSecondary(child: Widget?): Boolean =
-    gtk_button_box_get_child_secondary(this, child?.reinterpret()).toBoolean()
+    gtk_button_box_get_child_secondary(this@getChildSecondary, child?.reinterpret()).toBoolean()
 
 public fun ButtonBox.setChildNonHomogeneous(child: Widget?, nonHomogeneous: Boolean): Unit {
-  gtk_button_box_set_child_non_homogeneous(this, child?.reinterpret(), nonHomogeneous.toInt())
+  gtk_button_box_set_child_non_homogeneous(this@setChildNonHomogeneous, child?.reinterpret(),
+      nonHomogeneous.toInt())
 }
 
 public fun ButtonBox.setChildSecondary(child: Widget?, isSecondary: Boolean): Unit {
-  gtk_button_box_set_child_secondary(this, child?.reinterpret(), isSecondary.toInt())
+  gtk_button_box_set_child_secondary(this@setChildSecondary, child?.reinterpret(),
+      isSecondary.toInt())
 }

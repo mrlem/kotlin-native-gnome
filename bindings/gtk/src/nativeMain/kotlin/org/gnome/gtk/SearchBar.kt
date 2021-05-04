@@ -44,15 +44,15 @@ public object SearchBarFactory {
 public var SearchBar.searchMode: Boolean
   get() = gtk_search_bar_get_search_mode(this).toBoolean()
   set(`value`) {
-    gtk_search_bar_set_search_mode(this, `value`.toInt())
+    gtk_search_bar_set_search_mode(this@searchMode, `value`.toInt())
   }
 
 public var SearchBar.showCloseButton: Boolean
   get() = gtk_search_bar_get_show_close_button(this).toBoolean()
   set(`value`) {
-    gtk_search_bar_set_show_close_button(this, `value`.toInt())
+    gtk_search_bar_set_show_close_button(this@showCloseButton, `value`.toInt())
   }
 
 public fun SearchBar.connectEntry(entry: Entry?): Unit {
-  gtk_search_bar_connect_entry(this, entry?.reinterpret())
+  gtk_search_bar_connect_entry(this@connectEntry, entry?.reinterpret())
 }

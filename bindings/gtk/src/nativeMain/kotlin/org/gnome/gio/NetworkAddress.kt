@@ -23,7 +23,7 @@ public val NetworkAddress.asObject: Object
   get() = reinterpret()
 
 public object NetworkAddressFactory {
-  public fun new(hostname: String, port: UShort): NetworkAddress = g_network_address_new(hostname,
+  public fun new(hostname: String?, port: UShort): NetworkAddress = g_network_address_new(hostname,
       port)!!.reinterpret()
 
   public fun newLoopback(port: UShort): NetworkAddress =
@@ -33,11 +33,11 @@ public object NetworkAddressFactory {
 public val NetworkAddress.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public val NetworkAddress.hostname: String
+public val NetworkAddress.hostname: String?
   get() = g_network_address_get_hostname(this).toKString()
 
 public val NetworkAddress.port: UShort
   get() = g_network_address_get_port(this)
 
-public val NetworkAddress.scheme: String
+public val NetworkAddress.scheme: String?
   get() = g_network_address_get_scheme(this).toKString()

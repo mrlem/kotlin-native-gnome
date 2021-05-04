@@ -39,7 +39,7 @@ public val AspectFrame.asFrame: Frame
 
 public object AspectFrameFactory {
   public fun new(
-    label: String,
+    label: String?,
     xalign: Float,
     yalign: Float,
     ratio: Float,
@@ -57,5 +57,5 @@ public fun AspectFrame.`set`(
   ratio: Float,
   obeyChild: Boolean
 ): Unit {
-  gtk_aspect_frame_set(this, xalign, yalign, ratio, obeyChild.toInt())
+  gtk_aspect_frame_set(this@`set`, xalign, yalign, ratio, obeyChild.toInt())
 }

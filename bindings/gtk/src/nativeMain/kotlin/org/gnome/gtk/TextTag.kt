@@ -27,7 +27,7 @@ public val TextTag.asObject: Object
   get() = reinterpret()
 
 public object TextTagFactory {
-  public fun new(name: String): TextTag = gtk_text_tag_new(name)!!.reinterpret()
+  public fun new(name: String?): TextTag = gtk_text_tag_new(name)!!.reinterpret()
 }
 
 public val TextTag.parentInstance: Object
@@ -36,11 +36,11 @@ public val TextTag.parentInstance: Object
 public var TextTag.priority: Int
   get() = gtk_text_tag_get_priority(this)
   set(`value`) {
-    gtk_text_tag_set_priority(this, `value`)
+    gtk_text_tag_set_priority(this@priority, `value`)
   }
 
 public fun TextTag.changed(sizeChanged: Boolean): Unit {
-  gtk_text_tag_changed(this, sizeChanged.toInt())
+  gtk_text_tag_changed(this@changed, sizeChanged.toInt())
 }
 
 public fun TextTag.onEvent(callback: (TextTag) -> Unit): TextTag {

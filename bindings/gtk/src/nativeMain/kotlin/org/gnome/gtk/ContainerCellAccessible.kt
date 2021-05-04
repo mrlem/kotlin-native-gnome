@@ -37,9 +37,9 @@ public val ContainerCellAccessible.parent: CellAccessible
   get() = pointed.parent.ptr
 
 public fun ContainerCellAccessible.addChild(child: CellAccessible?): Unit {
-  gtk_container_cell_accessible_add_child(this, child?.reinterpret())
+  gtk_container_cell_accessible_add_child(this@addChild, child?.reinterpret())
 }
 
 public fun ContainerCellAccessible.removeChild(child: CellAccessible?): Unit {
-  gtk_container_cell_accessible_remove_child(this, child?.reinterpret())
+  gtk_container_cell_accessible_remove_child(this@removeChild, child?.reinterpret())
 }

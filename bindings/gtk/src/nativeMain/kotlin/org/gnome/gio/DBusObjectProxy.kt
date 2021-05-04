@@ -18,7 +18,7 @@ public val DBusObjectProxy.asObject: Object
   get() = reinterpret()
 
 public object DBusObjectProxyFactory {
-  public fun new(connection: DBusConnection?, objectPath: String): DBusObjectProxy =
+  public fun new(connection: DBusConnection?, objectPath: String?): DBusObjectProxy =
       g_dbus_object_proxy_new(connection?.reinterpret(), objectPath)!!.reinterpret()
 }
 

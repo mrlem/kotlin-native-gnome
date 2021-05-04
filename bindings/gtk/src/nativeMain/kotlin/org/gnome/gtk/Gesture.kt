@@ -40,21 +40,22 @@ public val Gesture.asEventController: EventController
   get() = reinterpret()
 
 public fun Gesture.group(gesture: Gesture?): Unit {
-  gtk_gesture_group(this, gesture?.reinterpret())
+  gtk_gesture_group(this@group, gesture?.reinterpret())
 }
 
-public fun Gesture.isActive(): Boolean = gtk_gesture_is_active(this).toBoolean()
+public fun Gesture.isActive(): Boolean = gtk_gesture_is_active(this@isActive).toBoolean()
 
-public fun Gesture.isGroupedWith(other: Gesture?): Boolean = gtk_gesture_is_grouped_with(this,
-    other?.reinterpret()).toBoolean()
+public fun Gesture.isGroupedWith(other: Gesture?): Boolean =
+    gtk_gesture_is_grouped_with(this@isGroupedWith, other?.reinterpret()).toBoolean()
 
-public fun Gesture.isRecognized(): Boolean = gtk_gesture_is_recognized(this).toBoolean()
+public fun Gesture.isRecognized(): Boolean =
+    gtk_gesture_is_recognized(this@isRecognized).toBoolean()
 
-public fun Gesture.setState(state: EventSequenceState): Boolean = gtk_gesture_set_state(this,
-    state).toBoolean()
+public fun Gesture.setState(state: EventSequenceState): Boolean =
+    gtk_gesture_set_state(this@setState, state).toBoolean()
 
 public fun Gesture.ungroup(): Unit {
-  gtk_gesture_ungroup(this)
+  gtk_gesture_ungroup(this@ungroup)
 }
 
 public fun Gesture.onBegin(callback: (Gesture) -> Unit): Gesture {

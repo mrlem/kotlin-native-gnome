@@ -44,26 +44,26 @@ public val Resolver.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 @Throws(Error::class)
-public fun Resolver.lookupByAddress(address: InetAddress?, cancellable: Cancellable?): String =
+public fun Resolver.lookupByAddress(address: InetAddress?, cancellable: Cancellable?): String? =
     memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: String = g_resolver_lookup_by_address(this@lookupByAddress, address?.reinterpret(),
+  val result: String? = g_resolver_lookup_by_address(this@lookupByAddress, address?.reinterpret(),
       cancellable?.reinterpret(), errors).toKString()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
 @Throws(Error::class)
-public fun Resolver.lookupByAddressFinish(result: AsyncResult?): String = memScoped {
+public fun Resolver.lookupByAddressFinish(result: AsyncResult?): String? = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: String = g_resolver_lookup_by_address_finish(this@lookupByAddressFinish,
+  val result: String? = g_resolver_lookup_by_address_finish(this@lookupByAddressFinish,
       result?.reinterpret(), errors).toKString()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
 public fun Resolver.setDefault(): Unit {
-  g_resolver_set_default(this)
+  g_resolver_set_default(this@setDefault)
 }
 
 public fun Resolver.onReload(callback: (Resolver) -> Unit): Resolver {

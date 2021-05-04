@@ -25,6 +25,6 @@ public val Settings.asObject: Object
 public val Settings.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public fun Settings.resetProperty(name: String): Unit {
-  gtk_settings_reset_property(this, name)
+public fun Settings.resetProperty(name: String?): Unit {
+  gtk_settings_reset_property(this@resetProperty, name)
 }

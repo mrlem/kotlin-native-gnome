@@ -32,8 +32,8 @@ public val TlsCertificate.issuer: TlsCertificate?
   get() = g_tls_certificate_get_issuer(this)?.reinterpret()
 
 public fun TlsCertificate.isSame(certTwo: TlsCertificate?): Boolean =
-    g_tls_certificate_is_same(this, certTwo?.reinterpret()).toBoolean()
+    g_tls_certificate_is_same(this@isSame, certTwo?.reinterpret()).toBoolean()
 
 public fun TlsCertificate.verify(identity: SocketConnectable?, trustedCa: TlsCertificate?):
-    TlsCertificateFlags = g_tls_certificate_verify(this, identity?.reinterpret(),
+    TlsCertificateFlags = g_tls_certificate_verify(this@verify, identity?.reinterpret(),
     trustedCa?.reinterpret())

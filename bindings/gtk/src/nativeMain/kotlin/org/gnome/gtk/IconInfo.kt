@@ -49,7 +49,7 @@ public val IconInfo.baseScale: Int
 public val IconInfo.baseSize: Int
   get() = gtk_icon_info_get_base_size(this)
 
-public val IconInfo.filename: String
+public val IconInfo.filename: String?
   get() = gtk_icon_info_get_filename(this).toKString()
 
-public fun IconInfo.isSymbolic(): Boolean = gtk_icon_info_is_symbolic(this).toBoolean()
+public fun IconInfo.isSymbolic(): Boolean = gtk_icon_info_is_symbolic(this@isSymbolic).toBoolean()

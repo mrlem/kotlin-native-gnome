@@ -55,10 +55,10 @@ public object ColorButtonFactory {
 public val ColorButton.button: Button
   get() = pointed.button.ptr
 
-public var ColorButton.title: String
+public var ColorButton.title: String?
   get() = gtk_color_button_get_title(this).toKString()
   set(`value`) {
-    gtk_color_button_set_title(this, `value`)
+    gtk_color_button_set_title(this@title, `value`)
   }
 
 public fun ColorButton.onColorSet(callback: (ColorButton) -> Unit): ColorButton {

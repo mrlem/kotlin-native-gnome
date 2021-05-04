@@ -24,7 +24,7 @@ public val DBusObjectSkeleton.asObject: Object
   get() = reinterpret()
 
 public object DBusObjectSkeletonFactory {
-  public fun new(objectPath: String): DBusObjectSkeleton =
+  public fun new(objectPath: String?): DBusObjectSkeleton =
       g_dbus_object_skeleton_new(objectPath)!!.reinterpret()
 }
 
@@ -32,23 +32,23 @@ public val DBusObjectSkeleton.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public fun DBusObjectSkeleton.addInterface(`interface`: DBusInterfaceSkeleton?): Unit {
-  g_dbus_object_skeleton_add_interface(this, `interface`?.reinterpret())
+  g_dbus_object_skeleton_add_interface(this@addInterface, `interface`?.reinterpret())
 }
 
 public fun DBusObjectSkeleton.flush(): Unit {
-  g_dbus_object_skeleton_flush(this)
+  g_dbus_object_skeleton_flush(this@flush)
 }
 
 public fun DBusObjectSkeleton.removeInterface(`interface`: DBusInterfaceSkeleton?): Unit {
-  g_dbus_object_skeleton_remove_interface(this, `interface`?.reinterpret())
+  g_dbus_object_skeleton_remove_interface(this@removeInterface, `interface`?.reinterpret())
 }
 
-public fun DBusObjectSkeleton.removeInterfaceByName(interfaceName: String): Unit {
-  g_dbus_object_skeleton_remove_interface_by_name(this, interfaceName)
+public fun DBusObjectSkeleton.removeInterfaceByName(interfaceName: String?): Unit {
+  g_dbus_object_skeleton_remove_interface_by_name(this@removeInterfaceByName, interfaceName)
 }
 
-public fun DBusObjectSkeleton.setObjectPath(objectPath: String): Unit {
-  g_dbus_object_skeleton_set_object_path(this, objectPath)
+public fun DBusObjectSkeleton.setObjectPath(objectPath: String?): Unit {
+  g_dbus_object_skeleton_set_object_path(this@setObjectPath, objectPath)
 }
 
 public fun DBusObjectSkeleton.onAuthorizeMethod(callback: (DBusObjectSkeleton) -> Unit):

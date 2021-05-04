@@ -44,7 +44,7 @@ public val MenuToolButton.asToolButton: ToolButton
   get() = reinterpret()
 
 public object MenuToolButtonFactory {
-  public fun new(iconWidget: Widget?, label: String): MenuToolButton =
+  public fun new(iconWidget: Widget?, label: String?): MenuToolButton =
       gtk_menu_tool_button_new(iconWidget?.reinterpret(), label)!!.reinterpret()
 }
 
@@ -54,15 +54,15 @@ public val MenuToolButton.parent: ToolButton
 public var MenuToolButton.menu: Widget?
   get() = gtk_menu_tool_button_get_menu(this)?.reinterpret()
   set(`value`) {
-    gtk_menu_tool_button_set_menu(this, `value`)
+    gtk_menu_tool_button_set_menu(this@menu, `value`)
   }
 
-public fun MenuToolButton.setArrowTooltipMarkup(markup: String): Unit {
-  gtk_menu_tool_button_set_arrow_tooltip_markup(this, markup)
+public fun MenuToolButton.setArrowTooltipMarkup(markup: String?): Unit {
+  gtk_menu_tool_button_set_arrow_tooltip_markup(this@setArrowTooltipMarkup, markup)
 }
 
-public fun MenuToolButton.setArrowTooltipText(text: String): Unit {
-  gtk_menu_tool_button_set_arrow_tooltip_text(this, text)
+public fun MenuToolButton.setArrowTooltipText(text: String?): Unit {
+  gtk_menu_tool_button_set_arrow_tooltip_text(this@setArrowTooltipText, text)
 }
 
 public fun MenuToolButton.onShowMenu(callback: (MenuToolButton) -> Unit): MenuToolButton {

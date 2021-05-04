@@ -26,24 +26,24 @@ public object TestDBusFactory {
   public fun new(flags: TestDBusFlags): TestDBus = g_test_dbus_new(flags)!!.reinterpret()
 }
 
-public val TestDBus.busAddress: String
+public val TestDBus.busAddress: String?
   get() = g_test_dbus_get_bus_address(this).toKString()
 
 public val TestDBus.flags: TestDBusFlags
   get() = g_test_dbus_get_flags(this)
 
-public fun TestDBus.addServiceDir(path: String): Unit {
-  g_test_dbus_add_service_dir(this, path)
+public fun TestDBus.addServiceDir(path: String?): Unit {
+  g_test_dbus_add_service_dir(this@addServiceDir, path)
 }
 
 public fun TestDBus.down(): Unit {
-  g_test_dbus_down(this)
+  g_test_dbus_down(this@down)
 }
 
 public fun TestDBus.stop(): Unit {
-  g_test_dbus_stop(this)
+  g_test_dbus_stop(this@stop)
 }
 
 public fun TestDBus.up(): Unit {
-  g_test_dbus_up(this)
+  g_test_dbus_up(this@up)
 }

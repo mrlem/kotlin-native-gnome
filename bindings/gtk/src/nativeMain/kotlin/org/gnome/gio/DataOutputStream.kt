@@ -57,7 +57,7 @@ public val DataOutputStream.parentInstance: FilterOutputStream
 public var DataOutputStream.byteOrder: DataStreamByteOrder
   get() = g_data_output_stream_get_byte_order(this)
   set(`value`) {
-    g_data_output_stream_set_byte_order(this, `value`)
+    g_data_output_stream_set_byte_order(this@byteOrder, `value`)
   }
 
 @Throws(Error::class)
@@ -98,7 +98,8 @@ public fun DataOutputStream.putInt64(`data`: Long, cancellable: Cancellable?): B
 }
 
 @Throws(Error::class)
-public fun DataOutputStream.putString(str: String, cancellable: Cancellable?): Boolean = memScoped {
+public fun DataOutputStream.putString(str: String?, cancellable: Cancellable?): Boolean =
+    memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_data_output_stream_put_string(this@putString, str,
       cancellable?.reinterpret(), errors).toBoolean()

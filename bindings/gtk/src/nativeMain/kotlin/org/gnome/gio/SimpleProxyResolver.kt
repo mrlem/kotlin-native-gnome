@@ -23,10 +23,10 @@ public val SimpleProxyResolver.asObject: Object
 public val SimpleProxyResolver.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public fun SimpleProxyResolver.setDefaultProxy(defaultProxy: String): Unit {
-  g_simple_proxy_resolver_set_default_proxy(this, defaultProxy)
+public fun SimpleProxyResolver.setDefaultProxy(defaultProxy: String?): Unit {
+  g_simple_proxy_resolver_set_default_proxy(this@setDefaultProxy, defaultProxy)
 }
 
-public fun SimpleProxyResolver.setUriProxy(uriScheme: String, proxy: String): Unit {
-  g_simple_proxy_resolver_set_uri_proxy(this, uriScheme, proxy)
+public fun SimpleProxyResolver.setUriProxy(uriScheme: String?, proxy: String?): Unit {
+  g_simple_proxy_resolver_set_uri_proxy(this@setUriProxy, uriScheme, proxy)
 }

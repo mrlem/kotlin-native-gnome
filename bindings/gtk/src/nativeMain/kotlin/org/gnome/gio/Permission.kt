@@ -69,7 +69,7 @@ public fun Permission.implUpdate(
   canAcquire: Boolean,
   canRelease: Boolean
 ): Unit {
-  g_permission_impl_update(this, allowed.toInt(), canAcquire.toInt(), canRelease.toInt())
+  g_permission_impl_update(this@implUpdate, allowed.toInt(), canAcquire.toInt(), canRelease.toInt())
 }
 
 @Throws(Error::class)

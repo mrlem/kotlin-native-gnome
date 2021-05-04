@@ -31,42 +31,42 @@ public val MenuItem.asObject: Object
   get() = reinterpret()
 
 public object MenuItemFactory {
-  public fun new(label: String, detailedAction: String): MenuItem = g_menu_item_new(label,
+  public fun new(label: String?, detailedAction: String?): MenuItem = g_menu_item_new(label,
       detailedAction)!!.reinterpret()
 
   public fun newFromModel(model: MenuModel?, itemIndex: Int): MenuItem =
       g_menu_item_new_from_model(model?.reinterpret(), itemIndex)!!.reinterpret()
 
-  public fun newSection(label: String, section: MenuModel?): MenuItem =
+  public fun newSection(label: String?, section: MenuModel?): MenuItem =
       g_menu_item_new_section(label, section?.reinterpret())!!.reinterpret()
 
-  public fun newSubmenu(label: String, submenu: MenuModel?): MenuItem =
+  public fun newSubmenu(label: String?, submenu: MenuModel?): MenuItem =
       g_menu_item_new_submenu(label, submenu?.reinterpret())!!.reinterpret()
 }
 
-public fun MenuItem.getLink(link: String): MenuModel? = g_menu_item_get_link(this,
+public fun MenuItem.getLink(link: String?): MenuModel? = g_menu_item_get_link(this@getLink,
     link)?.reinterpret()
 
-public fun MenuItem.setDetailedAction(detailedAction: String): Unit {
-  g_menu_item_set_detailed_action(this, detailedAction)
+public fun MenuItem.setDetailedAction(detailedAction: String?): Unit {
+  g_menu_item_set_detailed_action(this@setDetailedAction, detailedAction)
 }
 
 public fun MenuItem.setIcon(icon: Icon?): Unit {
-  g_menu_item_set_icon(this, icon?.reinterpret())
+  g_menu_item_set_icon(this@setIcon, icon?.reinterpret())
 }
 
-public fun MenuItem.setLabel(label: String): Unit {
-  g_menu_item_set_label(this, label)
+public fun MenuItem.setLabel(label: String?): Unit {
+  g_menu_item_set_label(this@setLabel, label)
 }
 
-public fun MenuItem.setLink(link: String, model: MenuModel?): Unit {
-  g_menu_item_set_link(this, link, model?.reinterpret())
+public fun MenuItem.setLink(link: String?, model: MenuModel?): Unit {
+  g_menu_item_set_link(this@setLink, link, model?.reinterpret())
 }
 
 public fun MenuItem.setSection(section: MenuModel?): Unit {
-  g_menu_item_set_section(this, section?.reinterpret())
+  g_menu_item_set_section(this@setSection, section?.reinterpret())
 }
 
 public fun MenuItem.setSubmenu(submenu: MenuModel?): Unit {
-  g_menu_item_set_submenu(this, submenu?.reinterpret())
+  g_menu_item_set_submenu(this@setSubmenu, submenu?.reinterpret())
 }

@@ -26,10 +26,10 @@ public val MenuLinkIter.asObject: Object
 public val MenuLinkIter.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public val MenuLinkIter.name: String
+public val MenuLinkIter.name: String?
   get() = g_menu_link_iter_get_name(this).toKString()
 
 public val MenuLinkIter.`value`: MenuModel?
   get() = g_menu_link_iter_get_value(this)?.reinterpret()
 
-public fun MenuLinkIter.next(): Boolean = g_menu_link_iter_next(this).toBoolean()
+public fun MenuLinkIter.next(): Boolean = g_menu_link_iter_next(this@next).toBoolean()

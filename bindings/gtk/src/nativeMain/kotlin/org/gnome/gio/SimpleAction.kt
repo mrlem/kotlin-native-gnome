@@ -25,7 +25,7 @@ public val SimpleAction.asObject: Object
 public object SimpleActionFactory
 
 public fun SimpleAction.setEnabled(enabled: Boolean): Unit {
-  g_simple_action_set_enabled(this, enabled.toInt())
+  g_simple_action_set_enabled(this@setEnabled, enabled.toInt())
 }
 
 public fun SimpleAction.onActivate(callback: (SimpleAction) -> Unit): SimpleAction {

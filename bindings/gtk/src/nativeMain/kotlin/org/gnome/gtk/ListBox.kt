@@ -69,13 +69,13 @@ public val ListBox.parentInstance: Container
 public var ListBox.activateOnSingleClick: Boolean
   get() = gtk_list_box_get_activate_on_single_click(this).toBoolean()
   set(`value`) {
-    gtk_list_box_set_activate_on_single_click(this, `value`.toInt())
+    gtk_list_box_set_activate_on_single_click(this@activateOnSingleClick, `value`.toInt())
   }
 
 public var ListBox.adjustment: Adjustment?
   get() = gtk_list_box_get_adjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_list_box_set_adjustment(this, `value`)
+    gtk_list_box_set_adjustment(this@adjustment, `value`)
   }
 
 public val ListBox.selectedRow: ListBoxRow?
@@ -84,61 +84,61 @@ public val ListBox.selectedRow: ListBoxRow?
 public var ListBox.selectionMode: SelectionMode
   get() = gtk_list_box_get_selection_mode(this)
   set(`value`) {
-    gtk_list_box_set_selection_mode(this, `value`)
+    gtk_list_box_set_selection_mode(this@selectionMode, `value`)
   }
 
 public fun ListBox.dragHighlightRow(row: ListBoxRow?): Unit {
-  gtk_list_box_drag_highlight_row(this, row?.reinterpret())
+  gtk_list_box_drag_highlight_row(this@dragHighlightRow, row?.reinterpret())
 }
 
 public fun ListBox.dragUnhighlightRow(): Unit {
-  gtk_list_box_drag_unhighlight_row(this)
+  gtk_list_box_drag_unhighlight_row(this@dragUnhighlightRow)
 }
 
-public fun ListBox.getRowAtIndex(index: Int): ListBoxRow? = gtk_list_box_get_row_at_index(this,
-    index)?.reinterpret()
+public fun ListBox.getRowAtIndex(index: Int): ListBoxRow? =
+    gtk_list_box_get_row_at_index(this@getRowAtIndex, index)?.reinterpret()
 
-public fun ListBox.getRowAtY(y: Int): ListBoxRow? = gtk_list_box_get_row_at_y(this,
+public fun ListBox.getRowAtY(y: Int): ListBoxRow? = gtk_list_box_get_row_at_y(this@getRowAtY,
     y)?.reinterpret()
 
 public fun ListBox.insert(child: Widget?, position: Int): Unit {
-  gtk_list_box_insert(this, child?.reinterpret(), position)
+  gtk_list_box_insert(this@insert, child?.reinterpret(), position)
 }
 
 public fun ListBox.invalidateFilter(): Unit {
-  gtk_list_box_invalidate_filter(this)
+  gtk_list_box_invalidate_filter(this@invalidateFilter)
 }
 
 public fun ListBox.invalidateHeaders(): Unit {
-  gtk_list_box_invalidate_headers(this)
+  gtk_list_box_invalidate_headers(this@invalidateHeaders)
 }
 
 public fun ListBox.invalidateSort(): Unit {
-  gtk_list_box_invalidate_sort(this)
+  gtk_list_box_invalidate_sort(this@invalidateSort)
 }
 
 public fun ListBox.prepend(child: Widget?): Unit {
-  gtk_list_box_prepend(this, child?.reinterpret())
+  gtk_list_box_prepend(this@prepend, child?.reinterpret())
 }
 
 public fun ListBox.selectAll(): Unit {
-  gtk_list_box_select_all(this)
+  gtk_list_box_select_all(this@selectAll)
 }
 
 public fun ListBox.selectRow(row: ListBoxRow?): Unit {
-  gtk_list_box_select_row(this, row?.reinterpret())
+  gtk_list_box_select_row(this@selectRow, row?.reinterpret())
 }
 
 public fun ListBox.setPlaceholder(placeholder: Widget?): Unit {
-  gtk_list_box_set_placeholder(this, placeholder?.reinterpret())
+  gtk_list_box_set_placeholder(this@setPlaceholder, placeholder?.reinterpret())
 }
 
 public fun ListBox.unselectAll(): Unit {
-  gtk_list_box_unselect_all(this)
+  gtk_list_box_unselect_all(this@unselectAll)
 }
 
 public fun ListBox.unselectRow(row: ListBoxRow?): Unit {
-  gtk_list_box_unselect_row(this, row?.reinterpret())
+  gtk_list_box_unselect_row(this@unselectRow, row?.reinterpret())
 }
 
 public fun ListBox.onActivateCursorRow(callback: (ListBox) -> Unit): ListBox {

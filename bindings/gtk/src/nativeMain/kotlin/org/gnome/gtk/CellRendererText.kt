@@ -34,7 +34,7 @@ public val CellRendererText.parent: CellRenderer
   get() = pointed.parent.ptr
 
 public fun CellRendererText.setFixedHeightFromFont(numberOfRows: Int): Unit {
-  gtk_cell_renderer_text_set_fixed_height_from_font(this, numberOfRows)
+  gtk_cell_renderer_text_set_fixed_height_from_font(this@setFixedHeightFromFont, numberOfRows)
 }
 
 public fun CellRendererText.onEdited(callback: (CellRendererText) -> Unit): CellRendererText {

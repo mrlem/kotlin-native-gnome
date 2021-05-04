@@ -44,28 +44,30 @@ public fun TypeModule.addInterface(
   interfaceType: GType,
   interfaceInfo: InterfaceInfo?
 ): Unit {
-  g_type_module_add_interface(this, instanceType, interfaceType, interfaceInfo?.reinterpret())
+  g_type_module_add_interface(this@addInterface, instanceType, interfaceType,
+      interfaceInfo?.reinterpret())
 }
 
-public fun TypeModule.registerEnum(name: String, constStaticValues: EnumValue?): GType =
-    g_type_module_register_enum(this, name, constStaticValues?.reinterpret())
+public fun TypeModule.registerEnum(name: String?, constStaticValues: EnumValue?): GType =
+    g_type_module_register_enum(this@registerEnum, name, constStaticValues?.reinterpret())
 
-public fun TypeModule.registerFlags(name: String, constStaticValues: FlagsValue?): GType =
-    g_type_module_register_flags(this, name, constStaticValues?.reinterpret())
+public fun TypeModule.registerFlags(name: String?, constStaticValues: FlagsValue?): GType =
+    g_type_module_register_flags(this@registerFlags, name, constStaticValues?.reinterpret())
 
 public fun TypeModule.registerType(
   parentType: GType,
-  typeName: String,
+  typeName: String?,
   typeInfo: TypeInfo?,
   flags: TypeFlags
-): GType = g_type_module_register_type(this, parentType, typeName, typeInfo?.reinterpret(), flags)
+): GType = g_type_module_register_type(this@registerType, parentType, typeName,
+    typeInfo?.reinterpret(), flags)
 
-public fun TypeModule.setName(name: String): Unit {
-  g_type_module_set_name(this, name)
+public fun TypeModule.setName(name: String?): Unit {
+  g_type_module_set_name(this@setName, name)
 }
 
 public fun TypeModule.unuse(): Unit {
-  g_type_module_unuse(this)
+  g_type_module_unuse(this@unuse)
 }
 
-public fun TypeModule.use(): Boolean = g_type_module_use(this).toBoolean()
+public fun TypeModule.use(): Boolean = g_type_module_use(this@use).toBoolean()

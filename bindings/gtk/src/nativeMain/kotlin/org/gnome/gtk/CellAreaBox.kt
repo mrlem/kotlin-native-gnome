@@ -35,7 +35,7 @@ public object CellAreaBoxFactory {
 public var CellAreaBox.spacing: Int
   get() = gtk_cell_area_box_get_spacing(this)
   set(`value`) {
-    gtk_cell_area_box_set_spacing(this, `value`)
+    gtk_cell_area_box_set_spacing(this@spacing, `value`)
   }
 
 public fun CellAreaBox.packEnd(
@@ -44,7 +44,7 @@ public fun CellAreaBox.packEnd(
   align: Boolean,
   fixed: Boolean
 ): Unit {
-  gtk_cell_area_box_pack_end(this, renderer?.reinterpret(), expand.toInt(), align.toInt(),
+  gtk_cell_area_box_pack_end(this@packEnd, renderer?.reinterpret(), expand.toInt(), align.toInt(),
       fixed.toInt())
 }
 
@@ -54,6 +54,6 @@ public fun CellAreaBox.packStart(
   align: Boolean,
   fixed: Boolean
 ): Unit {
-  gtk_cell_area_box_pack_start(this, renderer?.reinterpret(), expand.toInt(), align.toInt(),
-      fixed.toInt())
+  gtk_cell_area_box_pack_start(this@packStart, renderer?.reinterpret(), expand.toInt(),
+      align.toInt(), fixed.toInt())
 }

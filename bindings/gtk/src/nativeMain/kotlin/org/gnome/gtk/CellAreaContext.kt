@@ -29,17 +29,18 @@ public val CellAreaContext.area: CellArea?
   get() = gtk_cell_area_context_get_area(this)?.reinterpret()
 
 public fun CellAreaContext.allocate(width: Int, height: Int): Unit {
-  gtk_cell_area_context_allocate(this, width, height)
+  gtk_cell_area_context_allocate(this@allocate, width, height)
 }
 
 public fun CellAreaContext.pushPreferredHeight(minimumHeight: Int, naturalHeight: Int): Unit {
-  gtk_cell_area_context_push_preferred_height(this, minimumHeight, naturalHeight)
+  gtk_cell_area_context_push_preferred_height(this@pushPreferredHeight, minimumHeight,
+      naturalHeight)
 }
 
 public fun CellAreaContext.pushPreferredWidth(minimumWidth: Int, naturalWidth: Int): Unit {
-  gtk_cell_area_context_push_preferred_width(this, minimumWidth, naturalWidth)
+  gtk_cell_area_context_push_preferred_width(this@pushPreferredWidth, minimumWidth, naturalWidth)
 }
 
 public fun CellAreaContext.reset(): Unit {
-  gtk_cell_area_context_reset(this)
+  gtk_cell_area_context_reset(this@reset)
 }

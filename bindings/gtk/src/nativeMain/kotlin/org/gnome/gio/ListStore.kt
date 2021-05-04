@@ -31,17 +31,17 @@ public object ListStoreFactory {
 }
 
 public fun ListStore.append(item: Object?): Unit {
-  g_list_store_append(this, item?.reinterpret())
+  g_list_store_append(this@append, item?.reinterpret())
 }
 
 public fun ListStore.insert(position: UInt, item: Object?): Unit {
-  g_list_store_insert(this, position, item?.reinterpret())
+  g_list_store_insert(this@insert, position, item?.reinterpret())
 }
 
 public fun ListStore.remove(position: UInt): Unit {
-  g_list_store_remove(this, position)
+  g_list_store_remove(this@remove, position)
 }
 
 public fun ListStore.removeAll(): Unit {
-  g_list_store_remove_all(this)
+  g_list_store_remove_all(this@removeAll)
 }

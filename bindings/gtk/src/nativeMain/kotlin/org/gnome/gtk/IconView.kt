@@ -112,114 +112,114 @@ public val IconView.parent: Container
 public var IconView.activateOnSingleClick: Boolean
   get() = gtk_icon_view_get_activate_on_single_click(this).toBoolean()
   set(`value`) {
-    gtk_icon_view_set_activate_on_single_click(this, `value`.toInt())
+    gtk_icon_view_set_activate_on_single_click(this@activateOnSingleClick, `value`.toInt())
   }
 
 public var IconView.columnSpacing: Int
   get() = gtk_icon_view_get_column_spacing(this)
   set(`value`) {
-    gtk_icon_view_set_column_spacing(this, `value`)
+    gtk_icon_view_set_column_spacing(this@columnSpacing, `value`)
   }
 
 public var IconView.columns: Int
   get() = gtk_icon_view_get_columns(this)
   set(`value`) {
-    gtk_icon_view_set_columns(this, `value`)
+    gtk_icon_view_set_columns(this@columns, `value`)
   }
 
 public var IconView.itemOrientation: Orientation
   get() = gtk_icon_view_get_item_orientation(this)
   set(`value`) {
-    gtk_icon_view_set_item_orientation(this, `value`)
+    gtk_icon_view_set_item_orientation(this@itemOrientation, `value`)
   }
 
 public var IconView.itemPadding: Int
   get() = gtk_icon_view_get_item_padding(this)
   set(`value`) {
-    gtk_icon_view_set_item_padding(this, `value`)
+    gtk_icon_view_set_item_padding(this@itemPadding, `value`)
   }
 
 public var IconView.itemWidth: Int
   get() = gtk_icon_view_get_item_width(this)
   set(`value`) {
-    gtk_icon_view_set_item_width(this, `value`)
+    gtk_icon_view_set_item_width(this@itemWidth, `value`)
   }
 
 public var IconView.margin: Int
   get() = gtk_icon_view_get_margin(this)
   set(`value`) {
-    gtk_icon_view_set_margin(this, `value`)
+    gtk_icon_view_set_margin(this@margin, `value`)
   }
 
 public var IconView.markupColumn: Int
   get() = gtk_icon_view_get_markup_column(this)
   set(`value`) {
-    gtk_icon_view_set_markup_column(this, `value`)
+    gtk_icon_view_set_markup_column(this@markupColumn, `value`)
   }
 
 public var IconView.model: TreeModel?
   get() = gtk_icon_view_get_model(this)?.reinterpret()
   set(`value`) {
-    gtk_icon_view_set_model(this, `value`)
+    gtk_icon_view_set_model(this@model, `value`)
   }
 
 public var IconView.pixbufColumn: Int
   get() = gtk_icon_view_get_pixbuf_column(this)
   set(`value`) {
-    gtk_icon_view_set_pixbuf_column(this, `value`)
+    gtk_icon_view_set_pixbuf_column(this@pixbufColumn, `value`)
   }
 
 public var IconView.reorderable: Boolean
   get() = gtk_icon_view_get_reorderable(this).toBoolean()
   set(`value`) {
-    gtk_icon_view_set_reorderable(this, `value`.toInt())
+    gtk_icon_view_set_reorderable(this@reorderable, `value`.toInt())
   }
 
 public var IconView.rowSpacing: Int
   get() = gtk_icon_view_get_row_spacing(this)
   set(`value`) {
-    gtk_icon_view_set_row_spacing(this, `value`)
+    gtk_icon_view_set_row_spacing(this@rowSpacing, `value`)
   }
 
 public var IconView.selectionMode: SelectionMode
   get() = gtk_icon_view_get_selection_mode(this)
   set(`value`) {
-    gtk_icon_view_set_selection_mode(this, `value`)
+    gtk_icon_view_set_selection_mode(this@selectionMode, `value`)
   }
 
 public var IconView.spacing: Int
   get() = gtk_icon_view_get_spacing(this)
   set(`value`) {
-    gtk_icon_view_set_spacing(this, `value`)
+    gtk_icon_view_set_spacing(this@spacing, `value`)
   }
 
 public var IconView.textColumn: Int
   get() = gtk_icon_view_get_text_column(this)
   set(`value`) {
-    gtk_icon_view_set_text_column(this, `value`)
+    gtk_icon_view_set_text_column(this@textColumn, `value`)
   }
 
 public var IconView.tooltipColumn: Int
   get() = gtk_icon_view_get_tooltip_column(this)
   set(`value`) {
-    gtk_icon_view_set_tooltip_column(this, `value`)
+    gtk_icon_view_set_tooltip_column(this@tooltipColumn, `value`)
   }
 
-public fun IconView.getItemColumn(path: TreePath?): Int = gtk_icon_view_get_item_column(this,
+public fun IconView.getItemColumn(path: TreePath?): Int =
+    gtk_icon_view_get_item_column(this@getItemColumn, path?.reinterpret())
+
+public fun IconView.getItemRow(path: TreePath?): Int = gtk_icon_view_get_item_row(this@getItemRow,
     path?.reinterpret())
 
-public fun IconView.getItemRow(path: TreePath?): Int = gtk_icon_view_get_item_row(this,
-    path?.reinterpret())
-
-public fun IconView.getPathAtPos(x: Int, y: Int): TreePath? = gtk_icon_view_get_path_at_pos(this, x,
-    y)?.reinterpret()
+public fun IconView.getPathAtPos(x: Int, y: Int): TreePath? =
+    gtk_icon_view_get_path_at_pos(this@getPathAtPos, x, y)?.reinterpret()
 
 public fun IconView.itemActivated(path: TreePath?): Unit {
-  gtk_icon_view_item_activated(this, path?.reinterpret())
+  gtk_icon_view_item_activated(this@itemActivated, path?.reinterpret())
 }
 
-public fun IconView.pathIsSelected(path: TreePath?): Boolean = gtk_icon_view_path_is_selected(this,
-    path?.reinterpret()).toBoolean()
+public fun IconView.pathIsSelected(path: TreePath?): Boolean =
+    gtk_icon_view_path_is_selected(this@pathIsSelected, path?.reinterpret()).toBoolean()
 
 public fun IconView.scrollToPath(
   path: TreePath?,
@@ -227,15 +227,16 @@ public fun IconView.scrollToPath(
   rowAlign: Float,
   colAlign: Float
 ): Unit {
-  gtk_icon_view_scroll_to_path(this, path?.reinterpret(), useAlign.toInt(), rowAlign, colAlign)
+  gtk_icon_view_scroll_to_path(this@scrollToPath, path?.reinterpret(), useAlign.toInt(), rowAlign,
+      colAlign)
 }
 
 public fun IconView.selectAll(): Unit {
-  gtk_icon_view_select_all(this)
+  gtk_icon_view_select_all(this@selectAll)
 }
 
 public fun IconView.selectPath(path: TreePath?): Unit {
-  gtk_icon_view_select_path(this, path?.reinterpret())
+  gtk_icon_view_select_path(this@selectPath, path?.reinterpret())
 }
 
 public fun IconView.setCursor(
@@ -243,11 +244,12 @@ public fun IconView.setCursor(
   cell: CellRenderer?,
   startEditing: Boolean
 ): Unit {
-  gtk_icon_view_set_cursor(this, path?.reinterpret(), cell?.reinterpret(), startEditing.toInt())
+  gtk_icon_view_set_cursor(this@setCursor, path?.reinterpret(), cell?.reinterpret(),
+      startEditing.toInt())
 }
 
 public fun IconView.setDragDestItem(path: TreePath?, pos: IconViewDropPosition): Unit {
-  gtk_icon_view_set_drag_dest_item(this, path?.reinterpret(), pos)
+  gtk_icon_view_set_drag_dest_item(this@setDragDestItem, path?.reinterpret(), pos)
 }
 
 public fun IconView.setTooltipCell(
@@ -255,28 +257,28 @@ public fun IconView.setTooltipCell(
   path: TreePath?,
   cell: CellRenderer?
 ): Unit {
-  gtk_icon_view_set_tooltip_cell(this, tooltip?.reinterpret(), path?.reinterpret(),
+  gtk_icon_view_set_tooltip_cell(this@setTooltipCell, tooltip?.reinterpret(), path?.reinterpret(),
       cell?.reinterpret())
 }
 
 public fun IconView.setTooltipItem(tooltip: Tooltip?, path: TreePath?): Unit {
-  gtk_icon_view_set_tooltip_item(this, tooltip?.reinterpret(), path?.reinterpret())
+  gtk_icon_view_set_tooltip_item(this@setTooltipItem, tooltip?.reinterpret(), path?.reinterpret())
 }
 
 public fun IconView.unselectAll(): Unit {
-  gtk_icon_view_unselect_all(this)
+  gtk_icon_view_unselect_all(this@unselectAll)
 }
 
 public fun IconView.unselectPath(path: TreePath?): Unit {
-  gtk_icon_view_unselect_path(this, path?.reinterpret())
+  gtk_icon_view_unselect_path(this@unselectPath, path?.reinterpret())
 }
 
 public fun IconView.unsetModelDragDest(): Unit {
-  gtk_icon_view_unset_model_drag_dest(this)
+  gtk_icon_view_unset_model_drag_dest(this@unsetModelDragDest)
 }
 
 public fun IconView.unsetModelDragSource(): Unit {
-  gtk_icon_view_unset_model_drag_source(this)
+  gtk_icon_view_unset_model_drag_source(this@unsetModelDragSource)
 }
 
 public fun IconView.onActivateCursorItem(callback: (IconView) -> Unit): IconView {

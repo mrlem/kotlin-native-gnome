@@ -43,7 +43,7 @@ public val AccelLabel.asLabel: Label
   get() = reinterpret()
 
 public object AccelLabelFactory {
-  public fun new(string: String): AccelLabel = gtk_accel_label_new(string)!!.reinterpret()
+  public fun new(string: String?): AccelLabel = gtk_accel_label_new(string)!!.reinterpret()
 }
 
 public val AccelLabel.label: Label
@@ -52,14 +52,14 @@ public val AccelLabel.label: Label
 public var AccelLabel.accelWidget: Widget?
   get() = gtk_accel_label_get_accel_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_accel_label_set_accel_widget(this, `value`)
+    gtk_accel_label_set_accel_widget(this@accelWidget, `value`)
   }
 
 public val AccelLabel.accelWidth: UInt
   get() = gtk_accel_label_get_accel_width(this)
 
-public fun AccelLabel.refetch(): Boolean = gtk_accel_label_refetch(this).toBoolean()
+public fun AccelLabel.refetch(): Boolean = gtk_accel_label_refetch(this@refetch).toBoolean()
 
 public fun AccelLabel.setAccelClosure(accelClosure: Closure?): Unit {
-  gtk_accel_label_set_accel_closure(this, accelClosure?.reinterpret())
+  gtk_accel_label_set_accel_closure(this@setAccelClosure, accelClosure?.reinterpret())
 }

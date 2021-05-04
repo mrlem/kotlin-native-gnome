@@ -11,5 +11,5 @@ fun Object.connect(name: String, function: () -> Unit) {
         @Suppress("USELESS_CAST")
         null as COpaquePointer? // needed to prevent compiler crash
     }
-        .reinterpret(), kotlinx.cinterop.StableRef.create(function).asCPointer(), null, 0.convert())
+        .reinterpret(), StableRef.create(function).asCPointer(), null, 0.convert())
 }

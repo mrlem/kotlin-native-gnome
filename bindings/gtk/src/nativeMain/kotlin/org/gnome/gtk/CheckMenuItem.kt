@@ -49,10 +49,10 @@ public val CheckMenuItem.asMenuItem: MenuItem
 public object CheckMenuItemFactory {
   public fun new(): CheckMenuItem = gtk_check_menu_item_new()!!.reinterpret()
 
-  public fun newWithLabel(label: String): CheckMenuItem =
+  public fun newWithLabel(label: String?): CheckMenuItem =
       gtk_check_menu_item_new_with_label(label)!!.reinterpret()
 
-  public fun newWithMnemonic(label: String): CheckMenuItem =
+  public fun newWithMnemonic(label: String?): CheckMenuItem =
       gtk_check_menu_item_new_with_mnemonic(label)!!.reinterpret()
 }
 
@@ -62,23 +62,23 @@ public val CheckMenuItem.menuItem: MenuItem
 public var CheckMenuItem.active: Boolean
   get() = gtk_check_menu_item_get_active(this).toBoolean()
   set(`value`) {
-    gtk_check_menu_item_set_active(this, `value`.toInt())
+    gtk_check_menu_item_set_active(this@active, `value`.toInt())
   }
 
 public var CheckMenuItem.drawAsRadio: Boolean
   get() = gtk_check_menu_item_get_draw_as_radio(this).toBoolean()
   set(`value`) {
-    gtk_check_menu_item_set_draw_as_radio(this, `value`.toInt())
+    gtk_check_menu_item_set_draw_as_radio(this@drawAsRadio, `value`.toInt())
   }
 
 public var CheckMenuItem.inconsistent: Boolean
   get() = gtk_check_menu_item_get_inconsistent(this).toBoolean()
   set(`value`) {
-    gtk_check_menu_item_set_inconsistent(this, `value`.toInt())
+    gtk_check_menu_item_set_inconsistent(this@inconsistent, `value`.toInt())
   }
 
 public fun CheckMenuItem.toggled(): Unit {
-  gtk_check_menu_item_toggled(this)
+  gtk_check_menu_item_toggled(this@toggled)
 }
 
 public fun CheckMenuItem.onToggled(callback: (CheckMenuItem) -> Unit): CheckMenuItem {

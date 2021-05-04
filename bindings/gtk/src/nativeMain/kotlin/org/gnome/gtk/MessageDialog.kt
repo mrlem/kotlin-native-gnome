@@ -52,6 +52,6 @@ public val MessageDialog.parentInstance: Dialog
 public val MessageDialog.messageArea: Widget?
   get() = gtk_message_dialog_get_message_area(this)?.reinterpret()
 
-public fun MessageDialog.setMarkup(str: String): Unit {
-  gtk_message_dialog_set_markup(this, str)
+public fun MessageDialog.setMarkup(str: String?): Unit {
+  gtk_message_dialog_set_markup(this@setMarkup, str)
 }

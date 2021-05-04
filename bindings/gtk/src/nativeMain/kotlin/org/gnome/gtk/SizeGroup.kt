@@ -34,13 +34,13 @@ public val SizeGroup.parentInstance: Object
 public var SizeGroup.mode: SizeGroupMode
   get() = gtk_size_group_get_mode(this)
   set(`value`) {
-    gtk_size_group_set_mode(this, `value`)
+    gtk_size_group_set_mode(this@mode, `value`)
   }
 
 public fun SizeGroup.addWidget(widget: Widget?): Unit {
-  gtk_size_group_add_widget(this, widget?.reinterpret())
+  gtk_size_group_add_widget(this@addWidget, widget?.reinterpret())
 }
 
 public fun SizeGroup.removeWidget(widget: Widget?): Unit {
-  gtk_size_group_remove_widget(this, widget?.reinterpret())
+  gtk_size_group_remove_widget(this@removeWidget, widget?.reinterpret())
 }

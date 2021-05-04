@@ -23,7 +23,7 @@ class AppDelegate(private val ui: SampleUI) {
     }
 
     private fun showConverted() = with(ui) {
-        dollarAmountLabel.text = convert(euroAmountEntry.text.toFloatOrNull())
+        dollarAmountLabel.text = convert(euroAmountEntry.text?.toFloatOrNull())
     }
 
     private fun convert(euros: Float?) = euros

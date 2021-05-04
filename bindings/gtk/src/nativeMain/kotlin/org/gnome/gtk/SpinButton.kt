@@ -77,37 +77,37 @@ public val SpinButton.entry: Entry
 public var SpinButton.adjustment: Adjustment?
   get() = gtk_spin_button_get_adjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_spin_button_set_adjustment(this, `value`)
+    gtk_spin_button_set_adjustment(this@adjustment, `value`)
   }
 
 public var SpinButton.digits: UInt
   get() = gtk_spin_button_get_digits(this)
   set(`value`) {
-    gtk_spin_button_set_digits(this, `value`)
+    gtk_spin_button_set_digits(this@digits, `value`)
   }
 
 public var SpinButton.numeric: Boolean
   get() = gtk_spin_button_get_numeric(this).toBoolean()
   set(`value`) {
-    gtk_spin_button_set_numeric(this, `value`.toInt())
+    gtk_spin_button_set_numeric(this@numeric, `value`.toInt())
   }
 
 public var SpinButton.snapToTicks: Boolean
   get() = gtk_spin_button_get_snap_to_ticks(this).toBoolean()
   set(`value`) {
-    gtk_spin_button_set_snap_to_ticks(this, `value`.toInt())
+    gtk_spin_button_set_snap_to_ticks(this@snapToTicks, `value`.toInt())
   }
 
 public var SpinButton.updatePolicy: SpinButtonUpdatePolicy
   get() = gtk_spin_button_get_update_policy(this)
   set(`value`) {
-    gtk_spin_button_set_update_policy(this, `value`)
+    gtk_spin_button_set_update_policy(this@updatePolicy, `value`)
   }
 
 public var SpinButton.`value`: Double
   get() = gtk_spin_button_get_value(this)
   set(`value`) {
-    gtk_spin_button_set_value(this, `value`)
+    gtk_spin_button_set_value(this@`value`, `value`)
   }
 
 public val SpinButton.valueAsInt: Int
@@ -116,7 +116,7 @@ public val SpinButton.valueAsInt: Int
 public var SpinButton.wrap: Boolean
   get() = gtk_spin_button_get_wrap(this).toBoolean()
   set(`value`) {
-    gtk_spin_button_set_wrap(this, `value`.toInt())
+    gtk_spin_button_set_wrap(this@wrap, `value`.toInt())
   }
 
 public fun SpinButton.configure(
@@ -124,23 +124,23 @@ public fun SpinButton.configure(
   climbRate: Double,
   digits: UInt
 ): Unit {
-  gtk_spin_button_configure(this, adjustment?.reinterpret(), climbRate, digits)
+  gtk_spin_button_configure(this@configure, adjustment?.reinterpret(), climbRate, digits)
 }
 
 public fun SpinButton.setIncrements(step: Double, page: Double): Unit {
-  gtk_spin_button_set_increments(this, step, page)
+  gtk_spin_button_set_increments(this@setIncrements, step, page)
 }
 
 public fun SpinButton.setRange(min: Double, max: Double): Unit {
-  gtk_spin_button_set_range(this, min, max)
+  gtk_spin_button_set_range(this@setRange, min, max)
 }
 
 public fun SpinButton.spin(direction: SpinType, increment: Double): Unit {
-  gtk_spin_button_spin(this, direction, increment)
+  gtk_spin_button_spin(this@spin, direction, increment)
 }
 
 public fun SpinButton.update(): Unit {
-  gtk_spin_button_update(this)
+  gtk_spin_button_update(this@update)
 }
 
 public fun SpinButton.onChangeValue(callback: (SpinButton) -> Unit): SpinButton {

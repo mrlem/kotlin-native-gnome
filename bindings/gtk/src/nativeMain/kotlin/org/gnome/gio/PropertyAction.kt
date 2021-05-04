@@ -16,9 +16,9 @@ public val PropertyAction.asObject: Object
 
 public object PropertyActionFactory {
   public fun new(
-    name: String,
+    name: String?,
     `object`: Object?,
-    propertyName: String
+    propertyName: String?
   ): PropertyAction = g_property_action_new(name, `object`?.reinterpret(),
       propertyName)!!.reinterpret()
 }

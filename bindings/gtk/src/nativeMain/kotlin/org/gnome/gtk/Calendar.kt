@@ -53,42 +53,42 @@ public val Calendar.widget: Widget
 public var Calendar.detailHeightRows: Int
   get() = gtk_calendar_get_detail_height_rows(this)
   set(`value`) {
-    gtk_calendar_set_detail_height_rows(this, `value`)
+    gtk_calendar_set_detail_height_rows(this@detailHeightRows, `value`)
   }
 
 public var Calendar.detailWidthChars: Int
   get() = gtk_calendar_get_detail_width_chars(this)
   set(`value`) {
-    gtk_calendar_set_detail_width_chars(this, `value`)
+    gtk_calendar_set_detail_width_chars(this@detailWidthChars, `value`)
   }
 
 public var Calendar.displayOptions: CalendarDisplayOptions
   get() = gtk_calendar_get_display_options(this)
   set(`value`) {
-    gtk_calendar_set_display_options(this, `value`)
+    gtk_calendar_set_display_options(this@displayOptions, `value`)
   }
 
 public fun Calendar.clearMarks(): Unit {
-  gtk_calendar_clear_marks(this)
+  gtk_calendar_clear_marks(this@clearMarks)
 }
 
-public fun Calendar.getDayIsMarked(day: UInt): Boolean = gtk_calendar_get_day_is_marked(this,
-    day).toBoolean()
+public fun Calendar.getDayIsMarked(day: UInt): Boolean =
+    gtk_calendar_get_day_is_marked(this@getDayIsMarked, day).toBoolean()
 
 public fun Calendar.markDay(day: UInt): Unit {
-  gtk_calendar_mark_day(this, day)
+  gtk_calendar_mark_day(this@markDay, day)
 }
 
 public fun Calendar.selectDay(day: UInt): Unit {
-  gtk_calendar_select_day(this, day)
+  gtk_calendar_select_day(this@selectDay, day)
 }
 
 public fun Calendar.selectMonth(month: UInt, year: UInt): Unit {
-  gtk_calendar_select_month(this, month, year)
+  gtk_calendar_select_month(this@selectMonth, month, year)
 }
 
 public fun Calendar.unmarkDay(day: UInt): Unit {
-  gtk_calendar_unmark_day(this, day)
+  gtk_calendar_unmark_day(this@unmarkDay, day)
 }
 
 public fun Calendar.onDaySelected(callback: (Calendar) -> Unit): Calendar {

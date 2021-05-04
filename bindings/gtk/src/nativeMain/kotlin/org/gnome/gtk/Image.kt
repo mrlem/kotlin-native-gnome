@@ -61,16 +61,16 @@ public val Image.asMisc: Misc
 public object ImageFactory {
   public fun new(): Image = gtk_image_new()!!.reinterpret()
 
-  public fun newFromFile(filename: String): Image =
+  public fun newFromFile(filename: String?): Image =
       gtk_image_new_from_file(filename)!!.reinterpret()
 
   public fun newFromGicon(icon: Icon?, size: IconSize): Image =
       gtk_image_new_from_gicon(icon?.reinterpret(), size)!!.reinterpret()
 
-  public fun newFromIconName(iconName: String, size: IconSize): Image =
+  public fun newFromIconName(iconName: String?, size: IconSize): Image =
       gtk_image_new_from_icon_name(iconName, size)!!.reinterpret()
 
-  public fun newFromResource(resourcePath: String): Image =
+  public fun newFromResource(resourcePath: String?): Image =
       gtk_image_new_from_resource(resourcePath)!!.reinterpret()
 }
 
@@ -80,28 +80,28 @@ public val Image.misc: Misc
 public var Image.pixelSize: Int
   get() = gtk_image_get_pixel_size(this)
   set(`value`) {
-    gtk_image_set_pixel_size(this, `value`)
+    gtk_image_set_pixel_size(this@pixelSize, `value`)
   }
 
 public val Image.storageType: ImageType
   get() = gtk_image_get_storage_type(this)
 
 public fun Image.clear(): Unit {
-  gtk_image_clear(this)
+  gtk_image_clear(this@clear)
 }
 
-public fun Image.setFromFile(filename: String): Unit {
-  gtk_image_set_from_file(this, filename)
+public fun Image.setFromFile(filename: String?): Unit {
+  gtk_image_set_from_file(this@setFromFile, filename)
 }
 
 public fun Image.setFromGicon(icon: Icon?, size: IconSize): Unit {
-  gtk_image_set_from_gicon(this, icon?.reinterpret(), size)
+  gtk_image_set_from_gicon(this@setFromGicon, icon?.reinterpret(), size)
 }
 
-public fun Image.setFromIconName(iconName: String, size: IconSize): Unit {
-  gtk_image_set_from_icon_name(this, iconName, size)
+public fun Image.setFromIconName(iconName: String?, size: IconSize): Unit {
+  gtk_image_set_from_icon_name(this@setFromIconName, iconName, size)
 }
 
-public fun Image.setFromResource(resourcePath: String): Unit {
-  gtk_image_set_from_resource(this, resourcePath)
+public fun Image.setFromResource(resourcePath: String?): Unit {
+  gtk_image_set_from_resource(this@setFromResource, resourcePath)
 }

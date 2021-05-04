@@ -65,37 +65,37 @@ public val Scale.range: Range
 public var Scale.digits: Int
   get() = gtk_scale_get_digits(this)
   set(`value`) {
-    gtk_scale_set_digits(this, `value`)
+    gtk_scale_set_digits(this@digits, `value`)
   }
 
 public var Scale.drawValue: Boolean
   get() = gtk_scale_get_draw_value(this).toBoolean()
   set(`value`) {
-    gtk_scale_set_draw_value(this, `value`.toInt())
+    gtk_scale_set_draw_value(this@drawValue, `value`.toInt())
   }
 
 public var Scale.hasOrigin: Boolean
   get() = gtk_scale_get_has_origin(this).toBoolean()
   set(`value`) {
-    gtk_scale_set_has_origin(this, `value`.toInt())
+    gtk_scale_set_has_origin(this@hasOrigin, `value`.toInt())
   }
 
 public var Scale.valuePos: PositionType
   get() = gtk_scale_get_value_pos(this)
   set(`value`) {
-    gtk_scale_set_value_pos(this, `value`)
+    gtk_scale_set_value_pos(this@valuePos, `value`)
   }
 
 public fun Scale.addMark(
   `value`: Double,
   position: PositionType,
-  markup: String
+  markup: String?
 ): Unit {
-  gtk_scale_add_mark(this, `value`, position, markup)
+  gtk_scale_add_mark(this@addMark, `value`, position, markup)
 }
 
 public fun Scale.clearMarks(): Unit {
-  gtk_scale_clear_marks(this)
+  gtk_scale_clear_marks(this@clearMarks)
 }
 
 public fun Scale.onFormatValue(callback: (Scale) -> Unit): Scale {

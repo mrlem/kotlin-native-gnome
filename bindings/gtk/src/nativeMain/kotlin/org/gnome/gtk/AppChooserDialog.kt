@@ -52,7 +52,7 @@ public object AppChooserDialogFactory {
   public fun newForContentType(
     parent: Window?,
     flags: DialogFlags,
-    contentType: String
+    contentType: String?
   ): AppChooserDialog = gtk_app_chooser_dialog_new_for_content_type(parent?.reinterpret(), flags,
       contentType)!!.reinterpret()
 }
@@ -60,10 +60,10 @@ public object AppChooserDialogFactory {
 public val AppChooserDialog.parent: Dialog
   get() = pointed.parent.ptr
 
-public var AppChooserDialog.heading: String
+public var AppChooserDialog.heading: String?
   get() = gtk_app_chooser_dialog_get_heading(this).toKString()
   set(`value`) {
-    gtk_app_chooser_dialog_set_heading(this, `value`)
+    gtk_app_chooser_dialog_set_heading(this@heading, `value`)
   }
 
 public val AppChooserDialog.widget: Widget?

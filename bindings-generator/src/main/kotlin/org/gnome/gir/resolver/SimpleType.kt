@@ -9,7 +9,8 @@ enum class SimpleType(
     val value: String,
     val kTypeName: TypeName?,
     val toKTypeConverter: String?,
-    val toCTypeConverter: String?
+    val toCTypeConverter: String?,
+    val needsValue: Boolean = false
 ) {
 
     UTF8(
@@ -32,6 +33,12 @@ enum class SimpleType(
         "toChar",
         "toUInt"
     ),
+    GUChar(
+    "guchar",
+    ClassName("kotlin", "Char"),
+    "toChar",
+    "toUInt"
+    ),
     GUniChar(
         "gunichar",
         ClassName("kotlin", "Char"),
@@ -48,85 +55,99 @@ enum class SimpleType(
         "gint",
         ClassName("kotlin", "Int"),
         null,
-        null
+        null,
+        true
     ),
     GInt8(
         "gint8",
         ClassName("kotlin", "Byte"),
         null,
-        null
+        null,
+        true
     ),
     GInt16(
         "gint16",
         ClassName("kotlin", "Short"),
         null,
-        null
+        null,
+        true
     ),
     GInt32(
         "gint32",
         ClassName("kotlin", "Int"),
         null,
-        null
+        null,
+        true
     ),
     GInt64(
         "gint64",
         ClassName("kotlin", "Long"),
         null,
-        null
+        null,
+        true
     ),
     GLong(
         "glong",
         ClassName("kotlin", "Long"),
         null,
-        null
+        null,
+        true
     ),
     GUInt(
         "guint",
         ClassName("kotlin", "UInt"),
         null,
-        null
+        null,
+        true
     ),
     GUInt8(
         "guint8",
         ClassName("kotlin", "UByte"),
         null,
-        null
+        null,
+        true
     ),
     GUInt16(
         "guint16",
         ClassName("kotlin", "UShort"),
         null,
-        null
+        null,
+        true
     ),
     GUInt32(
         "guint32",
         ClassName("kotlin", "UInt"),
         null,
-        null
+        null,
+        true
     ),
     GUInt64(
         "guint64",
         ClassName("kotlin", "ULong"),
         null,
-        null
+        null,
+        true
     ),
     GULong(
         "gulong",
         ClassName("kotlin", "ULong"),
         null,
-        null
+        null,
+        true
     ),
     GDouble(
         "gdouble",
         ClassName("kotlin", "Double"),
         null,
-        null
+        null,
+        true
     ),
     GFloat(
         "gfloat",
         ClassName("kotlin", "Float"),
         null,
-        null
+        null,
+        true
     ),
     Type(
         "GType",

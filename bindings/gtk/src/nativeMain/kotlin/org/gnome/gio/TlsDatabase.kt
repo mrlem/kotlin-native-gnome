@@ -38,12 +38,13 @@ public val TlsDatabase.asObject: Object
 public val TlsDatabase.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public fun TlsDatabase.createCertificateHandle(certificate: TlsCertificate?): String =
-    g_tls_database_create_certificate_handle(this, certificate?.reinterpret()).toKString()
+public fun TlsDatabase.createCertificateHandle(certificate: TlsCertificate?): String? =
+    g_tls_database_create_certificate_handle(this@createCertificateHandle,
+    certificate?.reinterpret()).toKString()
 
 @Throws(Error::class)
 public fun TlsDatabase.lookupCertificateForHandle(
-  handle: String,
+  handle: String?,
   interaction: TlsInteraction?,
   flags: TlsDatabaseLookupFlags,
   cancellable: Cancellable?
@@ -97,7 +98,7 @@ public fun TlsDatabase.lookupCertificateIssuerFinish(result: AsyncResult?): TlsC
 @Throws(Error::class)
 public fun TlsDatabase.verifyChain(
   chain: TlsCertificate?,
-  purpose: String,
+  purpose: String?,
   identity: SocketConnectable?,
   interaction: TlsInteraction?,
   flags: TlsDatabaseVerifyFlags,

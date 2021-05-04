@@ -38,10 +38,10 @@ public val DBusObjectManagerClient.connection: DBusConnection?
 public val DBusObjectManagerClient.flags: DBusObjectManagerClientFlags
   get() = g_dbus_object_manager_client_get_flags(this)
 
-public val DBusObjectManagerClient.name: String
+public val DBusObjectManagerClient.name: String?
   get() = g_dbus_object_manager_client_get_name(this).toKString()
 
-public val DBusObjectManagerClient.nameOwner: String
+public val DBusObjectManagerClient.nameOwner: String?
   get() = g_dbus_object_manager_client_get_name_owner(this).toKString()
 
 public

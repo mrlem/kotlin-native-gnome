@@ -58,51 +58,52 @@ public val MenuShell.selectedItem: Widget?
 public var MenuShell.takeFocus: Boolean
   get() = gtk_menu_shell_get_take_focus(this).toBoolean()
   set(`value`) {
-    gtk_menu_shell_set_take_focus(this, `value`.toInt())
+    gtk_menu_shell_set_take_focus(this@takeFocus, `value`.toInt())
   }
 
 public fun MenuShell.activateItem(menuItem: Widget?, forceDeactivate: Boolean): Unit {
-  gtk_menu_shell_activate_item(this, menuItem?.reinterpret(), forceDeactivate.toInt())
+  gtk_menu_shell_activate_item(this@activateItem, menuItem?.reinterpret(), forceDeactivate.toInt())
 }
 
 public fun MenuShell.append(child: MenuItem?): Unit {
-  gtk_menu_shell_append(this, child?.reinterpret())
+  gtk_menu_shell_append(this@append, child?.reinterpret())
 }
 
 public fun MenuShell.bindModel(
   model: MenuModel?,
-  actionNamespace: String,
+  actionNamespace: String?,
   withSeparators: Boolean
 ): Unit {
-  gtk_menu_shell_bind_model(this, model?.reinterpret(), actionNamespace, withSeparators.toInt())
+  gtk_menu_shell_bind_model(this@bindModel, model?.reinterpret(), actionNamespace,
+      withSeparators.toInt())
 }
 
 public fun MenuShell.cancel(): Unit {
-  gtk_menu_shell_cancel(this)
+  gtk_menu_shell_cancel(this@cancel)
 }
 
 public fun MenuShell.deactivate(): Unit {
-  gtk_menu_shell_deactivate(this)
+  gtk_menu_shell_deactivate(this@deactivate)
 }
 
 public fun MenuShell.deselect(): Unit {
-  gtk_menu_shell_deselect(this)
+  gtk_menu_shell_deselect(this@deselect)
 }
 
 public fun MenuShell.insert(child: Widget?, position: Int): Unit {
-  gtk_menu_shell_insert(this, child?.reinterpret(), position)
+  gtk_menu_shell_insert(this@insert, child?.reinterpret(), position)
 }
 
 public fun MenuShell.prepend(child: Widget?): Unit {
-  gtk_menu_shell_prepend(this, child?.reinterpret())
+  gtk_menu_shell_prepend(this@prepend, child?.reinterpret())
 }
 
 public fun MenuShell.selectFirst(searchSensitive: Boolean): Unit {
-  gtk_menu_shell_select_first(this, searchSensitive.toInt())
+  gtk_menu_shell_select_first(this@selectFirst, searchSensitive.toInt())
 }
 
 public fun MenuShell.selectItem(menuItem: Widget?): Unit {
-  gtk_menu_shell_select_item(this, menuItem?.reinterpret())
+  gtk_menu_shell_select_item(this@selectItem, menuItem?.reinterpret())
 }
 
 public fun MenuShell.onActivateCurrent(callback: (MenuShell) -> Unit): MenuShell {

@@ -36,7 +36,7 @@ public val FontChooserDialog.asDialog: Dialog
   get() = reinterpret()
 
 public object FontChooserDialogFactory {
-  public fun new(title: String, parent: Window?): FontChooserDialog =
+  public fun new(title: String?, parent: Window?): FontChooserDialog =
       gtk_font_chooser_dialog_new(title, parent?.reinterpret())!!.reinterpret()
 }
 

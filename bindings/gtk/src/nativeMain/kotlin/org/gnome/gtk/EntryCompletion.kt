@@ -60,7 +60,7 @@ public object EntryCompletionFactory {
 public val EntryCompletion.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public val EntryCompletion.completionPrefix: String
+public val EntryCompletion.completionPrefix: String?
   get() = gtk_entry_completion_get_completion_prefix(this).toKString()
 
 public val EntryCompletion.entry: Widget?
@@ -69,72 +69,72 @@ public val EntryCompletion.entry: Widget?
 public var EntryCompletion.inlineCompletion: Boolean
   get() = gtk_entry_completion_get_inline_completion(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_inline_completion(this, `value`.toInt())
+    gtk_entry_completion_set_inline_completion(this@inlineCompletion, `value`.toInt())
   }
 
 public var EntryCompletion.inlineSelection: Boolean
   get() = gtk_entry_completion_get_inline_selection(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_inline_selection(this, `value`.toInt())
+    gtk_entry_completion_set_inline_selection(this@inlineSelection, `value`.toInt())
   }
 
 public var EntryCompletion.minimumKeyLength: Int
   get() = gtk_entry_completion_get_minimum_key_length(this)
   set(`value`) {
-    gtk_entry_completion_set_minimum_key_length(this, `value`)
+    gtk_entry_completion_set_minimum_key_length(this@minimumKeyLength, `value`)
   }
 
 public var EntryCompletion.model: TreeModel?
   get() = gtk_entry_completion_get_model(this)?.reinterpret()
   set(`value`) {
-    gtk_entry_completion_set_model(this, `value`)
+    gtk_entry_completion_set_model(this@model, `value`)
   }
 
 public var EntryCompletion.popupCompletion: Boolean
   get() = gtk_entry_completion_get_popup_completion(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_popup_completion(this, `value`.toInt())
+    gtk_entry_completion_set_popup_completion(this@popupCompletion, `value`.toInt())
   }
 
 public var EntryCompletion.popupSetWidth: Boolean
   get() = gtk_entry_completion_get_popup_set_width(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_popup_set_width(this, `value`.toInt())
+    gtk_entry_completion_set_popup_set_width(this@popupSetWidth, `value`.toInt())
   }
 
 public var EntryCompletion.popupSingleMatch: Boolean
   get() = gtk_entry_completion_get_popup_single_match(this).toBoolean()
   set(`value`) {
-    gtk_entry_completion_set_popup_single_match(this, `value`.toInt())
+    gtk_entry_completion_set_popup_single_match(this@popupSingleMatch, `value`.toInt())
   }
 
 public var EntryCompletion.textColumn: Int
   get() = gtk_entry_completion_get_text_column(this)
   set(`value`) {
-    gtk_entry_completion_set_text_column(this, `value`)
+    gtk_entry_completion_set_text_column(this@textColumn, `value`)
   }
 
 public fun EntryCompletion.complete(): Unit {
-  gtk_entry_completion_complete(this)
+  gtk_entry_completion_complete(this@complete)
 }
 
-public fun EntryCompletion.computePrefix(key: String): String =
-    gtk_entry_completion_compute_prefix(this, key).toKString()
+public fun EntryCompletion.computePrefix(key: String?): String? =
+    gtk_entry_completion_compute_prefix(this@computePrefix, key).toKString()
 
 public fun EntryCompletion.deleteAction(index: Int): Unit {
-  gtk_entry_completion_delete_action(this, index)
+  gtk_entry_completion_delete_action(this@deleteAction, index)
 }
 
-public fun EntryCompletion.insertActionMarkup(index: Int, markup: String): Unit {
-  gtk_entry_completion_insert_action_markup(this, index, markup)
+public fun EntryCompletion.insertActionMarkup(index: Int, markup: String?): Unit {
+  gtk_entry_completion_insert_action_markup(this@insertActionMarkup, index, markup)
 }
 
-public fun EntryCompletion.insertActionText(index: Int, text: String): Unit {
-  gtk_entry_completion_insert_action_text(this, index, text)
+public fun EntryCompletion.insertActionText(index: Int, text: String?): Unit {
+  gtk_entry_completion_insert_action_text(this@insertActionText, index, text)
 }
 
 public fun EntryCompletion.insertPrefix(): Unit {
-  gtk_entry_completion_insert_prefix(this)
+  gtk_entry_completion_insert_prefix(this@insertPrefix)
 }
 
 public fun EntryCompletion.onActionActivated(callback: (EntryCompletion) -> Unit): EntryCompletion {

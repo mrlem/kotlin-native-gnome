@@ -22,13 +22,13 @@ public val IOModule.asTypeModule: TypeModule
   get() = reinterpret()
 
 public object IOModuleFactory {
-  public fun new(filename: String): IOModule = g_io_module_new(filename)!!.reinterpret()
+  public fun new(filename: String?): IOModule = g_io_module_new(filename)!!.reinterpret()
 }
 
 public fun IOModule.load(): Unit {
-  g_io_module_load(this)
+  g_io_module_load(this@load)
 }
 
 public fun IOModule.unload(): Unit {
-  g_io_module_unload(this)
+  g_io_module_unload(this@unload)
 }

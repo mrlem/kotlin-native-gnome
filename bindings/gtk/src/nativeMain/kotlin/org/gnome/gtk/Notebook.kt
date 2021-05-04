@@ -83,13 +83,13 @@ public object NotebookFactory {
 public var Notebook.currentPage: Int
   get() = gtk_notebook_get_current_page(this)
   set(`value`) {
-    gtk_notebook_set_current_page(this, `value`)
+    gtk_notebook_set_current_page(this@currentPage, `value`)
   }
 
-public var Notebook.groupName: String
+public var Notebook.groupName: String?
   get() = gtk_notebook_get_group_name(this).toKString()
   set(`value`) {
-    gtk_notebook_set_group_name(this, `value`)
+    gtk_notebook_set_group_name(this@groupName, `value`)
   }
 
 public val Notebook.nPages: Int
@@ -98,141 +98,144 @@ public val Notebook.nPages: Int
 public var Notebook.scrollable: Boolean
   get() = gtk_notebook_get_scrollable(this).toBoolean()
   set(`value`) {
-    gtk_notebook_set_scrollable(this, `value`.toInt())
+    gtk_notebook_set_scrollable(this@scrollable, `value`.toInt())
   }
 
 public var Notebook.showBorder: Boolean
   get() = gtk_notebook_get_show_border(this).toBoolean()
   set(`value`) {
-    gtk_notebook_set_show_border(this, `value`.toInt())
+    gtk_notebook_set_show_border(this@showBorder, `value`.toInt())
   }
 
 public var Notebook.showTabs: Boolean
   get() = gtk_notebook_get_show_tabs(this).toBoolean()
   set(`value`) {
-    gtk_notebook_set_show_tabs(this, `value`.toInt())
+    gtk_notebook_set_show_tabs(this@showTabs, `value`.toInt())
   }
 
 public var Notebook.tabPos: PositionType
   get() = gtk_notebook_get_tab_pos(this)
   set(`value`) {
-    gtk_notebook_set_tab_pos(this, `value`)
+    gtk_notebook_set_tab_pos(this@tabPos, `value`)
   }
 
 public fun Notebook.appendPage(child: Widget?, tabLabel: Widget?): Int =
-    gtk_notebook_append_page(this, child?.reinterpret(), tabLabel?.reinterpret())
+    gtk_notebook_append_page(this@appendPage, child?.reinterpret(), tabLabel?.reinterpret())
 
 public fun Notebook.appendPageMenu(
   child: Widget?,
   tabLabel: Widget?,
   menuLabel: Widget?
-): Int = gtk_notebook_append_page_menu(this, child?.reinterpret(), tabLabel?.reinterpret(),
-    menuLabel?.reinterpret())
+): Int = gtk_notebook_append_page_menu(this@appendPageMenu, child?.reinterpret(),
+    tabLabel?.reinterpret(), menuLabel?.reinterpret())
 
 public fun Notebook.detachTab(child: Widget?): Unit {
-  gtk_notebook_detach_tab(this, child?.reinterpret())
+  gtk_notebook_detach_tab(this@detachTab, child?.reinterpret())
 }
 
 public fun Notebook.getActionWidget(packType: PackType): Widget? =
-    gtk_notebook_get_action_widget(this, packType)?.reinterpret()
+    gtk_notebook_get_action_widget(this@getActionWidget, packType)?.reinterpret()
 
-public fun Notebook.getMenuLabel(child: Widget?): Widget? = gtk_notebook_get_menu_label(this,
-    child?.reinterpret())?.reinterpret()
+public fun Notebook.getMenuLabel(child: Widget?): Widget? =
+    gtk_notebook_get_menu_label(this@getMenuLabel, child?.reinterpret())?.reinterpret()
 
-public fun Notebook.getMenuLabelText(child: Widget?): String =
-    gtk_notebook_get_menu_label_text(this, child?.reinterpret()).toKString()
+public fun Notebook.getMenuLabelText(child: Widget?): String? =
+    gtk_notebook_get_menu_label_text(this@getMenuLabelText, child?.reinterpret()).toKString()
 
-public fun Notebook.getNthPage(pageNum: Int): Widget? = gtk_notebook_get_nth_page(this,
+public fun Notebook.getNthPage(pageNum: Int): Widget? = gtk_notebook_get_nth_page(this@getNthPage,
     pageNum)?.reinterpret()
 
 public fun Notebook.getTabDetachable(child: Widget?): Boolean =
-    gtk_notebook_get_tab_detachable(this, child?.reinterpret()).toBoolean()
+    gtk_notebook_get_tab_detachable(this@getTabDetachable, child?.reinterpret()).toBoolean()
 
-public fun Notebook.getTabLabel(child: Widget?): Widget? = gtk_notebook_get_tab_label(this,
-    child?.reinterpret())?.reinterpret()
+public fun Notebook.getTabLabel(child: Widget?): Widget? =
+    gtk_notebook_get_tab_label(this@getTabLabel, child?.reinterpret())?.reinterpret()
 
-public fun Notebook.getTabLabelText(child: Widget?): String = gtk_notebook_get_tab_label_text(this,
-    child?.reinterpret()).toKString()
+public fun Notebook.getTabLabelText(child: Widget?): String? =
+    gtk_notebook_get_tab_label_text(this@getTabLabelText, child?.reinterpret()).toKString()
 
 public fun Notebook.getTabReorderable(child: Widget?): Boolean =
-    gtk_notebook_get_tab_reorderable(this, child?.reinterpret()).toBoolean()
+    gtk_notebook_get_tab_reorderable(this@getTabReorderable, child?.reinterpret()).toBoolean()
 
 public fun Notebook.insertPage(
   child: Widget?,
   tabLabel: Widget?,
   position: Int
-): Int = gtk_notebook_insert_page(this, child?.reinterpret(), tabLabel?.reinterpret(), position)
+): Int = gtk_notebook_insert_page(this@insertPage, child?.reinterpret(), tabLabel?.reinterpret(),
+    position)
 
 public fun Notebook.insertPageMenu(
   child: Widget?,
   tabLabel: Widget?,
   menuLabel: Widget?,
   position: Int
-): Int = gtk_notebook_insert_page_menu(this, child?.reinterpret(), tabLabel?.reinterpret(),
-    menuLabel?.reinterpret(), position)
+): Int = gtk_notebook_insert_page_menu(this@insertPageMenu, child?.reinterpret(),
+    tabLabel?.reinterpret(), menuLabel?.reinterpret(), position)
 
 public fun Notebook.nextPage(): Unit {
-  gtk_notebook_next_page(this)
+  gtk_notebook_next_page(this@nextPage)
 }
 
-public fun Notebook.pageNum(child: Widget?): Int = gtk_notebook_page_num(this, child?.reinterpret())
+public fun Notebook.pageNum(child: Widget?): Int = gtk_notebook_page_num(this@pageNum,
+    child?.reinterpret())
 
 public fun Notebook.popupDisable(): Unit {
-  gtk_notebook_popup_disable(this)
+  gtk_notebook_popup_disable(this@popupDisable)
 }
 
 public fun Notebook.popupEnable(): Unit {
-  gtk_notebook_popup_enable(this)
+  gtk_notebook_popup_enable(this@popupEnable)
 }
 
 public fun Notebook.prependPage(child: Widget?, tabLabel: Widget?): Int =
-    gtk_notebook_prepend_page(this, child?.reinterpret(), tabLabel?.reinterpret())
+    gtk_notebook_prepend_page(this@prependPage, child?.reinterpret(), tabLabel?.reinterpret())
 
 public fun Notebook.prependPageMenu(
   child: Widget?,
   tabLabel: Widget?,
   menuLabel: Widget?
-): Int = gtk_notebook_prepend_page_menu(this, child?.reinterpret(), tabLabel?.reinterpret(),
-    menuLabel?.reinterpret())
+): Int = gtk_notebook_prepend_page_menu(this@prependPageMenu, child?.reinterpret(),
+    tabLabel?.reinterpret(), menuLabel?.reinterpret())
 
 public fun Notebook.prevPage(): Unit {
-  gtk_notebook_prev_page(this)
+  gtk_notebook_prev_page(this@prevPage)
 }
 
 public fun Notebook.removePage(pageNum: Int): Unit {
-  gtk_notebook_remove_page(this, pageNum)
+  gtk_notebook_remove_page(this@removePage, pageNum)
 }
 
 public fun Notebook.reorderChild(child: Widget?, position: Int): Unit {
-  gtk_notebook_reorder_child(this, child?.reinterpret(), position)
+  gtk_notebook_reorder_child(this@reorderChild, child?.reinterpret(), position)
 }
 
 public fun Notebook.setActionWidget(widget: Widget?, packType: PackType): Unit {
-  gtk_notebook_set_action_widget(this, widget?.reinterpret(), packType)
+  gtk_notebook_set_action_widget(this@setActionWidget, widget?.reinterpret(), packType)
 }
 
 public fun Notebook.setMenuLabel(child: Widget?, menuLabel: Widget?): Unit {
-  gtk_notebook_set_menu_label(this, child?.reinterpret(), menuLabel?.reinterpret())
+  gtk_notebook_set_menu_label(this@setMenuLabel, child?.reinterpret(), menuLabel?.reinterpret())
 }
 
-public fun Notebook.setMenuLabelText(child: Widget?, menuText: String): Unit {
-  gtk_notebook_set_menu_label_text(this, child?.reinterpret(), menuText)
+public fun Notebook.setMenuLabelText(child: Widget?, menuText: String?): Unit {
+  gtk_notebook_set_menu_label_text(this@setMenuLabelText, child?.reinterpret(), menuText)
 }
 
 public fun Notebook.setTabDetachable(child: Widget?, detachable: Boolean): Unit {
-  gtk_notebook_set_tab_detachable(this, child?.reinterpret(), detachable.toInt())
+  gtk_notebook_set_tab_detachable(this@setTabDetachable, child?.reinterpret(), detachable.toInt())
 }
 
 public fun Notebook.setTabLabel(child: Widget?, tabLabel: Widget?): Unit {
-  gtk_notebook_set_tab_label(this, child?.reinterpret(), tabLabel?.reinterpret())
+  gtk_notebook_set_tab_label(this@setTabLabel, child?.reinterpret(), tabLabel?.reinterpret())
 }
 
-public fun Notebook.setTabLabelText(child: Widget?, tabText: String): Unit {
-  gtk_notebook_set_tab_label_text(this, child?.reinterpret(), tabText)
+public fun Notebook.setTabLabelText(child: Widget?, tabText: String?): Unit {
+  gtk_notebook_set_tab_label_text(this@setTabLabelText, child?.reinterpret(), tabText)
 }
 
 public fun Notebook.setTabReorderable(child: Widget?, reorderable: Boolean): Unit {
-  gtk_notebook_set_tab_reorderable(this, child?.reinterpret(), reorderable.toInt())
+  gtk_notebook_set_tab_reorderable(this@setTabReorderable, child?.reinterpret(),
+      reorderable.toInt())
 }
 
 public fun Notebook.onChangeCurrentPage(callback: (Notebook) -> Unit): Notebook {

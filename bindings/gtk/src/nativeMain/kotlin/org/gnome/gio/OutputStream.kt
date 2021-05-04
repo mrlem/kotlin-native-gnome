@@ -1,7 +1,6 @@
 // TODO - method: close_async
 // TODO - method: flush_async
 // TODO - method: splice_async
-// TODO - method: write
 // TODO - method: write_all
 // TODO - method: write_all_async
 // TODO - method: write_all_finish
@@ -32,11 +31,15 @@ import interop.g_output_stream_is_closing
 import interop.g_output_stream_set_pending
 import interop.g_output_stream_splice
 import interop.g_output_stream_splice_finish
+import interop.g_output_stream_write
 import interop.g_output_stream_write_bytes_finish
 import interop.g_output_stream_write_finish
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Throws
+import kotlin.UByte
+import kotlin.ULong
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
@@ -47,6 +50,7 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toCArray
 
 public typealias OutputStream = CPointer<GOutputStream>
 
@@ -57,7 +61,7 @@ public val OutputStream.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public fun OutputStream.clearPending(): Unit {
-  g_output_stream_clear_pending(this)
+  g_output_stream_clear_pending(this@clearPending)
 }
 
 @Throws(Error::class)
@@ -96,11 +100,13 @@ public fun OutputStream.flushFinish(result: AsyncResult?): Boolean = memScoped {
   return result
 }
 
-public fun OutputStream.hasPending(): Boolean = g_output_stream_has_pending(this).toBoolean()
+public fun OutputStream.hasPending(): Boolean =
+    g_output_stream_has_pending(this@hasPending).toBoolean()
 
-public fun OutputStream.isClosed(): Boolean = g_output_stream_is_closed(this).toBoolean()
+public fun OutputStream.isClosed(): Boolean = g_output_stream_is_closed(this@isClosed).toBoolean()
 
-public fun OutputStream.isClosing(): Boolean = g_output_stream_is_closing(this).toBoolean()
+public fun OutputStream.isClosing(): Boolean =
+    g_output_stream_is_closing(this@isClosing).toBoolean()
 
 @Throws(Error::class)
 public fun OutputStream.setPending(): Boolean = memScoped {
@@ -127,6 +133,19 @@ public fun OutputStream.splice(
 public fun OutputStream.spliceFinish(result: AsyncResult?): Long = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Long = g_output_stream_splice_finish(this@spliceFinish, result?.reinterpret(), errors)
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun OutputStream.write(
+  buffer: Array<UByte>?,
+  count: ULong,
+  cancellable: Cancellable?
+): Long = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Long = memScoped { g_output_stream_write(this@write, buffer?.toCArray(memScope),
+      count, cancellable?.reinterpret(), errors) }
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

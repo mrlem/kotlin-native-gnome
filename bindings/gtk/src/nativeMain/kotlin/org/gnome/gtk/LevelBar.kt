@@ -52,39 +52,39 @@ public object LevelBarFactory {
 public var LevelBar.inverted: Boolean
   get() = gtk_level_bar_get_inverted(this).toBoolean()
   set(`value`) {
-    gtk_level_bar_set_inverted(this, `value`.toInt())
+    gtk_level_bar_set_inverted(this@inverted, `value`.toInt())
   }
 
 public var LevelBar.maxValue: Double
   get() = gtk_level_bar_get_max_value(this)
   set(`value`) {
-    gtk_level_bar_set_max_value(this, `value`)
+    gtk_level_bar_set_max_value(this@maxValue, `value`)
   }
 
 public var LevelBar.minValue: Double
   get() = gtk_level_bar_get_min_value(this)
   set(`value`) {
-    gtk_level_bar_set_min_value(this, `value`)
+    gtk_level_bar_set_min_value(this@minValue, `value`)
   }
 
 public var LevelBar.mode: LevelBarMode
   get() = gtk_level_bar_get_mode(this)
   set(`value`) {
-    gtk_level_bar_set_mode(this, `value`)
+    gtk_level_bar_set_mode(this@mode, `value`)
   }
 
 public var LevelBar.`value`: Double
   get() = gtk_level_bar_get_value(this)
   set(`value`) {
-    gtk_level_bar_set_value(this, `value`)
+    gtk_level_bar_set_value(this@`value`, `value`)
   }
 
-public fun LevelBar.addOffsetValue(name: String, `value`: Double): Unit {
-  gtk_level_bar_add_offset_value(this, name, `value`)
+public fun LevelBar.addOffsetValue(name: String?, `value`: Double): Unit {
+  gtk_level_bar_add_offset_value(this@addOffsetValue, name, `value`)
 }
 
-public fun LevelBar.removeOffsetValue(name: String): Unit {
-  gtk_level_bar_remove_offset_value(this, name)
+public fun LevelBar.removeOffsetValue(name: String?): Unit {
+  gtk_level_bar_remove_offset_value(this@removeOffsetValue, name)
 }
 
 public fun LevelBar.onOffsetChanged(callback: (LevelBar) -> Unit): LevelBar {

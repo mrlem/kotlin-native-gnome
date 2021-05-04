@@ -31,7 +31,7 @@ public val FileInputStream.parentInstance: InputStream
   get() = pointed.parent_instance.ptr
 
 @Throws(Error::class)
-public fun FileInputStream.queryInfo(attributes: String, cancellable: Cancellable?): FileInfo? =
+public fun FileInputStream.queryInfo(attributes: String?, cancellable: Cancellable?): FileInfo? =
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: FileInfo? = g_file_input_stream_query_info(this@queryInfo, attributes,

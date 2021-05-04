@@ -62,6 +62,8 @@ class Resolver(repository: RepositoryDefinition) {
 
     fun isCPointer(type: AnyType) = (type as? TypeDefinition)?.name?.let { isCPointer(it) } == true
 
+    fun isRecord(type: AnyType) = (type as? TypeDefinition)?.name?.let { isRecord(it) } == true
+
     ///////////////////////////////////////////////////////////////////////////
     // Private
     ///////////////////////////////////////////////////////////////////////////

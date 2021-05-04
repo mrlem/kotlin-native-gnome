@@ -56,31 +56,31 @@ public object GridFactory {
 public var Grid.baselineRow: Int
   get() = gtk_grid_get_baseline_row(this)
   set(`value`) {
-    gtk_grid_set_baseline_row(this, `value`)
+    gtk_grid_set_baseline_row(this@baselineRow, `value`)
   }
 
 public var Grid.columnHomogeneous: Boolean
   get() = gtk_grid_get_column_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_grid_set_column_homogeneous(this, `value`.toInt())
+    gtk_grid_set_column_homogeneous(this@columnHomogeneous, `value`.toInt())
   }
 
 public var Grid.columnSpacing: UInt
   get() = gtk_grid_get_column_spacing(this)
   set(`value`) {
-    gtk_grid_set_column_spacing(this, `value`)
+    gtk_grid_set_column_spacing(this@columnSpacing, `value`)
   }
 
 public var Grid.rowHomogeneous: Boolean
   get() = gtk_grid_get_row_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_grid_set_row_homogeneous(this, `value`.toInt())
+    gtk_grid_set_row_homogeneous(this@rowHomogeneous, `value`.toInt())
   }
 
 public var Grid.rowSpacing: UInt
   get() = gtk_grid_get_row_spacing(this)
   set(`value`) {
-    gtk_grid_set_row_spacing(this, `value`)
+    gtk_grid_set_row_spacing(this@rowSpacing, `value`)
   }
 
 public fun Grid.attach(
@@ -90,7 +90,7 @@ public fun Grid.attach(
   width: Int,
   height: Int
 ): Unit {
-  gtk_grid_attach(this, child?.reinterpret(), left, top, width, height)
+  gtk_grid_attach(this@attach, child?.reinterpret(), left, top, width, height)
 }
 
 public fun Grid.attachNextTo(
@@ -100,35 +100,36 @@ public fun Grid.attachNextTo(
   width: Int,
   height: Int
 ): Unit {
-  gtk_grid_attach_next_to(this, child?.reinterpret(), sibling?.reinterpret(), side, width, height)
+  gtk_grid_attach_next_to(this@attachNextTo, child?.reinterpret(), sibling?.reinterpret(), side,
+      width, height)
 }
 
-public fun Grid.getChildAt(left: Int, top: Int): Widget? = gtk_grid_get_child_at(this, left,
-    top)?.reinterpret()
+public fun Grid.getChildAt(left: Int, top: Int): Widget? = gtk_grid_get_child_at(this@getChildAt,
+    left, top)?.reinterpret()
 
 public fun Grid.getRowBaselinePosition(row: Int): BaselinePosition =
-    gtk_grid_get_row_baseline_position(this, row)
+    gtk_grid_get_row_baseline_position(this@getRowBaselinePosition, row)
 
 public fun Grid.insertColumn(position: Int): Unit {
-  gtk_grid_insert_column(this, position)
+  gtk_grid_insert_column(this@insertColumn, position)
 }
 
 public fun Grid.insertNextTo(sibling: Widget?, side: PositionType): Unit {
-  gtk_grid_insert_next_to(this, sibling?.reinterpret(), side)
+  gtk_grid_insert_next_to(this@insertNextTo, sibling?.reinterpret(), side)
 }
 
 public fun Grid.insertRow(position: Int): Unit {
-  gtk_grid_insert_row(this, position)
+  gtk_grid_insert_row(this@insertRow, position)
 }
 
 public fun Grid.removeColumn(position: Int): Unit {
-  gtk_grid_remove_column(this, position)
+  gtk_grid_remove_column(this@removeColumn, position)
 }
 
 public fun Grid.removeRow(position: Int): Unit {
-  gtk_grid_remove_row(this, position)
+  gtk_grid_remove_row(this@removeRow, position)
 }
 
 public fun Grid.setRowBaselinePosition(row: Int, pos: BaselinePosition): Unit {
-  gtk_grid_set_row_baseline_position(this, row, pos)
+  gtk_grid_set_row_baseline_position(this@setRowBaselinePosition, row, pos)
 }

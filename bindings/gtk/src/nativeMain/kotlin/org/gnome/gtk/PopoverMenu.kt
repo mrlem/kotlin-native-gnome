@@ -36,6 +36,6 @@ public object PopoverMenuFactory {
   public fun new(): PopoverMenu = gtk_popover_menu_new()!!.reinterpret()
 }
 
-public fun PopoverMenu.openSubmenu(name: String): Unit {
-  gtk_popover_menu_open_submenu(this, name)
+public fun PopoverMenu.openSubmenu(name: String?): Unit {
+  gtk_popover_menu_open_submenu(this@openSubmenu, name)
 }

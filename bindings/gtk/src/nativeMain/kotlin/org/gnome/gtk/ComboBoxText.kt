@@ -49,41 +49,41 @@ public object ComboBoxTextFactory {
   public fun newWithEntry(): ComboBoxText = gtk_combo_box_text_new_with_entry()!!.reinterpret()
 }
 
-public val ComboBoxText.activeText: String
+public val ComboBoxText.activeText: String?
   get() = gtk_combo_box_text_get_active_text(this).toKString()
 
-public fun ComboBoxText.append(id: String, text: String): Unit {
-  gtk_combo_box_text_append(this, id, text)
+public fun ComboBoxText.append(id: String?, text: String?): Unit {
+  gtk_combo_box_text_append(this@append, id, text)
 }
 
-public fun ComboBoxText.appendText(text: String): Unit {
-  gtk_combo_box_text_append_text(this, text)
+public fun ComboBoxText.appendText(text: String?): Unit {
+  gtk_combo_box_text_append_text(this@appendText, text)
 }
 
 public fun ComboBoxText.insert(
   position: Int,
-  id: String,
-  text: String
+  id: String?,
+  text: String?
 ): Unit {
-  gtk_combo_box_text_insert(this, position, id, text)
+  gtk_combo_box_text_insert(this@insert, position, id, text)
 }
 
-public fun ComboBoxText.insertText(position: Int, text: String): Unit {
-  gtk_combo_box_text_insert_text(this, position, text)
+public fun ComboBoxText.insertText(position: Int, text: String?): Unit {
+  gtk_combo_box_text_insert_text(this@insertText, position, text)
 }
 
-public fun ComboBoxText.prepend(id: String, text: String): Unit {
-  gtk_combo_box_text_prepend(this, id, text)
+public fun ComboBoxText.prepend(id: String?, text: String?): Unit {
+  gtk_combo_box_text_prepend(this@prepend, id, text)
 }
 
-public fun ComboBoxText.prependText(text: String): Unit {
-  gtk_combo_box_text_prepend_text(this, text)
+public fun ComboBoxText.prependText(text: String?): Unit {
+  gtk_combo_box_text_prepend_text(this@prependText, text)
 }
 
 public fun ComboBoxText.remove(position: Int): Unit {
-  gtk_combo_box_text_remove(this, position)
+  gtk_combo_box_text_remove(this@remove, position)
 }
 
 public fun ComboBoxText.removeAll(): Unit {
-  gtk_combo_box_text_remove_all(this)
+  gtk_combo_box_text_remove_all(this@removeAll)
 }

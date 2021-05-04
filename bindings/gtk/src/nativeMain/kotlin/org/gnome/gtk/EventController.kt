@@ -22,12 +22,12 @@ public val EventController.asObject: Object
 public var EventController.propagationPhase: PropagationPhase
   get() = gtk_event_controller_get_propagation_phase(this)
   set(`value`) {
-    gtk_event_controller_set_propagation_phase(this, `value`)
+    gtk_event_controller_set_propagation_phase(this@propagationPhase, `value`)
   }
 
 public val EventController.widget: Widget?
   get() = gtk_event_controller_get_widget(this)?.reinterpret()
 
 public fun EventController.reset(): Unit {
-  gtk_event_controller_reset(this)
+  gtk_event_controller_reset(this@reset)
 }

@@ -53,59 +53,59 @@ public val MountOperation.parentInstance: Object
 public var MountOperation.anonymous: Boolean
   get() = g_mount_operation_get_anonymous(this).toBoolean()
   set(`value`) {
-    g_mount_operation_set_anonymous(this, `value`.toInt())
+    g_mount_operation_set_anonymous(this@anonymous, `value`.toInt())
   }
 
 public var MountOperation.choice: Int
   get() = g_mount_operation_get_choice(this)
   set(`value`) {
-    g_mount_operation_set_choice(this, `value`)
+    g_mount_operation_set_choice(this@choice, `value`)
   }
 
-public var MountOperation.domain: String
+public var MountOperation.domain: String?
   get() = g_mount_operation_get_domain(this).toKString()
   set(`value`) {
-    g_mount_operation_set_domain(this, `value`)
+    g_mount_operation_set_domain(this@domain, `value`)
   }
 
 public var MountOperation.isTcryptHiddenVolume: Boolean
   get() = g_mount_operation_get_is_tcrypt_hidden_volume(this).toBoolean()
   set(`value`) {
-    g_mount_operation_set_is_tcrypt_hidden_volume(this, `value`.toInt())
+    g_mount_operation_set_is_tcrypt_hidden_volume(this@isTcryptHiddenVolume, `value`.toInt())
   }
 
 public var MountOperation.isTcryptSystemVolume: Boolean
   get() = g_mount_operation_get_is_tcrypt_system_volume(this).toBoolean()
   set(`value`) {
-    g_mount_operation_set_is_tcrypt_system_volume(this, `value`.toInt())
+    g_mount_operation_set_is_tcrypt_system_volume(this@isTcryptSystemVolume, `value`.toInt())
   }
 
-public var MountOperation.password: String
+public var MountOperation.password: String?
   get() = g_mount_operation_get_password(this).toKString()
   set(`value`) {
-    g_mount_operation_set_password(this, `value`)
+    g_mount_operation_set_password(this@password, `value`)
   }
 
 public var MountOperation.passwordSave: PasswordSave
   get() = g_mount_operation_get_password_save(this)
   set(`value`) {
-    g_mount_operation_set_password_save(this, `value`)
+    g_mount_operation_set_password_save(this@passwordSave, `value`)
   }
 
 public var MountOperation.pim: UInt
   get() = g_mount_operation_get_pim(this)
   set(`value`) {
-    g_mount_operation_set_pim(this, `value`)
+    g_mount_operation_set_pim(this@pim, `value`)
   }
 
-public var MountOperation.username: String
+public var MountOperation.username: String?
   get() = g_mount_operation_get_username(this).toKString()
   set(`value`) {
-    g_mount_operation_set_username(this, `value`)
+    g_mount_operation_set_username(this@username, `value`)
   }
 
 public fun MountOperation.reply(result: MountOperationResult): Unit {
-  g_mount_operation_reply(this, result)
+  g_mount_operation_reply(this@reply, result)
 }
 
 public fun MountOperation.onAborted(callback: (MountOperation) -> Unit): MountOperation {

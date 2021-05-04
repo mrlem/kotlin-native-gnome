@@ -32,11 +32,11 @@ public val FileOutputStream.asOutputStream: OutputStream
 public val FileOutputStream.parentInstance: OutputStream
   get() = pointed.parent_instance.ptr
 
-public val FileOutputStream.etag: String
+public val FileOutputStream.etag: String?
   get() = g_file_output_stream_get_etag(this).toKString()
 
 @Throws(Error::class)
-public fun FileOutputStream.queryInfo(attributes: String, cancellable: Cancellable?): FileInfo? =
+public fun FileOutputStream.queryInfo(attributes: String?, cancellable: Cancellable?): FileInfo? =
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: FileInfo? = g_file_output_stream_query_info(this@queryInfo, attributes,

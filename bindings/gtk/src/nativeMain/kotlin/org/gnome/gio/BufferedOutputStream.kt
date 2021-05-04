@@ -44,11 +44,11 @@ public val BufferedOutputStream.parentInstance: FilterOutputStream
 public var BufferedOutputStream.autoGrow: Boolean
   get() = g_buffered_output_stream_get_auto_grow(this).toBoolean()
   set(`value`) {
-    g_buffered_output_stream_set_auto_grow(this, `value`.toInt())
+    g_buffered_output_stream_set_auto_grow(this@autoGrow, `value`.toInt())
   }
 
 public var BufferedOutputStream.bufferSize: ULong
   get() = g_buffered_output_stream_get_buffer_size(this)
   set(`value`) {
-    g_buffered_output_stream_set_buffer_size(this, `value`)
+    g_buffered_output_stream_set_buffer_size(this@bufferSize, `value`)
   }

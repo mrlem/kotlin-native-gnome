@@ -56,25 +56,25 @@ public val Box.container: Container
 public var Box.baselinePosition: BaselinePosition
   get() = gtk_box_get_baseline_position(this)
   set(`value`) {
-    gtk_box_set_baseline_position(this, `value`)
+    gtk_box_set_baseline_position(this@baselinePosition, `value`)
   }
 
 public var Box.centerWidget: Widget?
   get() = gtk_box_get_center_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_box_set_center_widget(this, `value`)
+    gtk_box_set_center_widget(this@centerWidget, `value`)
   }
 
 public var Box.homogeneous: Boolean
   get() = gtk_box_get_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_box_set_homogeneous(this, `value`.toInt())
+    gtk_box_set_homogeneous(this@homogeneous, `value`.toInt())
   }
 
 public var Box.spacing: Int
   get() = gtk_box_get_spacing(this)
   set(`value`) {
-    gtk_box_set_spacing(this, `value`)
+    gtk_box_set_spacing(this@spacing, `value`)
   }
 
 public fun Box.packEnd(
@@ -83,7 +83,7 @@ public fun Box.packEnd(
   fill: Boolean,
   padding: UInt
 ): Unit {
-  gtk_box_pack_end(this, child?.reinterpret(), expand.toInt(), fill.toInt(), padding)
+  gtk_box_pack_end(this@packEnd, child?.reinterpret(), expand.toInt(), fill.toInt(), padding)
 }
 
 public fun Box.packStart(
@@ -92,11 +92,11 @@ public fun Box.packStart(
   fill: Boolean,
   padding: UInt
 ): Unit {
-  gtk_box_pack_start(this, child?.reinterpret(), expand.toInt(), fill.toInt(), padding)
+  gtk_box_pack_start(this@packStart, child?.reinterpret(), expand.toInt(), fill.toInt(), padding)
 }
 
 public fun Box.reorderChild(child: Widget?, position: Int): Unit {
-  gtk_box_reorder_child(this, child?.reinterpret(), position)
+  gtk_box_reorder_child(this@reorderChild, child?.reinterpret(), position)
 }
 
 public fun Box.setChildPacking(
@@ -106,6 +106,6 @@ public fun Box.setChildPacking(
   padding: UInt,
   packType: PackType
 ): Unit {
-  gtk_box_set_child_packing(this, child?.reinterpret(), expand.toInt(), fill.toInt(), padding,
-      packType)
+  gtk_box_set_child_packing(this@setChildPacking, child?.reinterpret(), expand.toInt(),
+      fill.toInt(), padding, packType)
 }

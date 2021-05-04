@@ -24,11 +24,12 @@ public object DBusAuthObserverFactory {
   public fun new(): DBusAuthObserver = g_dbus_auth_observer_new()!!.reinterpret()
 }
 
-public fun DBusAuthObserver.allowMechanism(mechanism: String): Boolean =
-    g_dbus_auth_observer_allow_mechanism(this, mechanism).toBoolean()
+public fun DBusAuthObserver.allowMechanism(mechanism: String?): Boolean =
+    g_dbus_auth_observer_allow_mechanism(this@allowMechanism, mechanism).toBoolean()
 
 public fun DBusAuthObserver.authorizeAuthenticatedPeer(stream: IOStream?,
-    credentials: Credentials?): Boolean = g_dbus_auth_observer_authorize_authenticated_peer(this,
+    credentials: Credentials?): Boolean =
+    g_dbus_auth_observer_authorize_authenticated_peer(this@authorizeAuthenticatedPeer,
     stream?.reinterpret(), credentials?.reinterpret()).toBoolean()
 
 public fun DBusAuthObserver.onAllowMechanism(callback: (DBusAuthObserver) -> Unit):

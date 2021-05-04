@@ -1,7 +1,6 @@
 // TODO - constructor: new_from_blob
 // TODO - method: get_body
 // TODO - method: get_header
-// TODO - method: get_header_fields
 // TODO - method: set_body
 // TODO - method: set_header
 // TODO - method: to_blob
@@ -18,6 +17,7 @@ import interop.g_dbus_message_get_byte_order
 import interop.g_dbus_message_get_destination
 import interop.g_dbus_message_get_error_name
 import interop.g_dbus_message_get_flags
+import interop.g_dbus_message_get_header_fields
 import interop.g_dbus_message_get_interface
 import interop.g_dbus_message_get_locked
 import interop.g_dbus_message_get_member
@@ -51,12 +51,15 @@ import interop.g_dbus_message_set_serial
 import interop.g_dbus_message_set_signature
 import interop.g_dbus_message_set_unix_fd_list
 import interop.g_dbus_message_to_gerror
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Throws
+import kotlin.UByte
 import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.`value`
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
@@ -65,6 +68,7 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toKArray
 import org.gnome.toKString
 
 public typealias DBusMessage = CPointer<GDBusMessage>
@@ -76,107 +80,110 @@ public object DBusMessageFactory {
   public fun new(): DBusMessage = g_dbus_message_new()!!.reinterpret()
 
   public fun newMethodCall(
-    name: String,
-    path: String,
-    `interface`: String,
-    method: String
+    name: String?,
+    path: String?,
+    `interface`: String?,
+    method: String?
   ): DBusMessage = g_dbus_message_new_method_call(name, path, `interface`, method)!!.reinterpret()
 
   public fun newSignal(
-    path: String,
-    `interface`: String,
-    signal: String
+    path: String?,
+    `interface`: String?,
+    signal: String?
   ): DBusMessage = g_dbus_message_new_signal(path, `interface`, signal)!!.reinterpret()
 }
 
-public val DBusMessage.arg0: String
+public val DBusMessage.arg0: String?
   get() = g_dbus_message_get_arg0(this).toKString()
 
 public var DBusMessage.byteOrder: DBusMessageByteOrder
   get() = g_dbus_message_get_byte_order(this)
   set(`value`) {
-    g_dbus_message_set_byte_order(this, `value`)
+    g_dbus_message_set_byte_order(this@byteOrder, `value`)
   }
 
-public var DBusMessage.destination: String
+public var DBusMessage.destination: String?
   get() = g_dbus_message_get_destination(this).toKString()
   set(`value`) {
-    g_dbus_message_set_destination(this, `value`)
+    g_dbus_message_set_destination(this@destination, `value`)
   }
 
-public var DBusMessage.errorName: String
+public var DBusMessage.errorName: String?
   get() = g_dbus_message_get_error_name(this).toKString()
   set(`value`) {
-    g_dbus_message_set_error_name(this, `value`)
+    g_dbus_message_set_error_name(this@errorName, `value`)
   }
 
 public var DBusMessage.flags: DBusMessageFlags
   get() = g_dbus_message_get_flags(this)
   set(`value`) {
-    g_dbus_message_set_flags(this, `value`)
+    g_dbus_message_set_flags(this@flags, `value`)
   }
 
-public var DBusMessage.`interface`: String
+public val DBusMessage.headerFields: Array<UByte>?
+  get() = g_dbus_message_get_header_fields(this)?.toKArray { it!!.`value` }
+
+public var DBusMessage.`interface`: String?
   get() = g_dbus_message_get_interface(this).toKString()
   set(`value`) {
-    g_dbus_message_set_interface(this, `value`)
+    g_dbus_message_set_interface(this@`interface`, `value`)
   }
 
 public val DBusMessage.locked: Boolean
   get() = g_dbus_message_get_locked(this).toBoolean()
 
-public var DBusMessage.member: String
+public var DBusMessage.member: String?
   get() = g_dbus_message_get_member(this).toKString()
   set(`value`) {
-    g_dbus_message_set_member(this, `value`)
+    g_dbus_message_set_member(this@member, `value`)
   }
 
 public var DBusMessage.messageType: DBusMessageType
   get() = g_dbus_message_get_message_type(this)
   set(`value`) {
-    g_dbus_message_set_message_type(this, `value`)
+    g_dbus_message_set_message_type(this@messageType, `value`)
   }
 
 public var DBusMessage.numUnixFds: UInt
   get() = g_dbus_message_get_num_unix_fds(this)
   set(`value`) {
-    g_dbus_message_set_num_unix_fds(this, `value`)
+    g_dbus_message_set_num_unix_fds(this@numUnixFds, `value`)
   }
 
-public var DBusMessage.path: String
+public var DBusMessage.path: String?
   get() = g_dbus_message_get_path(this).toKString()
   set(`value`) {
-    g_dbus_message_set_path(this, `value`)
+    g_dbus_message_set_path(this@path, `value`)
   }
 
 public var DBusMessage.replySerial: UInt
   get() = g_dbus_message_get_reply_serial(this)
   set(`value`) {
-    g_dbus_message_set_reply_serial(this, `value`)
+    g_dbus_message_set_reply_serial(this@replySerial, `value`)
   }
 
-public var DBusMessage.sender: String
+public var DBusMessage.sender: String?
   get() = g_dbus_message_get_sender(this).toKString()
   set(`value`) {
-    g_dbus_message_set_sender(this, `value`)
+    g_dbus_message_set_sender(this@sender, `value`)
   }
 
 public var DBusMessage.serial: UInt
   get() = g_dbus_message_get_serial(this)
   set(`value`) {
-    g_dbus_message_set_serial(this, `value`)
+    g_dbus_message_set_serial(this@serial, `value`)
   }
 
-public var DBusMessage.signature: String
+public var DBusMessage.signature: String?
   get() = g_dbus_message_get_signature(this).toKString()
   set(`value`) {
-    g_dbus_message_set_signature(this, `value`)
+    g_dbus_message_set_signature(this@signature, `value`)
   }
 
 public var DBusMessage.unixFdList: UnixFDList?
   get() = g_dbus_message_get_unix_fd_list(this)?.reinterpret()
   set(`value`) {
-    g_dbus_message_set_unix_fd_list(this, `value`)
+    g_dbus_message_set_unix_fd_list(this@unixFdList, `value`)
   }
 
 @Throws(Error::class)
@@ -188,16 +195,18 @@ public fun DBusMessage.copy(): DBusMessage? = memScoped {
 }
 
 public fun DBusMessage.lock(): Unit {
-  g_dbus_message_lock(this)
+  g_dbus_message_lock(this@lock)
 }
 
-public fun DBusMessage.newMethodErrorLiteral(errorName: String, errorMessage: String): DBusMessage?
-    = g_dbus_message_new_method_error_literal(this, errorName, errorMessage)?.reinterpret()
+public fun DBusMessage.newMethodErrorLiteral(errorName: String?, errorMessage: String?):
+    DBusMessage? = g_dbus_message_new_method_error_literal(this@newMethodErrorLiteral, errorName,
+    errorMessage)?.reinterpret()
 
 public fun DBusMessage.newMethodReply(): DBusMessage? =
-    g_dbus_message_new_method_reply(this)?.reinterpret()
+    g_dbus_message_new_method_reply(this@newMethodReply)?.reinterpret()
 
-public fun DBusMessage.print(indent: UInt): String = g_dbus_message_print(this, indent).toKString()
+public fun DBusMessage.print(indent: UInt): String? = g_dbus_message_print(this@print,
+    indent).toKString()
 
 @Throws(Error::class)
 public fun DBusMessage.toGerror(): Boolean = memScoped {

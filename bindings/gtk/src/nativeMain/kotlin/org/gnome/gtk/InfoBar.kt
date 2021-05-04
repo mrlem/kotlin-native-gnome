@@ -67,38 +67,38 @@ public val InfoBar.contentArea: Box?
 public var InfoBar.messageType: MessageType
   get() = gtk_info_bar_get_message_type(this)
   set(`value`) {
-    gtk_info_bar_set_message_type(this, `value`)
+    gtk_info_bar_set_message_type(this@messageType, `value`)
   }
 
 public var InfoBar.revealed: Boolean
   get() = gtk_info_bar_get_revealed(this).toBoolean()
   set(`value`) {
-    gtk_info_bar_set_revealed(this, `value`.toInt())
+    gtk_info_bar_set_revealed(this@revealed, `value`.toInt())
   }
 
 public var InfoBar.showCloseButton: Boolean
   get() = gtk_info_bar_get_show_close_button(this).toBoolean()
   set(`value`) {
-    gtk_info_bar_set_show_close_button(this, `value`.toInt())
+    gtk_info_bar_set_show_close_button(this@showCloseButton, `value`.toInt())
   }
 
 public fun InfoBar.addActionWidget(child: Widget?, responseId: Int): Unit {
-  gtk_info_bar_add_action_widget(this, child?.reinterpret(), responseId)
+  gtk_info_bar_add_action_widget(this@addActionWidget, child?.reinterpret(), responseId)
 }
 
-public fun InfoBar.addButton(buttonText: String, responseId: Int): Button? =
-    gtk_info_bar_add_button(this, buttonText, responseId)?.reinterpret()
+public fun InfoBar.addButton(buttonText: String?, responseId: Int): Button? =
+    gtk_info_bar_add_button(this@addButton, buttonText, responseId)?.reinterpret()
 
 public fun InfoBar.response(responseId: Int): Unit {
-  gtk_info_bar_response(this, responseId)
+  gtk_info_bar_response(this@response, responseId)
 }
 
 public fun InfoBar.setDefaultResponse(responseId: Int): Unit {
-  gtk_info_bar_set_default_response(this, responseId)
+  gtk_info_bar_set_default_response(this@setDefaultResponse, responseId)
 }
 
 public fun InfoBar.setResponseSensitive(responseId: Int, setting: Boolean): Unit {
-  gtk_info_bar_set_response_sensitive(this, responseId, setting.toInt())
+  gtk_info_bar_set_response_sensitive(this@setResponseSensitive, responseId, setting.toInt())
 }
 
 public fun InfoBar.onClose(callback: (InfoBar) -> Unit): InfoBar {

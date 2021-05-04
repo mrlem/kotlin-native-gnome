@@ -55,7 +55,7 @@ public val FontButton.asButton: Button
 public object FontButtonFactory {
   public fun new(): FontButton = gtk_font_button_new()!!.reinterpret()
 
-  public fun newWithFont(fontname: String): FontButton =
+  public fun newWithFont(fontname: String?): FontButton =
       gtk_font_button_new_with_font(fontname)!!.reinterpret()
 }
 
@@ -65,31 +65,31 @@ public val FontButton.button: Button
 public var FontButton.showSize: Boolean
   get() = gtk_font_button_get_show_size(this).toBoolean()
   set(`value`) {
-    gtk_font_button_set_show_size(this, `value`.toInt())
+    gtk_font_button_set_show_size(this@showSize, `value`.toInt())
   }
 
 public var FontButton.showStyle: Boolean
   get() = gtk_font_button_get_show_style(this).toBoolean()
   set(`value`) {
-    gtk_font_button_set_show_style(this, `value`.toInt())
+    gtk_font_button_set_show_style(this@showStyle, `value`.toInt())
   }
 
-public var FontButton.title: String
+public var FontButton.title: String?
   get() = gtk_font_button_get_title(this).toKString()
   set(`value`) {
-    gtk_font_button_set_title(this, `value`)
+    gtk_font_button_set_title(this@title, `value`)
   }
 
 public var FontButton.useFont: Boolean
   get() = gtk_font_button_get_use_font(this).toBoolean()
   set(`value`) {
-    gtk_font_button_set_use_font(this, `value`.toInt())
+    gtk_font_button_set_use_font(this@useFont, `value`.toInt())
   }
 
 public var FontButton.useSize: Boolean
   get() = gtk_font_button_get_use_size(this).toBoolean()
   set(`value`) {
-    gtk_font_button_set_use_size(this, `value`.toInt())
+    gtk_font_button_set_use_size(this@useSize, `value`.toInt())
   }
 
 public fun FontButton.onFontSet(callback: (FontButton) -> Unit): FontButton {

@@ -43,19 +43,19 @@ public val AccelGroup.parent: Object
 public val AccelGroup.isLocked: Boolean
   get() = gtk_accel_group_get_is_locked(this).toBoolean()
 
-public fun AccelGroup.connectByPath(accelPath: String, closure: Closure?): Unit {
-  gtk_accel_group_connect_by_path(this, accelPath, closure?.reinterpret())
+public fun AccelGroup.connectByPath(accelPath: String?, closure: Closure?): Unit {
+  gtk_accel_group_connect_by_path(this@connectByPath, accelPath, closure?.reinterpret())
 }
 
-public fun AccelGroup.disconnect(closure: Closure?): Boolean = gtk_accel_group_disconnect(this,
-    closure?.reinterpret()).toBoolean()
+public fun AccelGroup.disconnect(closure: Closure?): Boolean =
+    gtk_accel_group_disconnect(this@disconnect, closure?.reinterpret()).toBoolean()
 
 public fun AccelGroup.lock(): Unit {
-  gtk_accel_group_lock(this)
+  gtk_accel_group_lock(this@lock)
 }
 
 public fun AccelGroup.unlock(): Unit {
-  gtk_accel_group_unlock(this)
+  gtk_accel_group_unlock(this@unlock)
 }
 
 public fun AccelGroup.onAccelActivate(callback: (AccelGroup) -> Unit): AccelGroup {

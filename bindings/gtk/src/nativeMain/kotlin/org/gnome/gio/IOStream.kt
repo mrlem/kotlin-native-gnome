@@ -43,7 +43,7 @@ public val IOStream.outputStream: OutputStream?
   get() = g_io_stream_get_output_stream(this)?.reinterpret()
 
 public fun IOStream.clearPending(): Unit {
-  g_io_stream_clear_pending(this)
+  g_io_stream_clear_pending(this@clearPending)
 }
 
 @Throws(Error::class)
@@ -64,9 +64,9 @@ public fun IOStream.closeFinish(result: AsyncResult?): Boolean = memScoped {
   return result
 }
 
-public fun IOStream.hasPending(): Boolean = g_io_stream_has_pending(this).toBoolean()
+public fun IOStream.hasPending(): Boolean = g_io_stream_has_pending(this@hasPending).toBoolean()
 
-public fun IOStream.isClosed(): Boolean = g_io_stream_is_closed(this).toBoolean()
+public fun IOStream.isClosed(): Boolean = g_io_stream_is_closed(this@isClosed).toBoolean()
 
 @Throws(Error::class)
 public fun IOStream.setPending(): Boolean = memScoped {

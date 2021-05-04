@@ -3,6 +3,7 @@ package org.gnome.gir.generator.kotlin.generators
 import com.squareup.kotlinpoet.*
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
+import org.gnome.gir.model.ArrayTypeDefinition
 import org.gnome.gir.model.CallableDefinition
 import org.gnome.gir.model.TypeDefinition
 import org.gnome.gir.resolver.Resolver
@@ -20,13 +21,15 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
         // determine type
         val type = getter.callable.returnValue?.type ?: continue
         val typeInfo = type.typeInfo(resolver) ?: continue
+        val isArray = type is ArrayTypeDefinition
 
         // produce & consume getter
         methods.remove(getter)
         val (returnTemplate, returnArray) = typeInfo.getReturnData()
         val propertyName = getter.name.removePrefix("get_")
+        val propertyKName = propertyName.snakeCaseToCamelCase.decapitalize()
         addProperty(
-            PropertySpec.builder(propertyName.snakeCaseToCamelCase.decapitalize(), typeInfo.kType)
+            PropertySpec.builder(propertyKName, typeInfo.kType)
                 .receiver(className)
                 .getter(
                     FunSpec.getterBuilder()
@@ -50,12 +53,21 @@ fun FileSpec.Builder.addProperties(methods: MutableList<CallableDefinition>, cla
                             val (paramTemplate, paramArray) = mapOf("value" to typeInfo)
                                 .getParamsData(false, resolver)
 
+                            // memScoped if required
+                            val (memScopedStart, memScopedEnd, memScopedArray) = if (isArray) {
+                                Triple("%M { ", " }", arrayOf(MemberName("kotlinx.cinterop", "memScoped")))
+                            } else {
+                                Triple("", "", emptyArray())
+                            }
+
                             setter(
                                 FunSpec.setterBuilder()
                                     .addParameter("value", typeInfo.kType)
                                     .addStatement(
-                                        "%M(this$paramTemplate)",
+                                        "$memScopedStart%M(this@%M$paramTemplate)$memScopedEnd",
+                                        *memScopedArray,
                                         MemberName(INTEROP_PACKAGE, setter.callable.cIdentifier!!),
+                                        MemberName("", propertyKName),
                                         *paramArray
                                     )
                                     .build()

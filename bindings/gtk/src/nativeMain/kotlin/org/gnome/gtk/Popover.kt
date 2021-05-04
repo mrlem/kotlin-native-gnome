@@ -68,43 +68,43 @@ public val Popover.parentInstance: Bin
 public var Popover.constrainTo: PopoverConstraint
   get() = gtk_popover_get_constrain_to(this)
   set(`value`) {
-    gtk_popover_set_constrain_to(this, `value`)
+    gtk_popover_set_constrain_to(this@constrainTo, `value`)
   }
 
 public var Popover.defaultWidget: Widget?
   get() = gtk_popover_get_default_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_popover_set_default_widget(this, `value`)
+    gtk_popover_set_default_widget(this@defaultWidget, `value`)
   }
 
 public var Popover.modal: Boolean
   get() = gtk_popover_get_modal(this).toBoolean()
   set(`value`) {
-    gtk_popover_set_modal(this, `value`.toInt())
+    gtk_popover_set_modal(this@modal, `value`.toInt())
   }
 
 public var Popover.position: PositionType
   get() = gtk_popover_get_position(this)
   set(`value`) {
-    gtk_popover_set_position(this, `value`)
+    gtk_popover_set_position(this@position, `value`)
   }
 
 public var Popover.relativeTo: Widget?
   get() = gtk_popover_get_relative_to(this)?.reinterpret()
   set(`value`) {
-    gtk_popover_set_relative_to(this, `value`)
+    gtk_popover_set_relative_to(this@relativeTo, `value`)
   }
 
-public fun Popover.bindModel(model: MenuModel?, actionNamespace: String): Unit {
-  gtk_popover_bind_model(this, model?.reinterpret(), actionNamespace)
+public fun Popover.bindModel(model: MenuModel?, actionNamespace: String?): Unit {
+  gtk_popover_bind_model(this@bindModel, model?.reinterpret(), actionNamespace)
 }
 
 public fun Popover.popdown(): Unit {
-  gtk_popover_popdown(this)
+  gtk_popover_popdown(this@popdown)
 }
 
 public fun Popover.popup(): Unit {
-  gtk_popover_popup(this)
+  gtk_popover_popup(this@popup)
 }
 
 public fun Popover.onClosed(callback: (Popover) -> Unit): Popover {

@@ -36,7 +36,7 @@ public val ColorChooserDialog.asDialog: Dialog
   get() = reinterpret()
 
 public object ColorChooserDialogFactory {
-  public fun new(title: String, parent: Window?): ColorChooserDialog =
+  public fun new(title: String?, parent: Window?): ColorChooserDialog =
       gtk_color_chooser_dialog_new(title, parent?.reinterpret())!!.reinterpret()
 }
 

@@ -5,6 +5,7 @@ import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.reinterpretMemberName
 import org.gnome.gir.generator.kotlin.generators.ext.snakeCaseToCamelCase
 import org.gnome.gir.generator.kotlin.generators.ext.typeInfo
+import org.gnome.gir.model.ArrayTypeDefinition
 import org.gnome.gir.model.CallableDefinition
 import org.gnome.gir.model.enums.Direction
 import org.gnome.gir.model.types.AnyType
@@ -26,9 +27,11 @@ fun TypeSpec.Builder.addConstructor(className: ClassName, constructor: CallableD
         return
     }
 
+    var hasArray = false
     val params = constructor.callable.parameters
         .map { param ->
             val typeInfo = (param.type as? AnyType) // TODO - handle varargs
+                ?.also { if (it is ArrayTypeDefinition) hasArray = true }
                 ?.takeUnless { param.direction == Direction.Out || param.direction == Direction.InOut } // TODO - handle in/out
                 ?.typeInfo(resolver)
                 ?: run {
@@ -41,6 +44,13 @@ fun TypeSpec.Builder.addConstructor(className: ClassName, constructor: CallableD
     // params conversion
     val (paramsTemplate, paramsArray) = params.getParamsData(true, resolver, headingComma = false)
 
+    // memScoped if required
+    val (memScopedStart, memScopedEnd, memScopedArray) = if (hasArray) {
+        Triple("%M { ", " }", arrayOf(MemberName("kotlinx.cinterop", "memScoped")))
+    } else {
+        Triple("", "", emptyArray())
+    }
+
     addFunction(
         FunSpec.builder(name)
             // params
@@ -49,7 +59,8 @@ fun TypeSpec.Builder.addConstructor(className: ClassName, constructor: CallableD
             .apply { returns(className) }
             // block
             .addStatement(
-                "return %M($paramsTemplate)!!.%M()",
+                "return $memScopedStart%M($paramsTemplate)!!.%M()$memScopedEnd",
+                *memScopedArray,
                 MemberName(INTEROP_PACKAGE, cIdentifier),
                 *paramsArray,
                 reinterpretMemberName

@@ -42,7 +42,7 @@ public val FileChooserButton.asBox: Box
   get() = reinterpret()
 
 public object FileChooserButtonFactory {
-  public fun new(title: String, action: FileChooserAction): FileChooserButton =
+  public fun new(title: String?, action: FileChooserAction): FileChooserButton =
       gtk_file_chooser_button_new(title, action)!!.reinterpret()
 
   public fun newWithDialog(dialog: Dialog?): FileChooserButton =
@@ -52,16 +52,16 @@ public object FileChooserButtonFactory {
 public val FileChooserButton.parent: Box
   get() = pointed.parent.ptr
 
-public var FileChooserButton.title: String
+public var FileChooserButton.title: String?
   get() = gtk_file_chooser_button_get_title(this).toKString()
   set(`value`) {
-    gtk_file_chooser_button_set_title(this, `value`)
+    gtk_file_chooser_button_set_title(this@title, `value`)
   }
 
 public var FileChooserButton.widthChars: Int
   get() = gtk_file_chooser_button_get_width_chars(this)
   set(`value`) {
-    gtk_file_chooser_button_set_width_chars(this, `value`)
+    gtk_file_chooser_button_set_width_chars(this@widthChars, `value`)
   }
 
 public fun FileChooserButton.onFileSet(callback: (FileChooserButton) -> Unit): FileChooserButton {

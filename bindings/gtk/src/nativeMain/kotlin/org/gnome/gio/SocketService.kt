@@ -32,14 +32,14 @@ public object SocketServiceFactory {
 public val SocketService.parentInstance: SocketListener
   get() = pointed.parent_instance.ptr
 
-public fun SocketService.isActive(): Boolean = g_socket_service_is_active(this).toBoolean()
+public fun SocketService.isActive(): Boolean = g_socket_service_is_active(this@isActive).toBoolean()
 
 public fun SocketService.start(): Unit {
-  g_socket_service_start(this)
+  g_socket_service_start(this@start)
 }
 
 public fun SocketService.stop(): Unit {
-  g_socket_service_stop(this)
+  g_socket_service_stop(this@stop)
 }
 
 public fun SocketService.onIncoming(callback: (SocketService) -> Unit): SocketService {

@@ -1,5 +1,4 @@
 // TODO - method: fill_async
-// TODO - method: peek
 // TODO - method: peek_buffer
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -14,11 +13,14 @@ import interop.g_buffered_input_stream_get_available
 import interop.g_buffered_input_stream_get_buffer_size
 import interop.g_buffered_input_stream_new
 import interop.g_buffered_input_stream_new_sized
+import interop.g_buffered_input_stream_peek
 import interop.g_buffered_input_stream_read_byte
 import interop.g_buffered_input_stream_set_buffer_size
+import kotlin.Array
 import kotlin.Int
 import kotlin.Long
 import kotlin.Throws
+import kotlin.UByte
 import kotlin.ULong
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
@@ -28,6 +30,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Error
 import org.gnome.gobject.Object
+import org.gnome.toCArray
 
 public typealias BufferedInputStream = CPointer<GBufferedInputStream>
 
@@ -57,7 +60,7 @@ public val BufferedInputStream.available: ULong
 public var BufferedInputStream.bufferSize: ULong
   get() = g_buffered_input_stream_get_buffer_size(this)
   set(`value`) {
-    g_buffered_input_stream_set_buffer_size(this, `value`)
+    g_buffered_input_stream_set_buffer_size(this@bufferSize, `value`)
   }
 
 @Throws(Error::class)
@@ -77,6 +80,13 @@ public fun BufferedInputStream.fillFinish(result: AsyncResult?): Long = memScope
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
+
+public fun BufferedInputStream.peek(
+  buffer: Array<UByte>?,
+  offset: ULong,
+  count: ULong
+): ULong = memScoped { g_buffered_input_stream_peek(this@peek, buffer?.toCArray(memScope), offset,
+    count) }
 
 @Throws(Error::class)
 public fun BufferedInputStream.readByte(cancellable: Cancellable?): Int = memScoped {

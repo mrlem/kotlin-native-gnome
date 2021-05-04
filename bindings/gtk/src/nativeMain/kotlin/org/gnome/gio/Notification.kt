@@ -26,29 +26,29 @@ public val Notification.asObject: Object
   get() = reinterpret()
 
 public object NotificationFactory {
-  public fun new(title: String): Notification = g_notification_new(title)!!.reinterpret()
+  public fun new(title: String?): Notification = g_notification_new(title)!!.reinterpret()
 }
 
-public fun Notification.addButton(label: String, detailedAction: String): Unit {
-  g_notification_add_button(this, label, detailedAction)
+public fun Notification.addButton(label: String?, detailedAction: String?): Unit {
+  g_notification_add_button(this@addButton, label, detailedAction)
 }
 
-public fun Notification.setBody(body: String): Unit {
-  g_notification_set_body(this, body)
+public fun Notification.setBody(body: String?): Unit {
+  g_notification_set_body(this@setBody, body)
 }
 
-public fun Notification.setDefaultAction(detailedAction: String): Unit {
-  g_notification_set_default_action(this, detailedAction)
+public fun Notification.setDefaultAction(detailedAction: String?): Unit {
+  g_notification_set_default_action(this@setDefaultAction, detailedAction)
 }
 
 public fun Notification.setIcon(icon: Icon?): Unit {
-  g_notification_set_icon(this, icon?.reinterpret())
+  g_notification_set_icon(this@setIcon, icon?.reinterpret())
 }
 
 public fun Notification.setPriority(priority: NotificationPriority): Unit {
-  g_notification_set_priority(this, priority)
+  g_notification_set_priority(this@setPriority, priority)
 }
 
-public fun Notification.setTitle(title: String): Unit {
-  g_notification_set_title(this, title)
+public fun Notification.setTitle(title: String?): Unit {
+  g_notification_set_title(this@setTitle, title)
 }

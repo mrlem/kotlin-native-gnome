@@ -48,10 +48,11 @@ public object CellViewFactory {
   public fun newWithContext(area: CellArea?, context: CellAreaContext?): CellView =
       gtk_cell_view_new_with_context(area?.reinterpret(), context?.reinterpret())!!.reinterpret()
 
-  public fun newWithMarkup(markup: String): CellView =
+  public fun newWithMarkup(markup: String?): CellView =
       gtk_cell_view_new_with_markup(markup)!!.reinterpret()
 
-  public fun newWithText(text: String): CellView = gtk_cell_view_new_with_text(text)!!.reinterpret()
+  public fun newWithText(text: String?): CellView =
+      gtk_cell_view_new_with_text(text)!!.reinterpret()
 }
 
 public val CellView.parentInstance: Widget
@@ -60,23 +61,23 @@ public val CellView.parentInstance: Widget
 public var CellView.displayedRow: TreePath?
   get() = gtk_cell_view_get_displayed_row(this)?.reinterpret()
   set(`value`) {
-    gtk_cell_view_set_displayed_row(this, `value`)
+    gtk_cell_view_set_displayed_row(this@displayedRow, `value`)
   }
 
 public var CellView.drawSensitive: Boolean
   get() = gtk_cell_view_get_draw_sensitive(this).toBoolean()
   set(`value`) {
-    gtk_cell_view_set_draw_sensitive(this, `value`.toInt())
+    gtk_cell_view_set_draw_sensitive(this@drawSensitive, `value`.toInt())
   }
 
 public var CellView.fitModel: Boolean
   get() = gtk_cell_view_get_fit_model(this).toBoolean()
   set(`value`) {
-    gtk_cell_view_set_fit_model(this, `value`.toInt())
+    gtk_cell_view_set_fit_model(this@fitModel, `value`.toInt())
   }
 
 public var CellView.model: TreeModel?
   get() = gtk_cell_view_get_model(this)?.reinterpret()
   set(`value`) {
-    gtk_cell_view_set_model(this, `value`)
+    gtk_cell_view_set_model(this@model, `value`)
   }

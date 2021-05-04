@@ -48,47 +48,47 @@ public val AppChooserWidget.asBox: Box
   get() = reinterpret()
 
 public object AppChooserWidgetFactory {
-  public fun new(contentType: String): AppChooserWidget =
+  public fun new(contentType: String?): AppChooserWidget =
       gtk_app_chooser_widget_new(contentType)!!.reinterpret()
 }
 
 public val AppChooserWidget.parent: Box
   get() = pointed.parent.ptr
 
-public var AppChooserWidget.defaultText: String
+public var AppChooserWidget.defaultText: String?
   get() = gtk_app_chooser_widget_get_default_text(this).toKString()
   set(`value`) {
-    gtk_app_chooser_widget_set_default_text(this, `value`)
+    gtk_app_chooser_widget_set_default_text(this@defaultText, `value`)
   }
 
 public var AppChooserWidget.showAll: Boolean
   get() = gtk_app_chooser_widget_get_show_all(this).toBoolean()
   set(`value`) {
-    gtk_app_chooser_widget_set_show_all(this, `value`.toInt())
+    gtk_app_chooser_widget_set_show_all(this@showAll, `value`.toInt())
   }
 
 public var AppChooserWidget.showDefault: Boolean
   get() = gtk_app_chooser_widget_get_show_default(this).toBoolean()
   set(`value`) {
-    gtk_app_chooser_widget_set_show_default(this, `value`.toInt())
+    gtk_app_chooser_widget_set_show_default(this@showDefault, `value`.toInt())
   }
 
 public var AppChooserWidget.showFallback: Boolean
   get() = gtk_app_chooser_widget_get_show_fallback(this).toBoolean()
   set(`value`) {
-    gtk_app_chooser_widget_set_show_fallback(this, `value`.toInt())
+    gtk_app_chooser_widget_set_show_fallback(this@showFallback, `value`.toInt())
   }
 
 public var AppChooserWidget.showOther: Boolean
   get() = gtk_app_chooser_widget_get_show_other(this).toBoolean()
   set(`value`) {
-    gtk_app_chooser_widget_set_show_other(this, `value`.toInt())
+    gtk_app_chooser_widget_set_show_other(this@showOther, `value`.toInt())
   }
 
 public var AppChooserWidget.showRecommended: Boolean
   get() = gtk_app_chooser_widget_get_show_recommended(this).toBoolean()
   set(`value`) {
-    gtk_app_chooser_widget_set_show_recommended(this, `value`.toInt())
+    gtk_app_chooser_widget_set_show_recommended(this@showRecommended, `value`.toInt())
   }
 
 public fun AppChooserWidget.onApplicationActivated(callback: (AppChooserWidget) -> Unit):

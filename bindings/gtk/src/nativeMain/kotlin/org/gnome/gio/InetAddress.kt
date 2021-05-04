@@ -1,5 +1,3 @@
-// TODO - constructor: new_from_bytes
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -19,18 +17,23 @@ import interop.g_inet_address_get_is_multicast
 import interop.g_inet_address_get_is_site_local
 import interop.g_inet_address_get_native_size
 import interop.g_inet_address_new_any
+import interop.g_inet_address_new_from_bytes
 import interop.g_inet_address_new_from_string
 import interop.g_inet_address_new_loopback
 import interop.g_inet_address_to_string
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.String
+import kotlin.UByte
 import kotlin.ULong
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toCArray
 import org.gnome.toKString
 
 public typealias InetAddress = CPointer<GInetAddress>
@@ -42,7 +45,10 @@ public object InetAddressFactory {
   public fun newAny(family: SocketFamily): InetAddress =
       g_inet_address_new_any(family)!!.reinterpret()
 
-  public fun newFromString(string: String): InetAddress =
+  public fun newFromBytes(bytes: Array<UByte>?, family: SocketFamily): InetAddress = memScoped {
+      g_inet_address_new_from_bytes(bytes?.toCArray(memScope), family)!!.reinterpret() }
+
+  public fun newFromString(string: String?): InetAddress =
       g_inet_address_new_from_string(string)!!.reinterpret()
 
   public fun newLoopback(family: SocketFamily): InetAddress =
@@ -88,7 +94,7 @@ public val InetAddress.isSiteLocal: Boolean
 public val InetAddress.nativeSize: ULong
   get() = g_inet_address_get_native_size(this)
 
-public fun InetAddress.equal(otherAddress: InetAddress?): Boolean = g_inet_address_equal(this,
+public fun InetAddress.equal(otherAddress: InetAddress?): Boolean = g_inet_address_equal(this@equal,
     otherAddress?.reinterpret()).toBoolean()
 
-public fun InetAddress.toString(): String = g_inet_address_to_string(this).toKString()
+public fun InetAddress.toString(): String? = g_inet_address_to_string(this@toString).toKString()

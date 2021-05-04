@@ -70,4 +70,4 @@ public fun Credentials.setUnixUser(uid: UInt): Boolean = memScoped {
   return result
 }
 
-public fun Credentials.toString(): String = g_credentials_to_string(this).toKString()
+public fun Credentials.toString(): String? = g_credentials_to_string(this@toString).toKString()

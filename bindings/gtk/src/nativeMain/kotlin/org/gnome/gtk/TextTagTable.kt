@@ -37,14 +37,14 @@ public val TextTagTable.parentInstance: Object
 public val TextTagTable.size: Int
   get() = gtk_text_tag_table_get_size(this)
 
-public fun TextTagTable.add(tag: TextTag?): Boolean = gtk_text_tag_table_add(this,
+public fun TextTagTable.add(tag: TextTag?): Boolean = gtk_text_tag_table_add(this@add,
     tag?.reinterpret()).toBoolean()
 
-public fun TextTagTable.lookup(name: String): TextTag? = gtk_text_tag_table_lookup(this,
+public fun TextTagTable.lookup(name: String?): TextTag? = gtk_text_tag_table_lookup(this@lookup,
     name)?.reinterpret()
 
 public fun TextTagTable.remove(tag: TextTag?): Unit {
-  gtk_text_tag_table_remove(this, tag?.reinterpret())
+  gtk_text_tag_table_remove(this@remove, tag?.reinterpret())
 }
 
 public fun TextTagTable.onTagAdded(callback: (TextTagTable) -> Unit): TextTagTable {

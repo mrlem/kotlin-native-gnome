@@ -74,11 +74,11 @@ public fun SocketListener.addSocket(socket: Socket?, sourceObject: Object?): Boo
 }
 
 public fun SocketListener.close(): Unit {
-  g_socket_listener_close(this)
+  g_socket_listener_close(this@close)
 }
 
 public fun SocketListener.setBacklog(listenBacklog: Int): Unit {
-  g_socket_listener_set_backlog(this, listenBacklog)
+  g_socket_listener_set_backlog(this@setBacklog, listenBacklog)
 }
 
 public fun SocketListener.onEvent(callback: (SocketListener) -> Unit): SocketListener {

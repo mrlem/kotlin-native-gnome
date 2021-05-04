@@ -39,17 +39,17 @@ public object RecentManagerFactory {
   public fun new(): RecentManager = gtk_recent_manager_new()!!.reinterpret()
 }
 
-public fun RecentManager.addFull(uri: String, recentData: RecentData?): Boolean =
-    gtk_recent_manager_add_full(this, uri, recentData?.reinterpret()).toBoolean()
+public fun RecentManager.addFull(uri: String?, recentData: RecentData?): Boolean =
+    gtk_recent_manager_add_full(this@addFull, uri, recentData?.reinterpret()).toBoolean()
 
-public fun RecentManager.addItem(uri: String): Boolean = gtk_recent_manager_add_item(this,
+public fun RecentManager.addItem(uri: String?): Boolean = gtk_recent_manager_add_item(this@addItem,
     uri).toBoolean()
 
-public fun RecentManager.hasItem(uri: String): Boolean = gtk_recent_manager_has_item(this,
+public fun RecentManager.hasItem(uri: String?): Boolean = gtk_recent_manager_has_item(this@hasItem,
     uri).toBoolean()
 
 @Throws(Error::class)
-public fun RecentManager.lookupItem(uri: String): RecentInfo? = memScoped {
+public fun RecentManager.lookupItem(uri: String?): RecentInfo? = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: RecentInfo? = gtk_recent_manager_lookup_item(this@lookupItem, uri,
       errors)?.reinterpret()
@@ -58,7 +58,7 @@ public fun RecentManager.lookupItem(uri: String): RecentInfo? = memScoped {
 }
 
 @Throws(Error::class)
-public fun RecentManager.moveItem(uri: String, newUri: String): Boolean = memScoped {
+public fun RecentManager.moveItem(uri: String?, newUri: String?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = gtk_recent_manager_move_item(this@moveItem, uri, newUri, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
@@ -74,7 +74,7 @@ public fun RecentManager.purgeItems(): Int = memScoped {
 }
 
 @Throws(Error::class)
-public fun RecentManager.removeItem(uri: String): Boolean = memScoped {
+public fun RecentManager.removeItem(uri: String?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = gtk_recent_manager_remove_item(this@removeItem, uri, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }

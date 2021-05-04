@@ -1,7 +1,6 @@
 // TODO - method: get_rehandshake_mode
 // TODO - method: get_use_system_certdb
 // TODO - method: handshake_async
-// TODO - method: set_advertised_protocols
 // TODO - method: set_rehandshake_mode
 // TODO - method: set_use_system_certdb
 //
@@ -21,10 +20,12 @@ import interop.g_tls_connection_get_peer_certificate_errors
 import interop.g_tls_connection_get_require_close_notify
 import interop.g_tls_connection_handshake
 import interop.g_tls_connection_handshake_finish
+import interop.g_tls_connection_set_advertised_protocols
 import interop.g_tls_connection_set_certificate
 import interop.g_tls_connection_set_database
 import interop.g_tls_connection_set_interaction
 import interop.g_tls_connection_set_require_close_notify
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Throws
@@ -38,6 +39,7 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toCArray
 import org.gnome.toInt
 import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
@@ -56,22 +58,22 @@ public val TlsConnection.parentInstance: IOStream
 public var TlsConnection.certificate: TlsCertificate?
   get() = g_tls_connection_get_certificate(this)?.reinterpret()
   set(`value`) {
-    g_tls_connection_set_certificate(this, `value`)
+    g_tls_connection_set_certificate(this@certificate, `value`)
   }
 
 public var TlsConnection.database: TlsDatabase?
   get() = g_tls_connection_get_database(this)?.reinterpret()
   set(`value`) {
-    g_tls_connection_set_database(this, `value`)
+    g_tls_connection_set_database(this@database, `value`)
   }
 
 public var TlsConnection.interaction: TlsInteraction?
   get() = g_tls_connection_get_interaction(this)?.reinterpret()
   set(`value`) {
-    g_tls_connection_set_interaction(this, `value`)
+    g_tls_connection_set_interaction(this@interaction, `value`)
   }
 
-public val TlsConnection.negotiatedProtocol: String
+public val TlsConnection.negotiatedProtocol: String?
   get() = g_tls_connection_get_negotiated_protocol(this).toKString()
 
 public val TlsConnection.peerCertificate: TlsCertificate?
@@ -83,12 +85,13 @@ public val TlsConnection.peerCertificateErrors: TlsCertificateFlags
 public var TlsConnection.requireCloseNotify: Boolean
   get() = g_tls_connection_get_require_close_notify(this).toBoolean()
   set(`value`) {
-    g_tls_connection_set_require_close_notify(this, `value`.toInt())
+    g_tls_connection_set_require_close_notify(this@requireCloseNotify, `value`.toInt())
   }
 
 public fun TlsConnection.emitAcceptCertificate(peerCert: TlsCertificate?,
-    errors: TlsCertificateFlags): Boolean = g_tls_connection_emit_accept_certificate(this,
-    peerCert?.reinterpret(), errors).toBoolean()
+    errors: TlsCertificateFlags): Boolean =
+    g_tls_connection_emit_accept_certificate(this@emitAcceptCertificate, peerCert?.reinterpret(),
+    errors).toBoolean()
 
 @Throws(Error::class)
 public fun TlsConnection.handshake(cancellable: Cancellable?): Boolean = memScoped {
@@ -106,6 +109,11 @@ public fun TlsConnection.handshakeFinish(result: AsyncResult?): Boolean = memSco
       result?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
+}
+
+public fun TlsConnection.setAdvertisedProtocols(protocols: Array<String>?): Unit {
+  memScoped { g_tls_connection_set_advertised_protocols(this@setAdvertisedProtocols,
+      protocols?.toCArray(memScope)) }
 }
 
 public fun TlsConnection.onAcceptCertificate(callback: (TlsConnection) -> Unit): TlsConnection {

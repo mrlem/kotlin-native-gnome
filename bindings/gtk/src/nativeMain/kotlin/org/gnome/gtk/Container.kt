@@ -68,66 +68,69 @@ public val Container.widget: Widget
 public var Container.borderWidth: UInt
   get() = gtk_container_get_border_width(this)
   set(`value`) {
-    gtk_container_set_border_width(this, `value`)
+    gtk_container_set_border_width(this@borderWidth, `value`)
   }
 
 public var Container.focusChild: Widget?
   get() = gtk_container_get_focus_child(this)?.reinterpret()
   set(`value`) {
-    gtk_container_set_focus_child(this, `value`)
+    gtk_container_set_focus_child(this@focusChild, `value`)
   }
 
 public var Container.focusHadjustment: Adjustment?
   get() = gtk_container_get_focus_hadjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_container_set_focus_hadjustment(this, `value`)
+    gtk_container_set_focus_hadjustment(this@focusHadjustment, `value`)
   }
 
 public var Container.focusVadjustment: Adjustment?
   get() = gtk_container_get_focus_vadjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_container_set_focus_vadjustment(this, `value`)
+    gtk_container_set_focus_vadjustment(this@focusVadjustment, `value`)
   }
 
 public fun Container.add(widget: Widget?): Unit {
-  gtk_container_add(this, widget?.reinterpret())
+  gtk_container_add(this@add, widget?.reinterpret())
 }
 
 public fun Container.checkResize(): Unit {
-  gtk_container_check_resize(this)
+  gtk_container_check_resize(this@checkResize)
 }
 
 public fun Container.childGetProperty(
   child: Widget?,
-  propertyName: String,
+  propertyName: String?,
   `value`: Value?
 ): Unit {
-  gtk_container_child_get_property(this, child?.reinterpret(), propertyName, `value`?.reinterpret())
+  gtk_container_child_get_property(this@childGetProperty, child?.reinterpret(), propertyName,
+      `value`?.reinterpret())
 }
 
-public fun Container.childNotify(child: Widget?, childProperty: String): Unit {
-  gtk_container_child_notify(this, child?.reinterpret(), childProperty)
+public fun Container.childNotify(child: Widget?, childProperty: String?): Unit {
+  gtk_container_child_notify(this@childNotify, child?.reinterpret(), childProperty)
 }
 
 public fun Container.childNotifyByPspec(child: Widget?, pspec: ParamSpec?): Unit {
-  gtk_container_child_notify_by_pspec(this, child?.reinterpret(), pspec?.reinterpret())
+  gtk_container_child_notify_by_pspec(this@childNotifyByPspec, child?.reinterpret(),
+      pspec?.reinterpret())
 }
 
 public fun Container.childSetProperty(
   child: Widget?,
-  propertyName: String,
+  propertyName: String?,
   `value`: Value?
 ): Unit {
-  gtk_container_child_set_property(this, child?.reinterpret(), propertyName, `value`?.reinterpret())
+  gtk_container_child_set_property(this@childSetProperty, child?.reinterpret(), propertyName,
+      `value`?.reinterpret())
 }
 
-public fun Container.childType(): GType = gtk_container_child_type(this)
+public fun Container.childType(): GType = gtk_container_child_type(this@childType)
 
 public fun Container.getPathForChild(child: Widget?): WidgetPath? =
-    gtk_container_get_path_for_child(this, child?.reinterpret())?.reinterpret()
+    gtk_container_get_path_for_child(this@getPathForChild, child?.reinterpret())?.reinterpret()
 
 public fun Container.remove(widget: Widget?): Unit {
-  gtk_container_remove(this, widget?.reinterpret())
+  gtk_container_remove(this@remove, widget?.reinterpret())
 }
 
 public fun Container.onAdd(callback: (Container) -> Unit): Container {

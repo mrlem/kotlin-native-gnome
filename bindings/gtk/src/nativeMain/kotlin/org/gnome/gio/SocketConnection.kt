@@ -76,4 +76,4 @@ public fun SocketConnection.getRemoteAddress(): SocketAddress? = memScoped {
 }
 
 public fun SocketConnection.isConnected(): Boolean =
-    g_socket_connection_is_connected(this).toBoolean()
+    g_socket_connection_is_connected(this@isConnected).toBoolean()

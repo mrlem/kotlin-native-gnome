@@ -26,11 +26,11 @@ public val VolumeMonitor.asObject: Object
 public val VolumeMonitor.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public fun VolumeMonitor.getMountForUuid(uuid: String): Mount? =
-    g_volume_monitor_get_mount_for_uuid(this, uuid)?.reinterpret()
+public fun VolumeMonitor.getMountForUuid(uuid: String?): Mount? =
+    g_volume_monitor_get_mount_for_uuid(this@getMountForUuid, uuid)?.reinterpret()
 
-public fun VolumeMonitor.getVolumeForUuid(uuid: String): Volume? =
-    g_volume_monitor_get_volume_for_uuid(this, uuid)?.reinterpret()
+public fun VolumeMonitor.getVolumeForUuid(uuid: String?): Volume? =
+    g_volume_monitor_get_volume_for_uuid(this@getVolumeForUuid, uuid)?.reinterpret()
 
 public fun VolumeMonitor.onDriveChanged(callback: (VolumeMonitor) -> Unit): VolumeMonitor {
   // TODO - handle callback data

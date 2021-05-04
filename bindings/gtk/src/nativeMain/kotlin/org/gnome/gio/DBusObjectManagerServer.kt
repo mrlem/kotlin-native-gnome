@@ -26,7 +26,7 @@ public val DBusObjectManagerServer.asObject: Object
   get() = reinterpret()
 
 public object DBusObjectManagerServerFactory {
-  public fun new(objectPath: String): DBusObjectManagerServer =
+  public fun new(objectPath: String?): DBusObjectManagerServer =
       g_dbus_object_manager_server_new(objectPath)!!.reinterpret()
 }
 
@@ -36,19 +36,19 @@ public val DBusObjectManagerServer.parentInstance: Object
 public var DBusObjectManagerServer.connection: DBusConnection?
   get() = g_dbus_object_manager_server_get_connection(this)?.reinterpret()
   set(`value`) {
-    g_dbus_object_manager_server_set_connection(this, `value`)
+    g_dbus_object_manager_server_set_connection(this@connection, `value`)
   }
 
 public fun DBusObjectManagerServer.export(`object`: DBusObjectSkeleton?): Unit {
-  g_dbus_object_manager_server_export(this, `object`?.reinterpret())
+  g_dbus_object_manager_server_export(this@export, `object`?.reinterpret())
 }
 
 public fun DBusObjectManagerServer.exportUniquely(`object`: DBusObjectSkeleton?): Unit {
-  g_dbus_object_manager_server_export_uniquely(this, `object`?.reinterpret())
+  g_dbus_object_manager_server_export_uniquely(this@exportUniquely, `object`?.reinterpret())
 }
 
 public fun DBusObjectManagerServer.isExported(`object`: DBusObjectSkeleton?): Boolean =
-    g_dbus_object_manager_server_is_exported(this, `object`?.reinterpret()).toBoolean()
+    g_dbus_object_manager_server_is_exported(this@isExported, `object`?.reinterpret()).toBoolean()
 
-public fun DBusObjectManagerServer.unexport(objectPath: String): Boolean =
-    g_dbus_object_manager_server_unexport(this, objectPath).toBoolean()
+public fun DBusObjectManagerServer.unexport(objectPath: String?): Boolean =
+    g_dbus_object_manager_server_unexport(this@unexport, objectPath).toBoolean()

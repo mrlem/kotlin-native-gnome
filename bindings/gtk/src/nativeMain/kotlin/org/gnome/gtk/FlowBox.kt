@@ -73,85 +73,85 @@ public val FlowBox.container: Container
 public var FlowBox.activateOnSingleClick: Boolean
   get() = gtk_flow_box_get_activate_on_single_click(this).toBoolean()
   set(`value`) {
-    gtk_flow_box_set_activate_on_single_click(this, `value`.toInt())
+    gtk_flow_box_set_activate_on_single_click(this@activateOnSingleClick, `value`.toInt())
   }
 
 public var FlowBox.columnSpacing: UInt
   get() = gtk_flow_box_get_column_spacing(this)
   set(`value`) {
-    gtk_flow_box_set_column_spacing(this, `value`)
+    gtk_flow_box_set_column_spacing(this@columnSpacing, `value`)
   }
 
 public var FlowBox.homogeneous: Boolean
   get() = gtk_flow_box_get_homogeneous(this).toBoolean()
   set(`value`) {
-    gtk_flow_box_set_homogeneous(this, `value`.toInt())
+    gtk_flow_box_set_homogeneous(this@homogeneous, `value`.toInt())
   }
 
 public var FlowBox.maxChildrenPerLine: UInt
   get() = gtk_flow_box_get_max_children_per_line(this)
   set(`value`) {
-    gtk_flow_box_set_max_children_per_line(this, `value`)
+    gtk_flow_box_set_max_children_per_line(this@maxChildrenPerLine, `value`)
   }
 
 public var FlowBox.minChildrenPerLine: UInt
   get() = gtk_flow_box_get_min_children_per_line(this)
   set(`value`) {
-    gtk_flow_box_set_min_children_per_line(this, `value`)
+    gtk_flow_box_set_min_children_per_line(this@minChildrenPerLine, `value`)
   }
 
 public var FlowBox.rowSpacing: UInt
   get() = gtk_flow_box_get_row_spacing(this)
   set(`value`) {
-    gtk_flow_box_set_row_spacing(this, `value`)
+    gtk_flow_box_set_row_spacing(this@rowSpacing, `value`)
   }
 
 public var FlowBox.selectionMode: SelectionMode
   get() = gtk_flow_box_get_selection_mode(this)
   set(`value`) {
-    gtk_flow_box_set_selection_mode(this, `value`)
+    gtk_flow_box_set_selection_mode(this@selectionMode, `value`)
   }
 
-public fun FlowBox.getChildAtIndex(idx: Int): FlowBoxChild? = gtk_flow_box_get_child_at_index(this,
-    idx)?.reinterpret()
+public fun FlowBox.getChildAtIndex(idx: Int): FlowBoxChild? =
+    gtk_flow_box_get_child_at_index(this@getChildAtIndex, idx)?.reinterpret()
 
 public fun FlowBox.getChildAtPos(x: Int, y: Int): FlowBoxChild? =
-    gtk_flow_box_get_child_at_pos(this, x, y)?.reinterpret()
+    gtk_flow_box_get_child_at_pos(this@getChildAtPos, x, y)?.reinterpret()
 
 public fun FlowBox.insert(widget: Widget?, position: Int): Unit {
-  gtk_flow_box_insert(this, widget?.reinterpret(), position)
+  gtk_flow_box_insert(this@insert, widget?.reinterpret(), position)
 }
 
 public fun FlowBox.invalidateFilter(): Unit {
-  gtk_flow_box_invalidate_filter(this)
+  gtk_flow_box_invalidate_filter(this@invalidateFilter)
 }
 
 public fun FlowBox.invalidateSort(): Unit {
-  gtk_flow_box_invalidate_sort(this)
+  gtk_flow_box_invalidate_sort(this@invalidateSort)
 }
 
 public fun FlowBox.selectAll(): Unit {
-  gtk_flow_box_select_all(this)
+  gtk_flow_box_select_all(this@selectAll)
 }
 
 public fun FlowBox.selectChild(child: FlowBoxChild?): Unit {
-  gtk_flow_box_select_child(this, child?.reinterpret())
+  gtk_flow_box_select_child(this@selectChild, child?.reinterpret())
 }
 
 public fun FlowBox.setHadjustment(adjustment: Adjustment?): Unit {
-  gtk_flow_box_set_hadjustment(this, adjustment?.reinterpret())
+  gtk_flow_box_set_hadjustment(this@setHadjustment, adjustment?.reinterpret())
 }
 
 public fun FlowBox.setVadjustment(adjustment: Adjustment?): Unit {
-  gtk_flow_box_set_vadjustment(this, adjustment?.reinterpret())
+  gtk_flow_box_set_vadjustment(this@setVadjustment, adjustment?.reinterpret())
 }
 
 public fun FlowBox.unselectAll(): Unit {
-  gtk_flow_box_unselect_all(this)
+  gtk_flow_box_unselect_all(this@unselectAll)
 }
 
 public fun FlowBox.unselectChild(child: FlowBoxChild?): Unit {
-  gtk_flow_box_unselect_child(this, child?.reinterpret())
+  gtk_flow_box_unselect_child(this@unselectChild, child?.reinterpret())
 }
 
 public fun FlowBox.onActivateCursorChild(callback: (FlowBox) -> Unit): FlowBox {

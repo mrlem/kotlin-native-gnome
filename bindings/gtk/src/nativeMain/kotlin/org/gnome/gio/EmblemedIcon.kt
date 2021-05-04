@@ -33,9 +33,9 @@ public val EmblemedIcon.icon: Icon?
   get() = g_emblemed_icon_get_icon(this)?.reinterpret()
 
 public fun EmblemedIcon.addEmblem(emblem: Emblem?): Unit {
-  g_emblemed_icon_add_emblem(this, emblem?.reinterpret())
+  g_emblemed_icon_add_emblem(this@addEmblem, emblem?.reinterpret())
 }
 
 public fun EmblemedIcon.clearEmblems(): Unit {
-  g_emblemed_icon_clear_emblems(this)
+  g_emblemed_icon_clear_emblems(this@clearEmblems)
 }

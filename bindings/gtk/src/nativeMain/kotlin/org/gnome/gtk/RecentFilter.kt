@@ -39,38 +39,38 @@ public object RecentFilterFactory {
   public fun new(): RecentFilter = gtk_recent_filter_new()!!.reinterpret()
 }
 
-public var RecentFilter.name: String
+public var RecentFilter.name: String?
   get() = gtk_recent_filter_get_name(this).toKString()
   set(`value`) {
-    gtk_recent_filter_set_name(this, `value`)
+    gtk_recent_filter_set_name(this@name, `value`)
   }
 
 public val RecentFilter.needed: RecentFilterFlags
   get() = gtk_recent_filter_get_needed(this)
 
 public fun RecentFilter.addAge(days: Int): Unit {
-  gtk_recent_filter_add_age(this, days)
+  gtk_recent_filter_add_age(this@addAge, days)
 }
 
-public fun RecentFilter.addApplication(application: String): Unit {
-  gtk_recent_filter_add_application(this, application)
+public fun RecentFilter.addApplication(application: String?): Unit {
+  gtk_recent_filter_add_application(this@addApplication, application)
 }
 
-public fun RecentFilter.addGroup(group: String): Unit {
-  gtk_recent_filter_add_group(this, group)
+public fun RecentFilter.addGroup(group: String?): Unit {
+  gtk_recent_filter_add_group(this@addGroup, group)
 }
 
-public fun RecentFilter.addMimeType(mimeType: String): Unit {
-  gtk_recent_filter_add_mime_type(this, mimeType)
+public fun RecentFilter.addMimeType(mimeType: String?): Unit {
+  gtk_recent_filter_add_mime_type(this@addMimeType, mimeType)
 }
 
-public fun RecentFilter.addPattern(pattern: String): Unit {
-  gtk_recent_filter_add_pattern(this, pattern)
+public fun RecentFilter.addPattern(pattern: String?): Unit {
+  gtk_recent_filter_add_pattern(this@addPattern, pattern)
 }
 
 public fun RecentFilter.addPixbufFormats(): Unit {
-  gtk_recent_filter_add_pixbuf_formats(this)
+  gtk_recent_filter_add_pixbuf_formats(this@addPixbufFormats)
 }
 
 public fun RecentFilter.filter(filterInfo: RecentFilterInfo?): Boolean =
-    gtk_recent_filter_filter(this, filterInfo?.reinterpret()).toBoolean()
+    gtk_recent_filter_filter(this@filter, filterInfo?.reinterpret()).toBoolean()

@@ -30,7 +30,7 @@ public object InetSocketAddressFactory {
   public fun new(address: InetAddress?, port: UShort): InetSocketAddress =
       g_inet_socket_address_new(address?.reinterpret(), port)!!.reinterpret()
 
-  public fun newFromString(address: String, port: UInt): InetSocketAddress =
+  public fun newFromString(address: String?, port: UInt): InetSocketAddress =
       g_inet_socket_address_new_from_string(address, port)!!.reinterpret()
 }
 

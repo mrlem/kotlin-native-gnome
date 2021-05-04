@@ -47,17 +47,17 @@ public val DBusInterfaceSkeleton.connection: DBusConnection?
 public var DBusInterfaceSkeleton.flags: DBusInterfaceSkeletonFlags
   get() = g_dbus_interface_skeleton_get_flags(this)
   set(`value`) {
-    g_dbus_interface_skeleton_set_flags(this, `value`)
+    g_dbus_interface_skeleton_set_flags(this@flags, `value`)
   }
 
 public val DBusInterfaceSkeleton.info: DBusInterfaceInfo?
   get() = g_dbus_interface_skeleton_get_info(this)?.reinterpret()
 
-public val DBusInterfaceSkeleton.objectPath: String
+public val DBusInterfaceSkeleton.objectPath: String?
   get() = g_dbus_interface_skeleton_get_object_path(this).toKString()
 
 @Throws(Error::class)
-public fun DBusInterfaceSkeleton.export(connection: DBusConnection?, objectPath: String): Boolean =
+public fun DBusInterfaceSkeleton.export(connection: DBusConnection?, objectPath: String?): Boolean =
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_dbus_interface_skeleton_export(this@export, connection?.reinterpret(),
@@ -67,18 +67,20 @@ public fun DBusInterfaceSkeleton.export(connection: DBusConnection?, objectPath:
 }
 
 public fun DBusInterfaceSkeleton.flush(): Unit {
-  g_dbus_interface_skeleton_flush(this)
+  g_dbus_interface_skeleton_flush(this@flush)
 }
 
 public fun DBusInterfaceSkeleton.hasConnection(connection: DBusConnection?): Boolean =
-    g_dbus_interface_skeleton_has_connection(this, connection?.reinterpret()).toBoolean()
+    g_dbus_interface_skeleton_has_connection(this@hasConnection,
+    connection?.reinterpret()).toBoolean()
 
 public fun DBusInterfaceSkeleton.unexport(): Unit {
-  g_dbus_interface_skeleton_unexport(this)
+  g_dbus_interface_skeleton_unexport(this@unexport)
 }
 
 public fun DBusInterfaceSkeleton.unexportFromConnection(connection: DBusConnection?): Unit {
-  g_dbus_interface_skeleton_unexport_from_connection(this, connection?.reinterpret())
+  g_dbus_interface_skeleton_unexport_from_connection(this@unexportFromConnection,
+      connection?.reinterpret())
 }
 
 public fun DBusInterfaceSkeleton.onGAuthorizeMethod(callback: (DBusInterfaceSkeleton) -> Unit):

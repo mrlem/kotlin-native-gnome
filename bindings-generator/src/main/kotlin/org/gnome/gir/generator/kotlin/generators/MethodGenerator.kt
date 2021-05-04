@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.*
 import org.gnome.gir.GLIB_PACKAGE
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
+import org.gnome.gir.model.ArrayTypeDefinition
 import org.gnome.gir.model.CallableDefinition
 import org.gnome.gir.model.enums.Direction.InOut
 import org.gnome.gir.model.enums.Direction.Out
@@ -37,9 +38,11 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
         return
     }
 
+    var hasArray = false
     val params = method.callable.parameters
         .map { param ->
             val typeInfo = (param.type as? AnyType) // TODO - handle varargs
+                ?.also { if (it is ArrayTypeDefinition) hasArray = true }
                 ?.takeUnless { param.direction == Out || param.direction == InOut } // TODO - handle in/out
                 ?.typeInfo(resolver)
                 ?: run {
@@ -55,6 +58,13 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
 
     // params conversion
     val (paramsTemplate, paramsArray) = params.getParamsData(true, resolver)
+
+    // memScoped if required
+    val (memScopedStart, memScopedEnd, memScopedArray) = if (hasArray) {
+        Triple("%M { ", " }", arrayOf(MemberName("kotlinx.cinterop", "memScoped")))
+    } else {
+        Triple("", "", emptyArray())
+    }
 
     val builder = FunSpec.builder(name)
         .receiver(className)
@@ -79,9 +89,11 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
                 ptrMemberName
             )
             .addStatement(
-                "val result: %T = %M(this@$name$paramsTemplate, errors)$returnTemplate",
+                "val result: %T = $memScopedStart%M(this@%M$paramsTemplate, errors)$returnTemplate$memScopedEnd",
                 returnTypeInfo?.kType ?: unitClassName,
+                *memScopedArray,
                 MemberName(INTEROP_PACKAGE, cIdentifier),
+                MemberName("", name),
                 *paramsArray,
                 *returnArray
             )
@@ -97,8 +109,10 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
         builder
             // block
             .addStatement(
-                "$returnKeyword%M(this$paramsTemplate)$returnTemplate",
+                "$returnKeyword$memScopedStart%M(this@%M$paramsTemplate)$returnTemplate$memScopedEnd",
+                *memScopedArray,
                 MemberName(INTEROP_PACKAGE, cIdentifier),
+                MemberName("", name),
                 *paramsArray,
                 *returnArray
             )

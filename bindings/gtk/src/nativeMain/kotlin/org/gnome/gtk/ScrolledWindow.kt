@@ -79,13 +79,13 @@ public val ScrolledWindow.container: Bin
 public var ScrolledWindow.captureButtonPress: Boolean
   get() = gtk_scrolled_window_get_capture_button_press(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_capture_button_press(this, `value`.toInt())
+    gtk_scrolled_window_set_capture_button_press(this@captureButtonPress, `value`.toInt())
   }
 
 public var ScrolledWindow.hadjustment: Adjustment?
   get() = gtk_scrolled_window_get_hadjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_scrolled_window_set_hadjustment(this, `value`)
+    gtk_scrolled_window_set_hadjustment(this@hadjustment, `value`)
   }
 
 public val ScrolledWindow.hscrollbar: Widget?
@@ -94,67 +94,67 @@ public val ScrolledWindow.hscrollbar: Widget?
 public var ScrolledWindow.kineticScrolling: Boolean
   get() = gtk_scrolled_window_get_kinetic_scrolling(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_kinetic_scrolling(this, `value`.toInt())
+    gtk_scrolled_window_set_kinetic_scrolling(this@kineticScrolling, `value`.toInt())
   }
 
 public var ScrolledWindow.maxContentHeight: Int
   get() = gtk_scrolled_window_get_max_content_height(this)
   set(`value`) {
-    gtk_scrolled_window_set_max_content_height(this, `value`)
+    gtk_scrolled_window_set_max_content_height(this@maxContentHeight, `value`)
   }
 
 public var ScrolledWindow.maxContentWidth: Int
   get() = gtk_scrolled_window_get_max_content_width(this)
   set(`value`) {
-    gtk_scrolled_window_set_max_content_width(this, `value`)
+    gtk_scrolled_window_set_max_content_width(this@maxContentWidth, `value`)
   }
 
 public var ScrolledWindow.minContentHeight: Int
   get() = gtk_scrolled_window_get_min_content_height(this)
   set(`value`) {
-    gtk_scrolled_window_set_min_content_height(this, `value`)
+    gtk_scrolled_window_set_min_content_height(this@minContentHeight, `value`)
   }
 
 public var ScrolledWindow.minContentWidth: Int
   get() = gtk_scrolled_window_get_min_content_width(this)
   set(`value`) {
-    gtk_scrolled_window_set_min_content_width(this, `value`)
+    gtk_scrolled_window_set_min_content_width(this@minContentWidth, `value`)
   }
 
 public var ScrolledWindow.overlayScrolling: Boolean
   get() = gtk_scrolled_window_get_overlay_scrolling(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_overlay_scrolling(this, `value`.toInt())
+    gtk_scrolled_window_set_overlay_scrolling(this@overlayScrolling, `value`.toInt())
   }
 
 public var ScrolledWindow.placement: CornerType
   get() = gtk_scrolled_window_get_placement(this)
   set(`value`) {
-    gtk_scrolled_window_set_placement(this, `value`)
+    gtk_scrolled_window_set_placement(this@placement, `value`)
   }
 
 public var ScrolledWindow.propagateNaturalHeight: Boolean
   get() = gtk_scrolled_window_get_propagate_natural_height(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_propagate_natural_height(this, `value`.toInt())
+    gtk_scrolled_window_set_propagate_natural_height(this@propagateNaturalHeight, `value`.toInt())
   }
 
 public var ScrolledWindow.propagateNaturalWidth: Boolean
   get() = gtk_scrolled_window_get_propagate_natural_width(this).toBoolean()
   set(`value`) {
-    gtk_scrolled_window_set_propagate_natural_width(this, `value`.toInt())
+    gtk_scrolled_window_set_propagate_natural_width(this@propagateNaturalWidth, `value`.toInt())
   }
 
 public var ScrolledWindow.shadowType: ShadowType
   get() = gtk_scrolled_window_get_shadow_type(this)
   set(`value`) {
-    gtk_scrolled_window_set_shadow_type(this, `value`)
+    gtk_scrolled_window_set_shadow_type(this@shadowType, `value`)
   }
 
 public var ScrolledWindow.vadjustment: Adjustment?
   get() = gtk_scrolled_window_get_vadjustment(this)?.reinterpret()
   set(`value`) {
-    gtk_scrolled_window_set_vadjustment(this, `value`)
+    gtk_scrolled_window_set_vadjustment(this@vadjustment, `value`)
   }
 
 public val ScrolledWindow.vscrollbar: Widget?
@@ -162,11 +162,11 @@ public val ScrolledWindow.vscrollbar: Widget?
 
 public fun ScrolledWindow.setPolicy(hscrollbarPolicy: PolicyType, vscrollbarPolicy: PolicyType):
     Unit {
-  gtk_scrolled_window_set_policy(this, hscrollbarPolicy, vscrollbarPolicy)
+  gtk_scrolled_window_set_policy(this@setPolicy, hscrollbarPolicy, vscrollbarPolicy)
 }
 
 public fun ScrolledWindow.unsetPlacement(): Unit {
-  gtk_scrolled_window_unset_placement(this)
+  gtk_scrolled_window_unset_placement(this@unsetPlacement)
 }
 
 public fun ScrolledWindow.onEdgeOvershot(callback: (ScrolledWindow) -> Unit): ScrolledWindow {

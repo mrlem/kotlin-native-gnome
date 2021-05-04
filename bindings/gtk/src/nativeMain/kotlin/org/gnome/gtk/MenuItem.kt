@@ -59,32 +59,32 @@ public val MenuItem.asBin: Bin
 public object MenuItemFactory {
   public fun new(): MenuItem = gtk_menu_item_new()!!.reinterpret()
 
-  public fun newWithLabel(label: String): MenuItem =
+  public fun newWithLabel(label: String?): MenuItem =
       gtk_menu_item_new_with_label(label)!!.reinterpret()
 
-  public fun newWithMnemonic(label: String): MenuItem =
+  public fun newWithMnemonic(label: String?): MenuItem =
       gtk_menu_item_new_with_mnemonic(label)!!.reinterpret()
 }
 
 public val MenuItem.bin: Bin
   get() = pointed.bin.ptr
 
-public var MenuItem.accelPath: String
+public var MenuItem.accelPath: String?
   get() = gtk_menu_item_get_accel_path(this).toKString()
   set(`value`) {
-    gtk_menu_item_set_accel_path(this, `value`)
+    gtk_menu_item_set_accel_path(this@accelPath, `value`)
   }
 
-public var MenuItem.label: String
+public var MenuItem.label: String?
   get() = gtk_menu_item_get_label(this).toKString()
   set(`value`) {
-    gtk_menu_item_set_label(this, `value`)
+    gtk_menu_item_set_label(this@label, `value`)
   }
 
 public var MenuItem.reserveIndicator: Boolean
   get() = gtk_menu_item_get_reserve_indicator(this).toBoolean()
   set(`value`) {
-    gtk_menu_item_set_reserve_indicator(this, `value`.toInt())
+    gtk_menu_item_set_reserve_indicator(this@reserveIndicator, `value`.toInt())
   }
 
 public val MenuItem.submenu: Widget?
@@ -93,27 +93,27 @@ public val MenuItem.submenu: Widget?
 public var MenuItem.useUnderline: Boolean
   get() = gtk_menu_item_get_use_underline(this).toBoolean()
   set(`value`) {
-    gtk_menu_item_set_use_underline(this, `value`.toInt())
+    gtk_menu_item_set_use_underline(this@useUnderline, `value`.toInt())
   }
 
 public fun MenuItem.activate(): Unit {
-  gtk_menu_item_activate(this)
+  gtk_menu_item_activate(this@activate)
 }
 
 public fun MenuItem.deselect(): Unit {
-  gtk_menu_item_deselect(this)
+  gtk_menu_item_deselect(this@deselect)
 }
 
 public fun MenuItem.select(): Unit {
-  gtk_menu_item_select(this)
+  gtk_menu_item_select(this@select)
 }
 
 public fun MenuItem.setSubmenu(submenu: Menu?): Unit {
-  gtk_menu_item_set_submenu(this, submenu?.reinterpret())
+  gtk_menu_item_set_submenu(this@setSubmenu, submenu?.reinterpret())
 }
 
 public fun MenuItem.toggleSizeAllocate(allocation: Int): Unit {
-  gtk_menu_item_toggle_size_allocate(this, allocation)
+  gtk_menu_item_toggle_size_allocate(this@toggleSizeAllocate, allocation)
 }
 
 public fun MenuItem.onActivate(callback: (MenuItem) -> Unit): MenuItem {

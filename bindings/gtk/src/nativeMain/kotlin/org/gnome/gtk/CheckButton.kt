@@ -40,10 +40,10 @@ public val CheckButton.asToggleButton: ToggleButton
 public object CheckButtonFactory {
   public fun new(): CheckButton = gtk_check_button_new()!!.reinterpret()
 
-  public fun newWithLabel(label: String): CheckButton =
+  public fun newWithLabel(label: String?): CheckButton =
       gtk_check_button_new_with_label(label)!!.reinterpret()
 
-  public fun newWithMnemonic(label: String): CheckButton =
+  public fun newWithMnemonic(label: String?): CheckButton =
       gtk_check_button_new_with_mnemonic(label)!!.reinterpret()
 }
 

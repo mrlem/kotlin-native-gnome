@@ -33,9 +33,9 @@ public val Spinner.parent: Widget
   get() = pointed.parent.ptr
 
 public fun Spinner.start(): Unit {
-  gtk_spinner_start(this)
+  gtk_spinner_start(this@start)
 }
 
 public fun Spinner.stop(): Unit {
-  gtk_spinner_stop(this)
+  gtk_spinner_stop(this@stop)
 }

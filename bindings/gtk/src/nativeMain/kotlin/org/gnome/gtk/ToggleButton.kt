@@ -47,33 +47,33 @@ public val ToggleButton.asButton: Button
 public object ToggleButtonFactory {
   public fun new(): ToggleButton = gtk_toggle_button_new()!!.reinterpret()
 
-  public fun newWithLabel(label: String): ToggleButton =
+  public fun newWithLabel(label: String?): ToggleButton =
       gtk_toggle_button_new_with_label(label)!!.reinterpret()
 
-  public fun newWithMnemonic(label: String): ToggleButton =
+  public fun newWithMnemonic(label: String?): ToggleButton =
       gtk_toggle_button_new_with_mnemonic(label)!!.reinterpret()
 }
 
 public var ToggleButton.active: Boolean
   get() = gtk_toggle_button_get_active(this).toBoolean()
   set(`value`) {
-    gtk_toggle_button_set_active(this, `value`.toInt())
+    gtk_toggle_button_set_active(this@active, `value`.toInt())
   }
 
 public var ToggleButton.inconsistent: Boolean
   get() = gtk_toggle_button_get_inconsistent(this).toBoolean()
   set(`value`) {
-    gtk_toggle_button_set_inconsistent(this, `value`.toInt())
+    gtk_toggle_button_set_inconsistent(this@inconsistent, `value`.toInt())
   }
 
 public var ToggleButton.mode: Boolean
   get() = gtk_toggle_button_get_mode(this).toBoolean()
   set(`value`) {
-    gtk_toggle_button_set_mode(this, `value`.toInt())
+    gtk_toggle_button_set_mode(this@mode, `value`.toInt())
   }
 
 public fun ToggleButton.toggled(): Unit {
-  gtk_toggle_button_toggled(this)
+  gtk_toggle_button_toggled(this@toggled)
 }
 
 public fun ToggleButton.onToggled(callback: (ToggleButton) -> Unit): ToggleButton {

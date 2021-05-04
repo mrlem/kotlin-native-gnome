@@ -53,13 +53,13 @@ public val ListBoxRow.parentInstance: Bin
 public var ListBoxRow.activatable: Boolean
   get() = gtk_list_box_row_get_activatable(this).toBoolean()
   set(`value`) {
-    gtk_list_box_row_set_activatable(this, `value`.toInt())
+    gtk_list_box_row_set_activatable(this@activatable, `value`.toInt())
   }
 
 public var ListBoxRow.header: Widget?
   get() = gtk_list_box_row_get_header(this)?.reinterpret()
   set(`value`) {
-    gtk_list_box_row_set_header(this, `value`)
+    gtk_list_box_row_set_header(this@header, `value`)
   }
 
 public val ListBoxRow.index: Int
@@ -68,14 +68,15 @@ public val ListBoxRow.index: Int
 public var ListBoxRow.selectable: Boolean
   get() = gtk_list_box_row_get_selectable(this).toBoolean()
   set(`value`) {
-    gtk_list_box_row_set_selectable(this, `value`.toInt())
+    gtk_list_box_row_set_selectable(this@selectable, `value`.toInt())
   }
 
 public fun ListBoxRow.changed(): Unit {
-  gtk_list_box_row_changed(this)
+  gtk_list_box_row_changed(this@changed)
 }
 
-public fun ListBoxRow.isSelected(): Boolean = gtk_list_box_row_is_selected(this).toBoolean()
+public fun ListBoxRow.isSelected(): Boolean =
+    gtk_list_box_row_is_selected(this@isSelected).toBoolean()
 
 public fun ListBoxRow.onActivate(callback: (ListBoxRow) -> Unit): ListBoxRow {
   // TODO - handle callback data

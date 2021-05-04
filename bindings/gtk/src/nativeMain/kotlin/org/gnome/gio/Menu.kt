@@ -38,74 +38,74 @@ public object MenuFactory {
   public fun new(): Menu = g_menu_new()!!.reinterpret()
 }
 
-public fun Menu.append(label: String, detailedAction: String): Unit {
-  g_menu_append(this, label, detailedAction)
+public fun Menu.append(label: String?, detailedAction: String?): Unit {
+  g_menu_append(this@append, label, detailedAction)
 }
 
 public fun Menu.appendItem(item: MenuItem?): Unit {
-  g_menu_append_item(this, item?.reinterpret())
+  g_menu_append_item(this@appendItem, item?.reinterpret())
 }
 
-public fun Menu.appendSection(label: String, section: MenuModel?): Unit {
-  g_menu_append_section(this, label, section?.reinterpret())
+public fun Menu.appendSection(label: String?, section: MenuModel?): Unit {
+  g_menu_append_section(this@appendSection, label, section?.reinterpret())
 }
 
-public fun Menu.appendSubmenu(label: String, submenu: MenuModel?): Unit {
-  g_menu_append_submenu(this, label, submenu?.reinterpret())
+public fun Menu.appendSubmenu(label: String?, submenu: MenuModel?): Unit {
+  g_menu_append_submenu(this@appendSubmenu, label, submenu?.reinterpret())
 }
 
 public fun Menu.freeze(): Unit {
-  g_menu_freeze(this)
+  g_menu_freeze(this@freeze)
 }
 
 public fun Menu.insert(
   position: Int,
-  label: String,
-  detailedAction: String
+  label: String?,
+  detailedAction: String?
 ): Unit {
-  g_menu_insert(this, position, label, detailedAction)
+  g_menu_insert(this@insert, position, label, detailedAction)
 }
 
 public fun Menu.insertItem(position: Int, item: MenuItem?): Unit {
-  g_menu_insert_item(this, position, item?.reinterpret())
+  g_menu_insert_item(this@insertItem, position, item?.reinterpret())
 }
 
 public fun Menu.insertSection(
   position: Int,
-  label: String,
+  label: String?,
   section: MenuModel?
 ): Unit {
-  g_menu_insert_section(this, position, label, section?.reinterpret())
+  g_menu_insert_section(this@insertSection, position, label, section?.reinterpret())
 }
 
 public fun Menu.insertSubmenu(
   position: Int,
-  label: String,
+  label: String?,
   submenu: MenuModel?
 ): Unit {
-  g_menu_insert_submenu(this, position, label, submenu?.reinterpret())
+  g_menu_insert_submenu(this@insertSubmenu, position, label, submenu?.reinterpret())
 }
 
-public fun Menu.prepend(label: String, detailedAction: String): Unit {
-  g_menu_prepend(this, label, detailedAction)
+public fun Menu.prepend(label: String?, detailedAction: String?): Unit {
+  g_menu_prepend(this@prepend, label, detailedAction)
 }
 
 public fun Menu.prependItem(item: MenuItem?): Unit {
-  g_menu_prepend_item(this, item?.reinterpret())
+  g_menu_prepend_item(this@prependItem, item?.reinterpret())
 }
 
-public fun Menu.prependSection(label: String, section: MenuModel?): Unit {
-  g_menu_prepend_section(this, label, section?.reinterpret())
+public fun Menu.prependSection(label: String?, section: MenuModel?): Unit {
+  g_menu_prepend_section(this@prependSection, label, section?.reinterpret())
 }
 
-public fun Menu.prependSubmenu(label: String, submenu: MenuModel?): Unit {
-  g_menu_prepend_submenu(this, label, submenu?.reinterpret())
+public fun Menu.prependSubmenu(label: String?, submenu: MenuModel?): Unit {
+  g_menu_prepend_submenu(this@prependSubmenu, label, submenu?.reinterpret())
 }
 
 public fun Menu.remove(position: Int): Unit {
-  g_menu_remove(this, position)
+  g_menu_remove(this@remove, position)
 }
 
 public fun Menu.removeAll(): Unit {
-  g_menu_remove_all(this)
+  g_menu_remove_all(this@removeAll)
 }

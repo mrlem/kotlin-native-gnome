@@ -34,24 +34,24 @@ public val MenuModel.parentInstance: Object
 public val MenuModel.nItems: Int
   get() = g_menu_model_get_n_items(this)
 
-public fun MenuModel.getItemLink(itemIndex: Int, link: String): MenuModel? =
-    g_menu_model_get_item_link(this, itemIndex, link)?.reinterpret()
+public fun MenuModel.getItemLink(itemIndex: Int, link: String?): MenuModel? =
+    g_menu_model_get_item_link(this@getItemLink, itemIndex, link)?.reinterpret()
 
-public fun MenuModel.isMutable(): Boolean = g_menu_model_is_mutable(this).toBoolean()
+public fun MenuModel.isMutable(): Boolean = g_menu_model_is_mutable(this@isMutable).toBoolean()
 
 public fun MenuModel.itemsChanged(
   position: Int,
   removed: Int,
   added: Int
 ): Unit {
-  g_menu_model_items_changed(this, position, removed, added)
+  g_menu_model_items_changed(this@itemsChanged, position, removed, added)
 }
 
 public fun MenuModel.iterateItemAttributes(itemIndex: Int): MenuAttributeIter? =
-    g_menu_model_iterate_item_attributes(this, itemIndex)?.reinterpret()
+    g_menu_model_iterate_item_attributes(this@iterateItemAttributes, itemIndex)?.reinterpret()
 
 public fun MenuModel.iterateItemLinks(itemIndex: Int): MenuLinkIter? =
-    g_menu_model_iterate_item_links(this, itemIndex)?.reinterpret()
+    g_menu_model_iterate_item_links(this@iterateItemLinks, itemIndex)?.reinterpret()
 
 public fun MenuModel.onItemsChanged(callback: (MenuModel) -> Unit): MenuModel {
   // TODO - handle callback data

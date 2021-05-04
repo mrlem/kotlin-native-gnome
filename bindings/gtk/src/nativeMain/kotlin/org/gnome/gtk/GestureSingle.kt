@@ -34,7 +34,7 @@ public val GestureSingle.asGesture: Gesture
 public var GestureSingle.button: UInt
   get() = gtk_gesture_single_get_button(this)
   set(`value`) {
-    gtk_gesture_single_set_button(this, `value`)
+    gtk_gesture_single_set_button(this@button, `value`)
   }
 
 public val GestureSingle.currentButton: UInt
@@ -43,11 +43,11 @@ public val GestureSingle.currentButton: UInt
 public var GestureSingle.exclusive: Boolean
   get() = gtk_gesture_single_get_exclusive(this).toBoolean()
   set(`value`) {
-    gtk_gesture_single_set_exclusive(this, `value`.toInt())
+    gtk_gesture_single_set_exclusive(this@exclusive, `value`.toInt())
   }
 
 public var GestureSingle.touchOnly: Boolean
   get() = gtk_gesture_single_get_touch_only(this).toBoolean()
   set(`value`) {
-    gtk_gesture_single_set_touch_only(this, `value`.toInt())
+    gtk_gesture_single_set_touch_only(this@touchOnly, `value`.toInt())
   }

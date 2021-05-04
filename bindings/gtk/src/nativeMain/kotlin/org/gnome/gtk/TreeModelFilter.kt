@@ -34,19 +34,21 @@ public val TreeModelFilter.model: TreeModel?
   get() = gtk_tree_model_filter_get_model(this)?.reinterpret()
 
 public fun TreeModelFilter.clearCache(): Unit {
-  gtk_tree_model_filter_clear_cache(this)
+  gtk_tree_model_filter_clear_cache(this@clearCache)
 }
 
 public fun TreeModelFilter.convertChildPathToPath(childPath: TreePath?): TreePath? =
-    gtk_tree_model_filter_convert_child_path_to_path(this, childPath?.reinterpret())?.reinterpret()
+    gtk_tree_model_filter_convert_child_path_to_path(this@convertChildPathToPath,
+    childPath?.reinterpret())?.reinterpret()
 
 public fun TreeModelFilter.convertPathToChildPath(filterPath: TreePath?): TreePath? =
-    gtk_tree_model_filter_convert_path_to_child_path(this, filterPath?.reinterpret())?.reinterpret()
+    gtk_tree_model_filter_convert_path_to_child_path(this@convertPathToChildPath,
+    filterPath?.reinterpret())?.reinterpret()
 
 public fun TreeModelFilter.refilter(): Unit {
-  gtk_tree_model_filter_refilter(this)
+  gtk_tree_model_filter_refilter(this@refilter)
 }
 
 public fun TreeModelFilter.setVisibleColumn(column: Int): Unit {
-  gtk_tree_model_filter_set_visible_column(this, column)
+  gtk_tree_model_filter_set_visible_column(this@setVisibleColumn, column)
 }

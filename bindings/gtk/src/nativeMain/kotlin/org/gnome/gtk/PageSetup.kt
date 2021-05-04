@@ -58,38 +58,43 @@ public object PageSetupFactory {
 public var PageSetup.orientation: PageOrientation
   get() = gtk_page_setup_get_orientation(this)
   set(`value`) {
-    gtk_page_setup_set_orientation(this, `value`)
+    gtk_page_setup_set_orientation(this@orientation, `value`)
   }
 
 public var PageSetup.paperSize: PaperSize?
   get() = gtk_page_setup_get_paper_size(this)?.reinterpret()
   set(`value`) {
-    gtk_page_setup_set_paper_size(this, `value`)
+    gtk_page_setup_set_paper_size(this@paperSize, `value`)
   }
 
-public fun PageSetup.copy(): PageSetup? = gtk_page_setup_copy(this)?.reinterpret()
+public fun PageSetup.copy(): PageSetup? = gtk_page_setup_copy(this@copy)?.reinterpret()
 
-public fun PageSetup.getBottomMargin(unit: Unit): Double = gtk_page_setup_get_bottom_margin(this,
-    unit)
+public fun PageSetup.getBottomMargin(unit: Unit): Double =
+    gtk_page_setup_get_bottom_margin(this@getBottomMargin, unit)
 
-public fun PageSetup.getLeftMargin(unit: Unit): Double = gtk_page_setup_get_left_margin(this, unit)
+public fun PageSetup.getLeftMargin(unit: Unit): Double =
+    gtk_page_setup_get_left_margin(this@getLeftMargin, unit)
 
-public fun PageSetup.getPageHeight(unit: Unit): Double = gtk_page_setup_get_page_height(this, unit)
+public fun PageSetup.getPageHeight(unit: Unit): Double =
+    gtk_page_setup_get_page_height(this@getPageHeight, unit)
 
-public fun PageSetup.getPageWidth(unit: Unit): Double = gtk_page_setup_get_page_width(this, unit)
+public fun PageSetup.getPageWidth(unit: Unit): Double =
+    gtk_page_setup_get_page_width(this@getPageWidth, unit)
 
-public fun PageSetup.getPaperHeight(unit: Unit): Double = gtk_page_setup_get_paper_height(this,
-    unit)
+public fun PageSetup.getPaperHeight(unit: Unit): Double =
+    gtk_page_setup_get_paper_height(this@getPaperHeight, unit)
 
-public fun PageSetup.getPaperWidth(unit: Unit): Double = gtk_page_setup_get_paper_width(this, unit)
+public fun PageSetup.getPaperWidth(unit: Unit): Double =
+    gtk_page_setup_get_paper_width(this@getPaperWidth, unit)
 
-public fun PageSetup.getRightMargin(unit: Unit): Double = gtk_page_setup_get_right_margin(this,
-    unit)
+public fun PageSetup.getRightMargin(unit: Unit): Double =
+    gtk_page_setup_get_right_margin(this@getRightMargin, unit)
 
-public fun PageSetup.getTopMargin(unit: Unit): Double = gtk_page_setup_get_top_margin(this, unit)
+public fun PageSetup.getTopMargin(unit: Unit): Double =
+    gtk_page_setup_get_top_margin(this@getTopMargin, unit)
 
 @Throws(Error::class)
-public fun PageSetup.loadFile(fileName: String): Boolean = memScoped {
+public fun PageSetup.loadFile(fileName: String?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = gtk_page_setup_load_file(this@loadFile, fileName, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
@@ -97,27 +102,28 @@ public fun PageSetup.loadFile(fileName: String): Boolean = memScoped {
 }
 
 public fun PageSetup.setBottomMargin(margin: Double, unit: Unit): kotlin.Unit {
-  gtk_page_setup_set_bottom_margin(this, margin, unit)
+  gtk_page_setup_set_bottom_margin(this@setBottomMargin, margin, unit)
 }
 
 public fun PageSetup.setLeftMargin(margin: Double, unit: Unit): kotlin.Unit {
-  gtk_page_setup_set_left_margin(this, margin, unit)
+  gtk_page_setup_set_left_margin(this@setLeftMargin, margin, unit)
 }
 
 public fun PageSetup.setPaperSizeAndDefaultMargins(size: PaperSize?): kotlin.Unit {
-  gtk_page_setup_set_paper_size_and_default_margins(this, size?.reinterpret())
+  gtk_page_setup_set_paper_size_and_default_margins(this@setPaperSizeAndDefaultMargins,
+      size?.reinterpret())
 }
 
 public fun PageSetup.setRightMargin(margin: Double, unit: Unit): kotlin.Unit {
-  gtk_page_setup_set_right_margin(this, margin, unit)
+  gtk_page_setup_set_right_margin(this@setRightMargin, margin, unit)
 }
 
 public fun PageSetup.setTopMargin(margin: Double, unit: Unit): kotlin.Unit {
-  gtk_page_setup_set_top_margin(this, margin, unit)
+  gtk_page_setup_set_top_margin(this@setTopMargin, margin, unit)
 }
 
 @Throws(Error::class)
-public fun PageSetup.toFile(fileName: String): Boolean = memScoped {
+public fun PageSetup.toFile(fileName: String?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = gtk_page_setup_to_file(this@toFile, fileName, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }

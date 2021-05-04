@@ -49,45 +49,45 @@ public val AppChooserButton.asComboBox: ComboBox
   get() = reinterpret()
 
 public object AppChooserButtonFactory {
-  public fun new(contentType: String): AppChooserButton =
+  public fun new(contentType: String?): AppChooserButton =
       gtk_app_chooser_button_new(contentType)!!.reinterpret()
 }
 
 public val AppChooserButton.parent: ComboBox
   get() = pointed.parent.ptr
 
-public var AppChooserButton.heading: String
+public var AppChooserButton.heading: String?
   get() = gtk_app_chooser_button_get_heading(this).toKString()
   set(`value`) {
-    gtk_app_chooser_button_set_heading(this, `value`)
+    gtk_app_chooser_button_set_heading(this@heading, `value`)
   }
 
 public var AppChooserButton.showDefaultItem: Boolean
   get() = gtk_app_chooser_button_get_show_default_item(this).toBoolean()
   set(`value`) {
-    gtk_app_chooser_button_set_show_default_item(this, `value`.toInt())
+    gtk_app_chooser_button_set_show_default_item(this@showDefaultItem, `value`.toInt())
   }
 
 public var AppChooserButton.showDialogItem: Boolean
   get() = gtk_app_chooser_button_get_show_dialog_item(this).toBoolean()
   set(`value`) {
-    gtk_app_chooser_button_set_show_dialog_item(this, `value`.toInt())
+    gtk_app_chooser_button_set_show_dialog_item(this@showDialogItem, `value`.toInt())
   }
 
 public fun AppChooserButton.appendCustomItem(
-  name: String,
-  label: String,
+  name: String?,
+  label: String?,
   icon: Icon?
 ): Unit {
-  gtk_app_chooser_button_append_custom_item(this, name, label, icon?.reinterpret())
+  gtk_app_chooser_button_append_custom_item(this@appendCustomItem, name, label, icon?.reinterpret())
 }
 
 public fun AppChooserButton.appendSeparator(): Unit {
-  gtk_app_chooser_button_append_separator(this)
+  gtk_app_chooser_button_append_separator(this@appendSeparator)
 }
 
-public fun AppChooserButton.setActiveCustomItem(name: String): Unit {
-  gtk_app_chooser_button_set_active_custom_item(this, name)
+public fun AppChooserButton.setActiveCustomItem(name: String?): Unit {
+  gtk_app_chooser_button_set_active_custom_item(this@setActiveCustomItem, name)
 }
 
 public fun AppChooserButton.onCustomItemActivated(callback: (AppChooserButton) -> Unit):

@@ -81,13 +81,13 @@ public val Menu.menuShell: MenuShell
 public var Menu.accelGroup: AccelGroup?
   get() = gtk_menu_get_accel_group(this)?.reinterpret()
   set(`value`) {
-    gtk_menu_set_accel_group(this, `value`)
+    gtk_menu_set_accel_group(this@accelGroup, `value`)
   }
 
-public var Menu.accelPath: String
+public var Menu.accelPath: String?
   get() = gtk_menu_get_accel_path(this).toKString()
   set(`value`) {
-    gtk_menu_set_accel_path(this, `value`)
+    gtk_menu_set_accel_path(this@accelPath, `value`)
   }
 
 public val Menu.active: Widget?
@@ -99,13 +99,13 @@ public val Menu.attachWidget: Widget?
 public var Menu.monitor: Int
   get() = gtk_menu_get_monitor(this)
   set(`value`) {
-    gtk_menu_set_monitor(this, `value`)
+    gtk_menu_set_monitor(this@monitor, `value`)
   }
 
 public var Menu.reserveToggleSize: Boolean
   get() = gtk_menu_get_reserve_toggle_size(this).toBoolean()
   set(`value`) {
-    gtk_menu_set_reserve_toggle_size(this, `value`.toInt())
+    gtk_menu_set_reserve_toggle_size(this@reserveToggleSize, `value`.toInt())
   }
 
 public fun Menu.attach(
@@ -115,31 +115,33 @@ public fun Menu.attach(
   topAttach: UInt,
   bottomAttach: UInt
 ): Unit {
-  gtk_menu_attach(this, child?.reinterpret(), leftAttach, rightAttach, topAttach, bottomAttach)
+  gtk_menu_attach(this@attach, child?.reinterpret(), leftAttach, rightAttach, topAttach,
+      bottomAttach)
 }
 
 public fun Menu.attachToWidget(attachWidget: Widget?, detacher: MenuDetachFunc?): Unit {
-  gtk_menu_attach_to_widget(this, attachWidget?.reinterpret(), detacher?.reinterpret())
+  gtk_menu_attach_to_widget(this@attachToWidget, attachWidget?.reinterpret(),
+      detacher?.reinterpret())
 }
 
 public fun Menu.detach(): Unit {
-  gtk_menu_detach(this)
+  gtk_menu_detach(this@detach)
 }
 
 public fun Menu.popdown(): Unit {
-  gtk_menu_popdown(this)
+  gtk_menu_popdown(this@popdown)
 }
 
 public fun Menu.reorderChild(child: Widget?, position: Int): Unit {
-  gtk_menu_reorder_child(this, child?.reinterpret(), position)
+  gtk_menu_reorder_child(this@reorderChild, child?.reinterpret(), position)
 }
 
 public fun Menu.reposition(): Unit {
-  gtk_menu_reposition(this)
+  gtk_menu_reposition(this@reposition)
 }
 
 public fun Menu.setActive(index: UInt): Unit {
-  gtk_menu_set_active(this, index)
+  gtk_menu_set_active(this@setActive, index)
 }
 
 public fun Menu.onMoveScroll(callback: (Menu) -> Unit): Menu {

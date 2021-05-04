@@ -47,11 +47,11 @@ public val MenuBar.menuShell: MenuShell
 public var MenuBar.childPackDirection: PackDirection
   get() = gtk_menu_bar_get_child_pack_direction(this)
   set(`value`) {
-    gtk_menu_bar_set_child_pack_direction(this, `value`)
+    gtk_menu_bar_set_child_pack_direction(this@childPackDirection, `value`)
   }
 
 public var MenuBar.packDirection: PackDirection
   get() = gtk_menu_bar_get_pack_direction(this)
   set(`value`) {
-    gtk_menu_bar_set_pack_direction(this, `value`)
+    gtk_menu_bar_set_pack_direction(this@packDirection, `value`)
   }

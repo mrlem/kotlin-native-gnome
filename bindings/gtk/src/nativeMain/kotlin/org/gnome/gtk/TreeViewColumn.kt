@@ -94,7 +94,7 @@ public val TreeViewColumn.parentInstance: InitiallyUnowned
 public var TreeViewColumn.alignment: Float
   get() = gtk_tree_view_column_get_alignment(this)
   set(`value`) {
-    gtk_tree_view_column_set_alignment(this, `value`)
+    gtk_tree_view_column_set_alignment(this@alignment, `value`)
   }
 
 public val TreeViewColumn.button: Widget?
@@ -103,79 +103,79 @@ public val TreeViewColumn.button: Widget?
 public var TreeViewColumn.clickable: Boolean
   get() = gtk_tree_view_column_get_clickable(this).toBoolean()
   set(`value`) {
-    gtk_tree_view_column_set_clickable(this, `value`.toInt())
+    gtk_tree_view_column_set_clickable(this@clickable, `value`.toInt())
   }
 
 public var TreeViewColumn.expand: Boolean
   get() = gtk_tree_view_column_get_expand(this).toBoolean()
   set(`value`) {
-    gtk_tree_view_column_set_expand(this, `value`.toInt())
+    gtk_tree_view_column_set_expand(this@expand, `value`.toInt())
   }
 
 public var TreeViewColumn.fixedWidth: Int
   get() = gtk_tree_view_column_get_fixed_width(this)
   set(`value`) {
-    gtk_tree_view_column_set_fixed_width(this, `value`)
+    gtk_tree_view_column_set_fixed_width(this@fixedWidth, `value`)
   }
 
 public var TreeViewColumn.maxWidth: Int
   get() = gtk_tree_view_column_get_max_width(this)
   set(`value`) {
-    gtk_tree_view_column_set_max_width(this, `value`)
+    gtk_tree_view_column_set_max_width(this@maxWidth, `value`)
   }
 
 public var TreeViewColumn.minWidth: Int
   get() = gtk_tree_view_column_get_min_width(this)
   set(`value`) {
-    gtk_tree_view_column_set_min_width(this, `value`)
+    gtk_tree_view_column_set_min_width(this@minWidth, `value`)
   }
 
 public var TreeViewColumn.reorderable: Boolean
   get() = gtk_tree_view_column_get_reorderable(this).toBoolean()
   set(`value`) {
-    gtk_tree_view_column_set_reorderable(this, `value`.toInt())
+    gtk_tree_view_column_set_reorderable(this@reorderable, `value`.toInt())
   }
 
 public var TreeViewColumn.resizable: Boolean
   get() = gtk_tree_view_column_get_resizable(this).toBoolean()
   set(`value`) {
-    gtk_tree_view_column_set_resizable(this, `value`.toInt())
+    gtk_tree_view_column_set_resizable(this@resizable, `value`.toInt())
   }
 
 public var TreeViewColumn.sizing: TreeViewColumnSizing
   get() = gtk_tree_view_column_get_sizing(this)
   set(`value`) {
-    gtk_tree_view_column_set_sizing(this, `value`)
+    gtk_tree_view_column_set_sizing(this@sizing, `value`)
   }
 
 public var TreeViewColumn.sortColumnId: Int
   get() = gtk_tree_view_column_get_sort_column_id(this)
   set(`value`) {
-    gtk_tree_view_column_set_sort_column_id(this, `value`)
+    gtk_tree_view_column_set_sort_column_id(this@sortColumnId, `value`)
   }
 
 public var TreeViewColumn.sortIndicator: Boolean
   get() = gtk_tree_view_column_get_sort_indicator(this).toBoolean()
   set(`value`) {
-    gtk_tree_view_column_set_sort_indicator(this, `value`.toInt())
+    gtk_tree_view_column_set_sort_indicator(this@sortIndicator, `value`.toInt())
   }
 
 public var TreeViewColumn.sortOrder: SortType
   get() = gtk_tree_view_column_get_sort_order(this)
   set(`value`) {
-    gtk_tree_view_column_set_sort_order(this, `value`)
+    gtk_tree_view_column_set_sort_order(this@sortOrder, `value`)
   }
 
 public var TreeViewColumn.spacing: Int
   get() = gtk_tree_view_column_get_spacing(this)
   set(`value`) {
-    gtk_tree_view_column_set_spacing(this, `value`)
+    gtk_tree_view_column_set_spacing(this@spacing, `value`)
   }
 
-public var TreeViewColumn.title: String
+public var TreeViewColumn.title: String?
   get() = gtk_tree_view_column_get_title(this).toKString()
   set(`value`) {
-    gtk_tree_view_column_set_title(this, `value`)
+    gtk_tree_view_column_set_title(this@title, `value`)
   }
 
 public val TreeViewColumn.treeView: Widget?
@@ -184,13 +184,13 @@ public val TreeViewColumn.treeView: Widget?
 public var TreeViewColumn.visible: Boolean
   get() = gtk_tree_view_column_get_visible(this).toBoolean()
   set(`value`) {
-    gtk_tree_view_column_set_visible(this, `value`.toInt())
+    gtk_tree_view_column_set_visible(this@visible, `value`.toInt())
   }
 
 public var TreeViewColumn.widget: Widget?
   get() = gtk_tree_view_column_get_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_tree_view_column_set_widget(this, `value`)
+    gtk_tree_view_column_set_widget(this@widget, `value`)
   }
 
 public val TreeViewColumn.width: Int
@@ -201,14 +201,15 @@ public val TreeViewColumn.xOffset: Int
 
 public fun TreeViewColumn.addAttribute(
   cellRenderer: CellRenderer?,
-  attribute: String,
+  attribute: String?,
   column: Int
 ): Unit {
-  gtk_tree_view_column_add_attribute(this, cellRenderer?.reinterpret(), attribute, column)
+  gtk_tree_view_column_add_attribute(this@addAttribute, cellRenderer?.reinterpret(), attribute,
+      column)
 }
 
 public fun TreeViewColumn.cellIsVisible(): Boolean =
-    gtk_tree_view_column_cell_is_visible(this).toBoolean()
+    gtk_tree_view_column_cell_is_visible(this@cellIsVisible).toBoolean()
 
 public fun TreeViewColumn.cellSetCellData(
   treeModel: TreeModel?,
@@ -216,36 +217,36 @@ public fun TreeViewColumn.cellSetCellData(
   isExpander: Boolean,
   isExpanded: Boolean
 ): Unit {
-  gtk_tree_view_column_cell_set_cell_data(this, treeModel?.reinterpret(), iter?.reinterpret(),
-      isExpander.toInt(), isExpanded.toInt())
+  gtk_tree_view_column_cell_set_cell_data(this@cellSetCellData, treeModel?.reinterpret(),
+      iter?.reinterpret(), isExpander.toInt(), isExpanded.toInt())
 }
 
 public fun TreeViewColumn.clear(): Unit {
-  gtk_tree_view_column_clear(this)
+  gtk_tree_view_column_clear(this@clear)
 }
 
 public fun TreeViewColumn.clearAttributes(cellRenderer: CellRenderer?): Unit {
-  gtk_tree_view_column_clear_attributes(this, cellRenderer?.reinterpret())
+  gtk_tree_view_column_clear_attributes(this@clearAttributes, cellRenderer?.reinterpret())
 }
 
 public fun TreeViewColumn.clicked(): Unit {
-  gtk_tree_view_column_clicked(this)
+  gtk_tree_view_column_clicked(this@clicked)
 }
 
 public fun TreeViewColumn.focusCell(cell: CellRenderer?): Unit {
-  gtk_tree_view_column_focus_cell(this, cell?.reinterpret())
+  gtk_tree_view_column_focus_cell(this@focusCell, cell?.reinterpret())
 }
 
 public fun TreeViewColumn.packEnd(cell: CellRenderer?, expand: Boolean): Unit {
-  gtk_tree_view_column_pack_end(this, cell?.reinterpret(), expand.toInt())
+  gtk_tree_view_column_pack_end(this@packEnd, cell?.reinterpret(), expand.toInt())
 }
 
 public fun TreeViewColumn.packStart(cell: CellRenderer?, expand: Boolean): Unit {
-  gtk_tree_view_column_pack_start(this, cell?.reinterpret(), expand.toInt())
+  gtk_tree_view_column_pack_start(this@packStart, cell?.reinterpret(), expand.toInt())
 }
 
 public fun TreeViewColumn.queueResize(): Unit {
-  gtk_tree_view_column_queue_resize(this)
+  gtk_tree_view_column_queue_resize(this@queueResize)
 }
 
 public fun TreeViewColumn.onClicked(callback: (TreeViewColumn) -> Unit): TreeViewColumn {

@@ -43,19 +43,19 @@ public val CellRendererToggle.parent: CellRenderer
 public var CellRendererToggle.activatable: Boolean
   get() = gtk_cell_renderer_toggle_get_activatable(this).toBoolean()
   set(`value`) {
-    gtk_cell_renderer_toggle_set_activatable(this, `value`.toInt())
+    gtk_cell_renderer_toggle_set_activatable(this@activatable, `value`.toInt())
   }
 
 public var CellRendererToggle.active: Boolean
   get() = gtk_cell_renderer_toggle_get_active(this).toBoolean()
   set(`value`) {
-    gtk_cell_renderer_toggle_set_active(this, `value`.toInt())
+    gtk_cell_renderer_toggle_set_active(this@active, `value`.toInt())
   }
 
 public var CellRendererToggle.radio: Boolean
   get() = gtk_cell_renderer_toggle_get_radio(this).toBoolean()
   set(`value`) {
-    gtk_cell_renderer_toggle_set_radio(this, `value`.toInt())
+    gtk_cell_renderer_toggle_set_radio(this@radio, `value`.toInt())
   }
 
 public fun CellRendererToggle.onToggled(callback: (CellRendererToggle) -> Unit):

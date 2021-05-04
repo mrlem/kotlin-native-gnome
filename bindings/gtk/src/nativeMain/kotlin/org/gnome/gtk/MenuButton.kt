@@ -61,19 +61,19 @@ public val MenuButton.parent: ToggleButton
 public var MenuButton.alignWidget: Widget?
   get() = gtk_menu_button_get_align_widget(this)?.reinterpret()
   set(`value`) {
-    gtk_menu_button_set_align_widget(this, `value`)
+    gtk_menu_button_set_align_widget(this@alignWidget, `value`)
   }
 
 public var MenuButton.direction: ArrowType
   get() = gtk_menu_button_get_direction(this)
   set(`value`) {
-    gtk_menu_button_set_direction(this, `value`)
+    gtk_menu_button_set_direction(this@direction, `value`)
   }
 
 public var MenuButton.menuModel: MenuModel?
   get() = gtk_menu_button_get_menu_model(this)?.reinterpret()
   set(`value`) {
-    gtk_menu_button_set_menu_model(this, `value`)
+    gtk_menu_button_set_menu_model(this@menuModel, `value`)
   }
 
 public val MenuButton.popover: Popover?
@@ -85,13 +85,13 @@ public val MenuButton.popup: Menu?
 public var MenuButton.usePopover: Boolean
   get() = gtk_menu_button_get_use_popover(this).toBoolean()
   set(`value`) {
-    gtk_menu_button_set_use_popover(this, `value`.toInt())
+    gtk_menu_button_set_use_popover(this@usePopover, `value`.toInt())
   }
 
 public fun MenuButton.setPopover(popover: Widget?): Unit {
-  gtk_menu_button_set_popover(this, popover?.reinterpret())
+  gtk_menu_button_set_popover(this@setPopover, popover?.reinterpret())
 }
 
 public fun MenuButton.setPopup(menu: Widget?): Unit {
-  gtk_menu_button_set_popup(this, menu?.reinterpret())
+  gtk_menu_button_set_popup(this@setPopup, menu?.reinterpret())
 }

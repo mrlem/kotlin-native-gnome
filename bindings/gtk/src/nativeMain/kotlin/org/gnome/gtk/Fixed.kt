@@ -41,7 +41,7 @@ public fun Fixed.move(
   x: Int,
   y: Int
 ): Unit {
-  gtk_fixed_move(this, widget?.reinterpret(), x, y)
+  gtk_fixed_move(this@move, widget?.reinterpret(), x, y)
 }
 
 public fun Fixed.put(
@@ -49,5 +49,5 @@ public fun Fixed.put(
   x: Int,
   y: Int
 ): Unit {
-  gtk_fixed_put(this, widget?.reinterpret(), x, y)
+  gtk_fixed_put(this@put, widget?.reinterpret(), x, y)
 }

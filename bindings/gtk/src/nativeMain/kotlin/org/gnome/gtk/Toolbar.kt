@@ -56,7 +56,7 @@ public val Toolbar.container: Container
 public var Toolbar.iconSize: IconSize
   get() = gtk_toolbar_get_icon_size(this)
   set(`value`) {
-    gtk_toolbar_set_icon_size(this, `value`)
+    gtk_toolbar_set_icon_size(this@iconSize, `value`)
   }
 
 public val Toolbar.nItems: Int
@@ -68,36 +68,38 @@ public val Toolbar.reliefStyle: ReliefStyle
 public var Toolbar.showArrow: Boolean
   get() = gtk_toolbar_get_show_arrow(this).toBoolean()
   set(`value`) {
-    gtk_toolbar_set_show_arrow(this, `value`.toInt())
+    gtk_toolbar_set_show_arrow(this@showArrow, `value`.toInt())
   }
 
 public var Toolbar.style: ToolbarStyle
   get() = gtk_toolbar_get_style(this)
   set(`value`) {
-    gtk_toolbar_set_style(this, `value`)
+    gtk_toolbar_set_style(this@style, `value`)
   }
 
-public fun Toolbar.getDropIndex(x: Int, y: Int): Int = gtk_toolbar_get_drop_index(this, x, y)
+public fun Toolbar.getDropIndex(x: Int, y: Int): Int = gtk_toolbar_get_drop_index(this@getDropIndex,
+    x, y)
 
-public fun Toolbar.getItemIndex(item: ToolItem?): Int = gtk_toolbar_get_item_index(this,
-    item?.reinterpret())
+public fun Toolbar.getItemIndex(item: ToolItem?): Int =
+    gtk_toolbar_get_item_index(this@getItemIndex, item?.reinterpret())
 
-public fun Toolbar.getNthItem(n: Int): ToolItem? = gtk_toolbar_get_nth_item(this, n)?.reinterpret()
+public fun Toolbar.getNthItem(n: Int): ToolItem? = gtk_toolbar_get_nth_item(this@getNthItem,
+    n)?.reinterpret()
 
 public fun Toolbar.insert(item: ToolItem?, pos: Int): Unit {
-  gtk_toolbar_insert(this, item?.reinterpret(), pos)
+  gtk_toolbar_insert(this@insert, item?.reinterpret(), pos)
 }
 
 public fun Toolbar.setDropHighlightItem(toolItem: ToolItem?, index: Int): Unit {
-  gtk_toolbar_set_drop_highlight_item(this, toolItem?.reinterpret(), index)
+  gtk_toolbar_set_drop_highlight_item(this@setDropHighlightItem, toolItem?.reinterpret(), index)
 }
 
 public fun Toolbar.unsetIconSize(): Unit {
-  gtk_toolbar_unset_icon_size(this)
+  gtk_toolbar_unset_icon_size(this@unsetIconSize)
 }
 
 public fun Toolbar.unsetStyle(): Unit {
-  gtk_toolbar_unset_style(this)
+  gtk_toolbar_unset_style(this@unsetStyle)
 }
 
 public fun Toolbar.onFocusHomeOrEnd(callback: (Toolbar) -> Unit): Toolbar {

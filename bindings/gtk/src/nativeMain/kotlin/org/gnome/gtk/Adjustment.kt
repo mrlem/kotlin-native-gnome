@@ -58,7 +58,7 @@ public val Adjustment.parentInstance: InitiallyUnowned
 public var Adjustment.lower: Double
   get() = gtk_adjustment_get_lower(this)
   set(`value`) {
-    gtk_adjustment_set_lower(this, `value`)
+    gtk_adjustment_set_lower(this@lower, `value`)
   }
 
 public val Adjustment.minimumIncrement: Double
@@ -67,35 +67,35 @@ public val Adjustment.minimumIncrement: Double
 public var Adjustment.pageIncrement: Double
   get() = gtk_adjustment_get_page_increment(this)
   set(`value`) {
-    gtk_adjustment_set_page_increment(this, `value`)
+    gtk_adjustment_set_page_increment(this@pageIncrement, `value`)
   }
 
 public var Adjustment.pageSize: Double
   get() = gtk_adjustment_get_page_size(this)
   set(`value`) {
-    gtk_adjustment_set_page_size(this, `value`)
+    gtk_adjustment_set_page_size(this@pageSize, `value`)
   }
 
 public var Adjustment.stepIncrement: Double
   get() = gtk_adjustment_get_step_increment(this)
   set(`value`) {
-    gtk_adjustment_set_step_increment(this, `value`)
+    gtk_adjustment_set_step_increment(this@stepIncrement, `value`)
   }
 
 public var Adjustment.upper: Double
   get() = gtk_adjustment_get_upper(this)
   set(`value`) {
-    gtk_adjustment_set_upper(this, `value`)
+    gtk_adjustment_set_upper(this@upper, `value`)
   }
 
 public var Adjustment.`value`: Double
   get() = gtk_adjustment_get_value(this)
   set(`value`) {
-    gtk_adjustment_set_value(this, `value`)
+    gtk_adjustment_set_value(this@`value`, `value`)
   }
 
 public fun Adjustment.clampPage(lower: Double, upper: Double): Unit {
-  gtk_adjustment_clamp_page(this, lower, upper)
+  gtk_adjustment_clamp_page(this@clampPage, lower, upper)
 }
 
 public fun Adjustment.configure(
@@ -106,7 +106,8 @@ public fun Adjustment.configure(
   pageIncrement: Double,
   pageSize: Double
 ): Unit {
-  gtk_adjustment_configure(this, `value`, lower, upper, stepIncrement, pageIncrement, pageSize)
+  gtk_adjustment_configure(this@configure, `value`, lower, upper, stepIncrement, pageIncrement,
+      pageSize)
 }
 
 public fun Adjustment.onChanged(callback: (Adjustment) -> Unit): Adjustment {

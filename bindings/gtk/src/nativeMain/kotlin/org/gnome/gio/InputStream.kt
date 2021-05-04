@@ -48,7 +48,7 @@ public val InputStream.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
 public fun InputStream.clearPending(): Unit {
-  g_input_stream_clear_pending(this)
+  g_input_stream_clear_pending(this@clearPending)
 }
 
 @Throws(Error::class)
@@ -69,9 +69,10 @@ public fun InputStream.closeFinish(result: AsyncResult?): Boolean = memScoped {
   return result
 }
 
-public fun InputStream.hasPending(): Boolean = g_input_stream_has_pending(this).toBoolean()
+public fun InputStream.hasPending(): Boolean =
+    g_input_stream_has_pending(this@hasPending).toBoolean()
 
-public fun InputStream.isClosed(): Boolean = g_input_stream_is_closed(this).toBoolean()
+public fun InputStream.isClosed(): Boolean = g_input_stream_is_closed(this@isClosed).toBoolean()
 
 @Throws(Error::class)
 public fun InputStream.readFinish(result: AsyncResult?): Long = memScoped {

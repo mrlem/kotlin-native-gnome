@@ -26,15 +26,15 @@ public val Binding.flags: BindingFlags
 public val Binding.source: Object?
   get() = g_binding_get_source(this)?.reinterpret()
 
-public val Binding.sourceProperty: String
+public val Binding.sourceProperty: String?
   get() = g_binding_get_source_property(this).toKString()
 
 public val Binding.target: Object?
   get() = g_binding_get_target(this)?.reinterpret()
 
-public val Binding.targetProperty: String
+public val Binding.targetProperty: String?
   get() = g_binding_get_target_property(this).toKString()
 
 public fun Binding.unbind(): Unit {
-  g_binding_unbind(this)
+  g_binding_unbind(this@unbind)
 }

@@ -50,10 +50,10 @@ public object RadioMenuItemFactory {
   public fun newFromWidget(group: RadioMenuItem?): RadioMenuItem =
       gtk_radio_menu_item_new_from_widget(group?.reinterpret())!!.reinterpret()
 
-  public fun newWithLabelFromWidget(group: RadioMenuItem?, label: String): RadioMenuItem =
+  public fun newWithLabelFromWidget(group: RadioMenuItem?, label: String?): RadioMenuItem =
       gtk_radio_menu_item_new_with_label_from_widget(group?.reinterpret(), label)!!.reinterpret()
 
-  public fun newWithMnemonicFromWidget(group: RadioMenuItem?, label: String): RadioMenuItem =
+  public fun newWithMnemonicFromWidget(group: RadioMenuItem?, label: String?): RadioMenuItem =
       gtk_radio_menu_item_new_with_mnemonic_from_widget(group?.reinterpret(), label)!!.reinterpret()
 }
 
@@ -61,7 +61,7 @@ public val RadioMenuItem.checkMenuItem: CheckMenuItem
   get() = pointed.check_menu_item.ptr
 
 public fun RadioMenuItem.joinGroup(groupSource: RadioMenuItem?): Unit {
-  gtk_radio_menu_item_join_group(this, groupSource?.reinterpret())
+  gtk_radio_menu_item_join_group(this@joinGroup, groupSource?.reinterpret())
 }
 
 public fun RadioMenuItem.onGroupChanged(callback: (RadioMenuItem) -> Unit): RadioMenuItem {

@@ -2,6 +2,7 @@ package org.gnome.gir.generator.kotlin.generators.ext
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeName
 import org.gnome.gir.GNOME_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.TypeInfo
@@ -31,10 +32,10 @@ fun AnyType.typeInfo(resolver: Resolver): TypeInfo? {
 
     return TypeInfo(
         kType = kType
-            .copy(nullable = isCPointer),
-        toKType = if (isCPointer) "?.%M()" to arrayOf(reinterpretMemberName) else toKTypeConverter,
-        toCType = if (isCPointer) "" to emptyArray() else toCTypeConverter,
-        toCTypeReinterpreted = if (isCPointer) "?.%M()" to arrayOf(reinterpretMemberName) else toCTypeConverter,
+            .copy(nullable = kType.isNullable || isCPointer),
+        toKType = if (isCPointer) "?.%M()" to arrayOf(reinterpretMemberName) else toKTypeConverter(resolver),
+        toCType = if (isCPointer) "" to emptyArray() else toCTypeConverter(resolver),
+        toCTypeReinterpreted = if (isCPointer) "?.%M()" to arrayOf(reinterpretMemberName) else toCTypeConverter(resolver),
     )
 }
 
@@ -47,25 +48,63 @@ private val AnyType.kType: TypeName?
         is TypeDefinition -> SimpleType.fromName(name)
             ?.kTypeName
             ?: className
-        is ArrayTypeDefinition -> null // TODO - handle arrays
+        is ArrayTypeDefinition -> {
+            val elementType = (type.kType as? ClassName)
+            when {
+                elementType != null -> ClassName("kotlin", "Array")
+                    .parameterizedBy(elementType.copy(nullable = false))
+                else -> null
+            }
+                ?.copy(nullable = true)
+
+        }
         else -> null
     }
 
-private val AnyType.toKTypeConverter
-    get() = when (this) {
-        is TypeDefinition -> SimpleType.fromName(name)
-            ?.toKTypeConverter
-            ?.let { ".%M()" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
-        is ArrayTypeDefinition -> null // TODO - handle arrays conversion
-        else -> null
+private fun AnyType.toKTypeConverter(resolver: Resolver): Pair<String, Array<MemberName>> = when (this) {
+    is TypeDefinition -> SimpleType.fromName(name)
+        ?.toKTypeConverter
+        ?.let { ".%M()" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
+    is ArrayTypeDefinition ->  {
+        val (valueTemplate, valueArray) = if (SimpleType.fromName(type.name)?.needsValue == true)
+            ".%M" to arrayOf(MemberName("kotlinx.cinterop", "value"))
+        else
+            "" to emptyArray()
+        type.toKTypeConverter(resolver).let { (converterTemplate, converterMembers) ->
+            "?.%M { it$converterTemplate!!$valueTemplate }" to arrayOf(
+                MemberName(GNOME_PACKAGE, "toKArray"),
+                *converterMembers,
+                *valueArray
+            )
+        }
     }
+    else -> null
+}
         ?: "" to emptyArray()
 
-private val AnyType.toCTypeConverter
-    get() = when (this) {
+private fun AnyType.toCTypeConverter(resolver: Resolver): Pair<String, Array<MemberName>> = when (this) {
         is TypeDefinition -> SimpleType.fromName(name)?.toCTypeConverter
             ?.let { ".%M()" to arrayOf(MemberName(GNOME_PACKAGE, it)) }
-        is ArrayTypeDefinition -> null // TODO - handle arrays conversion
+        is ArrayTypeDefinition ->  {
+            val isRecordArray = resolver.isRecord(type)
+            val (converterTemplate, converterMembers) = if (isRecordArray) {
+                ".%M" to arrayOf(MemberName("kotlinx.cinterop", "pointed"))
+            } else {
+                type.toCTypeConverter(resolver)
+            }
+            when {
+                converterTemplate.isEmpty() -> "?.%M(memScope)" to arrayOf(
+                    *converterMembers,
+                    MemberName(GNOME_PACKAGE, "toCArray")
+                )
+                else -> "?.%M { it$converterTemplate }?.%M()?.%M(memScope)" to arrayOf(
+                    MemberName("kotlin.collections", "map"),
+                    *converterMembers,
+                    MemberName("kotlin.collections", "toTypedArray"),
+                    MemberName(GNOME_PACKAGE, "toCArray")
+                )
+            }
+        }
         else -> null
     }
         ?: "" to emptyArray()

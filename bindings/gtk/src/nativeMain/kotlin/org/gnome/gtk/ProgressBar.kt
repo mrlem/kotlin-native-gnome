@@ -53,33 +53,33 @@ public val ProgressBar.parent: Widget
 public var ProgressBar.fraction: Double
   get() = gtk_progress_bar_get_fraction(this)
   set(`value`) {
-    gtk_progress_bar_set_fraction(this, `value`)
+    gtk_progress_bar_set_fraction(this@fraction, `value`)
   }
 
 public var ProgressBar.inverted: Boolean
   get() = gtk_progress_bar_get_inverted(this).toBoolean()
   set(`value`) {
-    gtk_progress_bar_set_inverted(this, `value`.toInt())
+    gtk_progress_bar_set_inverted(this@inverted, `value`.toInt())
   }
 
 public var ProgressBar.pulseStep: Double
   get() = gtk_progress_bar_get_pulse_step(this)
   set(`value`) {
-    gtk_progress_bar_set_pulse_step(this, `value`)
+    gtk_progress_bar_set_pulse_step(this@pulseStep, `value`)
   }
 
 public var ProgressBar.showText: Boolean
   get() = gtk_progress_bar_get_show_text(this).toBoolean()
   set(`value`) {
-    gtk_progress_bar_set_show_text(this, `value`.toInt())
+    gtk_progress_bar_set_show_text(this@showText, `value`.toInt())
   }
 
-public var ProgressBar.text: String
+public var ProgressBar.text: String?
   get() = gtk_progress_bar_get_text(this).toKString()
   set(`value`) {
-    gtk_progress_bar_set_text(this, `value`)
+    gtk_progress_bar_set_text(this@text, `value`)
   }
 
 public fun ProgressBar.pulse(): Unit {
-  gtk_progress_bar_pulse(this)
+  gtk_progress_bar_pulse(this@pulse)
 }

@@ -60,12 +60,14 @@ public fun FileEnumerator.closeFinish(result: AsyncResult?): Boolean = memScoped
   return result
 }
 
-public fun FileEnumerator.getChild(info: FileInfo?): File? = g_file_enumerator_get_child(this,
-    info?.reinterpret())?.reinterpret()
+public fun FileEnumerator.getChild(info: FileInfo?): File? =
+    g_file_enumerator_get_child(this@getChild, info?.reinterpret())?.reinterpret()
 
-public fun FileEnumerator.hasPending(): Boolean = g_file_enumerator_has_pending(this).toBoolean()
+public fun FileEnumerator.hasPending(): Boolean =
+    g_file_enumerator_has_pending(this@hasPending).toBoolean()
 
-public fun FileEnumerator.isClosed(): Boolean = g_file_enumerator_is_closed(this).toBoolean()
+public fun FileEnumerator.isClosed(): Boolean =
+    g_file_enumerator_is_closed(this@isClosed).toBoolean()
 
 @Throws(Error::class)
 public fun FileEnumerator.nextFile(cancellable: Cancellable?): FileInfo? = memScoped {
@@ -77,5 +79,5 @@ public fun FileEnumerator.nextFile(cancellable: Cancellable?): FileInfo? = memSc
 }
 
 public fun FileEnumerator.setPending(pending: Boolean): Unit {
-  g_file_enumerator_set_pending(this, pending.toInt())
+  g_file_enumerator_set_pending(this@setPending, pending.toInt())
 }

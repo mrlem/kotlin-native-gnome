@@ -23,5 +23,5 @@ public val NotebookPageAccessible.asAtkObject: org.gnome.atk.Object
 public object NotebookPageAccessibleFactory
 
 public fun NotebookPageAccessible.invalidate(): Unit {
-  gtk_notebook_page_accessible_invalidate(this)
+  gtk_notebook_page_accessible_invalidate(this@invalidate)
 }

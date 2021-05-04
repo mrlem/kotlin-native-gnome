@@ -53,12 +53,12 @@ public object RadioButtonFactory {
   public fun newFromWidget(radioGroupMember: RadioButton?): RadioButton =
       gtk_radio_button_new_from_widget(radioGroupMember?.reinterpret())!!.reinterpret()
 
-  public fun newWithLabelFromWidget(radioGroupMember: RadioButton?, label: String): RadioButton =
+  public fun newWithLabelFromWidget(radioGroupMember: RadioButton?, label: String?): RadioButton =
       gtk_radio_button_new_with_label_from_widget(radioGroupMember?.reinterpret(),
       label)!!.reinterpret()
 
-  public fun newWithMnemonicFromWidget(radioGroupMember: RadioButton?, label: String): RadioButton =
-      gtk_radio_button_new_with_mnemonic_from_widget(radioGroupMember?.reinterpret(),
+  public fun newWithMnemonicFromWidget(radioGroupMember: RadioButton?, label: String?): RadioButton
+      = gtk_radio_button_new_with_mnemonic_from_widget(radioGroupMember?.reinterpret(),
       label)!!.reinterpret()
 }
 
@@ -66,7 +66,7 @@ public val RadioButton.checkButton: CheckButton
   get() = pointed.check_button.ptr
 
 public fun RadioButton.joinGroup(groupSource: RadioButton?): Unit {
-  gtk_radio_button_join_group(this, groupSource?.reinterpret())
+  gtk_radio_button_join_group(this@joinGroup, groupSource?.reinterpret())
 }
 
 public fun RadioButton.onGroupChanged(callback: (RadioButton) -> Unit): RadioButton {

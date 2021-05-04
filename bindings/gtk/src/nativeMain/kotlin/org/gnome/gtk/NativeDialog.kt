@@ -39,36 +39,36 @@ public val NativeDialog.parentInstance: Object
 public var NativeDialog.modal: Boolean
   get() = gtk_native_dialog_get_modal(this).toBoolean()
   set(`value`) {
-    gtk_native_dialog_set_modal(this, `value`.toInt())
+    gtk_native_dialog_set_modal(this@modal, `value`.toInt())
   }
 
-public var NativeDialog.title: String
+public var NativeDialog.title: String?
   get() = gtk_native_dialog_get_title(this).toKString()
   set(`value`) {
-    gtk_native_dialog_set_title(this, `value`)
+    gtk_native_dialog_set_title(this@title, `value`)
   }
 
 public var NativeDialog.transientFor: Window?
   get() = gtk_native_dialog_get_transient_for(this)?.reinterpret()
   set(`value`) {
-    gtk_native_dialog_set_transient_for(this, `value`)
+    gtk_native_dialog_set_transient_for(this@transientFor, `value`)
   }
 
 public val NativeDialog.visible: Boolean
   get() = gtk_native_dialog_get_visible(this).toBoolean()
 
 public fun NativeDialog.destroy(): Unit {
-  gtk_native_dialog_destroy(this)
+  gtk_native_dialog_destroy(this@destroy)
 }
 
 public fun NativeDialog.hide(): Unit {
-  gtk_native_dialog_hide(this)
+  gtk_native_dialog_hide(this@hide)
 }
 
-public fun NativeDialog.run(): Int = gtk_native_dialog_run(this)
+public fun NativeDialog.run(): Int = gtk_native_dialog_run(this@run)
 
 public fun NativeDialog.show(): Unit {
-  gtk_native_dialog_show(this)
+  gtk_native_dialog_show(this@show)
 }
 
 public fun NativeDialog.onResponse(callback: (NativeDialog) -> Unit): NativeDialog {

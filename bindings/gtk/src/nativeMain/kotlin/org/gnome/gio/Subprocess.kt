@@ -56,7 +56,7 @@ public object SubprocessFactory
 public val Subprocess.exitStatus: Int
   get() = g_subprocess_get_exit_status(this)
 
-public val Subprocess.identifier: String
+public val Subprocess.identifier: String?
   get() = g_subprocess_get_identifier(this).toKString()
 
 public val Subprocess.ifExited: Boolean
@@ -84,11 +84,11 @@ public val Subprocess.termSig: Int
   get() = g_subprocess_get_term_sig(this)
 
 public fun Subprocess.forceExit(): Unit {
-  g_subprocess_force_exit(this)
+  g_subprocess_force_exit(this@forceExit)
 }
 
 public fun Subprocess.sendSignal(signalNum: Int): Unit {
-  g_subprocess_send_signal(this, signalNum)
+  g_subprocess_send_signal(this@sendSignal, signalNum)
 }
 
 @Throws(Error::class)

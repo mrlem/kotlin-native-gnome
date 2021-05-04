@@ -48,22 +48,22 @@ public val Statusbar.parentWidget: Box
 public val Statusbar.messageArea: Box?
   get() = gtk_statusbar_get_message_area(this)?.reinterpret()
 
-public fun Statusbar.getContextId(contextDescription: String): UInt =
-    gtk_statusbar_get_context_id(this, contextDescription)
+public fun Statusbar.getContextId(contextDescription: String?): UInt =
+    gtk_statusbar_get_context_id(this@getContextId, contextDescription)
 
 public fun Statusbar.pop(contextId: UInt): Unit {
-  gtk_statusbar_pop(this, contextId)
+  gtk_statusbar_pop(this@pop, contextId)
 }
 
-public fun Statusbar.push(contextId: UInt, text: String): UInt = gtk_statusbar_push(this, contextId,
-    text)
+public fun Statusbar.push(contextId: UInt, text: String?): UInt = gtk_statusbar_push(this@push,
+    contextId, text)
 
 public fun Statusbar.remove(contextId: UInt, messageId: UInt): Unit {
-  gtk_statusbar_remove(this, contextId, messageId)
+  gtk_statusbar_remove(this@remove, contextId, messageId)
 }
 
 public fun Statusbar.removeAll(contextId: UInt): Unit {
-  gtk_statusbar_remove_all(this, contextId)
+  gtk_statusbar_remove_all(this@removeAll, contextId)
 }
 
 public fun Statusbar.onTextPopped(callback: (Statusbar) -> Unit): Statusbar {

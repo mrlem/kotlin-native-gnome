@@ -67,30 +67,30 @@ public val Dialog.headerBar: HeaderBar?
   get() = gtk_dialog_get_header_bar(this)?.reinterpret()
 
 public fun Dialog.addActionWidget(child: Widget?, responseId: Int): Unit {
-  gtk_dialog_add_action_widget(this, child?.reinterpret(), responseId)
+  gtk_dialog_add_action_widget(this@addActionWidget, child?.reinterpret(), responseId)
 }
 
-public fun Dialog.addButton(buttonText: String, responseId: Int): Widget? =
-    gtk_dialog_add_button(this, buttonText, responseId)?.reinterpret()
+public fun Dialog.addButton(buttonText: String?, responseId: Int): Widget? =
+    gtk_dialog_add_button(this@addButton, buttonText, responseId)?.reinterpret()
 
 public fun Dialog.getResponseForWidget(widget: Widget?): Int =
-    gtk_dialog_get_response_for_widget(this, widget?.reinterpret())
+    gtk_dialog_get_response_for_widget(this@getResponseForWidget, widget?.reinterpret())
 
 public fun Dialog.getWidgetForResponse(responseId: Int): Widget? =
-    gtk_dialog_get_widget_for_response(this, responseId)?.reinterpret()
+    gtk_dialog_get_widget_for_response(this@getWidgetForResponse, responseId)?.reinterpret()
 
 public fun Dialog.response(responseId: Int): Unit {
-  gtk_dialog_response(this, responseId)
+  gtk_dialog_response(this@response, responseId)
 }
 
-public fun Dialog.run(): Int = gtk_dialog_run(this)
+public fun Dialog.run(): Int = gtk_dialog_run(this@run)
 
 public fun Dialog.setDefaultResponse(responseId: Int): Unit {
-  gtk_dialog_set_default_response(this, responseId)
+  gtk_dialog_set_default_response(this@setDefaultResponse, responseId)
 }
 
 public fun Dialog.setResponseSensitive(responseId: Int, setting: Boolean): Unit {
-  gtk_dialog_set_response_sensitive(this, responseId, setting.toInt())
+  gtk_dialog_set_response_sensitive(this@setResponseSensitive, responseId, setting.toInt())
 }
 
 public fun Dialog.onClose(callback: (Dialog) -> Unit): Dialog {

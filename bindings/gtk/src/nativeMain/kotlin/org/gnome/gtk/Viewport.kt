@@ -48,5 +48,5 @@ public val Viewport.bin: Bin
 public var Viewport.shadowType: ShadowType
   get() = gtk_viewport_get_shadow_type(this)
   set(`value`) {
-    gtk_viewport_set_shadow_type(this, `value`)
+    gtk_viewport_set_shadow_type(this@shadowType, `value`)
   }

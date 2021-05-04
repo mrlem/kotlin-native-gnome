@@ -35,11 +35,11 @@ public object ProxyAddressFactory {
   public fun new(
     inetaddr: InetAddress?,
     port: UShort,
-    protocol: String,
-    destHostname: String,
+    protocol: String?,
+    destHostname: String?,
     destPort: UShort,
-    username: String,
-    password: String
+    username: String?,
+    password: String?
   ): ProxyAddress = g_proxy_address_new(inetaddr?.reinterpret(), port, protocol, destHostname,
       destPort, username, password)!!.reinterpret()
 }
@@ -47,23 +47,23 @@ public object ProxyAddressFactory {
 public val ProxyAddress.parentInstance: InetSocketAddress
   get() = pointed.parent_instance.ptr
 
-public val ProxyAddress.destinationHostname: String
+public val ProxyAddress.destinationHostname: String?
   get() = g_proxy_address_get_destination_hostname(this).toKString()
 
 public val ProxyAddress.destinationPort: UShort
   get() = g_proxy_address_get_destination_port(this)
 
-public val ProxyAddress.destinationProtocol: String
+public val ProxyAddress.destinationProtocol: String?
   get() = g_proxy_address_get_destination_protocol(this).toKString()
 
-public val ProxyAddress.password: String
+public val ProxyAddress.password: String?
   get() = g_proxy_address_get_password(this).toKString()
 
-public val ProxyAddress.protocol: String
+public val ProxyAddress.protocol: String?
   get() = g_proxy_address_get_protocol(this).toKString()
 
-public val ProxyAddress.uri: String
+public val ProxyAddress.uri: String?
   get() = g_proxy_address_get_uri(this).toKString()
 
-public val ProxyAddress.username: String
+public val ProxyAddress.username: String?
   get() = g_proxy_address_get_username(this).toKString()

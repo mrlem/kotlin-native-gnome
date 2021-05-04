@@ -50,29 +50,30 @@ public val Cancellable.fd: Int
   get() = g_cancellable_get_fd(this)
 
 public fun Cancellable.cancel(): Unit {
-  g_cancellable_cancel(this)
+  g_cancellable_cancel(this@cancel)
 }
 
 public fun Cancellable.disconnect(handlerId: ULong): Unit {
-  g_cancellable_disconnect(this, handlerId)
+  g_cancellable_disconnect(this@disconnect, handlerId)
 }
 
-public fun Cancellable.isCancelled(): Boolean = g_cancellable_is_cancelled(this).toBoolean()
+public fun Cancellable.isCancelled(): Boolean =
+    g_cancellable_is_cancelled(this@isCancelled).toBoolean()
 
 public fun Cancellable.popCurrent(): Unit {
-  g_cancellable_pop_current(this)
+  g_cancellable_pop_current(this@popCurrent)
 }
 
 public fun Cancellable.pushCurrent(): Unit {
-  g_cancellable_push_current(this)
+  g_cancellable_push_current(this@pushCurrent)
 }
 
 public fun Cancellable.releaseFd(): Unit {
-  g_cancellable_release_fd(this)
+  g_cancellable_release_fd(this@releaseFd)
 }
 
 public fun Cancellable.reset(): Unit {
-  g_cancellable_reset(this)
+  g_cancellable_reset(this@reset)
 }
 
 @Throws(Error::class)

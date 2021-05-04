@@ -81,13 +81,13 @@ public val DBusConnection.capabilities: DBusCapabilityFlags
 public var DBusConnection.exitOnClose: Boolean
   get() = g_dbus_connection_get_exit_on_close(this).toBoolean()
   set(`value`) {
-    g_dbus_connection_set_exit_on_close(this, `value`.toInt())
+    g_dbus_connection_set_exit_on_close(this@exitOnClose, `value`.toInt())
   }
 
 public val DBusConnection.flags: DBusConnectionFlags
   get() = g_dbus_connection_get_flags(this)
 
-public val DBusConnection.guid: String
+public val DBusConnection.guid: String?
   get() = g_dbus_connection_get_guid(this).toKString()
 
 public val DBusConnection.lastSerial: UInt
@@ -99,7 +99,7 @@ public val DBusConnection.peerCredentials: Credentials?
 public val DBusConnection.stream: IOStream?
   get() = g_dbus_connection_get_stream(this)?.reinterpret()
 
-public val DBusConnection.uniqueName: String
+public val DBusConnection.uniqueName: String?
   get() = g_dbus_connection_get_unique_name(this).toKString()
 
 @Throws(Error::class)
@@ -121,7 +121,7 @@ public fun DBusConnection.closeSync(cancellable: Cancellable?): Boolean = memSco
 }
 
 @Throws(Error::class)
-public fun DBusConnection.exportActionGroup(objectPath: String, actionGroup: ActionGroup?): UInt =
+public fun DBusConnection.exportActionGroup(objectPath: String?, actionGroup: ActionGroup?): UInt =
     memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: UInt = g_dbus_connection_export_action_group(this@exportActionGroup, objectPath,
@@ -131,7 +131,7 @@ public fun DBusConnection.exportActionGroup(objectPath: String, actionGroup: Act
 }
 
 @Throws(Error::class)
-public fun DBusConnection.exportMenuModel(objectPath: String, menu: MenuModel?): UInt = memScoped {
+public fun DBusConnection.exportMenuModel(objectPath: String?, menu: MenuModel?): UInt = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: UInt = g_dbus_connection_export_menu_model(this@exportMenuModel, objectPath,
       menu?.reinterpret(), errors)
@@ -157,11 +157,12 @@ public fun DBusConnection.flushSync(cancellable: Cancellable?): Boolean = memSco
   return result
 }
 
-public fun DBusConnection.isClosed(): Boolean = g_dbus_connection_is_closed(this).toBoolean()
+public fun DBusConnection.isClosed(): Boolean =
+    g_dbus_connection_is_closed(this@isClosed).toBoolean()
 
 @Throws(Error::class)
 public fun DBusConnection.registerObject(
-  objectPath: String,
+  objectPath: String?,
   interfaceInfo: DBusInterfaceInfo?,
   methodCallClosure: Closure?,
   getPropertyClosure: Closure?,
@@ -176,7 +177,7 @@ public fun DBusConnection.registerObject(
 }
 
 public fun DBusConnection.removeFilter(filterId: UInt): Unit {
-  g_dbus_connection_remove_filter(this, filterId)
+  g_dbus_connection_remove_filter(this@removeFilter, filterId)
 }
 
 @Throws(Error::class)
@@ -190,26 +191,26 @@ public fun DBusConnection.sendMessageWithReplyFinish(res: AsyncResult?): DBusMes
 }
 
 public fun DBusConnection.signalUnsubscribe(subscriptionId: UInt): Unit {
-  g_dbus_connection_signal_unsubscribe(this, subscriptionId)
+  g_dbus_connection_signal_unsubscribe(this@signalUnsubscribe, subscriptionId)
 }
 
 public fun DBusConnection.startMessageProcessing(): Unit {
-  g_dbus_connection_start_message_processing(this)
+  g_dbus_connection_start_message_processing(this@startMessageProcessing)
 }
 
 public fun DBusConnection.unexportActionGroup(exportId: UInt): Unit {
-  g_dbus_connection_unexport_action_group(this, exportId)
+  g_dbus_connection_unexport_action_group(this@unexportActionGroup, exportId)
 }
 
 public fun DBusConnection.unexportMenuModel(exportId: UInt): Unit {
-  g_dbus_connection_unexport_menu_model(this, exportId)
+  g_dbus_connection_unexport_menu_model(this@unexportMenuModel, exportId)
 }
 
 public fun DBusConnection.unregisterObject(registrationId: UInt): Boolean =
-    g_dbus_connection_unregister_object(this, registrationId).toBoolean()
+    g_dbus_connection_unregister_object(this@unregisterObject, registrationId).toBoolean()
 
 public fun DBusConnection.unregisterSubtree(registrationId: UInt): Boolean =
-    g_dbus_connection_unregister_subtree(this, registrationId).toBoolean()
+    g_dbus_connection_unregister_subtree(this@unregisterSubtree, registrationId).toBoolean()
 
 public fun DBusConnection.onClosed(callback: (DBusConnection) -> Unit): DBusConnection {
   // TODO - handle callback data

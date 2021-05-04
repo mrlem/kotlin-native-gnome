@@ -42,10 +42,11 @@ public val InetAddressMask.family: SocketFamily
 public val InetAddressMask.length: UInt
   get() = g_inet_address_mask_get_length(this)
 
-public fun InetAddressMask.equal(mask2: InetAddressMask?): Boolean = g_inet_address_mask_equal(this,
-    mask2?.reinterpret()).toBoolean()
+public fun InetAddressMask.equal(mask2: InetAddressMask?): Boolean =
+    g_inet_address_mask_equal(this@equal, mask2?.reinterpret()).toBoolean()
 
 public fun InetAddressMask.matches(address: InetAddress?): Boolean =
-    g_inet_address_mask_matches(this, address?.reinterpret()).toBoolean()
+    g_inet_address_mask_matches(this@matches, address?.reinterpret()).toBoolean()
 
-public fun InetAddressMask.toString(): String = g_inet_address_mask_to_string(this).toKString()
+public fun InetAddressMask.toString(): String? =
+    g_inet_address_mask_to_string(this@toString).toKString()

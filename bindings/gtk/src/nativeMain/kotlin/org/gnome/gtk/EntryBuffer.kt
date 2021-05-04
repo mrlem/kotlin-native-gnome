@@ -33,7 +33,7 @@ public val EntryBuffer.asObject: Object
   get() = reinterpret()
 
 public object EntryBufferFactory {
-  public fun new(initialChars: String, nInitialChars: Int): EntryBuffer =
+  public fun new(initialChars: String?, nInitialChars: Int): EntryBuffer =
       gtk_entry_buffer_new(initialChars, nInitialChars)!!.reinterpret()
 }
 
@@ -49,35 +49,35 @@ public val EntryBuffer.length: UInt
 public var EntryBuffer.maxLength: Int
   get() = gtk_entry_buffer_get_max_length(this)
   set(`value`) {
-    gtk_entry_buffer_set_max_length(this, `value`)
+    gtk_entry_buffer_set_max_length(this@maxLength, `value`)
   }
 
-public val EntryBuffer.text: String
+public val EntryBuffer.text: String?
   get() = gtk_entry_buffer_get_text(this).toKString()
 
 public fun EntryBuffer.deleteText(position: UInt, nChars: Int): UInt =
-    gtk_entry_buffer_delete_text(this, position, nChars)
+    gtk_entry_buffer_delete_text(this@deleteText, position, nChars)
 
 public fun EntryBuffer.emitDeletedText(position: UInt, nChars: UInt): Unit {
-  gtk_entry_buffer_emit_deleted_text(this, position, nChars)
+  gtk_entry_buffer_emit_deleted_text(this@emitDeletedText, position, nChars)
 }
 
 public fun EntryBuffer.emitInsertedText(
   position: UInt,
-  chars: String,
+  chars: String?,
   nChars: UInt
 ): Unit {
-  gtk_entry_buffer_emit_inserted_text(this, position, chars, nChars)
+  gtk_entry_buffer_emit_inserted_text(this@emitInsertedText, position, chars, nChars)
 }
 
 public fun EntryBuffer.insertText(
   position: UInt,
-  chars: String,
+  chars: String?,
   nChars: Int
-): UInt = gtk_entry_buffer_insert_text(this, position, chars, nChars)
+): UInt = gtk_entry_buffer_insert_text(this@insertText, position, chars, nChars)
 
-public fun EntryBuffer.setText(chars: String, nChars: Int): Unit {
-  gtk_entry_buffer_set_text(this, chars, nChars)
+public fun EntryBuffer.setText(chars: String?, nChars: Int): Unit {
+  gtk_entry_buffer_set_text(this@setText, chars, nChars)
 }
 
 public fun EntryBuffer.onDeletedText(callback: (EntryBuffer) -> Unit): EntryBuffer {

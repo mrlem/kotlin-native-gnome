@@ -51,7 +51,7 @@ public fun Layout.move(
   x: Int,
   y: Int
 ): Unit {
-  gtk_layout_move(this, childWidget?.reinterpret(), x, y)
+  gtk_layout_move(this@move, childWidget?.reinterpret(), x, y)
 }
 
 public fun Layout.put(
@@ -59,9 +59,9 @@ public fun Layout.put(
   x: Int,
   y: Int
 ): Unit {
-  gtk_layout_put(this, childWidget?.reinterpret(), x, y)
+  gtk_layout_put(this@put, childWidget?.reinterpret(), x, y)
 }
 
 public fun Layout.setSize(width: UInt, height: UInt): Unit {
-  gtk_layout_set_size(this, width, height)
+  gtk_layout_set_size(this@setSize, width, height)
 }

@@ -58,7 +58,6 @@
 // TODO - method: intersect
 // TODO - method: is_composited
 // TODO - method: list_accel_closures
-// TODO - method: list_action_prefixes
 // TODO - method: list_mnemonic_labels
 // TODO - method: modify_base
 // TODO - method: modify_bg
@@ -206,6 +205,7 @@ import interop.gtk_widget_is_sensitive
 import interop.gtk_widget_is_toplevel
 import interop.gtk_widget_is_visible
 import interop.gtk_widget_keynav_failed
+import interop.gtk_widget_list_action_prefixes
 import interop.gtk_widget_map
 import interop.gtk_widget_mnemonic_activate
 import interop.gtk_widget_queue_allocate
@@ -269,6 +269,7 @@ import interop.gtk_widget_unmap
 import interop.gtk_widget_unparent
 import interop.gtk_widget_unrealize
 import interop.gtk_widget_unset_state_flags
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -286,6 +287,7 @@ import org.gnome.gobject.Object
 import org.gnome.gobject.Value
 import org.gnome.toBoolean
 import org.gnome.toInt
+import org.gnome.toKArray
 import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
 
@@ -314,133 +316,133 @@ public val Widget.allocatedWidth: Int
 public var Widget.appPaintable: Boolean
   get() = gtk_widget_get_app_paintable(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_app_paintable(this, `value`.toInt())
+    gtk_widget_set_app_paintable(this@appPaintable, `value`.toInt())
   }
 
 public var Widget.canDefault: Boolean
   get() = gtk_widget_get_can_default(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_can_default(this, `value`.toInt())
+    gtk_widget_set_can_default(this@canDefault, `value`.toInt())
   }
 
 public var Widget.canFocus: Boolean
   get() = gtk_widget_get_can_focus(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_can_focus(this, `value`.toInt())
+    gtk_widget_set_can_focus(this@canFocus, `value`.toInt())
   }
 
 public var Widget.childVisible: Boolean
   get() = gtk_widget_get_child_visible(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_child_visible(this, `value`.toInt())
+    gtk_widget_set_child_visible(this@childVisible, `value`.toInt())
   }
 
 public var Widget.direction: TextDirection
   get() = gtk_widget_get_direction(this)
   set(`value`) {
-    gtk_widget_set_direction(this, `value`)
+    gtk_widget_set_direction(this@direction, `value`)
   }
 
 public var Widget.doubleBuffered: Boolean
   get() = gtk_widget_get_double_buffered(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_double_buffered(this, `value`.toInt())
+    gtk_widget_set_double_buffered(this@doubleBuffered, `value`.toInt())
   }
 
 public var Widget.events: Int
   get() = gtk_widget_get_events(this)
   set(`value`) {
-    gtk_widget_set_events(this, `value`)
+    gtk_widget_set_events(this@events, `value`)
   }
 
 public var Widget.focusOnClick: Boolean
   get() = gtk_widget_get_focus_on_click(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_focus_on_click(this, `value`.toInt())
+    gtk_widget_set_focus_on_click(this@focusOnClick, `value`.toInt())
   }
 
 public var Widget.halign: Align
   get() = gtk_widget_get_halign(this)
   set(`value`) {
-    gtk_widget_set_halign(this, `value`)
+    gtk_widget_set_halign(this@halign, `value`)
   }
 
 public var Widget.hasTooltip: Boolean
   get() = gtk_widget_get_has_tooltip(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_has_tooltip(this, `value`.toInt())
+    gtk_widget_set_has_tooltip(this@hasTooltip, `value`.toInt())
   }
 
 public var Widget.hasWindow: Boolean
   get() = gtk_widget_get_has_window(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_has_window(this, `value`.toInt())
+    gtk_widget_set_has_window(this@hasWindow, `value`.toInt())
   }
 
 public var Widget.hexpand: Boolean
   get() = gtk_widget_get_hexpand(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_hexpand(this, `value`.toInt())
+    gtk_widget_set_hexpand(this@hexpand, `value`.toInt())
   }
 
 public var Widget.hexpandSet: Boolean
   get() = gtk_widget_get_hexpand_set(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_hexpand_set(this, `value`.toInt())
+    gtk_widget_set_hexpand_set(this@hexpandSet, `value`.toInt())
   }
 
 public var Widget.mapped: Boolean
   get() = gtk_widget_get_mapped(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_mapped(this, `value`.toInt())
+    gtk_widget_set_mapped(this@mapped, `value`.toInt())
   }
 
 public var Widget.marginBottom: Int
   get() = gtk_widget_get_margin_bottom(this)
   set(`value`) {
-    gtk_widget_set_margin_bottom(this, `value`)
+    gtk_widget_set_margin_bottom(this@marginBottom, `value`)
   }
 
 public var Widget.marginEnd: Int
   get() = gtk_widget_get_margin_end(this)
   set(`value`) {
-    gtk_widget_set_margin_end(this, `value`)
+    gtk_widget_set_margin_end(this@marginEnd, `value`)
   }
 
 public var Widget.marginStart: Int
   get() = gtk_widget_get_margin_start(this)
   set(`value`) {
-    gtk_widget_set_margin_start(this, `value`)
+    gtk_widget_set_margin_start(this@marginStart, `value`)
   }
 
 public var Widget.marginTop: Int
   get() = gtk_widget_get_margin_top(this)
   set(`value`) {
-    gtk_widget_set_margin_top(this, `value`)
+    gtk_widget_set_margin_top(this@marginTop, `value`)
   }
 
-public var Widget.name: String
+public var Widget.name: String?
   get() = gtk_widget_get_name(this).toKString()
   set(`value`) {
-    gtk_widget_set_name(this, `value`)
+    gtk_widget_set_name(this@name, `value`)
   }
 
 public var Widget.noShowAll: Boolean
   get() = gtk_widget_get_no_show_all(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_no_show_all(this, `value`.toInt())
+    gtk_widget_set_no_show_all(this@noShowAll, `value`.toInt())
   }
 
 public var Widget.opacity: Double
   get() = gtk_widget_get_opacity(this)
   set(`value`) {
-    gtk_widget_set_opacity(this, `value`)
+    gtk_widget_set_opacity(this@opacity, `value`)
   }
 
 public var Widget.parent: Widget?
   get() = gtk_widget_get_parent(this)?.reinterpret()
   set(`value`) {
-    gtk_widget_set_parent(this, `value`)
+    gtk_widget_set_parent(this@parent, `value`)
   }
 
 public val Widget.path: WidgetPath?
@@ -449,13 +451,13 @@ public val Widget.path: WidgetPath?
 public var Widget.realized: Boolean
   get() = gtk_widget_get_realized(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_realized(this, `value`.toInt())
+    gtk_widget_set_realized(this@realized, `value`.toInt())
   }
 
 public var Widget.receivesDefault: Boolean
   get() = gtk_widget_get_receives_default(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_receives_default(this, `value`.toInt())
+    gtk_widget_set_receives_default(this@receivesDefault, `value`.toInt())
   }
 
 public val Widget.requestMode: SizeRequestMode
@@ -467,7 +469,7 @@ public val Widget.scaleFactor: Int
 public var Widget.sensitive: Boolean
   get() = gtk_widget_get_sensitive(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_sensitive(this, `value`.toInt())
+    gtk_widget_set_sensitive(this@sensitive, `value`.toInt())
   }
 
 public val Widget.settings: Settings?
@@ -482,25 +484,25 @@ public val Widget.styleContext: StyleContext?
 public var Widget.supportMultidevice: Boolean
   get() = gtk_widget_get_support_multidevice(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_support_multidevice(this, `value`.toInt())
+    gtk_widget_set_support_multidevice(this@supportMultidevice, `value`.toInt())
   }
 
-public var Widget.tooltipMarkup: String
+public var Widget.tooltipMarkup: String?
   get() = gtk_widget_get_tooltip_markup(this).toKString()
   set(`value`) {
-    gtk_widget_set_tooltip_markup(this, `value`)
+    gtk_widget_set_tooltip_markup(this@tooltipMarkup, `value`)
   }
 
-public var Widget.tooltipText: String
+public var Widget.tooltipText: String?
   get() = gtk_widget_get_tooltip_text(this).toKString()
   set(`value`) {
-    gtk_widget_set_tooltip_text(this, `value`)
+    gtk_widget_set_tooltip_text(this@tooltipText, `value`)
   }
 
 public var Widget.tooltipWindow: Window?
   get() = gtk_widget_get_tooltip_window(this)?.reinterpret()
   set(`value`) {
-    gtk_widget_set_tooltip_window(this, `value`)
+    gtk_widget_set_tooltip_window(this@tooltipWindow, `value`)
   }
 
 public val Widget.toplevel: Widget?
@@ -509,7 +511,7 @@ public val Widget.toplevel: Widget?
 public var Widget.valign: Align
   get() = gtk_widget_get_valign(this)
   set(`value`) {
-    gtk_widget_set_valign(this, `value`)
+    gtk_widget_set_valign(this@valign, `value`)
   }
 
 public val Widget.valignWithBaseline: Align
@@ -518,46 +520,46 @@ public val Widget.valignWithBaseline: Align
 public var Widget.vexpand: Boolean
   get() = gtk_widget_get_vexpand(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_vexpand(this, `value`.toInt())
+    gtk_widget_set_vexpand(this@vexpand, `value`.toInt())
   }
 
 public var Widget.vexpandSet: Boolean
   get() = gtk_widget_get_vexpand_set(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_vexpand_set(this, `value`.toInt())
+    gtk_widget_set_vexpand_set(this@vexpandSet, `value`.toInt())
   }
 
 public var Widget.visible: Boolean
   get() = gtk_widget_get_visible(this).toBoolean()
   set(`value`) {
-    gtk_widget_set_visible(this, `value`.toInt())
+    gtk_widget_set_visible(this@visible, `value`.toInt())
   }
 
-public fun Widget.activate(): Boolean = gtk_widget_activate(this).toBoolean()
+public fun Widget.activate(): Boolean = gtk_widget_activate(this@activate).toBoolean()
 
 public fun Widget.addEvents(events: Int): Unit {
-  gtk_widget_add_events(this, events)
+  gtk_widget_add_events(this@addEvents, events)
 }
 
 public fun Widget.addMnemonicLabel(label: Widget?): Unit {
-  gtk_widget_add_mnemonic_label(this, label?.reinterpret())
+  gtk_widget_add_mnemonic_label(this@addMnemonicLabel, label?.reinterpret())
 }
 
-public fun Widget.canActivateAccel(signalId: UInt): Boolean = gtk_widget_can_activate_accel(this,
-    signalId).toBoolean()
+public fun Widget.canActivateAccel(signalId: UInt): Boolean =
+    gtk_widget_can_activate_accel(this@canActivateAccel, signalId).toBoolean()
 
-public fun Widget.childFocus(direction: DirectionType): Boolean = gtk_widget_child_focus(this,
-    direction).toBoolean()
+public fun Widget.childFocus(direction: DirectionType): Boolean =
+    gtk_widget_child_focus(this@childFocus, direction).toBoolean()
 
-public fun Widget.childNotify(childProperty: String): Unit {
-  gtk_widget_child_notify(this, childProperty)
+public fun Widget.childNotify(childProperty: String?): Unit {
+  gtk_widget_child_notify(this@childNotify, childProperty)
 }
 
-public fun Widget.computeExpand(orientation: Orientation): Boolean = gtk_widget_compute_expand(this,
-    orientation).toBoolean()
+public fun Widget.computeExpand(orientation: Orientation): Boolean =
+    gtk_widget_compute_expand(this@computeExpand, orientation).toBoolean()
 
 public fun Widget.destroy(): Unit {
-  gtk_widget_destroy(this)
+  gtk_widget_destroy(this@destroy)
 }
 
 public fun Widget.dragCheckThreshold(
@@ -565,169 +567,175 @@ public fun Widget.dragCheckThreshold(
   startY: Int,
   currentX: Int,
   currentY: Int
-): Boolean = gtk_drag_check_threshold(this, startX, startY, currentX, currentY).toBoolean()
+): Boolean = gtk_drag_check_threshold(this@dragCheckThreshold, startX, startY, currentX,
+    currentY).toBoolean()
 
 public fun Widget.dragDestAddImageTargets(): Unit {
-  gtk_drag_dest_add_image_targets(this)
+  gtk_drag_dest_add_image_targets(this@dragDestAddImageTargets)
 }
 
 public fun Widget.dragDestAddTextTargets(): Unit {
-  gtk_drag_dest_add_text_targets(this)
+  gtk_drag_dest_add_text_targets(this@dragDestAddTextTargets)
 }
 
 public fun Widget.dragDestAddUriTargets(): Unit {
-  gtk_drag_dest_add_uri_targets(this)
+  gtk_drag_dest_add_uri_targets(this@dragDestAddUriTargets)
 }
 
 public fun Widget.dragDestGetTargetList(): TargetList? =
-    gtk_drag_dest_get_target_list(this)?.reinterpret()
+    gtk_drag_dest_get_target_list(this@dragDestGetTargetList)?.reinterpret()
 
 public fun Widget.dragDestGetTrackMotion(): Boolean =
-    gtk_drag_dest_get_track_motion(this).toBoolean()
+    gtk_drag_dest_get_track_motion(this@dragDestGetTrackMotion).toBoolean()
 
 public fun Widget.dragDestSetTargetList(targetList: TargetList?): Unit {
-  gtk_drag_dest_set_target_list(this, targetList?.reinterpret())
+  gtk_drag_dest_set_target_list(this@dragDestSetTargetList, targetList?.reinterpret())
 }
 
 public fun Widget.dragDestSetTrackMotion(trackMotion: Boolean): Unit {
-  gtk_drag_dest_set_track_motion(this, trackMotion.toInt())
+  gtk_drag_dest_set_track_motion(this@dragDestSetTrackMotion, trackMotion.toInt())
 }
 
 public fun Widget.dragDestUnset(): Unit {
-  gtk_drag_dest_unset(this)
+  gtk_drag_dest_unset(this@dragDestUnset)
 }
 
 public fun Widget.dragHighlight(): Unit {
-  gtk_drag_highlight(this)
+  gtk_drag_highlight(this@dragHighlight)
 }
 
 public fun Widget.dragSourceAddImageTargets(): Unit {
-  gtk_drag_source_add_image_targets(this)
+  gtk_drag_source_add_image_targets(this@dragSourceAddImageTargets)
 }
 
 public fun Widget.dragSourceAddTextTargets(): Unit {
-  gtk_drag_source_add_text_targets(this)
+  gtk_drag_source_add_text_targets(this@dragSourceAddTextTargets)
 }
 
 public fun Widget.dragSourceAddUriTargets(): Unit {
-  gtk_drag_source_add_uri_targets(this)
+  gtk_drag_source_add_uri_targets(this@dragSourceAddUriTargets)
 }
 
 public fun Widget.dragSourceGetTargetList(): TargetList? =
-    gtk_drag_source_get_target_list(this)?.reinterpret()
+    gtk_drag_source_get_target_list(this@dragSourceGetTargetList)?.reinterpret()
 
 public fun Widget.dragSourceSetIconGicon(icon: Icon?): Unit {
-  gtk_drag_source_set_icon_gicon(this, icon?.reinterpret())
+  gtk_drag_source_set_icon_gicon(this@dragSourceSetIconGicon, icon?.reinterpret())
 }
 
-public fun Widget.dragSourceSetIconName(iconName: String): Unit {
-  gtk_drag_source_set_icon_name(this, iconName)
+public fun Widget.dragSourceSetIconName(iconName: String?): Unit {
+  gtk_drag_source_set_icon_name(this@dragSourceSetIconName, iconName)
 }
 
 public fun Widget.dragSourceSetTargetList(targetList: TargetList?): Unit {
-  gtk_drag_source_set_target_list(this, targetList?.reinterpret())
+  gtk_drag_source_set_target_list(this@dragSourceSetTargetList, targetList?.reinterpret())
 }
 
 public fun Widget.dragSourceUnset(): Unit {
-  gtk_drag_source_unset(this)
+  gtk_drag_source_unset(this@dragSourceUnset)
 }
 
 public fun Widget.dragUnhighlight(): Unit {
-  gtk_drag_unhighlight(this)
+  gtk_drag_unhighlight(this@dragUnhighlight)
 }
 
 public fun Widget.errorBell(): Unit {
-  gtk_widget_error_bell(this)
+  gtk_widget_error_bell(this@errorBell)
 }
 
 public fun Widget.freezeChildNotify(): Unit {
-  gtk_widget_freeze_child_notify(this)
+  gtk_widget_freeze_child_notify(this@freezeChildNotify)
 }
 
-public fun Widget.getActionGroup(prefix: String): ActionGroup? = gtk_widget_get_action_group(this,
-    prefix)?.reinterpret()
+public fun Widget.getActionGroup(prefix: String?): ActionGroup? =
+    gtk_widget_get_action_group(this@getActionGroup, prefix)?.reinterpret()
 
-public fun Widget.getAncestor(widgetType: GType): Widget? = gtk_widget_get_ancestor(this,
-    widgetType)?.reinterpret()
+public fun Widget.getAncestor(widgetType: GType): Widget? =
+    gtk_widget_get_ancestor(this@getAncestor, widgetType)?.reinterpret()
 
-public fun Widget.getTemplateChild(widgetType: GType, name: String): Object? =
-    gtk_widget_get_template_child(this, widgetType, name)?.reinterpret()
+public fun Widget.getTemplateChild(widgetType: GType, name: String?): Object? =
+    gtk_widget_get_template_child(this@getTemplateChild, widgetType, name)?.reinterpret()
 
 public fun Widget.grabAdd(): Unit {
-  gtk_grab_add(this)
+  gtk_grab_add(this@grabAdd)
 }
 
 public fun Widget.grabDefault(): Unit {
-  gtk_widget_grab_default(this)
+  gtk_widget_grab_default(this@grabDefault)
 }
 
 public fun Widget.grabFocus(): Unit {
-  gtk_widget_grab_focus(this)
+  gtk_widget_grab_focus(this@grabFocus)
 }
 
 public fun Widget.grabRemove(): Unit {
-  gtk_grab_remove(this)
+  gtk_grab_remove(this@grabRemove)
 }
 
-public fun Widget.hasDefault(): Boolean = gtk_widget_has_default(this).toBoolean()
+public fun Widget.hasDefault(): Boolean = gtk_widget_has_default(this@hasDefault).toBoolean()
 
-public fun Widget.hasFocus(): Boolean = gtk_widget_has_focus(this).toBoolean()
+public fun Widget.hasFocus(): Boolean = gtk_widget_has_focus(this@hasFocus).toBoolean()
 
-public fun Widget.hasGrab(): Boolean = gtk_widget_has_grab(this).toBoolean()
+public fun Widget.hasGrab(): Boolean = gtk_widget_has_grab(this@hasGrab).toBoolean()
 
-public fun Widget.hasScreen(): Boolean = gtk_widget_has_screen(this).toBoolean()
+public fun Widget.hasScreen(): Boolean = gtk_widget_has_screen(this@hasScreen).toBoolean()
 
-public fun Widget.hasVisibleFocus(): Boolean = gtk_widget_has_visible_focus(this).toBoolean()
+public fun Widget.hasVisibleFocus(): Boolean =
+    gtk_widget_has_visible_focus(this@hasVisibleFocus).toBoolean()
 
 public fun Widget.hide(): Unit {
-  gtk_widget_hide(this)
+  gtk_widget_hide(this@hide)
 }
 
-public fun Widget.hideOnDelete(): Boolean = gtk_widget_hide_on_delete(this).toBoolean()
+public fun Widget.hideOnDelete(): Boolean = gtk_widget_hide_on_delete(this@hideOnDelete).toBoolean()
 
-public fun Widget.inDestruction(): Boolean = gtk_widget_in_destruction(this).toBoolean()
+public fun Widget.inDestruction(): Boolean =
+    gtk_widget_in_destruction(this@inDestruction).toBoolean()
 
 public fun Widget.initTemplate(): Unit {
-  gtk_widget_init_template(this)
+  gtk_widget_init_template(this@initTemplate)
 }
 
-public fun Widget.insertActionGroup(name: String, group: ActionGroup?): Unit {
-  gtk_widget_insert_action_group(this, name, group?.reinterpret())
+public fun Widget.insertActionGroup(name: String?, group: ActionGroup?): Unit {
+  gtk_widget_insert_action_group(this@insertActionGroup, name, group?.reinterpret())
 }
 
-public fun Widget.isAncestor(ancestor: Widget?): Boolean = gtk_widget_is_ancestor(this,
+public fun Widget.isAncestor(ancestor: Widget?): Boolean = gtk_widget_is_ancestor(this@isAncestor,
     ancestor?.reinterpret()).toBoolean()
 
-public fun Widget.isDrawable(): Boolean = gtk_widget_is_drawable(this).toBoolean()
+public fun Widget.isDrawable(): Boolean = gtk_widget_is_drawable(this@isDrawable).toBoolean()
 
-public fun Widget.isFocus(): Boolean = gtk_widget_is_focus(this).toBoolean()
+public fun Widget.isFocus(): Boolean = gtk_widget_is_focus(this@isFocus).toBoolean()
 
-public fun Widget.isSensitive(): Boolean = gtk_widget_is_sensitive(this).toBoolean()
+public fun Widget.isSensitive(): Boolean = gtk_widget_is_sensitive(this@isSensitive).toBoolean()
 
-public fun Widget.isToplevel(): Boolean = gtk_widget_is_toplevel(this).toBoolean()
+public fun Widget.isToplevel(): Boolean = gtk_widget_is_toplevel(this@isToplevel).toBoolean()
 
-public fun Widget.isVisible(): Boolean = gtk_widget_is_visible(this).toBoolean()
+public fun Widget.isVisible(): Boolean = gtk_widget_is_visible(this@isVisible).toBoolean()
 
-public fun Widget.keynavFailed(direction: DirectionType): Boolean = gtk_widget_keynav_failed(this,
-    direction).toBoolean()
+public fun Widget.keynavFailed(direction: DirectionType): Boolean =
+    gtk_widget_keynav_failed(this@keynavFailed, direction).toBoolean()
+
+public fun Widget.listActionPrefixes(): Array<String>? =
+    gtk_widget_list_action_prefixes(this@listActionPrefixes)?.toKArray { it.toKString()!! }
 
 public fun Widget.map(): Unit {
-  gtk_widget_map(this)
+  gtk_widget_map(this@map)
 }
 
 public fun Widget.mnemonicActivate(groupCycling: Boolean): Boolean =
-    gtk_widget_mnemonic_activate(this, groupCycling.toInt()).toBoolean()
+    gtk_widget_mnemonic_activate(this@mnemonicActivate, groupCycling.toInt()).toBoolean()
 
 public fun Widget.queueAllocate(): Unit {
-  gtk_widget_queue_allocate(this)
+  gtk_widget_queue_allocate(this@queueAllocate)
 }
 
 public fun Widget.queueComputeExpand(): Unit {
-  gtk_widget_queue_compute_expand(this)
+  gtk_widget_queue_compute_expand(this@queueComputeExpand)
 }
 
 public fun Widget.queueDraw(): Unit {
-  gtk_widget_queue_draw(this)
+  gtk_widget_queue_draw(this@queueDraw)
 }
 
 public fun Widget.queueDrawArea(
@@ -736,103 +744,103 @@ public fun Widget.queueDrawArea(
   width: Int,
   height: Int
 ): Unit {
-  gtk_widget_queue_draw_area(this, x, y, width, height)
+  gtk_widget_queue_draw_area(this@queueDrawArea, x, y, width, height)
 }
 
 public fun Widget.queueResize(): Unit {
-  gtk_widget_queue_resize(this)
+  gtk_widget_queue_resize(this@queueResize)
 }
 
 public fun Widget.queueResizeNoRedraw(): Unit {
-  gtk_widget_queue_resize_no_redraw(this)
+  gtk_widget_queue_resize_no_redraw(this@queueResizeNoRedraw)
 }
 
 public fun Widget.realize(): Unit {
-  gtk_widget_realize(this)
+  gtk_widget_realize(this@realize)
 }
 
 public fun Widget.removeMnemonicLabel(label: Widget?): Unit {
-  gtk_widget_remove_mnemonic_label(this, label?.reinterpret())
+  gtk_widget_remove_mnemonic_label(this@removeMnemonicLabel, label?.reinterpret())
 }
 
 public fun Widget.removeTickCallback(id: UInt): Unit {
-  gtk_widget_remove_tick_callback(this, id)
+  gtk_widget_remove_tick_callback(this@removeTickCallback, id)
 }
 
 public fun Widget.resetStyle(): Unit {
-  gtk_widget_reset_style(this)
+  gtk_widget_reset_style(this@resetStyle)
 }
 
-public fun Widget.setAccelPath(accelPath: String, accelGroup: AccelGroup?): Unit {
-  gtk_widget_set_accel_path(this, accelPath, accelGroup?.reinterpret())
+public fun Widget.setAccelPath(accelPath: String?, accelGroup: AccelGroup?): Unit {
+  gtk_widget_set_accel_path(this@setAccelPath, accelPath, accelGroup?.reinterpret())
 }
 
 public fun Widget.setAllocation(allocation: Allocation): Unit {
-  gtk_widget_set_allocation(this, allocation)
+  gtk_widget_set_allocation(this@setAllocation, allocation)
 }
 
 public fun Widget.setClip(clip: Allocation): Unit {
-  gtk_widget_set_clip(this, clip)
+  gtk_widget_set_clip(this@setClip, clip)
 }
 
 public fun Widget.setRedrawOnAllocate(redrawOnAllocate: Boolean): Unit {
-  gtk_widget_set_redraw_on_allocate(this, redrawOnAllocate.toInt())
+  gtk_widget_set_redraw_on_allocate(this@setRedrawOnAllocate, redrawOnAllocate.toInt())
 }
 
 public fun Widget.setSizeRequest(width: Int, height: Int): Unit {
-  gtk_widget_set_size_request(this, width, height)
+  gtk_widget_set_size_request(this@setSizeRequest, width, height)
 }
 
 public fun Widget.setStateFlags(flags: StateFlags, clear: Boolean): Unit {
-  gtk_widget_set_state_flags(this, flags, clear.toInt())
+  gtk_widget_set_state_flags(this@setStateFlags, flags, clear.toInt())
 }
 
 public fun Widget.show(): Unit {
-  gtk_widget_show(this)
+  gtk_widget_show(this@show)
 }
 
 public fun Widget.showAll(): Unit {
-  gtk_widget_show_all(this)
+  gtk_widget_show_all(this@showAll)
 }
 
 public fun Widget.showNow(): Unit {
-  gtk_widget_show_now(this)
+  gtk_widget_show_now(this@showNow)
 }
 
 public fun Widget.sizeAllocate(allocation: Allocation): Unit {
-  gtk_widget_size_allocate(this, allocation)
+  gtk_widget_size_allocate(this@sizeAllocate, allocation)
 }
 
 public fun Widget.sizeAllocateWithBaseline(allocation: Allocation, baseline: Int): Unit {
-  gtk_widget_size_allocate_with_baseline(this, allocation, baseline)
+  gtk_widget_size_allocate_with_baseline(this@sizeAllocateWithBaseline, allocation, baseline)
 }
 
-public fun Widget.styleGetProperty(propertyName: String, `value`: Value?): Unit {
-  gtk_widget_style_get_property(this, propertyName, `value`?.reinterpret())
+public fun Widget.styleGetProperty(propertyName: String?, `value`: Value?): Unit {
+  gtk_widget_style_get_property(this@styleGetProperty, propertyName, `value`?.reinterpret())
 }
 
 public fun Widget.thawChildNotify(): Unit {
-  gtk_widget_thaw_child_notify(this)
+  gtk_widget_thaw_child_notify(this@thawChildNotify)
 }
 
 public fun Widget.triggerTooltipQuery(): Unit {
-  gtk_widget_trigger_tooltip_query(this)
+  gtk_widget_trigger_tooltip_query(this@triggerTooltipQuery)
 }
 
 public fun Widget.unmap(): Unit {
-  gtk_widget_unmap(this)
+  gtk_widget_unmap(this@unmap)
 }
 
 public fun Widget.unparent(): Unit {
-  gtk_widget_unparent(this)
+  gtk_widget_unparent(this@unparent)
 }
 
 public fun Widget.unrealize(): Unit {
-  gtk_widget_unrealize(this)
+  gtk_widget_unrealize(this@unrealize)
 }
 
 public fun Widget.unsetStateFlags(flags: StateFlags): Unit {
-  gtk_widget_unset_state_flags(this, flags)
+  gtk_widget_unset_state_flags(this@unsetStateFlags, flags)
 }
 
 public fun Widget.onAccelClosuresChanged(callback: (Widget) -> Unit): Widget {

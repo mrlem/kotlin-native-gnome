@@ -42,22 +42,22 @@ public val LinkButton.asButton: Button
   get() = reinterpret()
 
 public object LinkButtonFactory {
-  public fun new(uri: String): LinkButton = gtk_link_button_new(uri)!!.reinterpret()
+  public fun new(uri: String?): LinkButton = gtk_link_button_new(uri)!!.reinterpret()
 
-  public fun newWithLabel(uri: String, label: String): LinkButton =
+  public fun newWithLabel(uri: String?, label: String?): LinkButton =
       gtk_link_button_new_with_label(uri, label)!!.reinterpret()
 }
 
-public var LinkButton.uri: String
+public var LinkButton.uri: String?
   get() = gtk_link_button_get_uri(this).toKString()
   set(`value`) {
-    gtk_link_button_set_uri(this, `value`)
+    gtk_link_button_set_uri(this@uri, `value`)
   }
 
 public var LinkButton.visited: Boolean
   get() = gtk_link_button_get_visited(this).toBoolean()
   set(`value`) {
-    gtk_link_button_set_visited(this, `value`.toInt())
+    gtk_link_button_set_visited(this@visited, `value`.toInt())
   }
 
 public fun LinkButton.onActivateLink(callback: (LinkButton) -> Unit): LinkButton {
