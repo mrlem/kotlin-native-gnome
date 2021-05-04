@@ -37,6 +37,11 @@ object RepositoryFixer {
             .methods
             .removeAll { it.name == "run_in_thread" || it.name == "run_in_thread_sync" }
 
+        // FIXME - factory naming clash
+        repository.namespaces["Atk"]!!
+            .classes
+            .removeAll { it.name == "NoOpObjectFactory" }
+
         // incorrectly typed as GObject
         repository.namespaces["Gio"]!!
             .classes["ListStore"]!!
