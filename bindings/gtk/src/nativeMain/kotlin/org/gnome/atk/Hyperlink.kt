@@ -1,5 +1,3 @@
-// TODO - method: get_object (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.atk
@@ -7,6 +5,7 @@ package org.gnome.atk
 import interop.AtkHyperlink
 import interop.atk_hyperlink_get_end_index
 import interop.atk_hyperlink_get_n_anchors
+import interop.atk_hyperlink_get_object
 import interop.atk_hyperlink_get_start_index
 import interop.atk_hyperlink_get_uri
 import interop.atk_hyperlink_is_inline
@@ -19,17 +18,16 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
 
 public typealias Hyperlink = CPointer<AtkHyperlink>
 
-public val Hyperlink.asObject: Object
+public val Hyperlink.asObject: org.gnome.gobject.Object
   get() = reinterpret()
 
-public val Hyperlink.parent: Object
+public val Hyperlink.parent: org.gnome.gobject.Object
   get() = pointed.parent.ptr
 
 public val Hyperlink.endIndex: Int
@@ -40,6 +38,9 @@ public val Hyperlink.nAnchors: Int
 
 public val Hyperlink.startIndex: Int
   get() = atk_hyperlink_get_start_index(this)
+
+public fun Hyperlink.getObject(i: Int): Object? = atk_hyperlink_get_object(this@getObject,
+    i)?.reinterpret()
 
 public fun Hyperlink.getUri(i: Int): String? = atk_hyperlink_get_uri(this@getUri, i).toKString()
 

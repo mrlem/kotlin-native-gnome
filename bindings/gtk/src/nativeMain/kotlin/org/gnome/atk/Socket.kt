@@ -1,6 +1,3 @@
-// TODO - constructor: new
-// TODO - field: parent
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.atk
@@ -8,11 +5,13 @@ package org.gnome.atk
 import interop.AtkSocket
 import interop.atk_socket_embed
 import interop.atk_socket_is_occupied
+import interop.atk_socket_new
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.toBoolean
 import org.gnome.toKString
@@ -25,7 +24,12 @@ public val Socket.asObject: org.gnome.gobject.Object
 public val Socket.asAtkObject: Object
   get() = reinterpret()
 
-public object SocketFactory
+public object SocketFactory {
+  public fun new(): Socket = atk_socket_new()!!.reinterpret()
+}
+
+public val Socket.parent: Object
+  get() = pointed.parent.ptr
 
 public val Socket.embeddedPlugId: String
   get() = pointed.embedded_plug_id.toKString()

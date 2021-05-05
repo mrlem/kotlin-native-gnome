@@ -114,10 +114,11 @@ private val knownNamespaces = listOf(
     "Gtk",
     "Gio",
     "GObject",
-//    "Atk",
+    "Atk",
     "Gdk",
     "GdkPixbuf"
 )
+
 private val TypeDefinition.className: TypeName?
     get() {
         return if (name.contains('.')) {

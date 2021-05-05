@@ -4,7 +4,6 @@
 // TODO - method: create_pango_layout (return type)
 // TODO - method: destroyed (param type)
 // TODO - method: draw (param type)
-// TODO - method: get_accessible (return type)
 // TODO - method: get_allocated_size (param type)
 // TODO - method: get_allocation (param type)
 // TODO - method: get_clip (param type)
@@ -77,6 +76,7 @@ import interop.gtk_widget_device_is_shadowed
 import interop.gtk_widget_error_bell
 import interop.gtk_widget_event
 import interop.gtk_widget_freeze_child_notify
+import interop.gtk_widget_get_accessible
 import interop.gtk_widget_get_action_group
 import interop.gtk_widget_get_allocated_baseline
 import interop.gtk_widget_get_allocated_height
@@ -276,6 +276,9 @@ public object WidgetFactory
 
 public val Widget.parentInstance: InitiallyUnowned
   get() = pointed.parent_instance.ptr
+
+public val Widget.accessible: org.gnome.atk.Object?
+  get() = gtk_widget_get_accessible(this)?.reinterpret()
 
 public val Widget.allocatedBaseline: Int
   get() = gtk_widget_get_allocated_baseline(this)

@@ -1,10 +1,9 @@
-// TODO - constructor: new
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkRendererCellAccessible
+import interop.gtk_renderer_cell_accessible_new
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
@@ -25,7 +24,10 @@ public val RendererCellAccessible.asAccessible: Accessible
 public val RendererCellAccessible.asCellAccessible: CellAccessible
   get() = reinterpret()
 
-public object RendererCellAccessibleFactory
+public object RendererCellAccessibleFactory {
+  public fun new(renderer: CellRenderer?): RendererCellAccessible =
+      gtk_renderer_cell_accessible_new(renderer?.reinterpret())!!.reinterpret()
+}
 
 public val RendererCellAccessible.parent: CellAccessible
   get() = pointed.parent.ptr

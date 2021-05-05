@@ -1,5 +1,4 @@
 // TODO - method: get_active_iter (param type)
-// TODO - method: get_popup_accessible (return type)
 // TODO - method: set_row_separator_func (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -15,6 +14,7 @@ import interop.gtk_combo_box_get_entry_text_column
 import interop.gtk_combo_box_get_has_entry
 import interop.gtk_combo_box_get_id_column
 import interop.gtk_combo_box_get_model
+import interop.gtk_combo_box_get_popup_accessible
 import interop.gtk_combo_box_get_popup_fixed_width
 import interop.gtk_combo_box_get_row_separator_func
 import interop.gtk_combo_box_get_row_span_column
@@ -137,6 +137,9 @@ public var ComboBox.model: TreeModel?
   set(`value`) {
     gtk_combo_box_set_model(this@model, `value`)
   }
+
+public val ComboBox.popupAccessible: org.gnome.atk.Object?
+  get() = gtk_combo_box_get_popup_accessible(this)?.reinterpret()
 
 public var ComboBox.popupFixedWidth: Boolean
   get() = gtk_combo_box_get_popup_fixed_width(this).toBoolean()
