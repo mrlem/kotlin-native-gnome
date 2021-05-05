@@ -4,9 +4,7 @@
 // TODO - method: request_targets (param type)
 // TODO - method: request_text (param type)
 // TODO - method: request_uris (param type)
-// TODO - method: set_image (param type)
 // TODO - method: set_with_data (param type)
-// TODO - method: wait_for_image (return type)
 // TODO - method: wait_for_rich_text (param type)
 // TODO - method: wait_for_targets (param type)
 //
@@ -20,10 +18,12 @@ import interop.gtk_clipboard_get_display
 import interop.gtk_clipboard_get_owner
 import interop.gtk_clipboard_get_selection
 import interop.gtk_clipboard_set_can_store
+import interop.gtk_clipboard_set_image
 import interop.gtk_clipboard_set_text
 import interop.gtk_clipboard_set_with_owner
 import interop.gtk_clipboard_store
 import interop.gtk_clipboard_wait_for_contents
+import interop.gtk_clipboard_wait_for_image
 import interop.gtk_clipboard_wait_for_text
 import interop.gtk_clipboard_wait_for_uris
 import interop.gtk_clipboard_wait_is_image_available
@@ -45,6 +45,7 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Atom
 import org.gnome.gdk.Display
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -75,6 +76,10 @@ public fun Clipboard.setCanStore(targets: Array<TargetEntry>?, nTargets: Int): U
       }?.toTypedArray()?.toCArray(memScope), nTargets) }
 }
 
+public fun Clipboard.setImage(pixbuf: Pixbuf?): Unit {
+  gtk_clipboard_set_image(this@setImage, pixbuf?.reinterpret())
+}
+
 public fun Clipboard.setText(text: String?, len: Int): Unit {
   gtk_clipboard_set_text(this@setText, text, len)
 }
@@ -95,6 +100,9 @@ public fun Clipboard.store(): Unit {
 
 public fun Clipboard.waitForContents(target: Atom?): SelectionData? =
     gtk_clipboard_wait_for_contents(this@waitForContents, target?.reinterpret())?.reinterpret()
+
+public fun Clipboard.waitForImage(): Pixbuf? =
+    gtk_clipboard_wait_for_image(this@waitForImage)?.reinterpret()
 
 public fun Clipboard.waitForText(): String? =
     gtk_clipboard_wait_for_text(this@waitForText).toKString()

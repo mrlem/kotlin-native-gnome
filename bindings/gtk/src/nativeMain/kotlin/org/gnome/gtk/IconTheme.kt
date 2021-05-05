@@ -1,14 +1,13 @@
 // TODO - method: get_search_path (param type)
 // TODO - method: list_contexts (return type)
 // TODO - method: list_icons (return type)
-// TODO - method: load_icon (return type)
-// TODO - method: load_icon_for_scale (return type)
 // TODO - method: load_surface (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
+import interop.GError
 import interop.GtkIconTheme
 import interop.gtk_icon_theme_add_resource_path
 import interop.gtk_icon_theme_append_search_path
@@ -17,6 +16,8 @@ import interop.gtk_icon_theme_choose_icon_for_scale
 import interop.gtk_icon_theme_get_example_icon_name
 import interop.gtk_icon_theme_get_icon_sizes
 import interop.gtk_icon_theme_has_icon
+import interop.gtk_icon_theme_load_icon
+import interop.gtk_icon_theme_load_icon_for_scale
 import interop.gtk_icon_theme_lookup_by_gicon
 import interop.gtk_icon_theme_lookup_by_gicon_for_scale
 import interop.gtk_icon_theme_lookup_icon
@@ -31,13 +32,19 @@ import kotlin.Array
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
+import kotlin.Throws
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.`value`
+import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Screen
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.Icon
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -85,6 +92,33 @@ public fun IconTheme.getIconSizes(iconName: String?): Array<Int>? =
 
 public fun IconTheme.hasIcon(iconName: String?): Boolean = gtk_icon_theme_has_icon(this@hasIcon,
     iconName).toBoolean()
+
+@Throws(Error::class)
+public fun IconTheme.loadIcon(
+  iconName: String?,
+  size: Int,
+  flags: IconLookupFlags
+): Pixbuf? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Pixbuf? = gtk_icon_theme_load_icon(this@loadIcon, iconName, size, flags,
+      errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun IconTheme.loadIconForScale(
+  iconName: String?,
+  size: Int,
+  scale: Int,
+  flags: IconLookupFlags
+): Pixbuf? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Pixbuf? = gtk_icon_theme_load_icon_for_scale(this@loadIconForScale, iconName, size,
+      scale, flags, errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
 
 public fun IconTheme.lookupByGicon(
   icon: Icon?,

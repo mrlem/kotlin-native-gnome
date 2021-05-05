@@ -3,7 +3,6 @@
 // TODO - method: create_pango_context (return type)
 // TODO - method: create_pango_layout (return type)
 // TODO - method: destroyed (param type)
-// TODO - method: drag_source_set_icon_pixbuf (param type)
 // TODO - method: draw (param type)
 // TODO - method: get_accessible (return type)
 // TODO - method: get_allocated_size (param type)
@@ -58,6 +57,7 @@ import interop.gtk_drag_source_get_target_list
 import interop.gtk_drag_source_set
 import interop.gtk_drag_source_set_icon_gicon
 import interop.gtk_drag_source_set_icon_name
+import interop.gtk_drag_source_set_icon_pixbuf
 import interop.gtk_drag_source_set_target_list
 import interop.gtk_drag_source_unset
 import interop.gtk_drag_unhighlight
@@ -251,6 +251,7 @@ import org.gnome.gdk.ModifierIntent
 import org.gnome.gdk.ModifierType
 import org.gnome.gdk.Screen
 import org.gnome.gdk.Visual
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.ActionGroup
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
@@ -681,6 +682,10 @@ public fun Widget.dragSourceSetIconGicon(icon: Icon?): Unit {
 
 public fun Widget.dragSourceSetIconName(iconName: String?): Unit {
   gtk_drag_source_set_icon_name(this@dragSourceSetIconName, iconName)
+}
+
+public fun Widget.dragSourceSetIconPixbuf(pixbuf: Pixbuf?): Unit {
+  gtk_drag_source_set_icon_pixbuf(this@dragSourceSetIconPixbuf, pixbuf?.reinterpret())
 }
 
 public fun Widget.dragSourceSetTargetList(targetList: TargetList?): Unit {

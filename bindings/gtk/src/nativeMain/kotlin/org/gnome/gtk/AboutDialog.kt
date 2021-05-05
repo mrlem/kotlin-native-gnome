@@ -1,6 +1,3 @@
-// TODO - method: get_logo (return type)
-// TODO - method: set_logo (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -14,6 +11,7 @@ import interop.gtk_about_dialog_get_copyright
 import interop.gtk_about_dialog_get_documenters
 import interop.gtk_about_dialog_get_license
 import interop.gtk_about_dialog_get_license_type
+import interop.gtk_about_dialog_get_logo
 import interop.gtk_about_dialog_get_logo_icon_name
 import interop.gtk_about_dialog_get_program_name
 import interop.gtk_about_dialog_get_translator_credits
@@ -29,6 +27,7 @@ import interop.gtk_about_dialog_set_copyright
 import interop.gtk_about_dialog_set_documenters
 import interop.gtk_about_dialog_set_license
 import interop.gtk_about_dialog_set_license_type
+import interop.gtk_about_dialog_set_logo
 import interop.gtk_about_dialog_set_logo_icon_name
 import interop.gtk_about_dialog_set_program_name
 import interop.gtk_about_dialog_set_translator_credits
@@ -45,6 +44,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -124,6 +124,12 @@ public var AboutDialog.licenseType: License
   get() = gtk_about_dialog_get_license_type(this)
   set(`value`) {
     gtk_about_dialog_set_license_type(this@licenseType, `value`)
+  }
+
+public var AboutDialog.logo: Pixbuf?
+  get() = gtk_about_dialog_get_logo(this)?.reinterpret()
+  set(`value`) {
+    gtk_about_dialog_set_logo(this@logo, `value`)
   }
 
 public var AboutDialog.logoIconName: String?

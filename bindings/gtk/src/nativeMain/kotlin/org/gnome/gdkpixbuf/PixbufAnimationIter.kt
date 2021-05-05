@@ -1,5 +1,4 @@
 // TODO - method: advance (param type)
-// TODO - method: get_pixbuf (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -7,6 +6,7 @@ package org.gnome.gdkpixbuf
 
 import interop.GdkPixbufAnimationIter
 import interop.gdk_pixbuf_animation_iter_get_delay_time
+import interop.gdk_pixbuf_animation_iter_get_pixbuf
 import interop.gdk_pixbuf_animation_iter_on_currently_loading_frame
 import kotlin.Boolean
 import kotlin.Int
@@ -22,6 +22,9 @@ public val PixbufAnimationIter.asObject: Object
 
 public val PixbufAnimationIter.delayTime: Int
   get() = gdk_pixbuf_animation_iter_get_delay_time(this)
+
+public val PixbufAnimationIter.pixbuf: Pixbuf?
+  get() = gdk_pixbuf_animation_iter_get_pixbuf(this)?.reinterpret()
 
 public fun PixbufAnimationIter.onCurrentlyLoadingFrame(): Boolean =
     gdk_pixbuf_animation_iter_on_currently_loading_frame(this@onCurrentlyLoadingFrame).toBoolean()

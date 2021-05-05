@@ -1,11 +1,10 @@
-// TODO - method: set_icon (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkTooltip
 import interop.gtk_tooltip_set_custom
+import interop.gtk_tooltip_set_icon
 import interop.gtk_tooltip_set_icon_from_gicon
 import interop.gtk_tooltip_set_icon_from_icon_name
 import interop.gtk_tooltip_set_markup
@@ -16,6 +15,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Rectangle
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.Icon
 import org.gnome.gobject.Object
 
@@ -26,6 +26,10 @@ public val Tooltip.asObject: Object
 
 public fun Tooltip.setCustom(customWidget: Widget?): Unit {
   gtk_tooltip_set_custom(this@setCustom, customWidget?.reinterpret())
+}
+
+public fun Tooltip.setIcon(pixbuf: Pixbuf?): Unit {
+  gtk_tooltip_set_icon(this@setIcon, pixbuf?.reinterpret())
 }
 
 public fun Tooltip.setIconFromGicon(gicon: Icon?, size: IconSize): Unit {

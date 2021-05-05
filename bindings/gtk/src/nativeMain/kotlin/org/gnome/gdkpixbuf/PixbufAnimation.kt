@@ -2,8 +2,7 @@
 // TODO - constructor: new_from_resource
 // TODO - constructor: new_from_stream
 // TODO - constructor: new_from_stream_finish
-// TODO - method: get_iter (return type)
-// TODO - method: get_static_image (return type)
+// TODO - method: get_iter (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -11,6 +10,7 @@ package org.gnome.gdkpixbuf
 
 import interop.GdkPixbufAnimation
 import interop.gdk_pixbuf_animation_get_height
+import interop.gdk_pixbuf_animation_get_static_image
 import interop.gdk_pixbuf_animation_get_width
 import interop.gdk_pixbuf_animation_is_static_image
 import kotlin.Boolean
@@ -29,6 +29,9 @@ public object PixbufAnimationFactory
 
 public val PixbufAnimation.height: Int
   get() = gdk_pixbuf_animation_get_height(this)
+
+public val PixbufAnimation.staticImage: Pixbuf?
+  get() = gdk_pixbuf_animation_get_static_image(this)?.reinterpret()
 
 public val PixbufAnimation.width: Int
   get() = gdk_pixbuf_animation_get_width(this)

@@ -1,5 +1,3 @@
-// TODO - constructor: new_with_pixbuf
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -12,6 +10,7 @@ import interop.gtk_cell_view_get_model
 import interop.gtk_cell_view_new
 import interop.gtk_cell_view_new_with_context
 import interop.gtk_cell_view_new_with_markup
+import interop.gtk_cell_view_new_with_pixbuf
 import interop.gtk_cell_view_new_with_text
 import interop.gtk_cell_view_set_background_rgba
 import interop.gtk_cell_view_set_displayed_row
@@ -26,6 +25,7 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.RGBA
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -50,6 +50,9 @@ public object CellViewFactory {
 
   public fun newWithMarkup(markup: String?): CellView =
       gtk_cell_view_new_with_markup(markup)!!.reinterpret()
+
+  public fun newWithPixbuf(pixbuf: Pixbuf?): CellView =
+      gtk_cell_view_new_with_pixbuf(pixbuf?.reinterpret())!!.reinterpret()
 
   public fun newWithText(text: String?): CellView =
       gtk_cell_view_new_with_text(text)!!.reinterpret()

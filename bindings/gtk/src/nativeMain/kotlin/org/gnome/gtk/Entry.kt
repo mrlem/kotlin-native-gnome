@@ -1,12 +1,10 @@
 // TODO - method: get_attributes (return type)
 // TODO - method: get_icon_area (param type)
-// TODO - method: get_icon_pixbuf (return type)
 // TODO - method: get_layout (return type)
 // TODO - method: get_layout_offsets (param type)
 // TODO - method: get_tabs (return type)
 // TODO - method: get_text_area (param type)
 // TODO - method: set_attributes (param type)
-// TODO - method: set_icon_from_pixbuf (param type)
 // TODO - method: set_tabs (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -25,6 +23,7 @@ import interop.gtk_entry_get_icon_activatable
 import interop.gtk_entry_get_icon_at_pos
 import interop.gtk_entry_get_icon_gicon
 import interop.gtk_entry_get_icon_name
+import interop.gtk_entry_get_icon_pixbuf
 import interop.gtk_entry_get_icon_sensitive
 import interop.gtk_entry_get_icon_storage_type
 import interop.gtk_entry_get_icon_tooltip_markup
@@ -59,6 +58,7 @@ import interop.gtk_entry_set_icon_activatable
 import interop.gtk_entry_set_icon_drag_source
 import interop.gtk_entry_set_icon_from_gicon
 import interop.gtk_entry_set_icon_from_icon_name
+import interop.gtk_entry_set_icon_from_pixbuf
 import interop.gtk_entry_set_icon_sensitive
 import interop.gtk_entry_set_icon_tooltip_markup
 import interop.gtk_entry_set_icon_tooltip_text
@@ -88,6 +88,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.DragAction
 import org.gnome.gdk.EventKey
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -242,6 +243,9 @@ public fun Entry.getIconGicon(iconPos: EntryIconPosition): Icon? =
 public fun Entry.getIconName(iconPos: EntryIconPosition): String? =
     gtk_entry_get_icon_name(this@getIconName, iconPos).toKString()
 
+public fun Entry.getIconPixbuf(iconPos: EntryIconPosition): Pixbuf? =
+    gtk_entry_get_icon_pixbuf(this@getIconPixbuf, iconPos)?.reinterpret()
+
 public fun Entry.getIconSensitive(iconPos: EntryIconPosition): Boolean =
     gtk_entry_get_icon_sensitive(this@getIconSensitive, iconPos).toBoolean()
 
@@ -292,6 +296,10 @@ public fun Entry.setIconFromGicon(iconPos: EntryIconPosition, icon: Icon?): Unit
 
 public fun Entry.setIconFromIconName(iconPos: EntryIconPosition, iconName: String?): Unit {
   gtk_entry_set_icon_from_icon_name(this@setIconFromIconName, iconPos, iconName)
+}
+
+public fun Entry.setIconFromPixbuf(iconPos: EntryIconPosition, pixbuf: Pixbuf?): Unit {
+  gtk_entry_set_icon_from_pixbuf(this@setIconFromPixbuf, iconPos, pixbuf?.reinterpret())
 }
 
 public fun Entry.setIconSensitive(iconPos: EntryIconPosition, sensitive: Boolean): Unit {

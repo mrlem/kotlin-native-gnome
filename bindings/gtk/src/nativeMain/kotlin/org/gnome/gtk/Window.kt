@@ -1,9 +1,7 @@
 // TODO - method: get_default_size (param type)
-// TODO - method: get_icon (return type)
 // TODO - method: get_icon_list (return type)
 // TODO - method: get_position (param type)
 // TODO - method: get_size (param type)
-// TODO - method: set_icon (param type)
 // TODO - method: set_icon_list (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -36,6 +34,7 @@ import interop.gtk_window_get_focus_visible
 import interop.gtk_window_get_gravity
 import interop.gtk_window_get_group
 import interop.gtk_window_get_hide_titlebar_when_maximized
+import interop.gtk_window_get_icon
 import interop.gtk_window_get_icon_name
 import interop.gtk_window_get_mnemonic_modifier
 import interop.gtk_window_get_mnemonics_visible
@@ -81,6 +80,7 @@ import interop.gtk_window_set_geometry_hints
 import interop.gtk_window_set_gravity
 import interop.gtk_window_set_has_user_ref_count
 import interop.gtk_window_set_hide_titlebar_when_maximized
+import interop.gtk_window_set_icon
 import interop.gtk_window_set_icon_from_file
 import interop.gtk_window_set_icon_name
 import interop.gtk_window_set_keep_above
@@ -124,6 +124,7 @@ import org.gnome.gdk.Screen
 import org.gnome.gdk.WindowEdge
 import org.gnome.gdk.WindowHints
 import org.gnome.gdk.WindowTypeHint
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.glib.Error
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -226,6 +227,12 @@ public var Window.hideTitlebarWhenMaximized: Boolean
   get() = gtk_window_get_hide_titlebar_when_maximized(this).toBoolean()
   set(`value`) {
     gtk_window_set_hide_titlebar_when_maximized(this@hideTitlebarWhenMaximized, `value`.toInt())
+  }
+
+public var Window.icon: Pixbuf?
+  get() = gtk_window_get_icon(this)?.reinterpret()
+  set(`value`) {
+    gtk_window_set_icon(this@icon, `value`)
   }
 
 public var Window.iconName: String?

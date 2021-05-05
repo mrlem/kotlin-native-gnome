@@ -11,7 +11,6 @@
 // TODO - method: get_selection_bounds (param type)
 // TODO - method: get_serialize_formats (param type)
 // TODO - method: get_start_iter (param type)
-// TODO - method: insert_pixbuf (param type)
 // TODO - method: insert_with_tags (param type)
 // TODO - method: insert_with_tags_by_name (param type)
 // TODO - method: register_deserialize_format (param type)
@@ -61,6 +60,7 @@ import interop.gtk_text_buffer_insert_child_anchor
 import interop.gtk_text_buffer_insert_interactive
 import interop.gtk_text_buffer_insert_interactive_at_cursor
 import interop.gtk_text_buffer_insert_markup
+import interop.gtk_text_buffer_insert_pixbuf
 import interop.gtk_text_buffer_insert_range
 import interop.gtk_text_buffer_insert_range_interactive
 import interop.gtk_text_buffer_move_mark
@@ -94,6 +94,7 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Atom
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -308,6 +309,10 @@ public fun TextBuffer.insertMarkup(
   len: Int
 ): Unit {
   gtk_text_buffer_insert_markup(this@insertMarkup, iter?.reinterpret(), markup, len)
+}
+
+public fun TextBuffer.insertPixbuf(iter: TextIter?, pixbuf: Pixbuf?): Unit {
+  gtk_text_buffer_insert_pixbuf(this@insertPixbuf, iter?.reinterpret(), pixbuf?.reinterpret())
 }
 
 public fun TextBuffer.insertRange(

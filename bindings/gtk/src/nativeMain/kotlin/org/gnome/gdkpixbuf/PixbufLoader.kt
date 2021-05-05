@@ -1,9 +1,5 @@
-// TODO - constructor: new
 // TODO - constructor: new_with_mime_type
 // TODO - constructor: new_with_type
-// TODO - method: get_animation (return type)
-// TODO - method: get_format (return type)
-// TODO - method: get_pixbuf (return type)
 // TODO - method: write_bytes (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -13,6 +9,10 @@ package org.gnome.gdkpixbuf
 import interop.GError
 import interop.GdkPixbufLoader
 import interop.gdk_pixbuf_loader_close
+import interop.gdk_pixbuf_loader_get_animation
+import interop.gdk_pixbuf_loader_get_format
+import interop.gdk_pixbuf_loader_get_pixbuf
+import interop.gdk_pixbuf_loader_new
 import interop.gdk_pixbuf_loader_set_size
 import interop.gdk_pixbuf_loader_write
 import kotlin.Array
@@ -39,10 +39,21 @@ public typealias PixbufLoader = CPointer<GdkPixbufLoader>
 public val PixbufLoader.asObject: Object
   get() = reinterpret()
 
-public object PixbufLoaderFactory
+public object PixbufLoaderFactory {
+  public fun new(): PixbufLoader = gdk_pixbuf_loader_new()!!.reinterpret()
+}
 
 public val PixbufLoader.parentInstance: Object
   get() = pointed.parent_instance.ptr
+
+public val PixbufLoader.animation: PixbufAnimation?
+  get() = gdk_pixbuf_loader_get_animation(this)?.reinterpret()
+
+public val PixbufLoader.format: PixbufFormat?
+  get() = gdk_pixbuf_loader_get_format(this)?.reinterpret()
+
+public val PixbufLoader.pixbuf: Pixbuf?
+  get() = gdk_pixbuf_loader_get_pixbuf(this)?.reinterpret()
 
 @Throws(Error::class)
 public fun PixbufLoader.close(): Boolean = memScoped {
