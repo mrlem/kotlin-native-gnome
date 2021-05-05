@@ -15,11 +15,6 @@ object RepositoryFixer {
         repository.fixArrayTypesAsByte()
         repository.fixFieldsDuplicatingMethods()
 
-        // FIXME - declared as a CPointer unlike all other records
-        repository.namespaces["Gdk"]!!
-            .records
-            .removeAll { it.name == "Atom" }
-
         // FIXME - handle difference between type name & c-type
         repository.namespaces["GdkPixbuf"]!!
             .classes["Pixbuf"]!!

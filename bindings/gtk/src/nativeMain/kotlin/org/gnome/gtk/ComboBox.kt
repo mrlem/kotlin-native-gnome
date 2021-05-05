@@ -1,6 +1,5 @@
 // TODO - method: get_active_iter (param type)
 // TODO - method: get_popup_accessible (return type)
-// TODO - method: popup_for_device (param type)
 // TODO - method: set_row_separator_func (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -28,6 +27,7 @@ import interop.gtk_combo_box_new_with_model
 import interop.gtk_combo_box_new_with_model_and_entry
 import interop.gtk_combo_box_popdown
 import interop.gtk_combo_box_popup
+import interop.gtk_combo_box_popup_for_device
 import interop.gtk_combo_box_set_active
 import interop.gtk_combo_box_set_active_id
 import interop.gtk_combo_box_set_active_iter
@@ -47,6 +47,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Device
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -164,6 +165,10 @@ public fun ComboBox.popdown(): Unit {
 
 public fun ComboBox.popup(): Unit {
   gtk_combo_box_popup(this@popup)
+}
+
+public fun ComboBox.popupForDevice(device: Device?): Unit {
+  gtk_combo_box_popup_for_device(this@popupForDevice, device?.reinterpret())
 }
 
 public fun ComboBox.setActiveIter(iter: TreeIter?): Unit {

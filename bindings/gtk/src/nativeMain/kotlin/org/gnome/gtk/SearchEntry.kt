@@ -1,18 +1,20 @@
-// TODO - method: handle_event (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkSearchEntry
+import interop.gtk_search_entry_handle_event
 import interop.gtk_search_entry_new
+import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Event
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
 
 public typealias SearchEntry = CPointer<GtkSearchEntry>
@@ -35,6 +37,9 @@ public object SearchEntryFactory {
 
 public val SearchEntry.parent: Entry
   get() = pointed.parent.ptr
+
+public fun SearchEntry.handleEvent(event: Event?): Boolean =
+    gtk_search_entry_handle_event(this@handleEvent, event?.reinterpret()).toBoolean()
 
 public fun SearchEntry.onNextMatch(callback: (SearchEntry) -> Unit): SearchEntry {
   // TODO - handle callback data

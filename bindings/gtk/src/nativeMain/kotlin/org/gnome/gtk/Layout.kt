@@ -1,4 +1,3 @@
-// TODO - method: get_bin_window (return type)
 // TODO - method: get_size (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -6,6 +5,7 @@
 package org.gnome.gtk
 
 import interop.GtkLayout
+import interop.gtk_layout_get_bin_window
 import interop.gtk_layout_move
 import interop.gtk_layout_new
 import interop.gtk_layout_put
@@ -17,6 +17,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Window
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 
@@ -41,6 +42,9 @@ public object LayoutFactory {
 
 public val Layout.container: Container
   get() = pointed.container.ptr
+
+public val Layout.binWindow: Window?
+  get() = gtk_layout_get_bin_window(this)?.reinterpret()
 
 public fun Layout.move(
   childWidget: Widget?,

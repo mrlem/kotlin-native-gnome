@@ -1,5 +1,4 @@
 // TODO - constructor: new_from_stock
-// TODO - method: get_event_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -8,6 +7,7 @@ package org.gnome.gtk
 import interop.GtkButton
 import interop.gtk_button_clicked
 import interop.gtk_button_get_always_show_image
+import interop.gtk_button_get_event_window
 import interop.gtk_button_get_image
 import interop.gtk_button_get_image_position
 import interop.gtk_button_get_label
@@ -28,6 +28,7 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Window
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -69,6 +70,9 @@ public var Button.alwaysShowImage: Boolean
   set(`value`) {
     gtk_button_set_always_show_image(this@alwaysShowImage, `value`.toInt())
   }
+
+public val Button.eventWindow: Window?
+  get() = gtk_button_get_event_window(this)?.reinterpret()
 
 public var Button.image: Widget?
   get() = gtk_button_get_image(this)?.reinterpret()

@@ -1,9 +1,6 @@
 // TODO - method: create_tag (param type)
-// TODO - method: deserialize (param type)
-// TODO - method: deserialize_get_can_create_tags (param type)
-// TODO - method: deserialize_set_can_create_tags (param type)
 // TODO - method: get_bounds (param type)
-// TODO - method: get_deserialize_formats (return type)
+// TODO - method: get_deserialize_formats (param type)
 // TODO - method: get_end_iter (param type)
 // TODO - method: get_iter_at_child_anchor (param type)
 // TODO - method: get_iter_at_line (param type)
@@ -12,23 +9,20 @@
 // TODO - method: get_iter_at_mark (param type)
 // TODO - method: get_iter_at_offset (param type)
 // TODO - method: get_selection_bounds (param type)
-// TODO - method: get_serialize_formats (return type)
+// TODO - method: get_serialize_formats (param type)
 // TODO - method: get_start_iter (param type)
 // TODO - method: insert_pixbuf (param type)
 // TODO - method: insert_with_tags (param type)
 // TODO - method: insert_with_tags_by_name (param type)
-// TODO - method: register_deserialize_format (return type)
-// TODO - method: register_deserialize_tagset (return type)
-// TODO - method: register_serialize_format (return type)
-// TODO - method: register_serialize_tagset (return type)
+// TODO - method: register_deserialize_format (param type)
+// TODO - method: register_serialize_format (param type)
 // TODO - method: serialize (param type)
-// TODO - method: unregister_deserialize_format (param type)
-// TODO - method: unregister_serialize_format (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
+import interop.GError
 import interop.GtkTextBuffer
 import interop.gtk_text_buffer_add_mark
 import interop.gtk_text_buffer_add_selection_clipboard
@@ -45,6 +39,9 @@ import interop.gtk_text_buffer_delete_interactive
 import interop.gtk_text_buffer_delete_mark
 import interop.gtk_text_buffer_delete_mark_by_name
 import interop.gtk_text_buffer_delete_selection
+import interop.gtk_text_buffer_deserialize
+import interop.gtk_text_buffer_deserialize_get_can_create_tags
+import interop.gtk_text_buffer_deserialize_set_can_create_tags
 import interop.gtk_text_buffer_end_user_action
 import interop.gtk_text_buffer_get_char_count
 import interop.gtk_text_buffer_get_copy_target_list
@@ -71,6 +68,8 @@ import interop.gtk_text_buffer_move_mark_by_name
 import interop.gtk_text_buffer_new
 import interop.gtk_text_buffer_paste_clipboard
 import interop.gtk_text_buffer_place_cursor
+import interop.gtk_text_buffer_register_deserialize_tagset
+import interop.gtk_text_buffer_register_serialize_tagset
 import interop.gtk_text_buffer_remove_all_tags
 import interop.gtk_text_buffer_remove_selection_clipboard
 import interop.gtk_text_buffer_remove_tag
@@ -78,16 +77,27 @@ import interop.gtk_text_buffer_remove_tag_by_name
 import interop.gtk_text_buffer_select_range
 import interop.gtk_text_buffer_set_modified
 import interop.gtk_text_buffer_set_text
+import interop.gtk_text_buffer_unregister_deserialize_format
+import interop.gtk_text_buffer_unregister_serialize_format
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
+import kotlin.Throws
+import kotlin.UByte
+import kotlin.ULong
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.allocPointerTo
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Atom
+import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toCArray
 import org.gnome.toInt
 import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
@@ -214,6 +224,31 @@ public fun TextBuffer.deleteSelection(interactive: Boolean, defaultEditable: Boo
     gtk_text_buffer_delete_selection(this@deleteSelection, interactive.toInt(),
     defaultEditable.toInt()).toBoolean()
 
+@Throws(Error::class)
+public fun TextBuffer.deserialize(
+  contentBuffer: TextBuffer?,
+  format: Atom?,
+  iter: TextIter?,
+  `data`: Array<UByte>?,
+  length: ULong
+): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = memScoped { gtk_text_buffer_deserialize(this@deserialize,
+      contentBuffer?.reinterpret(), format?.reinterpret(), iter?.reinterpret(),
+      `data`?.toCArray(memScope), length, errors).toBoolean() }
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+public fun TextBuffer.deserializeGetCanCreateTags(format: Atom?): Boolean =
+    gtk_text_buffer_deserialize_get_can_create_tags(this@deserializeGetCanCreateTags,
+    format?.reinterpret()).toBoolean()
+
+public fun TextBuffer.deserializeSetCanCreateTags(format: Atom?, canCreateTags: Boolean): Unit {
+  gtk_text_buffer_deserialize_set_can_create_tags(this@deserializeSetCanCreateTags,
+      format?.reinterpret(), canCreateTags.toInt())
+}
+
 public fun TextBuffer.endUserAction(): Unit {
   gtk_text_buffer_end_user_action(this@endUserAction)
 }
@@ -314,6 +349,14 @@ public fun TextBuffer.placeCursor(`where`: TextIter?): Unit {
   gtk_text_buffer_place_cursor(this@placeCursor, `where`?.reinterpret())
 }
 
+public fun TextBuffer.registerDeserializeTagset(tagsetName: String?): Atom? =
+    gtk_text_buffer_register_deserialize_tagset(this@registerDeserializeTagset,
+    tagsetName)?.reinterpret()
+
+public fun TextBuffer.registerSerializeTagset(tagsetName: String?): Atom? =
+    gtk_text_buffer_register_serialize_tagset(this@registerSerializeTagset,
+    tagsetName)?.reinterpret()
+
 public fun TextBuffer.removeAllTags(start: TextIter?, end: TextIter?): Unit {
   gtk_text_buffer_remove_all_tags(this@removeAllTags, start?.reinterpret(), end?.reinterpret())
 }
@@ -347,6 +390,15 @@ public fun TextBuffer.selectRange(ins: TextIter?, bound: TextIter?): Unit {
 
 public fun TextBuffer.setText(text: String?, len: Int): Unit {
   gtk_text_buffer_set_text(this@setText, text, len)
+}
+
+public fun TextBuffer.unregisterDeserializeFormat(format: Atom?): Unit {
+  gtk_text_buffer_unregister_deserialize_format(this@unregisterDeserializeFormat,
+      format?.reinterpret())
+}
+
+public fun TextBuffer.unregisterSerializeFormat(format: Atom?): Unit {
+  gtk_text_buffer_unregister_serialize_format(this@unregisterSerializeFormat, format?.reinterpret())
 }
 
 public fun TextBuffer.onApplyTag(callback: (TextBuffer) -> Unit): TextBuffer {

@@ -1,18 +1,14 @@
 // TODO - method: get (param type)
 // TODO - method: get_border (param type)
 // TODO - method: get_color (param type)
-// TODO - method: get_frame_clock (return type)
 // TODO - method: get_margin (param type)
 // TODO - method: get_padding (param type)
 // TODO - method: get_property (param type)
-// TODO - method: get_screen (return type)
 // TODO - method: get_style (param type)
 // TODO - method: get_style_valist (param type)
 // TODO - method: get_valist (param type)
 // TODO - method: list_classes (return type)
 // TODO - method: lookup_color (param type)
-// TODO - method: set_frame_clock (param type)
-// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -21,10 +17,12 @@ package org.gnome.gtk
 import interop.GtkStyleContext
 import interop.gtk_style_context_add_class
 import interop.gtk_style_context_add_provider
+import interop.gtk_style_context_get_frame_clock
 import interop.gtk_style_context_get_junction_sides
 import interop.gtk_style_context_get_parent
 import interop.gtk_style_context_get_path
 import interop.gtk_style_context_get_scale
+import interop.gtk_style_context_get_screen
 import interop.gtk_style_context_get_section
 import interop.gtk_style_context_get_state
 import interop.gtk_style_context_get_style_property
@@ -34,10 +32,12 @@ import interop.gtk_style_context_remove_class
 import interop.gtk_style_context_remove_provider
 import interop.gtk_style_context_restore
 import interop.gtk_style_context_save
+import interop.gtk_style_context_set_frame_clock
 import interop.gtk_style_context_set_junction_sides
 import interop.gtk_style_context_set_parent
 import interop.gtk_style_context_set_path
 import interop.gtk_style_context_set_scale
+import interop.gtk_style_context_set_screen
 import interop.gtk_style_context_set_state
 import interop.gtk_style_context_to_string
 import kotlin.Boolean
@@ -49,6 +49,8 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.FrameClock
+import org.gnome.gdk.Screen
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
 import org.gnome.toBoolean
@@ -66,6 +68,12 @@ public object StyleContextFactory {
 
 public val StyleContext.parentObject: Object
   get() = pointed.parent_object.ptr
+
+public var StyleContext.frameClock: FrameClock?
+  get() = gtk_style_context_get_frame_clock(this)?.reinterpret()
+  set(`value`) {
+    gtk_style_context_set_frame_clock(this@frameClock, `value`)
+  }
 
 public var StyleContext.junctionSides: JunctionSides
   get() = gtk_style_context_get_junction_sides(this)
@@ -89,6 +97,12 @@ public var StyleContext.scale: Int
   get() = gtk_style_context_get_scale(this)
   set(`value`) {
     gtk_style_context_set_scale(this@scale, `value`)
+  }
+
+public var StyleContext.screen: Screen?
+  get() = gtk_style_context_get_screen(this)?.reinterpret()
+  set(`value`) {
+    gtk_style_context_set_screen(this@screen, `value`)
   }
 
 public var StyleContext.state: StateFlags

@@ -6,7 +6,6 @@
 // TODO - method: convert_widget_to_tree_coords (param type)
 // TODO - method: create_row_drag_icon (return type)
 // TODO - method: get_background_area (param type)
-// TODO - method: get_bin_window (return type)
 // TODO - method: get_cell_area (param type)
 // TODO - method: get_columns (return type)
 // TODO - method: get_cursor (param type)
@@ -40,6 +39,7 @@ import interop.gtk_tree_view_expand_all
 import interop.gtk_tree_view_expand_row
 import interop.gtk_tree_view_expand_to_path
 import interop.gtk_tree_view_get_activate_on_single_click
+import interop.gtk_tree_view_get_bin_window
 import interop.gtk_tree_view_get_column
 import interop.gtk_tree_view_get_enable_search
 import interop.gtk_tree_view_get_enable_tree_lines
@@ -113,6 +113,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.DragAction
 import org.gnome.gdk.ModifierType
+import org.gnome.gdk.Window
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -149,6 +150,9 @@ public var TreeView.activateOnSingleClick: Boolean
   set(`value`) {
     gtk_tree_view_set_activate_on_single_click(this@activateOnSingleClick, `value`.toInt())
   }
+
+public val TreeView.binWindow: Window?
+  get() = gtk_tree_view_get_bin_window(this)?.reinterpret()
 
 public var TreeView.enableSearch: Boolean
   get() = gtk_tree_view_get_enable_search(this).toBoolean()

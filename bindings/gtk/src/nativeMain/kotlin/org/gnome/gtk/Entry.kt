@@ -5,7 +5,6 @@
 // TODO - method: get_layout_offsets (param type)
 // TODO - method: get_tabs (return type)
 // TODO - method: get_text_area (param type)
-// TODO - method: im_context_filter_keypress (param type)
 // TODO - method: set_attributes (param type)
 // TODO - method: set_icon_from_pixbuf (param type)
 // TODO - method: set_tabs (param type)
@@ -44,6 +43,7 @@ import interop.gtk_entry_get_text_length
 import interop.gtk_entry_get_visibility
 import interop.gtk_entry_get_width_chars
 import interop.gtk_entry_grab_focus_without_selecting
+import interop.gtk_entry_im_context_filter_keypress
 import interop.gtk_entry_layout_index_to_text_index
 import interop.gtk_entry_new
 import interop.gtk_entry_new_with_buffer
@@ -87,6 +87,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.DragAction
+import org.gnome.gdk.EventKey
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -256,6 +257,10 @@ public fun Entry.getIconTooltipText(iconPos: EntryIconPosition): String? =
 public fun Entry.grabFocusWithoutSelecting(): Unit {
   gtk_entry_grab_focus_without_selecting(this@grabFocusWithoutSelecting)
 }
+
+public fun Entry.imContextFilterKeypress(event: EventKey?): Boolean =
+    gtk_entry_im_context_filter_keypress(this@imContextFilterKeypress,
+    event?.reinterpret()).toBoolean()
 
 public fun Entry.layoutIndexToTextIndex(layoutIndex: Int): Int =
     gtk_entry_layout_index_to_text_index(this@layoutIndexToTextIndex, layoutIndex)

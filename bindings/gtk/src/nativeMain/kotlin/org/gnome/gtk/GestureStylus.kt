@@ -1,16 +1,17 @@
 // TODO - method: get_axes (param type)
 // TODO - method: get_axis (param type)
-// TODO - method: get_device_tool (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkGestureStylus
+import interop.gtk_gesture_stylus_get_device_tool
 import interop.gtk_gesture_stylus_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.DeviceTool
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
 
@@ -32,6 +33,9 @@ public object GestureStylusFactory {
   public fun new(widget: Widget?): GestureStylus =
       gtk_gesture_stylus_new(widget?.reinterpret())!!.reinterpret()
 }
+
+public val GestureStylus.deviceTool: DeviceTool?
+  get() = gtk_gesture_stylus_get_device_tool(this)?.reinterpret()
 
 public fun GestureStylus.onDown(callback: (GestureStylus) -> Unit): GestureStylus {
   // TODO - handle callback data

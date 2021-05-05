@@ -1,7 +1,4 @@
-// TODO - method: get_current_timings (return type)
 // TODO - method: get_refresh_info (param type)
-// TODO - method: get_timings (return type)
-// TODO - method: request_phase (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -10,9 +7,12 @@ package org.gnome.gdk
 import interop.GdkFrameClock
 import interop.gdk_frame_clock_begin_updating
 import interop.gdk_frame_clock_end_updating
+import interop.gdk_frame_clock_get_current_timings
 import interop.gdk_frame_clock_get_frame_counter
 import interop.gdk_frame_clock_get_frame_time
 import interop.gdk_frame_clock_get_history_start
+import interop.gdk_frame_clock_get_timings
+import interop.gdk_frame_clock_request_phase
 import kotlin.Long
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -24,6 +24,9 @@ public typealias FrameClock = CPointer<GdkFrameClock>
 
 public val FrameClock.asObject: Object
   get() = reinterpret()
+
+public val FrameClock.currentTimings: FrameTimings?
+  get() = gdk_frame_clock_get_current_timings(this)?.reinterpret()
 
 public val FrameClock.frameCounter: Long
   get() = gdk_frame_clock_get_frame_counter(this)
@@ -40,6 +43,13 @@ public fun FrameClock.beginUpdating(): Unit {
 
 public fun FrameClock.endUpdating(): Unit {
   gdk_frame_clock_end_updating(this@endUpdating)
+}
+
+public fun FrameClock.getTimings(frameCounter: Long): FrameTimings? =
+    gdk_frame_clock_get_timings(this@getTimings, frameCounter)?.reinterpret()
+
+public fun FrameClock.requestPhase(phase: FrameClockPhase): Unit {
+  gdk_frame_clock_request_phase(this@requestPhase, phase)
 }
 
 public fun FrameClock.onAfterPaint(callback: (FrameClock) -> Unit): FrameClock {

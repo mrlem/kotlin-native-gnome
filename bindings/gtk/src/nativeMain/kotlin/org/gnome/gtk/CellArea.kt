@@ -1,11 +1,8 @@
-// TODO - method: activate (param type)
-// TODO - method: activate_cell (param type)
 // TODO - method: add_with_properties (param type)
 // TODO - method: cell_get (param type)
 // TODO - method: cell_get_valist (param type)
 // TODO - method: cell_set (param type)
 // TODO - method: cell_set_valist (param type)
-// TODO - method: event (param type)
 // TODO - method: foreach (param type)
 // TODO - method: foreach_alloc (param type)
 // TODO - method: get_cell_allocation (param type)
@@ -24,6 +21,8 @@
 package org.gnome.gtk
 
 import interop.GtkCellArea
+import interop.gtk_cell_area_activate
+import interop.gtk_cell_area_activate_cell
 import interop.gtk_cell_area_add
 import interop.gtk_cell_area_add_focus_sibling
 import interop.gtk_cell_area_apply_attributes
@@ -34,6 +33,7 @@ import interop.gtk_cell_area_cell_get_property
 import interop.gtk_cell_area_cell_set_property
 import interop.gtk_cell_area_copy_context
 import interop.gtk_cell_area_create_context
+import interop.gtk_cell_area_event
 import interop.gtk_cell_area_focus
 import interop.gtk_cell_area_get_current_path_string
 import interop.gtk_cell_area_get_edit_widget
@@ -54,6 +54,8 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Event
+import org.gnome.gdk.Rectangle
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
@@ -87,6 +89,24 @@ public var CellArea.focusCell: CellRenderer?
 
 public val CellArea.requestMode: SizeRequestMode
   get() = gtk_cell_area_get_request_mode(this)
+
+public fun CellArea.activate(
+  context: CellAreaContext?,
+  widget: Widget?,
+  cellArea: Rectangle?,
+  flags: CellRendererState,
+  editOnly: Boolean
+): Boolean = gtk_cell_area_activate(this@activate, context?.reinterpret(), widget?.reinterpret(),
+    cellArea?.reinterpret(), flags, editOnly.toInt()).toBoolean()
+
+public fun CellArea.activateCell(
+  widget: Widget?,
+  renderer: CellRenderer?,
+  event: Event?,
+  cellArea: Rectangle?,
+  flags: CellRendererState
+): Boolean = gtk_cell_area_activate_cell(this@activateCell, widget?.reinterpret(),
+    renderer?.reinterpret(), event?.reinterpret(), cellArea?.reinterpret(), flags).toBoolean()
 
 public fun CellArea.add(renderer: CellRenderer?): Unit {
   gtk_cell_area_add(this@add, renderer?.reinterpret())
@@ -145,6 +165,15 @@ public fun CellArea.copyContext(context: CellAreaContext?): CellAreaContext? =
 
 public fun CellArea.createContext(): CellAreaContext? =
     gtk_cell_area_create_context(this@createContext)?.reinterpret()
+
+public fun CellArea.event(
+  context: CellAreaContext?,
+  widget: Widget?,
+  event: Event?,
+  cellArea: Rectangle?,
+  flags: CellRendererState
+): Int = gtk_cell_area_event(this@event, context?.reinterpret(), widget?.reinterpret(),
+    event?.reinterpret(), cellArea?.reinterpret(), flags)
 
 public fun CellArea.focus(direction: DirectionType): Boolean = gtk_cell_area_focus(this@focus,
     direction).toBoolean()

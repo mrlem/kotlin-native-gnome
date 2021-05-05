@@ -1,5 +1,4 @@
 // TODO - constructor: new
-// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -9,6 +8,7 @@ import interop.GdkAppLaunchContext
 import interop.gdk_app_launch_context_set_desktop
 import interop.gdk_app_launch_context_set_icon
 import interop.gdk_app_launch_context_set_icon_name
+import interop.gdk_app_launch_context_set_screen
 import interop.gdk_app_launch_context_set_timestamp
 import kotlin.Int
 import kotlin.String
@@ -39,6 +39,10 @@ public fun AppLaunchContext.setIcon(icon: Icon?): Unit {
 
 public fun AppLaunchContext.setIconName(iconName: String?): Unit {
   gdk_app_launch_context_set_icon_name(this@setIconName, iconName)
+}
+
+public fun AppLaunchContext.setScreen(screen: Screen?): Unit {
+  gdk_app_launch_context_set_screen(this@setScreen, screen?.reinterpret())
 }
 
 public fun AppLaunchContext.setTimestamp(timestamp: UInt): Unit {

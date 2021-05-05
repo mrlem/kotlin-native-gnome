@@ -3,7 +3,6 @@
 // TODO - method: construct (param type)
 // TODO - method: construct_for_display (param type)
 // TODO - method: get_id (return type)
-// TODO - method: get_socket_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -11,6 +10,7 @@ package org.gnome.gtk
 
 import interop.GtkPlug
 import interop.gtk_plug_get_embedded
+import interop.gtk_plug_get_socket_window
 import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -49,6 +49,9 @@ public val Plug.window: Window
 
 public val Plug.embedded: Boolean
   get() = gtk_plug_get_embedded(this).toBoolean()
+
+public val Plug.socketWindow: org.gnome.gdk.Window?
+  get() = gtk_plug_get_socket_window(this)?.reinterpret()
 
 public fun Plug.onEmbedded(callback: (Plug) -> Unit): Plug {
   // TODO - handle callback data

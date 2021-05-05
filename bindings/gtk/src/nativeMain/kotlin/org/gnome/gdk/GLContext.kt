@@ -1,8 +1,5 @@
-// TODO - method: get_display (return type)
 // TODO - method: get_required_version (param type)
-// TODO - method: get_shared_context (return type)
 // TODO - method: get_version (param type)
-// TODO - method: get_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -11,8 +8,11 @@ package org.gnome.gdk
 import interop.GError
 import interop.GdkGLContext
 import interop.gdk_gl_context_get_debug_enabled
+import interop.gdk_gl_context_get_display
 import interop.gdk_gl_context_get_forward_compatible
+import interop.gdk_gl_context_get_shared_context
 import interop.gdk_gl_context_get_use_es
+import interop.gdk_gl_context_get_window
 import interop.gdk_gl_context_is_legacy
 import interop.gdk_gl_context_make_current
 import interop.gdk_gl_context_realize
@@ -46,14 +46,23 @@ public var GLContext.debugEnabled: Boolean
     gdk_gl_context_set_debug_enabled(this@debugEnabled, `value`.toInt())
   }
 
+public val GLContext.display: Display?
+  get() = gdk_gl_context_get_display(this)?.reinterpret()
+
 public var GLContext.forwardCompatible: Boolean
   get() = gdk_gl_context_get_forward_compatible(this).toBoolean()
   set(`value`) {
     gdk_gl_context_set_forward_compatible(this@forwardCompatible, `value`.toInt())
   }
 
+public val GLContext.sharedContext: GLContext?
+  get() = gdk_gl_context_get_shared_context(this)?.reinterpret()
+
 public val GLContext.useEs: Boolean
   get() = gdk_gl_context_get_use_es(this).toBoolean()
+
+public val GLContext.window: Window?
+  get() = gdk_gl_context_get_window(this)?.reinterpret()
 
 public fun GLContext.isLegacy(): Boolean = gdk_gl_context_is_legacy(this@isLegacy).toBoolean()
 

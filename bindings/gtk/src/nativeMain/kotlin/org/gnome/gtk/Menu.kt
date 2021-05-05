@@ -1,9 +1,3 @@
-// TODO - method: place_on_monitor (param type)
-// TODO - method: popup_at_pointer (param type)
-// TODO - method: popup_at_rect (param type)
-// TODO - method: popup_at_widget (param type)
-// TODO - method: set_screen (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -20,7 +14,11 @@ import interop.gtk_menu_get_monitor
 import interop.gtk_menu_get_reserve_toggle_size
 import interop.gtk_menu_new
 import interop.gtk_menu_new_from_model
+import interop.gtk_menu_place_on_monitor
 import interop.gtk_menu_popdown
+import interop.gtk_menu_popup_at_pointer
+import interop.gtk_menu_popup_at_rect
+import interop.gtk_menu_popup_at_widget
 import interop.gtk_menu_reorder_child
 import interop.gtk_menu_reposition
 import interop.gtk_menu_set_accel_group
@@ -28,6 +26,7 @@ import interop.gtk_menu_set_accel_path
 import interop.gtk_menu_set_active
 import interop.gtk_menu_set_monitor
 import interop.gtk_menu_set_reserve_toggle_size
+import interop.gtk_menu_set_screen
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -37,6 +36,12 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Event
+import org.gnome.gdk.Gravity
+import org.gnome.gdk.Monitor
+import org.gnome.gdk.Rectangle
+import org.gnome.gdk.Screen
+import org.gnome.gdk.Window
 import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -122,8 +127,37 @@ public fun Menu.detach(): Unit {
   gtk_menu_detach(this@detach)
 }
 
+public fun Menu.placeOnMonitor(monitor: Monitor?): Unit {
+  gtk_menu_place_on_monitor(this@placeOnMonitor, monitor?.reinterpret())
+}
+
 public fun Menu.popdown(): Unit {
   gtk_menu_popdown(this@popdown)
+}
+
+public fun Menu.popupAtPointer(triggerEvent: Event?): Unit {
+  gtk_menu_popup_at_pointer(this@popupAtPointer, triggerEvent?.reinterpret())
+}
+
+public fun Menu.popupAtRect(
+  rectWindow: Window?,
+  rect: Rectangle?,
+  rectAnchor: Gravity,
+  menuAnchor: Gravity,
+  triggerEvent: Event?
+): Unit {
+  gtk_menu_popup_at_rect(this@popupAtRect, rectWindow?.reinterpret(), rect?.reinterpret(),
+      rectAnchor, menuAnchor, triggerEvent?.reinterpret())
+}
+
+public fun Menu.popupAtWidget(
+  widget: Widget?,
+  widgetAnchor: Gravity,
+  menuAnchor: Gravity,
+  triggerEvent: Event?
+): Unit {
+  gtk_menu_popup_at_widget(this@popupAtWidget, widget?.reinterpret(), widgetAnchor, menuAnchor,
+      triggerEvent?.reinterpret())
 }
 
 public fun Menu.reorderChild(child: Widget?, position: Int): Unit {
@@ -136,6 +170,10 @@ public fun Menu.reposition(): Unit {
 
 public fun Menu.setActive(index: UInt): Unit {
   gtk_menu_set_active(this@setActive, index)
+}
+
+public fun Menu.setScreen(screen: Screen?): Unit {
+  gtk_menu_set_screen(this@setScreen, screen?.reinterpret())
 }
 
 public fun Menu.onMoveScroll(callback: (Menu) -> Unit): Menu {

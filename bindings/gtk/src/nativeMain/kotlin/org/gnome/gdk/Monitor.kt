@@ -1,6 +1,4 @@
-// TODO - method: get_display (return type)
 // TODO - method: get_geometry (param type)
-// TODO - method: get_subpixel_layout (return type)
 // TODO - method: get_workarea (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -8,11 +6,13 @@
 package org.gnome.gdk
 
 import interop.GdkMonitor
+import interop.gdk_monitor_get_display
 import interop.gdk_monitor_get_height_mm
 import interop.gdk_monitor_get_manufacturer
 import interop.gdk_monitor_get_model
 import interop.gdk_monitor_get_refresh_rate
 import interop.gdk_monitor_get_scale_factor
+import interop.gdk_monitor_get_subpixel_layout
 import interop.gdk_monitor_get_width_mm
 import interop.gdk_monitor_is_primary
 import kotlin.Boolean
@@ -31,6 +31,9 @@ public typealias Monitor = CPointer<GdkMonitor>
 public val Monitor.asObject: Object
   get() = reinterpret()
 
+public val Monitor.display: Display?
+  get() = gdk_monitor_get_display(this)?.reinterpret()
+
 public val Monitor.heightMm: Int
   get() = gdk_monitor_get_height_mm(this)
 
@@ -45,6 +48,9 @@ public val Monitor.refreshRate: Int
 
 public val Monitor.scaleFactor: Int
   get() = gdk_monitor_get_scale_factor(this)
+
+public val Monitor.subpixelLayout: SubpixelLayout
+  get() = gdk_monitor_get_subpixel_layout(this)
 
 public val Monitor.widthMm: Int
   get() = gdk_monitor_get_width_mm(this)

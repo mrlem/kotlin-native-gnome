@@ -1,18 +1,19 @@
 // TODO - method: add_id (param type)
 // TODO - method: get_id (return type)
-// TODO - method: get_plug_window (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkSocket
+import interop.gtk_socket_get_plug_window
 import interop.gtk_socket_new
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Window
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
@@ -37,6 +38,9 @@ public object SocketFactory {
 
 public val Socket.container: Container
   get() = pointed.container.ptr
+
+public val Socket.plugWindow: Window?
+  get() = gtk_socket_get_plug_window(this)?.reinterpret()
 
 public fun Socket.onPlugAdded(callback: (Socket) -> Unit): Socket {
   // TODO - handle callback data

@@ -1,5 +1,3 @@
-// TODO - method: get_current_sequence (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -7,6 +5,7 @@ package org.gnome.gtk
 import interop.GtkGestureSingle
 import interop.gtk_gesture_single_get_button
 import interop.gtk_gesture_single_get_current_button
+import interop.gtk_gesture_single_get_current_sequence
 import interop.gtk_gesture_single_get_exclusive
 import interop.gtk_gesture_single_get_touch_only
 import interop.gtk_gesture_single_set_button
@@ -16,6 +15,7 @@ import kotlin.Boolean
 import kotlin.UInt
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.EventSequence
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
@@ -39,6 +39,9 @@ public var GestureSingle.button: UInt
 
 public val GestureSingle.currentButton: UInt
   get() = gtk_gesture_single_get_current_button(this)
+
+public val GestureSingle.currentSequence: EventSequence?
+  get() = gtk_gesture_single_get_current_sequence(this)?.reinterpret()
 
 public var GestureSingle.exclusive: Boolean
   get() = gtk_gesture_single_get_exclusive(this).toBoolean()

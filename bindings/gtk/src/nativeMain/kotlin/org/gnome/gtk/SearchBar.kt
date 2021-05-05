@@ -1,5 +1,3 @@
-// TODO - method: handle_event (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -8,6 +6,7 @@ import interop.GtkSearchBar
 import interop.gtk_search_bar_connect_entry
 import interop.gtk_search_bar_get_search_mode
 import interop.gtk_search_bar_get_show_close_button
+import interop.gtk_search_bar_handle_event
 import interop.gtk_search_bar_new
 import interop.gtk_search_bar_set_search_mode
 import interop.gtk_search_bar_set_show_close_button
@@ -15,6 +14,7 @@ import kotlin.Boolean
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Event
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -56,3 +56,6 @@ public var SearchBar.showCloseButton: Boolean
 public fun SearchBar.connectEntry(entry: Entry?): Unit {
   gtk_search_bar_connect_entry(this@connectEntry, entry?.reinterpret())
 }
+
+public fun SearchBar.handleEvent(event: Event?): Boolean =
+    gtk_search_bar_handle_event(this@handleEvent, event?.reinterpret()).toBoolean()

@@ -1,5 +1,3 @@
-// TODO - method: get_handle_window (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -9,6 +7,7 @@ import interop.gtk_paned_add1
 import interop.gtk_paned_add2
 import interop.gtk_paned_get_child1
 import interop.gtk_paned_get_child2
+import interop.gtk_paned_get_handle_window
 import interop.gtk_paned_get_position
 import interop.gtk_paned_get_wide_handle
 import interop.gtk_paned_new
@@ -23,6 +22,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Window
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -55,6 +55,9 @@ public val Paned.child1: Widget?
 
 public val Paned.child2: Widget?
   get() = gtk_paned_get_child2(this)?.reinterpret()
+
+public val Paned.handleWindow: Window?
+  get() = gtk_paned_get_handle_window(this)?.reinterpret()
 
 public var Paned.position: Int
   get() = gtk_paned_get_position(this)

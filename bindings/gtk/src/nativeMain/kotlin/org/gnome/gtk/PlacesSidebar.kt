@@ -1,5 +1,4 @@
 // TODO - method: list_shortcuts (return type)
-// TODO - method: set_drop_targets_visible (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -19,6 +18,7 @@ import interop.gtk_places_sidebar_get_show_starred_location
 import interop.gtk_places_sidebar_get_show_trash
 import interop.gtk_places_sidebar_new
 import interop.gtk_places_sidebar_remove_shortcut
+import interop.gtk_places_sidebar_set_drop_targets_visible
 import interop.gtk_places_sidebar_set_local_only
 import interop.gtk_places_sidebar_set_location
 import interop.gtk_places_sidebar_set_open_flags
@@ -33,6 +33,7 @@ import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.DragContext
 import org.gnome.gio.File
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -127,6 +128,11 @@ public fun PlacesSidebar.getNthBookmark(n: Int): File? =
 
 public fun PlacesSidebar.removeShortcut(location: File?): Unit {
   gtk_places_sidebar_remove_shortcut(this@removeShortcut, location?.reinterpret())
+}
+
+public fun PlacesSidebar.setDropTargetsVisible(visible: Boolean, context: DragContext?): Unit {
+  gtk_places_sidebar_set_drop_targets_visible(this@setDropTargetsVisible, visible.toInt(),
+      context?.reinterpret())
 }
 
 public fun PlacesSidebar.onDragActionAsk(callback: (PlacesSidebar) -> Unit): PlacesSidebar {

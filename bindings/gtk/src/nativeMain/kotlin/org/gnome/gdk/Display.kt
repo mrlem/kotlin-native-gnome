@@ -1,19 +1,5 @@
-// TODO - method: device_is_grabbed (param type)
-// TODO - method: get_app_launch_context (return type)
-// TODO - method: get_default_group (return type)
-// TODO - method: get_default_screen (return type)
-// TODO - method: get_default_seat (return type)
-// TODO - method: get_event (return type)
 // TODO - method: get_maximal_cursor_size (param type)
-// TODO - method: get_monitor (return type)
-// TODO - method: get_monitor_at_point (return type)
-// TODO - method: get_monitor_at_window (return type)
-// TODO - method: get_primary_monitor (return type)
 // TODO - method: list_seats (return type)
-// TODO - method: peek_event (return type)
-// TODO - method: put_event (param type)
-// TODO - method: request_selection_notification (param type)
-// TODO - method: store_clipboard (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -22,15 +8,29 @@ package org.gnome.gdk
 import interop.GdkDisplay
 import interop.gdk_display_beep
 import interop.gdk_display_close
+import interop.gdk_display_device_is_grabbed
 import interop.gdk_display_flush
+import interop.gdk_display_get_app_launch_context
 import interop.gdk_display_get_default_cursor_size
+import interop.gdk_display_get_default_group
+import interop.gdk_display_get_default_screen
+import interop.gdk_display_get_default_seat
+import interop.gdk_display_get_event
+import interop.gdk_display_get_monitor
+import interop.gdk_display_get_monitor_at_point
+import interop.gdk_display_get_monitor_at_window
 import interop.gdk_display_get_n_monitors
 import interop.gdk_display_get_name
+import interop.gdk_display_get_primary_monitor
 import interop.gdk_display_has_pending
 import interop.gdk_display_is_closed
 import interop.gdk_display_notify_startup_complete
+import interop.gdk_display_peek_event
+import interop.gdk_display_put_event
+import interop.gdk_display_request_selection_notification
 import interop.gdk_display_set_double_click_distance
 import interop.gdk_display_set_double_click_time
+import interop.gdk_display_store_clipboard
 import interop.gdk_display_supports_clipboard_persistence
 import interop.gdk_display_supports_cursor_alpha
 import interop.gdk_display_supports_cursor_color
@@ -38,15 +38,21 @@ import interop.gdk_display_supports_input_shapes
 import interop.gdk_display_supports_selection_notification
 import interop.gdk_display_supports_shapes
 import interop.gdk_display_sync
+import kotlin.Array
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.map
+import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
+import org.gnome.toCArray
 import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
 
@@ -55,14 +61,32 @@ public typealias Display = CPointer<GdkDisplay>
 public val Display.asObject: Object
   get() = reinterpret()
 
+public val Display.appLaunchContext: AppLaunchContext?
+  get() = gdk_display_get_app_launch_context(this)?.reinterpret()
+
 public val Display.defaultCursorSize: UInt
   get() = gdk_display_get_default_cursor_size(this)
+
+public val Display.defaultGroup: Window?
+  get() = gdk_display_get_default_group(this)?.reinterpret()
+
+public val Display.defaultScreen: Screen?
+  get() = gdk_display_get_default_screen(this)?.reinterpret()
+
+public val Display.defaultSeat: Seat?
+  get() = gdk_display_get_default_seat(this)?.reinterpret()
+
+public val Display.event: Event?
+  get() = gdk_display_get_event(this)?.reinterpret()
 
 public val Display.nMonitors: Int
   get() = gdk_display_get_n_monitors(this)
 
 public val Display.name: String?
   get() = gdk_display_get_name(this).toKString()
+
+public val Display.primaryMonitor: Monitor?
+  get() = gdk_display_get_primary_monitor(this)?.reinterpret()
 
 public fun Display.beep(): Unit {
   gdk_display_beep(this@beep)
@@ -72,9 +96,21 @@ public fun Display.close(): Unit {
   gdk_display_close(this@close)
 }
 
+public fun Display.deviceIsGrabbed(device: Device?): Boolean =
+    gdk_display_device_is_grabbed(this@deviceIsGrabbed, device?.reinterpret()).toBoolean()
+
 public fun Display.flush(): Unit {
   gdk_display_flush(this@flush)
 }
+
+public fun Display.getMonitor(monitorNum: Int): Monitor? = gdk_display_get_monitor(this@getMonitor,
+    monitorNum)?.reinterpret()
+
+public fun Display.getMonitorAtPoint(x: Int, y: Int): Monitor? =
+    gdk_display_get_monitor_at_point(this@getMonitorAtPoint, x, y)?.reinterpret()
+
+public fun Display.getMonitorAtWindow(window: Window?): Monitor? =
+    gdk_display_get_monitor_at_window(this@getMonitorAtWindow, window?.reinterpret())?.reinterpret()
 
 public fun Display.hasPending(): Boolean = gdk_display_has_pending(this@hasPending).toBoolean()
 
@@ -84,12 +120,32 @@ public fun Display.notifyStartupComplete(startupId: String?): Unit {
   gdk_display_notify_startup_complete(this@notifyStartupComplete, startupId)
 }
 
+public fun Display.peekEvent(): Event? = gdk_display_peek_event(this@peekEvent)?.reinterpret()
+
+public fun Display.putEvent(event: Event?): Unit {
+  gdk_display_put_event(this@putEvent, event?.reinterpret())
+}
+
+public fun Display.requestSelectionNotification(selection: Atom?): Boolean =
+    gdk_display_request_selection_notification(this@requestSelectionNotification,
+    selection?.reinterpret()).toBoolean()
+
 public fun Display.setDoubleClickDistance(distance: UInt): Unit {
   gdk_display_set_double_click_distance(this@setDoubleClickDistance, distance)
 }
 
 public fun Display.setDoubleClickTime(msec: UInt): Unit {
   gdk_display_set_double_click_time(this@setDoubleClickTime, msec)
+}
+
+public fun Display.storeClipboard(
+  clipboardWindow: Window?,
+  time: UInt,
+  targets: Array<Atom>?,
+  nTargets: Int
+): Unit {
+  memScoped { gdk_display_store_clipboard(this@storeClipboard, clipboardWindow?.reinterpret(), time,
+      targets?.map { it }?.toTypedArray()?.toCArray(memScope), nTargets) }
 }
 
 public fun Display.supportsClipboardPersistence(): Boolean =

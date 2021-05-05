@@ -1,5 +1,4 @@
 // TODO - constructor: new_with_color
-// TODO - constructor: new_with_rgba
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -8,6 +7,7 @@ package org.gnome.gtk
 import interop.GtkColorButton
 import interop.gtk_color_button_get_title
 import interop.gtk_color_button_new
+import interop.gtk_color_button_new_with_rgba
 import interop.gtk_color_button_set_title
 import kotlin.String
 import kotlin.Unit
@@ -15,6 +15,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.RGBA
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toKString
@@ -42,6 +43,9 @@ public val ColorButton.asButton: Button
 
 public object ColorButtonFactory {
   public fun new(): ColorButton = gtk_color_button_new()!!.reinterpret()
+
+  public fun newWithRgba(rgba: RGBA?): ColorButton =
+      gtk_color_button_new_with_rgba(rgba?.reinterpret())!!.reinterpret()
 }
 
 public val ColorButton.button: Button

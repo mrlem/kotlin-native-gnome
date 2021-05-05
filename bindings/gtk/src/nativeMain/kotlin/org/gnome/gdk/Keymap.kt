@@ -2,8 +2,6 @@
 // TODO - method: get_direction (return type)
 // TODO - method: get_entries_for_keycode (param type)
 // TODO - method: get_entries_for_keyval (param type)
-// TODO - method: get_modifier_mask (return type)
-// TODO - method: lookup_key (param type)
 // TODO - method: map_virtual_modifiers (param type)
 // TODO - method: translate_keyboard_state (param type)
 //
@@ -13,10 +11,12 @@ package org.gnome.gdk
 
 import interop.GdkKeymap
 import interop.gdk_keymap_get_caps_lock_state
+import interop.gdk_keymap_get_modifier_mask
 import interop.gdk_keymap_get_modifier_state
 import interop.gdk_keymap_get_num_lock_state
 import interop.gdk_keymap_get_scroll_lock_state
 import interop.gdk_keymap_have_bidi_layouts
+import interop.gdk_keymap_lookup_key
 import kotlin.Boolean
 import kotlin.UInt
 import kotlin.Unit
@@ -43,8 +43,14 @@ public val Keymap.numLockState: Boolean
 public val Keymap.scrollLockState: Boolean
   get() = gdk_keymap_get_scroll_lock_state(this).toBoolean()
 
+public fun Keymap.getModifierMask(intent: ModifierIntent): ModifierType =
+    gdk_keymap_get_modifier_mask(this@getModifierMask, intent)
+
 public fun Keymap.haveBidiLayouts(): Boolean =
     gdk_keymap_have_bidi_layouts(this@haveBidiLayouts).toBoolean()
+
+public fun Keymap.lookupKey(key: KeymapKey?): UInt = gdk_keymap_lookup_key(this@lookupKey,
+    key?.reinterpret())
 
 public fun Keymap.onDirectionChanged(callback: (Keymap) -> Unit): Keymap {
   // TODO - handle callback data

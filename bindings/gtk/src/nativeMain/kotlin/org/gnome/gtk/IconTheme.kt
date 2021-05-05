@@ -4,7 +4,6 @@
 // TODO - method: load_icon (return type)
 // TODO - method: load_icon_for_scale (return type)
 // TODO - method: load_surface (return type)
-// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -26,6 +25,7 @@ import interop.gtk_icon_theme_new
 import interop.gtk_icon_theme_prepend_search_path
 import interop.gtk_icon_theme_rescan_if_needed
 import interop.gtk_icon_theme_set_custom_theme
+import interop.gtk_icon_theme_set_screen
 import interop.gtk_icon_theme_set_search_path
 import kotlin.Array
 import kotlin.Boolean
@@ -36,6 +36,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.`value`
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Screen
 import org.gnome.gio.Icon
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -123,6 +124,10 @@ public fun IconTheme.rescanIfNeeded(): Boolean =
 
 public fun IconTheme.setCustomTheme(themeName: String?): Unit {
   gtk_icon_theme_set_custom_theme(this@setCustomTheme, themeName)
+}
+
+public fun IconTheme.setScreen(screen: Screen?): Unit {
+  gtk_icon_theme_set_screen(this@setScreen, screen?.reinterpret())
 }
 
 public fun IconTheme.setSearchPath(path: Array<String>?, nElements: Int): Unit {

@@ -1,5 +1,4 @@
 // TODO - constructor: new_with_pixbuf
-// TODO - method: set_background_rgba (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -14,16 +13,19 @@ import interop.gtk_cell_view_new
 import interop.gtk_cell_view_new_with_context
 import interop.gtk_cell_view_new_with_markup
 import interop.gtk_cell_view_new_with_text
+import interop.gtk_cell_view_set_background_rgba
 import interop.gtk_cell_view_set_displayed_row
 import interop.gtk_cell_view_set_draw_sensitive
 import interop.gtk_cell_view_set_fit_model
 import interop.gtk_cell_view_set_model
 import kotlin.Boolean
 import kotlin.String
+import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.RGBA
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -79,3 +81,7 @@ public var CellView.model: TreeModel?
   set(`value`) {
     gtk_cell_view_set_model(this@model, `value`)
   }
+
+public fun CellView.setBackgroundRgba(rgba: RGBA?): Unit {
+  gtk_cell_view_set_background_rgba(this@setBackgroundRgba, rgba?.reinterpret())
+}

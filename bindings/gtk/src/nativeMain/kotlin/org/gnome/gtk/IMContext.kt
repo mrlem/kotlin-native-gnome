@@ -1,8 +1,5 @@
-// TODO - method: filter_keypress (param type)
 // TODO - method: get_preedit_string (param type)
 // TODO - method: get_surrounding (param type)
-// TODO - method: set_client_window (param type)
-// TODO - method: set_cursor_location (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -10,9 +7,12 @@ package org.gnome.gtk
 
 import interop.GtkIMContext
 import interop.gtk_im_context_delete_surrounding
+import interop.gtk_im_context_filter_keypress
 import interop.gtk_im_context_focus_in
 import interop.gtk_im_context_focus_out
 import interop.gtk_im_context_reset
+import interop.gtk_im_context_set_client_window
+import interop.gtk_im_context_set_cursor_location
 import interop.gtk_im_context_set_surrounding
 import interop.gtk_im_context_set_use_preedit
 import kotlin.Boolean
@@ -23,6 +23,9 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.EventKey
+import org.gnome.gdk.Rectangle
+import org.gnome.gdk.Window
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
@@ -39,6 +42,9 @@ public val IMContext.parentInstance: Object
 public fun IMContext.deleteSurrounding(offset: Int, nChars: Int): Boolean =
     gtk_im_context_delete_surrounding(this@deleteSurrounding, offset, nChars).toBoolean()
 
+public fun IMContext.filterKeypress(event: EventKey?): Boolean =
+    gtk_im_context_filter_keypress(this@filterKeypress, event?.reinterpret()).toBoolean()
+
 public fun IMContext.focusIn(): Unit {
   gtk_im_context_focus_in(this@focusIn)
 }
@@ -49,6 +55,14 @@ public fun IMContext.focusOut(): Unit {
 
 public fun IMContext.reset(): Unit {
   gtk_im_context_reset(this@reset)
+}
+
+public fun IMContext.setClientWindow(window: Window?): Unit {
+  gtk_im_context_set_client_window(this@setClientWindow, window?.reinterpret())
+}
+
+public fun IMContext.setCursorLocation(area: Rectangle?): Unit {
+  gtk_im_context_set_cursor_location(this@setCursorLocation, area?.reinterpret())
 }
 
 public fun IMContext.setSurrounding(

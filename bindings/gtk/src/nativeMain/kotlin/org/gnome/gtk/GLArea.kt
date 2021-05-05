@@ -1,4 +1,3 @@
-// TODO - method: get_context (return type)
 // TODO - method: get_error (return type)
 // TODO - method: get_required_version (param type)
 // TODO - method: set_error (param type)
@@ -10,6 +9,7 @@ package org.gnome.gtk
 import interop.GtkGLArea
 import interop.gtk_gl_area_attach_buffers
 import interop.gtk_gl_area_get_auto_render
+import interop.gtk_gl_area_get_context
 import interop.gtk_gl_area_get_has_alpha
 import interop.gtk_gl_area_get_has_depth_buffer
 import interop.gtk_gl_area_get_has_stencil_buffer
@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.GLContext
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -54,6 +55,9 @@ public var GLArea.autoRender: Boolean
   set(`value`) {
     gtk_gl_area_set_auto_render(this@autoRender, `value`.toInt())
   }
+
+public val GLArea.context: GLContext?
+  get() = gtk_gl_area_get_context(this)?.reinterpret()
 
 public var GLArea.hasAlpha: Boolean
   get() = gtk_gl_area_get_has_alpha(this).toBoolean()

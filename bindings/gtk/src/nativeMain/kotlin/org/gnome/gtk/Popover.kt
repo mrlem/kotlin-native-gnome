@@ -1,5 +1,4 @@
 // TODO - method: get_pointing_to (param type)
-// TODO - method: set_pointing_to (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -19,6 +18,7 @@ import interop.gtk_popover_popup
 import interop.gtk_popover_set_constrain_to
 import interop.gtk_popover_set_default_widget
 import interop.gtk_popover_set_modal
+import interop.gtk_popover_set_pointing_to
 import interop.gtk_popover_set_position
 import interop.gtk_popover_set_relative_to
 import kotlin.Boolean
@@ -28,6 +28,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Rectangle
 import org.gnome.gio.MenuModel
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
@@ -103,6 +104,10 @@ public fun Popover.popdown(): Unit {
 
 public fun Popover.popup(): Unit {
   gtk_popover_popup(this@popup)
+}
+
+public fun Popover.setPointingTo(rect: Rectangle?): Unit {
+  gtk_popover_set_pointing_to(this@setPointingTo, rect?.reinterpret())
 }
 
 public fun Popover.onClosed(callback: (Popover) -> Unit): Popover {

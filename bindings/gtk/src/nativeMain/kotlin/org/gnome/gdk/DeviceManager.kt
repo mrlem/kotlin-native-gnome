@@ -1,10 +1,9 @@
-// TODO - method: get_display (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gdk
 
 import interop.GdkDeviceManager
+import interop.gdk_device_manager_get_display
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
@@ -15,6 +14,9 @@ public typealias DeviceManager = CPointer<GdkDeviceManager>
 
 public val DeviceManager.asObject: Object
   get() = reinterpret()
+
+public val DeviceManager.display: Display?
+  get() = gdk_device_manager_get_display(this)?.reinterpret()
 
 public fun DeviceManager.onDeviceAdded(callback: (DeviceManager) -> Unit): DeviceManager {
   // TODO - handle callback data

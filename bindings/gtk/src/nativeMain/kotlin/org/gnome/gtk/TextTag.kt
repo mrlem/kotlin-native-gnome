@@ -1,11 +1,10 @@
-// TODO - method: event (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkTextTag
 import interop.gtk_text_tag_changed
+import interop.gtk_text_tag_event
 import interop.gtk_text_tag_get_priority
 import interop.gtk_text_tag_new
 import interop.gtk_text_tag_set_priority
@@ -17,7 +16,9 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Event
 import org.gnome.gobject.Object
+import org.gnome.toBoolean
 import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
 
@@ -42,6 +43,13 @@ public var TextTag.priority: Int
 public fun TextTag.changed(sizeChanged: Boolean): Unit {
   gtk_text_tag_changed(this@changed, sizeChanged.toInt())
 }
+
+public fun TextTag.event(
+  eventObject: Object?,
+  event: Event?,
+  iter: TextIter?
+): Boolean = gtk_text_tag_event(this@event, eventObject?.reinterpret(), event?.reinterpret(),
+    iter?.reinterpret()).toBoolean()
 
 public fun TextTag.onEvent(callback: (TextTag) -> Unit): TextTag {
   // TODO - handle callback data

@@ -115,7 +115,7 @@ private val knownNamespaces = listOf(
     "Gio",
     "GObject",
 //    "Atk",
-//    "Gdk",
+    "Gdk",
 //    "GdkPixbuf"
 )
 private val TypeDefinition.className: TypeName?

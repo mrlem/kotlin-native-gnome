@@ -7,9 +7,6 @@
 // TODO - method: get_line_yrange (param type)
 // TODO - method: get_tabs (return type)
 // TODO - method: get_visible_rect (param type)
-// TODO - method: get_window (return type)
-// TODO - method: get_window_type (param type)
-// TODO - method: im_context_filter_keypress (param type)
 // TODO - method: set_tabs (param type)
 // TODO - method: window_to_buffer_coords (param type)
 //
@@ -43,7 +40,10 @@ import interop.gtk_text_view_get_pixels_below_lines
 import interop.gtk_text_view_get_pixels_inside_wrap
 import interop.gtk_text_view_get_right_margin
 import interop.gtk_text_view_get_top_margin
+import interop.gtk_text_view_get_window
+import interop.gtk_text_view_get_window_type
 import interop.gtk_text_view_get_wrap_mode
+import interop.gtk_text_view_im_context_filter_keypress
 import interop.gtk_text_view_move_child
 import interop.gtk_text_view_move_mark_onscreen
 import interop.gtk_text_view_move_visually
@@ -83,6 +83,8 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.EventKey
+import org.gnome.gdk.Window
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -255,6 +257,16 @@ public fun TextView.forwardDisplayLineEnd(iter: TextIter?): Boolean =
 
 public fun TextView.getBorderWindowSize(type: TextWindowType): Int =
     gtk_text_view_get_border_window_size(this@getBorderWindowSize, type)
+
+public fun TextView.getWindow(win: TextWindowType): Window? =
+    gtk_text_view_get_window(this@getWindow, win)?.reinterpret()
+
+public fun TextView.getWindowType(window: Window?): TextWindowType =
+    gtk_text_view_get_window_type(this@getWindowType, window?.reinterpret())
+
+public fun TextView.imContextFilterKeypress(event: EventKey?): Boolean =
+    gtk_text_view_im_context_filter_keypress(this@imContextFilterKeypress,
+    event?.reinterpret()).toBoolean()
 
 public fun TextView.moveChild(
   child: Widget?,

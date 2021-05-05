@@ -1,5 +1,4 @@
 // TODO - method: set_icon (param type)
-// TODO - method: set_tip_area (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -11,10 +10,12 @@ import interop.gtk_tooltip_set_icon_from_gicon
 import interop.gtk_tooltip_set_icon_from_icon_name
 import interop.gtk_tooltip_set_markup
 import interop.gtk_tooltip_set_text
+import interop.gtk_tooltip_set_tip_area
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Rectangle
 import org.gnome.gio.Icon
 import org.gnome.gobject.Object
 
@@ -41,4 +42,8 @@ public fun Tooltip.setMarkup(markup: String?): Unit {
 
 public fun Tooltip.setText(text: String?): Unit {
   gtk_tooltip_set_text(this@setText, text)
+}
+
+public fun Tooltip.setTipArea(rect: Rectangle?): Unit {
+  gtk_tooltip_set_tip_area(this@setTipArea, rect?.reinterpret())
 }

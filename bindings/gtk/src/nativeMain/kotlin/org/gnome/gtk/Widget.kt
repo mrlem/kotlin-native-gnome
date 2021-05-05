@@ -1,58 +1,35 @@
 // TODO - constructor: new
-// TODO - method: add_device_events (param type)
 // TODO - method: add_tick_callback (param type)
 // TODO - method: create_pango_context (return type)
 // TODO - method: create_pango_layout (return type)
 // TODO - method: destroyed (param type)
-// TODO - method: device_is_shadowed (param type)
-// TODO - method: drag_begin_with_coordinates (return type)
-// TODO - method: drag_dest_find_target (return type)
-// TODO - method: drag_get_data (param type)
 // TODO - method: drag_source_set_icon_pixbuf (param type)
 // TODO - method: draw (param type)
-// TODO - method: event (param type)
 // TODO - method: get_accessible (return type)
 // TODO - method: get_allocated_size (param type)
 // TODO - method: get_allocation (param type)
 // TODO - method: get_clip (param type)
-// TODO - method: get_clipboard (param type)
-// TODO - method: get_device_enabled (param type)
-// TODO - method: get_device_events (param type)
-// TODO - method: get_display (return type)
 // TODO - method: get_font_map (return type)
 // TODO - method: get_font_options (return type)
-// TODO - method: get_frame_clock (return type)
 // TODO - method: get_pango_context (return type)
-// TODO - method: get_parent_window (return type)
 // TODO - method: get_preferred_height (param type)
 // TODO - method: get_preferred_height_and_baseline_for_width (param type)
 // TODO - method: get_preferred_height_for_width (param type)
 // TODO - method: get_preferred_size (param type)
 // TODO - method: get_preferred_width (param type)
 // TODO - method: get_preferred_width_for_height (param type)
-// TODO - method: get_screen (return type)
 // TODO - method: get_size_request (param type)
-// TODO - method: get_visual (return type)
-// TODO - method: get_window (return type)
 // TODO - method: input_shape_combine_region (param type)
 // TODO - method: intersect (param type)
 // TODO - method: list_accel_closures (return type)
 // TODO - method: list_mnemonic_labels (return type)
 // TODO - method: queue_draw_region (param type)
-// TODO - method: register_window (param type)
-// TODO - method: send_focus_change (param type)
-// TODO - method: set_device_enabled (param type)
-// TODO - method: set_device_events (param type)
 // TODO - method: set_font_map (param type)
 // TODO - method: set_font_options (param type)
-// TODO - method: set_parent_window (param type)
-// TODO - method: set_visual (param type)
-// TODO - method: set_window (param type)
 // TODO - method: shape_combine_region (param type)
 // TODO - method: style_get (param type)
 // TODO - method: style_get_valist (param type)
 // TODO - method: translate_coordinates (param type)
-// TODO - method: unregister_window (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -60,16 +37,19 @@ package org.gnome.gtk
 
 import interop.GType
 import interop.GtkWidget
+import interop.gtk_drag_begin_with_coordinates
 import interop.gtk_drag_check_threshold
 import interop.gtk_drag_dest_add_image_targets
 import interop.gtk_drag_dest_add_text_targets
 import interop.gtk_drag_dest_add_uri_targets
+import interop.gtk_drag_dest_find_target
 import interop.gtk_drag_dest_get_target_list
 import interop.gtk_drag_dest_get_track_motion
 import interop.gtk_drag_dest_set
 import interop.gtk_drag_dest_set_target_list
 import interop.gtk_drag_dest_set_track_motion
 import interop.gtk_drag_dest_unset
+import interop.gtk_drag_get_data
 import interop.gtk_drag_highlight
 import interop.gtk_drag_source_add_image_targets
 import interop.gtk_drag_source_add_text_targets
@@ -85,6 +65,7 @@ import interop.gtk_grab_add
 import interop.gtk_grab_remove
 import interop.gtk_widget_activate
 import interop.gtk_widget_add_accelerator
+import interop.gtk_widget_add_device_events
 import interop.gtk_widget_add_events
 import interop.gtk_widget_add_mnemonic_label
 import interop.gtk_widget_can_activate_accel
@@ -92,7 +73,9 @@ import interop.gtk_widget_child_focus
 import interop.gtk_widget_child_notify
 import interop.gtk_widget_compute_expand
 import interop.gtk_widget_destroy
+import interop.gtk_widget_device_is_shadowed
 import interop.gtk_widget_error_bell
+import interop.gtk_widget_event
 import interop.gtk_widget_freeze_child_notify
 import interop.gtk_widget_get_action_group
 import interop.gtk_widget_get_allocated_baseline
@@ -103,10 +86,15 @@ import interop.gtk_widget_get_app_paintable
 import interop.gtk_widget_get_can_default
 import interop.gtk_widget_get_can_focus
 import interop.gtk_widget_get_child_visible
+import interop.gtk_widget_get_clipboard
+import interop.gtk_widget_get_device_enabled
+import interop.gtk_widget_get_device_events
 import interop.gtk_widget_get_direction
+import interop.gtk_widget_get_display
 import interop.gtk_widget_get_double_buffered
 import interop.gtk_widget_get_events
 import interop.gtk_widget_get_focus_on_click
+import interop.gtk_widget_get_frame_clock
 import interop.gtk_widget_get_halign
 import interop.gtk_widget_get_has_tooltip
 import interop.gtk_widget_get_has_window
@@ -122,11 +110,13 @@ import interop.gtk_widget_get_name
 import interop.gtk_widget_get_no_show_all
 import interop.gtk_widget_get_opacity
 import interop.gtk_widget_get_parent
+import interop.gtk_widget_get_parent_window
 import interop.gtk_widget_get_path
 import interop.gtk_widget_get_realized
 import interop.gtk_widget_get_receives_default
 import interop.gtk_widget_get_request_mode
 import interop.gtk_widget_get_scale_factor
+import interop.gtk_widget_get_screen
 import interop.gtk_widget_get_sensitive
 import interop.gtk_widget_get_settings
 import interop.gtk_widget_get_state_flags
@@ -142,6 +132,8 @@ import interop.gtk_widget_get_valign_with_baseline
 import interop.gtk_widget_get_vexpand
 import interop.gtk_widget_get_vexpand_set
 import interop.gtk_widget_get_visible
+import interop.gtk_widget_get_visual
+import interop.gtk_widget_get_window
 import interop.gtk_widget_grab_default
 import interop.gtk_widget_grab_focus
 import interop.gtk_widget_has_default
@@ -171,10 +163,12 @@ import interop.gtk_widget_queue_draw_area
 import interop.gtk_widget_queue_resize
 import interop.gtk_widget_queue_resize_no_redraw
 import interop.gtk_widget_realize
+import interop.gtk_widget_register_window
 import interop.gtk_widget_remove_accelerator
 import interop.gtk_widget_remove_mnemonic_label
 import interop.gtk_widget_remove_tick_callback
 import interop.gtk_widget_reset_style
+import interop.gtk_widget_send_focus_change
 import interop.gtk_widget_set_accel_path
 import interop.gtk_widget_set_allocation
 import interop.gtk_widget_set_app_paintable
@@ -182,6 +176,8 @@ import interop.gtk_widget_set_can_default
 import interop.gtk_widget_set_can_focus
 import interop.gtk_widget_set_child_visible
 import interop.gtk_widget_set_clip
+import interop.gtk_widget_set_device_enabled
+import interop.gtk_widget_set_device_events
 import interop.gtk_widget_set_direction
 import interop.gtk_widget_set_events
 import interop.gtk_widget_set_focus_on_click
@@ -199,6 +195,7 @@ import interop.gtk_widget_set_name
 import interop.gtk_widget_set_no_show_all
 import interop.gtk_widget_set_opacity
 import interop.gtk_widget_set_parent
+import interop.gtk_widget_set_parent_window
 import interop.gtk_widget_set_realized
 import interop.gtk_widget_set_receives_default
 import interop.gtk_widget_set_redraw_on_allocate
@@ -213,6 +210,8 @@ import interop.gtk_widget_set_valign
 import interop.gtk_widget_set_vexpand
 import interop.gtk_widget_set_vexpand_set
 import interop.gtk_widget_set_visible
+import interop.gtk_widget_set_visual
+import interop.gtk_widget_set_window
 import interop.gtk_widget_show
 import interop.gtk_widget_show_all
 import interop.gtk_widget_show_now
@@ -224,6 +223,7 @@ import interop.gtk_widget_trigger_tooltip_query
 import interop.gtk_widget_unmap
 import interop.gtk_widget_unparent
 import interop.gtk_widget_unrealize
+import interop.gtk_widget_unregister_window
 import interop.gtk_widget_unset_state_flags
 import kotlin.Array
 import kotlin.Boolean
@@ -239,9 +239,18 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Atom
+import org.gnome.gdk.Device
+import org.gnome.gdk.Display
 import org.gnome.gdk.DragAction
+import org.gnome.gdk.DragContext
+import org.gnome.gdk.Event
+import org.gnome.gdk.EventMask
+import org.gnome.gdk.FrameClock
 import org.gnome.gdk.ModifierIntent
 import org.gnome.gdk.ModifierType
+import org.gnome.gdk.Screen
+import org.gnome.gdk.Visual
 import org.gnome.gio.ActionGroup
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
@@ -306,6 +315,9 @@ public var Widget.direction: TextDirection
     gtk_widget_set_direction(this@direction, `value`)
   }
 
+public val Widget.display: Display?
+  get() = gtk_widget_get_display(this)?.reinterpret()
+
 public val Widget.doubleBuffered: Boolean
   get() = gtk_widget_get_double_buffered(this).toBoolean()
 
@@ -320,6 +332,9 @@ public var Widget.focusOnClick: Boolean
   set(`value`) {
     gtk_widget_set_focus_on_click(this@focusOnClick, `value`.toInt())
   }
+
+public val Widget.frameClock: FrameClock?
+  get() = gtk_widget_get_frame_clock(this)?.reinterpret()
 
 public var Widget.halign: Align
   get() = gtk_widget_get_halign(this)
@@ -405,6 +420,12 @@ public var Widget.parent: Widget?
     gtk_widget_set_parent(this@parent, `value`)
   }
 
+public var Widget.parentWindow: org.gnome.gdk.Window?
+  get() = gtk_widget_get_parent_window(this)?.reinterpret()
+  set(`value`) {
+    gtk_widget_set_parent_window(this@parentWindow, `value`)
+  }
+
 public val Widget.path: WidgetPath?
   get() = gtk_widget_get_path(this)?.reinterpret()
 
@@ -425,6 +446,9 @@ public val Widget.requestMode: SizeRequestMode
 
 public val Widget.scaleFactor: Int
   get() = gtk_widget_get_scale_factor(this)
+
+public val Widget.screen: Screen?
+  get() = gtk_widget_get_screen(this)?.reinterpret()
 
 public var Widget.sensitive: Boolean
   get() = gtk_widget_get_sensitive(this).toBoolean()
@@ -495,6 +519,18 @@ public var Widget.visible: Boolean
     gtk_widget_set_visible(this@visible, `value`.toInt())
   }
 
+public var Widget.visual: Visual?
+  get() = gtk_widget_get_visual(this)?.reinterpret()
+  set(`value`) {
+    gtk_widget_set_visual(this@visual, `value`)
+  }
+
+public var Widget.window: org.gnome.gdk.Window?
+  get() = gtk_widget_get_window(this)?.reinterpret()
+  set(`value`) {
+    gtk_widget_set_window(this@window, `value`)
+  }
+
 public fun Widget.activate(): Boolean = gtk_widget_activate(this@activate).toBoolean()
 
 public fun Widget.addAccelerator(
@@ -506,6 +542,10 @@ public fun Widget.addAccelerator(
 ): Unit {
   gtk_widget_add_accelerator(this@addAccelerator, accelSignal, accelGroup?.reinterpret(), accelKey,
       accelMods, accelFlags)
+}
+
+public fun Widget.addDeviceEvents(device: Device?, events: EventMask): Unit {
+  gtk_widget_add_device_events(this@addDeviceEvents, device?.reinterpret(), events)
 }
 
 public fun Widget.addEvents(events: Int): Unit {
@@ -533,6 +573,19 @@ public fun Widget.destroy(): Unit {
   gtk_widget_destroy(this@destroy)
 }
 
+public fun Widget.deviceIsShadowed(device: Device?): Boolean =
+    gtk_widget_device_is_shadowed(this@deviceIsShadowed, device?.reinterpret()).toBoolean()
+
+public fun Widget.dragBeginWithCoordinates(
+  targets: TargetList?,
+  actions: DragAction,
+  button: Int,
+  event: Event?,
+  x: Int,
+  y: Int
+): DragContext? = gtk_drag_begin_with_coordinates(this@dragBeginWithCoordinates,
+    targets?.reinterpret(), actions, button, event?.reinterpret(), x, y)?.reinterpret()
+
 public fun Widget.dragCheckThreshold(
   startX: Int,
   startY: Int,
@@ -552,6 +605,10 @@ public fun Widget.dragDestAddTextTargets(): Unit {
 public fun Widget.dragDestAddUriTargets(): Unit {
   gtk_drag_dest_add_uri_targets(this@dragDestAddUriTargets)
 }
+
+public fun Widget.dragDestFindTarget(context: DragContext?, targetList: TargetList?): Atom? =
+    gtk_drag_dest_find_target(this@dragDestFindTarget, context?.reinterpret(),
+    targetList?.reinterpret())?.reinterpret()
 
 public fun Widget.dragDestGetTargetList(): TargetList? =
     gtk_drag_dest_get_target_list(this@dragDestGetTargetList)?.reinterpret()
@@ -579,6 +636,14 @@ public fun Widget.dragDestSetTrackMotion(trackMotion: Boolean): Unit {
 
 public fun Widget.dragDestUnset(): Unit {
   gtk_drag_dest_unset(this@dragDestUnset)
+}
+
+public fun Widget.dragGetData(
+  context: DragContext?,
+  target: Atom?,
+  time: UInt
+): Unit {
+  gtk_drag_get_data(this@dragGetData, context?.reinterpret(), target?.reinterpret(), time)
 }
 
 public fun Widget.dragHighlight(): Unit {
@@ -634,6 +699,9 @@ public fun Widget.errorBell(): Unit {
   gtk_widget_error_bell(this@errorBell)
 }
 
+public fun Widget.event(event: Event?): Boolean = gtk_widget_event(this@event,
+    event?.reinterpret()).toBoolean()
+
 public fun Widget.freezeChildNotify(): Unit {
   gtk_widget_freeze_child_notify(this@freezeChildNotify)
 }
@@ -643,6 +711,15 @@ public fun Widget.getActionGroup(prefix: String?): ActionGroup? =
 
 public fun Widget.getAncestor(widgetType: GType): Widget? =
     gtk_widget_get_ancestor(this@getAncestor, widgetType)?.reinterpret()
+
+public fun Widget.getClipboard(selection: Atom?): Clipboard? =
+    gtk_widget_get_clipboard(this@getClipboard, selection?.reinterpret())?.reinterpret()
+
+public fun Widget.getDeviceEnabled(device: Device?): Boolean =
+    gtk_widget_get_device_enabled(this@getDeviceEnabled, device?.reinterpret()).toBoolean()
+
+public fun Widget.getDeviceEvents(device: Device?): EventMask =
+    gtk_widget_get_device_events(this@getDeviceEvents, device?.reinterpret())
 
 public fun Widget.getModifierMask(intent: ModifierIntent): ModifierType =
     gtk_widget_get_modifier_mask(this@getModifierMask, intent)
@@ -753,6 +830,10 @@ public fun Widget.realize(): Unit {
   gtk_widget_realize(this@realize)
 }
 
+public fun Widget.registerWindow(window: org.gnome.gdk.Window?): Unit {
+  gtk_widget_register_window(this@registerWindow, window?.reinterpret())
+}
+
 public fun Widget.removeAccelerator(
   accelGroup: AccelGroup?,
   accelKey: UInt,
@@ -772,6 +853,9 @@ public fun Widget.resetStyle(): Unit {
   gtk_widget_reset_style(this@resetStyle)
 }
 
+public fun Widget.sendFocusChange(event: Event?): Boolean =
+    gtk_widget_send_focus_change(this@sendFocusChange, event?.reinterpret()).toBoolean()
+
 public fun Widget.setAccelPath(accelPath: String?, accelGroup: AccelGroup?): Unit {
   gtk_widget_set_accel_path(this@setAccelPath, accelPath, accelGroup?.reinterpret())
 }
@@ -782,6 +866,14 @@ public fun Widget.setAllocation(allocation: Allocation): Unit {
 
 public fun Widget.setClip(clip: Allocation): Unit {
   gtk_widget_set_clip(this@setClip, clip)
+}
+
+public fun Widget.setDeviceEnabled(device: Device?, enabled: Boolean): Unit {
+  gtk_widget_set_device_enabled(this@setDeviceEnabled, device?.reinterpret(), enabled.toInt())
+}
+
+public fun Widget.setDeviceEvents(device: Device?, events: EventMask): Unit {
+  gtk_widget_set_device_events(this@setDeviceEvents, device?.reinterpret(), events)
 }
 
 public fun Widget.setRedrawOnAllocate(redrawOnAllocate: Boolean): Unit {
@@ -838,6 +930,10 @@ public fun Widget.unparent(): Unit {
 
 public fun Widget.unrealize(): Unit {
   gtk_widget_unrealize(this@unrealize)
+}
+
+public fun Widget.unregisterWindow(window: org.gnome.gdk.Window?): Unit {
+  gtk_widget_unregister_window(this@unregisterWindow, window?.reinterpret())
 }
 
 public fun Widget.unsetStateFlags(flags: StateFlags): Unit {

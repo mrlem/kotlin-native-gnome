@@ -1,16 +1,10 @@
-// TODO - method: activate_key (param type)
-// TODO - method: fullscreen_on_monitor (param type)
 // TODO - method: get_default_size (param type)
 // TODO - method: get_icon (return type)
 // TODO - method: get_icon_list (return type)
 // TODO - method: get_position (param type)
-// TODO - method: get_screen (return type)
 // TODO - method: get_size (param type)
-// TODO - method: propagate_key_event (param type)
-// TODO - method: set_geometry_hints (param type)
 // TODO - method: set_icon (param type)
 // TODO - method: set_icon_list (param type)
-// TODO - method: set_screen (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -20,6 +14,7 @@ import interop.GError
 import interop.GtkWindow
 import interop.gtk_window_activate_default
 import interop.gtk_window_activate_focus
+import interop.gtk_window_activate_key
 import interop.gtk_window_add_accel_group
 import interop.gtk_window_add_mnemonic
 import interop.gtk_window_begin_move_drag
@@ -27,6 +22,7 @@ import interop.gtk_window_begin_resize_drag
 import interop.gtk_window_close
 import interop.gtk_window_deiconify
 import interop.gtk_window_fullscreen
+import interop.gtk_window_fullscreen_on_monitor
 import interop.gtk_window_get_accept_focus
 import interop.gtk_window_get_application
 import interop.gtk_window_get_attached_to
@@ -46,6 +42,7 @@ import interop.gtk_window_get_mnemonics_visible
 import interop.gtk_window_get_modal
 import interop.gtk_window_get_resizable
 import interop.gtk_window_get_role
+import interop.gtk_window_get_screen
 import interop.gtk_window_get_skip_pager_hint
 import interop.gtk_window_get_skip_taskbar_hint
 import interop.gtk_window_get_title
@@ -65,6 +62,7 @@ import interop.gtk_window_move
 import interop.gtk_window_new
 import interop.gtk_window_present
 import interop.gtk_window_present_with_time
+import interop.gtk_window_propagate_key_event
 import interop.gtk_window_remove_accel_group
 import interop.gtk_window_remove_mnemonic
 import interop.gtk_window_resize
@@ -79,6 +77,7 @@ import interop.gtk_window_set_destroy_with_parent
 import interop.gtk_window_set_focus
 import interop.gtk_window_set_focus_on_map
 import interop.gtk_window_set_focus_visible
+import interop.gtk_window_set_geometry_hints
 import interop.gtk_window_set_gravity
 import interop.gtk_window_set_has_user_ref_count
 import interop.gtk_window_set_hide_titlebar_when_maximized
@@ -92,6 +91,7 @@ import interop.gtk_window_set_modal
 import interop.gtk_window_set_position
 import interop.gtk_window_set_resizable
 import interop.gtk_window_set_role
+import interop.gtk_window_set_screen
 import interop.gtk_window_set_skip_pager_hint
 import interop.gtk_window_set_skip_taskbar_hint
 import interop.gtk_window_set_startup_id
@@ -116,9 +116,13 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.EventKey
+import org.gnome.gdk.Geometry
 import org.gnome.gdk.Gravity
 import org.gnome.gdk.ModifierType
+import org.gnome.gdk.Screen
 import org.gnome.gdk.WindowEdge
+import org.gnome.gdk.WindowHints
 import org.gnome.gdk.WindowTypeHint
 import org.gnome.glib.Error
 import org.gnome.gobject.InitiallyUnowned
@@ -260,6 +264,12 @@ public var Window.role: String?
     gtk_window_set_role(this@role, `value`)
   }
 
+public var Window.screen: Screen?
+  get() = gtk_window_get_screen(this)?.reinterpret()
+  set(`value`) {
+    gtk_window_set_screen(this@screen, `value`)
+  }
+
 public var Window.skipPagerHint: Boolean
   get() = gtk_window_get_skip_pager_hint(this).toBoolean()
   set(`value`) {
@@ -311,6 +321,9 @@ public fun Window.activateDefault(): Boolean =
 public fun Window.activateFocus(): Boolean =
     gtk_window_activate_focus(this@activateFocus).toBoolean()
 
+public fun Window.activateKey(event: EventKey?): Boolean = gtk_window_activate_key(this@activateKey,
+    event?.reinterpret()).toBoolean()
+
 public fun Window.addAccelGroup(accelGroup: AccelGroup?): Unit {
   gtk_window_add_accel_group(this@addAccelGroup, accelGroup?.reinterpret())
 }
@@ -350,6 +363,10 @@ public fun Window.fullscreen(): Unit {
   gtk_window_fullscreen(this@fullscreen)
 }
 
+public fun Window.fullscreenOnMonitor(screen: Screen?, monitor: Int): Unit {
+  gtk_window_fullscreen_on_monitor(this@fullscreenOnMonitor, screen?.reinterpret(), monitor)
+}
+
 public fun Window.hasGroup(): Boolean = gtk_window_has_group(this@hasGroup).toBoolean()
 
 public fun Window.hasToplevelFocus(): Boolean =
@@ -382,6 +399,9 @@ public fun Window.presentWithTime(timestamp: UInt): Unit {
   gtk_window_present_with_time(this@presentWithTime, timestamp)
 }
 
+public fun Window.propagateKeyEvent(event: EventKey?): Boolean =
+    gtk_window_propagate_key_event(this@propagateKeyEvent, event?.reinterpret()).toBoolean()
+
 public fun Window.removeAccelGroup(accelGroup: AccelGroup?): Unit {
   gtk_window_remove_accel_group(this@removeAccelGroup, accelGroup?.reinterpret())
 }
@@ -400,6 +420,15 @@ public fun Window.setDefault(defaultWidget: Widget?): Unit {
 
 public fun Window.setDefaultSize(width: Int, height: Int): Unit {
   gtk_window_set_default_size(this@setDefaultSize, width, height)
+}
+
+public fun Window.setGeometryHints(
+  geometryWidget: Widget?,
+  geometry: Geometry?,
+  geomMask: WindowHints
+): Unit {
+  gtk_window_set_geometry_hints(this@setGeometryHints, geometryWidget?.reinterpret(),
+      geometry?.reinterpret(), geomMask)
 }
 
 public fun Window.setHasUserRefCount(setting: Boolean): Unit {

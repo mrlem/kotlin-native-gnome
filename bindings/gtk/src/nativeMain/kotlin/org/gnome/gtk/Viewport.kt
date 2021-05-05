@@ -1,18 +1,18 @@
-// TODO - method: get_bin_window (return type)
-// TODO - method: get_view_window (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkViewport
+import interop.gtk_viewport_get_bin_window
 import interop.gtk_viewport_get_shadow_type
+import interop.gtk_viewport_get_view_window
 import interop.gtk_viewport_new
 import interop.gtk_viewport_set_shadow_type
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.gdk.Window
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 
@@ -41,8 +41,14 @@ public object ViewportFactory {
 public val Viewport.bin: Bin
   get() = pointed.bin.ptr
 
+public val Viewport.binWindow: Window?
+  get() = gtk_viewport_get_bin_window(this)?.reinterpret()
+
 public var Viewport.shadowType: ShadowType
   get() = gtk_viewport_get_shadow_type(this)
   set(`value`) {
     gtk_viewport_set_shadow_type(this@shadowType, `value`)
   }
+
+public val Viewport.viewWindow: Window?
+  get() = gtk_viewport_get_view_window(this)?.reinterpret()

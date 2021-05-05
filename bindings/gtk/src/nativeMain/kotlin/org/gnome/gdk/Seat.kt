@@ -1,15 +1,15 @@
-// TODO - method: get_capabilities (return type)
-// TODO - method: get_display (return type)
-// TODO - method: get_keyboard (return type)
-// TODO - method: get_pointer (return type)
 // TODO - method: get_slaves (return type)
-// TODO - method: grab (return type)
+// TODO - method: grab (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gdk
 
 import interop.GdkSeat
+import interop.gdk_seat_get_capabilities
+import interop.gdk_seat_get_display
+import interop.gdk_seat_get_keyboard
+import interop.gdk_seat_get_pointer
 import interop.gdk_seat_ungrab
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
@@ -26,6 +26,18 @@ public val Seat.asObject: Object
 
 public val Seat.parentInstance: Object
   get() = pointed.parent_instance.ptr
+
+public val Seat.capabilities: SeatCapabilities
+  get() = gdk_seat_get_capabilities(this)
+
+public val Seat.display: Display?
+  get() = gdk_seat_get_display(this)?.reinterpret()
+
+public val Seat.keyboard: Device?
+  get() = gdk_seat_get_keyboard(this)?.reinterpret()
+
+public val Seat.pointer: Device?
+  get() = gdk_seat_get_pointer(this)?.reinterpret()
 
 public fun Seat.ungrab(): Unit {
   gdk_seat_ungrab(this@ungrab)
