@@ -104,7 +104,7 @@ class RepositoryReader {
     private fun Node.readBoxed() = BoxedDefinition(
         name = this["name"] ?: throw error("missing name"),
         glibGetType = this["glib:get-type"] ?: throw error("missing get-type"),
-        glibTypeName = this["glib:type-name"] ?: throw error("missing type-name"),
+        glibTypeName = this["glib:type-name"] ?: this["type-name"] ?: throw error("missing type-name"),
         info = readInfoElements(),
         cSymbolPrefix = this["c:symbol-prefix"],
         functions = readCallables("function")
@@ -153,7 +153,7 @@ class RepositoryReader {
         return UnionDefinition(
             name = name,
             glibGetType = this["glib:get-type"],
-            glibTypeName = this["glib:type-name"],
+            glibTypeName = this["glib:type-name"] ?: this["type-name"],
             cType = this["c:type"],
             cSymbolPrefix = this["c:symbol-prefix"],
             fields = readFields(),
@@ -169,7 +169,7 @@ class RepositoryReader {
     private fun Node.readEnum() = EnumDefinition(
         name = this["name"] ?: throw error("missing name"),
         cType = this["c:type"],
-        glibTypeName = this["glib:type-name"],
+        glibTypeName = this["glib:type-name"] ?: this["type-name"],
         glibGetType = this["glib:get-type"],
         glibErrorDomain = this["glib:error-domain"],
         info = readInfoElements(),
@@ -194,7 +194,7 @@ class RepositoryReader {
     private fun Node.readRecord() = RecordDefinition(
         name = this["name"] ?: throw error("missing name"),
         glibGetType = this["glib:get-type"],
-        glibTypeName = this["glib:type-name"],
+        glibTypeName = this["glib:type-name"] ?: this["type-name"],
         cSymbolPrefix = this["c:symbol-prefix"],
         cType = this["c:type"],
         disguised = this["disguised"].boolean,
@@ -214,7 +214,7 @@ class RepositoryReader {
         name = this["name"] ?: throw error("missing name"),
         cType = this["c:type"],
         glibGetType = this["glib:get-type"],
-        glibTypeName = this["glib:type-name"],
+        glibTypeName = this["glib:type-name"] ?: this["type-name"],
         info = readInfoElements(),
         functions = readCallables("function"),
         members = readMembers()
@@ -229,7 +229,7 @@ class RepositoryReader {
         name = this["name"] ?: throw error("missing name"),
         parent = this["parent"],
         glibGetType = this["glib:get-type"] ?: throw error("missing get-type"),
-        glibTypeName = this["glib:type-name"] ?: throw error("missing type-name"),
+        glibTypeName = this["glib:type-name"] ?: this["type-name"] ?: throw error("missing type-name"),
         cType = this["c:type"],
         cSymbolPrefix = this["c:symbol-prefix"],
         abstract = this["abstract"].boolean,
@@ -258,7 +258,7 @@ class RepositoryReader {
     private fun Node.readInterface() = InterfaceDefinition(
         name = this["name"] ?: throw error("missing name"),
         glibGetType = this["glib:get-type"] ?: throw error("missing get-type"),
-        glibTypeName = this["glib:type-name"] ?: throw error("missing type-name"),
+        glibTypeName = this["glib:type-name"] ?: this["type-name"] ?: throw error("missing type-name"),
         glibTypeStruct = this["glib:type-struct"],
         cSymbolPrefix = this["c:symbol-prefix"],
         cType = this["c:type"],

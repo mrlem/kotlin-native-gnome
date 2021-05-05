@@ -16,6 +16,7 @@ object BindingGenerator {
                         bitFields.mapNotNull { it.toFileSpec(namespace) } +
                         aliases.mapNotNull { it.toFileSpec(namespace) } +
                         records.mapNotNull { it.toFileSpec(namespace) } +
+                        unions.mapNotNull { it.toFileSpec(namespace) } +
                         interfaces.mapNotNull { it.toFileSpec(namespace) } +
                         callbacks.mapNotNull { it.toFileSpec(namespace) }
                 fileSpecs.forEach { it.writeTo(destination) }

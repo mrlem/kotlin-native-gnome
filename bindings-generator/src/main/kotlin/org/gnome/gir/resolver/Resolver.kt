@@ -12,6 +12,7 @@ class Resolver(repository: RepositoryDefinition) {
     private val interfaces = mutableSetOf<String>()
     private val enumsInfo = mutableMapOf<String, EnumInfo>()
     private val bitFieldsInfo = mutableMapOf<String, BitFieldInfo>()
+    private val unions = mutableSetOf<String>()
 
     init {
         // add all classes
@@ -19,6 +20,7 @@ class Resolver(repository: RepositoryDefinition) {
             namespace.callbacks.forEach { callbacks.add("${namespace.name}.${it.name}") }
             namespace.records.forEach { records.add("${namespace.name}.${it.name}") }
             namespace.interfaces.forEach { interfaces.add("${namespace.name}.${it.name}") }
+            namespace.unions.forEach { unions.add("${namespace.name}.${it.name}") }
             namespace.enums.forEach { definition ->
                 // stored under C type here
                 val glibTypeName = definition.glibTypeName
@@ -70,11 +72,13 @@ class Resolver(repository: RepositoryDefinition) {
 
     private fun isRecord(name: String) = records.contains(name)
 
-    private fun isCPointer(name: String) = isClass(name) || isRecord(name) || isCallback(name) || isInterface(name)
+    private fun isCPointer(name: String) = isClass(name) || isRecord(name) || isCallback(name) || isInterface(name) || isUnion(name)
 
     private fun isBitField(name: String) = bitFieldsInfo.contains(name)
 
     private fun isEnum(name: String) = enumsInfo.contains(name)
+
+    private fun isUnion(name: String) = unions.contains(name)
 
     private fun ClassInfo.resolveAncestors(ancestors: Stack<String>) {
         val parent = definition.parent
