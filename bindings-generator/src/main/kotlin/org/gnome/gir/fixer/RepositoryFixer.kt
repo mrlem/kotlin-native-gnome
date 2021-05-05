@@ -54,7 +54,7 @@ object RepositoryFixer {
                 // replace some incorrect class names
                 `class`.glibTypeName
                     .takeIf { it.startsWith("GParam") }
-                    ?.let { it.replace("GParam", "GParamSpec") }
+                    ?.replace("GParam", "GParamSpec")
                     ?.let { `class`.glibTypeName = it }
             }
         }
