@@ -109,13 +109,21 @@ private fun AnyType.toCTypeConverter(resolver: Resolver): Pair<String, Array<Mem
     }
         ?: "" to emptyArray()
 
+// TODO - ask resolver
+private val knownNamespaces = listOf(
+    "Gtk",
+    "Gio",
+    "GObject",
+//    "Atk",
+//    "Gdk",
+//    "GdkPixbuf"
+)
 private val TypeDefinition.className: TypeName?
     get() {
         return if (name.contains('.')) {
             val (namespaceName, className) = name.split('.')
             ClassName("$GNOME_PACKAGE.${namespaceName.toLowerCase()}", className)
-                // TODO - generate more namespaces
-                .takeIf { namespaceName == "Gtk" || namespaceName == "Gio" || namespaceName == "GObject" }
+                .takeIf { knownNamespaces.contains(namespaceName) }
                 ?: run {
                     println("warning: ignoring class from unknown namespace: $className")
                     null
