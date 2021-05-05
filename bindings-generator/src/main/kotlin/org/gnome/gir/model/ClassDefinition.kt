@@ -67,7 +67,6 @@ data class ClassDefinition(
 
     val deprecated
         get() = info.deprecated ||
-                (!abstract && glibTypeStruct == null && constructors.isNotEmpty() && constructors.all { it.callable.info.deprecated }) ||
                 info.doc.sourcePosition?.filename?.contains("deprecated") == true
 
 }
