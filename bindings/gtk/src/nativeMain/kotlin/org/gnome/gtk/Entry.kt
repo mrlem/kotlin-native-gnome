@@ -1,11 +1,6 @@
-// TODO - method: get_attributes (return type)
 // TODO - method: get_icon_area (param type)
-// TODO - method: get_layout (return type)
 // TODO - method: get_layout_offsets (param type)
-// TODO - method: get_tabs (return type)
 // TODO - method: get_text_area (param type)
-// TODO - method: set_attributes (param type)
-// TODO - method: set_tabs (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -14,6 +9,7 @@ package org.gnome.gtk
 import interop.GtkEntry
 import interop.gtk_entry_get_activates_default
 import interop.gtk_entry_get_alignment
+import interop.gtk_entry_get_attributes
 import interop.gtk_entry_get_buffer
 import interop.gtk_entry_get_completion
 import interop.gtk_entry_get_current_icon_drag_source
@@ -31,12 +27,14 @@ import interop.gtk_entry_get_icon_tooltip_text
 import interop.gtk_entry_get_input_hints
 import interop.gtk_entry_get_input_purpose
 import interop.gtk_entry_get_invisible_char
+import interop.gtk_entry_get_layout
 import interop.gtk_entry_get_max_length
 import interop.gtk_entry_get_max_width_chars
 import interop.gtk_entry_get_overwrite_mode
 import interop.gtk_entry_get_placeholder_text
 import interop.gtk_entry_get_progress_fraction
 import interop.gtk_entry_get_progress_pulse_step
+import interop.gtk_entry_get_tabs
 import interop.gtk_entry_get_text
 import interop.gtk_entry_get_text_length
 import interop.gtk_entry_get_visibility
@@ -50,6 +48,7 @@ import interop.gtk_entry_progress_pulse
 import interop.gtk_entry_reset_im_context
 import interop.gtk_entry_set_activates_default
 import interop.gtk_entry_set_alignment
+import interop.gtk_entry_set_attributes
 import interop.gtk_entry_set_buffer
 import interop.gtk_entry_set_completion
 import interop.gtk_entry_set_cursor_hadjustment
@@ -71,6 +70,7 @@ import interop.gtk_entry_set_overwrite_mode
 import interop.gtk_entry_set_placeholder_text
 import interop.gtk_entry_set_progress_fraction
 import interop.gtk_entry_set_progress_pulse_step
+import interop.gtk_entry_set_tabs
 import interop.gtk_entry_set_text
 import interop.gtk_entry_set_visibility
 import interop.gtk_entry_set_width_chars
@@ -92,6 +92,9 @@ import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.pango.AttrList
+import org.gnome.pango.Layout
+import org.gnome.pango.TabArray
 import org.gnome.toBoolean
 import org.gnome.toChar
 import org.gnome.toInt
@@ -127,6 +130,12 @@ public var Entry.alignment: Float
   get() = gtk_entry_get_alignment(this)
   set(`value`) {
     gtk_entry_set_alignment(this@alignment, `value`)
+  }
+
+public var Entry.attributes: AttrList?
+  get() = gtk_entry_get_attributes(this)?.reinterpret()
+  set(`value`) {
+    gtk_entry_set_attributes(this@attributes, `value`)
   }
 
 public var Entry.buffer: EntryBuffer?
@@ -174,6 +183,9 @@ public var Entry.invisibleChar: Char
     gtk_entry_set_invisible_char(this@invisibleChar, `value`.toUInt())
   }
 
+public val Entry.layout: Layout?
+  get() = gtk_entry_get_layout(this)?.reinterpret()
+
 public var Entry.maxLength: Int
   get() = gtk_entry_get_max_length(this)
   set(`value`) {
@@ -208,6 +220,12 @@ public var Entry.progressPulseStep: Double
   get() = gtk_entry_get_progress_pulse_step(this)
   set(`value`) {
     gtk_entry_set_progress_pulse_step(this@progressPulseStep, `value`)
+  }
+
+public var Entry.tabs: TabArray?
+  get() = gtk_entry_get_tabs(this)?.reinterpret()
+  set(`value`) {
+    gtk_entry_set_tabs(this@tabs, `value`)
   }
 
 public var Entry.text: String?

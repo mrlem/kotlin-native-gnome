@@ -1,6 +1,3 @@
-// TODO - method: get_ellipsize (return type)
-// TODO - method: set_ellipsize (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -8,6 +5,7 @@ package org.gnome.gtk
 import interop.GtkToolItemGroup
 import interop.gtk_tool_item_group_get_collapsed
 import interop.gtk_tool_item_group_get_drop_item
+import interop.gtk_tool_item_group_get_ellipsize
 import interop.gtk_tool_item_group_get_header_relief
 import interop.gtk_tool_item_group_get_item_position
 import interop.gtk_tool_item_group_get_label
@@ -17,6 +15,7 @@ import interop.gtk_tool_item_group_get_nth_item
 import interop.gtk_tool_item_group_insert
 import interop.gtk_tool_item_group_new
 import interop.gtk_tool_item_group_set_collapsed
+import interop.gtk_tool_item_group_set_ellipsize
 import interop.gtk_tool_item_group_set_header_relief
 import interop.gtk_tool_item_group_set_item_position
 import interop.gtk_tool_item_group_set_label
@@ -32,6 +31,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.pango.EllipsizeMode
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -61,6 +61,12 @@ public var ToolItemGroup.collapsed: Boolean
   get() = gtk_tool_item_group_get_collapsed(this).toBoolean()
   set(`value`) {
     gtk_tool_item_group_set_collapsed(this@collapsed, `value`.toInt())
+  }
+
+public var ToolItemGroup.ellipsize: EllipsizeMode
+  get() = gtk_tool_item_group_get_ellipsize(this)
+  set(`value`) {
+    gtk_tool_item_group_set_ellipsize(this@ellipsize, `value`)
   }
 
 public var ToolItemGroup.headerRelief: ReliefStyle

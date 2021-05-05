@@ -1,4 +1,3 @@
-// TODO - method: get_layout (return type)
 // TODO - method: get_layout_offsets (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -11,6 +10,7 @@ import interop.gtk_scale_clear_marks
 import interop.gtk_scale_get_digits
 import interop.gtk_scale_get_draw_value
 import interop.gtk_scale_get_has_origin
+import interop.gtk_scale_get_layout
 import interop.gtk_scale_get_value_pos
 import interop.gtk_scale_new
 import interop.gtk_scale_new_with_range
@@ -29,6 +29,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.pango.Layout
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
@@ -79,6 +80,9 @@ public var Scale.hasOrigin: Boolean
   set(`value`) {
     gtk_scale_set_has_origin(this@hasOrigin, `value`.toInt())
   }
+
+public val Scale.layout: Layout?
+  get() = gtk_scale_get_layout(this)?.reinterpret()
 
 public var Scale.valuePos: PositionType
   get() = gtk_scale_get_value_pos(this)

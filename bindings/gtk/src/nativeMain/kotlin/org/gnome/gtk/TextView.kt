@@ -5,9 +5,7 @@
 // TODO - method: get_iter_location (param type)
 // TODO - method: get_line_at_y (param type)
 // TODO - method: get_line_yrange (param type)
-// TODO - method: get_tabs (return type)
 // TODO - method: get_visible_rect (param type)
-// TODO - method: set_tabs (param type)
 // TODO - method: window_to_buffer_coords (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -39,6 +37,7 @@ import interop.gtk_text_view_get_pixels_above_lines
 import interop.gtk_text_view_get_pixels_below_lines
 import interop.gtk_text_view_get_pixels_inside_wrap
 import interop.gtk_text_view_get_right_margin
+import interop.gtk_text_view_get_tabs
 import interop.gtk_text_view_get_top_margin
 import interop.gtk_text_view_get_window
 import interop.gtk_text_view_get_window_type
@@ -72,6 +71,7 @@ import interop.gtk_text_view_set_pixels_above_lines
 import interop.gtk_text_view_set_pixels_below_lines
 import interop.gtk_text_view_set_pixels_inside_wrap
 import interop.gtk_text_view_set_right_margin
+import interop.gtk_text_view_set_tabs
 import interop.gtk_text_view_set_top_margin
 import interop.gtk_text_view_set_wrap_mode
 import interop.gtk_text_view_starts_display_line
@@ -87,6 +87,7 @@ import org.gnome.gdk.EventKey
 import org.gnome.gdk.Window
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.pango.TabArray
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
@@ -212,6 +213,12 @@ public var TextView.rightMargin: Int
   get() = gtk_text_view_get_right_margin(this)
   set(`value`) {
     gtk_text_view_set_right_margin(this@rightMargin, `value`)
+  }
+
+public var TextView.tabs: TabArray?
+  get() = gtk_text_view_get_tabs(this)?.reinterpret()
+  set(`value`) {
+    gtk_text_view_set_tabs(this@tabs, `value`)
   }
 
 public var TextView.topMargin: Int

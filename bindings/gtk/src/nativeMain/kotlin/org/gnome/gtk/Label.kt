@@ -1,12 +1,5 @@
-// TODO - method: get_attributes (return type)
-// TODO - method: get_ellipsize (return type)
-// TODO - method: get_layout (return type)
 // TODO - method: get_layout_offsets (param type)
-// TODO - method: get_line_wrap_mode (return type)
 // TODO - method: get_selection_bounds (param type)
-// TODO - method: set_attributes (param type)
-// TODO - method: set_ellipsize (param type)
-// TODO - method: set_line_wrap_mode (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -14,10 +7,14 @@ package org.gnome.gtk
 
 import interop.GtkLabel
 import interop.gtk_label_get_angle
+import interop.gtk_label_get_attributes
 import interop.gtk_label_get_current_uri
+import interop.gtk_label_get_ellipsize
 import interop.gtk_label_get_justify
 import interop.gtk_label_get_label
+import interop.gtk_label_get_layout
 import interop.gtk_label_get_line_wrap
+import interop.gtk_label_get_line_wrap_mode
 import interop.gtk_label_get_lines
 import interop.gtk_label_get_max_width_chars
 import interop.gtk_label_get_mnemonic_keyval
@@ -35,9 +32,12 @@ import interop.gtk_label_new
 import interop.gtk_label_new_with_mnemonic
 import interop.gtk_label_select_region
 import interop.gtk_label_set_angle
+import interop.gtk_label_set_attributes
+import interop.gtk_label_set_ellipsize
 import interop.gtk_label_set_justify
 import interop.gtk_label_set_label
 import interop.gtk_label_set_line_wrap
+import interop.gtk_label_set_line_wrap_mode
 import interop.gtk_label_set_lines
 import interop.gtk_label_set_markup
 import interop.gtk_label_set_markup_with_mnemonic
@@ -67,6 +67,10 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.pango.AttrList
+import org.gnome.pango.EllipsizeMode
+import org.gnome.pango.Layout
+import org.gnome.pango.WrapMode
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -101,8 +105,20 @@ public var Label.angle: Double
     gtk_label_set_angle(this@angle, `value`)
   }
 
+public var Label.attributes: AttrList?
+  get() = gtk_label_get_attributes(this)?.reinterpret()
+  set(`value`) {
+    gtk_label_set_attributes(this@attributes, `value`)
+  }
+
 public val Label.currentUri: String?
   get() = gtk_label_get_current_uri(this).toKString()
+
+public var Label.ellipsize: EllipsizeMode
+  get() = gtk_label_get_ellipsize(this)
+  set(`value`) {
+    gtk_label_set_ellipsize(this@ellipsize, `value`)
+  }
 
 public var Label.justify: Justification
   get() = gtk_label_get_justify(this)
@@ -116,10 +132,19 @@ public var Label.label: String?
     gtk_label_set_label(this@label, `value`)
   }
 
+public val Label.layout: Layout?
+  get() = gtk_label_get_layout(this)?.reinterpret()
+
 public var Label.lineWrap: Boolean
   get() = gtk_label_get_line_wrap(this).toBoolean()
   set(`value`) {
     gtk_label_set_line_wrap(this@lineWrap, `value`.toInt())
+  }
+
+public var Label.lineWrapMode: WrapMode
+  get() = gtk_label_get_line_wrap_mode(this)
+  set(`value`) {
+    gtk_label_set_line_wrap_mode(this@lineWrapMode, `value`)
   }
 
 public var Label.lines: Int

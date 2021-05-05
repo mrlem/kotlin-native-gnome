@@ -1,15 +1,11 @@
 // TODO - constructor: new
 // TODO - method: add_tick_callback (param type)
-// TODO - method: create_pango_context (return type)
-// TODO - method: create_pango_layout (return type)
 // TODO - method: destroyed (param type)
 // TODO - method: draw (param type)
 // TODO - method: get_allocated_size (param type)
 // TODO - method: get_allocation (param type)
 // TODO - method: get_clip (param type)
-// TODO - method: get_font_map (return type)
 // TODO - method: get_font_options (return type)
-// TODO - method: get_pango_context (return type)
 // TODO - method: get_preferred_height (param type)
 // TODO - method: get_preferred_height_and_baseline_for_width (param type)
 // TODO - method: get_preferred_height_for_width (param type)
@@ -22,7 +18,6 @@
 // TODO - method: list_accel_closures (return type)
 // TODO - method: list_mnemonic_labels (return type)
 // TODO - method: queue_draw_region (param type)
-// TODO - method: set_font_map (param type)
 // TODO - method: set_font_options (param type)
 // TODO - method: shape_combine_region (param type)
 // TODO - method: style_get (param type)
@@ -71,6 +66,8 @@ import interop.gtk_widget_can_activate_accel
 import interop.gtk_widget_child_focus
 import interop.gtk_widget_child_notify
 import interop.gtk_widget_compute_expand
+import interop.gtk_widget_create_pango_context
+import interop.gtk_widget_create_pango_layout
 import interop.gtk_widget_destroy
 import interop.gtk_widget_device_is_shadowed
 import interop.gtk_widget_error_bell
@@ -94,6 +91,7 @@ import interop.gtk_widget_get_display
 import interop.gtk_widget_get_double_buffered
 import interop.gtk_widget_get_events
 import interop.gtk_widget_get_focus_on_click
+import interop.gtk_widget_get_font_map
 import interop.gtk_widget_get_frame_clock
 import interop.gtk_widget_get_halign
 import interop.gtk_widget_get_has_tooltip
@@ -109,6 +107,7 @@ import interop.gtk_widget_get_modifier_mask
 import interop.gtk_widget_get_name
 import interop.gtk_widget_get_no_show_all
 import interop.gtk_widget_get_opacity
+import interop.gtk_widget_get_pango_context
 import interop.gtk_widget_get_parent
 import interop.gtk_widget_get_parent_window
 import interop.gtk_widget_get_path
@@ -181,6 +180,7 @@ import interop.gtk_widget_set_device_events
 import interop.gtk_widget_set_direction
 import interop.gtk_widget_set_events
 import interop.gtk_widget_set_focus_on_click
+import interop.gtk_widget_set_font_map
 import interop.gtk_widget_set_halign
 import interop.gtk_widget_set_has_tooltip
 import interop.gtk_widget_set_has_window
@@ -257,6 +257,9 @@ import org.gnome.gio.Icon
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
+import org.gnome.pango.Context
+import org.gnome.pango.FontMap
+import org.gnome.pango.Layout
 import org.gnome.toBoolean
 import org.gnome.toCArray
 import org.gnome.toInt
@@ -335,6 +338,12 @@ public var Widget.focusOnClick: Boolean
   get() = gtk_widget_get_focus_on_click(this).toBoolean()
   set(`value`) {
     gtk_widget_set_focus_on_click(this@focusOnClick, `value`.toInt())
+  }
+
+public var Widget.fontMap: FontMap?
+  get() = gtk_widget_get_font_map(this)?.reinterpret()
+  set(`value`) {
+    gtk_widget_set_font_map(this@fontMap, `value`)
   }
 
 public val Widget.frameClock: FrameClock?
@@ -417,6 +426,9 @@ public var Widget.opacity: Double
   set(`value`) {
     gtk_widget_set_opacity(this@opacity, `value`)
   }
+
+public val Widget.pangoContext: Context?
+  get() = gtk_widget_get_pango_context(this)?.reinterpret()
 
 public var Widget.parent: Widget?
   get() = gtk_widget_get_parent(this)?.reinterpret()
@@ -572,6 +584,12 @@ public fun Widget.childNotify(childProperty: String?): Unit {
 
 public fun Widget.computeExpand(orientation: Orientation): Boolean =
     gtk_widget_compute_expand(this@computeExpand, orientation).toBoolean()
+
+public fun Widget.createPangoContext(): Context? =
+    gtk_widget_create_pango_context(this@createPangoContext)?.reinterpret()
+
+public fun Widget.createPangoLayout(text: String?): Layout? =
+    gtk_widget_create_pango_layout(this@createPangoLayout, text)?.reinterpret()
 
 public fun Widget.destroy(): Unit {
   gtk_widget_destroy(this@destroy)

@@ -1,5 +1,4 @@
 // TODO - method: add_virtual_modifiers (param type)
-// TODO - method: get_direction (return type)
 // TODO - method: get_entries_for_keycode (param type)
 // TODO - method: get_entries_for_keyval (param type)
 // TODO - method: map_virtual_modifiers (param type)
@@ -11,6 +10,7 @@ package org.gnome.gdk
 
 import interop.GdkKeymap
 import interop.gdk_keymap_get_caps_lock_state
+import interop.gdk_keymap_get_direction
 import interop.gdk_keymap_get_modifier_mask
 import interop.gdk_keymap_get_modifier_state
 import interop.gdk_keymap_get_num_lock_state
@@ -23,6 +23,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
+import org.gnome.pango.Direction
 import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
 
@@ -33,6 +34,9 @@ public val Keymap.asObject: Object
 
 public val Keymap.capsLockState: Boolean
   get() = gdk_keymap_get_caps_lock_state(this).toBoolean()
+
+public val Keymap.direction: Direction
+  get() = gdk_keymap_get_direction(this)
 
 public val Keymap.modifierState: UInt
   get() = gdk_keymap_get_modifier_state(this)

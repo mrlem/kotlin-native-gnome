@@ -1,11 +1,9 @@
-// TODO - method: get_ellipsize (return type)
-// TODO - method: set_ellipsize (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkProgressBar
+import interop.gtk_progress_bar_get_ellipsize
 import interop.gtk_progress_bar_get_fraction
 import interop.gtk_progress_bar_get_inverted
 import interop.gtk_progress_bar_get_pulse_step
@@ -13,6 +11,7 @@ import interop.gtk_progress_bar_get_show_text
 import interop.gtk_progress_bar_get_text
 import interop.gtk_progress_bar_new
 import interop.gtk_progress_bar_pulse
+import interop.gtk_progress_bar_set_ellipsize
 import interop.gtk_progress_bar_set_fraction
 import interop.gtk_progress_bar_set_inverted
 import interop.gtk_progress_bar_set_pulse_step
@@ -28,6 +27,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.pango.EllipsizeMode
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -49,6 +49,12 @@ public object ProgressBarFactory {
 
 public val ProgressBar.parent: Widget
   get() = pointed.parent.ptr
+
+public var ProgressBar.ellipsize: EllipsizeMode
+  get() = gtk_progress_bar_get_ellipsize(this)
+  set(`value`) {
+    gtk_progress_bar_set_ellipsize(this@ellipsize, `value`)
+  }
 
 public var ProgressBar.fraction: Double
   get() = gtk_progress_bar_get_fraction(this)

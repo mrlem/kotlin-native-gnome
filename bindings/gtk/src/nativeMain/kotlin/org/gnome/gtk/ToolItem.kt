@@ -1,10 +1,9 @@
-// TODO - method: get_ellipsize_mode (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkToolItem
+import interop.gtk_tool_item_get_ellipsize_mode
 import interop.gtk_tool_item_get_expand
 import interop.gtk_tool_item_get_homogeneous
 import interop.gtk_tool_item_get_icon_size
@@ -42,6 +41,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
+import org.gnome.pango.EllipsizeMode
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
@@ -69,6 +69,9 @@ public object ToolItemFactory {
 
 public val ToolItem.parent: Bin
   get() = pointed.parent.ptr
+
+public val ToolItem.ellipsizeMode: EllipsizeMode
+  get() = gtk_tool_item_get_ellipsize_mode(this)
 
 public var ToolItem.expand: Boolean
   get() = gtk_tool_item_get_expand(this).toBoolean()

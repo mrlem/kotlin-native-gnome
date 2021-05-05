@@ -1,7 +1,7 @@
 headers = gtk/gtk.h gtk/gtk-a11y.h gio/gunixmounts.h gtk/gtkx.h gio/gdesktopappinfo.h gio/gunixfdlist.h \
 gio/gunixconnection.h gio/gunixfdmessage.h gio/gunixinputstream.h gio/gunixsocketaddress.h gio/gunixoutputstream.h \
-gio/gunixcredentialsmessage.h gdk/gdk.h gdk/gdkpixbuf.h
-headerFilter = gtk/** gobject/* gio/* glib/* atk/* gdk/* gdk-pixbuf/*
+gio/gunixcredentialsmessage.h gdk/gdk.h gdk/gdkpixbuf.h pango/pango.h
+headerFilter = gtk/** gobject/* gio/* glib/* atk/* gdk/* gdk-pixbuf/* pango/*
 compilerOpts.osx = -I/usr/local/include/gtk-3.0 -I/usr/local/include/glib-2.0 -I/usr/local/lib/glib-2.0/include \
 -I/usr/local/include/pango-1.0 -I/usr/local/include/cairo -I/usr/local/include -I/usr/local/include/gdk-pixbuf-2.0 \
 -I/usr/local/include/atk-1.0

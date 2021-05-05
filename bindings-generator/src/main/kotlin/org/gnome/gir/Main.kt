@@ -30,6 +30,7 @@ fun main() {
             read("/atk.gir")
             read("/gdk.gir")
             read("/gdkpixbuf.gir")
+            read("/pango.gir")
             read("/gtk3.gir")
         }
     reader.repository?.let {
