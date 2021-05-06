@@ -1,11 +1,6 @@
 package org.gnome.glib
 
 import interop.GError
-import kotlinx.cinterop.toKString
+import kotlinx.cinterop.CPointer
 
-class Error(error: GError): Exception(error.message?.toKString()) {
-
-    val domain = error.domain
-    val code = error.code
-
-}
+public typealias Error = CPointer<GError>

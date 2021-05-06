@@ -17,7 +17,7 @@ fun CPointer<gcharVar>?.toKString() = this?.toKString().orEmpty()
 
 fun CPointerVar<ByteVar>?.toKString() = this?.pointed?.ptr?.toKStringFromUtf8()
 
-fun <P : CPointed> CPointer<GList>.toKList(): List<P, CPointer<P>> = List(this)
+fun <P : CPointed> List.toKList(): org.mrlem.gnome.glib.List<P, CPointer<P>> = org.mrlem.gnome.glib.List(this)
 
 inline fun <reified P : CVariable, reified K> CPointer<P>.toKArray(mapper: (P) -> K): Array<K> {
     val arrayList = ArrayList<K>()

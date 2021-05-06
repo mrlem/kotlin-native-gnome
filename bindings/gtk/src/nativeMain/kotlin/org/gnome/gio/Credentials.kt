@@ -23,10 +23,10 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toKString
+import org.mrlem.gnome.glib.Error
 
 public typealias Credentials = CPointer<GCredentials>
 

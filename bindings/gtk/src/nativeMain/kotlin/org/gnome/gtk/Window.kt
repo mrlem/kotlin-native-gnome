@@ -125,12 +125,12 @@ import org.gnome.gdk.WindowEdge
 import org.gnome.gdk.WindowHints
 import org.gnome.gdk.WindowTypeHint
 import org.gnome.gdkpixbuf.Pixbuf
-import org.gnome.glib.Error
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
+import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
 
 public typealias Window = CPointer<GtkWindow>

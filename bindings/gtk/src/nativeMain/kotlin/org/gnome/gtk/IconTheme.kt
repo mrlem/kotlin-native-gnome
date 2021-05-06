@@ -44,12 +44,12 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Screen
 import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.Icon
-import org.gnome.glib.Error
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
 import org.gnome.toKArray
 import org.gnome.toKString
+import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
 
 public typealias IconTheme = CPointer<GtkIconTheme>

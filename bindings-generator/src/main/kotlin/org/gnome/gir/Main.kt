@@ -7,7 +7,9 @@ import java.io.File
 import kotlin.system.exitProcess
 
 const val GNOME_PACKAGE = "org.gnome"
+const val GNOME_ADDITIONS_PACKAGE = "org.mrlem.gnome"
 const val GLIB_PACKAGE = "$GNOME_PACKAGE.glib"
+const val GLIB_ADDITIONS_PACKAGE = "$GNOME_ADDITIONS_PACKAGE.glib"
 const val INTEROP_PACKAGE = "interop"
 const val KOTLIN_CINTEROP_PACKAGE = "kotlinx.cinterop"
 
@@ -25,6 +27,7 @@ fun main() {
     // parse GIR file & generate
     val reader = RepositoryReader()
         .apply {
+            read("/glib.gir")
             read("/gobject.gir")
             read("/gio.gir")
             read("/atk.gir")

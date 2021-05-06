@@ -1,7 +1,8 @@
 package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.*
-import org.gnome.gir.GLIB_PACKAGE
+import org.gnome.gir.GLIB_ADDITIONS_PACKAGE
+import org.gnome.gir.GNOME_ADDITIONS_PACKAGE
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.ArrayTypeDefinition
@@ -70,7 +71,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
         builder
             .addAnnotation(
                 AnnotationSpec.builder(throwsClassName)
-                    .addMember("%T::class", ClassName(GLIB_PACKAGE, "Error"))
+                    .addMember("%T::class", ClassName(GLIB_ADDITIONS_PACKAGE, "Error"))
                     .build()
             )
             // block
@@ -94,7 +95,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
                 "errors.%M.%M?.let { throw %T(it) }",
                 pointedMemberName,
                 pointedMemberName,
-                ClassName(GLIB_PACKAGE, "Error")
+                ClassName(GLIB_ADDITIONS_PACKAGE, "Error")
             )
             .addStatement("return result")
             .endControlFlow()
