@@ -1,4 +1,3 @@
-// TODO - constructor: new_from_keyfile
 // TODO - method: get_string_list (param type)
 // TODO - method: launch_uris_as_manager (param type)
 // TODO - method: launch_uris_as_manager_with_fds (param type)
@@ -25,12 +24,14 @@ import interop.g_desktop_app_info_launch_action
 import interop.g_desktop_app_info_list_actions
 import interop.g_desktop_app_info_new
 import interop.g_desktop_app_info_new_from_filename
+import interop.g_desktop_app_info_new_from_keyfile
 import kotlin.Array
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.KeyFile
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toKArray
@@ -47,6 +48,9 @@ public object DesktopAppInfoFactory {
 
   public fun newFromFilename(filename: String?): DesktopAppInfo =
       g_desktop_app_info_new_from_filename(filename)!!.reinterpret()
+
+  public fun newFromKeyfile(keyFile: KeyFile?): DesktopAppInfo =
+      g_desktop_app_info_new_from_keyfile(keyFile?.reinterpret())!!.reinterpret()
 }
 
 public val DesktopAppInfo.categories: String?

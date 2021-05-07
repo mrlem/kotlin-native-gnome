@@ -1,5 +1,5 @@
 // TODO - method: get_selected (param type)
-// TODO - method: get_selected_rows (return type)
+// TODO - method: get_selected_rows (param type)
 // TODO - method: get_user_data (return type)
 // TODO - method: selected_foreach (param type)
 // TODO - method: set_select_function (param type)

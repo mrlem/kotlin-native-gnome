@@ -5,7 +5,6 @@
 // TODO - method: get_dest_item_at_pos (param type)
 // TODO - method: get_drag_dest_item (param type)
 // TODO - method: get_item_at_pos (param type)
-// TODO - method: get_selected_items (return type)
 // TODO - method: get_tooltip_context (param type)
 // TODO - method: get_visible_range (param type)
 // TODO - method: selected_foreach (param type)
@@ -32,6 +31,7 @@ import interop.gtk_icon_view_get_path_at_pos
 import interop.gtk_icon_view_get_pixbuf_column
 import interop.gtk_icon_view_get_reorderable
 import interop.gtk_icon_view_get_row_spacing
+import interop.gtk_icon_view_get_selected_items
 import interop.gtk_icon_view_get_selection_mode
 import interop.gtk_icon_view_get_spacing
 import interop.gtk_icon_view_get_text_column
@@ -82,6 +82,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.DragAction
 import org.gnome.gdk.ModifierType
+import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -187,6 +188,9 @@ public var IconView.rowSpacing: Int
   set(`value`) {
     gtk_icon_view_set_row_spacing(this@rowSpacing, `value`)
   }
+
+public val IconView.selectedItems: List?
+  get() = gtk_icon_view_get_selected_items(this)?.reinterpret()
 
 public var IconView.selectionMode: SelectionMode
   get() = gtk_icon_view_get_selection_mode(this)

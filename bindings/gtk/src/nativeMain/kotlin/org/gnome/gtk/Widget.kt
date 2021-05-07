@@ -15,8 +15,6 @@
 // TODO - method: get_size_request (param type)
 // TODO - method: input_shape_combine_region (param type)
 // TODO - method: intersect (param type)
-// TODO - method: list_accel_closures (return type)
-// TODO - method: list_mnemonic_labels (return type)
 // TODO - method: queue_draw_region (param type)
 // TODO - method: set_font_options (param type)
 // TODO - method: shape_combine_region (param type)
@@ -152,7 +150,9 @@ import interop.gtk_widget_is_sensitive
 import interop.gtk_widget_is_toplevel
 import interop.gtk_widget_is_visible
 import interop.gtk_widget_keynav_failed
+import interop.gtk_widget_list_accel_closures
 import interop.gtk_widget_list_action_prefixes
+import interop.gtk_widget_list_mnemonic_labels
 import interop.gtk_widget_map
 import interop.gtk_widget_mnemonic_activate
 import interop.gtk_widget_queue_allocate
@@ -254,6 +254,7 @@ import org.gnome.gdk.Visual
 import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.ActionGroup
 import org.gnome.gio.Icon
+import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
@@ -813,8 +814,14 @@ public fun Widget.isVisible(): Boolean = gtk_widget_is_visible(this@isVisible).t
 public fun Widget.keynavFailed(direction: DirectionType): Boolean =
     gtk_widget_keynav_failed(this@keynavFailed, direction).toBoolean()
 
+public fun Widget.listAccelClosures(): List? =
+    gtk_widget_list_accel_closures(this@listAccelClosures)?.reinterpret()
+
 public fun Widget.listActionPrefixes(): Array<String>? =
     gtk_widget_list_action_prefixes(this@listActionPrefixes)?.toKArray { it.toKString()!! }
+
+public fun Widget.listMnemonicLabels(): List? =
+    gtk_widget_list_mnemonic_labels(this@listMnemonicLabels)?.reinterpret()
 
 public fun Widget.map(): Unit {
   gtk_widget_map(this@map)

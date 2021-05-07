@@ -1,5 +1,4 @@
 // TODO - method: bind_model (param type)
-// TODO - method: get_selected_rows (return type)
 // TODO - method: selected_foreach (param type)
 // TODO - method: set_filter_func (param type)
 // TODO - method: set_header_func (param type)
@@ -17,6 +16,7 @@ import interop.gtk_list_box_get_adjustment
 import interop.gtk_list_box_get_row_at_index
 import interop.gtk_list_box_get_row_at_y
 import interop.gtk_list_box_get_selected_row
+import interop.gtk_list_box_get_selected_rows
 import interop.gtk_list_box_get_selection_mode
 import interop.gtk_list_box_insert
 import interop.gtk_list_box_invalidate_filter
@@ -39,6 +39,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -80,6 +81,9 @@ public var ListBox.adjustment: Adjustment?
 
 public val ListBox.selectedRow: ListBoxRow?
   get() = gtk_list_box_get_selected_row(this)?.reinterpret()
+
+public val ListBox.selectedRows: List?
+  get() = gtk_list_box_get_selected_rows(this)?.reinterpret()
 
 public var ListBox.selectionMode: SelectionMode
   get() = gtk_list_box_get_selection_mode(this)

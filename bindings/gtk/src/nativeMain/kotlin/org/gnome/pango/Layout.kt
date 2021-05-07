@@ -1,7 +1,5 @@
 // TODO - method: get_cursor_pos (param type)
 // TODO - method: get_extents (param type)
-// TODO - method: get_lines (return type)
-// TODO - method: get_lines_readonly (return type)
 // TODO - method: get_log_attrs (param type)
 // TODO - method: get_log_attrs_readonly (param type)
 // TODO - method: get_pixel_extents (param type)
@@ -36,6 +34,8 @@ import interop.pango_layout_get_line
 import interop.pango_layout_get_line_count
 import interop.pango_layout_get_line_readonly
 import interop.pango_layout_get_line_spacing
+import interop.pango_layout_get_lines
+import interop.pango_layout_get_lines_readonly
 import interop.pango_layout_get_serial
 import interop.pango_layout_get_single_paragraph_mode
 import interop.pango_layout_get_spacing
@@ -71,6 +71,7 @@ import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.SList
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
@@ -154,6 +155,12 @@ public var Layout.lineSpacing: Float
   set(`value`) {
     pango_layout_set_line_spacing(this@lineSpacing, `value`)
   }
+
+public val Layout.lines: SList?
+  get() = pango_layout_get_lines(this)?.reinterpret()
+
+public val Layout.linesReadonly: SList?
+  get() = pango_layout_get_lines_readonly(this)?.reinterpret()
 
 public val Layout.serial: UInt
   get() = pango_layout_get_serial(this)

@@ -1,5 +1,3 @@
-// TODO - method: get_items (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -8,6 +6,7 @@ import interop.GError
 import interop.GtkRecentManager
 import interop.gtk_recent_manager_add_full
 import interop.gtk_recent_manager_add_item
+import interop.gtk_recent_manager_get_items
 import interop.gtk_recent_manager_has_item
 import interop.gtk_recent_manager_lookup_item
 import interop.gtk_recent_manager_move_item
@@ -25,6 +24,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.mrlem.gnome.glib.Error
@@ -38,6 +38,9 @@ public val RecentManager.asObject: Object
 public object RecentManagerFactory {
   public fun new(): RecentManager = gtk_recent_manager_new()!!.reinterpret()
 }
+
+public val RecentManager.items: List?
+  get() = gtk_recent_manager_get_items(this)?.reinterpret()
 
 public fun RecentManager.addFull(uri: String?, recentData: RecentData?): Boolean =
     gtk_recent_manager_add_full(this@addFull, uri, recentData?.reinterpret()).toBoolean()

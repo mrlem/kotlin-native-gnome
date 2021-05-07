@@ -1,10 +1,9 @@
-// TODO - method: get_item_attribute_value (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GMenuModel
+import interop.g_menu_model_get_item_attribute_value
 import interop.g_menu_model_get_item_link
 import interop.g_menu_model_get_n_items
 import interop.g_menu_model_is_mutable
@@ -19,6 +18,8 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Variant
+import org.gnome.glib.VariantType
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
@@ -33,6 +34,13 @@ public val MenuModel.parentInstance: Object
 
 public val MenuModel.nItems: Int
   get() = g_menu_model_get_n_items(this)
+
+public fun MenuModel.getItemAttributeValue(
+  itemIndex: Int,
+  attribute: String?,
+  expectedType: VariantType?
+): Variant? = g_menu_model_get_item_attribute_value(this@getItemAttributeValue, itemIndex,
+    attribute, expectedType?.reinterpret())?.reinterpret()
 
 public fun MenuModel.getItemLink(itemIndex: Int, link: String?): MenuModel? =
     g_menu_model_get_item_link(this@getItemLink, itemIndex, link)?.reinterpret()

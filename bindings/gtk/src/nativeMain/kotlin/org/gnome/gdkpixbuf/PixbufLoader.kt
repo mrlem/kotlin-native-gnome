@@ -1,6 +1,5 @@
 // TODO - constructor: new_with_mime_type
 // TODO - constructor: new_with_type
-// TODO - method: write_bytes (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -15,6 +14,7 @@ import interop.gdk_pixbuf_loader_get_pixbuf
 import interop.gdk_pixbuf_loader_new
 import interop.gdk_pixbuf_loader_set_size
 import interop.gdk_pixbuf_loader_write
+import interop.gdk_pixbuf_loader_write_bytes
 import kotlin.Array
 import kotlin.Boolean
 import kotlin.Int
@@ -28,6 +28,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Bytes
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -72,6 +73,15 @@ public fun PixbufLoader.write(buf: Array<UByte>?, count: ULong): Boolean = memSc
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = memScoped { gdk_pixbuf_loader_write(this@write, buf?.toCArray(memScope),
       count, errors).toBoolean() }
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun PixbufLoader.writeBytes(buffer: Bytes?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gdk_pixbuf_loader_write_bytes(this@writeBytes, buffer?.reinterpret(),
+      errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

@@ -1,6 +1,4 @@
-// TODO - method: get_error (return type)
 // TODO - method: get_required_version (param type)
-// TODO - method: set_error (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -10,6 +8,7 @@ import interop.GtkGLArea
 import interop.gtk_gl_area_attach_buffers
 import interop.gtk_gl_area_get_auto_render
 import interop.gtk_gl_area_get_context
+import interop.gtk_gl_area_get_error
 import interop.gtk_gl_area_get_has_alpha
 import interop.gtk_gl_area_get_has_depth_buffer
 import interop.gtk_gl_area_get_has_stencil_buffer
@@ -18,6 +17,7 @@ import interop.gtk_gl_area_make_current
 import interop.gtk_gl_area_new
 import interop.gtk_gl_area_queue_render
 import interop.gtk_gl_area_set_auto_render
+import interop.gtk_gl_area_set_error
 import interop.gtk_gl_area_set_has_alpha
 import interop.gtk_gl_area_set_has_depth_buffer
 import interop.gtk_gl_area_set_has_stencil_buffer
@@ -29,6 +29,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.GLContext
+import org.gnome.glib.Error
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -58,6 +59,12 @@ public var GLArea.autoRender: Boolean
 
 public val GLArea.context: GLContext?
   get() = gtk_gl_area_get_context(this)?.reinterpret()
+
+public var GLArea.error: Error?
+  get() = gtk_gl_area_get_error(this)?.reinterpret()
+  set(`value`) {
+    gtk_gl_area_set_error(this@error, `value`)
+  }
 
 public var GLArea.hasAlpha: Boolean
   get() = gtk_gl_area_get_has_alpha(this).toBoolean()

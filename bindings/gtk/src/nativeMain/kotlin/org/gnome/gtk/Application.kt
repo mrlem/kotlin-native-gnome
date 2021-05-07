@@ -1,5 +1,3 @@
-// TODO - method: get_windows (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -13,6 +11,7 @@ import interop.gtk_application_get_app_menu
 import interop.gtk_application_get_menu_by_id
 import interop.gtk_application_get_menubar
 import interop.gtk_application_get_window_by_id
+import interop.gtk_application_get_windows
 import interop.gtk_application_inhibit
 import interop.gtk_application_is_inhibited
 import interop.gtk_application_list_action_descriptions
@@ -36,6 +35,7 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gio.ApplicationFlags
 import org.gnome.gio.Menu
 import org.gnome.gio.MenuModel
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -73,6 +73,9 @@ public var Application.menubar: MenuModel?
   set(`value`) {
     gtk_application_set_menubar(this@menubar, `value`)
   }
+
+public val Application.windows: List?
+  get() = gtk_application_get_windows(this)?.reinterpret()
 
 public fun Application.addWindow(window: Window?): Unit {
   gtk_application_add_window(this@addWindow, window?.reinterpret())

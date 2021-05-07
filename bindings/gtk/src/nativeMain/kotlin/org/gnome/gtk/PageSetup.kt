@@ -1,9 +1,5 @@
 // TODO - constructor: new_from_file
-// TODO - constructor: new_from_gvariant
 // TODO - constructor: new_from_key_file
-// TODO - method: load_key_file (param type)
-// TODO - method: to_gvariant (return type)
-// TODO - method: to_key_file (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -23,7 +19,9 @@ import interop.gtk_page_setup_get_paper_width
 import interop.gtk_page_setup_get_right_margin
 import interop.gtk_page_setup_get_top_margin
 import interop.gtk_page_setup_load_file
+import interop.gtk_page_setup_load_key_file
 import interop.gtk_page_setup_new
+import interop.gtk_page_setup_new_from_gvariant
 import interop.gtk_page_setup_set_bottom_margin
 import interop.gtk_page_setup_set_left_margin
 import interop.gtk_page_setup_set_orientation
@@ -32,6 +30,8 @@ import interop.gtk_page_setup_set_paper_size_and_default_margins
 import interop.gtk_page_setup_set_right_margin
 import interop.gtk_page_setup_set_top_margin
 import interop.gtk_page_setup_to_file
+import interop.gtk_page_setup_to_gvariant
+import interop.gtk_page_setup_to_key_file
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.String
@@ -42,6 +42,8 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.KeyFile
+import org.gnome.glib.Variant
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.mrlem.gnome.glib.Error
@@ -53,6 +55,9 @@ public val PageSetup.asObject: Object
 
 public object PageSetupFactory {
   public fun new(): PageSetup = gtk_page_setup_new()!!.reinterpret()
+
+  public fun newFromGvariant(variant: Variant?): PageSetup =
+      gtk_page_setup_new_from_gvariant(variant?.reinterpret())!!.reinterpret()
 }
 
 public var PageSetup.orientation: PageOrientation
@@ -101,6 +106,15 @@ public fun PageSetup.loadFile(fileName: String?): Boolean = memScoped {
   return result
 }
 
+@Throws(Error::class)
+public fun PageSetup.loadKeyFile(keyFile: KeyFile?, groupName: String?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gtk_page_setup_load_key_file(this@loadKeyFile, keyFile?.reinterpret(),
+      groupName, errors).toBoolean()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
 public fun PageSetup.setBottomMargin(margin: Double, unit: Unit): kotlin.Unit {
   gtk_page_setup_set_bottom_margin(this@setBottomMargin, margin, unit)
 }
@@ -128,4 +142,11 @@ public fun PageSetup.toFile(fileName: String?): Boolean = memScoped {
   val result: Boolean = gtk_page_setup_to_file(this@toFile, fileName, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
+}
+
+public fun PageSetup.toGvariant(): Variant? =
+    gtk_page_setup_to_gvariant(this@toGvariant)?.reinterpret()
+
+public fun PageSetup.toKeyFile(keyFile: KeyFile?, groupName: String?): kotlin.Unit {
+  gtk_page_setup_to_key_file(this@toKeyFile, keyFile?.reinterpret(), groupName)
 }

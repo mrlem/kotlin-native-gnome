@@ -1,6 +1,4 @@
-// TODO - constructor: new_from_gvariant
 // TODO - method: add_custom (param type)
-// TODO - method: to_gvariant (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -14,12 +12,15 @@ import interop.gtk_file_filter_filter
 import interop.gtk_file_filter_get_name
 import interop.gtk_file_filter_get_needed
 import interop.gtk_file_filter_new
+import interop.gtk_file_filter_new_from_gvariant
 import interop.gtk_file_filter_set_name
+import interop.gtk_file_filter_to_gvariant
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Variant
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -35,6 +36,9 @@ public val FileFilter.asInitiallyUnowned: InitiallyUnowned
 
 public object FileFilterFactory {
   public fun new(): FileFilter = gtk_file_filter_new()!!.reinterpret()
+
+  public fun newFromGvariant(variant: Variant?): FileFilter =
+      gtk_file_filter_new_from_gvariant(variant?.reinterpret())!!.reinterpret()
 }
 
 public var FileFilter.name: String?
@@ -60,3 +64,6 @@ public fun FileFilter.addPixbufFormats(): Unit {
 
 public fun FileFilter.filter(filterInfo: FileFilterInfo?): Boolean =
     gtk_file_filter_filter(this@filter, filterInfo?.reinterpret()).toBoolean()
+
+public fun FileFilter.toGvariant(): Variant? =
+    gtk_file_filter_to_gvariant(this@toGvariant)?.reinterpret()

@@ -1,6 +1,4 @@
 // TODO - method: get_arguments (param type)
-// TODO - method: get_options_dict (return type)
-// TODO - method: get_platform_data (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -12,6 +10,8 @@ import interop.g_application_command_line_get_cwd
 import interop.g_application_command_line_get_environ
 import interop.g_application_command_line_get_exit_status
 import interop.g_application_command_line_get_is_remote
+import interop.g_application_command_line_get_options_dict
+import interop.g_application_command_line_get_platform_data
 import interop.g_application_command_line_get_stdin
 import interop.g_application_command_line_getenv
 import interop.g_application_command_line_set_exit_status
@@ -23,6 +23,8 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Variant
+import org.gnome.glib.VariantDict
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toKArray
@@ -50,6 +52,12 @@ public var ApplicationCommandLine.exitStatus: Int
 
 public val ApplicationCommandLine.isRemote: Boolean
   get() = g_application_command_line_get_is_remote(this).toBoolean()
+
+public val ApplicationCommandLine.optionsDict: VariantDict?
+  get() = g_application_command_line_get_options_dict(this)?.reinterpret()
+
+public val ApplicationCommandLine.platformData: Variant?
+  get() = g_application_command_line_get_platform_data(this)?.reinterpret()
 
 public val ApplicationCommandLine.stdin: InputStream?
   get() = g_application_command_line_get_stdin(this)?.reinterpret()

@@ -1,5 +1,4 @@
 // TODO - method: bind_model (param type)
-// TODO - method: get_selected_children (return type)
 // TODO - method: selected_foreach (param type)
 // TODO - method: set_filter_func (param type)
 // TODO - method: set_sort_func (param type)
@@ -17,6 +16,7 @@ import interop.gtk_flow_box_get_homogeneous
 import interop.gtk_flow_box_get_max_children_per_line
 import interop.gtk_flow_box_get_min_children_per_line
 import interop.gtk_flow_box_get_row_spacing
+import interop.gtk_flow_box_get_selected_children
 import interop.gtk_flow_box_get_selection_mode
 import interop.gtk_flow_box_insert
 import interop.gtk_flow_box_invalidate_filter
@@ -43,6 +43,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -105,6 +106,9 @@ public var FlowBox.rowSpacing: UInt
   set(`value`) {
     gtk_flow_box_set_row_spacing(this@rowSpacing, `value`)
   }
+
+public val FlowBox.selectedChildren: List?
+  get() = gtk_flow_box_get_selected_children(this)?.reinterpret()
 
 public var FlowBox.selectionMode: SelectionMode
   get() = gtk_flow_box_get_selection_mode(this)

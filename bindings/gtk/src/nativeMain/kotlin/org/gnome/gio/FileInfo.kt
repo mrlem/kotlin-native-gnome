@@ -1,8 +1,5 @@
 // TODO - method: get_attribute_data (param type)
-// TODO - method: get_deletion_date (return type)
-// TODO - method: get_modification_date_time (return type)
 // TODO - method: set_attribute (param type)
-// TODO - method: set_modification_date_time (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -25,6 +22,7 @@ import interop.g_file_info_get_attribute_type
 import interop.g_file_info_get_attribute_uint32
 import interop.g_file_info_get_attribute_uint64
 import interop.g_file_info_get_content_type
+import interop.g_file_info_get_deletion_date
 import interop.g_file_info_get_display_name
 import interop.g_file_info_get_edit_name
 import interop.g_file_info_get_etag
@@ -33,6 +31,7 @@ import interop.g_file_info_get_icon
 import interop.g_file_info_get_is_backup
 import interop.g_file_info_get_is_hidden
 import interop.g_file_info_get_is_symlink
+import interop.g_file_info_get_modification_date_time
 import interop.g_file_info_get_name
 import interop.g_file_info_get_size
 import interop.g_file_info_get_sort_order
@@ -61,6 +60,7 @@ import interop.g_file_info_set_file_type
 import interop.g_file_info_set_icon
 import interop.g_file_info_set_is_hidden
 import interop.g_file_info_set_is_symlink
+import interop.g_file_info_set_modification_date_time
 import interop.g_file_info_set_name
 import interop.g_file_info_set_size
 import interop.g_file_info_set_sort_order
@@ -78,6 +78,7 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.DateTime
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -99,6 +100,9 @@ public var FileInfo.contentType: String?
   set(`value`) {
     g_file_info_set_content_type(this@contentType, `value`)
   }
+
+public val FileInfo.deletionDate: DateTime?
+  get() = g_file_info_get_deletion_date(this)?.reinterpret()
 
 public var FileInfo.displayName: String?
   get() = g_file_info_get_display_name(this).toKString()
@@ -140,6 +144,12 @@ public var FileInfo.isSymlink: Boolean
   get() = g_file_info_get_is_symlink(this).toBoolean()
   set(`value`) {
     g_file_info_set_is_symlink(this@isSymlink, `value`.toInt())
+  }
+
+public var FileInfo.modificationDateTime: DateTime?
+  get() = g_file_info_get_modification_date_time(this)?.reinterpret()
+  set(`value`) {
+    g_file_info_set_modification_date_time(this@modificationDateTime, `value`)
   }
 
 public var FileInfo.name: String?

@@ -2,7 +2,6 @@
 // TODO - method: lookup_certificate_issuer_async (param type)
 // TODO - method: lookup_certificates_issued_by (return type)
 // TODO - method: lookup_certificates_issued_by_async (param type)
-// TODO - method: lookup_certificates_issued_by_finish (return type)
 // TODO - method: verify_chain_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -16,6 +15,7 @@ import interop.g_tls_database_lookup_certificate_for_handle
 import interop.g_tls_database_lookup_certificate_for_handle_finish
 import interop.g_tls_database_lookup_certificate_issuer
 import interop.g_tls_database_lookup_certificate_issuer_finish
+import interop.g_tls_database_lookup_certificates_issued_by_finish
 import interop.g_tls_database_verify_chain
 import interop.g_tls_database_verify_chain_finish
 import kotlin.String
@@ -26,6 +26,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
@@ -90,6 +91,16 @@ public fun TlsDatabase.lookupCertificateIssuerFinish(result: AsyncResult?): TlsC
   val errors = allocPointerTo<GError>().ptr
   val result: TlsCertificate? =
       g_tls_database_lookup_certificate_issuer_finish(this@lookupCertificateIssuerFinish,
+      result?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun TlsDatabase.lookupCertificatesIssuedByFinish(result: AsyncResult?): List? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: List? =
+      g_tls_database_lookup_certificates_issued_by_finish(this@lookupCertificatesIssuedByFinish,
       result?.reinterpret(), errors)?.reinterpret()
   errors.pointed.pointed?.let { throw Error(it) }
   return result

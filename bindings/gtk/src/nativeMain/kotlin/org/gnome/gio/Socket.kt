@@ -1,8 +1,5 @@
 // TODO - constructor: new
 // TODO - constructor: new_from_fd
-// TODO - method: condition_check (return type)
-// TODO - method: condition_timed_wait (param type)
-// TODO - method: condition_wait (param type)
 // TODO - method: get_option (param type)
 // TODO - method: receive_from (param type)
 // TODO - method: receive_message (param type)
@@ -18,6 +15,9 @@ import interop.g_socket_accept
 import interop.g_socket_bind
 import interop.g_socket_check_connect_result
 import interop.g_socket_close
+import interop.g_socket_condition_check
+import interop.g_socket_condition_timed_wait
+import interop.g_socket_condition_wait
 import interop.g_socket_connect
 import interop.g_socket_connection_factory_create_connection
 import interop.g_socket_get_available_bytes
@@ -79,6 +79,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.IOCondition
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -188,6 +189,32 @@ public fun Socket.checkConnectResult(): Boolean = memScoped {
 public fun Socket.close(): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_socket_close(this@close, errors).toBoolean()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+public fun Socket.conditionCheck(condition: IOCondition): IOCondition =
+    g_socket_condition_check(this@conditionCheck, condition)
+
+@Throws(Error::class)
+public fun Socket.conditionTimedWait(
+  condition: IOCondition,
+  timeoutUs: Long,
+  cancellable: Cancellable?
+): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_socket_condition_timed_wait(this@conditionTimedWait, condition, timeoutUs,
+      cancellable?.reinterpret(), errors).toBoolean()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun Socket.conditionWait(condition: IOCondition, cancellable: Cancellable?): Boolean =
+    memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_socket_condition_wait(this@conditionWait, condition,
+      cancellable?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

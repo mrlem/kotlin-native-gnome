@@ -5,7 +5,6 @@
 // TODO - method: child_set_valist (param type)
 // TODO - method: forall (param type)
 // TODO - method: foreach (param type)
-// TODO - method: get_children (return type)
 // TODO - method: propagate_draw (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -22,6 +21,7 @@ import interop.gtk_container_child_notify_by_pspec
 import interop.gtk_container_child_set_property
 import interop.gtk_container_child_type
 import interop.gtk_container_get_border_width
+import interop.gtk_container_get_children
 import interop.gtk_container_get_focus_child
 import interop.gtk_container_get_focus_hadjustment
 import interop.gtk_container_get_focus_vadjustment
@@ -38,6 +38,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.ParamSpec
@@ -63,6 +64,9 @@ public var Container.borderWidth: UInt
   set(`value`) {
     gtk_container_set_border_width(this@borderWidth, `value`)
   }
+
+public val Container.children: List?
+  get() = gtk_container_get_children(this)?.reinterpret()
 
 public var Container.focusChild: Widget?
   get() = gtk_container_get_focus_child(this)?.reinterpret()

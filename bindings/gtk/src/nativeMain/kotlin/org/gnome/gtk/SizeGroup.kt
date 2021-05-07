@@ -1,5 +1,3 @@
-// TODO - method: get_widgets (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -7,6 +5,7 @@ package org.gnome.gtk
 import interop.GtkSizeGroup
 import interop.gtk_size_group_add_widget
 import interop.gtk_size_group_get_mode
+import interop.gtk_size_group_get_widgets
 import interop.gtk_size_group_new
 import interop.gtk_size_group_remove_widget
 import interop.gtk_size_group_set_mode
@@ -15,6 +14,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.SList
 import org.gnome.gobject.Object
 
 public typealias SizeGroup = CPointer<GtkSizeGroup>
@@ -34,6 +34,9 @@ public var SizeGroup.mode: SizeGroupMode
   set(`value`) {
     gtk_size_group_set_mode(this@mode, `value`)
   }
+
+public val SizeGroup.widgets: SList?
+  get() = gtk_size_group_get_widgets(this)?.reinterpret()
 
 public fun SizeGroup.addWidget(widget: Widget?): Unit {
   gtk_size_group_add_widget(this@addWidget, widget?.reinterpret())

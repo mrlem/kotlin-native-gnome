@@ -1,17 +1,17 @@
-// TODO - method: get_widgets (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
 
 import interop.GtkTextChildAnchor
 import interop.gtk_text_child_anchor_get_deleted
+import interop.gtk_text_child_anchor_get_widgets
 import interop.gtk_text_child_anchor_new
 import kotlin.Boolean
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 
@@ -29,3 +29,6 @@ public val TextChildAnchor.parentInstance: Object
 
 public val TextChildAnchor.deleted: Boolean
   get() = gtk_text_child_anchor_get_deleted(this).toBoolean()
+
+public val TextChildAnchor.widgets: List?
+  get() = gtk_text_child_anchor_get_widgets(this)?.reinterpret()

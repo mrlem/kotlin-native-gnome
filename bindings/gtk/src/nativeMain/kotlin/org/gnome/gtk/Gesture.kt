@@ -1,8 +1,6 @@
 // TODO - method: get_bounding_box (param type)
 // TODO - method: get_bounding_box_center (param type)
-// TODO - method: get_group (return type)
 // TODO - method: get_point (param type)
-// TODO - method: get_sequences (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -10,9 +8,11 @@ package org.gnome.gtk
 
 import interop.GtkGesture
 import interop.gtk_gesture_get_device
+import interop.gtk_gesture_get_group
 import interop.gtk_gesture_get_last_event
 import interop.gtk_gesture_get_last_updated_sequence
 import interop.gtk_gesture_get_sequence_state
+import interop.gtk_gesture_get_sequences
 import interop.gtk_gesture_get_window
 import interop.gtk_gesture_group
 import interop.gtk_gesture_handles_sequence
@@ -31,6 +31,7 @@ import org.gnome.gdk.Device
 import org.gnome.gdk.Event
 import org.gnome.gdk.EventSequence
 import org.gnome.gdk.Window
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
@@ -46,8 +47,14 @@ public val Gesture.asEventController: EventController
 public val Gesture.device: Device?
   get() = gtk_gesture_get_device(this)?.reinterpret()
 
+public val Gesture.group: List?
+  get() = gtk_gesture_get_group(this)?.reinterpret()
+
 public val Gesture.lastUpdatedSequence: EventSequence?
   get() = gtk_gesture_get_last_updated_sequence(this)?.reinterpret()
+
+public val Gesture.sequences: List?
+  get() = gtk_gesture_get_sequences(this)?.reinterpret()
 
 public var Gesture.window: Window?
   get() = gtk_gesture_get_window(this)?.reinterpret()

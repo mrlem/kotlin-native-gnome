@@ -117,7 +117,8 @@ private val knownNamespaces = listOf(
     "Atk",
     "Gdk",
     "GdkPixbuf",
-    "Pango"
+    "Pango",
+    "GLib"
 )
 
 private val TypeDefinition.className: TypeName?

@@ -1,5 +1,3 @@
-// TODO - method: list_shortcuts (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -16,6 +14,7 @@ import interop.gtk_places_sidebar_get_show_other_locations
 import interop.gtk_places_sidebar_get_show_recent
 import interop.gtk_places_sidebar_get_show_starred_location
 import interop.gtk_places_sidebar_get_show_trash
+import interop.gtk_places_sidebar_list_shortcuts
 import interop.gtk_places_sidebar_new
 import interop.gtk_places_sidebar_remove_shortcut
 import interop.gtk_places_sidebar_set_drop_targets_visible
@@ -35,6 +34,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.DragContext
 import org.gnome.gio.File
+import org.gnome.glib.SList
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -125,6 +125,9 @@ public fun PlacesSidebar.addShortcut(location: File?): Unit {
 
 public fun PlacesSidebar.getNthBookmark(n: Int): File? =
     gtk_places_sidebar_get_nth_bookmark(this@getNthBookmark, n)?.reinterpret()
+
+public fun PlacesSidebar.listShortcuts(): SList? =
+    gtk_places_sidebar_list_shortcuts(this@listShortcuts)?.reinterpret()
 
 public fun PlacesSidebar.removeShortcut(location: File?): Unit {
   gtk_places_sidebar_remove_shortcut(this@removeShortcut, location?.reinterpret())

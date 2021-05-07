@@ -1,4 +1,3 @@
-// TODO - method: get_slaves (return type)
 // TODO - method: grab (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -10,12 +9,14 @@ import interop.gdk_seat_get_capabilities
 import interop.gdk_seat_get_display
 import interop.gdk_seat_get_keyboard
 import interop.gdk_seat_get_pointer
+import interop.gdk_seat_get_slaves
 import interop.gdk_seat_ungrab
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.mrlem.gnome.gobject.connect
 
@@ -38,6 +39,9 @@ public val Seat.keyboard: Device?
 
 public val Seat.pointer: Device?
   get() = gdk_seat_get_pointer(this)?.reinterpret()
+
+public fun Seat.getSlaves(capabilities: SeatCapabilities): List? =
+    gdk_seat_get_slaves(this@getSlaves, capabilities)?.reinterpret()
 
 public fun Seat.ungrab(): Unit {
   gdk_seat_ungrab(this@ungrab)

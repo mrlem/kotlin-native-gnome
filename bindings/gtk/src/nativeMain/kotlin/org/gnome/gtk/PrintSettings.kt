@@ -1,11 +1,7 @@
 // TODO - constructor: new_from_file
-// TODO - constructor: new_from_gvariant
 // TODO - constructor: new_from_key_file
 // TODO - method: foreach (param type)
 // TODO - method: get_page_ranges (param type)
-// TODO - method: load_key_file (param type)
-// TODO - method: to_gvariant (return type)
-// TODO - method: to_key_file (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -48,7 +44,9 @@ import interop.gtk_print_settings_get_scale
 import interop.gtk_print_settings_get_use_color
 import interop.gtk_print_settings_has_key
 import interop.gtk_print_settings_load_file
+import interop.gtk_print_settings_load_key_file
 import interop.gtk_print_settings_new
+import interop.gtk_print_settings_new_from_gvariant
 import interop.gtk_print_settings_set
 import interop.gtk_print_settings_set_bool
 import interop.gtk_print_settings_set_collate
@@ -80,6 +78,8 @@ import interop.gtk_print_settings_set_reverse
 import interop.gtk_print_settings_set_scale
 import interop.gtk_print_settings_set_use_color
 import interop.gtk_print_settings_to_file
+import interop.gtk_print_settings_to_gvariant
+import interop.gtk_print_settings_to_key_file
 import interop.gtk_print_settings_unset
 import kotlin.Array
 import kotlin.Boolean
@@ -95,6 +95,8 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.KeyFile
+import org.gnome.glib.Variant
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -109,6 +111,9 @@ public val PrintSettings.asObject: Object
 
 public object PrintSettingsFactory {
   public fun new(): PrintSettings = gtk_print_settings_new()!!.reinterpret()
+
+  public fun newFromGvariant(variant: Variant?): PrintSettings =
+      gtk_print_settings_new_from_gvariant(variant?.reinterpret())!!.reinterpret()
 }
 
 public var PrintSettings.collate: Boolean
@@ -282,6 +287,15 @@ public fun PrintSettings.loadFile(fileName: String?): Boolean = memScoped {
   return result
 }
 
+@Throws(Error::class)
+public fun PrintSettings.loadKeyFile(keyFile: KeyFile?, groupName: String?): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = gtk_print_settings_load_key_file(this@loadKeyFile, keyFile?.reinterpret(),
+      groupName, errors).toBoolean()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
 public fun PrintSettings.`set`(key: String?, `value`: String?): kotlin.Unit {
   gtk_print_settings_set(this@`set`, key, `value`)
 }
@@ -329,6 +343,13 @@ public fun PrintSettings.toFile(fileName: String?): Boolean = memScoped {
   val result: Boolean = gtk_print_settings_to_file(this@toFile, fileName, errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
+}
+
+public fun PrintSettings.toGvariant(): Variant? =
+    gtk_print_settings_to_gvariant(this@toGvariant)?.reinterpret()
+
+public fun PrintSettings.toKeyFile(keyFile: KeyFile?, groupName: String?): kotlin.Unit {
+  gtk_print_settings_to_key_file(this@toKeyFile, keyFile?.reinterpret(), groupName)
 }
 
 public fun PrintSettings.unset(key: String?): kotlin.Unit {

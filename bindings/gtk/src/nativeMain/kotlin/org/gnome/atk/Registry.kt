@@ -1,6 +1,3 @@
-// TODO - field: factory_type_registry
-// TODO - field: factory_singleton_cache
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.atk
@@ -15,6 +12,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.HashTable
 import org.gnome.gobject.Object
 
 public typealias Registry = CPointer<AtkRegistry>
@@ -24,6 +22,12 @@ public val Registry.asObject: Object
 
 public val Registry.parent: Object
   get() = pointed.parent.ptr
+
+public val Registry.factoryTypeRegistry: HashTable?
+  get() = pointed.factory_type_registry
+
+public val Registry.factorySingletonCache: HashTable?
+  get() = pointed.factory_singleton_cache
 
 public fun Registry.getFactory(type: GType): ObjectFactory? =
     atk_registry_get_factory(this@getFactory, type)?.reinterpret()

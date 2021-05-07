@@ -1,5 +1,3 @@
-// TODO - method: list_windows (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gtk
@@ -8,6 +6,7 @@ import interop.GtkWindowGroup
 import interop.gtk_window_group_add_window
 import interop.gtk_window_group_get_current_device_grab
 import interop.gtk_window_group_get_current_grab
+import interop.gtk_window_group_list_windows
 import interop.gtk_window_group_new
 import interop.gtk_window_group_remove_window
 import kotlin.Unit
@@ -16,6 +15,7 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Device
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 
 public typealias WindowGroup = CPointer<GtkWindowGroup>
@@ -40,6 +40,9 @@ public fun WindowGroup.addWindow(window: Window?): Unit {
 public fun WindowGroup.getCurrentDeviceGrab(device: Device?): Widget? =
     gtk_window_group_get_current_device_grab(this@getCurrentDeviceGrab,
     device?.reinterpret())?.reinterpret()
+
+public fun WindowGroup.listWindows(): List? =
+    gtk_window_group_list_windows(this@listWindows)?.reinterpret()
 
 public fun WindowGroup.removeWindow(window: Window?): Unit {
   gtk_window_group_remove_window(this@removeWindow, window?.reinterpret())

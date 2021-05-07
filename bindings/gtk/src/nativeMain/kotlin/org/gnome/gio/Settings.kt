@@ -1,8 +1,4 @@
-// TODO - method: get_default_value (return type)
 // TODO - method: get_mapped (return type)
-// TODO - method: get_user_value (return type)
-// TODO - method: get_value (return type)
-// TODO - method: set_value (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -16,6 +12,7 @@ import interop.g_settings_create_action
 import interop.g_settings_delay
 import interop.g_settings_get_boolean
 import interop.g_settings_get_child
+import interop.g_settings_get_default_value
 import interop.g_settings_get_double
 import interop.g_settings_get_enum
 import interop.g_settings_get_flags
@@ -26,6 +23,8 @@ import interop.g_settings_get_string
 import interop.g_settings_get_strv
 import interop.g_settings_get_uint
 import interop.g_settings_get_uint64
+import interop.g_settings_get_user_value
+import interop.g_settings_get_value
 import interop.g_settings_is_writable
 import interop.g_settings_list_children
 import interop.g_settings_new
@@ -45,6 +44,7 @@ import interop.g_settings_set_string
 import interop.g_settings_set_strv
 import interop.g_settings_set_uint
 import interop.g_settings_set_uint64
+import interop.g_settings_set_value
 import kotlin.Array
 import kotlin.Boolean
 import kotlin.Double
@@ -59,6 +59,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Variant
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -138,6 +139,9 @@ public fun Settings.getBoolean(key: String?): Boolean = g_settings_get_boolean(t
 public fun Settings.getChild(name: String?): Settings? = g_settings_get_child(this@getChild,
     name)?.reinterpret()
 
+public fun Settings.getDefaultValue(key: String?): Variant? =
+    g_settings_get_default_value(this@getDefaultValue, key)?.reinterpret()
+
 public fun Settings.getDouble(key: String?): Double = g_settings_get_double(this@getDouble, key)
 
 public fun Settings.getEnum(key: String?): Int = g_settings_get_enum(this@getEnum, key)
@@ -157,6 +161,12 @@ public fun Settings.getStrv(key: String?): Array<String>? = g_settings_get_strv(
 public fun Settings.getUint(key: String?): UInt = g_settings_get_uint(this@getUint, key)
 
 public fun Settings.getUint64(key: String?): ULong = g_settings_get_uint64(this@getUint64, key)
+
+public fun Settings.getUserValue(key: String?): Variant? =
+    g_settings_get_user_value(this@getUserValue, key)?.reinterpret()
+
+public fun Settings.getValue(key: String?): Variant? = g_settings_get_value(this@getValue,
+    key)?.reinterpret()
 
 public fun Settings.isWritable(name: String?): Boolean = g_settings_is_writable(this@isWritable,
     name).toBoolean()
@@ -201,6 +211,9 @@ public fun Settings.setUint(key: String?, `value`: UInt): Boolean =
 
 public fun Settings.setUint64(key: String?, `value`: ULong): Boolean =
     g_settings_set_uint64(this@setUint64, key, `value`).toBoolean()
+
+public fun Settings.setValue(key: String?, `value`: Variant?): Boolean =
+    g_settings_set_value(this@setValue, key, `value`?.reinterpret()).toBoolean()
 
 public fun Settings.onChangeEvent(callback: (Settings) -> Unit): Settings {
   // TODO - handle callback data

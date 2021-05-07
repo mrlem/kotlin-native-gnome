@@ -5,7 +5,6 @@
 // TODO - method: write_all_async (param type)
 // TODO - method: write_all_finish (param type)
 // TODO - method: write_async (param type)
-// TODO - method: write_bytes (param type)
 // TODO - method: write_bytes_async (param type)
 // TODO - method: writev (param type)
 // TODO - method: writev_all (param type)
@@ -32,6 +31,7 @@ import interop.g_output_stream_set_pending
 import interop.g_output_stream_splice
 import interop.g_output_stream_splice_finish
 import interop.g_output_stream_write
+import interop.g_output_stream_write_bytes
 import interop.g_output_stream_write_bytes_finish
 import interop.g_output_stream_write_finish
 import kotlin.Array
@@ -47,6 +47,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Bytes
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -146,6 +147,15 @@ public fun OutputStream.write(
   val errors = allocPointerTo<GError>().ptr
   val result: Long = memScoped { g_output_stream_write(this@write, buffer?.toCArray(memScope),
       count, cancellable?.reinterpret(), errors) }
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun OutputStream.writeBytes(bytes: Bytes?, cancellable: Cancellable?): Long = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Long = g_output_stream_write_bytes(this@writeBytes, bytes?.reinterpret(),
+      cancellable?.reinterpret(), errors)
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

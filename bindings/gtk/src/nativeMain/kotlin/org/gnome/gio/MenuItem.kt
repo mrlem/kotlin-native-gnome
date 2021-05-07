@@ -1,17 +1,16 @@
-// TODO - method: get_attribute_value (return type)
-// TODO - method: set_action_and_target_value (param type)
-// TODO - method: set_attribute_value (param type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
 
 import interop.GMenuItem
+import interop.g_menu_item_get_attribute_value
 import interop.g_menu_item_get_link
 import interop.g_menu_item_new
 import interop.g_menu_item_new_from_model
 import interop.g_menu_item_new_section
 import interop.g_menu_item_new_submenu
+import interop.g_menu_item_set_action_and_target_value
+import interop.g_menu_item_set_attribute_value
 import interop.g_menu_item_set_detailed_action
 import interop.g_menu_item_set_icon
 import interop.g_menu_item_set_label
@@ -23,6 +22,8 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Variant
+import org.gnome.glib.VariantType
 import org.gnome.gobject.Object
 
 public typealias MenuItem = CPointer<GMenuItem>
@@ -44,8 +45,21 @@ public object MenuItemFactory {
       g_menu_item_new_submenu(label, submenu?.reinterpret())!!.reinterpret()
 }
 
+public fun MenuItem.getAttributeValue(attribute: String?, expectedType: VariantType?): Variant? =
+    g_menu_item_get_attribute_value(this@getAttributeValue, attribute,
+    expectedType?.reinterpret())?.reinterpret()
+
 public fun MenuItem.getLink(link: String?): MenuModel? = g_menu_item_get_link(this@getLink,
     link)?.reinterpret()
+
+public fun MenuItem.setActionAndTargetValue(action: String?, targetValue: Variant?): Unit {
+  g_menu_item_set_action_and_target_value(this@setActionAndTargetValue, action,
+      targetValue?.reinterpret())
+}
+
+public fun MenuItem.setAttributeValue(attribute: String?, `value`: Variant?): Unit {
+  g_menu_item_set_attribute_value(this@setAttributeValue, attribute, `value`?.reinterpret())
+}
 
 public fun MenuItem.setDetailedAction(detailedAction: String?): Unit {
   g_menu_item_set_detailed_action(this@setDetailedAction, detailedAction)

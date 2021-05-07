@@ -1,7 +1,6 @@
 // TODO - method: add_main_option (param type)
-// TODO - method: add_main_option_entries (param type)
-// TODO - method: add_option_group (param type)
 //
+
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -9,6 +8,8 @@ package org.gnome.gio
 import interop.GApplication
 import interop.GError
 import interop.g_application_activate
+import interop.g_application_add_main_option_entries
+import interop.g_application_add_option_group
 import interop.g_application_bind_busy_property
 import interop.g_application_get_application_id
 import interop.g_application_get_dbus_connection
@@ -46,12 +47,16 @@ import kotlin.String
 import kotlin.Throws
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.map
+import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.OptionEntry
+import org.gnome.glib.OptionGroup
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -113,6 +118,15 @@ public var Application.resourceBasePath: String?
 
 public fun Application.activate(): Unit {
   g_application_activate(this@activate)
+}
+
+public fun Application.addMainOptionEntries(entries: Array<OptionEntry>?): Unit {
+  memScoped { g_application_add_main_option_entries(this@addMainOptionEntries, entries?.map {
+      it.pointed }?.toTypedArray()?.toCArray(memScope)) }
+}
+
+public fun Application.addOptionGroup(group: OptionGroup?): Unit {
+  g_application_add_option_group(this@addOptionGroup, group?.reinterpret())
 }
 
 public fun Application.bindBusyProperty(`object`: Object?, `property`: String?): Unit {

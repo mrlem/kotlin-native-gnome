@@ -1,5 +1,4 @@
 // TODO - method: get_maximal_cursor_size (param type)
-// TODO - method: list_seats (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -24,6 +23,7 @@ import interop.gdk_display_get_name
 import interop.gdk_display_get_primary_monitor
 import interop.gdk_display_has_pending
 import interop.gdk_display_is_closed
+import interop.gdk_display_list_seats
 import interop.gdk_display_notify_startup_complete
 import interop.gdk_display_peek_event
 import interop.gdk_display_put_event
@@ -48,8 +48,8 @@ import kotlin.collections.map
 import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.memScoped
-import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -115,6 +115,8 @@ public fun Display.getMonitorAtWindow(window: Window?): Monitor? =
 public fun Display.hasPending(): Boolean = gdk_display_has_pending(this@hasPending).toBoolean()
 
 public fun Display.isClosed(): Boolean = gdk_display_is_closed(this@isClosed).toBoolean()
+
+public fun Display.listSeats(): List? = gdk_display_list_seats(this@listSeats)?.reinterpret()
 
 public fun Display.notifyStartupComplete(startupId: String?): Unit {
   gdk_display_notify_startup_complete(this@notifyStartupComplete, startupId)

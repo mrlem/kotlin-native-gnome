@@ -1,8 +1,4 @@
 // TODO - constructor: new_from_blob
-// TODO - method: get_body (return type)
-// TODO - method: get_header (return type)
-// TODO - method: set_body (param type)
-// TODO - method: set_header (param type)
 // TODO - method: to_blob (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -13,10 +9,12 @@ import interop.GDBusMessage
 import interop.GError
 import interop.g_dbus_message_copy
 import interop.g_dbus_message_get_arg0
+import interop.g_dbus_message_get_body
 import interop.g_dbus_message_get_byte_order
 import interop.g_dbus_message_get_destination
 import interop.g_dbus_message_get_error_name
 import interop.g_dbus_message_get_flags
+import interop.g_dbus_message_get_header
 import interop.g_dbus_message_get_header_fields
 import interop.g_dbus_message_get_interface
 import interop.g_dbus_message_get_locked
@@ -36,10 +34,12 @@ import interop.g_dbus_message_new_method_error_literal
 import interop.g_dbus_message_new_method_reply
 import interop.g_dbus_message_new_signal
 import interop.g_dbus_message_print
+import interop.g_dbus_message_set_body
 import interop.g_dbus_message_set_byte_order
 import interop.g_dbus_message_set_destination
 import interop.g_dbus_message_set_error_name
 import interop.g_dbus_message_set_flags
+import interop.g_dbus_message_set_header
 import interop.g_dbus_message_set_interface
 import interop.g_dbus_message_set_member
 import interop.g_dbus_message_set_message_type
@@ -65,6 +65,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Variant
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toKArray
@@ -95,6 +96,12 @@ public object DBusMessageFactory {
 
 public val DBusMessage.arg0: String?
   get() = g_dbus_message_get_arg0(this).toKString()
+
+public var DBusMessage.body: Variant?
+  get() = g_dbus_message_get_body(this)?.reinterpret()
+  set(`value`) {
+    g_dbus_message_set_body(this@body, `value`)
+  }
 
 public var DBusMessage.byteOrder: DBusMessageByteOrder
   get() = g_dbus_message_get_byte_order(this)
@@ -194,6 +201,9 @@ public fun DBusMessage.copy(): DBusMessage? = memScoped {
   return result
 }
 
+public fun DBusMessage.getHeader(headerField: DBusMessageHeaderField): Variant? =
+    g_dbus_message_get_header(this@getHeader, headerField)?.reinterpret()
+
 public fun DBusMessage.lock(): Unit {
   g_dbus_message_lock(this@lock)
 }
@@ -207,6 +217,10 @@ public fun DBusMessage.newMethodReply(): DBusMessage? =
 
 public fun DBusMessage.print(indent: UInt): String? = g_dbus_message_print(this@print,
     indent).toKString()
+
+public fun DBusMessage.setHeader(headerField: DBusMessageHeaderField, `value`: Variant?): Unit {
+  g_dbus_message_set_header(this@setHeader, headerField, `value`?.reinterpret())
+}
 
 @Throws(Error::class)
 public fun DBusMessage.toGerror(): Boolean = memScoped {

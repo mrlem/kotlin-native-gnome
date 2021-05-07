@@ -1,5 +1,3 @@
-// TODO - method: list_targets (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gdk
@@ -13,6 +11,7 @@ import interop.gdk_drag_context_get_protocol
 import interop.gdk_drag_context_get_selected_action
 import interop.gdk_drag_context_get_source_window
 import interop.gdk_drag_context_get_suggested_action
+import interop.gdk_drag_context_list_targets
 import interop.gdk_drag_context_manage_dnd
 import interop.gdk_drag_context_set_device
 import interop.gdk_drag_context_set_hotspot
@@ -21,6 +20,7 @@ import kotlin.Int
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
@@ -56,6 +56,9 @@ public val DragContext.sourceWindow: Window?
 
 public val DragContext.suggestedAction: DragAction
   get() = gdk_drag_context_get_suggested_action(this)
+
+public fun DragContext.listTargets(): List? =
+    gdk_drag_context_list_targets(this@listTargets)?.reinterpret()
 
 public fun DragContext.manageDnd(ipcWindow: Window?, actions: DragAction): Boolean =
     gdk_drag_context_manage_dnd(this@manageDnd, ipcWindow?.reinterpret(), actions).toBoolean()

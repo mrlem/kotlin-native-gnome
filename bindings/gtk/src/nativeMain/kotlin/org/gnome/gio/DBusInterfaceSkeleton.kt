@@ -1,6 +1,3 @@
-// TODO - method: get_connections (return type)
-// TODO - method: get_properties (return type)
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gio
@@ -10,9 +7,11 @@ import interop.GError
 import interop.g_dbus_interface_skeleton_export
 import interop.g_dbus_interface_skeleton_flush
 import interop.g_dbus_interface_skeleton_get_connection
+import interop.g_dbus_interface_skeleton_get_connections
 import interop.g_dbus_interface_skeleton_get_flags
 import interop.g_dbus_interface_skeleton_get_info
 import interop.g_dbus_interface_skeleton_get_object_path
+import interop.g_dbus_interface_skeleton_get_properties
 import interop.g_dbus_interface_skeleton_has_connection
 import interop.g_dbus_interface_skeleton_set_flags
 import interop.g_dbus_interface_skeleton_unexport
@@ -27,6 +26,8 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
+import org.gnome.glib.Variant
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toKString
@@ -44,6 +45,9 @@ public val DBusInterfaceSkeleton.parentInstance: Object
 public val DBusInterfaceSkeleton.connection: DBusConnection?
   get() = g_dbus_interface_skeleton_get_connection(this)?.reinterpret()
 
+public val DBusInterfaceSkeleton.connections: List?
+  get() = g_dbus_interface_skeleton_get_connections(this)?.reinterpret()
+
 public var DBusInterfaceSkeleton.flags: DBusInterfaceSkeletonFlags
   get() = g_dbus_interface_skeleton_get_flags(this)
   set(`value`) {
@@ -55,6 +59,9 @@ public val DBusInterfaceSkeleton.info: DBusInterfaceInfo?
 
 public val DBusInterfaceSkeleton.objectPath: String?
   get() = g_dbus_interface_skeleton_get_object_path(this).toKString()
+
+public val DBusInterfaceSkeleton.properties: Variant?
+  get() = g_dbus_interface_skeleton_get_properties(this)?.reinterpret()
 
 @Throws(Error::class)
 public fun DBusInterfaceSkeleton.export(connection: DBusConnection?, objectPath: String?): Boolean =

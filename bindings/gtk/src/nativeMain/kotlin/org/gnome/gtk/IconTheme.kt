@@ -1,6 +1,4 @@
 // TODO - method: get_search_path (param type)
-// TODO - method: list_contexts (return type)
-// TODO - method: list_icons (return type)
 // TODO - method: load_surface (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -16,6 +14,8 @@ import interop.gtk_icon_theme_choose_icon_for_scale
 import interop.gtk_icon_theme_get_example_icon_name
 import interop.gtk_icon_theme_get_icon_sizes
 import interop.gtk_icon_theme_has_icon
+import interop.gtk_icon_theme_list_contexts
+import interop.gtk_icon_theme_list_icons
 import interop.gtk_icon_theme_load_icon
 import interop.gtk_icon_theme_load_icon_for_scale
 import interop.gtk_icon_theme_lookup_by_gicon
@@ -44,6 +44,7 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Screen
 import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.Icon
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -92,6 +93,12 @@ public fun IconTheme.getIconSizes(iconName: String?): Array<Int>? =
 
 public fun IconTheme.hasIcon(iconName: String?): Boolean = gtk_icon_theme_has_icon(this@hasIcon,
     iconName).toBoolean()
+
+public fun IconTheme.listContexts(): List? =
+    gtk_icon_theme_list_contexts(this@listContexts)?.reinterpret()
+
+public fun IconTheme.listIcons(context: String?): List? = gtk_icon_theme_list_icons(this@listIcons,
+    context)?.reinterpret()
 
 @Throws(Error::class)
 public fun IconTheme.loadIcon(

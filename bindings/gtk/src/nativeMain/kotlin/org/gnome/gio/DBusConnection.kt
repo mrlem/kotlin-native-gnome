@@ -4,13 +4,10 @@
 // TODO - constructor: new_sync
 // TODO - method: add_filter (param type)
 // TODO - method: call (param type)
-// TODO - method: call_finish (return type)
-// TODO - method: call_sync (return type)
 // TODO - method: call_with_unix_fd_list (param type)
-// TODO - method: call_with_unix_fd_list_finish (return type)
-// TODO - method: call_with_unix_fd_list_sync (return type)
+// TODO - method: call_with_unix_fd_list_finish (param type)
+// TODO - method: call_with_unix_fd_list_sync (param type)
 // TODO - method: close (param type)
-// TODO - method: emit_signal (param type)
 // TODO - method: flush (param type)
 // TODO - method: register_subtree (param type)
 // TODO - method: send_message (param type)
@@ -24,8 +21,11 @@ package org.gnome.gio
 
 import interop.GDBusConnection
 import interop.GError
+import interop.g_dbus_connection_call_finish
+import interop.g_dbus_connection_call_sync
 import interop.g_dbus_connection_close_finish
 import interop.g_dbus_connection_close_sync
+import interop.g_dbus_connection_emit_signal
 import interop.g_dbus_connection_export_action_group
 import interop.g_dbus_connection_export_menu_model
 import interop.g_dbus_connection_flush_finish
@@ -50,6 +50,7 @@ import interop.g_dbus_connection_unexport_menu_model
 import interop.g_dbus_connection_unregister_object
 import interop.g_dbus_connection_unregister_subtree
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Throws
 import kotlin.UInt
@@ -60,6 +61,8 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Variant
+import org.gnome.glib.VariantType
 import org.gnome.gobject.Closure
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
@@ -103,6 +106,35 @@ public val DBusConnection.uniqueName: String?
   get() = g_dbus_connection_get_unique_name(this).toKString()
 
 @Throws(Error::class)
+public fun DBusConnection.callFinish(res: AsyncResult?): Variant? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Variant? = g_dbus_connection_call_finish(this@callFinish, res?.reinterpret(),
+      errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun DBusConnection.callSync(
+  busName: String?,
+  objectPath: String?,
+  interfaceName: String?,
+  methodName: String?,
+  parameters: Variant?,
+  replyType: VariantType?,
+  flags: DBusCallFlags,
+  timeoutMsec: Int,
+  cancellable: Cancellable?
+): Variant? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Variant? = g_dbus_connection_call_sync(this@callSync, busName, objectPath,
+      interfaceName, methodName, parameters?.reinterpret(), replyType?.reinterpret(), flags,
+      timeoutMsec, cancellable?.reinterpret(), errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
 public fun DBusConnection.closeFinish(res: AsyncResult?): Boolean = memScoped {
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_dbus_connection_close_finish(this@closeFinish, res?.reinterpret(),
@@ -116,6 +148,21 @@ public fun DBusConnection.closeSync(cancellable: Cancellable?): Boolean = memSco
   val errors = allocPointerTo<GError>().ptr
   val result: Boolean = g_dbus_connection_close_sync(this@closeSync, cancellable?.reinterpret(),
       errors).toBoolean()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun DBusConnection.emitSignal(
+  destinationBusName: String?,
+  objectPath: String?,
+  interfaceName: String?,
+  signalName: String?,
+  parameters: Variant?
+): Boolean = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Boolean = g_dbus_connection_emit_signal(this@emitSignal, destinationBusName,
+      objectPath, interfaceName, signalName, parameters?.reinterpret(), errors).toBoolean()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

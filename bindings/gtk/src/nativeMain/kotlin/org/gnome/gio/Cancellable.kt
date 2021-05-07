@@ -1,6 +1,4 @@
 // TODO - method: connect (param type)
-// TODO - method: make_pollfd (param type)
-// TODO - method: source_new (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -12,12 +10,14 @@ import interop.g_cancellable_cancel
 import interop.g_cancellable_disconnect
 import interop.g_cancellable_get_fd
 import interop.g_cancellable_is_cancelled
+import interop.g_cancellable_make_pollfd
 import interop.g_cancellable_new
 import interop.g_cancellable_pop_current
 import interop.g_cancellable_push_current
 import interop.g_cancellable_release_fd
 import interop.g_cancellable_reset
 import interop.g_cancellable_set_error_if_cancelled
+import interop.g_cancellable_source_new
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Throws
@@ -29,6 +29,8 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.PollFD
+import org.gnome.glib.Source
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.mrlem.gnome.glib.Error
@@ -60,6 +62,9 @@ public fun Cancellable.disconnect(handlerId: ULong): Unit {
 public fun Cancellable.isCancelled(): Boolean =
     g_cancellable_is_cancelled(this@isCancelled).toBoolean()
 
+public fun Cancellable.makePollfd(pollfd: PollFD?): Boolean =
+    g_cancellable_make_pollfd(this@makePollfd, pollfd?.reinterpret()).toBoolean()
+
 public fun Cancellable.popCurrent(): Unit {
   g_cancellable_pop_current(this@popCurrent)
 }
@@ -84,6 +89,9 @@ public fun Cancellable.setErrorIfCancelled(): Boolean = memScoped {
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
+
+public fun Cancellable.sourceNew(): Source? =
+    g_cancellable_source_new(this@sourceNew)?.reinterpret()
 
 public fun Cancellable.onCancelled(callback: (Cancellable) -> Unit): Cancellable {
   // TODO - handle callback data

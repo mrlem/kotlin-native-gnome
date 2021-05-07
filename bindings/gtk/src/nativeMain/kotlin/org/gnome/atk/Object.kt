@@ -1,4 +1,3 @@
-// TODO - method: get_attributes (return type)
 // TODO - method: initialize (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -8,6 +7,7 @@ package org.gnome.atk
 import interop.AtkObject
 import interop.atk_object_add_relationship
 import interop.atk_object_get_accessible_id
+import interop.atk_object_get_attributes
 import interop.atk_object_get_description
 import interop.atk_object_get_index_in_parent
 import interop.atk_object_get_n_accessible_children
@@ -33,8 +33,8 @@ import kotlin.ULong
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
-import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.SList
 import org.gnome.toBoolean
 import org.gnome.toInt
 import org.gnome.toKString
@@ -56,6 +56,9 @@ public var Object.accessibleId: String?
   set(`value`) {
     atk_object_set_accessible_id(this@accessibleId, `value`)
   }
+
+public val Object.attributes: SList?
+  get() = atk_object_get_attributes(this)?.reinterpret()
 
 public var Object.description: String?
   get() = atk_object_get_description(this).toKString()

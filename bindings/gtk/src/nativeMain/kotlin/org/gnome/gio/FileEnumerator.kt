@@ -1,7 +1,6 @@
 // TODO - method: close_async (param type)
 // TODO - method: iterate (param type)
 // TODO - method: next_files_async (param type)
-// TODO - method: next_files_finish (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -16,6 +15,7 @@ import interop.g_file_enumerator_get_container
 import interop.g_file_enumerator_has_pending
 import interop.g_file_enumerator_is_closed
 import interop.g_file_enumerator_next_file
+import interop.g_file_enumerator_next_files_finish
 import interop.g_file_enumerator_set_pending
 import kotlin.Boolean
 import kotlin.Throws
@@ -26,6 +26,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
@@ -74,6 +75,15 @@ public fun FileEnumerator.nextFile(cancellable: Cancellable?): FileInfo? = memSc
   val errors = allocPointerTo<GError>().ptr
   val result: FileInfo? = g_file_enumerator_next_file(this@nextFile, cancellable?.reinterpret(),
       errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun FileEnumerator.nextFilesFinish(result: AsyncResult?): List? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: List? = g_file_enumerator_next_files_finish(this@nextFilesFinish,
+      result?.reinterpret(), errors)?.reinterpret()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

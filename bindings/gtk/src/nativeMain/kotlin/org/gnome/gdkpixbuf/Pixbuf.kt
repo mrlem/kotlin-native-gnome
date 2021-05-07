@@ -1,4 +1,3 @@
-// TODO - constructor: new_from_bytes
 // TODO - constructor: new_from_data
 // TODO - constructor: new_from_file
 // TODO - constructor: new_from_file_at_scale
@@ -9,9 +8,7 @@
 // TODO - constructor: new_from_stream
 // TODO - constructor: new_from_stream_at_scale
 // TODO - constructor: new_from_stream_finish
-// TODO - method: get_options (return type)
 // TODO - method: get_pixels_with_length (param type)
-// TODO - method: read_pixel_bytes (return type)
 // TODO - method: save (param type)
 // TODO - method: save_to_buffer (param type)
 // TODO - method: save_to_bufferv (param type)
@@ -44,12 +41,15 @@ import interop.gdk_pixbuf_get_has_alpha
 import interop.gdk_pixbuf_get_height
 import interop.gdk_pixbuf_get_n_channels
 import interop.gdk_pixbuf_get_option
+import interop.gdk_pixbuf_get_options
 import interop.gdk_pixbuf_get_pixels
 import interop.gdk_pixbuf_get_rowstride
 import interop.gdk_pixbuf_get_width
 import interop.gdk_pixbuf_new
+import interop.gdk_pixbuf_new_from_bytes
 import interop.gdk_pixbuf_new_from_xpm_data
 import interop.gdk_pixbuf_new_subpixbuf
+import interop.gdk_pixbuf_read_pixel_bytes
 import interop.gdk_pixbuf_remove_option
 import interop.gdk_pixbuf_rotate_simple
 import interop.gdk_pixbuf_saturate_and_pixelate
@@ -78,6 +78,8 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.Cancellable
 import org.gnome.gio.OutputStream
+import org.gnome.glib.Bytes
+import org.gnome.glib.HashTable
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toCArray
@@ -101,6 +103,17 @@ public object PixbufFactory {
   ): Pixbuf = gdk_pixbuf_new(colorspace, hasAlpha.toInt(), bitsPerSample, width,
       height)!!.reinterpret()
 
+  public fun newFromBytes(
+    `data`: Bytes?,
+    colorspace: Colorspace,
+    hasAlpha: Boolean,
+    bitsPerSample: Int,
+    width: Int,
+    height: Int,
+    rowstride: Int
+  ): Pixbuf = gdk_pixbuf_new_from_bytes(`data`?.reinterpret(), colorspace, hasAlpha.toInt(),
+      bitsPerSample, width, height, rowstride)!!.reinterpret()
+
   public fun newFromXpmData(`data`: Array<String>?): Pixbuf = memScoped {
       gdk_pixbuf_new_from_xpm_data(`data`?.toCArray(memScope))!!.reinterpret() }
 }
@@ -122,6 +135,9 @@ public val Pixbuf.height: Int
 
 public val Pixbuf.nChannels: Int
   get() = gdk_pixbuf_get_n_channels(this)
+
+public val Pixbuf.options: HashTable?
+  get() = gdk_pixbuf_get_options(this)?.reinterpret()
 
 public val Pixbuf.pixels: Array<UByte>?
   get() = gdk_pixbuf_get_pixels(this)?.toKArray { it!!.`value` }
@@ -227,6 +243,9 @@ public fun Pixbuf.newSubpixbuf(
   width: Int,
   height: Int
 ): Pixbuf? = gdk_pixbuf_new_subpixbuf(this@newSubpixbuf, srcX, srcY, width, height)?.reinterpret()
+
+public fun Pixbuf.readPixelBytes(): Bytes? =
+    gdk_pixbuf_read_pixel_bytes(this@readPixelBytes)?.reinterpret()
 
 public fun Pixbuf.removeOption(key: String?): Boolean = gdk_pixbuf_remove_option(this@removeOption,
     key).toBoolean()

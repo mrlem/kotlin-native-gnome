@@ -3,8 +3,7 @@
 // TODO - method: coords_to_parent (param type)
 // TODO - method: create_similar_image_surface (return type)
 // TODO - method: create_similar_surface (return type)
-// TODO - method: get_children (return type)
-// TODO - method: get_children_with_user_data (return type)
+// TODO - method: get_children_with_user_data (param type)
 // TODO - method: get_clip_region (return type)
 // TODO - method: get_decorations (param type)
 // TODO - method: get_device_position (param type)
@@ -24,8 +23,6 @@
 // TODO - method: invalidate_region (param type)
 // TODO - method: mark_paint_from_clip (param type)
 // TODO - method: move_region (param type)
-// TODO - method: peek_children (return type)
-// TODO - method: set_icon_list (param type)
 // TODO - method: set_opaque_region (param type)
 // TODO - method: shape_combine_region (param type)
 //
@@ -52,6 +49,7 @@ import interop.gdk_window_fullscreen
 import interop.gdk_window_fullscreen_on_monitor
 import interop.gdk_window_geometry_changed
 import interop.gdk_window_get_accept_focus
+import interop.gdk_window_get_children
 import interop.gdk_window_get_cursor
 import interop.gdk_window_get_device_cursor
 import interop.gdk_window_get_device_events
@@ -95,6 +93,7 @@ import interop.gdk_window_move
 import interop.gdk_window_move_resize
 import interop.gdk_window_move_to_rect
 import interop.gdk_window_new
+import interop.gdk_window_peek_children
 import interop.gdk_window_raise
 import interop.gdk_window_register_dnd
 import interop.gdk_window_reparent
@@ -115,6 +114,7 @@ import interop.gdk_window_set_fullscreen_mode
 import interop.gdk_window_set_functions
 import interop.gdk_window_set_geometry_hints
 import interop.gdk_window_set_group
+import interop.gdk_window_set_icon_list
 import interop.gdk_window_set_icon_name
 import interop.gdk_window_set_keep_above
 import interop.gdk_window_set_keep_below
@@ -156,6 +156,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toInt
@@ -181,6 +182,9 @@ public var Window.acceptFocus: Boolean
   set(`value`) {
     gdk_window_set_accept_focus(this@acceptFocus, `value`.toInt())
   }
+
+public val Window.children: List?
+  get() = gdk_window_get_children(this)?.reinterpret()
 
 public var Window.cursor: Cursor?
   get() = gdk_window_get_cursor(this)?.reinterpret()
@@ -447,6 +451,8 @@ public fun Window.moveToRect(
       anchorHints, rectAnchorDx, rectAnchorDy)
 }
 
+public fun Window.peekChildren(): List? = gdk_window_peek_children(this@peekChildren)?.reinterpret()
+
 public fun Window.raise(): Unit {
   gdk_window_raise(this@raise)
 }
@@ -501,6 +507,10 @@ public fun Window.setFunctions(functions: WMFunction): Unit {
 
 public fun Window.setGeometryHints(geometry: Geometry?, geomMask: WindowHints): Unit {
   gdk_window_set_geometry_hints(this@setGeometryHints, geometry?.reinterpret(), geomMask)
+}
+
+public fun Window.setIconList(pixbufs: List?): Unit {
+  gdk_window_set_icon_list(this@setIconList, pixbufs?.reinterpret())
 }
 
 public fun Window.setIconName(name: String?): Unit {

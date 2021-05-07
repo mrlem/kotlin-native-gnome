@@ -3,8 +3,6 @@
 // TODO - method: get_position_double (param type)
 // TODO - method: get_window_at_position (param type)
 // TODO - method: get_window_at_position_double (param type)
-// TODO - method: list_axes (return type)
-// TODO - method: list_slave_devices (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
@@ -26,6 +24,8 @@ import interop.gdk_device_get_product_id
 import interop.gdk_device_get_seat
 import interop.gdk_device_get_source
 import interop.gdk_device_get_vendor_id
+import interop.gdk_device_list_axes
+import interop.gdk_device_list_slave_devices
 import interop.gdk_device_set_axis_use
 import interop.gdk_device_set_key
 import interop.gdk_device_set_mode
@@ -37,6 +37,7 @@ import kotlin.UInt
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.gnome.toKString
@@ -93,6 +94,11 @@ public val Device.vendorId: String?
   get() = gdk_device_get_vendor_id(this).toKString()
 
 public fun Device.getAxisUse(index: UInt): AxisUse = gdk_device_get_axis_use(this@getAxisUse, index)
+
+public fun Device.listAxes(): List? = gdk_device_list_axes(this@listAxes)?.reinterpret()
+
+public fun Device.listSlaveDevices(): List? =
+    gdk_device_list_slave_devices(this@listSlaveDevices)?.reinterpret()
 
 public fun Device.setAxisUse(index: UInt, use: AxisUse): Unit {
   gdk_device_set_axis_use(this@setAxisUse, index, use)

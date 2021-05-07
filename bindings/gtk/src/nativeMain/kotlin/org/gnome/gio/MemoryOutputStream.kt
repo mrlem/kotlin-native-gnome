@@ -1,5 +1,4 @@
 // TODO - method: get_data (return type)
-// TODO - method: steal_as_bytes (return type)
 // TODO - method: steal_data (return type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -10,11 +9,13 @@ import interop.GMemoryOutputStream
 import interop.g_memory_output_stream_get_data_size
 import interop.g_memory_output_stream_get_size
 import interop.g_memory_output_stream_new_resizable
+import interop.g_memory_output_stream_steal_as_bytes
 import kotlin.ULong
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Bytes
 import org.gnome.gobject.Object
 
 public typealias MemoryOutputStream = CPointer<GMemoryOutputStream>
@@ -38,3 +39,6 @@ public val MemoryOutputStream.dataSize: ULong
 
 public val MemoryOutputStream.size: ULong
   get() = g_memory_output_stream_get_size(this)
+
+public fun MemoryOutputStream.stealAsBytes(): Bytes? =
+    g_memory_output_stream_steal_as_bytes(this@stealAsBytes)?.reinterpret()

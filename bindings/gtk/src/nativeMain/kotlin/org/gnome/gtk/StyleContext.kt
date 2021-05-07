@@ -7,7 +7,6 @@
 // TODO - method: get_style (param type)
 // TODO - method: get_style_valist (param type)
 // TODO - method: get_valist (param type)
-// TODO - method: list_classes (return type)
 // TODO - method: lookup_color (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -27,6 +26,7 @@ import interop.gtk_style_context_get_section
 import interop.gtk_style_context_get_state
 import interop.gtk_style_context_get_style_property
 import interop.gtk_style_context_has_class
+import interop.gtk_style_context_list_classes
 import interop.gtk_style_context_new
 import interop.gtk_style_context_remove_class
 import interop.gtk_style_context_remove_provider
@@ -51,6 +51,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.FrameClock
 import org.gnome.gdk.Screen
+import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
 import org.gnome.toBoolean
@@ -128,6 +129,9 @@ public fun StyleContext.getStyleProperty(propertyName: String?, `value`: Value?)
 
 public fun StyleContext.hasClass(className: String?): Boolean =
     gtk_style_context_has_class(this@hasClass, className).toBoolean()
+
+public fun StyleContext.listClasses(): List? =
+    gtk_style_context_list_classes(this@listClasses)?.reinterpret()
 
 public fun StyleContext.removeClass(className: String?): Unit {
   gtk_style_context_remove_class(this@removeClass, className)

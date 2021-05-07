@@ -1,6 +1,3 @@
-// TODO - field: type_infos
-// TODO - field: interface_infos
-//
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
 
 package org.gnome.gobject
@@ -22,6 +19,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.SList
 import org.gnome.toBoolean
 import org.gnome.toKString
 
@@ -35,6 +33,12 @@ public val TypeModule.parentInstance: Object
 
 public val TypeModule.useCount: UInt
   get() = pointed.use_count
+
+public val TypeModule.typeInfos: SList?
+  get() = pointed.type_infos
+
+public val TypeModule.interfaceInfos: SList?
+  get() = pointed.interface_infos
 
 public val TypeModule.name: String
   get() = pointed.name.toKString()

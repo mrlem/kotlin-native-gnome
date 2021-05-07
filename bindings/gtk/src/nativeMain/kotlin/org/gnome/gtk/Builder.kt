@@ -1,7 +1,6 @@
 // TODO - method: add_callback_symbols (param type)
 // TODO - method: connect_signals (param type)
 // TODO - method: connect_signals_full (param type)
-// TODO - method: get_objects (return type)
 // TODO - method: value_from_string (param type)
 // TODO - method: value_from_string_type (param type)
 //
@@ -23,6 +22,7 @@ import interop.gtk_builder_expose_object
 import interop.gtk_builder_extend_with_template
 import interop.gtk_builder_get_application
 import interop.gtk_builder_get_object
+import interop.gtk_builder_get_objects
 import interop.gtk_builder_get_translation_domain
 import interop.gtk_builder_get_type_from_name
 import interop.gtk_builder_lookup_callback_symbol
@@ -45,6 +45,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.SList
 import org.gnome.gobject.Callback
 import org.gnome.gobject.Object
 import org.gnome.toCArray
@@ -77,6 +78,9 @@ public var Builder.application: Application?
   set(`value`) {
     gtk_builder_set_application(this@application, `value`)
   }
+
+public val Builder.objects: SList?
+  get() = gtk_builder_get_objects(this)?.reinterpret()
 
 public var Builder.translationDomain: String?
   get() = gtk_builder_get_translation_domain(this).toKString()

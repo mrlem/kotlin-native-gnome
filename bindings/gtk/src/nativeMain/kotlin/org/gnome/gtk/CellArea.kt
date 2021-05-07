@@ -7,7 +7,6 @@
 // TODO - method: foreach_alloc (param type)
 // TODO - method: get_cell_allocation (param type)
 // TODO - method: get_cell_at_position (param type)
-// TODO - method: get_focus_siblings (return type)
 // TODO - method: get_preferred_height (param type)
 // TODO - method: get_preferred_height_for_width (param type)
 // TODO - method: get_preferred_width (param type)
@@ -40,6 +39,7 @@ import interop.gtk_cell_area_get_edit_widget
 import interop.gtk_cell_area_get_edited_cell
 import interop.gtk_cell_area_get_focus_cell
 import interop.gtk_cell_area_get_focus_from_sibling
+import interop.gtk_cell_area_get_focus_siblings
 import interop.gtk_cell_area_get_request_mode
 import interop.gtk_cell_area_has_renderer
 import interop.gtk_cell_area_is_activatable
@@ -56,6 +56,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Event
 import org.gnome.gdk.Rectangle
+import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
@@ -181,6 +182,9 @@ public fun CellArea.focus(direction: DirectionType): Boolean = gtk_cell_area_foc
 public fun CellArea.getFocusFromSibling(renderer: CellRenderer?): CellRenderer? =
     gtk_cell_area_get_focus_from_sibling(this@getFocusFromSibling,
     renderer?.reinterpret())?.reinterpret()
+
+public fun CellArea.getFocusSiblings(renderer: CellRenderer?): List? =
+    gtk_cell_area_get_focus_siblings(this@getFocusSiblings, renderer?.reinterpret())?.reinterpret()
 
 public fun CellArea.hasRenderer(renderer: CellRenderer?): Boolean =
     gtk_cell_area_has_renderer(this@hasRenderer, renderer?.reinterpret()).toBoolean()

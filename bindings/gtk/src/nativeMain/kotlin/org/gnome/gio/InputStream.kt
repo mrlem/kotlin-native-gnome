@@ -4,9 +4,7 @@
 // TODO - method: read_all_async (param type)
 // TODO - method: read_all_finish (param type)
 // TODO - method: read_async (param type)
-// TODO - method: read_bytes (return type)
 // TODO - method: read_bytes_async (param type)
-// TODO - method: read_bytes_finish (return type)
 // TODO - method: skip_async (param type)
 //
 @file:Suppress("RemoveRedundantBackticks","RedundantVisibilityModifier","unused","RedundantUnitReturnType")
@@ -20,6 +18,8 @@ import interop.g_input_stream_close
 import interop.g_input_stream_close_finish
 import interop.g_input_stream_has_pending
 import interop.g_input_stream_is_closed
+import interop.g_input_stream_read_bytes
+import interop.g_input_stream_read_bytes_finish
 import interop.g_input_stream_read_finish
 import interop.g_input_stream_set_pending
 import interop.g_input_stream_skip
@@ -35,6 +35,7 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
+import org.gnome.glib.Bytes
 import org.gnome.gobject.Object
 import org.gnome.toBoolean
 import org.mrlem.gnome.glib.Error
@@ -73,6 +74,24 @@ public fun InputStream.hasPending(): Boolean =
     g_input_stream_has_pending(this@hasPending).toBoolean()
 
 public fun InputStream.isClosed(): Boolean = g_input_stream_is_closed(this@isClosed).toBoolean()
+
+@Throws(Error::class)
+public fun InputStream.readBytes(count: ULong, cancellable: Cancellable?): Bytes? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Bytes? = g_input_stream_read_bytes(this@readBytes, count, cancellable?.reinterpret(),
+      errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
+
+@Throws(Error::class)
+public fun InputStream.readBytesFinish(result: AsyncResult?): Bytes? = memScoped {
+  val errors = allocPointerTo<GError>().ptr
+  val result: Bytes? = g_input_stream_read_bytes_finish(this@readBytesFinish, result?.reinterpret(),
+      errors)?.reinterpret()
+  errors.pointed.pointed?.let { throw Error(it) }
+  return result
+}
 
 @Throws(Error::class)
 public fun InputStream.readFinish(result: AsyncResult?): Long = memScoped {
