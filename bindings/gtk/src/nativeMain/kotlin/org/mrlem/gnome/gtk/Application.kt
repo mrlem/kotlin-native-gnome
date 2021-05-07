@@ -8,8 +8,6 @@ import kotlin.String
 import kotlin.Unit
 import org.gnome.gtk.Application
 import org.gnome.gtk.ApplicationFactory
-import org.gnome.gtk.Window
-import org.gnome.toKList
 
 fun ApplicationFactory.new(id: String, args: Array<String>, init: Application.() -> Unit) =
   new(id, G_APPLICATION_FLAGS_NONE)
@@ -22,8 +20,3 @@ fun Application.initAndRun(args: Array<String>, init: Application.() -> Unit) = 
   }
   g_object_unref(this)
 }
-
-val Application.windows: List<Window>
-  get() = gtk_application_get_windows(this)
-    ?.toKList<GtkWindow>()
-    .orEmpty()
