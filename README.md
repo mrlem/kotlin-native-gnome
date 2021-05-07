@@ -44,9 +44,9 @@ Next steps:
 Still a *work in progress*:
 * [Glade](https://glade.gnome.org/) gradle plugin: 100% complete
 * API coverage is still incomplete:
-  - some unhandled data types (like GLists)
-  - no signal handlers data
-  - some missing generations: GLib, Cairo
+  - signal handler support is partial: no callback data
+  - data types is partial for some of them: bitfields, etc
+  - some missing generations: Cairo
 * platform support: Linux only for now
 
 ## See also
