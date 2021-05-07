@@ -14,10 +14,10 @@ import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.toInt
-import org.gnome.toKArray
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKString
 
 public typealias FilenameCompleter = CPointer<GFilenameCompleter>
 

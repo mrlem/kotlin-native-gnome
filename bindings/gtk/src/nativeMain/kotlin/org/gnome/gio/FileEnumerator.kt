@@ -8,6 +8,7 @@ package org.gnome.gio
 
 import interop.GError
 import interop.GFileEnumerator
+import interop.GList
 import interop.g_file_enumerator_close
 import interop.g_file_enumerator_close_finish
 import interop.g_file_enumerator_get_child
@@ -20,17 +21,18 @@ import interop.g_file_enumerator_set_pending
 import kotlin.Boolean
 import kotlin.Throws
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toInt
 import org.mrlem.gnome.glib.Error
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKList
 
 public typealias FileEnumerator = CPointer<GFileEnumerator>
 
@@ -80,10 +82,10 @@ public fun FileEnumerator.nextFile(cancellable: Cancellable?): FileInfo? = memSc
 }
 
 @Throws(Error::class)
-public fun FileEnumerator.nextFilesFinish(result: AsyncResult?): List? = memScoped {
+public fun FileEnumerator.nextFilesFinish(result: AsyncResult?): List<FileInfo>? = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_file_enumerator_next_files_finish(this@nextFilesFinish,
-      result?.reinterpret(), errors)?.reinterpret()
+  val result: List<FileInfo>? = g_file_enumerator_next_files_finish(this@nextFilesFinish,
+      result?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

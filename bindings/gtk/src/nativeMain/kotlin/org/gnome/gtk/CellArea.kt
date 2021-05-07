@@ -19,6 +19,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GtkCellArea
 import interop.gtk_cell_area_activate
 import interop.gtk_cell_area_activate_cell
@@ -52,18 +53,19 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Event
 import org.gnome.gdk.Rectangle
-import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
-import org.gnome.toBoolean
-import org.gnome.toInt
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias CellArea = CPointer<GtkCellArea>
 
@@ -183,8 +185,9 @@ public fun CellArea.getFocusFromSibling(renderer: CellRenderer?): CellRenderer? 
     gtk_cell_area_get_focus_from_sibling(this@getFocusFromSibling,
     renderer?.reinterpret())?.reinterpret()
 
-public fun CellArea.getFocusSiblings(renderer: CellRenderer?): List? =
-    gtk_cell_area_get_focus_siblings(this@getFocusSiblings, renderer?.reinterpret())?.reinterpret()
+public fun CellArea.getFocusSiblings(renderer: CellRenderer?): List<CellRenderer>? =
+    gtk_cell_area_get_focus_siblings(this@getFocusSiblings,
+    renderer?.reinterpret())?.reinterpret<GList>()?.toKList()
 
 public fun CellArea.hasRenderer(renderer: CellRenderer?): Boolean =
     gtk_cell_area_has_renderer(this@hasRenderer, renderer?.reinterpret()).toBoolean()

@@ -3,18 +3,20 @@
 package org.gnome.gio
 
 import interop.GEmblemedIcon
+import interop.GList
 import interop.g_emblemed_icon_add_emblem
 import interop.g_emblemed_icon_clear_emblems
 import interop.g_emblemed_icon_get_emblems
 import interop.g_emblemed_icon_get_icon
 import interop.g_emblemed_icon_new
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
+import org.mrlem.gnome.toKList
 
 public typealias EmblemedIcon = CPointer<GEmblemedIcon>
 
@@ -29,8 +31,8 @@ public object EmblemedIconFactory {
 public val EmblemedIcon.parentInstance: Object
   get() = pointed.parent_instance.ptr
 
-public val EmblemedIcon.emblems: List?
-  get() = g_emblemed_icon_get_emblems(this)?.reinterpret()
+public val EmblemedIcon.emblems: List<Emblem>?
+  get() = g_emblemed_icon_get_emblems(this)?.reinterpret<GList>()?.toKList()
 
 public val EmblemedIcon.icon: Icon?
   get() = g_emblemed_icon_get_icon(this)?.reinterpret()

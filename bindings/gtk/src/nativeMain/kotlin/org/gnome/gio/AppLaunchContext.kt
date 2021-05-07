@@ -13,15 +13,16 @@ import interop.g_app_launch_context_unsetenv
 import kotlin.Array
 import kotlin.String
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toKArray
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toCList
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKString
 
 public typealias AppLaunchContext = CPointer<GAppLaunchContext>
 
@@ -38,13 +39,13 @@ public val AppLaunchContext.parentInstance: Object
 public val AppLaunchContext.environment: Array<String>?
   get() = g_app_launch_context_get_environment(this)?.toKArray { it.toKString()!! }
 
-public fun AppLaunchContext.getDisplay(info: AppInfo?, files: List?): String? =
+public fun AppLaunchContext.getDisplay(info: AppInfo?, files: List<File>?): String? =
     g_app_launch_context_get_display(this@getDisplay, info?.reinterpret(),
-    files?.reinterpret()).toKString()
+    files?.toCList()).toKString()
 
-public fun AppLaunchContext.getStartupNotifyId(info: AppInfo?, files: List?): String? =
+public fun AppLaunchContext.getStartupNotifyId(info: AppInfo?, files: List<File>?): String? =
     g_app_launch_context_get_startup_notify_id(this@getStartupNotifyId, info?.reinterpret(),
-    files?.reinterpret()).toKString()
+    files?.toCList()).toKString()
 
 public fun AppLaunchContext.launchFailed(startupNotifyId: String?): Unit {
   g_app_launch_context_launch_failed(this@launchFailed, startupNotifyId)

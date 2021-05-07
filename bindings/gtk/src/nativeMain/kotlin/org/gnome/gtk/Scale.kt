@@ -30,9 +30,9 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.pango.Layout
-import org.gnome.toBoolean
-import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
 
 public typealias Scale = CPointer<GtkScale>
 

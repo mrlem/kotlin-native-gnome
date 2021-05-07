@@ -17,9 +17,9 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.toCArray
-import org.gnome.toKArray
-import org.gnome.toKString
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKString
 
 public typealias ThemedIcon = CPointer<GThemedIcon>
 

@@ -9,6 +9,7 @@
 package org.gnome.gio
 
 import interop.GError
+import interop.GList
 import interop.GTlsDatabase
 import interop.g_tls_database_create_certificate_handle
 import interop.g_tls_database_lookup_certificate_for_handle
@@ -20,16 +21,17 @@ import interop.g_tls_database_verify_chain
 import interop.g_tls_database_verify_chain_finish
 import kotlin.String
 import kotlin.Throws
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias TlsDatabase = CPointer<GTlsDatabase>
 
@@ -97,11 +99,12 @@ public fun TlsDatabase.lookupCertificateIssuerFinish(result: AsyncResult?): TlsC
 }
 
 @Throws(Error::class)
-public fun TlsDatabase.lookupCertificatesIssuedByFinish(result: AsyncResult?): List? = memScoped {
+public fun TlsDatabase.lookupCertificatesIssuedByFinish(result: AsyncResult?): List<TlsCertificate>?
+    = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? =
+  val result: List<TlsCertificate>? =
       g_tls_database_lookup_certificates_issued_by_finish(this@lookupCertificatesIssuedByFinish,
-      result?.reinterpret(), errors)?.reinterpret()
+      result?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

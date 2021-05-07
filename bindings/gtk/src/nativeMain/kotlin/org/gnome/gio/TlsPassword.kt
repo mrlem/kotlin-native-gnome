@@ -24,8 +24,8 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.toCArray
-import org.gnome.toKString
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toKString
 
 public typealias TlsPassword = CPointer<GTlsPassword>
 

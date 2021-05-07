@@ -2,18 +2,20 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GtkContainerCellAccessible
 import interop.gtk_container_cell_accessible_add_child
 import interop.gtk_container_cell_accessible_get_children
 import interop.gtk_container_cell_accessible_new
 import interop.gtk_container_cell_accessible_remove_child
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
+import org.mrlem.gnome.toKList
 
 public typealias ContainerCellAccessible = CPointer<GtkContainerCellAccessible>
 
@@ -36,8 +38,8 @@ public object ContainerCellAccessibleFactory {
 public val ContainerCellAccessible.parent: CellAccessible
   get() = pointed.parent.ptr
 
-public val ContainerCellAccessible.children: List?
-  get() = gtk_container_cell_accessible_get_children(this)?.reinterpret()
+public val ContainerCellAccessible.children: List<CellAccessible>?
+  get() = gtk_container_cell_accessible_get_children(this)?.reinterpret<GList>()?.toKList()
 
 public fun ContainerCellAccessible.addChild(child: CellAccessible?): Unit {
   gtk_container_cell_accessible_add_child(this@addChild, child?.reinterpret())

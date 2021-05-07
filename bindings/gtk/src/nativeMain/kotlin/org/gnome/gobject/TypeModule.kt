@@ -20,8 +20,8 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.SList
-import org.gnome.toBoolean
-import org.gnome.toKString
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toKString
 
 public typealias TypeModule = CPointer<GTypeModule>
 

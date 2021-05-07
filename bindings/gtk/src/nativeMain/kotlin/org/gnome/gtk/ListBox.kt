@@ -8,6 +8,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GtkListBox
 import interop.gtk_list_box_drag_highlight_row
 import interop.gtk_list_box_drag_unhighlight_row
@@ -35,16 +36,17 @@ import interop.gtk_list_box_unselect_row
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKList
 
 public typealias ListBox = CPointer<GtkListBox>
 
@@ -82,8 +84,8 @@ public var ListBox.adjustment: Adjustment?
 public val ListBox.selectedRow: ListBoxRow?
   get() = gtk_list_box_get_selected_row(this)?.reinterpret()
 
-public val ListBox.selectedRows: List?
-  get() = gtk_list_box_get_selected_rows(this)?.reinterpret()
+public val ListBox.selectedRows: List<ListBoxRow>?
+  get() = gtk_list_box_get_selected_rows(this)?.reinterpret<GList>()?.toKList()
 
 public var ListBox.selectionMode: SelectionMode
   get() = gtk_list_box_get_selection_mode(this)

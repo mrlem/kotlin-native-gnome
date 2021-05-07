@@ -98,11 +98,11 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.glib.KeyFile
 import org.gnome.glib.Variant
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toInt
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKString
 
 public typealias PrintSettings = CPointer<GtkPrintSettings>
 

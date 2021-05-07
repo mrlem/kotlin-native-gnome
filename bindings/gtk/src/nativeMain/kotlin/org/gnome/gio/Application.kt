@@ -58,11 +58,11 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.glib.OptionEntry
 import org.gnome.glib.OptionGroup
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toKString
 
 public typealias Application = CPointer<GApplication>
 

@@ -13,6 +13,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GtkIconView
 import interop.gtk_icon_view_enable_model_drag_dest
 import interop.gtk_icon_view_enable_model_drag_source
@@ -73,6 +74,7 @@ import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Unit
+import kotlin.collections.List
 import kotlin.collections.map
 import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
@@ -82,13 +84,13 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.DragAction
 import org.gnome.gdk.ModifierType
-import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKList
 
 public typealias IconView = CPointer<GtkIconView>
 
@@ -189,8 +191,8 @@ public var IconView.rowSpacing: Int
     gtk_icon_view_set_row_spacing(this@rowSpacing, `value`)
   }
 
-public val IconView.selectedItems: List?
-  get() = gtk_icon_view_get_selected_items(this)?.reinterpret()
+public val IconView.selectedItems: List<TreePath>?
+  get() = gtk_icon_view_get_selected_items(this)?.reinterpret<GList>()?.toKList()
 
 public var IconView.selectionMode: SelectionMode
   get() = gtk_icon_view_get_selection_mode(this)

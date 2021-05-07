@@ -39,8 +39,8 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
-import org.gnome.toBoolean
-import org.gnome.toCArray
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
 
 public typealias ListStore = CPointer<GtkListStore>
 

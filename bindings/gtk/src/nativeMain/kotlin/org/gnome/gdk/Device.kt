@@ -8,6 +8,7 @@
 
 package org.gnome.gdk
 
+import interop.GList
 import interop.GdkDevice
 import interop.gdk_device_get_associated_device
 import interop.gdk_device_get_axes
@@ -35,13 +36,14 @@ import kotlin.Int
 import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias Device = CPointer<GdkDevice>
 
@@ -95,10 +97,11 @@ public val Device.vendorId: String?
 
 public fun Device.getAxisUse(index: UInt): AxisUse = gdk_device_get_axis_use(this@getAxisUse, index)
 
-public fun Device.listAxes(): List? = gdk_device_list_axes(this@listAxes)?.reinterpret()
+public fun Device.listAxes(): List<Atom>? =
+    gdk_device_list_axes(this@listAxes)?.reinterpret<GList>()?.toKList()
 
-public fun Device.listSlaveDevices(): List? =
-    gdk_device_list_slave_devices(this@listSlaveDevices)?.reinterpret()
+public fun Device.listSlaveDevices(): List<Device>? =
+    gdk_device_list_slave_devices(this@listSlaveDevices)?.reinterpret<GList>()?.toKList()
 
 public fun Device.setAxisUse(index: UInt, use: AxisUse): Unit {
   gdk_device_set_axis_use(this@setAxisUse, index, use)

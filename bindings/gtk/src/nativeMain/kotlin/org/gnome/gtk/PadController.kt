@@ -19,7 +19,7 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Device
 import org.gnome.gio.ActionGroup
 import org.gnome.gobject.Object
-import org.gnome.toCArray
+import org.mrlem.gnome.toCArray
 
 public typealias PadController = CPointer<GtkPadController>
 

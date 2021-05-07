@@ -46,12 +46,12 @@ import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.Icon
 import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toKArray
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKString
 
 public typealias IconTheme = CPointer<GtkIconTheme>
 
@@ -97,8 +97,8 @@ public fun IconTheme.hasIcon(iconName: String?): Boolean = gtk_icon_theme_has_ic
 public fun IconTheme.listContexts(): List? =
     gtk_icon_theme_list_contexts(this@listContexts)?.reinterpret()
 
-public fun IconTheme.listIcons(context: String?): List? = gtk_icon_theme_list_icons(this@listIcons,
-    context)?.reinterpret()
+public fun IconTheme.listIcons(context: String?): List? =
+    gtk_icon_theme_list_icons(this@listIcons, context)?.reinterpret()
 
 @Throws(Error::class)
 public fun IconTheme.loadIcon(

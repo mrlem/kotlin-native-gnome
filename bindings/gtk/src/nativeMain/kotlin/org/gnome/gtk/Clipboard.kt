@@ -47,11 +47,11 @@ import org.gnome.gdk.Atom
 import org.gnome.gdk.Display
 import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toKArray
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKString
 
 public typealias Clipboard = CPointer<GtkClipboard>
 

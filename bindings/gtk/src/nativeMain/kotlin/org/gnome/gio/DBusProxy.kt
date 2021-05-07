@@ -41,10 +41,10 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Variant
 import org.gnome.gobject.Object
-import org.gnome.toKArray
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKString
 
 public typealias DBusProxy = CPointer<GDBusProxy>
 

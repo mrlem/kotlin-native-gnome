@@ -5,7 +5,7 @@ import com.squareup.kotlinpoet.TypeName
 
 data class TypeInfo(
     val kType: TypeName,
-    val toKType: Pair<String, Array<MemberName>>,
+    val toKType: Pair<String, Array<out Any>>,
     val toCType: Pair<String, Array<MemberName>>,
     val toCTypeReinterpreted: Pair<String, Array<MemberName>>
 )

@@ -9,7 +9,7 @@ import kotlinx.cinterop.*
  * @param list the GList to wrap.
  */
 class List<P : CPointed, T : CPointer<P>>(
-    private val list: CPointer<GList>
+    internal val list: CPointer<GList>
 ) : kotlin.collections.List<T> {
 
     override val size: Int

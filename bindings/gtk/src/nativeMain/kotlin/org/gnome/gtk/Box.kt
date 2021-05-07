@@ -28,8 +28,8 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toInt
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
 
 public typealias Box = CPointer<GtkBox>
 

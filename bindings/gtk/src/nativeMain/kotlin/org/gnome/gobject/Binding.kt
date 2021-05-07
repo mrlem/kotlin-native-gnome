@@ -13,7 +13,7 @@ import kotlin.String
 import kotlin.Unit
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.toKString
+import org.mrlem.gnome.toKString
 
 public typealias Binding = CPointer<GBinding>
 

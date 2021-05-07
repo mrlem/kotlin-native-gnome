@@ -32,9 +32,9 @@ import org.gnome.gdk.GLContext
 import org.gnome.glib.Error
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
 
 public typealias GLArea = CPointer<GtkGLArea>
 

@@ -4,6 +4,7 @@ package org.gnome.gio
 
 import interop.GDBusInterfaceSkeleton
 import interop.GError
+import interop.GList
 import interop.g_dbus_interface_skeleton_export
 import interop.g_dbus_interface_skeleton_flush
 import interop.g_dbus_interface_skeleton_get_connection
@@ -20,19 +21,20 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Throws
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.glib.Variant
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias DBusInterfaceSkeleton = CPointer<GDBusInterfaceSkeleton>
 
@@ -45,8 +47,8 @@ public val DBusInterfaceSkeleton.parentInstance: Object
 public val DBusInterfaceSkeleton.connection: DBusConnection?
   get() = g_dbus_interface_skeleton_get_connection(this)?.reinterpret()
 
-public val DBusInterfaceSkeleton.connections: List?
-  get() = g_dbus_interface_skeleton_get_connections(this)?.reinterpret()
+public val DBusInterfaceSkeleton.connections: List<DBusConnection>?
+  get() = g_dbus_interface_skeleton_get_connections(this)?.reinterpret<GList>()?.toKList()
 
 public var DBusInterfaceSkeleton.flags: DBusInterfaceSkeletonFlags
   get() = g_dbus_interface_skeleton_get_flags(this)

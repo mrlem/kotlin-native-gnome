@@ -71,10 +71,10 @@ import org.gnome.pango.AttrList
 import org.gnome.pango.EllipsizeMode
 import org.gnome.pango.Layout
 import org.gnome.pango.WrapMode
-import org.gnome.toBoolean
-import org.gnome.toInt
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKString
 
 public typealias Label = CPointer<GtkLabel>
 

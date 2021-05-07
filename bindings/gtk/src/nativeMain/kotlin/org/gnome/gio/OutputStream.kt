@@ -49,9 +49,9 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Bytes
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
 import org.mrlem.gnome.glib.Error
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
 
 public typealias OutputStream = CPointer<GOutputStream>
 

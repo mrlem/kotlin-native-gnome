@@ -16,8 +16,9 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.toBoolean
-import org.gnome.toCArray
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toKArray
 
 public typealias Relation = CPointer<AtkRelation>
 

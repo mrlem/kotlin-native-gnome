@@ -8,7 +8,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.toChar
+import org.mrlem.gnome.toChar
 
 public typealias ParamSpecUnichar = CPointer<GParamSpecUnichar>
 

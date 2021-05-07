@@ -7,6 +7,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GtkFlowBox
 import interop.gtk_flow_box_get_activate_on_single_click
 import interop.gtk_flow_box_get_child_at_index
@@ -39,16 +40,17 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKList
 
 public typealias FlowBox = CPointer<GtkFlowBox>
 
@@ -107,8 +109,8 @@ public var FlowBox.rowSpacing: UInt
     gtk_flow_box_set_row_spacing(this@rowSpacing, `value`)
   }
 
-public val FlowBox.selectedChildren: List?
-  get() = gtk_flow_box_get_selected_children(this)?.reinterpret()
+public val FlowBox.selectedChildren: List<FlowBoxChild>?
+  get() = gtk_flow_box_get_selected_children(this)?.reinterpret<GList>()?.toKList()
 
 public var FlowBox.selectionMode: SelectionMode
   get() = gtk_flow_box_get_selection_mode(this)

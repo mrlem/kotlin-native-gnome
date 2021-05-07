@@ -21,8 +21,8 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Variant
 import org.gnome.glib.VariantType
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
 
 public typealias MenuModel = CPointer<GMenuModel>
 

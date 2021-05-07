@@ -26,7 +26,7 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Error
 import org.gnome.glib.Variant
 import org.gnome.gobject.Object
-import org.gnome.toKString
+import org.mrlem.gnome.toKString
 
 public typealias DBusMethodInvocation = CPointer<GDBusMethodInvocation>
 

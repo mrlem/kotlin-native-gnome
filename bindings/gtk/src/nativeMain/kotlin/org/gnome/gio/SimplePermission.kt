@@ -8,7 +8,7 @@ import kotlin.Boolean
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.toInt
+import org.mrlem.gnome.toInt
 
 public typealias SimplePermission = CPointer<GSimplePermission>
 

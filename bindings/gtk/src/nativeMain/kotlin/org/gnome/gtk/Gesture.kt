@@ -6,6 +6,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GtkGesture
 import interop.gtk_gesture_get_device
 import interop.gtk_gesture_get_group
@@ -25,16 +26,17 @@ import interop.gtk_gesture_set_window
 import interop.gtk_gesture_ungroup
 import kotlin.Boolean
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.Device
 import org.gnome.gdk.Event
 import org.gnome.gdk.EventSequence
 import org.gnome.gdk.Window
-import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toKList
 
 public typealias Gesture = CPointer<GtkGesture>
 
@@ -47,14 +49,14 @@ public val Gesture.asEventController: EventController
 public val Gesture.device: Device?
   get() = gtk_gesture_get_device(this)?.reinterpret()
 
-public val Gesture.group: List?
-  get() = gtk_gesture_get_group(this)?.reinterpret()
+public val Gesture.group: List<Gesture>?
+  get() = gtk_gesture_get_group(this)?.reinterpret<GList>()?.toKList()
 
 public val Gesture.lastUpdatedSequence: EventSequence?
   get() = gtk_gesture_get_last_updated_sequence(this)?.reinterpret()
 
-public val Gesture.sequences: List?
-  get() = gtk_gesture_get_sequences(this)?.reinterpret()
+public val Gesture.sequences: List<EventSequence>?
+  get() = gtk_gesture_get_sequences(this)?.reinterpret<GList>()?.toKList()
 
 public var Gesture.window: Window?
   get() = gtk_gesture_get_window(this)?.reinterpret()

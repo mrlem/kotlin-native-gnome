@@ -18,7 +18,7 @@ import kotlin.Int
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
+import org.mrlem.gnome.toBoolean
 
 public typealias PixbufAnimation = CPointer<GdkPixbufAnimation>
 

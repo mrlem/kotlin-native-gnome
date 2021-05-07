@@ -27,6 +27,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GtkTreeView
 import interop.gtk_tree_view_append_column
 import interop.gtk_tree_view_collapse_all
@@ -104,6 +105,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlin.collections.map
 import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
@@ -114,13 +116,13 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.DragAction
 import org.gnome.gdk.ModifierType
 import org.gnome.gdk.Window
-import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKList
 
 public typealias TreeView = CPointer<GtkTreeView>
 
@@ -155,8 +157,8 @@ public var TreeView.activateOnSingleClick: Boolean
 public val TreeView.binWindow: Window?
   get() = gtk_tree_view_get_bin_window(this)?.reinterpret()
 
-public val TreeView.columns: List?
-  get() = gtk_tree_view_get_columns(this)?.reinterpret()
+public val TreeView.columns: List<TreeViewColumn>?
+  get() = gtk_tree_view_get_columns(this)?.reinterpret<GList>()?.toKList()
 
 public var TreeView.enableSearch: Boolean
   get() = gtk_tree_view_get_enable_search(this).toBoolean()

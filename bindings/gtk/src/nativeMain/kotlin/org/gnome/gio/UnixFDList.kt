@@ -22,8 +22,8 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.toCArray
 import org.mrlem.gnome.glib.Error
+import org.mrlem.gnome.toCArray
 
 public typealias UnixFDList = CPointer<GUnixFDList>
 

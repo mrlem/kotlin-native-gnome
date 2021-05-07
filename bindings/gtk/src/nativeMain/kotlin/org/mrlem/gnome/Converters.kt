@@ -1,4 +1,4 @@
-package org.gnome
+package org.mrlem.gnome
 
 import interop.*
 import kotlinx.cinterop.*
@@ -18,6 +18,8 @@ fun CPointer<gcharVar>?.toKString() = this?.toKString().orEmpty()
 fun CPointerVar<ByteVar>?.toKString() = this?.pointed?.ptr?.toKStringFromUtf8()
 
 inline fun <reified V : CPointed, reified P : CPointer<V>> List.toKList(): kotlin.collections.List<P> = org.mrlem.gnome.glib.List(this)
+
+fun kotlin.collections.List<*>.toCList(): List = (this as org.mrlem.gnome.glib.List<*, *>).list
 
 inline fun <reified P : CVariable, reified K> CPointer<P>.toKArray(mapper: (P) -> K): Array<K> {
     val arrayList = ArrayList<K>()

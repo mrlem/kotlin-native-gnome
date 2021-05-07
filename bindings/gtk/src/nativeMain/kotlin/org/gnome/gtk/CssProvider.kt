@@ -23,10 +23,10 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gio.File
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toKString
 
 public typealias CssProvider = CPointer<GtkCssProvider>
 

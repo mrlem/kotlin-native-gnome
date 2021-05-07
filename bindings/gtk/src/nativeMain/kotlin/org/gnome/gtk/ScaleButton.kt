@@ -23,8 +23,8 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toCArray
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toCArray
 
 public typealias ScaleButton = CPointer<GtkScaleButton>
 

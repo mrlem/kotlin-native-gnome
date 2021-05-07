@@ -3,6 +3,7 @@
 package org.gnome.gtk
 
 import interop.GError
+import interop.GList
 import interop.GtkRecentManager
 import interop.gtk_recent_manager_add_full
 import interop.gtk_recent_manager_add_item
@@ -18,17 +19,18 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Throws
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toKList
 
 public typealias RecentManager = CPointer<GtkRecentManager>
 
@@ -39,8 +41,8 @@ public object RecentManagerFactory {
   public fun new(): RecentManager = gtk_recent_manager_new()!!.reinterpret()
 }
 
-public val RecentManager.items: List?
-  get() = gtk_recent_manager_get_items(this)?.reinterpret()
+public val RecentManager.items: List<RecentInfo>?
+  get() = gtk_recent_manager_get_items(this)?.reinterpret<GList>()?.toKList()
 
 public fun RecentManager.addFull(uri: String?, recentData: RecentData?): Boolean =
     gtk_recent_manager_add_full(this@addFull, uri, recentData?.reinterpret()).toBoolean()

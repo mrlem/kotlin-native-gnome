@@ -31,6 +31,7 @@
 package org.gnome.gdk
 
 import interop.GError
+import interop.GList
 import interop.GdkWindow
 import interop.gdk_window_beep
 import interop.gdk_window_begin_move_drag
@@ -150,18 +151,21 @@ import kotlin.String
 import kotlin.Throws
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
+import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toInt
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCList
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKList
 
 public typealias Window = CPointer<GdkWindow>
 
@@ -183,8 +187,8 @@ public var Window.acceptFocus: Boolean
     gdk_window_set_accept_focus(this@acceptFocus, `value`.toInt())
   }
 
-public val Window.children: List?
-  get() = gdk_window_get_children(this)?.reinterpret()
+public val Window.children: List<Window>?
+  get() = gdk_window_get_children(this)?.reinterpret<GList>()?.toKList()
 
 public var Window.cursor: Cursor?
   get() = gdk_window_get_cursor(this)?.reinterpret()
@@ -451,7 +455,8 @@ public fun Window.moveToRect(
       anchorHints, rectAnchorDx, rectAnchorDy)
 }
 
-public fun Window.peekChildren(): List? = gdk_window_peek_children(this@peekChildren)?.reinterpret()
+public fun Window.peekChildren(): List<Window>? =
+    gdk_window_peek_children(this@peekChildren)?.reinterpret<GList>()?.toKList()
 
 public fun Window.raise(): Unit {
   gdk_window_raise(this@raise)
@@ -509,8 +514,8 @@ public fun Window.setGeometryHints(geometry: Geometry?, geomMask: WindowHints): 
   gdk_window_set_geometry_hints(this@setGeometryHints, geometry?.reinterpret(), geomMask)
 }
 
-public fun Window.setIconList(pixbufs: List?): Unit {
-  gdk_window_set_icon_list(this@setIconList, pixbufs?.reinterpret())
+public fun Window.setIconList(pixbufs: List<Pixbuf>?): Unit {
+  gdk_window_set_icon_list(this@setIconList, pixbufs?.toCList())
 }
 
 public fun Window.setIconName(name: String?): Unit {

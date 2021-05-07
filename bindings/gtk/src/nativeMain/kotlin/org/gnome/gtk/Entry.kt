@@ -95,12 +95,12 @@ import org.gnome.gobject.Object
 import org.gnome.pango.AttrList
 import org.gnome.pango.Layout
 import org.gnome.pango.TabArray
-import org.gnome.toBoolean
-import org.gnome.toChar
-import org.gnome.toInt
-import org.gnome.toKString
-import org.gnome.toUInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toChar
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKString
+import org.mrlem.gnome.toUInt
 
 public typealias Entry = CPointer<GtkEntry>
 

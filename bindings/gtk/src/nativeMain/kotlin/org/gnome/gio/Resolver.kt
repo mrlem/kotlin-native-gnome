@@ -9,6 +9,7 @@
 package org.gnome.gio
 
 import interop.GError
+import interop.GList
 import interop.GResolver
 import interop.g_resolver_lookup_by_address
 import interop.g_resolver_lookup_by_address_finish
@@ -24,17 +25,19 @@ import interop.g_resolver_set_default
 import kotlin.String
 import kotlin.Throws
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
+import org.gnome.glib.Variant
 import org.gnome.gobject.Object
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias Resolver = CPointer<GResolver>
 
@@ -64,19 +67,20 @@ public fun Resolver.lookupByAddressFinish(result: AsyncResult?): String? = memSc
 }
 
 @Throws(Error::class)
-public fun Resolver.lookupByName(hostname: String?, cancellable: Cancellable?): List? = memScoped {
+public fun Resolver.lookupByName(hostname: String?, cancellable: Cancellable?): List<InetAddress>? =
+    memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_resolver_lookup_by_name(this@lookupByName, hostname,
-      cancellable?.reinterpret(), errors)?.reinterpret()
+  val result: List<InetAddress>? = g_resolver_lookup_by_name(this@lookupByName, hostname,
+      cancellable?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
 @Throws(Error::class)
-public fun Resolver.lookupByNameFinish(result: AsyncResult?): List? = memScoped {
+public fun Resolver.lookupByNameFinish(result: AsyncResult?): List<InetAddress>? = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_resolver_lookup_by_name_finish(this@lookupByNameFinish,
-      result?.reinterpret(), errors)?.reinterpret()
+  val result: List<InetAddress>? = g_resolver_lookup_by_name_finish(this@lookupByNameFinish,
+      result?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -86,19 +90,21 @@ public fun Resolver.lookupByNameWithFlags(
   hostname: String?,
   flags: ResolverNameLookupFlags,
   cancellable: Cancellable?
-): List? = memScoped {
+): List<InetAddress>? = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_resolver_lookup_by_name_with_flags(this@lookupByNameWithFlags, hostname,
-      flags, cancellable?.reinterpret(), errors)?.reinterpret()
+  val result: List<InetAddress>? = g_resolver_lookup_by_name_with_flags(this@lookupByNameWithFlags,
+      hostname, flags, cancellable?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
 @Throws(Error::class)
-public fun Resolver.lookupByNameWithFlagsFinish(result: AsyncResult?): List? = memScoped {
+public fun Resolver.lookupByNameWithFlagsFinish(result: AsyncResult?): List<InetAddress>? =
+    memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_resolver_lookup_by_name_with_flags_finish(this@lookupByNameWithFlagsFinish,
-      result?.reinterpret(), errors)?.reinterpret()
+  val result: List<InetAddress>? =
+      g_resolver_lookup_by_name_with_flags_finish(this@lookupByNameWithFlagsFinish,
+      result?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -108,19 +114,19 @@ public fun Resolver.lookupRecords(
   rrname: String?,
   recordType: ResolverRecordType,
   cancellable: Cancellable?
-): List? = memScoped {
+): List<Variant>? = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_resolver_lookup_records(this@lookupRecords, rrname, recordType,
-      cancellable?.reinterpret(), errors)?.reinterpret()
+  val result: List<Variant>? = g_resolver_lookup_records(this@lookupRecords, rrname, recordType,
+      cancellable?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
 @Throws(Error::class)
-public fun Resolver.lookupRecordsFinish(result: AsyncResult?): List? = memScoped {
+public fun Resolver.lookupRecordsFinish(result: AsyncResult?): List<Variant>? = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_resolver_lookup_records_finish(this@lookupRecordsFinish,
-      result?.reinterpret(), errors)?.reinterpret()
+  val result: List<Variant>? = g_resolver_lookup_records_finish(this@lookupRecordsFinish,
+      result?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
@@ -131,19 +137,19 @@ public fun Resolver.lookupService(
   protocol: String?,
   domain: String?,
   cancellable: Cancellable?
-): List? = memScoped {
+): List<SrvTarget>? = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_resolver_lookup_service(this@lookupService, service, protocol, domain,
-      cancellable?.reinterpret(), errors)?.reinterpret()
+  val result: List<SrvTarget>? = g_resolver_lookup_service(this@lookupService, service, protocol,
+      domain, cancellable?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }
 
 @Throws(Error::class)
-public fun Resolver.lookupServiceFinish(result: AsyncResult?): List? = memScoped {
+public fun Resolver.lookupServiceFinish(result: AsyncResult?): List<SrvTarget>? = memScoped {
   val errors = allocPointerTo<GError>().ptr
-  val result: List? = g_resolver_lookup_service_finish(this@lookupServiceFinish,
-      result?.reinterpret(), errors)?.reinterpret()
+  val result: List<SrvTarget>? = g_resolver_lookup_service_finish(this@lookupServiceFinish,
+      result?.reinterpret(), errors)?.reinterpret<GList>()?.toKList()
   errors.pointed.pointed?.let { throw Error(it) }
   return result
 }

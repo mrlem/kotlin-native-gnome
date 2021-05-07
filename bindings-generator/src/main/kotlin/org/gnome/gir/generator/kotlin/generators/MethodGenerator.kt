@@ -2,7 +2,6 @@ package org.gnome.gir.generator.kotlin.generators
 
 import com.squareup.kotlinpoet.*
 import org.gnome.gir.GLIB_ADDITIONS_PACKAGE
-import org.gnome.gir.GNOME_ADDITIONS_PACKAGE
 import org.gnome.gir.INTEROP_PACKAGE
 import org.gnome.gir.generator.kotlin.generators.ext.*
 import org.gnome.gir.model.ArrayTypeDefinition
@@ -119,7 +118,7 @@ fun FileSpec.Builder.addMethod(className: ClassName, method: CallableDefinition,
 // Internal
 ///////////////////////////////////////////////////////////////////////////
 
-fun TypeInfo?.getReturnData(): Pair<String, Array<MemberName>> {
+fun TypeInfo?.getReturnData(): Pair<String, Array<out Any>> {
     return this?.toKType
         ?: "" to emptyArray()
 }

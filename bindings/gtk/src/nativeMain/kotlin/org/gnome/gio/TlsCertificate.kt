@@ -16,7 +16,7 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
+import org.mrlem.gnome.toBoolean
 
 public typealias TlsCertificate = CPointer<GTlsCertificate>
 

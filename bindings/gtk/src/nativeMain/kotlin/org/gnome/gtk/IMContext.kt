@@ -27,9 +27,9 @@ import org.gnome.gdk.EventKey
 import org.gnome.gdk.Rectangle
 import org.gnome.gdk.Window
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toInt
 
 public typealias IMContext = CPointer<GtkIMContext>
 

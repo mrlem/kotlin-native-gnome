@@ -16,8 +16,8 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.glib.Variant
 import org.gnome.glib.VariantType
 import org.gnome.gobject.Object
-import org.gnome.toInt
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toInt
 
 public typealias SimpleAction = CPointer<GSimpleAction>
 

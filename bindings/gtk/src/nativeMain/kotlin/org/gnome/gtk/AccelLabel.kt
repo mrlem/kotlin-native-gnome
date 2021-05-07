@@ -24,7 +24,7 @@ import org.gnome.gdk.ModifierType
 import org.gnome.gobject.Closure
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
+import org.mrlem.gnome.toBoolean
 
 public typealias AccelLabel = CPointer<GtkAccelLabel>
 

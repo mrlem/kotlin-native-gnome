@@ -10,7 +10,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.toKString
+import org.mrlem.gnome.toKString
 
 public typealias ParamSpecString = CPointer<GParamSpecString>
 

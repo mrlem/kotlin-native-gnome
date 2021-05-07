@@ -51,12 +51,11 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
 import org.gnome.gdk.FrameClock
 import org.gnome.gdk.Screen
-import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
-import org.gnome.toBoolean
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toKString
 
 public typealias StyleContext = CPointer<GtkStyleContext>
 
@@ -130,7 +129,7 @@ public fun StyleContext.getStyleProperty(propertyName: String?, `value`: Value?)
 public fun StyleContext.hasClass(className: String?): Boolean =
     gtk_style_context_has_class(this@hasClass, className).toBoolean()
 
-public fun StyleContext.listClasses(): List? =
+public fun StyleContext.listClasses(): org.gnome.glib.List? =
     gtk_style_context_list_classes(this@listClasses)?.reinterpret()
 
 public fun StyleContext.removeClass(className: String?): Unit {

@@ -11,6 +11,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GType
 import interop.GtkContainer
 import interop.gtk_container_add
@@ -34,16 +35,17 @@ import interop.gtk_container_set_focus_vadjustment
 import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.ParamSpec
 import org.gnome.gobject.Value
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toKList
 
 public typealias Container = CPointer<GtkContainer>
 
@@ -65,8 +67,8 @@ public var Container.borderWidth: UInt
     gtk_container_set_border_width(this@borderWidth, `value`)
   }
 
-public val Container.children: List?
-  get() = gtk_container_get_children(this)?.reinterpret()
+public val Container.children: List<Widget>?
+  get() = gtk_container_get_children(this)?.reinterpret<GList>()?.toKList()
 
 public var Container.focusChild: Widget?
   get() = gtk_container_get_focus_child(this)?.reinterpret()

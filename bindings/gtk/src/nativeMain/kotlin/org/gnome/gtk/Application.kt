@@ -2,6 +2,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GtkApplication
 import interop.gtk_application_add_window
 import interop.gtk_application_get_accels_for_action
@@ -27,6 +28,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
@@ -35,13 +37,13 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gio.ApplicationFlags
 import org.gnome.gio.Menu
 import org.gnome.gio.MenuModel
-import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toKArray
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias Application = CPointer<GtkApplication>
 
@@ -74,8 +76,8 @@ public var Application.menubar: MenuModel?
     gtk_application_set_menubar(this@menubar, `value`)
   }
 
-public val Application.windows: List?
-  get() = gtk_application_get_windows(this)?.reinterpret()
+public val Application.windows: List<Window>?
+  get() = gtk_application_get_windows(this)?.reinterpret<GList>()?.toKList()
 
 public fun Application.addWindow(window: Window?): Unit {
   gtk_application_add_window(this@addWindow, window?.reinterpret())

@@ -7,6 +7,7 @@
 package org.gnome.gtk
 
 import interop.GError
+import interop.GList
 import interop.GtkWindow
 import interop.gtk_window_activate_default
 import interop.gtk_window_activate_focus
@@ -110,6 +111,7 @@ import kotlin.String
 import kotlin.Throws
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.allocPointerTo
 import kotlinx.cinterop.memScoped
@@ -125,14 +127,15 @@ import org.gnome.gdk.WindowEdge
 import org.gnome.gdk.WindowHints
 import org.gnome.gdk.WindowTypeHint
 import org.gnome.gdkpixbuf.Pixbuf
-import org.gnome.glib.List
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toInt
-import org.gnome.toKString
 import org.mrlem.gnome.glib.Error
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCList
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias Window = CPointer<GtkWindow>
 
@@ -236,10 +239,10 @@ public var Window.icon: Pixbuf?
     gtk_window_set_icon(this@icon, `value`)
   }
 
-public var Window.iconList: List?
-  get() = gtk_window_get_icon_list(this)?.reinterpret()
+public var Window.iconList: List<Pixbuf>?
+  get() = gtk_window_get_icon_list(this)?.reinterpret<GList>()?.toKList()
   set(`value`) {
-    gtk_window_set_icon_list(this@iconList, `value`)
+    gtk_window_set_icon_list(this@iconList, `value`?.toCList())
   }
 
 public var Window.iconName: String?

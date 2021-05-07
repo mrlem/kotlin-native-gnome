@@ -47,12 +47,12 @@ import kotlinx.cinterop.reinterpret
 import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toInt
-import org.gnome.toKArray
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKString
 
 public typealias AboutDialog = CPointer<GtkAboutDialog>
 

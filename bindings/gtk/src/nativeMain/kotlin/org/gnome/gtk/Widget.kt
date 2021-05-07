@@ -26,6 +26,7 @@
 
 package org.gnome.gtk
 
+import interop.GList
 import interop.GType
 import interop.GtkWidget
 import interop.gtk_drag_begin_with_coordinates
@@ -232,6 +233,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlin.collections.map
 import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
@@ -254,19 +256,20 @@ import org.gnome.gdk.Visual
 import org.gnome.gdkpixbuf.Pixbuf
 import org.gnome.gio.ActionGroup
 import org.gnome.gio.Icon
-import org.gnome.glib.List
+import org.gnome.gobject.Closure
 import org.gnome.gobject.InitiallyUnowned
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
 import org.gnome.pango.Context
 import org.gnome.pango.FontMap
 import org.gnome.pango.Layout
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toInt
-import org.gnome.toKArray
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toInt
+import org.mrlem.gnome.toKArray
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias Widget = CPointer<GtkWidget>
 
@@ -814,14 +817,14 @@ public fun Widget.isVisible(): Boolean = gtk_widget_is_visible(this@isVisible).t
 public fun Widget.keynavFailed(direction: DirectionType): Boolean =
     gtk_widget_keynav_failed(this@keynavFailed, direction).toBoolean()
 
-public fun Widget.listAccelClosures(): List? =
-    gtk_widget_list_accel_closures(this@listAccelClosures)?.reinterpret()
+public fun Widget.listAccelClosures(): List<Closure>? =
+    gtk_widget_list_accel_closures(this@listAccelClosures)?.reinterpret<GList>()?.toKList()
 
 public fun Widget.listActionPrefixes(): Array<String>? =
     gtk_widget_list_action_prefixes(this@listActionPrefixes)?.toKArray { it.toKString()!! }
 
-public fun Widget.listMnemonicLabels(): List? =
-    gtk_widget_list_mnemonic_labels(this@listMnemonicLabels)?.reinterpret()
+public fun Widget.listMnemonicLabels(): List<Widget>? =
+    gtk_widget_list_mnemonic_labels(this@listMnemonicLabels)?.reinterpret<GList>()?.toKList()
 
 public fun Widget.map(): Unit {
   gtk_widget_map(this@map)

@@ -37,9 +37,9 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
-import org.gnome.toBoolean
-import org.gnome.toCArray
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
 
 public typealias Object = CPointer<GObject>
 

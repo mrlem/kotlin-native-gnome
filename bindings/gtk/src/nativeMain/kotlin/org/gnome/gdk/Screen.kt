@@ -5,6 +5,7 @@
 
 package org.gnome.gdk
 
+import interop.GList
 import interop.GdkScreen
 import interop.gdk_screen_get_display
 import interop.gdk_screen_get_resolution
@@ -21,13 +22,14 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.String
 import kotlin.Unit
+import kotlin.collections.List
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
 import org.gnome.gobject.Value
-import org.gnome.toBoolean
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toKList
 
 public typealias Screen = CPointer<GdkScreen>
 
@@ -52,18 +54,19 @@ public val Screen.rootWindow: Window?
 public val Screen.systemVisual: Visual?
   get() = gdk_screen_get_system_visual(this)?.reinterpret()
 
-public val Screen.toplevelWindows: List?
-  get() = gdk_screen_get_toplevel_windows(this)?.reinterpret()
+public val Screen.toplevelWindows: List<Window>?
+  get() = gdk_screen_get_toplevel_windows(this)?.reinterpret<GList>()?.toKList()
 
-public val Screen.windowStack: List?
-  get() = gdk_screen_get_window_stack(this)?.reinterpret()
+public val Screen.windowStack: List<Window>?
+  get() = gdk_screen_get_window_stack(this)?.reinterpret<GList>()?.toKList()
 
 public fun Screen.getSetting(name: String?, `value`: Value?): Boolean =
     gdk_screen_get_setting(this@getSetting, name, `value`?.reinterpret()).toBoolean()
 
 public fun Screen.isComposited(): Boolean = gdk_screen_is_composited(this@isComposited).toBoolean()
 
-public fun Screen.listVisuals(): List? = gdk_screen_list_visuals(this@listVisuals)?.reinterpret()
+public fun Screen.listVisuals(): List<Visual>? =
+    gdk_screen_list_visuals(this@listVisuals)?.reinterpret<GList>()?.toKList()
 
 public fun Screen.onCompositedChanged(callback: (Screen) -> Unit): Screen {
   // TODO - handle callback data

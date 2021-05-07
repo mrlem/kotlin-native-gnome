@@ -4,6 +4,7 @@
 
 package org.gnome.gdk
 
+import interop.GList
 import interop.GdkDisplay
 import interop.gdk_display_beep
 import interop.gdk_display_close
@@ -44,17 +45,19 @@ import kotlin.Int
 import kotlin.String
 import kotlin.UInt
 import kotlin.Unit
+import kotlin.collections.List
 import kotlin.collections.map
 import kotlin.collections.toTypedArray
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
-import org.gnome.glib.List
 import org.gnome.gobject.Object
-import org.gnome.toBoolean
-import org.gnome.toCArray
-import org.gnome.toKString
 import org.mrlem.gnome.gobject.connect
+import org.mrlem.gnome.toBoolean
+import org.mrlem.gnome.toCArray
+import org.mrlem.gnome.toKList
+import org.mrlem.gnome.toKString
 
 public typealias Display = CPointer<GdkDisplay>
 
@@ -116,7 +119,8 @@ public fun Display.hasPending(): Boolean = gdk_display_has_pending(this@hasPendi
 
 public fun Display.isClosed(): Boolean = gdk_display_is_closed(this@isClosed).toBoolean()
 
-public fun Display.listSeats(): List? = gdk_display_list_seats(this@listSeats)?.reinterpret()
+public fun Display.listSeats(): List<Seat>? =
+    gdk_display_list_seats(this@listSeats)?.reinterpret<GList>()?.toKList()
 
 public fun Display.notifyStartupComplete(startupId: String?): Unit {
   gdk_display_notify_startup_complete(this@notifyStartupComplete, startupId)

@@ -8,7 +8,7 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import org.gnome.toBoolean
+import org.mrlem.gnome.toBoolean
 
 public typealias ParamSpecBoolean = CPointer<GParamSpecBoolean>
 
