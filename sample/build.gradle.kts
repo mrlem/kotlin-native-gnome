@@ -24,7 +24,7 @@ kotlin {
     // for UI-tied code
     val nativeMain by sourceSets.getting {
         dependencies {
-            implementation("org.mrlem.gnome:gtk-binding:0.2.0")
+            implementation("org.mrlem.gnome:gtk-binding:0.2.1-SNAPSHOT")
         }
     }
 

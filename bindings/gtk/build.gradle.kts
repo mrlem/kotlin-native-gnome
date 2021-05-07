@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "org.mrlem.gnome"
-version = "0.2.0"
+version = "0.2.1-SNAPSHOT"
 
 extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
