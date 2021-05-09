@@ -6,20 +6,20 @@ import org.gnome.gtk.*
 class AppDelegate(private val ui: SampleUI) {
 
     init {
-        with(ui) {
-            // setup about dialog
-            aboutButton.onClicked {
-                aboutDialog.asDialog.run()
-                aboutDialog.asWidget.hide()
-            }
+        initEvents()
+        ui.mainWindow.asWidget.showAll()
+    }
 
-            // setup conversion
-            euroAmountEntry.onActivate { showConverted() }
-            convertButton.onClicked { showConverted() }
-
-            // show UI
-            mainWindow.asWidget.showAll()
+    private fun initEvents() = with(ui) {
+        // setup about dialog
+        aboutButton.onClicked {
+            aboutDialog.asDialog.run()
+            aboutDialog.asWidget.hide()
         }
+
+        // setup conversion
+        euroAmountEntry.onActivate { showConverted() }
+        convertButton.onClicked { showConverted() }
     }
 
     private fun showConverted() = with(ui) {
