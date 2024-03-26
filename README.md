@@ -1,9 +1,21 @@
-# Kotlin Native GNOME
+# Kotlin Native GNOME (deprecated)
+
 [![maven-central](https://img.shields.io/maven-central/v/org.mrlem.gnome/gtk-binding)](https://search.maven.org/artifact/org.mrlem.gnome/gtk-binding/0.2.0/jar)
 
 A set of tools to make **GNOME application** creation easy in **Kotlin Native**, with **Glade** UI integration.
 
 ![Screenshot](doc/readme-screenshot.png)
+
+<hr>
+
+⚠️ _**Deprecated:**_
+
+_This was a work in progress for lack of a better option. Then I discovered:_
+* _[java-gi](https://github.com/jwharm/java-gi): a java gtk4 binding, which does the job, seems very complete and well maintained_
+* _[compose-4-gtk](https://github.com/MMarco94/compose-4-gtk): a very nice proof of concept to use GTK components through composables_
+I feel these are better alternatives.
+
+<hr>
 
 ## Features
 
